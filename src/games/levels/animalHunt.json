@@ -1,0 +1,10 @@
+{
+  "gameId": "animal-hunt",
+  "levels": [
+    { "level": 1, "questionCount": 6, "clueIds": ["panda", "cat", "dog", "bird"] },
+    { "level": 2, "questionCount": 7, "clueIds": ["panda", "cat", "dog", "bird", "cow", "rabbit", "penguin"] },
+    { "level": 3, "questionCount": 7, "clueIds": ["panda", "cat", "dog", "bird", "cow", "rabbit", "penguin", "lion", "elephant", "turtle"] },
+    { "level": 4, "questionCount": 8, "clueIds": ["panda", "cat", "dog", "bird", "cow", "rabbit", "penguin", "lion", "elephant", "turtle", "dolphin", "giraffe"] },
+    { "level": 5, "questionCount": 8, "clueIds": ["panda", "cat", "dog", "bird", "cow", "rabbit", "penguin", "lion", "elephant", "turtle", "dolphin", "giraffe", "frog", "duck"] }
+  ]
+}

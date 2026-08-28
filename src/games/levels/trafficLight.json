@@ -1,0 +1,10 @@
+{
+  "gameId": "traffic-light",
+  "levels": [
+    { "level": 1, "questionCount": 6, "states": ["red", "green"] },
+    { "level": 2, "questionCount": 7, "states": ["red", "green"] },
+    { "level": 3, "questionCount": 7, "states": ["red", "yellow", "green"] },
+    { "level": 4, "questionCount": 8, "states": ["red", "yellow", "green"] },
+    { "level": 5, "questionCount": 8, "states": ["red", "yellow", "green"] }
+  ]
+}

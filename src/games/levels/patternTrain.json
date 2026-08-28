@@ -1,0 +1,10 @@
+{
+  "gameId": "pattern-train",
+  "levels": [
+    { "level": 1, "questionCount": 6, "types": ["ABAB", "AABB"], "poolSize": 6 },
+    { "level": 2, "questionCount": 7, "types": ["ABAB", "AABB", "ABBA"], "poolSize": 8 },
+    { "level": 3, "questionCount": 7, "types": ["ABAB", "AABB", "ABBA", "ABCABC"], "poolSize": 10 },
+    { "level": 4, "questionCount": 8, "types": ["ABAB", "AABB", "ABBA", "ABCABC", "AABBAABB"], "poolSize": 12 },
+    { "level": 5, "questionCount": 8, "types": ["ABAB", "AABB", "ABBA", "ABCABC", "AABBAABB", "ABCABC"], "poolSize": 14 }
+  ]
+}

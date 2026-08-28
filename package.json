@@ -1,0 +1,48 @@
+{
+  "name": "smart-fun-zone",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "description": "聪明乐园 Smart Fun Zone — 幼儿智力训练小游戏网站（商业级品质版）",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src e2e",
+    "lint:fix": "eslint src e2e --fix",
+    "format": "prettier --write src e2e",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "gen:words": "esbuild scripts/gen-text-words.ts --bundle --platform=node --format=esm --outfile=scripts/_gen.mjs && node scripts/_gen.mjs",
+    "fetch:voices": "node scripts/fetch-voices.mjs"
+  },
+  "dependencies": {
+    "espeak-ng": "^1.0.2",
+    "hanzi-writer": "^3.7.3",
+    "pinyin-pro": "^3.29.3",
+    "piper-tts-web": "^1.1.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.0",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.62.1",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "cmu-pronouncing-dictionary": "^3.0.0",
+    "eslint": "^10.8.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.11.0",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.9.6",
+    "segmentit": "^2.0.3",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.67.0",
+    "vite": "^5.4.11",
+    "vite-plugin-static-copy": "^1.0.6",
+    "vitest": "^4.1.11"
+  }
+}

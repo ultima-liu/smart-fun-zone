@@ -1,0 +1,10 @@
+{
+  "gameId": "english-zoo",
+  "levels": [
+    { "level": 1, "questionCount": 6, "animalIds": ["cat", "dog", "pig", "cow"] },
+    { "level": 2, "questionCount": 7, "animalIds": ["cat", "dog", "pig", "cow", "sheep", "duck", "monkey", "lion"] },
+    { "level": 3, "questionCount": 7, "animalIds": ["cat", "dog", "pig", "cow", "sheep", "duck", "monkey", "lion", "tiger", "elephant", "bear", "bird"] },
+    { "level": 4, "questionCount": 8, "animalIds": ["cat", "dog", "pig", "cow", "sheep", "duck", "monkey", "lion", "tiger", "elephant", "bear", "bird", "fish", "frog", "rabbit", "horse"] },
+    { "level": 5, "questionCount": 8, "animalIds": ["cat", "dog", "pig", "cow", "sheep", "duck", "monkey", "lion", "tiger", "elephant", "bear", "bird", "fish", "frog", "rabbit", "horse"] }
+  ]
+}

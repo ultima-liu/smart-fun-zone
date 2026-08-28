@@ -1,0 +1,19 @@
+node_modules
+dist
+.DS_Store
+*.local
+npm-debug.log*
+
+# 语音模型（每个 ~60MB，勿入 git）：npm run fetch:voices 一键下载
+# 缺失时站点自动降级 espeak-ng 兜底朗读，功能不受影响
+public/piper/voices/*.onnx
+
+# 生词生成脚本的构建产物
+scripts/_gen.mjs
+
+# 语音引擎二进制由 vite-plugin-static-copy 构建时从 node_modules 自动复制，
+# 本地 public 目录不应再保留复制品（删掉可避免误提交）
+public/espeak-ng.wasm
+public/piper/onnx/
+public/piper/piper/
+public/piper/worker/

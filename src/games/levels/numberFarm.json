@@ -1,0 +1,45 @@
+{
+  "gameId": "number-farm",
+  "levels": [
+    {
+      "level": 1,
+      "questionCount": 8,
+      "countMin": 1,
+      "countMax": 5,
+      "animals": ["🐷", "🐮", "🐔", "🐑", "🐰"],
+      "optionCount": 3
+    },
+    {
+      "level": 2,
+      "questionCount": 8,
+      "countMin": 3,
+      "countMax": 8,
+      "animals": ["🐷", "🐮", "🐔", "🐑", "🐰", "🦆"],
+      "optionCount": 4
+    },
+    {
+      "level": 3,
+      "questionCount": 10,
+      "countMin": 5,
+      "countMax": 10,
+      "animals": ["🐷", "🐮", "🐔", "🐑", "🐰", "🦆", "🐴", "🐶"],
+      "optionCount": 4
+    },
+    {
+      "level": 4,
+      "questionCount": 10,
+      "countMin": 6,
+      "countMax": 12,
+      "animals": ["🐷", "🐮", "🐔", "🐑", "🐰", "🦆", "🐴", "🐶", "🐱", "🐹", "🐢"],
+      "optionCount": 4
+    },
+    {
+      "level": 5,
+      "questionCount": 12,
+      "countMin": 8,
+      "countMax": 15,
+      "animals": ["🐷", "🐮", "🐔", "🐑", "🐰", "🦆", "🐴", "🐶", "🐱", "🐹", "🐢", "🐵"],
+      "optionCount": 4
+    }
+  ]
+}

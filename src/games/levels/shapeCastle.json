@@ -1,0 +1,10 @@
+{
+  "gameId": "shape-castle",
+  "levels": [
+    { "level": 1, "questionCount": 6, "shapeIds": ["circle", "triangle", "square"] },
+    { "level": 2, "questionCount": 7, "shapeIds": ["circle", "triangle", "square", "star"] },
+    { "level": 3, "questionCount": 7, "shapeIds": ["circle", "triangle", "square", "star", "heart"] },
+    { "level": 4, "questionCount": 8, "shapeIds": ["circle", "triangle", "square", "star", "heart", "diamond"] },
+    { "level": 5, "questionCount": 8, "shapeIds": ["circle", "triangle", "square", "star", "heart", "diamond", "crescent"] }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "gameId": "odd-one-out",
+  "levels": [
+    {
+      "level": 1,
+      "cols": 3,
+      "rows": 3,
+      "mainEmoji": "🍎",
+      "oddEmoji": "🍏",
+      "oddCount": 1
+    },
+    {
+      "level": 2,
+      "cols": 4,
+      "rows": 3,
+      "mainEmoji": "🐟",
+      "oddEmoji": "🐠",
+      "oddCount": 2
+    },
+    {
+      "level": 3,
+      "cols": 4,
+      "rows": 4,
+      "mainEmoji": "🦋",
+      "oddEmoji": "🐝",
+      "oddCount": 3
+    },
+    {
+      "level": 4,
+      "cols": 5,
+      "rows": 4,
+      "mainEmoji": "🐝",
+      "oddEmoji": "🐞",
+      "oddCount": 3
+    },
+    {
+      "level": 5,
+      "cols": 6,
+      "rows": 4,
+      "mainEmoji": "🐙",
+      "oddEmoji": "🦑",
+      "oddCount": 4
+    }
+  ]
+}

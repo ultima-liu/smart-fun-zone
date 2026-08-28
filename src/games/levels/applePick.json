@@ -1,0 +1,10 @@
+{
+  "gameId": "apple-pick",
+  "levels": [
+    { "level": 1, "questionCount": 5, "minN": 1, "maxN": 3 },
+    { "level": 2, "questionCount": 5, "minN": 2, "maxN": 5 },
+    { "level": 3, "questionCount": 6, "minN": 3, "maxN": 7 },
+    { "level": 4, "questionCount": 6, "minN": 4, "maxN": 9 },
+    { "level": 5, "questionCount": 7, "minN": 5, "maxN": 12 }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "gameId": "trash-sort",
+  "levels": [
+    { "level": 1, "questionCount": 6, "binIds": ["recyclable", "other"] },
+    { "level": 2, "questionCount": 7, "binIds": ["recyclable", "other", "kitchen"] },
+    { "level": 3, "questionCount": 8, "binIds": ["recyclable", "other", "kitchen", "hazardous"] },
+    { "level": 4, "questionCount": 8, "binIds": ["recyclable", "other", "kitchen", "hazardous"] },
+    { "level": 5, "questionCount": 8, "binIds": ["recyclable", "other", "kitchen", "hazardous"] }
+  ]
+}
