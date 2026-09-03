@@ -7,7 +7,6 @@ import { SceneBanner } from '../components/scenes';
 import { GRADES, SUBJECTS, type Grade } from '../types';
 import { lessonsByUnit, skillEmoji } from '../content/skills';
 import { speak } from '../speech';
-import { preloadOffline } from '../tts';
 
 export default function SubjectPage() {
   const { subjectId } = useParams();
@@ -28,11 +27,6 @@ export default function SubjectPage() {
     }
     speak(subject.name[lang], lang);
   }, [child, subject, lang, nav]);
-
-  // 英语学科：进入目录页即预热离线语音引擎（系统无英文语音时兜底）
-  useEffect(() => {
-    if (subjectId === 'english') preloadOffline(['en']);
-  }, [subjectId]);
 
   // 从课文返回时：滚动并高亮那篇课文所在的单元目录
   const unitParam = params.get('unit');

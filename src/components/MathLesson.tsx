@@ -1,20 +1,59 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useI18n } from '../i18n';
+import { useStore } from '../store';
 import { KidButton } from './ui';
 import Mascot from './Mascot';
 import MathFigure from './MathFigure';
-import { speak, playSfx } from '../speech';
+import { speak, playSfx, volcConfigured } from '../speech';
 import type { MathFigure as MathFigureSpec, Quiz, TeachStep, WorkedExample } from '../content/skills';
 
 /* ================= 数学课专用学习节点（替代 听读 / 认生字） ================= */
 
-/** 看例题：情境示例卡 + 2~3 道例题逐步详解（知识含量足），点行听讲解 */
+/** 语音开关关闭时的提示（否则整课静默，家长不知道原因） */
+function VoiceOffHint({ lang }: { lang: 'zh' | 'en' }) {
+  const voiceOn = useStore((s) => s.voiceOn);
+  if (voiceOn) return null;
+  return (
+    <div className="voice-off-hint">
+      {lang === 'zh' ? '🔇 语音开关已关闭：到「我的」页打开语音，就能听到讲解人声' : '🔇 Voice is off: enable it in Profile to hear the narration'}
+    </div>
+  );
+}
+
+/** 未配置火山引擎语音密钥时的提示 */
+function VolcMissingHint({ lang }: { lang: 'zh' | 'en' }) {
+  if (volcConfigured()) return null;
+  return (
+    <div className="voice-off-hint">
+      {lang === 'zh'
+        ? '⚠️ 未配置火山引擎语音：请在项目 .env.local 中设置 VOLC_SPEECH_API_KEY 后重启开发服务器'
+        : '⚠️ Volcengine TTS not configured: set VOLC_SPEECH_API_KEY in .env.local and restart the dev server'}
+    </div>
+  );
+}
+
+/** 看例题：情境示例卡 + 2~3 道例题逐步详解（知识含量足），点行听讲解；
+    配图动画自带数数语音，播完后自动朗读本课示例句 */
 export function MathExample({ figure, example, worked, text, lang, onDone }: { figure: MathFigureSpec | undefined; example: string; worked: WorkedExample[]; text: string; lang: 'zh' | 'en'; onDone: () => void }) {
   const { t } = useI18n();
   const paras = text.split('\n').map((s) => s.trim()).filter(Boolean);
+  const exampleRef = useRef(example);
+  useEffect(() => {
+    exampleRef.current = example;
+  });
   return (
     <div className="math-example">
-      {figure && <MathFigure figure={figure} />}
+      <VoiceOffHint lang={lang} />
+      <VolcMissingHint lang={lang} />
+      {figure && (
+        <MathFigure
+          figure={figure}
+          lang={lang}
+          onVoiceEnd={() => {
+            if (exampleRef.current) speak(exampleRef.current, lang);
+          }}
+        />
+      )}
       <div className="example-scene" onClick={() => speak(example, lang)}>
         <span className="example-scene-label">📖 例</span>
         <span className="example-scene-text">{example}</span>
@@ -97,6 +136,7 @@ export function MathExplain({
     ? `${step.title}。${step.text}${step.example ? `。例如：${step.example}` : ''}`
     : '';
 
+  // 讲解人声在演示动画开始时同步开讲（画外音）；配图保持静音，不与讲解抢话
   useEffect(() => {
     if (stepText && !checking) speak(stepText, lang);
   }, [i, stepText, lang, checking]);
@@ -128,8 +168,10 @@ export function MathExplain({
 
   return (
     <div className="math-explain">
-      {/* 演示配图：随小节变化（图态优先，缺省用本课配图） */}
-      {stepFigure && <MathFigure figure={stepFigure} />}
+      <VoiceOffHint lang={lang} />
+      <VolcMissingHint lang={lang} />
+      {/* 演示配图：随小节变化（图态优先，缺省用本课配图）；讲解人声做画外音，配图静音 */}
+      {stepFigure && <MathFigure figure={stepFigure} lang={lang} voice={false} />}
       {/* 学习进度 */}
       <div className="explain-progress">
         {narr.map((_, j) => (
@@ -147,14 +189,27 @@ export function MathExplain({
             <div className="explain-bubble">
               {step && (
                 <>
-                  <div className="explain-title">{step.title}</div>
-                  <div className="explain-text">{step.text}</div>
-                  {step.example && <div className="explain-example">✨ 例：{step.example}</div>}
-                  {step.tip && <div className="explain-tip">⚠️ {t('tip')}：{step.tip}</div>}
+                  <div className="explain-title tap-to-read" onClick={() => speak(step.title, lang)}>
+                    {step.title}
+                  </div>
+                  <div className="explain-text tap-to-read" onClick={() => speak(step.text, lang)}>
+                    {step.text}
+                  </div>
+                  {step.example && (
+                    <div className="explain-example tap-to-read" onClick={() => speak(`例如：${step.example}`, lang)}>
+                      ✨ 例：{step.example}
+                    </div>
+                  )}
+                  {step.tip && (
+                    <div className="explain-tip tap-to-read" onClick={() => speak(`${t('tip')}：${step.tip}`, lang)}>
+                      ⚠️ {t('tip')}：{step.tip}
+                    </div>
+                  )}
                 </>
               )}
             </div>
           </div>
+          <p className="tap-para-tip">👆 {t('tapParaTip')}</p>
           <div className="explain-nav">
             <KidButton
               color="white"
@@ -195,7 +250,15 @@ export function MathExplain({
         </>
       ) : (
         <div className="quiz-card">
-          <div className="quiz-q">
+          <div
+            className="quiz-q tap-to-read"
+            onClick={() => {
+              if (step?.check) {
+                const opts = step.check.options.map((o, oi) => `${oi + 1}、${o}`).join('，');
+                speak(`${step.check.q}。${opts}`, lang);
+              }
+            }}
+          >
             🤔 {t('tryIt')}：{step?.check?.q}
           </div>
           <div className="quiz-options">

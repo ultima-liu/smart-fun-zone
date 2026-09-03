@@ -1,12 +1,33 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import type { MathFigure, ShapeKind } from '../content/skills';
+import { playSfx, speakOnce } from '../speech';
 
-/** 数学配图：程序化渲染（SVG + emoji），图为主体、文字为图注 */
-export default function MathFigure({ figure }: { figure: MathFigure }) {
+/** 会自己"开口说话"的图型：演示动画与语音同步（数数/第几/比多少/算式/人民币） */
+const VOICED_TYPES = new Set(['count', 'ordinal', 'compare', 'equation', 'money']);
+
+/** 数学配图：程序化渲染（SVG + emoji），图为主体、文字为图注
+    - lang：配音语言（默认中文）
+    - voice：是否播放图型自己的配音（看演示时有讲解人声做画外音，配图应静音，避免抢话）
+    - onVoiceEnd：图型的"数数语音"播完后回调（用于接着播讲解，避免声音重叠） */
+export default function MathFigure({
+  figure,
+  lang = 'zh',
+  onVoiceEnd,
+  voice = true,
+}: {
+  figure: MathFigure;
+  lang?: 'zh' | 'en';
+  onVoiceEnd?: () => void;
+  voice?: boolean;
+}) {
   // figure 引用变化时重挂载内部内容，确保动画从头重播（图随讲解变化）
   const [mountKey, setMountKey] = useState(0);
   const prevFig = useRef(figure);
+  const voiceEndRef = useRef(onVoiceEnd);
+  useEffect(() => {
+    voiceEndRef.current = onVoiceEnd;
+  });
   useEffect(() => {
     if (prevFig.current !== figure) {
       prevFig.current = figure;
@@ -14,13 +35,19 @@ export default function MathFigure({ figure }: { figure: MathFigure }) {
     }
   }, [figure]);
 
+  // 不发音的图型：动画配图没有自己的语音，立即通知"图演示完毕"，让讲解接着播
+  const voiced = VOICED_TYPES.has(figure.type);
+  useEffect(() => {
+    if (!voiced) voiceEndRef.current?.();
+  }, [voiced]);
+
   let body: ReactNode;
   switch (figure.type) {
     case 'count':
-      body = <CountFig figure={figure} />;
+      body = <CountFig figure={figure} lang={lang} voice={voice} onVoiceEnd={() => voiceEndRef.current?.()} />;
       break;
     case 'equation':
-      body = <EquationFig figure={figure} />;
+      body = <EquationFig figure={figure} lang={lang} voice={voice} onVoiceEnd={() => voiceEndRef.current?.()} />;
       break;
     case 'vertical':
       body = <VerticalFig figure={figure} />;
@@ -29,7 +56,7 @@ export default function MathFigure({ figure }: { figure: MathFigure }) {
       body = <NumberlineFig figure={figure} />;
       break;
     case 'compare':
-      body = <CompareFig figure={figure} />;
+      body = <CompareFig figure={figure} lang={lang} voice={voice} onVoiceEnd={() => voiceEndRef.current?.()} />;
       break;
     case 'shapes':
       body = <ShapeSvg figure={figure} />;
@@ -41,10 +68,10 @@ export default function MathFigure({ figure }: { figure: MathFigure }) {
       body = <FractionMultiplyFig figure={figure} />;
       break;
     case 'makeTen':
-      body = <MakeTenFig figure={figure} />;
+      body = <MakeTenFig figure={figure} lang={lang} />;
       break;
     case 'breakTen':
-      body = <BreakTenFig figure={figure} />;
+      body = <BreakTenFig figure={figure} lang={lang} />;
       break;
     case 'unroll':
       body = <UnrollFig figure={figure} />;
@@ -62,7 +89,7 @@ export default function MathFigure({ figure }: { figure: MathFigure }) {
       body = <DirectionFig figure={figure} />;
       break;
     case 'ordinal':
-      body = <OrdinalFig figure={figure} />;
+      body = <OrdinalFig figure={figure} lang={lang} voice={voice} onVoiceEnd={() => voiceEndRef.current?.()} />;
       break;
     case 'shapeSet':
       body = <ShapeSetFig figure={figure} />;
@@ -71,7 +98,7 @@ export default function MathFigure({ figure }: { figure: MathFigure }) {
       body = <SortFig figure={figure} />;
       break;
     case 'money':
-      body = <MoneyFig figure={figure} />;
+      body = <MoneyFig figure={figure} lang={lang} voice={voice} onVoiceEnd={() => voiceEndRef.current?.()} />;
       break;
     case 'pattern':
       body = <PatternFig figure={figure} />;
@@ -136,79 +163,198 @@ export default function MathFigure({ figure }: { figure: MathFigure }) {
   );
 }
 
-/* 数数情境图（点一下亮一个 / 自动逐一点亮） */
-function CountFig({ figure }: { figure: MathFigure }) {
+/* 数数情境图：自动逐一点数——手指移到哪只小鸟，哪只小鸟就跳起来并"盖"上数字章（1、2、3…），
+   同时语音跟着数"1、2、3…"、音效轻响；也可点画面手动数，数完可重播 */
+function CountFig({ figure, lang, voice, onVoiceEnd }: { figure: MathFigure; lang: 'zh' | 'en'; voice: boolean; onVoiceEnd?: () => void }) {
   const n = Math.max(0, Math.round(figure.count ?? 0));
   const emoji = figure.emoji ?? '●';
   const [shown, setShown] = useState(0);
-  const [playing, setPlaying] = useState(false);
+  const [run, setRun] = useState(0);
   const timerRef = useRef<number | null>(null);
-
+  const voiceEndRef = useRef(onVoiceEnd);
   useEffect(() => {
-    return () => {
-      if (timerRef.current !== null) window.clearInterval(timerRef.current);
-    };
-  }, []);
+    voiceEndRef.current = onVoiceEnd;
+  });
 
-  const autoCount = () => {
-    if (playing || n === 0) return;
-    setPlaying(true);
-    setShown(0);
-    let i = 0;
-    timerRef.current = window.setInterval(() => {
-      i++;
-      setShown(i);
-      if (i >= n) {
-        if (timerRef.current !== null) window.clearInterval(timerRef.current);
-        timerRef.current = null;
-        setPlaying(false);
-      }
-    }, 420);
+  const stopAuto = () => {
+    if (timerRef.current !== null) {
+      window.clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
   };
 
+  /** 数到一个：轻响一声 + 朗读这个数字；数到最后一个时播完回调 onVoiceEnd（voice=false 时静音） */
+  const countVoice = useCallback(
+    (i: number) => {
+      if (!voice) return;
+      playSfx('tap');
+      speakOnce(String(i), lang, 1.05, i >= n ? () => voiceEndRef.current?.() : undefined);
+    },
+    [n, lang, voice],
+  );
+
+  // 进场后自动开始点数（每次重播 run 变化也重来；重播时由 replay 先归零再 +1）
+  useEffect(() => {
+    if (n <= 0) return;
+    stopAuto();
+    // 数得越多速度越快，但每次间隔不少于 320ms、不多于 1000ms
+    const stepMs = Math.max(320, Math.min(1000, Math.round(1900 / Math.sqrt(n))));
+    const start = window.setTimeout(() => {
+      let i = 0;
+      timerRef.current = window.setInterval(() => {
+        i += 1;
+        setShown(i);
+        countVoice(i);
+        if (i >= n) stopAuto();
+      }, stepMs);
+    }, 450);
+    return () => {
+      window.clearTimeout(start);
+      stopAuto();
+    };
+  }, [n, run, countVoice]);
+
+  const finished = n > 0 && shown >= n;
+
   const tapCount = () => {
-    if (playing) return;
-    setShown((s) => (s >= n ? 0 : s + 1));
+    stopAuto();
+    const next = shown >= n ? 1 : shown + 1;
+    setShown(next);
+    countVoice(next);
+  };
+
+  const replay = () => {
+    stopAuto();
+    setShown(0);
+    setRun((r) => r + 1);
   };
 
   return (
     <div className="mf-count" aria-hidden="true">
-      <div className="mf-row mf-tappable" onClick={tapCount} role="button" aria-label="count">
-        {Array.from({ length: n }).map((_, i) => (
-          <span key={i} className={`mf-item ${i < shown ? 'lit' : 'dim'}`}>{emoji}</span>
-        ))}
+      <div className="mf-row mf-count-row mf-tappable" onClick={tapCount} role="button" aria-label="count">
+        {Array.from({ length: n }).map((_, i) => {
+          const counted = i < shown;
+          const current = !finished && i === shown - 1;
+          return (
+            <span key={i} className={`mf-count-slot${counted ? ' lit' : ''}${current ? ' current' : ''}`}>
+              <span className="mf-slot-pointer">{current ? '👆' : ''}</span>
+              <span className="mf-item">{emoji}</span>
+              <span className="mf-slot-badge">{counted ? i + 1 : ''}</span>
+            </span>
+          );
+        })}
       </div>
-      <div className="mf-num">{shown}</div>
-      <button className="mf-play" onClick={autoCount}>▶ {shown >= n ? t0('again') : t0('count')}</button>
+      <div className="mf-num" key={shown}>
+        {shown}
+      </div>
+      <button className="mf-play" onClick={replay}>▶ {finished ? '再数一次' : '数一数'}</button>
     </div>
   );
 }
 
-function t0(key: 'again' | 'count'): string {
-  return key === 'again' ? '再数一次' : '数一数';
-}
+/* 算式图解：每个数都是「圆点图 + 数字」；自动演示——左边圆点逐个数亮、右边逐个数亮、
+   结果弹出，语音同步读"2、3、2加3等于5"；也可点「?」立刻算出来 */
+const OP_WORDS: Record<string, string> = { '+': '加', '-': '减', '×': '乘', '÷': '除以' };
 
-/* 算式图解：每个数都是「圆点图 + 数字」；点「?」算出结果 */
-function EquationFig({ figure }: { figure: MathFigure }) {
+function EquationFig({ figure, lang, voice, onVoiceEnd }: { figure: MathFigure; lang: 'zh' | 'en'; voice: boolean; onVoiceEnd?: () => void }) {
   const a = Math.max(0, Math.round(figure.a ?? 0));
   const b = Math.max(0, Math.round(figure.b ?? 0));
   const op = figure.op ?? '+';
   const result = op === '×' ? a * b : op === '÷' ? (b === 0 ? 0 : Math.floor(a / b)) : op === '-' ? a - b : a + b;
+  const showDots = a <= 20 && b <= 20 && a + b <= 24;
+  const [litA, setLitA] = useState(0);
+  const [litB, setLitB] = useState(0);
   const [solved, setSolved] = useState(false);
+  const [run, setRun] = useState(0);
+  const timerRef = useRef<number | null>(null);
+  const voiceEndRef = useRef(onVoiceEnd);
+  useEffect(() => {
+    voiceEndRef.current = onVoiceEnd;
+  });
+
+  const opWord = OP_WORDS[op] ?? op;
+  const resultPhrase = `${a}${opWord}${b}等于${result}`;
+
+  const stop = useCallback(() => {
+    if (timerRef.current !== null) {
+      window.clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const speakResult = useCallback(() => {
+    if (!voice) return;
+    playSfx('pop');
+    speakOnce(resultPhrase, lang, 1.0, () => voiceEndRef.current?.());
+  }, [resultPhrase, lang, voice]);
+
+  // 进场自动演示：左边 a 个圆点逐个点亮 → 右边 b 个逐个点亮 → 结果弹出
+  // （重播时由 replay 先归零再 +1；voice=false 时只演示不发声）
+  useEffect(() => {
+    stop();
+    const steps = showDots ? a + b : 2;
+    const stepMs = showDots ? Math.max(220, Math.min(420, Math.round(1400 / Math.sqrt(Math.max(1, steps))))) : 550;
+    let i = 0;
+    timerRef.current = window.setInterval(() => {
+      i += 1;
+      if (showDots) {
+        if (i <= a) {
+          setLitA(i);
+          if (voice && i === a) speakOnce(String(a), lang, 1.0);
+        } else if (i <= a + b) {
+          setLitB(i - a);
+          if (voice && i === a + b) speakOnce(String(b), lang, 1.0);
+        }
+      } else if (i === 1) {
+        setLitA(a);
+        if (voice) speakOnce(String(a), lang, 1.0);
+      } else {
+        setLitB(b);
+        if (voice) speakOnce(String(b), lang, 1.0);
+      }
+      if (i >= steps) {
+        stop();
+        window.setTimeout(() => {
+          setSolved(true);
+          speakResult();
+        }, showDots ? 260 : 380);
+      }
+    }, stepMs);
+    return stop;
+  }, [run, a, b, op, showDots, lang, voice, stop, speakResult]);
+
+  const solveNow = () => {
+    stop();
+    setLitA(a);
+    setLitB(b);
+    setSolved(true);
+    speakResult();
+  };
+
+  const replay = () => {
+    stop();
+    setLitA(0);
+    setLitB(0);
+    setSolved(false);
+    setRun((r) => r + 1);
+  };
+
   return (
-    <div className="mf-equation" aria-hidden="true">
-      <Part n={a} />
-      <span className="mf-op">{op}</span>
-      <Part n={b} />
-      <span className="mf-op">=</span>
-      {solved ? (
-        <Part n={result} result />
-      ) : (
-        <button className="mf-eq-solve" onClick={() => setSolved(true)} aria-label="算一算">?</button>
-      )}
-      {solved && (
-        <button className="mf-play mf-eq-again" onClick={() => setSolved(false)} aria-label="重来">⟲ 重来</button>
-      )}
+    <div className="mf-equation-wrap" aria-hidden="true">
+      <div className="mf-equation">
+        <Part n={a} lit={litA} />
+        <span className="mf-op">{op}</span>
+        <Part n={b} lit={litB} />
+        <span className="mf-op">=</span>
+        {solved ? (
+          <Part n={result} lit={result} result stagger />
+        ) : (
+          <button className="mf-eq-solve" onClick={solveNow} aria-label="算一算">?</button>
+        )}
+      </div>
+      <div className="mf-play-row">
+        <button className="mf-play" onClick={replay}>▶ {solved ? '再看一遍' : '看演示'}</button>
+      </div>
     </div>
   );
 }
@@ -358,23 +504,79 @@ function NumberlineFig({ figure }: { figure: MathFigure }) {
   );
 }
 
-/* 比多少 */
-function CompareFig({ figure }: { figure: MathFigure }) {
+/* 比多少：两堆物品一个对一个拉线配对（动画），多出来的物品跳出来标 ⭐，
+   符号和数字最后弹出并语音读出"5大于3"；可重播 */
+const REL_WORDS: Record<string, string> = { '>': '大于', '<': '小于', '=': '等于' };
+
+function CompareFig({ figure, lang, voice, onVoiceEnd }: { figure: MathFigure; lang: 'zh' | 'en'; voice: boolean; onVoiceEnd?: () => void }) {
   const l = Math.max(0, Math.round(figure.left ?? 0));
   const r = Math.max(0, Math.round(figure.right ?? 0));
   const le = figure.leftEmoji ?? '🔴';
   const re = figure.rightEmoji ?? '🔵';
+  const [run, setRun] = useState(0);
+  const voiceEndRef = useRef(onVoiceEnd);
+  useEffect(() => {
+    voiceEndRef.current = onVoiceEnd;
+  });
+  const rows = Math.max(1, l, r);
+  const W = 252, y0 = 44, dy = 36, H = y0 + (rows - 1) * dy + 46;
+  const xL = 46, xR = W - 46;
+  const pairN = Math.min(l, r);
+  const pairStart = pairN > 0 ? 0.35 + pairN * 0.22 : 0.35;
+  const rel = l > r ? '>' : l < r ? '<' : '=';
+  const d = (s: number) => ({ ['--d' as string]: `${s}s` }) as CSSProperties;
+
+  // 符号弹出的同一时刻，语音读出结论（重播 run 变化重新计时；voice=false 时静音）
+  const voiceAt = pairStart + (Math.max(l, r) - pairN) * 0.24 + 0.55;
+  useEffect(() => {
+    if (!voice) return;
+    const t = window.setTimeout(() => {
+      playSfx('pop');
+      speakOnce(`${l}${REL_WORDS[rel] ?? rel}${r}`, lang, 1.0, () => voiceEndRef.current?.());
+    }, Math.round(voiceAt * 1000));
+    return () => window.clearTimeout(t);
+  }, [run, voiceAt, l, r, rel, lang, voice]);
+
   return (
-    <div className="mf-compare" aria-hidden="true">
-      <div className="mf-col">
-        <div className="mf-row">{Array.from({ length: l }).map((_, i) => <span key={i} className="mf-item">{le}</span>)}</div>
-        <span className="mf-k">{l}</span>
-      </div>
-      <span className="mf-vs">{l > r ? '>' : l < r ? '<' : '='}</span>
-      <div className="mf-col">
-        <div className="mf-row">{Array.from({ length: r }).map((_, i) => <span key={i} className="mf-item">{re}</span>)}</div>
-        <span className="mf-k">{r}</span>
-      </div>
+    <div className="mf-compare-wrap" aria-hidden="true">
+      <svg key={run} viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
+        {/* 左边物品逐入 */}
+        {Array.from({ length: l }).map((_, i) => (
+          <text key={`l${i}`} className="cp-item" style={d(i * 0.22)} x={xL} y={y0 + i * dy} textAnchor="middle" fontSize="26">{le}</text>
+        ))}
+        {/* 右边物品逐入 */}
+        {Array.from({ length: r }).map((_, i) => (
+          <text key={`r${i}`} className="cp-item" style={d(0.12 + i * 0.22)} x={xR} y={y0 + i * dy} textAnchor="middle" fontSize="26">{re}</text>
+        ))}
+        {/* 一个对一个拉线配对 */}
+        {Array.from({ length: pairN }).map((_, i) => (
+          <line key={`p${i}`} className="cp-line" style={d(0.35 + i * 0.22)} x1={xL + 15} y1={y0 + i * dy} x2={xR - 15} y2={y0 + i * dy} stroke="#8d7bb8" strokeWidth={2} strokeDasharray="5 4" />
+        ))}
+        {/* 多出来的物品：金圈 + ⭐ */}
+        {l > r && Array.from({ length: l - r }).map((_, k) => {
+          const i = r + k;
+          return (
+            <g key={`exl${i}`}>
+              <circle className="cp-extra" style={d(pairStart + 0.2 + k * 0.24)} cx={xL} cy={y0 + i * dy} r={21} fill="none" stroke="#ffb300" strokeWidth={2.5} />
+              <text className="cp-star" style={d(pairStart + 0.45 + k * 0.24)} x={xL} y={y0 + i * dy - 24} textAnchor="middle" fontSize="15">⭐</text>
+            </g>
+          );
+        })}
+        {r > l && Array.from({ length: r - l }).map((_, k) => {
+          const i = l + k;
+          return (
+            <g key={`exr${i}`}>
+              <circle className="cp-extra" style={d(pairStart + 0.2 + k * 0.24)} cx={xR} cy={y0 + i * dy} r={21} fill="none" stroke="#ffb300" strokeWidth={2.5} />
+              <text className="cp-star" style={d(pairStart + 0.45 + k * 0.24)} x={xR} y={y0 + i * dy - 24} textAnchor="middle" fontSize="15">⭐</text>
+            </g>
+          );
+        })}
+        {/* 结论：符号与数字 */}
+        <text className="cp-symbol" style={d(pairStart + (Math.max(l, r) - pairN) * 0.24 + 0.5)} x={W / 2} y={y0 + ((rows - 1) * dy) / 2 + 12} textAnchor="middle" fontSize="46" fontWeight="bold" fill="#ff6f91">{rel}</text>
+        <text className="chart-num-anim" style={{ animationDelay: `${pairStart + 0.9}s` }} x={xL} y={H - 10} textAnchor="middle" fontSize="16" fontWeight="bold" fill="#4a3b66">{l}</text>
+        <text className="chart-num-anim" style={{ animationDelay: `${pairStart + 1.05}s` }} x={xR} y={H - 10} textAnchor="middle" fontSize="16" fontWeight="bold" fill="#4a3b66">{r}</text>
+      </svg>
+      <button className="mf-play" onClick={() => setRun((x) => x + 1)}>▶ 再比一次</button>
     </div>
   );
 }
@@ -465,8 +667,8 @@ function FractionMultiplyFig({ figure }: { figure: MathFigure }) {
   );
 }
 
-/* 凑十法：a + b，先凑成 10，再加剩下的（分步演示） */
-function MakeTenFig({ figure }: { figure: MathFigure }) {
+/* 凑十法：a + b，先凑成 10，再加剩下的（分步演示，点演示时语音读结果） */
+function MakeTenFig({ figure, lang }: { figure: MathFigure; lang: 'zh' | 'en' }) {
   const a = Math.max(1, Math.round(figure.a ?? 9));
   const b = Math.max(1, Math.round(figure.b ?? 4));
   const take = Math.max(0, 10 - a);
@@ -476,13 +678,13 @@ function MakeTenFig({ figure }: { figure: MathFigure }) {
   const maxCount = Math.max(a + b, 10 + rest);
   const W = x0 * 2 + (maxCount - 1) * gap;
   const [step, setStep] = useState(0);
-  const dot = (x: number, y: number, color: string, key: string) => (
-    <circle key={key} cx={x} cy={y} r={R} fill={color} stroke="#fff" strokeWidth={1.5} />
+  const dot = (x: number, y: number, color: string, key: string, idx: number) => (
+    <circle key={key} className="mt-dot" style={{ animationDelay: `${idx * 0.07}s` }} cx={x} cy={y} r={R} fill={color} stroke="#fff" strokeWidth={1.5} />
   );
-  const row1 = [...Array.from({ length: a }, (_, i) => dot(x0 + i * gap, y1, '#ff6f91', `a${i}`)),
-    ...Array.from({ length: b }, (_, i) => dot(x0 + (a + i) * gap, y1, '#64b5f6', `b${i}`))];
-  const row2 = [...Array.from({ length: 10 }, (_, i) => dot(x0 + i * gap, y2, '#ff6f91', `t${i}`)),
-    ...Array.from({ length: rest }, (_, i) => dot(x0 + (10 + i) * gap, y2, '#64b5f6', `r${i}`))];
+  const row1 = [...Array.from({ length: a }, (_, i) => dot(x0 + i * gap, y1, '#ff6f91', `a${i}`, i)),
+    ...Array.from({ length: b }, (_, i) => dot(x0 + (a + i) * gap, y1, '#64b5f6', `b${i}`, a + i))];
+  const row2 = [...Array.from({ length: 10 }, (_, i) => dot(x0 + i * gap, y2, '#ff6f91', `t${i}`, i)),
+    ...Array.from({ length: rest }, (_, i) => dot(x0 + (10 + i) * gap, y2, '#64b5f6', `r${i}`, 10 + i))];
   return (
     <div className="mf-makeTen" aria-hidden="true">
       <svg viewBox={`0 0 ${W} ${y2 + R + 34}`} width={W} height={y2 + R + 34}>
@@ -497,11 +699,13 @@ function MakeTenFig({ figure }: { figure: MathFigure }) {
         )}
         <text x={W / 2} y={y1 + R + 16} textAnchor="middle" fontSize="14" fontWeight="bold" fill="#4a3b66">{a} + {b}</text>
         {step >= 1 && (
-          <text x={W / 2} y={y2 + R + 26} textAnchor="middle" fontSize="14" fontWeight="bold" fill="#4a3b66">10 + {rest} = {result}</text>
+          <text className="chart-num-anim" x={W / 2} y={y2 + R + 26} textAnchor="middle" fontSize="14" fontWeight="bold" fill="#4a3b66">10 + {rest} = {result}</text>
         )}
       </svg>
       {step === 0 ? (
-        <button className="mf-play" onClick={() => setStep(1)}>▶ 凑十演示</button>
+        <button className="mf-play" onClick={() => { setStep(1); playSfx('pop'); speakOnce(`凑成10，${10}加${rest}等于${result}`, lang); }}>
+          ▶ 凑十演示
+        </button>
       ) : (
         <button className="mf-play" onClick={() => setStep(0)}>⟲ 重来</button>
       )}
@@ -509,8 +713,8 @@ function MakeTenFig({ figure }: { figure: MathFigure }) {
   );
 }
 
-/* 破十法：a - b，把 a 拆成 10 + 个位，先 10 - b，再加个位（分步演示） */
-function BreakTenFig({ figure }: { figure: MathFigure }) {
+/* 破十法：a - b，把 a 拆成 10 + 个位，先 10 - b，再加个位（分步演示，点演示时语音读结果） */
+function BreakTenFig({ figure, lang }: { figure: MathFigure; lang: 'zh' | 'en' }) {
   const a = Math.max(10, Math.round(figure.a ?? 13));
   const b = Math.max(1, Math.min(10, Math.round(figure.b ?? 9)));
   const ones = Math.max(0, a - 10);
@@ -520,22 +724,22 @@ function BreakTenFig({ figure }: { figure: MathFigure }) {
   const maxCount = Math.max(10 + ones, left + ones);
   const W = x0 * 2 + (maxCount - 1) * gap;
   const [step, setStep] = useState(0);
-  const dot = (x: number, y: number, color: string, key: string, crossed = false) => (
+  const dot = (x: number, y: number, color: string, key: string, idx: number, crossed = false) => (
     <g key={key}>
-      <circle cx={x} cy={y} r={R} fill={color} stroke="#fff" strokeWidth={1.5} />
+      <circle className="mt-dot" style={{ animationDelay: `${idx * 0.07}s` }} cx={x} cy={y} r={R} fill={color} stroke="#fff" strokeWidth={1.5} />
       {crossed && <path d={`M${x - 4} ${y - 4} L${x + 4} ${y + 4} M${x + 4} ${y - 4} L${x - 4} ${y + 4}`} stroke="#9e9e9e" strokeWidth={2} strokeLinecap="round" />}
     </g>
   );
   // 行1：10 个点，前 b 个灰×（拿走），后 left 个红（保留）；个位蓝
   const row1 = [
-    ...Array.from({ length: b }, (_, i) => dot(x0 + i * gap, y1, '#cfc7e2', `x${i}`, true)),
-    ...Array.from({ length: left }, (_, i) => dot(x0 + (b + i) * gap, y1, '#ff6f91', `k${i}`)),
-    ...Array.from({ length: ones }, (_, i) => dot(x0 + (10 + i) * gap, y1, '#64b5f6', `o${i}`)),
+    ...Array.from({ length: b }, (_, i) => dot(x0 + i * gap, y1, '#cfc7e2', `x${i}`, i, true)),
+    ...Array.from({ length: left }, (_, i) => dot(x0 + (b + i) * gap, y1, '#ff6f91', `k${i}`, b + i)),
+    ...Array.from({ length: ones }, (_, i) => dot(x0 + (10 + i) * gap, y1, '#64b5f6', `o${i}`, 10 + i)),
   ];
   // 行2：left 红 + ones 蓝
   const row2 = [
-    ...Array.from({ length: left }, (_, i) => dot(x0 + i * gap, y2, '#ff6f91', `r${i}`)),
-    ...Array.from({ length: ones }, (_, i) => dot(x0 + (left + i) * gap, y2, '#64b5f6', `q${i}`)),
+    ...Array.from({ length: left }, (_, i) => dot(x0 + i * gap, y2, '#ff6f91', `r${i}`, i)),
+    ...Array.from({ length: ones }, (_, i) => dot(x0 + (left + i) * gap, y2, '#64b5f6', `q${i}`, left + i)),
   ];
   return (
     <div className="mf-makeTen" aria-hidden="true">
@@ -549,11 +753,13 @@ function BreakTenFig({ figure }: { figure: MathFigure }) {
           {step === 0 ? `${a} = 10 + ${ones}，拿走 ${b}` : `${a} − ${b}`}
         </text>
         {step >= 1 && (
-          <text x={W / 2} y={y2 + R + 26} textAnchor="middle" fontSize="14" fontWeight="bold" fill="#4a3b66">{left} + {ones} = {result}</text>
+          <text className="chart-num-anim" x={W / 2} y={y2 + R + 26} textAnchor="middle" fontSize="14" fontWeight="bold" fill="#4a3b66">{left} + {ones} = {result}</text>
         )}
       </svg>
       {step === 0 ? (
-        <button className="mf-play" onClick={() => setStep(1)}>▶ 破十演示</button>
+        <button className="mf-play" onClick={() => { setStep(1); playSfx('pop'); speakOnce(`破十，${left}加${ones}等于${result}`, lang); }}>
+          ▶ 破十演示
+        </button>
       ) : (
         <button className="mf-play" onClick={() => setStep(0)}>⟲ 重来</button>
       )}
@@ -722,14 +928,23 @@ function ChartFig({ figure }: { figure: MathFigure }) {
   );
 }
 
-function Part({ n, result = false }: { n: number; result?: boolean }) {
+function Part({ n, lit, result = false, stagger = false }: { n: number; lit?: number; result?: boolean; stagger?: boolean }) {
   const showDots = n <= 20;
+  const litCount = lit ?? n;
   return (
     <div className="mf-part">
       {showDots ? (
-        <div className="mf-dots">{Array.from({ length: n }).map((_, i) => <span key={i} className="dot" />)}</div>
+        <div className="mf-dots">
+          {Array.from({ length: n }).map((_, i) => (
+            <span
+              key={i}
+              className={`dot${i < litCount ? ' on' : ''}`}
+              style={stagger && i < litCount ? { animationDelay: `${0.06 + i * 0.06}s` } : undefined}
+            />
+          ))}
+        </div>
       ) : (
-        <div className="mf-big">{n}</div>
+        <div className="mf-big" key={litCount > 0 ? 'lit' : 'dim'}>{n}</div>
       )}
       <span className={result ? 'mf-k mf-result-k' : 'mf-k'}>{n}</span>
     </div>
@@ -793,8 +1008,8 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     const S = 84;
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-        <rect x={(150 - S) / 2} y={(150 - S) / 2} width={S} height={S} rx={4} {...common} />
-        <text x={75} y={(150 - S) / 2 - 8} textAnchor="middle" {...label}>边长 {w}</text>
+        <rect className="chart-num-anim" x={(150 - S) / 2} y={(150 - S) / 2} width={S} height={S} rx={4} {...common} />
+        <text className="chart-num-anim" style={{ animationDelay: '0.3s' }} x={75} y={(150 - S) / 2 - 8} textAnchor="middle" {...label}>边长 {w}</text>
       </svg>
     );
   }
@@ -804,9 +1019,9 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     const W = 116, H = 72;
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-        <rect x={(150 - W) / 2} y={(150 - H) / 2} width={W} height={H} rx={4} {...common} />
-        <text x={75} y={(150 - H) / 2 - 8} textAnchor="middle" {...label}>长 {w}</text>
-        <text x={75} y={(150 + H) / 2 + 18} textAnchor="middle" {...label}>宽 {h}</text>
+        <rect className="chart-num-anim" x={(150 - W) / 2} y={(150 - H) / 2} width={W} height={H} rx={4} {...common} />
+        <text className="chart-num-anim" style={{ animationDelay: '0.3s' }} x={75} y={(150 - H) / 2 - 8} textAnchor="middle" {...label}>长 {w}</text>
+        <text className="chart-num-anim" style={{ animationDelay: '0.45s' }} x={75} y={(150 + H) / 2 + 18} textAnchor="middle" {...label}>宽 {h}</text>
       </svg>
     );
   }
@@ -816,11 +1031,11 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     const x = 30, y = 46, W = 92, H = 56, dx = 18;
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-        <polygon points={`${x + dx},${y} ${x + W + dx},${y} ${x + W},${y + H} ${x},${y + H}`} {...common} />
+        <polygon className="chart-num-anim" points={`${x + dx},${y} ${x + W + dx},${y} ${x + W},${y + H} ${x},${y + H}`} {...common} />
         {/* 虚线高（辅助线） */}
-        <line x1={x + W / 2} y1={y} x2={x + W / 2} y2={y + H} stroke="#ef5350" strokeWidth={1.8} strokeDasharray="5 4" />
-        <text x={75} y={y - 8} textAnchor="middle" {...label}>底 {w}</text>
-        <text x={x + W / 2 + 4} y={(y + y + H) / 2} {...label}>高 {h}</text>
+        <line className="chart-num-anim" style={{ animationDelay: '0.4s' }} x1={x + W / 2} y1={y} x2={x + W / 2} y2={y + H} stroke="#ef5350" strokeWidth={1.8} strokeDasharray="5 4" />
+        <text className="chart-num-anim" style={{ animationDelay: '0.3s' }} x={75} y={y - 8} textAnchor="middle" {...label}>底 {w}</text>
+        <text className="chart-num-anim" style={{ animationDelay: '0.6s' }} x={x + W / 2 + 4} y={(y + y + H) / 2} {...label}>高 {h}</text>
       </svg>
     );
   }
@@ -831,12 +1046,12 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     const y = 70, topY = y - H / 2, botY = y + H / 2;
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-        <polygon points={`${75 - top / 2},${topY} ${75 + top / 2},${topY} ${75 + bottom / 2},${botY} ${75 - bottom / 2},${botY}`} {...common} />
+        <polygon className="chart-num-anim" points={`${75 - top / 2},${topY} ${75 + top / 2},${topY} ${75 + bottom / 2},${botY} ${75 - bottom / 2},${botY}`} {...common} />
         {/* 虚线高（辅助线） */}
-        <line x1={75} y1={topY} x2={75} y2={botY} stroke="#ef5350" strokeWidth={1.8} strokeDasharray="5 4" />
-        <text x={75} y={topY - 8} textAnchor="middle" {...label}>上底 {a}</text>
-        <text x={75} y={botY + 20} textAnchor="middle" {...label}>下底 {b}</text>
-        <text x={81} y={y} {...label}>高 {h}</text>
+        <line className="chart-num-anim" style={{ animationDelay: '0.4s' }} x1={75} y1={topY} x2={75} y2={botY} stroke="#ef5350" strokeWidth={1.8} strokeDasharray="5 4" />
+        <text className="chart-num-anim" style={{ animationDelay: '0.3s' }} x={75} y={topY - 8} textAnchor="middle" {...label}>上底 {a}</text>
+        <text className="chart-num-anim" style={{ animationDelay: '0.5s' }} x={75} y={botY + 20} textAnchor="middle" {...label}>下底 {b}</text>
+        <text className="chart-num-anim" style={{ animationDelay: '0.6s' }} x={81} y={y} {...label}>高 {h}</text>
       </svg>
     );
   }
@@ -846,10 +1061,10 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     const C = 75, RX = 44, RY = 14, H = 74;
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-        <path d={`M${C - RX} ${C - H / 2} L${C - RX} ${C + H / 2} A${RX} ${RY} 0 0 0 ${C + RX} ${C + H / 2} L${C + RX} ${C - H / 2}`} fill="#ffb74d" fillOpacity={0.5} stroke="#4a3b66" strokeWidth={2.5} />
-        <ellipse cx={C} cy={C - H / 2} rx={RX} ry={RY} fill="#ffb74d" stroke="#4a3b66" strokeWidth={2.5} />
-        <text x={C} y={C + H / 2 + 22} textAnchor="middle" {...label}>底面 r={r}</text>
-        <text x={C + RX + 6} y={C} {...label}>高 {h}</text>
+        <path className="chart-num-anim" d={`M${C - RX} ${C - H / 2} L${C - RX} ${C + H / 2} A${RX} ${RY} 0 0 0 ${C + RX} ${C + H / 2} L${C + RX} ${C - H / 2}`} fill="#ffb74d" fillOpacity={0.5} stroke="#4a3b66" strokeWidth={2.5} />
+        <ellipse className="chart-num-anim" style={{ animationDelay: '0.3s' }} cx={C} cy={C - H / 2} rx={RX} ry={RY} fill="#ffb74d" stroke="#4a3b66" strokeWidth={2.5} />
+        <text className="chart-num-anim" style={{ animationDelay: '0.5s' }} x={C} y={C + H / 2 + 22} textAnchor="middle" {...label}>底面 r={r}</text>
+        <text className="chart-num-anim" style={{ animationDelay: '0.6s' }} x={C + RX + 6} y={C} {...label}>高 {h}</text>
       </svg>
     );
   }
@@ -859,10 +1074,10 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     const C = 75, RX = 40, RY = 13, H = 78, apexY = C - H / 2 - 26;
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-        <path d={`M${C} ${apexY} L${C - RX} ${C + H / 2} A${RX} ${RY} 0 0 0 ${C + RX} ${C + H / 2} Z`} fill="#ffb74d" fillOpacity={0.55} stroke="#4a3b66" strokeWidth={2.5} />
-        <ellipse cx={C} cy={C + H / 2} rx={RX} ry={RY} fill="#ffb74d" fillOpacity={0.4} stroke="#4a3b66" strokeWidth={2.5} strokeDasharray="5 3" />
-        <text x={C} y={C + H / 2 + 24} textAnchor="middle" {...label}>底面 r={r}</text>
-        <text x={C + RX + 6} y={apexY + 20} {...label}>高 {h}</text>
+        <path className="chart-num-anim" d={`M${C} ${apexY} L${C - RX} ${C + H / 2} A${RX} ${RY} 0 0 0 ${C + RX} ${C + H / 2} Z`} fill="#ffb74d" fillOpacity={0.55} stroke="#4a3b66" strokeWidth={2.5} />
+        <ellipse className="chart-num-anim" style={{ animationDelay: '0.3s' }} cx={C} cy={C + H / 2} rx={RX} ry={RY} fill="#ffb74d" fillOpacity={0.4} stroke="#4a3b66" strokeWidth={2.5} strokeDasharray="5 3" />
+        <text className="chart-num-anim" style={{ animationDelay: '0.5s' }} x={C} y={C + H / 2 + 24} textAnchor="middle" {...label}>底面 r={r}</text>
+        <text className="chart-num-anim" style={{ animationDelay: '0.6s' }} x={C + RX + 6} y={apexY + 20} {...label}>高 {h}</text>
       </svg>
     );
   }
@@ -874,17 +1089,17 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
         {/* 顶面 */}
-        <polygon points={`${x},${y} ${x + dx},${y - dy} ${x + W + dx},${y - dy} ${x + W},${y}`} fill="#ffe0b2" stroke="#4a3b66" strokeWidth={2} />
+        <polygon className="chart-num-anim" points={`${x},${y} ${x + dx},${y - dy} ${x + W + dx},${y - dy} ${x + W},${y}`} fill="#ffe0b2" stroke="#4a3b66" strokeWidth={2} />
         {/* 右侧面 */}
-        <polygon points={`${x + W},${y} ${x + W + dx},${y - dy} ${x + W + dx},${y + H - dy} ${x + W},${y + H}`} fill="#ffcc80" stroke="#4a3b66" strokeWidth={2} />
+        <polygon className="chart-num-anim" style={{ animationDelay: '0.2s' }} points={`${x + W},${y} ${x + W + dx},${y - dy} ${x + W + dx},${y + H - dy} ${x + W},${y + H}`} fill="#ffcc80" stroke="#4a3b66" strokeWidth={2} />
         {/* 前面 */}
-        <rect x={x} y={y} width={W} height={H} fill="#ffb74d" stroke="#4a3b66" strokeWidth={2.5} />
+        <rect className="chart-num-anim" style={{ animationDelay: '0.35s' }} x={x} y={y} width={W} height={H} fill="#ffb74d" stroke="#4a3b66" strokeWidth={2.5} />
         {/* 隐藏边（虚线） */}
-        <line x1={x} y1={y} x2={x + dx} y2={y - dy} stroke="#4a3b66" strokeWidth={1.5} strokeDasharray="4 3" />
-        <line x1={x} y1={y + H} x2={x + dx} y2={y + H - dy} stroke="#4a3b66" strokeWidth={1.5} strokeDasharray="4 3" />
-        <text x={x + W / 2} y={y + H + 18} textAnchor="middle" {...label}>长 {w}</text>
-        <text x={x + W + dx / 2 + 4} y={y + H / 2} {...label}>宽 {d}</text>
-        <text x={x - 4} y={y - 2} textAnchor="end" {...label}>高 {h}</text>
+        <line className="chart-num-anim" style={{ animationDelay: '0.5s' }} x1={x} y1={y} x2={x + dx} y2={y - dy} stroke="#4a3b66" strokeWidth={1.5} strokeDasharray="4 3" />
+        <line className="chart-num-anim" style={{ animationDelay: '0.55s' }} x1={x} y1={y + H} x2={x + dx} y2={y + H - dy} stroke="#4a3b66" strokeWidth={1.5} strokeDasharray="4 3" />
+        <text className="chart-num-anim" style={{ animationDelay: '0.7s' }} x={x + W / 2} y={y + H + 18} textAnchor="middle" {...label}>长 {w}</text>
+        <text className="chart-num-anim" style={{ animationDelay: '0.8s' }} x={x + W + dx / 2 + 4} y={y + H / 2} {...label}>宽 {d}</text>
+        <text className="chart-num-anim" style={{ animationDelay: '0.9s' }} x={x - 4} y={y - 2} textAnchor="end" {...label}>高 {h}</text>
       </svg>
     );
   }
@@ -894,12 +1109,12 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     const x = 42, y = 46, S = 66, dx = 22, dy = 14;
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-        <polygon points={`${x},${y} ${x + dx},${y - dy} ${x + S + dx},${y - dy} ${x + S},${y}`} fill="#ffe0b2" stroke="#4a3b66" strokeWidth={2} />
-        <polygon points={`${x + S},${y} ${x + S + dx},${y - dy} ${x + S + dx},${y + S - dy} ${x + S},${y + S}`} fill="#ffcc80" stroke="#4a3b66" strokeWidth={2} />
-        <rect x={x} y={y} width={S} height={S} fill="#ffb74d" stroke="#4a3b66" strokeWidth={2.5} />
-        <line x1={x} y1={y} x2={x + dx} y2={y - dy} stroke="#4a3b66" strokeWidth={1.5} strokeDasharray="4 3" />
-        <line x1={x} y1={y + S} x2={x + dx} y2={y + S - dy} stroke="#4a3b66" strokeWidth={1.5} strokeDasharray="4 3" />
-        <text x={75} y={y + S + 18} textAnchor="middle" {...label}>正方体 · 棱长 {w}</text>
+        <polygon className="chart-num-anim" points={`${x},${y} ${x + dx},${y - dy} ${x + S + dx},${y - dy} ${x + S},${y}`} fill="#ffe0b2" stroke="#4a3b66" strokeWidth={2} />
+        <polygon className="chart-num-anim" style={{ animationDelay: '0.2s' }} points={`${x + S},${y} ${x + S + dx},${y - dy} ${x + S + dx},${y + S - dy} ${x + S},${y + S}`} fill="#ffcc80" stroke="#4a3b66" strokeWidth={2} />
+        <rect className="chart-num-anim" style={{ animationDelay: '0.35s' }} x={x} y={y} width={S} height={S} fill="#ffb74d" stroke="#4a3b66" strokeWidth={2.5} />
+        <line className="chart-num-anim" style={{ animationDelay: '0.5s' }} x1={x} y1={y} x2={x + dx} y2={y - dy} stroke="#4a3b66" strokeWidth={1.5} strokeDasharray="4 3" />
+        <line className="chart-num-anim" style={{ animationDelay: '0.55s' }} x1={x} y1={y + S} x2={x + dx} y2={y + S - dy} stroke="#4a3b66" strokeWidth={1.5} strokeDasharray="4 3" />
+        <text className="chart-num-anim" style={{ animationDelay: '0.7s' }} x={75} y={y + S + 18} textAnchor="middle" {...label}>正方体 · 棱长 {w}</text>
       </svg>
     );
   }
@@ -908,10 +1123,10 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
     const r = figure.r ?? 3;
     return (
       <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-        <circle cx={75} cy={70} r={44} fill="#ffb74d" fillOpacity={0.55} stroke="#4a3b66" strokeWidth={2.5} />
-        <ellipse cx={75} cy={70} rx={30} ry={44} fill="none" stroke="#4a3b66" strokeWidth={1.2} strokeDasharray="4 3" opacity={0.7} />
-        <ellipse cx={75} cy={70} rx={44} ry={16} fill="none" stroke="#4a3b66" strokeWidth={1.2} strokeDasharray="4 3" opacity={0.7} />
-        <text x={75} y={132} textAnchor="middle" {...label}>球 · 半径 {r}</text>
+        <circle className="chart-num-anim" cx={75} cy={70} r={44} fill="#ffb74d" fillOpacity={0.55} stroke="#4a3b66" strokeWidth={2.5} />
+        <ellipse className="chart-num-anim" style={{ animationDelay: '0.3s' }} cx={75} cy={70} rx={30} ry={44} fill="none" stroke="#4a3b66" strokeWidth={1.2} strokeDasharray="4 3" opacity={0.7} />
+        <ellipse className="chart-num-anim" style={{ animationDelay: '0.45s' }} cx={75} cy={70} rx={44} ry={16} fill="none" stroke="#4a3b66" strokeWidth={1.2} strokeDasharray="4 3" opacity={0.7} />
+        <text className="chart-num-anim" style={{ animationDelay: '0.6s' }} x={75} y={132} textAnchor="middle" {...label}>球 · 半径 {r}</text>
       </svg>
     );
   }
@@ -922,10 +1137,10 @@ function ShapeSvg({ figure }: { figure: MathFigure }) {
   const baseY = 75 + H / 2, apexY = 75 - H / 2;
   return (
     <svg viewBox="0 0 150 150" width={150} height={150} aria-hidden="true">
-      <polygon points={`${75 - B / 2},${baseY} ${75 + B / 2},${baseY} 75,${apexY}`} {...common} />
-      <line x1={75} y1={apexY} x2={75} y2={baseY} stroke="#ef5350" strokeWidth={1.8} strokeDasharray="5 4" />
-      <text x={75} y={baseY + 20} textAnchor="middle" {...label}>底 {b}</text>
-      <text x={81} y={(apexY + baseY) / 2} {...label}>高 {h}</text>
+      <polygon className="chart-num-anim" points={`${75 - B / 2},${baseY} ${75 + B / 2},${baseY} 75,${apexY}`} {...common} />
+      <line className="chart-num-anim" style={{ animationDelay: '0.4s' }} x1={75} y1={apexY} x2={75} y2={baseY} stroke="#ef5350" strokeWidth={1.8} strokeDasharray="5 4" />
+      <text className="chart-num-anim" style={{ animationDelay: '0.3s' }} x={75} y={baseY + 20} textAnchor="middle" {...label}>底 {b}</text>
+      <text className="chart-num-anim" style={{ animationDelay: '0.6s' }} x={81} y={(apexY + baseY) / 2} {...label}>高 {h}</text>
     </svg>
   );
 }
@@ -996,8 +1211,8 @@ function PositionFig({ figure }: { figure: MathFigure }) {
         const on = it.key === dir;
         return (
           <g key={it.key} opacity={on ? 1 : 0.5}>
-            {on && <circle cx={it.x} cy={it.y - 6} r={24} fill="#fff3cd" stroke="#ffb300" strokeWidth={2} />}
-            <text x={it.x} y={it.y} textAnchor="middle" fontSize="28">{it.emoji}</text>
+            {on && <circle className="pos-ring" cx={it.x} cy={it.y - 6} r={24} fill="#fff3cd" stroke="#ffb300" strokeWidth={2} />}
+            <text className={on ? 'pos-active' : ''} x={it.x} y={it.y} textAnchor="middle" fontSize="28">{it.emoji}</text>
             <text x={it.x} y={it.ly} textAnchor="middle" fontSize="14" fontWeight="bold" fill={on ? '#e07b00' : '#7c6ba0'}>{it.key}</text>
           </g>
         );
@@ -1016,7 +1231,6 @@ function DirectionFig({ figure }: { figure: MathFigure }) {
   ];
   const pt = (deg: number) => ({ x: C + R * Math.cos((deg * Math.PI) / 180), y: C + R * Math.sin((deg * Math.PI) / 180) });
   const target = DIRS.find((d) => d.key === dir) ?? DIRS[0];
-  const tp = pt(target.deg);
   return (
     <svg viewBox="0 0 200 200" width="200" height="200" aria-hidden="true">
       <circle cx={C} cy={C} r={R} fill="#fff" stroke="#4a3b66" strokeWidth={2} />
@@ -1025,25 +1239,95 @@ function DirectionFig({ figure }: { figure: MathFigure }) {
       {DIRS.map((d) => {
         const p = pt(d.deg);
         const isActive = d.key === dir;
-        return <text key={d.key} x={p.x} y={p.y + 5} textAnchor="middle" fontSize={isActive ? 17 : 13} fontWeight="bold" fill={isActive ? '#ff6f91' : '#7c6ba0'}>{d.key}</text>;
+        return <text key={d.key} className={isActive ? 'chart-num-anim dir-active' : ''} style={isActive ? { animationDelay: '0.75s' } : undefined} x={p.x} y={p.y + 5} textAnchor="middle" fontSize={isActive ? 17 : 13} fontWeight="bold" fill={isActive ? '#ff6f91' : '#7c6ba0'}>{d.key}</text>;
       })}
-      <line x1={C} y1={C} x2={tp.x} y2={tp.y} stroke="#ff6f91" strokeWidth={4} strokeLinecap="round" />
-      <circle cx={tp.x} cy={tp.y} r={6} fill="#ff6f91" stroke="#fff" strokeWidth={2} />
+      {/* 指针从正东（0°）扫到目标方位 */}
+      <g className="dir-needle" style={{ ['--dir-rot' as string]: `${target.deg}deg` } as CSSProperties}>
+        <line x1={C} y1={C} x2={C + R} y2={C} stroke="#ff6f91" strokeWidth={4} strokeLinecap="round" />
+        <circle cx={C + R} cy={C} r={6} fill="#ff6f91" stroke="#fff" strokeWidth={2} />
+      </g>
       <circle cx={C} cy={C} r={4} fill="#4a3b66" />
       <text x={C} y={C - 12} textAnchor="middle" fontSize="18">🧭</text>
     </svg>
   );
 }
 
-function OrdinalFig({ figure }: { figure: MathFigure }) {
+function OrdinalFig({ figure, lang, voice, onVoiceEnd }: { figure: MathFigure; lang: 'zh' | 'en'; voice: boolean; onVoiceEnd?: () => void }) {
   const n = Math.max(1, Math.round(figure.count ?? 5));
   const mark = Math.min(n, Math.max(1, Math.round(figure.mark ?? 1)));
+  const emoji = figure.emoji ?? '🐰';
+  const [shown, setShown] = useState(0);
+  const [run, setRun] = useState(0);
+  const timerRef = useRef<number | null>(null);
+  const voiceEndRef = useRef(onVoiceEnd);
+  useEffect(() => {
+    voiceEndRef.current = onVoiceEnd;
+  });
+
+  const stopAuto = () => {
+    if (timerRef.current !== null) {
+      window.clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+
+  /** 数到一个位置：轻响 + 读数字；数到目标后播"第 X 个"并回调 onVoiceEnd（voice=false 时静音） */
+  const countVoice = useCallback(
+    (i: number) => {
+      if (!voice) return;
+      playSfx('tap');
+      if (i >= mark) {
+        speakOnce(`第 ${mark} 个`, lang, 1.0, () => voiceEndRef.current?.());
+      } else {
+        speakOnce(String(i), lang, 1.05);
+      }
+    },
+    [mark, lang, voice],
+  );
+
+  // 自动从队伍前面开始数，数到「第 mark 个」停住并戴皇冠（重播时由按钮先归零再 +1）
+  useEffect(() => {
+    stopAuto();
+    const stepMs = Math.max(320, Math.min(1000, Math.round(1900 / Math.sqrt(n))));
+    const start = window.setTimeout(() => {
+      let i = 0;
+      timerRef.current = window.setInterval(() => {
+        i += 1;
+        setShown(i);
+        countVoice(i);
+        if (i >= mark) stopAuto();
+      }, stepMs);
+    }, 450);
+    return () => {
+      window.clearTimeout(start);
+      stopAuto();
+    };
+  }, [n, mark, run, countVoice]);
+
+  const finished = shown >= mark;
+
   return (
     <div className="mf-count" aria-hidden="true">
-      <div className="mf-row">
-        {Array.from({ length: n }).map((_, i) => <span key={i} className={`mf-item ${i === mark - 1 ? 'lit' : 'dim'}`}>🐰</span>)}
+      <div className="mf-row mf-count-row mf-tappable" role="button" aria-label="ordinal" onClick={() => { stopAuto(); const next = shown >= mark ? 1 : shown + 1; setShown(next); countVoice(next); }}>
+        {Array.from({ length: n }).map((_, i) => {
+          const counted = i < shown;
+          const current = !finished && i === shown - 1;
+          const marked = finished && i === mark - 1;
+          return (
+            <span key={i} className={`mf-count-slot${counted ? ' lit' : ''}${current ? ' current' : ''}${marked ? ' marked' : ''}`}>
+              <span className="mf-slot-pointer">{marked ? '👑' : current ? '👆' : ''}</span>
+              <span className="mf-item">{emoji}</span>
+              <span className="mf-slot-badge">{counted ? i + 1 : ''}</span>
+            </span>
+          );
+        })}
       </div>
-      <div className="mf-num">第 {mark} 个</div>
+      <div className="mf-num" key={shown}>
+        {finished ? `第 ${mark} 个` : shown}
+      </div>
+      <button className="mf-play" onClick={() => { stopAuto(); setShown(0); setRun((x) => x + 1); }}>
+        ▶ {finished ? '再数一遍' : '从前面数'}
+      </button>
     </div>
   );
 }
@@ -1052,36 +1336,92 @@ function ShapeSetFig({ figure }: { figure: MathFigure }) {
   const shapes = figure.shapes ?? ['circle', 'square', 'triangle', 'rectangle'];
   return (
     <div className="mf-shapeSet" aria-hidden="true">
-      {shapes.map((s) => <MiniShape key={s} kind={s} />)}
+      {shapes.map((s, i) => (
+        <span key={s} className="shape-item" style={{ animationDelay: `${i * 0.14}s` }}>
+          <MiniShape kind={s} />
+        </span>
+      ))}
     </div>
   );
 }
 
 function SortFig({ figure }: { figure: MathFigure }) {
   const groups = figure.groups ?? [];
+  const [run, setRun] = useState(0);
   return (
     <div className="mf-sort" aria-hidden="true">
-      {groups.map((g) => (
+      {groups.map((g, gi) => (
         <div className="mf-sort-group" key={g.label}>
-          <div className="mf-row">{Array.from({ length: g.n }).map((_, i) => <span key={i} className="mf-item">{g.emoji}</span>)}</div>
-          <span className="mf-k">{g.label} · {g.n} 个</span>
+          <div className="mf-row">
+            {Array.from({ length: g.n }).map((_, i) => (
+              <span key={`${run}-${i}`} className="mf-item sort-item" style={{ animationDelay: `${gi * 0.3 + i * 0.25}s` }}>
+                {g.emoji}
+              </span>
+            ))}
+          </div>
+          <span className="mf-k sort-count" style={{ animationDelay: `${gi * 0.3 + g.n * 0.25 + 0.2}s` }}>
+            {g.label} · {g.n} 个
+          </span>
         </div>
       ))}
+      <button className="mf-play" onClick={() => setRun((r) => r + 1)}>▶ 再分一次</button>
     </div>
   );
 }
 
-function MoneyFig({ figure }: { figure: MathFigure }) {
+function MoneyFig({ figure, lang, voice, onVoiceEnd }: { figure: MathFigure; lang: 'zh' | 'en'; voice: boolean; onVoiceEnd?: () => void }) {
   const coins = figure.coins ?? [];
   const total = coins.reduce((s, c) => s + c.v * c.n, 0);
+  const [run, setRun] = useState(0);
+  const [shown, setShown] = useState(0);
+  const shownRef = useRef(0);
+  const voiceEndRef = useRef(onVoiceEnd);
+  useEffect(() => {
+    voiceEndRef.current = onVoiceEnd;
+  });
+  // 硬币一枚一枚落下，总额跟着数上去（重播时由按钮先归零再 +1）
+  useEffect(() => {
+    let cancelled = false;
+    shownRef.current = 0;
+    const tick = () => {
+      if (cancelled) return;
+      const cur = shownRef.current;
+      if (cur >= total) return;
+      playSfx('pop');
+      const next = Math.min(total, cur + Math.max(1, Math.round(total / 10)));
+      shownRef.current = next;
+      setShown(next);
+      window.setTimeout(tick, 260);
+    };
+    tick();
+    return () => {
+      cancelled = true;
+    };
+  }, [run, total]);
+  // 数到总额时朗读"一共 X 元"，播完回调 onVoiceEnd（voice=false 时静音）
+  useEffect(() => {
+    if (voice && shown >= total && total > 0) {
+      speakOnce(`一共 ${total} 元`, lang, 1.0, () => voiceEndRef.current?.());
+    }
+  }, [shown, total, lang, voice]);
+  let idx = -1;
   return (
     <div className="mf-money" aria-hidden="true">
       <div className="mf-row">
-        {coins.flatMap((c) => Array.from({ length: c.n }).map((_, i) => (
-          <span key={`${c.v}-${i}`} className="mf-coin">{c.v >= 10 ? '💴' : '🪙'}<b>¥{c.v}</b></span>
-        )))}
+        {coins.flatMap((c) =>
+          Array.from({ length: c.n }).map((_, i) => {
+            idx += 1;
+            return (
+              <span key={`${run}-${c.v}-${i}`} className="mf-coin coin-drop" style={{ animationDelay: `${0.15 + idx * 0.22}s` }}>
+                {c.v >= 10 ? '💴' : '🪙'}
+                <b>¥{c.v}</b>
+              </span>
+            );
+          }),
+        )}
       </div>
-      <div className="mf-num">一共 ¥{total} 元</div>
+      <div className="mf-num" key={shown}>一共 ¥{shown} 元</div>
+      <button className="mf-play" onClick={() => { setShown(0); setRun((r) => r + 1); }}>▶ 再数一遍</button>
     </div>
   );
 }
@@ -1090,13 +1430,25 @@ function PatternFig({ figure }: { figure: MathFigure }) {
   const seq = figure.seq ?? [];
   const ans = figure.answer ?? '?';
   const [reveal, setReveal] = useState(false);
+  const [run, setRun] = useState(0);
   return (
     <div className="mf-pattern" aria-hidden="true">
       <div className="mf-row">
-        {seq.map((s, i) => <span key={i} className="mf-item">{s}</span>)}
-        <button className="mf-item mf-pattern-q" onClick={() => setReveal(true)}>{reveal ? ans : '?'}</button>
+        {seq.map((s, i) => (
+          <span key={`${run}-${i}`} className="mf-item pattern-item" style={{ animationDelay: `${0.15 + i * 0.3}s` }}>
+            {s}
+          </span>
+        ))}
+        <button key={`q-${run}-${reveal}`} className="mf-item mf-pattern-q" onClick={() => setReveal(true)} style={{ animationDelay: `${0.15 + seq.length * 0.3}s` }}>
+          {reveal ? ans : '?'}
+        </button>
       </div>
-      <div className="mf-num">{reveal ? `下一个是 ${ans}` : '点「?」看答案'}</div>
+      <div className="mf-num" key={reveal ? `a-${run}` : `h-${run}`}>
+        {reveal ? `下一个是 ${ans}` : '点「?」看答案'}
+      </div>
+      <button className="mf-play" onClick={() => { setReveal(false); setRun((r) => r + 1); }}>
+        ▶ {reveal ? '再找一次' : '看规律'}
+      </button>
     </div>
   );
 }
@@ -1130,17 +1482,19 @@ function AngleFig({ figure }: { figure: MathFigure }) {
 }
 
 function ViewsFig() {
-  const grid = (filled: boolean[][]) => (
+  const grid = (filled: boolean[][], base: number) => (
     <div className="mf-view-grid" style={{ gridTemplateColumns: `repeat(${filled[0].length}, 20px)` }}>
-      {filled.flat().map((f, i) => <span key={i} className={f ? 'mf-view-cell on' : 'mf-view-cell'} />)}
+      {filled.flat().map((f, i) => (
+        <span key={i} className={`${f ? 'mf-view-cell on' : 'mf-view-cell'} view-cell-pop`} style={{ animationDelay: `${base + i * 0.08}s` }} />
+      ))}
     </div>
   );
   return (
     <div className="mf-views" aria-hidden="true">
       <div className="mf-view-row">
-        <div className="mf-col"><span className="mf-k">正面</span>{grid([[false, true], [true, true]])}</div>
-        <div className="mf-col"><span className="mf-k">上面</span>{grid([[true, true]])}</div>
-        <div className="mf-col"><span className="mf-k">侧面</span>{grid([[true], [true]])}</div>
+        <div className="mf-col"><span className="mf-k">正面</span>{grid([[false, true], [true, true]], 0)}</div>
+        <div className="mf-col"><span className="mf-k">上面</span>{grid([[true, true]], 0.3)}</div>
+        <div className="mf-col"><span className="mf-k">侧面</span>{grid([[true], [true]], 0.5)}</div>
       </div>
       <div className="mf-num">从不同方向看，形状不同</div>
     </div>
@@ -1162,7 +1516,7 @@ function ComboFig({ figure }: { figure: MathFigure }) {
         {Array.from({ length: total }).map((_, i) => {
           const x = (i % cols) * (cell + gap);
           const y = Math.floor(i / cols) * (cell + gap);
-          return <rect key={i} x={x} y={y} width={cell} height={cell} rx={4} fill="#ffb74d" stroke="#4a3b66" strokeWidth={1.5} />;
+          return <rect key={i} className="combo-cell" style={{ animationDelay: `${i * 0.07}s` }} x={x} y={y} width={cell} height={cell} rx={4} fill="#ffb74d" stroke="#4a3b66" strokeWidth={1.5} />;
         })}
       </svg>
     </div>
@@ -1220,9 +1574,15 @@ function WeightFig({ figure }: { figure: MathFigure }) {
     <div className="mf-weight" aria-hidden="true">
       <div className={`mf-balance ${balanced ? '' : 'tilt'}`}>⚖️</div>
       <div className="mf-pan-row">
-        <div className="mf-col"><span className="mf-item">{le}</span><span className="mf-k">{left}{unit}</span></div>
-        <span className="mf-vs">{balanced ? '=' : left > right ? '>' : '<'}</span>
-        <div className="mf-col"><span className="mf-item">{re}</span><span className="mf-k">{right}{unit}</span></div>
+        <div className="mf-col">
+          <span className="mf-item weight-drop">{le}</span>
+          <span className="mf-k chart-num-anim" style={{ animationDelay: '0.5s' }}>{left}{unit}</span>
+        </div>
+        <span className="mf-vs chart-num-anim" style={{ animationDelay: '0.8s' }}>{balanced ? '=' : left > right ? '>' : '<'}</span>
+        <div className="mf-col">
+          <span className="mf-item weight-drop" style={{ animationDelay: '0.25s' }}>{re}</span>
+          <span className="mf-k chart-num-anim" style={{ animationDelay: '0.7s' }}>{right}{unit}</span>
+        </div>
       </div>
     </div>
   );
@@ -1235,12 +1595,12 @@ function VennFig({ figure }: { figure: MathFigure }) {
   const la = figure.labelA ?? 'A', lb = figure.labelB ?? 'B';
   return (
     <svg viewBox="0 0 240 150" width="240" height="150" aria-hidden="true">
-      <circle cx={95} cy={75} r={55} fill="#64b5f6" fillOpacity={0.35} stroke="#4a3b66" strokeWidth={2} />
-      <circle cx={145} cy={75} r={55} fill="#ff6f91" fillOpacity={0.35} stroke="#4a3b66" strokeWidth={2} />
-      <text x={60} y={70} textAnchor="middle" fontSize="14" fill="#4a3b66">{la} {A - AB}</text>
-      <text x={120} y={80} textAnchor="middle" fontSize="16" fontWeight="bold" fill="#4a3b66">{AB}</text>
-      <text x={182} y={70} textAnchor="middle" fontSize="14" fill="#4a3b66">{lb} {B - AB}</text>
-      <text x={120} y={136} textAnchor="middle" fontSize="13" fill="#7c6ba0">总数 = {A} + {B} − {AB} = {A + B - AB}</text>
+      <circle className="venn-in" cx={95} cy={75} r={55} fill="#64b5f6" fillOpacity={0.35} stroke="#4a3b66" strokeWidth={2} />
+      <circle className="venn-in" style={{ animationDelay: '0.25s' }} cx={145} cy={75} r={55} fill="#ff6f91" fillOpacity={0.35} stroke="#4a3b66" strokeWidth={2} />
+      <text className="chart-num-anim" style={{ animationDelay: '0.5s' }} x={60} y={70} textAnchor="middle" fontSize="14" fill="#4a3b66">{la} {A - AB}</text>
+      <text className="chart-num-anim" style={{ animationDelay: '0.7s' }} x={120} y={80} textAnchor="middle" fontSize="16" fontWeight="bold" fill="#4a3b66">{AB}</text>
+      <text className="chart-num-anim" style={{ animationDelay: '0.9s' }} x={182} y={70} textAnchor="middle" fontSize="14" fill="#4a3b66">{lb} {B - AB}</text>
+      <text className="chart-num-anim" style={{ animationDelay: '1.1s' }} x={120} y={136} textAnchor="middle" fontSize="13" fill="#7c6ba0">总数 = {A} + {B} − {AB} = {A + B - AB}</text>
     </svg>
   );
 }
@@ -1273,18 +1633,18 @@ function LineKindFig({ figure }: { figure: MathFigure }) {
   const hl = figure.lineKind ?? 'segment';
   return (
     <svg viewBox="0 0 240 130" width="240" height="130" aria-hidden="true">
-      <line x1={70} y1={22} x2={200} y2={22} stroke="#4a3b66" strokeWidth={3} strokeLinecap="round" />
-      <circle cx={70} cy={22} r={4} fill="#ff6f91" />
-      <circle cx={200} cy={22} r={4} fill="#ff6f91" />
-      <text x={10} y={26} fontSize="14" fontWeight="bold" fill={hl === 'segment' ? '#ff6f91' : '#7c6ba0'}>线段</text>
-      <line x1={70} y1={62} x2={190} y2={62} stroke="#4a3b66" strokeWidth={3} strokeLinecap="round" />
-      <circle cx={70} cy={62} r={4} fill="#ff6f91" />
-      <path d="M190 62 l-8 -5 v10 z" fill="#4a3b66" />
-      <text x={10} y={66} fontSize="14" fontWeight="bold" fill={hl === 'ray' ? '#ff6f91' : '#7c6ba0'}>射线</text>
-      <line x1={70} y1={102} x2={200} y2={102} stroke="#4a3b66" strokeWidth={3} strokeLinecap="round" />
-      <path d="M70 102 l8 -5 v10 z" fill="#4a3b66" />
-      <path d="M200 102 l-8 -5 v10 z" fill="#4a3b66" />
-      <text x={10} y={106} fontSize="14" fontWeight="bold" fill={hl === 'line' ? '#ff6f91' : '#7c6ba0'}>直线</text>
+      <line className="chart-num-anim" x1={70} y1={22} x2={200} y2={22} stroke="#4a3b66" strokeWidth={3} strokeLinecap="round" />
+      <circle className="nl-mark" cx={70} cy={22} r={4} fill="#ff6f91" />
+      <circle className="nl-mark" style={{ animationDelay: '0.4s' }} cx={200} cy={22} r={4} fill="#ff6f91" />
+      <text className="chart-num-anim" x={10} y={26} fontSize="14" fontWeight="bold" fill={hl === 'segment' ? '#ff6f91' : '#7c6ba0'}>线段</text>
+      <line className="chart-num-anim" style={{ animationDelay: '0.6s' }} x1={70} y1={62} x2={190} y2={62} stroke="#4a3b66" strokeWidth={3} strokeLinecap="round" />
+      <circle className="nl-mark" style={{ animationDelay: '0.6s' }} cx={70} cy={62} r={4} fill="#ff6f91" />
+      <path className="chart-num-anim" style={{ animationDelay: '0.6s' }} d="M190 62 l-8 -5 v10 z" fill="#4a3b66" />
+      <text className="chart-num-anim" style={{ animationDelay: '0.6s' }} x={10} y={66} fontSize="14" fontWeight="bold" fill={hl === 'ray' ? '#ff6f91' : '#7c6ba0'}>射线</text>
+      <line className="chart-num-anim" style={{ animationDelay: '1.2s' }} x1={70} y1={102} x2={200} y2={102} stroke="#4a3b66" strokeWidth={3} strokeLinecap="round" />
+      <path className="chart-num-anim" style={{ animationDelay: '1.2s' }} d="M70 102 l8 -5 v10 z" fill="#4a3b66" />
+      <path className="chart-num-anim" style={{ animationDelay: '1.2s' }} d="M200 102 l-8 -5 v10 z" fill="#4a3b66" />
+      <text className="chart-num-anim" style={{ animationDelay: '1.2s' }} x={10} y={106} fontSize="14" fontWeight="bold" fill={hl === 'line' ? '#ff6f91' : '#7c6ba0'}>直线</text>
     </svg>
   );
 }
@@ -1293,13 +1653,13 @@ function LinePairFig({ figure }: { figure: MathFigure }) {
   const hl = figure.pairKind ?? 'parallel';
   return (
     <svg viewBox="0 0 240 150" width="240" height="150" aria-hidden="true">
-      <text x={10} y={20} fontSize="14" fontWeight="bold" fill={hl === 'parallel' ? '#ff6f91' : '#7c6ba0'}>平行</text>
-      <line x1={70} y1={16} x2={210} y2={16} stroke="#4a3b66" strokeWidth={2.5} />
-      <line x1={70} y1={36} x2={210} y2={36} stroke="#4a3b66" strokeWidth={2.5} />
-      <text x={10} y={100} fontSize="14" fontWeight="bold" fill={hl === 'perpendicular' ? '#ff6f91' : '#7c6ba0'}>垂直</text>
-      <line x1={70} y1={70} x2={210} y2={70} stroke="#4a3b66" strokeWidth={2.5} />
-      <line x1={140} y1={130} x2={140} y2={30} stroke="#ff6f91" strokeWidth={2.5} />
-      <rect x={132} y={62} width={16} height={16} fill="none" stroke="#4a3b66" strokeWidth={1.5} />
+      <text className="chart-num-anim" x={10} y={20} fontSize="14" fontWeight="bold" fill={hl === 'parallel' ? '#ff6f91' : '#7c6ba0'}>平行</text>
+      <line className="chart-num-anim" style={{ animationDelay: '0.2s' }} x1={70} y1={16} x2={210} y2={16} stroke="#4a3b66" strokeWidth={2.5} />
+      <line className="chart-num-anim" style={{ animationDelay: '0.35s' }} x1={70} y1={36} x2={210} y2={36} stroke="#4a3b66" strokeWidth={2.5} />
+      <text className="chart-num-anim" style={{ animationDelay: '0.7s' }} x={10} y={100} fontSize="14" fontWeight="bold" fill={hl === 'perpendicular' ? '#ff6f91' : '#7c6ba0'}>垂直</text>
+      <line className="chart-num-anim" style={{ animationDelay: '0.9s' }} x1={70} y1={70} x2={210} y2={70} stroke="#4a3b66" strokeWidth={2.5} />
+      <line className="chart-num-anim" style={{ animationDelay: '1.05s' }} x1={140} y1={130} x2={140} y2={30} stroke="#ff6f91" strokeWidth={2.5} />
+      <rect className="nl-mark" style={{ animationDelay: '1.2s' }} x={132} y={62} width={16} height={16} fill="none" stroke="#4a3b66" strokeWidth={1.5} />
     </svg>
   );
 }
@@ -1334,7 +1694,7 @@ function MatchFig({ figure }: { figure: MathFigure }) {
   return (
     <div className="mf-match" aria-hidden="true">
       {matches.map((m, i) => (
-        <div className="mf-match-row" key={i}>
+        <div className="mf-match-row chart-num-anim" key={i} style={{ animationDelay: `${i * 0.25}s` }}>
           <span className="mf-match-a">{m.a}</span>
           <span className="mf-op">vs</span>
           <span className="mf-match-b">{m.b}</span>
@@ -1382,7 +1742,7 @@ function GridFig({ figure }: { figure: MathFigure }) {
           const cy = pad + Math.floor(i / cols) * cell;
           const hit = v % of === 0;
           return (
-            <g key={i}>
+            <g key={i} className="grid-cell-pop" style={{ animationDelay: `${i * 0.02}s` }}>
               <rect x={cx} y={cy} width={cell - 2} height={cell - 2} rx={3} fill={hit ? '#ff6f91' : '#fff'} stroke="#d8d2e6" strokeWidth={0.8} />
               <text x={cx + (cell - 2) / 2} y={cy + (cell - 2) / 2 + 4} textAnchor="middle" fontSize="11" fill={hit ? '#fff' : '#7c6ba0'}>{v}</text>
             </g>
@@ -1403,9 +1763,9 @@ function GridFig({ figure }: { figure: MathFigure }) {
         {Array.from({ length: n }).map((_, i) => {
           const cx = pad + (i % fb) * cell + (cell - 2) / 2;
           const cy = pad + Math.floor(i / fb) * cell + (cell - 2) / 2;
-          return <circle key={i} cx={cx} cy={cy} r={7} fill="#ff6f91" />;
+          return <circle key={i} className="grid-cell-pop" style={{ animationDelay: `${i * 0.04}s` }} cx={cx} cy={cy} r={7} fill="#ff6f91" />;
         })}
-        <text x={W / 2} y={H - 4} textAnchor="middle" fontSize="13" fontWeight="bold" fill="#4a3b66">{fa} × {fb} = {n}</text>
+        <text className="chart-num-anim" style={{ animationDelay: `${n * 0.04 + 0.2}s` }} x={W / 2} y={H - 4} textAnchor="middle" fontSize="13" fontWeight="bold" fill="#4a3b66">{fa} × {fb} = {n}</text>
       </svg>
     );
   }
@@ -1421,10 +1781,10 @@ function GridFig({ figure }: { figure: MathFigure }) {
         Array.from({ length: cols }).map((_, ci) => {
           const x = pad + ci * cell, y = pad + ri * cell;
           const hit = ci === cx - 1 && ri === cy - 1;
-          return <rect key={`${ri}-${ci}`} x={x} y={y} width={cell - 2} height={cell - 2} rx={3} fill={hit ? '#ff6f91' : '#fff'} stroke="#d8d2e6" strokeWidth={0.8} />;
+          return <rect key={`${ri}-${ci}`} className="grid-cell-pop" style={{ animationDelay: `${(ri * cols + ci) * 0.03}s` }} x={x} y={y} width={cell - 2} height={cell - 2} rx={3} fill={hit ? '#ff6f91' : '#fff'} stroke="#d8d2e6" strokeWidth={0.8} />;
         })
       )}
-      <text x={pad + (cx - 1) * cell + (cell - 2) / 2} y={pad + (cy - 1) * cell + (cell - 2) / 2 + 4} textAnchor="middle" fontSize="12" fontWeight="bold" fill="#fff">({cx},{cy})</text>
+      <text className="chart-num-anim" style={{ animationDelay: `${rows * cols * 0.03 + 0.3}s` }} x={pad + (cx - 1) * cell + (cell - 2) / 2} y={pad + (cy - 1) * cell + (cell - 2) / 2 + 4} textAnchor="middle" fontSize="12" fontWeight="bold" fill="#fff">({cx},{cy})</text>
     </svg>
   );
 }
@@ -1463,9 +1823,9 @@ function TextFig({ figure }: { figure: MathFigure }) {
   const text = figure.text ?? '';
   return (
     <div className="mf-text" aria-hidden="true">
-      <div className="mf-text-emoji">{emoji}</div>
-      {title && <div className="mf-text-title">{title}</div>}
-      {text && <div className="mf-text-body">{text}</div>}
+      <div className="mf-text-emoji chart-num-anim">{emoji}</div>
+      {title && <div className="mf-text-title chart-num-anim" style={{ animationDelay: '0.25s' }}>{title}</div>}
+      {text && <div className="mf-text-body chart-num-anim" style={{ animationDelay: '0.45s' }}>{text}</div>}
     </div>
   );
 }

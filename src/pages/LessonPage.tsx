@@ -22,7 +22,6 @@ import { CHINESE_ENHANCE } from '../content/chineseEnhance';
 import { MathExample, MathExplain, MathConcepts } from '../components/MathLesson';
 import { TEXT_WORDS } from '../content/textWords';
 import { speak } from '../speech';
-import { preloadOffline } from '../tts';
 
 export default function LessonPage() {
   const { skillId } = useParams();
@@ -85,11 +84,6 @@ export default function LessonPage() {
     }
     if (contentReady && !content) speak(skillDesc(skill, lang), lang);
   }, [child, skill, content, contentReady, lang, nav]);
-
-  // 进入课程：英语课预热离线语音引擎（系统无英文语音时的兜底）
-  useEffect(() => {
-    if (skill?.subject === 'english' && content) preloadOffline(['en']);
-  }, [skill, content]);
 
   if (!child || !skill) return null;
 

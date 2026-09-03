@@ -13,18 +13,22 @@ npm run preview   # 预览构建产物（PWA 生效）
 npm run lint      # ESLint
 npm run test      # Vitest 单元测试
 npm run test:e2e  # Playwright E2E（需先 npx playwright install chromium）
-npm run fetch:voices  # 【可选】下载 Piper 神经语音模型（中/英各 ~60MB）
 ```
 
-## 语音资源说明（仓库瘦身方案）
+## 语音说明（火山引擎 · 豆包语音合成大模型 2.0 seed-tts-2.0）
 
-语音引擎二进制（onnx wasm、espeak-ng 等，共 ~125MB）**不存入 git**：
-`vite-plugin-static-copy` 在 dev/build 时自动从 npm 包（`piper-tts-web`、`espeak-ng`）复制，
-clone 后 `npm install && npm run dev/build` 即自带全部引擎文件，无需任何下载。
+朗读人声使用 **火山引擎 seed-tts-2.0**（默认音色 中文=爽快思思 / 英文=Dacey），唯一语音通道、无兜底降级：
 
-Piper 神经语音模型（`zh_CN-huayan-medium.onnx`、`en_US-amy-medium.onnx`，各 ~60MB）同样不入库：
-- 运行 `npm run fetch:voices` 从 Hugging Face 官方源下载到 `public/piper/voices/`
-- **不下载也不影响功能**：站点自动降级为 espeak-ng 兜底朗读（音质机械一些），系统语音可用时则优先系统语音
+1. 复制 `.env.example` 为 `.env.local`，填入你的 API Key（火山引擎控制台 → 语音技术 → API Key 管理）：
+   ```bash
+   VOLC_SPEECH_API_KEY=你的密钥
+   ```
+2. 密钥由 **Vite dev/preview 代理在服务端注入**（`vite.config.ts` 的 `/api/volc-tts` 代理），
+   **不会打包进前端产物**，也绕过了浏览器 CORS 限制；
+3. 重启 `npm run dev` / `npm run preview` 生效；未配置密钥时页面会显示配置提示，语音静默（符合"无兜底"设计）；
+4. 可选：`VITE_VOLC_SPEAKER_ZH` / `VITE_VOLC_SPEAKER_EN` 自定义音色（详见 `.env.example`）。
+
+> 注意：静态部署到非 Vite 服务器时，需要自建等价代理（把 `X-Api-Key` 加在服务端转发）。
 
 ## 功能一览
 

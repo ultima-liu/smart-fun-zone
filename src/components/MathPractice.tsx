@@ -76,7 +76,15 @@ export default function MathPractice({
         </span>
       </div>
       <div className="quiz-card">
-        <div className="quiz-q">{q.q}</div>
+        <div
+          className="quiz-q tap-to-read"
+          onClick={() => {
+            const opts = q.options.map((o, oi) => `${oi + 1}、${o}`).join('，');
+            speak(`${q.q}。${opts}`, 'zh');
+          }}
+        >
+          {q.q}
+        </div>
         <div className="quiz-options">
           {q.options.map((o, i) => (
             <button

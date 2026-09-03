@@ -26,16 +26,20 @@ test('学科→年级→课程学习闭环', async ({ page }) => {
   await page.locator('.skill-chip').first().click();
   await expect(page.locator('.lesson-stage')).toBeVisible();
 
-  // 去练习（数字农场）
+  // 去练习（本课数学专项练习）
   await page.getByRole('button', { name: /去练习/ }).click();
-  await expect(page.locator('.number-farm')).toBeVisible();
+  await expect(page.locator('.math-practice')).toBeVisible();
 
-  // 完成 8 题
-  for (let i = 0; i < 8; i++) {
-    const animals = await page.locator('.animal').count();
-    await page.locator('.answer-row .num-btn', { hasText: String(animals) }).click();
-    await expect(page.locator('.feedback.ok')).toBeVisible();
-    await page.locator('.feedback.ok').waitFor({ state: 'detached', timeout: 6000 });
+  // 完成全部题目（不预知答案：逐题逐个选项试到答对）
+  const total = await page.locator('.mp-dot').count();
+  expect(total).toBeGreaterThan(0);
+  for (let i = 0; i < total; i++) {
+    for (let j = 0; j < 3; j++) {
+      await page.locator('.quiz-opt').nth(j).click();
+      if (await page.locator('.quiz-pass').isVisible().catch(() => false)) break;
+      await page.waitForTimeout(600); // 等错题提示消失后再试下一个选项
+    }
+    await page.waitForTimeout(900); // 答对后进入下一题
   }
   await expect(page.locator('.result-panel')).toBeVisible();
 

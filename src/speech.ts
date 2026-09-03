@@ -1,107 +1,39 @@
 import { useStore } from './store';
-import { playOffline, stopOffline } from './tts';
+import { speakVolc, stopVolc, volcConfigured } from './volcTts';
 
 /* =====================================================================
-   音频系统：语音朗读（TTS）+ 合成音效 + 背景音乐（WebAudio 无素材）
+   音频系统：语音朗读（火山引擎 seed-tts-2.0，唯一通道、无兜底）
+   + 合成音效 + 背景音乐（WebAudio 无素材）
    ===================================================================== */
 
-/* ---------- 语音朗读 ---------- */
-
-let voices: SpeechSynthesisVoice[] = [];
-
-function loadVoices() {
-  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-  voices = window.speechSynthesis.getVoices();
-}
-
-if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-  loadVoices();
-  window.speechSynthesis.onvoiceschanged = loadVoices;
-}
+/* ---------- 语音朗读（火山引擎 豆包语音合成大模型 2.0） ---------- */
 
 /** 朗读会话令牌：每次开始新朗读或停止时 +1，用于作废旧的逐句朗读链 */
-let speechToken = 0;
+let chainToken = 0;
 
-function newSpeech(): number {
-  speechToken++;
-  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-  }
-  return speechToken;
+function newChain(): number {
+  chainToken++;
+  return chainToken;
 }
 
-/** 调用时重新拉取语音列表（部分浏览器首次需主动 getVoices 才会加载） */
-function currentVoices(): SpeechSynthesisVoice[] {
-  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-    const v = window.speechSynthesis.getVoices();
-    if (v.length) voices = v;
-  }
-  return voices;
+export function stopSpeaking() {
+  newChain();
+  stopVolc();
 }
 
-/**
- * 选择语音：优先"自然语音"（Windows 11 晓晓/云希等，多音字准），
- * 再退到其它可用语音；Google 在线语音国内不可达，排除在外。
- */
-function pickVoice(lang: 'zh' | 'en'): SpeechSynthesisVoice | undefined {
-  const want = lang === 'zh' ? 'zh' : 'en';
-  const list = currentVoices().filter(
-    (v) => v.lang.toLowerCase().startsWith(want) && (v.localService || !/^google/i.test(v.name)),
-  );
-  if (list.length === 0) return undefined;
-  const NATURAL = /xiaoxiao|yunxi|xiaoyi|yunyang|natural|aria|guy|jenny|sonja|tingting|婷婷/i;
-  const natural = list.find((v) => NATURAL.test(v.name));
-  return natural ?? list[0];
-}
-
-/**
- * 系统是否有该语言的可用语音：
- * - 优先本地语音；iPad/iPhone 等系统语音也视为可用
- * - 仅排除 Google 在线语音（国内不可达，桌面 Chrome 会列出它们导致无声）
- */
-function hasVoiceFor(lang: 'zh' | 'en'): boolean {
-  const want = lang === 'zh' ? 'zh' : 'en';
-  return currentVoices().some(
-    (v) => v.lang.toLowerCase().startsWith(want) && (v.localService || !/^google/i.test(v.name)),
-  );
-}
-
-/**
- * 是否走离线引擎（Piper/espeak）：
- * 系统有该语言的【本地】语音 → 用系统（音质最佳、零延迟）；
- * 系统没有 → 用离线（Piper 神经语音，其次 espeak）
- */
-function shouldUseOffline(lang: 'zh' | 'en'): boolean {
-  return !hasVoiceFor(lang);
-}
+/** 火山引擎语音是否已配置（未配置时页面会提示） */
+export { volcConfigured };
 
 /** 用当前语言朗读文本（跟随"声音总开关 + 语音开关"；rate 越小越慢） */
 export function speak(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92) {
   const { sound, voiceOn } = useStore.getState();
   if (!sound || !voiceOn || !text) return;
-  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-  if (shouldUseOffline(lang)) {
-    newSpeech();
-    void playOffline(text, lang, rate);
-    return;
-  }
-  const synth = window.speechSynthesis;
-  newSpeech();
-  const u = new SpeechSynthesisUtterance(text);
-  const voice = pickVoice(lang);
-  if (voice) u.voice = voice;
-  u.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
-  u.rate = rate;
-  u.pitch = 1.15;
-  synth.speak(u);
+  newChain();
+  stopVolc();
+  void speakVolc(text, lang, rate);
 }
 
-export function stopSpeaking() {
-  newSpeech();
-  stopOffline();
-}
-
-/** 朗读一句，读完后回调 onEnd（语音被关闭/不可用时也会回调，保证跟读流程不卡住） */
+/** 朗读一句，读完后回调 onEnd（语音被关闭/未配置/失败时也会回调，保证跟读流程不卡住） */
 export function speakOnce(
   text: string,
   lang: 'zh' | 'en' = 'zh',
@@ -109,37 +41,13 @@ export function speakOnce(
   onEnd?: () => void,
 ) {
   const { sound, voiceOn } = useStore.getState();
-  if (
-    !sound ||
-    !voiceOn ||
-    !text ||
-    typeof window === 'undefined' ||
-    !('speechSynthesis' in window)
-  ) {
+  if (!sound || !voiceOn || !text) {
     window.setTimeout(() => onEnd?.(), 0);
     return;
   }
-  const token = newSpeech();
-  if (shouldUseOffline(lang)) {
-    void playOffline(text, lang, rate, () => {
-      if (token === speechToken) onEnd?.();
-    });
-    return;
-  }
-  const synth = window.speechSynthesis;
-  const u = new SpeechSynthesisUtterance(text);
-  const voice = pickVoice(lang);
-  if (voice) u.voice = voice;
-  u.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
-  u.rate = rate;
-  u.pitch = 1.15;
-  u.onend = () => {
-    if (token === speechToken) onEnd?.();
-  };
-  u.onerror = () => {
-    if (token === speechToken) onEnd?.();
-  };
-  synth.speak(u);
+  newChain();
+  stopVolc();
+  void speakVolc(text, lang, rate, onEnd);
 }
 
 /** 逐句朗读序列：每句播完回调 onIndex（用于高亮跟随），全部播完回调 onEnd */
@@ -152,44 +60,21 @@ export function speakSeq(
 ) {
   const { sound, voiceOn } = useStore.getState();
   if (!sound || !voiceOn || texts.length === 0) return;
-  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-  const token = newSpeech();
-  const synth = window.speechSynthesis;
-  if (shouldUseOffline(lang)) {
-    // 离线逐句连读（每句合成播放，支持高亮跟随与打断）
-    void (async () => {
-      for (let i = 0; i < texts.length; i++) {
-        if (token !== speechToken) return;
-        onIndex?.(i);
-        await new Promise<void>((res) => playOffline(texts[i], lang, rate, res));
-      }
-      if (token === speechToken) onEnd?.();
-    })();
-    return;
-  }
-  const voice = pickVoice(lang);
+  const token = newChain();
   let i = 0;
-  const speakOne = () => {
-    if (token !== speechToken) return; // 已被停止/新朗读打断
+  const next = () => {
+    if (token !== chainToken) return; // 已被停止/新朗读打断
     if (i >= texts.length) {
       onEnd?.();
       return;
     }
     onIndex?.(i);
-    const u = new SpeechSynthesisUtterance(texts[i]);
-    if (voice) u.voice = voice;
-    u.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
-    u.rate = rate;
-    u.pitch = 1.15;
-    const next = () => {
-      i++;
-      speakOne();
-    };
-    u.onend = next;
-    u.onerror = next;
-    synth.speak(u);
+    const text = texts[i];
+    i += 1;
+    stopVolc();
+    void speakVolc(text, lang, rate, next);
   };
-  speakOne();
+  next();
 }
 
 /* ---------- WebAudio 基础 ---------- */

@@ -3400,6 +3400,258 @@ input {
 }
 .mf-play:active { transform: scale(0.95); }
 
+/* ---------- 数数动画（v2.11）：手指点数 + 数字盖章 + 大数字同步 ---------- */
+.mf-count .mf-num { animation: popIn 0.3s ease both; }
+.mf-count-row { align-items: flex-start; }
+.mf-count-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 52px;
+  padding-top: 24px;
+  user-select: none;
+}
+.mf-count-slot .mf-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-size: 30px;
+  background: #fff;
+  border: 2.5px solid transparent;
+  border-radius: 50%;
+  opacity: 0.35;
+  animation: none;
+  transition: opacity 0.25s ease;
+}
+.mf-count-slot.lit .mf-item {
+  opacity: 1;
+  background: #e8f7ee;
+  border-color: #9fd8ac;
+  animation: countLitIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.mf-count-slot.current .mf-item {
+  opacity: 1;
+  background: #fff3cd;
+  border-color: #ffb300;
+  animation: countCurrent 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.mf-count-slot.marked .mf-item {
+  opacity: 1;
+  background: #fff8e1;
+  border-color: #ffb300;
+  animation: markedPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes countLitIn {
+  from { transform: scale(0.55); }
+  60% { transform: scale(1.18); }
+  to { transform: scale(1); }
+}
+@keyframes countCurrent {
+  0% { transform: scale(0.7); }
+  40% { transform: scale(1.28); }
+  70% { transform: scale(0.96); }
+  100% { transform: scale(1.08); }
+}
+@keyframes markedPop {
+  0% { transform: scale(0.5) rotate(-14deg); }
+  55% { transform: scale(1.35) rotate(6deg); }
+  100% { transform: scale(1.1) rotate(0); }
+}
+.mf-slot-pointer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  font-size: 20px;
+  line-height: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.15));
+  animation: pointerBob 0.55s ease-in-out infinite alternate;
+}
+@keyframes pointerBob {
+  from { transform: translateX(-50%) translateY(0); }
+  to { transform: translateX(-50%) translateY(-6px); }
+}
+.mf-slot-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+}
+.mf-count-slot.lit .mf-slot-badge {
+  background: #ff6f91;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+  animation: badgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes badgePop {
+  from { transform: scale(0); }
+  60% { transform: scale(1.35); }
+  to { transform: scale(1); }
+}
+
+/* ---------- 算式自动演示（v2.11） ---------- */
+.mf-equation-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.mf-play-row { display: flex; gap: 8px; justify-content: center; }
+.mf-dots .dot { opacity: 0.25; transition: opacity 0.2s ease; }
+.mf-dots .dot.on {
+  opacity: 1;
+  animation: dotOn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes dotOn {
+  from { transform: scale(0.4); }
+  60% { transform: scale(1.3); }
+  to { transform: scale(1); }
+}
+
+/* ---------- 比多少：一个对一个拉线配对（v2.11） ---------- */
+.mf-compare-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cp-item {
+  opacity: 0;
+  animation: cpItemIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: var(--d, 0s);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes cpItemIn {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+.cp-line {
+  stroke-dasharray: 190;
+  stroke-dashoffset: 190;
+  animation: cpLineDraw 0.45s ease both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes cpLineDraw {
+  to { stroke-dashoffset: 0; }
+}
+.cp-extra {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cpExtraIn 0.4s ease both, cpExtraPulse 1.1s ease-in-out infinite;
+  animation-delay: var(--d, 0s), calc(var(--d, 0s) + 0.4s);
+}
+@keyframes cpExtraIn {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes cpExtraPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.75; }
+}
+.cp-star {
+  opacity: 0;
+  animation: cpStarPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes cpStarPop {
+  from { opacity: 0; transform: translateY(8px) scale(0.3); }
+  60% { opacity: 1; transform: translateY(-3px) scale(1.3); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.cp-symbol {
+  opacity: 0;
+  animation: cpSymbolPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: var(--d, 0s);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes cpSymbolPop {
+  from { opacity: 0; transform: scale(0.2) rotate(-16deg); }
+  60% { opacity: 1; transform: scale(1.35) rotate(4deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+/* ---------- 分类 / 人民币 / 规律 / 凑十破十 等（v2.11） ---------- */
+.sort-item { display: inline-block; }
+.sort-count { animation: chartFadeUp 0.4s ease both; }
+.coin-drop {
+  animation: coinDrop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes coinDrop {
+  from { opacity: 0; transform: translateY(-18px) rotate(-14deg) scale(0.6); }
+  to { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
+}
+.mf-pattern-q { animation: patternPulse 1.4s ease-in-out infinite; }
+@keyframes patternPulse {
+  0%, 100% { transform: scale(1); border-color: var(--brand-3); }
+  50% { transform: scale(1.12); border-color: #ff6f91; }
+}
+.mt-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mtDotIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes mtDotIn {
+  from { transform: scale(0); }
+  60% { transform: scale(1.4); }
+  to { transform: scale(1); }
+}
+
+/* ---------- 图形集合 / 搭配 / 观察物体 / 天平 / 方位 / 集合 / 网格（v2.11） ---------- */
+.shape-item { display: inline-block; animation: chartFadeUp 0.45s ease both; }
+.combo-cell {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: popIn 0.35s ease both;
+}
+.view-cell-pop { animation: popIn 0.3s ease both; }
+.weight-drop {
+  display: inline-block;
+  animation: weightDrop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes weightDrop {
+  from { opacity: 0; transform: translateY(-16px) scale(0.6); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.pos-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: posRingPulse 1.3s ease-in-out infinite;
+}
+@keyframes posRingPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.13); }
+}
+.pos-active { animation: posBob 1s ease-in-out infinite alternate; }
+@keyframes posBob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-5px); }
+}
+.dir-needle {
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+  animation: dirSweep 1.1s cubic-bezier(0.3, 0.8, 0.3, 1) both;
+}
+@keyframes dirSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(var(--dir-rot, 0deg)); }
+}
+.venn-in {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vennIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes vennIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+.grid-cell-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: popIn 0.35s ease both;
+}
+
 .mf-makeTen { display: flex; flex-direction: column; gap: 8px; align-items: center; }
 
 .mf-equation { display: flex; align-items: center; gap: 12px; }
@@ -3930,6 +4182,28 @@ input {
 
 /* ---------- 数学课学习节点（看例题 / 看演示 / 记要点） ---------- */
 .math-example { display: flex; flex-direction: column; gap: 10px; }
+.voice-off-hint {
+  align-self: stretch;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #8a6d00;
+  background: #fff8d6;
+  border: 1.5px solid #ffd54f;
+  border-radius: 12px;
+  padding: 8px 12px;
+  text-align: center;
+}
+/* 课程文字点读：可点击的段落提示为可点 */
+.tap-to-read {
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: background-color 0.15s ease;
+  border-radius: 8px;
+}
+.tap-to-read:hover { background: rgba(255, 179, 0, 0.12); }
+.tap-to-read:active { background: rgba(255, 179, 0, 0.22); }
 .example-scene {
   display: flex;
   align-items: center;
