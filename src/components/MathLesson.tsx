@@ -45,18 +45,20 @@ export function MathExample({ figure, example, worked, text, lang, onDone }: { f
     <div className="math-example">
       <VoiceOffHint lang={lang} />
       <VolcMissingHint lang={lang} />
-      {figure && (
-        <MathFigure
-          figure={figure}
-          lang={lang}
-          onVoiceEnd={() => {
-            if (exampleRef.current) speak(exampleRef.current, lang);
-          }}
-        />
-      )}
-      <div className="example-scene" onClick={() => speak(example, lang)}>
-        <span className="example-scene-label">📖 例</span>
-        <span className="example-scene-text">{example}</span>
+      <div className="math-visual">
+        <div className="example-scene" onClick={() => speak(example, lang)}>
+          <span className="example-scene-label">📖 例</span>
+          <span className="example-scene-text">{example}</span>
+        </div>
+        {figure && (
+          <MathFigure
+            figure={figure}
+            lang={lang}
+            onVoiceEnd={() => {
+              if (exampleRef.current) speak(exampleRef.current, lang);
+            }}
+          />
+        )}
       </div>
       {worked.length > 0 ? (
         worked.map((w, wi) => (
@@ -368,8 +370,18 @@ function QuizCard({ quiz, onPass }: { quiz: Quiz; onPass: () => void }) {
     }
   };
   return (
-    <div className="quiz-card">
+    <div className="quiz-card quiz-task">
       <div className="quiz-q">
+        <button
+          className="speaker-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            speak(`${quiz.q}。${quiz.options.map((o, i) => `${i + 1}、${o}`).join('，')}`, 'zh');
+          }}
+          aria-label="再读一次"
+        >
+          🔊 {t('replay')}
+        </button>
         🤔 {t('thinkAbout')}：{quiz.q}
       </div>
       <div className="quiz-options">

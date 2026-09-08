@@ -10,6 +10,9 @@ import { speakSeq, speakOnce, stopSpeaking, playSfx } from '../speech';
 import { compareText, compareTime, estimateSec, judge, judgeTime, type CompareResult } from '../speechCompare';
 import { themeEmojis } from '../content/lessonTheme';
 import { useI18n } from '../i18n';
+import { api } from '../api';
+import { childMap } from '../cloud';
+import { useStore } from '../store';
 import CharCard from './CharCard';
 
 interface Props {
@@ -88,6 +91,7 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
   const [activeSentence, setActiveSentence] = useState(-1);
   const [followIdx, setFollowIdx] = useState(-1);
   const [phase, setPhase] = useState<FollowPhase>('idle');
+  const [cloudScore, setCloudScore] = useState<number | null>(null);
   const [micError, setMicError] = useState(false);
   const [compare, setCompare] = useState<CompareResult | null>(null);
   const [srError, setSrError] = useState<string | null>(null);
@@ -143,6 +147,9 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
   const illustration = useMemo(() => themeEmojis(textWords ?? []), [textWords]);
 
   const rate = slow ? 0.8 : 0.95;
+  // 看课文：朗读全文
+  // 看课文：朗读「当前页」内容
+  const readAll = () => speakSeq((pages[page] ?? []).map((pIdx) => paras[pIdx]), speechLang, rate);
 
   const setRec = (url: string | null) => {
     if (recUrlRef.current) URL.revokeObjectURL(recUrlRef.current);
@@ -215,6 +222,21 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
               : compareTime(voiceSec, refSec, voiceRatio),
           );
           setPhase('review');
+          // 云端跟读评测（可选增强：提交转写文本，取服务端评分）
+          const localChild = useStore.getState().activeChildId;
+          const cloudChild = localChild ? childMap()[localChild] ?? null : null;
+          if (cloudChild && transcriptRef.current) {
+            void api.scoreReadAloud(cloudChild, target, transcriptRef.current).then((r) => {
+              if (r && r.ok) {
+                setCloudScore(r.score);
+                // 跟读 ≥60 分 → +3（每课每天一次）
+                if (r.score >= 60 && localChild) {
+                  const st = useStore.getState();
+                  st.applyPoints(localChild, 3, '跟读达标', `aloud:${target}:${new Date().toDateString()}`);
+                }
+              }
+            });
+          }
         });
       };
       rec.start();
@@ -384,6 +406,7 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
   };
 
   const goFollow = (i: number) => {
+    setCloudScore(null);
     if (i >= sentences.length) {
       playSfx('win');
       resetFollow();
@@ -493,7 +516,7 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
                         }}
                       >
                         {ch}
-                        {showPinyin && <rt className="py">{paraPy[pIdx]?.[i] ?? ''}</rt>}
+                        {(showPinyin || hl) && <rt className="py">{paraPy[pIdx]?.[i] ?? ''}</rt>}
                       </ruby>
                     );
                   })}
@@ -521,7 +544,10 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
 
     return (
       <div className="lesson-reader read">
-        <div className="reader-toolbar">
+        {/* 工具行：提示（左）+ 注音/翻译 & 朗读全文（右） */}
+        <div className="read-corner-row">
+          <span className="tap-para-tip">👇 {t('tapParaTip')}</span>
+          <span className="read-row-btns">
           {isEnglish ? (
             <button
               className={`tool-btn ${showTrans ? 'on' : ''}`}
@@ -537,14 +563,11 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
               🔤 {t('pinyinOn')}
             </button>
           )}
-          <button className={`tool-btn ${slow ? 'on' : ''}`} onClick={() => setSlow((v) => !v)}>
-            🐢 {t('slow')}
+          <button className="tool-btn" onClick={readAll}>
+            🔊 {t('readAll')}
           </button>
-          <button className="tool-btn done" onClick={onDone}>
-            ✅ {t('readDone')}
-          </button>
+          </span>
         </div>
-        <p className="tap-para-tip">👆 {t('tapParaTip')}</p>
 
         <div className="book-wrap">
           {pages.length > 1 && (
@@ -583,6 +606,15 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
             </button>
           )}
         </div>
+
+        {/* 读完了：仅在最后一页（或单页）显示 */}
+        {(pages.length <= 1 || page === pages.length - 1) && (
+          <div className="reader-done">
+            <button className="tool-btn done" onClick={onDone}>
+              ✅ {t('readDone')}
+            </button>
+          </div>
+        )}
 
         {activeChar && (
           <CharCard
@@ -644,6 +676,9 @@ export default function LessonReader({ text, words, mode, onDone, title, textWor
                 {t('compareChars', { n: compare.matched, total: compare.total })}
               </div>
               <div className="compare-judge">{t(judge(compare.score).key)}</div>
+              {cloudScore !== null && (
+                <div className="compare-judge cloud-score">☁️ 云端跟读评分：{cloudScore} 分</div>
+              )}
             </div>
           )}
           {phase === 'review' && compare && compare.kind === 'time' && (

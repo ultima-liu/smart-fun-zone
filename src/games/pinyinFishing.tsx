@@ -103,6 +103,7 @@ export const pinyinFishingDef: GameDef = {
   icon: '🎣',
   name: { zh: '拼音钓鱼', en: 'Pinyin Fishing' },
   category: 'chinese',
+  genre: 'listen',
   desc: { zh: '钓起听到的拼音', en: 'Fish the pinyin you hear' },
   levels: pack.levels.length,
   status: 'ready',

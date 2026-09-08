@@ -2,7 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { useI18n } from '../i18n';
-import { KidButton, TopBar, Stars, Confetti } from '../components/ui';
+import { KidButton, Stars, Confetti } from '../components/ui';
+import { IconBack } from '../components/icons';
+import { SceneBanner } from '../components/scenes';
+import { SUBJECTS } from '../types';
 import Mascot from '../components/Mascot';
 import LessonPractice from '../components/LessonPractice';
 import LessonPracticeEnglish from '../components/LessonPracticeEnglish';
@@ -24,7 +27,9 @@ export default function PracticePage() {
   const { t, lang } = useI18n();
   const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
   const addSkillResult = useStore((s) => s.addSkillResult);
+  const applyPoints = useStore((s) => s.applyPoints);
   const skill = skillId ? getSkill(skillId) : undefined;
+  const subject = skill ? SUBJECTS.find((s) => s.id === skill.subject) : undefined;
   const [contentById, setContentById] = useState<Record<string, LessonContent | undefined>>({});
   const [loadedIds, setLoadedIds] = useState<ReadonlySet<string>>(new Set());
 
@@ -76,7 +81,15 @@ export default function PracticePage() {
   if (!contentReady) {
     return (
       <div className="page practice">
-        <TopBar title={`✏️ ${t('practiceTitle')} · ${skill.name[lang]}`} onBack={() => nav(`/learn/${skill.id}`)} />
+        <div className="lesson-hero-top">
+          <KidButton color="white" className="icon-btn" onClick={() => nav(`/learn/${skill.id}`)} ariaLabel="back">
+            <IconBack size={22} />
+          </KidButton>
+          <div className="lesson-hero-title">
+            <span className="lesson-hero-eyebrow">{skill.name[lang]}</span>
+            <span className="lesson-hero-name">📖 {lang === 'zh' ? '去练习' : 'Practice'}</span>
+          </div>
+        </div>
         <div className="lesson-stage">
           <div className="lesson-loading">⏳ 加载中…</div>
         </div>
@@ -90,6 +103,8 @@ export default function PracticePage() {
     const pass = total > 0 && correct / total >= 0.8;
     if (pass) {
       addSkillResult(child.id, skill.id);
+      // 练习达标 → 每天每课 +1 分（幂等）
+      applyPoints(child.id, 1, '练习达标', `prac:${skill.id}:${new Date().toDateString()}`);
       setLit(true);
     }
     playSfx('win');
@@ -98,10 +113,35 @@ export default function PracticePage() {
 
   return (
     <div className="page practice">
-      <TopBar
-        title={`✏️ ${t('practiceTitle')} · ${skill.name[lang]}`}
-        onBack={() => nav(`/learn/${skill.id}`)}
-      />
+      <div className="lesson-hero">
+        {subject ? (
+          <div className="category-hero">
+            <SceneBanner kind={subject.id} height={176} />
+            <div className="category-scrim" aria-hidden="true" />
+            <div className="lesson-hero-back">
+              <KidButton color="white" className="icon-btn" onClick={() => nav(`/learn/${skill.id}`)} ariaLabel="back">
+                <IconBack size={22} />
+              </KidButton>
+            </div>
+            <div className="lesson-hero-overlay">
+              <div className="lesson-hero-title">
+                <span className="lesson-hero-eyebrow">{skill.name[lang]}</span>
+                <span className="lesson-hero-name">📖 {lang === 'zh' ? '去练习' : 'Practice'}</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="lesson-hero-top">
+            <KidButton color="white" className="icon-btn" onClick={() => nav(`/learn/${skill.id}`)} ariaLabel="back">
+              <IconBack size={22} />
+            </KidButton>
+            <div className="lesson-hero-title">
+              <span className="lesson-hero-eyebrow">{skill.name[lang]}</span>
+              <span className="lesson-hero-name">📖 {lang === 'zh' ? '去练习' : 'Practice'}</span>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* 学习步骤条：练习节点高亮，可点回前面的学习步骤 */}
       <StepBar
@@ -109,7 +149,9 @@ export default function PracticePage() {
         labels={
           isMath
             ? [t('viewExample'), t('watchDemo'), t('rememberPoints'), t('goPractice')]
-            : [t('read'), t('listen'), skill.subject === 'english' ? t('wordStep') : t('chars'), t('goPractice')]
+            : skill.subject === 'english'
+              ? [t('read'), t('listen'), t('wordStep'), t('goPractice')]
+              : [t('read'), t('learnText'), t('rememberChars'), t('goPractice')]
         }
         onStepClick={(i) => {
           if (i < 3) nav(`/learn/${skill.id}?step=${i}`);
@@ -166,6 +208,8 @@ export default function PracticePage() {
               key={session}
               text={content?.text ?? ''}
               words={content?.words ?? []}
+              lessonId={skill?.id}
+              lessonName={skill?.name.zh}
               onFinish={handleFinish}
             />
           )}

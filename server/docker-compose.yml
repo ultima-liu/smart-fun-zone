@@ -1,0 +1,21 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: sfz-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: sfz123456
+      MYSQL_DATABASE: smart_fun_zone
+    ports:
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - sfz_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-psfz123456"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  sfz_mysql_data:

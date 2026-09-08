@@ -130,6 +130,7 @@ export const trashSortDef: GameDef = {
   icon: '🗑️',
   name: { zh: '垃圾分类', en: 'Trash Sort' },
   category: 'thinking',
+  genre: 'think',
   desc: { zh: '把垃圾放进正确的桶', en: 'Sort the trash' },
   levels: pack.levels.length,
   status: 'ready',

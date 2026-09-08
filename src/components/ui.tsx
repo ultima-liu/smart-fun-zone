@@ -148,7 +148,7 @@ function buildConfettiItems(count: number) {
   return Array.from({ length: count }, (_, i) => ({
     left: Math.random() * 100,
     delay: Math.random() * 0.8,
-    emoji: ['🎉', '⭐', '✨', '🌈', '🎊', '💖', '🦖'][i % 7],
+    emoji: ['🎉', '⭐', '✨', '🌈', '🎊', '💖', '🪐'][i % 7],
     dur: 2.4 + Math.random() * 1.6,
     size: 20 + Math.random() * 20,
   }));
@@ -179,10 +179,12 @@ export function Confetti({ show, count = 30 }: { show: boolean; count?: number }
 
 export function TopBar({
   title,
+  eyebrow,
   onBack,
   right,
 }: {
   title?: ReactNode;
+  eyebrow?: ReactNode;
   onBack?: () => void;
   right?: ReactNode;
 }) {
@@ -190,21 +192,27 @@ export function TopBar({
   const toggleSound = useStore((s) => s.toggleSound);
   return (
     <header className="topbar">
-      {onBack ? (
-        <KidButton color="white" className="icon-btn" onClick={onBack} ariaLabel="back">
-          <IconBack size={22} />
-        </KidButton>
-      ) : (
-        <span />
-      )}
-      <div className="topbar-title">{title}</div>
-      <div className="topbar-right">
-        {right ?? (
-          <KidButton color="white" className="icon-btn" onClick={toggleSound} ariaLabel="sound">
-            {sound ? <IconSpeakerOn size={22} /> : <IconSpeakerOff size={22} />}
+      <div className="topbar-main">
+        {onBack ? (
+          <KidButton color="white" className="icon-btn" onClick={onBack} ariaLabel="back">
+            <IconBack size={22} />
           </KidButton>
+        ) : (
+          <span />
         )}
+        <div className="topbar-heading">
+          {eyebrow && <span className="topbar-eyebrow">{eyebrow}</span>}
+          <div className="topbar-title">{title}</div>
+        </div>
+        <div className="topbar-right">
+          {right ?? (
+            <KidButton color="white" className="icon-btn" onClick={toggleSound} ariaLabel="sound">
+              {sound ? <IconSpeakerOn size={22} /> : <IconSpeakerOff size={22} />}
+            </KidButton>
+          )}
+        </div>
       </div>
+      <div className="topbar-rule" aria-hidden="true" />
     </header>
   );
 }

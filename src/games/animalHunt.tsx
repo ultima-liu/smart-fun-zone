@@ -111,6 +111,7 @@ export const animalHuntDef: GameDef = {
   icon: '🦉',
   name: { zh: '动物在哪里', en: 'Animal Hunt' },
   category: 'science',
+  genre: 'find',
   desc: { zh: '根据线索找动物', en: 'Find the animal by clues' },
   levels: pack.levels.length,
   status: 'ready',

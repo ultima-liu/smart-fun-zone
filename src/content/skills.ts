@@ -14,7 +14,8 @@ export type MathFigureType =
   | 'makeTen' | 'breakTen' | 'unroll' | 'clock' | 'chart'
   | 'position' | 'direction' | 'ordinal' | 'shapeSet' | 'sort' | 'money' | 'pattern' | 'angle'
   | 'views' | 'combo' | 'motion' | 'weight' | 'venn' | 'placevalue' | 'linekind' | 'linepair'
-  | 'timeline' | 'match' | 'plant' | 'grid' | 'pigeonhole' | 'text' | 'scene';
+  | 'timeline' | 'match' | 'plant' | 'grid' | 'pigeonhole' | 'text' | 'scene'
+  | 'tianzige';
 
 /** 图形集合（认识立体/平面图形） */
 export type ShapeKind = 'rectangle' | 'square' | 'triangle' | 'circle' | 'trapezoid' | 'parallelogram' | 'cylinder' | 'cone' | 'cuboid' | 'cube' | 'sphere';
@@ -130,11 +131,25 @@ export interface MathFigure {
   text?: string;
   /** scene：语文场景插画——一组情境 emoji + 场景标题（配合 title），逐个弹入 */
   emojis?: string[];
+  /** scene：背景主题（field/mountain/water/sky/forest/city/night/indoor/garden/desert/snow） */
+  bg?: string;
+  /** tianzige：田字格——写字教学；char 放入字、showLabels 显示横/竖中线名称 */
+  char?: string;
+  showLabels?: boolean;
+}
+
+export interface ContentBlock {
+  /** 块类型：title 栏目标题 / poem·verse 诗或儿歌 / tip 提示 / exercise 运用 / memo 日积月累 / read 一起读 / pinyin 拼音 / text 普通段落 */
+  kind: 'title' | 'poem' | 'verse' | 'tip' | 'exercise' | 'memo' | 'read' | 'pinyin' | 'text';
+  title?: string;
+  lines: string[];
 }
 
 export interface LessonContent {
   /** 课文/例题正文（长课文只录导读，不复制原文） */
   text?: string;
+  /** 结构化内容块（语文园地/识字加油站等混合栏目由 text 解析而来；未提供时为空） */
+  blocks?: ContentBlock[];
   /** 生字 / 关键词 */
   words?: string[];
   /** 知识点讲解要点 */
@@ -773,21 +788,69 @@ const G1_MATH: { 上: RawUnit[]; 下: RawUnit[] } = {
 
 const G1_CHINESE: { 上: RawUnit[]; 下: RawUnit[] } = {
   上: [
-    { unit: { zh: '我上学了', en: 'First Day' }, lessons: [{ zh: '我上学了', en: 'First Day of School' }] },
-    { unit: { zh: '第一单元 · 识字', en: 'Unit 1 Characters' }, lessons: [
-      { zh: '天地人', en: 'Sky, Earth, People', content: { text: '天 地 人 你 我 他', words: ['天', '地', '人', '你', '我', '他'], points: ['天：天空', '地：大地', '人：人', '你、我、他：人称代词'] } },
-      { zh: '金木水火土', en: 'Metal, Wood, Water, Fire, Earth', content: { text: '一二三四五，金木水火土。天地分上下，日月照今古。', words: ['一', '二', '三', '四', '五', '上', '下'], points: ['认识数字 1~5', '认识金、木、水、火、土', '认识"上""下"方位'] } },
-      { zh: '口耳目', en: 'Mouth, Ear, Eye', content: { text: '口 耳 目 手 足', words: ['口', '耳', '目', '手', '足'], points: ['口：嘴巴', '耳：耳朵', '目：眼睛', '手：手', '足：脚'] } },
-      { zh: '日月水火', en: 'Sun, Moon, Water, Fire', content: { text: '日 月 水 火', words: ['日', '月', '水', '火'], points: ['象形字：日像太阳', '月像弯弯的月亮', '水像流动的水', '火像燃烧的火苗'] } },
-      { zh: '对韵歌', en: 'Rhyming Song', content: { text: '云对雨，雪对风。花对树，鸟对虫。山清对水秀，柳绿对桃红。', words: ['云', '雨', '雪', '风', '花', '树', '鸟', '虫'], points: ['学习"对韵"（对仗）', '认识自然景物字词'] } },
+    { unit: { zh: '我上学了', en: 'I Go to School' }, lessons: [
+      { zh: '我是中国人', en: 'I Am Chinese' },
+      { zh: '我爱我们的祖国', en: 'I Love Our Motherland' },
+      { zh: '我是小学生', en: 'I Am a Pupil' },
+      { zh: '我爱学语文', en: 'I Love Learning Chinese' },
     ] },
-    { unit: { zh: '第二单元 · 汉语拼音', en: 'Unit 2 Pinyin' }, lessons: [{ zh: 'a o e', en: 'a o e' }, { zh: 'i u ü', en: 'i u ü' }, { zh: 'b p m f', en: 'b p m f' }, { zh: 'd t n l', en: 'd t n l' }, { zh: 'g k h', en: 'g k h' }, { zh: 'j q x', en: 'j q x' }, { zh: 'z c s', en: 'z c s' }, { zh: 'zh ch sh r', en: 'zh ch sh r' }] },
-    { unit: { zh: '第三单元 · 汉语拼音', en: 'Unit 3 Pinyin' }, lessons: [{ zh: 'ai ei ui', en: 'ai ei ui' }, { zh: 'ao ou iu', en: 'ao ou iu' }, { zh: 'ie üe er', en: 'ie üe er' }, { zh: 'an en in un ün', en: 'an en in un ün' }, { zh: 'ang eng ing ong', en: 'ang eng ing ong' }] },
-    { unit: { zh: '第四单元 · 课文', en: 'Unit 4 Texts' }, lessons: [{ zh: '秋天', en: 'Autumn', content: { words: ['秋', '气', '了', '树', '叶', '片', '大', '飞', '会', '个'], points: ['朗读课文，感受秋天的景色', '认识生字：秋、气、树、叶、飞', '体会"大雁南飞"的景象'] } }, { zh: '小小的船', en: 'The Little Boat', content: { words: ['船', '弯', '星', '看', '见', '闪'], points: ['朗读儿歌，感受夜空之美', '认识生字：船、弯、星、闪'] } }, { zh: '江南', en: 'South of the River', content: { text: '江南可采莲，莲叶何田田。鱼戏莲叶间。鱼戏莲叶东，鱼戏莲叶西，鱼戏莲叶南，鱼戏莲叶北。', words: ['江', '南', '莲', '叶', '鱼', '东', '西', '南', '北'], points: ['古诗《江南》，感受采莲景象', '认识方位：东、西、南、北'] } }, { zh: '四季', en: 'Four Seasons', content: { words: ['季', '春', '夏', '秋', '冬', '圆', '尖'], points: ['认识一年四季：春夏秋冬', '认识生字：春、夏、秋、冬'] } }] },
-    { unit: { zh: '第五单元 · 识字', en: 'Unit 5 Characters' }, lessons: [{ zh: '画', en: 'Painting' }, { zh: '大小多少', en: 'Big, Small, Many, Few' }, { zh: '小书包', en: 'My Schoolbag' }, { zh: '日月明', en: 'Sun and Moon' }, { zh: '升国旗', en: 'Raising the Flag' }] },
-    { unit: { zh: '第六单元 · 课文', en: 'Unit 6 Texts' }, lessons: [{ zh: '影子', en: 'Shadows' }, { zh: '比尾巴', en: 'Comparing Tails' }, { zh: '青蛙写诗', en: 'Frog Writes a Poem' }, { zh: '雨点儿', en: 'Raindrops' }] },
-    { unit: { zh: '第七单元 · 课文', en: 'Unit 7 Texts' }, lessons: [{ zh: '明天要远足', en: 'Trip Tomorrow' }, { zh: '大还是小', en: 'Big or Small' }, { zh: '项链', en: 'The Necklace' }] },
-    { unit: { zh: '第八单元 · 课文', en: 'Unit 8 Texts' }, lessons: [{ zh: '雪地里的小画家', en: 'Painters in the Snow' }, { zh: '乌鸦喝水', en: 'The Crow Drinks' }, { zh: '小蜗牛', en: 'The Little Snail' }] },
+    { unit: { zh: '第一单元 · 识字', en: 'Unit 1 Characters' }, lessons: [
+      { zh: '天地人', en: 'Sky, Earth, People' },
+      { zh: '金木水火土', en: 'Metal, Wood, Water, Fire, Earth' },
+      { zh: '口耳目手足', en: 'Mouth, Ears, Eyes, Hands, Feet' },
+      { zh: '日月山川', en: 'Sun, Moon, Mountains, Rivers' },
+      { zh: '语文园地一', en: 'Chinese Corner 1' },
+      { zh: '快乐读书吧 · 读书真快乐', en: 'Happy Reading' },
+    ] },
+    { unit: { zh: '第二单元 · 汉语拼音', en: 'Unit 2 Pinyin' }, lessons: [
+      { zh: 'a o e', en: 'a o e' },
+      { zh: 'i u ü', en: 'i u ü' },
+      { zh: 'b p m f', en: 'b p m f' },
+      { zh: 'd t n l', en: 'd t n l' },
+      { zh: '语文园地二', en: 'Chinese Corner 2' },
+    ] },
+    { unit: { zh: '第三单元 · 汉语拼音', en: 'Unit 3 Pinyin' }, lessons: [
+      { zh: 'g k h', en: 'g k h' },
+      { zh: 'j q x', en: 'j q x' },
+      { zh: 'z c s', en: 'z c s' },
+      { zh: 'zh ch sh r', en: 'zh ch sh r' },
+      { zh: 'y w', en: 'y w' },
+      { zh: '语文园地三', en: 'Chinese Corner 3' },
+    ] },
+    { unit: { zh: '第四单元 · 汉语拼音', en: 'Unit 4 Pinyin' }, lessons: [
+      { zh: 'ai ei ui', en: 'ai ei ui' },
+      { zh: 'ao ou iu', en: 'ao ou iu' },
+      { zh: 'ie üe er', en: 'ie üe er' },
+      { zh: 'an en in un ün', en: 'an en in un ün' },
+      { zh: 'ang eng ing ong', en: 'ang eng ing ong' },
+      { zh: '语文园地四', en: 'Chinese Corner 4' },
+    ] },
+    { unit: { zh: '第五单元 · 阅读', en: 'Unit 5 Reading' }, lessons: [
+      { zh: '秋天', en: 'Autumn' },
+      { zh: '江南', en: 'South of the River' },
+      { zh: '雪地里的小画家', en: 'Painters in the Snow' },
+      { zh: '四季', en: 'Four Seasons' },
+      { zh: '语文园地五', en: 'Chinese Corner 5' },
+    ] },
+    { unit: { zh: '第六单元 · 识字', en: 'Unit 6 Characters' }, lessons: [
+      { zh: '对韵歌', en: 'Rhyming Song' },
+      { zh: '日月明', en: 'Sun and Moon' },
+      { zh: '小书包', en: 'My Schoolbag' },
+      { zh: '升国旗', en: 'Raising the Flag' },
+      { zh: '语文园地六', en: 'Chinese Corner 6' },
+    ] },
+    { unit: { zh: '第七单元 · 阅读', en: 'Unit 7 Reading' }, lessons: [
+      { zh: '小小的船', en: 'The Little Boat' },
+      { zh: '影子', en: 'Shadows' },
+      { zh: '两件宝', en: 'Two Treasures' },
+      { zh: '语文园地七', en: 'Chinese Corner 7' },
+    ] },
+    { unit: { zh: '第八单元 · 阅读', en: 'Unit 8 Reading' }, lessons: [
+      { zh: '比尾巴', en: 'Comparing Tails' },
+      { zh: '乌鸦喝水', en: 'The Crow Drinks' },
+      { zh: '雨点儿', en: 'Raindrops' },
+      { zh: '语文园地八', en: 'Chinese Corner 8' },
+    ] },
   ],
   下: [
     { unit: { zh: '第一单元 · 识字', en: 'Unit 1 Characters' }, lessons: [{ zh: '春夏秋冬', en: 'Seasons' }, { zh: '姓氏歌', en: 'Surnames' }, { zh: '小青蛙', en: 'Little Frog' }, { zh: '猜字谜', en: 'Character Riddles' }] },
@@ -801,60 +864,272 @@ const G1_CHINESE: { 上: RawUnit[]; 下: RawUnit[] } = {
   ],
 };
 
-/* ================= 语文 2–6 年级上册逐课（人教版统编） ================= */
+/* ================= 语文 2–6 年级上册逐课（人教版统编 2022 修订） ================= */
 const G2_UP: RawUnit[] = [
-  { unit: { zh: '第一单元 · 课文', en: 'Unit 1 Texts' }, lessons: [{ zh: '小蝌蚪找妈妈', en: 'Little Tadpoles Look for Mom' }, { zh: '我是什么', en: 'What Am I' }, { zh: '植物妈妈有办法', en: 'How Plants Travel' }] },
-  { unit: { zh: '第二单元 · 识字', en: 'Unit 2 Characters' }, lessons: [{ zh: '场景歌', en: 'Scene Song' }, { zh: '树之歌', en: 'Tree Song' }, { zh: '拍手歌', en: 'Clapping Song' }, { zh: '田家四季歌', en: 'Farm Seasons' }] },
-  { unit: { zh: '第三单元 · 课文', en: 'Unit 3 Texts' }, lessons: [{ zh: '曹冲称象', en: 'Cao Chong Weighs an Elephant' }, { zh: '玲玲的画', en: 'Lingling\'s Picture' }, { zh: '一封信', en: 'A Letter' }, { zh: '妈妈睡了', en: 'Mom Is Asleep' }] },
-  { unit: { zh: '第四单元 · 课文', en: 'Unit 4 Texts' }, lessons: [{ zh: '古诗二首', en: 'Two Poems' }, { zh: '黄山奇石', en: 'Rocks of Huangshan' }, { zh: '日月潭', en: 'Sun Moon Lake' }, { zh: '葡萄沟', en: 'The Grape Valley' }] },
-  { unit: { zh: '第五单元 · 课文', en: 'Unit 5 Texts' }, lessons: [{ zh: '坐井观天', en: 'Frog in the Well' }, { zh: '寒号鸟', en: 'The Hanhao Bird' }, { zh: '我要的是葫芦', en: 'I Want the Gourd' }] },
-  { unit: { zh: '第六单元 · 课文', en: 'Unit 6 Texts' }, lessons: [{ zh: '八角楼上', en: 'In the Octagonal Room' }, { zh: '朱德的扁担', en: 'Zhu De\'s Carrying Pole' }, { zh: '难忘的泼水节', en: 'The Water-Splashing Festival' }, { zh: '刘胡兰', en: 'Liu Hulan' }] },
-  { unit: { zh: '第七单元 · 课文', en: 'Unit 7 Texts' }, lessons: [{ zh: '古诗二首', en: 'Two Poems' }, { zh: '雾在哪里', en: 'Where Is the Fog' }, { zh: '雪孩子', en: 'The Snow Child' }] },
-  { unit: { zh: '第八单元 · 课文', en: 'Unit 8 Texts' }, lessons: [{ zh: '狐假虎威', en: 'Fox Borrows Tiger\'s Might' }, { zh: '纸船和风筝', en: 'Paper Boat & Kite' }, { zh: '风娃娃', en: 'The Wind Doll' }] },
+  { unit: { zh: '第一单元 · 阅读', en: 'Unit 1 Reading' }, lessons: [
+    { zh: '小蝌蚪找妈妈', en: 'Little Tadpoles Look for Mom' },
+    { zh: '我是什么', en: 'What Am I' },
+    { zh: '植物妈妈有办法', en: 'How Plants Travel' },
+    { zh: '语文园地一', en: 'Chinese Corner 1' },
+    { zh: '快乐读书吧 · 读读童话故事', en: 'Happy Reading' },
+  ] },
+  { unit: { zh: '第二单元 · 识字', en: 'Unit 2 Characters' }, lessons: [
+    { zh: '场景歌', en: 'Scene Song' },
+    { zh: '树之歌', en: 'Tree Song' },
+    { zh: '拍手歌', en: 'Clapping Song' },
+    { zh: '田家四季歌', en: 'Farm Seasons' },
+    { zh: '语文园地二', en: 'Chinese Corner 2' },
+  ] },
+  { unit: { zh: '第三单元 · 阅读', en: 'Unit 3 Reading' }, lessons: [
+    { zh: '彩虹', en: 'Rainbow' },
+    { zh: '去外婆家', en: 'To Grandma\'s' },
+    { zh: '数星星的孩子', en: 'The Boy Who Counted Stars' },
+    { zh: '语文园地三', en: 'Chinese Corner 3' },
+  ] },
+  { unit: { zh: '第四单元 · 阅读', en: 'Unit 4 Reading' }, lessons: [
+    { zh: '古诗二首（登鹳雀楼·望庐山瀑布）', en: 'Two Poems' },
+    { zh: '黄山奇石', en: 'Rocks of Huangshan' },
+    { zh: '日月潭', en: 'Sun Moon Lake' },
+    { zh: '葡萄沟', en: 'The Grape Valley' },
+    { zh: '语文园地四', en: 'Chinese Corner 4' },
+  ] },
+  { unit: { zh: '第五单元 · 阅读', en: 'Unit 5 Reading' }, lessons: [
+    { zh: '坐井观天', en: 'Frog in the Well' },
+    { zh: '寒号鸟', en: 'The Hanhao Bird' },
+    { zh: '我要的是葫芦', en: 'I Want the Gourd' },
+    { zh: '语文园地五', en: 'Chinese Corner 5' },
+  ] },
+  { unit: { zh: '第六单元 · 阅读', en: 'Unit 6 Reading' }, lessons: [
+    { zh: '八角楼上', en: 'In the Octagonal Room' },
+    { zh: '朱德的扁担', en: 'Zhu De\'s Carrying Pole' },
+    { zh: '难忘的泼水节', en: 'The Water-Splashing Festival' },
+    { zh: '刘胡兰', en: 'Liu Hulan' },
+    { zh: '语文园地六', en: 'Chinese Corner 6' },
+  ] },
+  { unit: { zh: '第七单元 · 阅读', en: 'Unit 7 Reading' }, lessons: [
+    { zh: '古诗二首（江雪·敕勒歌）', en: 'Two Poems' },
+    { zh: '雾在哪里', en: 'Where Is the Fog' },
+    { zh: '雪孩子', en: 'The Snow Child' },
+    { zh: '语文园地七', en: 'Chinese Corner 7' },
+  ] },
+  { unit: { zh: '第八单元 · 阅读', en: 'Unit 8 Reading' }, lessons: [
+    { zh: '称赞', en: 'Praise' },
+    { zh: '纸船和风筝', en: 'Paper Boat & Kite' },
+    { zh: '快乐的小河', en: 'The Happy River' },
+    { zh: '语文园地八', en: 'Chinese Corner 8' },
+  ] },
 ];
 
 const G3_UP: RawUnit[] = [
-  { unit: { zh: '第一单元', en: 'Unit 1' }, lessons: [{ zh: '大青树下的小学', en: 'School under the Green Tree' }, { zh: '花的学校', en: 'School of Flowers' }, { zh: '不懂就要问', en: 'Ask When in Doubt' }] },
-  { unit: { zh: '第二单元', en: 'Unit 2' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '铺满金色巴掌的水泥道', en: 'The Golden Path' }, { zh: '秋天的雨', en: 'Autumn Rain' }, { zh: '听听，秋的声音', en: 'Listen to Autumn' }] },
-  { unit: { zh: '第三单元', en: 'Unit 3' }, lessons: [{ zh: '卖火柴的小女孩', en: 'The Little Match Girl' }, { zh: '那一定会很好', en: 'It Will Be Great' }, { zh: '在牛肚子里旅行', en: 'Journey in a Cow\'s Belly' }, { zh: '一块奶酪', en: 'A Piece of Cheese' }] },
-  { unit: { zh: '第四单元', en: 'Unit 4' }, lessons: [{ zh: '总也倒不了的老屋', en: 'The Old House' }, { zh: '胡萝卜先生的长胡子', en: 'Mr. Carrot\'s Beard' }, { zh: '小狗学叫', en: 'Puppy Learns to Bark' }] },
-  { unit: { zh: '第五单元', en: 'Unit 5' }, lessons: [{ zh: '搭船的鸟', en: 'A Bird on the Boat' }, { zh: '金色的草地', en: 'The Golden Meadow' }] },
-  { unit: { zh: '第六单元', en: 'Unit 6' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '富饶的西沙群岛', en: 'The Rich Xisha Islands' }, { zh: '海滨小城', en: 'A Seaside Town' }, { zh: '美丽的小兴安岭', en: 'The Beautiful Xiaoxing\'anling' }] },
-  { unit: { zh: '第七单元', en: 'Unit 7' }, lessons: [{ zh: '大自然的声音', en: 'Sounds of Nature' }, { zh: '读不完的大书', en: 'The Endless Book' }, { zh: '父亲、树林和鸟', en: 'Father, Woods and Birds' }] },
-  { unit: { zh: '第八单元', en: 'Unit 8' }, lessons: [{ zh: '司马光', en: 'Sima Guang' }, { zh: '灰雀', en: 'The Grey Sparrow' }, { zh: '手术台就是阵地', en: 'The Operating Table' }, { zh: '一个粗瓷大碗', en: 'A Coarse Porcelain Bowl' }] },
+  { unit: { zh: '第一单元 · 阅读', en: 'Unit 1 Reading' }, lessons: [
+    { zh: '大青树下的小学', en: 'School under the Green Tree' },
+    { zh: '花的学校', en: 'School of Flowers' },
+    { zh: '不懂就要问', en: 'Ask When in Doubt' },
+    { zh: '语文园地一', en: 'Chinese Corner 1' },
+  ] },
+  { unit: { zh: '第二单元 · 阅读', en: 'Unit 2 Reading' }, lessons: [
+    { zh: '古诗三首（望洞庭·山行·夜书所见）', en: 'Three Poems' },
+    { zh: '铺满金色巴掌的水泥道', en: 'The Golden Path' },
+    { zh: '秋天的雨', en: 'Autumn Rain' },
+    { zh: '听听，秋的声音', en: 'Listen to Autumn' },
+    { zh: '语文园地二', en: 'Chinese Corner 2' },
+  ] },
+  { unit: { zh: '第三单元 · 阅读', en: 'Unit 3 Reading' }, lessons: [
+    { zh: '总也倒不了的老屋', en: 'The Old House' },
+    { zh: '犟龟', en: 'The Stubborn Turtle' },
+    { zh: '小狗学叫', en: 'Puppy Learns to Bark' },
+    { zh: '语文园地三', en: 'Chinese Corner 3' },
+  ] },
+  { unit: { zh: '第四单元 · 阅读', en: 'Unit 4 Reading' }, lessons: [
+    { zh: '宝葫芦的秘密（节选）', en: 'The Magic Gourd' },
+    { zh: '在牛肚子里旅行', en: 'Journey in a Cow\'s Belly' },
+    { zh: '一块奶酪', en: 'A Piece of Cheese' },
+    { zh: '语文园地四', en: 'Chinese Corner 4' },
+    { zh: '快乐读书吧 · 在那奇妙的王国里', en: 'Happy Reading' },
+  ] },
+  { unit: { zh: '第五单元 · 习作', en: 'Unit 5 Composition' }, lessons: [
+    { zh: '搭船的鸟', en: 'A Bird on the Boat' },
+    { zh: '金色的草地', en: 'The Golden Meadow' },
+  ] },
+  { unit: { zh: '第六单元 · 阅读', en: 'Unit 6 Reading' }, lessons: [
+    { zh: '富饶的西沙群岛', en: 'The Rich Xisha Islands' },
+    { zh: '海滨小城', en: 'A Seaside Town' },
+    { zh: '美丽的小兴安岭', en: 'The Beautiful Xiaoxing\'anling' },
+    { zh: '香港，璀璨的明珠', en: 'Hong Kong, a Shining Pearl' },
+    { zh: '语文园地六', en: 'Chinese Corner 6' },
+  ] },
+  { unit: { zh: '第七单元 · 阅读', en: 'Unit 7 Reading' }, lessons: [
+    { zh: '古诗三首（鹿柴·望天门山·饮湖上初晴后雨）', en: 'Three Poems' },
+    { zh: '大自然的声音', en: 'Sounds of Nature' },
+    { zh: '读不完的大书', en: 'The Endless Book' },
+    { zh: '语文园地七', en: 'Chinese Corner 7' },
+  ] },
+  { unit: { zh: '第八单元 · 阅读', en: 'Unit 8 Reading' }, lessons: [
+    { zh: '司马光', en: 'Sima Guang' },
+    { zh: '一定要争气', en: 'Strive for Honor' },
+    { zh: '手术台就是阵地', en: 'The Operating Table' },
+    { zh: '一个粗瓷大碗', en: 'A Coarse Porcelain Bowl' },
+    { zh: '语文园地八', en: 'Chinese Corner 8' },
+  ] },
 ];
 
 const G4_UP: RawUnit[] = [
-  { unit: { zh: '第一单元', en: 'Unit 1' }, lessons: [{ zh: '观潮', en: 'Watching the Tide' }, { zh: '走月亮', en: 'Walking in the Moonlight' }, { zh: '现代诗二首', en: 'Two Modern Poems' }, { zh: '繁星', en: 'Stars' }] },
-  { unit: { zh: '第二单元', en: 'Unit 2' }, lessons: [{ zh: '一个豆荚里的五粒豆', en: 'Five Peas in a Pod' }, { zh: '蝙蝠和雷达', en: 'Bats and Radar' }, { zh: '呼风唤雨的世纪', en: 'The Century of Change' }, { zh: '蝴蝶的家', en: 'Home of Butterflies' }] },
-  { unit: { zh: '第三单元', en: 'Unit 3' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '爬山虎的脚', en: 'The Ivy\'s Feet' }, { zh: '蟋蟀的住宅', en: 'The Cricket\'s House' }] },
-  { unit: { zh: '第四单元', en: 'Unit 4' }, lessons: [{ zh: '盘古开天地', en: 'Pangu Creates the World' }, { zh: '精卫填海', en: 'Jingwei Fills the Sea' }, { zh: '普罗米修斯', en: 'Prometheus' }, { zh: '女娲补天', en: 'Nüwa Mends the Sky' }] },
-  { unit: { zh: '第五单元', en: 'Unit 5' }, lessons: [{ zh: '麻雀', en: 'The Sparrow' }, { zh: '爬天都峰', en: 'Climbing Tiandu Peak' }] },
-  { unit: { zh: '第六单元', en: 'Unit 6' }, lessons: [{ zh: '牛和鹅', en: 'The Cow and the Goose' }, { zh: '一只窝囊的大老虎', en: 'A Clumsy Tiger' }, { zh: '陀螺', en: 'The Top' }] },
-  { unit: { zh: '第七单元', en: 'Unit 7' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '为中华之崛起而读书', en: 'Study for China\'s Rise' }, { zh: '梅兰芳蓄须', en: 'Mei Lanfang' }, { zh: '延安，我把你追寻', en: 'Yan\'an, I Seek You' }] },
-  { unit: { zh: '第八单元', en: 'Unit 8' }, lessons: [{ zh: '王戎不取道旁李', en: 'Wang Rong and the Plums' }, { zh: '西门豹治邺', en: 'Ximen Bao' }, { zh: '故事二则', en: 'Two Stories' }] },
+  { unit: { zh: '第一单元 · 阅读', en: 'Unit 1 Reading' }, lessons: [
+    { zh: '观潮', en: 'Watching the Tide' },
+    { zh: '繁星', en: 'Stars' },
+    { zh: '现代诗二首（秋晚的江上·花牛歌）', en: 'Two Modern Poems' },
+    { zh: '语文园地一', en: 'Chinese Corner 1' },
+  ] },
+  { unit: { zh: '第二单元 · 阅读', en: 'Unit 2 Reading' }, lessons: [
+    { zh: '一个豆荚里的五粒豆', en: 'Five Peas in a Pod' },
+    { zh: '夜间飞行的秘密', en: 'The Secret of Night Flight' },
+    { zh: '方帽子店', en: 'The Square Hat Shop' },
+    { zh: '田忌赛马', en: "Tian Ji's Horse Race" },
+    { zh: '语文园地二', en: 'Chinese Corner 2' },
+  ] },
+  { unit: { zh: '第三单元 · 阅读', en: 'Unit 3 Reading' }, lessons: [
+    { zh: '古诗三首（暮江吟·题西林壁·雪梅）', en: 'Three Poems' },
+    { zh: '爬山虎的脚', en: "The Ivy's Feet" },
+    { zh: '蟋蟀的住宅', en: "The Cricket's House" },
+    { zh: '语文园地三', en: 'Chinese Corner 3' },
+  ] },
+  { unit: { zh: '第四单元 · 阅读', en: 'Unit 4 Reading' }, lessons: [
+    { zh: '盘古开天地', en: 'Pangu Creates the World' },
+    { zh: '精卫填海', en: 'Jingwei Fills the Sea' },
+    { zh: '普罗米修斯', en: 'Prometheus' },
+    { zh: '女娲补天', en: 'Nüwa Mends the Sky' },
+    { zh: '语文园地四', en: 'Chinese Corner 4' },
+    { zh: '快乐读书吧 · 很久很久以前', en: 'Happy Reading' },
+  ] },
+  { unit: { zh: '第五单元 · 习作', en: 'Unit 5 Composition' }, lessons: [
+    { zh: '麻雀', en: 'The Sparrow' },
+    { zh: '爬天都峰', en: 'Climbing Tiandu Peak' },
+  ] },
+  { unit: { zh: '第六单元 · 阅读', en: 'Unit 6 Reading' }, lessons: [
+    { zh: '长城', en: 'The Great Wall' },
+    { zh: '颐和园', en: 'The Summer Palace' },
+    { zh: '秦兵马俑', en: 'The Terracotta Warriors' },
+    { zh: '语文园地六', en: 'Chinese Corner 6' },
+  ] },
+  { unit: { zh: '第七单元 · 阅读', en: 'Unit 7 Reading' }, lessons: [
+    { zh: '牛和鹅', en: 'The Cow and the Goose' },
+    { zh: '一只窝囊的大老虎', en: 'A Clumsy Tiger' },
+    { zh: '陀螺', en: 'The Top' },
+    { zh: '王戎不取道旁李', en: 'Wang Rong and the Plums' },
+    { zh: '语文园地七', en: 'Chinese Corner 7' },
+  ] },
+  { unit: { zh: '第八单元 · 阅读', en: 'Unit 8 Reading' }, lessons: [
+    { zh: '我将无我，不负人民', en: 'Serve the People Selflessly' },
+    { zh: '为中华之崛起而读书', en: "Study for China's Rise" },
+    { zh: '延安，我把你追寻', en: "Yan'an, I Seek You" },
+    { zh: '古诗三首（凉州词·出塞·夏日绝句）', en: 'Three Poems' },
+    { zh: '语文园地八', en: 'Chinese Corner 8' },
+  ] },
 ];
 
 const G5_UP: RawUnit[] = [
-  { unit: { zh: '第一单元', en: 'Unit 1' }, lessons: [{ zh: '白鹭', en: 'The Egret' }, { zh: '落花生', en: 'Peanuts' }, { zh: '桂花雨', en: 'Osmanthus Rain' }, { zh: '珍珠鸟', en: 'The Pearl Bird' }] },
-  { unit: { zh: '第二单元', en: 'Unit 2' }, lessons: [{ zh: '搭石', en: 'Stepping Stones' }, { zh: '将相和', en: 'General and Minister' }, { zh: '什么比猎豹的速度更快', en: 'Faster than a Cheetah' }, { zh: '冀中的地道战', en: 'The Tunnel War' }] },
-  { unit: { zh: '第三单元', en: 'Unit 3' }, lessons: [{ zh: '猎人海力布', en: 'Hunter Hailibu' }, { zh: '牛郎织女（一）', en: 'The Cowherd and the Weaver (1)' }, { zh: '牛郎织女（二）', en: 'The Cowherd and the Weaver (2)' }] },
-  { unit: { zh: '第四单元', en: 'Unit 4' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '少年中国说（节选）', en: 'Young China' }, { zh: '圆明园的毁灭', en: 'The Ruins of Yuanmingyuan' }, { zh: '小岛', en: 'The Islet' }] },
-  { unit: { zh: '第五单元', en: 'Unit 5' }, lessons: [{ zh: '太阳', en: 'The Sun' }, { zh: '松鼠', en: 'The Squirrel' }] },
-  { unit: { zh: '第六单元', en: 'Unit 6' }, lessons: [{ zh: '慈母情深', en: 'A Mother\'s Love' }, { zh: '父爱之舟', en: 'A Father\'s Love' }, { zh: '"精彩极了"和"糟糕透了"', en: 'Wonderful and Terrible' }] },
-  { unit: { zh: '第七单元', en: 'Unit 7' }, lessons: [{ zh: '古诗词三首', en: 'Three Poems' }, { zh: '四季之美', en: 'Beauty of the Seasons' }, { zh: '鸟的天堂', en: 'Paradise of Birds' }, { zh: '月迹', en: 'Traces of the Moon' }] },
-  { unit: { zh: '第八单元', en: 'Unit 8' }, lessons: [{ zh: '古人谈读书', en: 'On Reading' }, { zh: '忆读书', en: 'Recalling Reading' }, { zh: '我的"长生果"', en: 'My "Long-Life Fruit"' }] },
+  { unit: { zh: '第一单元 · 阅读', en: 'Unit 1 Reading' }, lessons: [
+    { zh: '桂花雨', en: 'Osmanthus Rain' },
+    { zh: '落花生', en: 'Peanuts' },
+    { zh: '珍珠鸟', en: 'The Pearl Bird' },
+    { zh: '语文园地一', en: 'Chinese Corner 1' },
+  ] },
+  { unit: { zh: '第二单元 · 阅读', en: 'Unit 2 Reading' }, lessons: [
+    { zh: '冀中的地道战', en: 'The Tunnel War' },
+    { zh: '将相和', en: 'General and Minister' },
+    { zh: '什么比猎豹的速度更快', en: 'Faster than a Cheetah' },
+    { zh: '"诺曼底号"遇难记', en: 'The Wreck of the Normandy' },
+    { zh: '语文园地二', en: 'Chinese Corner 2' },
+  ] },
+  { unit: { zh: '第三单元 · 阅读', en: 'Unit 3 Reading' }, lessons: [
+    { zh: '猎人海力布', en: 'Hunter Hailibu' },
+    { zh: '牛郎织女（一）', en: 'The Cowherd and the Weaver (1)' },
+    { zh: '牛郎织女（二）', en: 'The Cowherd and the Weaver (2)' },
+    { zh: '语文园地三', en: 'Chinese Corner 3' },
+    { zh: '快乐读书吧 · 从前有座山', en: 'Happy Reading' },
+  ] },
+  { unit: { zh: '第四单元 · 阅读', en: 'Unit 4 Reading' }, lessons: [
+    { zh: '古诗三首（示儿·题临安邸·己亥杂诗）', en: 'Three Poems' },
+    { zh: '少年中国说（节选）', en: 'Young China' },
+    { zh: '圆明园的毁灭', en: 'The Ruins of Yuanmingyuan' },
+    { zh: '梅兰芳蓄须明志', en: 'Mei Lanfang' },
+    { zh: '语文园地四', en: 'Chinese Corner 4' },
+  ] },
+  { unit: { zh: '第五单元 · 习作', en: 'Unit 5 Composition' }, lessons: [
+    { zh: '太阳', en: 'The Sun' },
+    { zh: '金字塔', en: 'The Pyramids' },
+  ] },
+  { unit: { zh: '第六单元 · 阅读', en: 'Unit 6 Reading' }, lessons: [
+    { zh: '慈母情深', en: "A Mother's Love" },
+    { zh: '父爱之舟', en: "A Father's Love" },
+    { zh: '航天员写给孩子的信', en: 'A Letter from an Astronaut' },
+    { zh: '语文园地六', en: 'Chinese Corner 6' },
+  ] },
+  { unit: { zh: '第七单元 · 阅读', en: 'Unit 7 Reading' }, lessons: [
+    { zh: '古诗三首（山居秋暝·枫桥夜泊·早春呈水部张十八员外）', en: 'Three Poems' },
+    { zh: '第一场雪', en: 'The First Snow' },
+    { zh: '白鹭', en: 'The Egret' },
+    { zh: '语文园地七', en: 'Chinese Corner 7' },
+  ] },
+  { unit: { zh: '第八单元 · 阅读', en: 'Unit 8 Reading' }, lessons: [
+    { zh: '古人谈读书', en: 'On Reading' },
+    { zh: '忆读书', en: 'Recalling Reading' },
+    { zh: '走遍天下书为侣', en: 'Books as Companions' },
+    { zh: '语文园地八', en: 'Chinese Corner 8' },
+  ] },
 ];
 
 const G6_UP: RawUnit[] = [
-  { unit: { zh: '第一单元', en: 'Unit 1' }, lessons: [{ zh: '草原', en: 'The Grassland' }, { zh: '丁香结', en: 'Lilac Knots' }, { zh: '古诗词三首', en: 'Three Poems' }, { zh: '花之歌', en: 'Song of Flowers' }] },
-  { unit: { zh: '第二单元', en: 'Unit 2' }, lessons: [{ zh: '七律·长征', en: 'The Long March' }, { zh: '狼牙山五壮士', en: 'Five Heroes of Langya Mountain' }, { zh: '开国大典', en: 'The Founding Ceremony' }, { zh: '灯光', en: 'The Light' }, { zh: '我的战友邱少云', en: 'My Comrade Qiu Shaoyun' }] },
-  { unit: { zh: '第三单元', en: 'Unit 3' }, lessons: [{ zh: '竹节人', en: 'Bamboo Figures' }, { zh: '宇宙生命之谜', en: 'Life in the Universe' }, { zh: '故宫博物院', en: 'The Palace Museum' }] },
-  { unit: { zh: '第四单元', en: 'Unit 4' }, lessons: [{ zh: '桥', en: 'The Bridge' }, { zh: '穷人', en: 'The Poor' }, { zh: '金色的鱼钩', en: 'The Golden Fishhook' }] },
-  { unit: { zh: '第五单元', en: 'Unit 5' }, lessons: [{ zh: '夏天里的成长', en: 'Growing in Summer' }, { zh: '盼', en: 'Hoping' }] },
-  { unit: { zh: '第六单元', en: 'Unit 6' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '只有一个地球', en: 'Only One Earth' }, { zh: '青山不老', en: 'The Evergreen Hills' }, { zh: '三黑和土地', en: 'Sanhei and the Land' }] },
-  { unit: { zh: '第七单元', en: 'Unit 7' }, lessons: [{ zh: '文言文二则', en: 'Two Classical Essays' }, { zh: '月光曲', en: 'Moonlight Sonata' }, { zh: '京剧趣谈', en: 'Peking Opera' }] },
-  { unit: { zh: '第八单元', en: 'Unit 8' }, lessons: [{ zh: '少年闰土', en: 'Young Runtu' }, { zh: '好的故事', en: 'A Good Story' }, { zh: '我的伯父鲁迅先生', en: 'My Uncle Lu Xun' }, { zh: '有的人', en: 'Some People' }] },
+  { unit: { zh: '第一单元 · 阅读', en: 'Unit 1 Reading' }, lessons: [
+    { zh: '草原', en: 'The Grassland' },
+    { zh: '丁香结', en: 'Lilac Knots' },
+    { zh: '古诗词三首（宿建德江·六月二十七日望湖楼醉书·西江月·夜行黄沙道中）', en: 'Three Poems' },
+    { zh: '语文园地一', en: 'Chinese Corner 1' },
+  ] },
+  { unit: { zh: '第二单元 · 阅读', en: 'Unit 2 Reading' }, lessons: [
+    { zh: '七律·长征', en: 'The Long March' },
+    { zh: '狼牙山五壮士', en: 'Five Heroes of Langya Mountain' },
+    { zh: '开国大典', en: 'The Founding Ceremony' },
+    { zh: '我的战友邱少云', en: 'My Comrade Qiu Shaoyun' },
+    { zh: '语文园地二', en: 'Chinese Corner 2' },
+  ] },
+  { unit: { zh: '第三单元 · 阅读', en: 'Unit 3 Reading' }, lessons: [
+    { zh: '竹节人', en: 'Bamboo Figures' },
+    { zh: '宇宙生命之谜', en: 'Life in the Universe' },
+    { zh: '故宫博物院', en: 'The Palace Museum' },
+    { zh: '语文园地三', en: 'Chinese Corner 3' },
+  ] },
+  { unit: { zh: '第四单元 · 阅读', en: 'Unit 4 Reading' }, lessons: [
+    { zh: '桥', en: 'The Bridge' },
+    { zh: '穷人', en: 'The Poor' },
+    { zh: '金色的鱼钩', en: 'The Golden Fishhook' },
+    { zh: '语文园地四', en: 'Chinese Corner 4' },
+    { zh: '快乐读书吧 · 笑与泪，经历与成长', en: 'Happy Reading' },
+  ] },
+  { unit: { zh: '第五单元 · 习作', en: 'Unit 5 Composition' }, lessons: [
+    { zh: '灯光', en: 'The Light' },
+    { zh: '盼', en: 'Hoping' },
+  ] },
+  { unit: { zh: '第六单元 · 阅读', en: 'Unit 6 Reading' }, lessons: [
+    { zh: '只有一个地球', en: 'Only One Earth' },
+    { zh: '青山不老', en: 'The Evergreen Hills' },
+    { zh: '三黑和土地', en: 'Sanhei and the Land' },
+    { zh: '古诗三首（浪淘沙·江南春·书湖阴先生壁）', en: 'Three Poems' },
+    { zh: '语文园地六', en: 'Chinese Corner 6' },
+  ] },
+  { unit: { zh: '第七单元 · 阅读', en: 'Unit 7 Reading' }, lessons: [
+    { zh: '文言文二则（两小儿辩日·曹冲称象）', en: 'Two Classical Essays' },
+    { zh: '表里的生物', en: 'A Creature in the Watch' },
+    { zh: '他们那时候多有趣啊', en: 'Their Old Days' },
+    { zh: '语文园地七', en: 'Chinese Corner 7' },
+  ] },
+  { unit: { zh: '第八单元 · 阅读', en: 'Unit 8 Reading' }, lessons: [
+    { zh: '少年闰土', en: 'Young Runtu' },
+    { zh: '好的故事', en: 'A Good Story' },
+    { zh: '我的伯父鲁迅先生', en: 'My Uncle Lu Xun' },
+    { zh: '有的人——纪念鲁迅有感', en: 'Some People' },
+    { zh: '语文园地八', en: 'Chinese Corner 8' },
+  ] },
 ];
 
 const CHINESE_UP: Partial<Record<Grade, RawUnit[]>> = {
@@ -867,25 +1142,112 @@ const CHINESE_UP: Partial<Record<Grade, RawUnit[]>> = {
 
 /* ================= 语文 2–6 年级下册逐课（人教版统编） ================= */
 const G2_DOWN: RawUnit[] = [
-  { unit: { zh: '第一单元', en: 'Unit 1' }, lessons: [{ zh: '古诗二首', en: 'Two Poems' }, { zh: '找春天', en: 'Looking for Spring' }, { zh: '开满鲜花的小路', en: 'The Flowery Path' }, { zh: '邓小平爷爷植树', en: 'Grandpa Deng Plants Trees' }] },
-  { unit: { zh: '第二单元', en: 'Unit 2' }, lessons: [{ zh: '雷锋叔叔，你在哪里', en: 'Uncle Lei Feng, Where Are You' }, { zh: '千人糕', en: 'The Thousand-Person Cake' }, { zh: '一匹出色的马', en: 'A Wonderful Horse' }] },
-  { unit: { zh: '第三单元 · 识字', en: 'Unit 3 Characters' }, lessons: [{ zh: '神州谣', en: 'Song of China' }, { zh: '传统节日', en: 'Traditional Festivals' }, { zh: '"贝"的故事', en: 'The Story of "Bei"' }, { zh: '中国美食', en: 'Chinese Food' }] },
-  { unit: { zh: '第四单元', en: 'Unit 4' }, lessons: [{ zh: '彩色的梦', en: 'Colorful Dreams' }, { zh: '枫树上的喜鹊', en: 'Magpie on the Maple' }, { zh: '沙滩上的童话', en: 'Fairy Tale on the Beach' }, { zh: '我是一只小虫子', en: 'I Am a Little Bug' }] },
-  { unit: { zh: '第五单元', en: 'Unit 5' }, lessons: [{ zh: '寓言二则', en: 'Two Fables' }, { zh: '画杨桃', en: 'Drawing a Star Fruit' }, { zh: '小马过河', en: 'The Pony Crosses the River' }] },
-  { unit: { zh: '第六单元', en: 'Unit 6' }, lessons: [{ zh: '古诗二首', en: 'Two Poems' }, { zh: '雷雨', en: 'Thunderstorm' }, { zh: '要是你在野外迷了路', en: 'Lost in the Wild' }, { zh: '太空生活趣事多', en: 'Fun Life in Space' }] },
-  { unit: { zh: '第七单元', en: 'Unit 7' }, lessons: [{ zh: '大象的耳朵', en: 'The Elephant\'s Ears' }, { zh: '蜘蛛开店', en: 'The Spider\'s Shop' }, { zh: '青蛙卖泥塘', en: 'The Frog Sells the Pond' }, { zh: '小毛虫', en: 'The Little Caterpillar' }] },
-  { unit: { zh: '第八单元', en: 'Unit 8' }, lessons: [{ zh: '祖先的摇篮', en: 'Cradle of Ancestors' }, { zh: '当世界年纪还小的时候', en: 'When the World Was Young' }, { zh: '羿射九日', en: 'Yi Shoots the Suns' }] },
+  { unit: { zh: '第一单元 · 阅读', en: 'Unit 1 Reading' }, lessons: [
+    { zh: '古诗二首（咏柳·村居）', en: 'Two Poems' },
+    { zh: '找春天', en: 'Looking for Spring' },
+    { zh: '开满鲜花的小路', en: 'The Flowery Path' },
+    { zh: '邓小平爷爷植树', en: 'Grandpa Deng Plants Trees' },
+    { zh: '语文园地一', en: 'Chinese Corner 1' },
+  ] },
+  { unit: { zh: '第二单元 · 阅读', en: 'Unit 2 Reading' }, lessons: [
+    { zh: '雷锋叔叔，你在哪里', en: 'Uncle Lei Feng, Where Are You' },
+    { zh: '千人糕', en: 'The Thousand-Person Cake' },
+    { zh: '我不是最弱小的', en: 'I Am Not the Weakest' },
+    { zh: '语文园地二', en: 'Chinese Corner 2' },
+    { zh: '快乐读书吧 · 读读儿童故事', en: 'Happy Reading' },
+  ] },
+  { unit: { zh: '第三单元 · 识字', en: 'Unit 3 Characters' }, lessons: [
+    { zh: '神州谣', en: 'Song of China' },
+    { zh: '传统节日', en: 'Traditional Festivals' },
+    { zh: '"贝"的故事', en: 'The Story of "Bei"' },
+    { zh: '中国美食', en: 'Chinese Food' },
+    { zh: '语文园地三', en: 'Chinese Corner 3' },
+  ] },
+  { unit: { zh: '第四单元 · 阅读', en: 'Unit 4 Reading' }, lessons: [
+    { zh: '彩色的梦', en: 'Colorful Dreams' },
+    { zh: '一匹出色的马', en: 'A Wonderful Horse' },
+    { zh: '枫树上的喜鹊', en: 'Magpie on the Maple' },
+    { zh: '语文园地四', en: 'Chinese Corner 4' },
+  ] },
+  { unit: { zh: '第五单元 · 阅读', en: 'Unit 5 Reading' }, lessons: [
+    { zh: '寓言二则（亡羊补牢·揠苗助长）', en: 'Two Fables' },
+    { zh: '画杨桃', en: 'Drawing a Star Fruit' },
+    { zh: '小马过河', en: 'The Pony Crosses the River' },
+    { zh: '语文园地五', en: 'Chinese Corner 5' },
+  ] },
+  { unit: { zh: '第六单元 · 阅读', en: 'Unit 6 Reading' }, lessons: [
+    { zh: '古诗二首（绝句·晓出净慈寺送林子方）', en: 'Two Poems' },
+    { zh: '雷雨', en: 'Thunderstorm' },
+    { zh: '要是你在野外迷了路', en: 'Lost in the Wild' },
+    { zh: '太空生活趣事多', en: 'Fun Life in Space' },
+    { zh: '语文园地六', en: 'Chinese Corner 6' },
+  ] },
+  { unit: { zh: '第七单元 · 阅读', en: 'Unit 7 Reading' }, lessons: [
+    { zh: '大象的耳朵', en: 'The Elephant\'s Ears' },
+    { zh: '蜘蛛开店', en: 'The Spider\'s Shop' },
+    { zh: '青蛙卖泥塘', en: 'The Frog Sells the Pond' },
+    { zh: '小毛虫', en: 'The Little Caterpillar' },
+    { zh: '语文园地七', en: 'Chinese Corner 7' },
+  ] },
+  { unit: { zh: '第八单元 · 阅读', en: 'Unit 8 Reading' }, lessons: [
+    { zh: '羿射九日', en: 'Yi Shoots the Suns' },
+    { zh: '黄帝的传说', en: 'The Legend of Huangdi' },
+    { zh: '大禹治水', en: 'Yu Tames the Flood' },
+    { zh: '语文园地八', en: 'Chinese Corner 8' },
+  ] },
 ];
 
 const G3_DOWN: RawUnit[] = [
-  { unit: { zh: '第一单元', en: 'Unit 1' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '燕子', en: 'The Swallow' }, { zh: '荷花', en: 'The Lotus' }, { zh: '昆虫备忘录', en: 'Insect Notes' }] },
-  { unit: { zh: '第二单元', en: 'Unit 2' }, lessons: [{ zh: '守株待兔', en: 'Waiting for a Hare' }, { zh: '陶罐和铁罐', en: 'Pot and Can' }, { zh: '美丽的鹿角', en: 'Beautiful Antlers' }, { zh: '池子与河流', en: 'The Pond and the River' }] },
-  { unit: { zh: '第三单元', en: 'Unit 3' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '纸的发明', en: 'The Invention of Paper' }, { zh: '赵州桥', en: 'Zhaozhou Bridge' }, { zh: '一幅名扬中外的画', en: 'A World-Famous Painting' }] },
-  { unit: { zh: '第四单元', en: 'Unit 4' }, lessons: [{ zh: '花钟', en: 'The Flower Clock' }, { zh: '蜜蜂', en: 'The Bee' }, { zh: '小虾', en: 'The Little Shrimp' }] },
-  { unit: { zh: '第五单元', en: 'Unit 5' }, lessons: [{ zh: '宇宙的另一边', en: 'The Other Side of the Universe' }, { zh: '我变成了一棵树', en: 'I Became a Tree' }] },
-  { unit: { zh: '第六单元', en: 'Unit 6' }, lessons: [{ zh: '童年的水墨画', en: 'Childhood Ink Paintings' }, { zh: '剃头大师', en: 'The Barber Master' }, { zh: '肥皂泡', en: 'Soap Bubbles' }, { zh: '我不能失信', en: 'I Keep My Word' }] },
-  { unit: { zh: '第七单元', en: 'Unit 7' }, lessons: [{ zh: '我们奇妙的世界', en: 'Our Wonderful World' }, { zh: '海底世界', en: 'The Undersea World' }, { zh: '火烧云', en: 'The Glowing Clouds' }] },
-  { unit: { zh: '第八单元', en: 'Unit 8' }, lessons: [{ zh: '慢性子裁缝和急性子顾客', en: 'Slow Tailor, Quick Customer' }, { zh: '方帽子店', en: 'The Square Hat Shop' }, { zh: '漏', en: 'The Leak' }, { zh: '枣核', en: 'The Date Pit' }] },
+  { unit: { zh: '第一单元 · 阅读', en: 'Unit 1 Reading' }, lessons: [
+    { zh: '古诗三首（绝句·惠崇春江晚景·三衢道中）', en: 'Three Poems' },
+    { zh: '燕子', en: 'The Swallow' },
+    { zh: '荷花', en: 'The Lotus' },
+    { zh: '昆虫备忘录', en: 'Insect Notes' },
+    { zh: '语文园地一', en: 'Chinese Corner 1' },
+  ] },
+  { unit: { zh: '第二单元 · 阅读', en: 'Unit 2 Reading' }, lessons: [
+    { zh: '守株待兔', en: 'Waiting for a Hare' },
+    { zh: '会摇尾巴的狼', en: 'The Wolf with a Wagging Tail' },
+    { zh: '鹿角和鹿腿', en: 'Antlers and Legs' },
+    { zh: '池子与河流', en: 'The Pond and the River' },
+    { zh: '语文园地二', en: 'Chinese Corner 2' },
+    { zh: '快乐读书吧 · 小故事大道理', en: 'Happy Reading' },
+  ] },
+  { unit: { zh: '第三单元 · 阅读', en: 'Unit 3 Reading' }, lessons: [
+    { zh: '海底世界', en: 'The Undersea World' },
+    { zh: '石蜂', en: 'The Mason Bee' },
+    { zh: '小虾', en: 'The Little Shrimp' },
+    { zh: '语文园地三', en: 'Chinese Corner 3' },
+  ] },
+  { unit: { zh: '第四单元 · 阅读', en: 'Unit 4 Reading' }, lessons: [
+    { zh: '古诗三首（元日·清明·九月九日忆山东兄弟）', en: 'Three Poems' },
+    { zh: '纸的发明', en: 'The Invention of Paper' },
+    { zh: '赵州桥', en: 'Zhaozhou Bridge' },
+    { zh: '一幅名扬中外的画', en: 'A World-Famous Painting' },
+    { zh: '语文园地四', en: 'Chinese Corner 4' },
+  ] },
+  { unit: { zh: '第五单元 · 习作', en: 'Unit 5 Composition' }, lessons: [
+    { zh: '胡萝卜先生的长胡子', en: "Mr. Carrot's Beard" },
+    { zh: '我变成了一棵树', en: 'I Became a Tree' },
+  ] },
+  { unit: { zh: '第六单元 · 阅读', en: 'Unit 6 Reading' }, lessons: [
+    { zh: '童年的水墨画', en: 'Childhood Ink Paintings' },
+    { zh: '肥皂泡', en: 'Soap Bubbles' },
+    { zh: '灰雀', en: 'The Grey Sparrow' },
+    { zh: '我不能失信', en: 'I Keep My Word' },
+  ] },
+  { unit: { zh: '第七单元 · 阅读', en: 'Unit 7 Reading' }, lessons: [
+    { zh: '火烧云', en: 'The Glowing Clouds' },
+    { zh: '暴风雨来临之前', en: 'Before the Storm' },
+    { zh: '我们奇妙的世界', en: 'Our Wonderful World' },
+    { zh: '语文园地七', en: 'Chinese Corner 7' },
+  ] },
+  { unit: { zh: '第八单元 · 阅读', en: 'Unit 8 Reading' }, lessons: [
+    { zh: '慢性子裁缝和急性子顾客', en: 'Slow Tailor, Quick Customer' },
+    { zh: '漏', en: 'The Leak' },
+    { zh: '枣核', en: 'The Date Pit' },
+    { zh: '语文园地八', en: 'Chinese Corner 8' },
+  ] },
 ];
 
 const G4_DOWN: RawUnit[] = [
@@ -895,7 +1257,7 @@ const G4_DOWN: RawUnit[] = [
   { unit: { zh: '第四单元', en: 'Unit 4' }, lessons: [{ zh: '猫', en: 'The Cat' }, { zh: '母鸡', en: 'The Hen' }, { zh: '白鹅', en: 'The White Goose' }] },
   { unit: { zh: '第五单元', en: 'Unit 5' }, lessons: [{ zh: '海上日出', en: 'Sunrise at Sea' }, { zh: '记金华的双龙洞', en: 'The Double Dragon Cave' }] },
   { unit: { zh: '第六单元', en: 'Unit 6' }, lessons: [{ zh: '文言文二则', en: 'Two Classical Essays' }, { zh: '小英雄雨来', en: 'Little Hero Yulai' }, { zh: '我们家的男子汉', en: 'The Little Man' }, { zh: '芦花鞋', en: 'Reed Shoes' }] },
-  { unit: { zh: '第七单元', en: 'Unit 7' }, lessons: [{ zh: '古诗三首', en: 'Three Poems' }, { zh: '"诺曼底号"遇难记', en: 'The Wreck of the Normandy' }, { zh: '黄继光', en: 'Huang Jiguang' }, { zh: '挑山工', en: 'The Mountain Porter' }] },
+  { unit: { zh: '第七单元', en: 'Unit 7' }, lessons: [{ zh: '古诗三首（芙蓉楼送辛渐·塞下曲·墨梅）', en: 'Three Poems' }, { zh: '黄继光', en: 'Huang Jiguang' }, { zh: '"诺曼底号"遇难记', en: 'The Wreck of the Normandy' }, { zh: '挑山工', en: 'The Mountain Porter' }] },
   { unit: { zh: '第八单元', en: 'Unit 8' }, lessons: [{ zh: '宝葫芦的秘密', en: 'The Magic Gourd' }, { zh: '巨人的花园', en: 'The Giant\'s Garden' }, { zh: '海的女儿', en: 'Daughter of the Sea' }] },
 ];
 

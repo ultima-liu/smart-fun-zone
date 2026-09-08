@@ -6,13 +6,12 @@ export default defineConfig(({ mode }) => {
   // 服务端密钥：.env.local 中的 VOLC_SPEECH_API_KEY（不带 VITE_ 前缀，不进前端包）
   const env = loadEnv(mode, process.cwd(), '');
   const apiKey = env.VOLC_SPEECH_API_KEY?.trim() ?? '';
-  const ttsProxy = {
-    // 前端请求 /api/volc-tts/... → 代理到火山引擎，服务端注入 X-Api-Key（避免 CORS 与密钥泄露）
-    '/api/volc-tts': {
-      target: 'https://openspeech.bytedance.com',
+  // 前端 /api/* 全部代理到本地服务端（Fastify，端口 8787）；
+  // TTS 代理、内容包、账号、同步等均由服务端承载。
+  const apiProxy = {
+    '/api': {
+      target: 'http://127.0.0.1:8787',
       changeOrigin: true,
-      rewrite: (p: string) => p.replace(/^\/api\/volc-tts/, ''),
-      headers: apiKey ? { 'X-Api-Key': apiKey } : undefined,
     },
   };
 
@@ -21,12 +20,12 @@ export default defineConfig(({ mode }) => {
     server: {
       host: true,
       port: 5173,
-      proxy: ttsProxy,
+      proxy: apiProxy,
     },
     preview: {
-      proxy: ttsProxy,
+      proxy: apiProxy,
     },
-    // 构建期注入"密钥是否已配置"标记（页面据此显示配置提示）
+    // 构建期注入"服务端密钥是否已配置"标记（页面据此显示配置提示；服务端 /api/health 会覆盖该值）
     define: {
       __VOLC_TTS_KEY_PRESENT__: JSON.stringify(apiKey !== ''),
     },

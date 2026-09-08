@@ -130,6 +130,7 @@ export const trafficLightDef: GameDef = {
   icon: '🚦',
   name: { zh: '红绿灯', en: 'Traffic Light' },
   category: 'life',
+  genre: 'think',
   desc: { zh: '安全过马路', en: 'Cross the road safely' },
   levels: pack.levels.length,
   status: 'ready',

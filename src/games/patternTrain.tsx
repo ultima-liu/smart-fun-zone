@@ -121,6 +121,7 @@ export const patternTrainDef: GameDef = {
   icon: '🚂',
   name: { zh: '规律接龙', en: 'Pattern Train' },
   category: 'thinking',
+  genre: 'think',
   desc: { zh: '找到排列的规律', en: 'Find the pattern' },
   levels: pack.levels.length,
   status: 'ready',

@@ -1,0 +1,19 @@
+ 4
+
+           d t n l
+
+
+
+
+           dA   dR    dU   dP
+           tQ   tF    tJ   tP
+           nW   nR    nJ   nM    nV
+           lQ   lF    lJ   lM    lB
+
+
+
+     d d        t t        n n        l l
+26
+
+     仅供个人学习使用，未经授权不得另做他用
+

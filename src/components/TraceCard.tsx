@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import HanziWriter from 'hanzi-writer';
 import { pinyin } from 'pinyin-pro';
 import { WORD_DICT } from '../content/wordDict';
-import { speak, playSfx } from '../speech';
+import { speak, playSfx, warmTts } from '../speech';
 import { useI18n } from '../i18n';
 import { KidButton } from './ui';
 import Modal from './Modal';
@@ -43,6 +43,11 @@ export default function TraceCard({ char, context, textWords, hasNext, onTraced,
     return list.slice(0, 6);
   }, [char, context, textWords]);
   const py = pinyin(char, { toneType: 'symbol' });
+
+  // 进入即静默预合成该字语音，点播音按钮可秒播（降低首次延迟）
+  useEffect(() => {
+    void warmTts(char, 'zh', 0.8);
+  }, [char]);
 
   useEffect(() => {
     const demoEl = demoRef.current;

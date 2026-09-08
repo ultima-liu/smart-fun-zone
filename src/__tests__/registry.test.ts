@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { listGames, getGame } from '../games';
-import { SUBJECTS } from '../types';
+import { SUBJECTS, GAME_GENRES } from '../types';
 
 describe('游戏注册表', () => {
   const games = listGames();
@@ -12,12 +12,14 @@ describe('游戏注册表', () => {
     }
   });
 
-  it('id 唯一、学科合法', () => {
+  it('id 唯一、学科合法、玩法分类合法', () => {
     const ids = games.map((g) => g.id);
     expect(new Set(ids).size).toBe(12);
     const subjectIds = SUBJECTS.map((s) => s.id);
+    const genreIds = GAME_GENRES.map((s) => s.id);
     for (const g of games) {
       expect(subjectIds).toContain(g.category);
+      expect(genreIds, `${g.id} 缺玩法分类`).toContain(g.genre);
     }
   });
 

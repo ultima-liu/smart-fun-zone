@@ -1,11 +1,13 @@
 import type { ComponentType } from 'react';
-import type { SubjectId, GameProps } from './types';
+import type { SubjectId, GameGenre, GameProps } from './types';
 
 export interface GameDef {
   id: string;
   icon: string;
   name: { zh: string; en: string };
   category: SubjectId;
+  /** 大厅玩法分组（count/match/find/listen/think），非学科 */
+  genre: GameGenre;
   desc: { zh: string; en: string };
   levels: number;
   status: 'ready' | 'soon';

@@ -1,14 +1,20 @@
 import type { LessonContent } from './skills';
-import { CH3A } from './contents/ch3a';
-import { CH3B } from './contents/ch3b';
 import { CH4B } from './contents/ch4b';
 import { CH6A } from './contents/ch6a';
 import { CH6B } from './contents/ch6b';
-import { CHP3A } from './contents/chp3a';
-import { CHP3B } from './contents/chp3b';
 import { CHP4B } from './contents/chp4b';
 import { CHP6A } from './contents/chp6a';
 import { CHP6B } from './contents/chp6b';
+import { CHG1E } from './contents/chineseEnhanceG1a';
+import { CHG2E } from './contents/chineseEnhanceG2';
+import { CHG2E_REST } from './contents/chineseEnhanceG2_rest';
+import { CHG2E_B } from './contents/chineseEnhanceG2B';
+import { CHG3E_A } from './contents/chineseEnhanceG3A';
+import { CHG3E_B } from './contents/chineseEnhanceG3B';
+import { CHG4E_A } from './contents/chineseEnhanceG4A';
+import { CHG5E_A } from './contents/chineseEnhanceG5A';
+import { CHG5E_B } from './contents/chineseEnhanceG5B';
+import { CHG6E_A } from './contents/chineseEnhanceG6A';
 
 /** 语文课内容增强（情境导入/学课文分节讲解/中心句/要点/梯度练习），按 lesson id */
 export type ChineseEnhance = Pick<LessonContent, 'example' | 'steps' | 'rhyme' | 'points' | 'practice' | 'quiz'>;
@@ -26,14 +32,20 @@ function mergeEnhance(...maps: Record<string, Partial<ChineseEnhance>>[]): Recor
 }
 
 export const CHINESE_ENHANCE: Record<string, ChineseEnhance> = mergeEnhance(
-  CH3A,
-  CH3B,
   CH4B,
   CH6A,
   CH6B,
-  CHP3A,
-  CHP3B,
   CHP4B,
   CHP6A,
   CHP6B,
+  CHG1E,
+  CHG2E,
+  CHG2E_REST,
+  CHG2E_B,
+  CHG3E_A,
+  CHG3E_B,
+  CHG4E_A,
+  CHG5E_A,
+  CHG5E_B,
+  CHG6E_A,
 );

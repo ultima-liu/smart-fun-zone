@@ -103,6 +103,7 @@ export const shapeCastleDef: GameDef = {
   icon: '🏰',
   name: { zh: '形状城堡', en: 'Shape Castle' },
   category: 'math',
+  genre: 'match',
   desc: { zh: '把图形送回家', en: 'Match shapes to their doors' },
   levels: pack.levels.length,
   status: 'ready',

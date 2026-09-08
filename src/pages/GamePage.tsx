@@ -31,6 +31,7 @@ export default function GamePage() {
   const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
   const addRecord = useStore((s) => s.addRecord);
   const addSkillResult = useStore((s) => s.addSkillResult);
+  const applyPoints = useStore((s) => s.applyPoints);
   const def = gameId ? getGame(gameId) : undefined;
   const fromLearn = params.get('from') === 'learn';
   const skillId = params.get('skill');
@@ -57,6 +58,8 @@ export default function GamePage() {
     playSfx('win');
     speak(t('great'), lang);
     addRecord(buildRecord(child.id, def.id, level, r));
+    // 完成游戏 +2（每天每游戏每关只发一次）
+    applyPoints(child.id, 2, `完成游戏·${def.name[lang]}`, `game:${def.id}:l${level}:${new Date().toDateString()}`);
     // 学习流程：正确率达标则知识点 +1 星
     if (skillId && r.total > 0 && r.correct / r.total >= 0.8) {
       addSkillResult(child.id, skillId);

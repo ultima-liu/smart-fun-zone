@@ -26,6 +26,10 @@ export default function MathPractice({
 
   const total = questions.length;
   const q = questions[idx];
+  const readQ = () => {
+    const opts = q.options.map((o, oi) => `${oi + 1}、${o}`).join('，');
+    speak(`${q.q}。${opts}`, 'zh');
+  };
 
   // 进入新一题：语音朗读题目和选项
   useEffect(() => {
@@ -75,7 +79,7 @@ export default function MathPractice({
           {idx + 1} / {total}
         </span>
       </div>
-      <div className="quiz-card">
+      <div className="quiz-card quiz-task">
         <div
           className="quiz-q tap-to-read"
           onClick={() => {
@@ -83,6 +87,9 @@ export default function MathPractice({
             speak(`${q.q}。${opts}`, 'zh');
           }}
         >
+          <button className="speaker-btn" onClick={(e) => { e.stopPropagation(); readQ(); }} aria-label="再读一次">
+            🔊 {t('replay')}
+          </button>
           {q.q}
         </div>
         <div className="quiz-options">

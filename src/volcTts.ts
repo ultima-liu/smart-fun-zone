@@ -41,9 +41,11 @@ function uuid(): string {
 }
 
 let current: HTMLAudioElement | null = null;
+let reqSeq = 0; // 最新朗读请求令牌：只有最新一次才允许实际播放（防止并发合成后叠加）
 
 /** 停止当前朗读（开始新朗读前调用；停掉的朗读不会再回调） */
 export function stopVolc() {
+  reqSeq++; // 使所有在途合成结果失效，杜绝"两人同时读"
   try {
     current?.pause();
   } catch {
@@ -117,10 +119,58 @@ async function readSseAudio(res: Response): Promise<Blob | null> {
   return new Blob([merged], { type: 'audio/mpeg' });
 }
 
-/**
- * 用 seed-tts-2.0 朗读一段文本（流式合成 → MP3 播放）。
- * 无论成功/失败/未配置，都会回调 onEnd（保证跟读等流程不卡住）。
- */
+/** 合成结果缓存：同一文本（lang+rate）再次朗读直接秒播 */
+const audioCache = new Map<string, Blob>();
+const MAX_CACHE = 80;
+function cacheKey(lang: string, rate: number, text: string): string {
+  return `${lang}|${rate}|${text}`;
+}
+
+function makeBody(clean: string, lang: 'zh' | 'en', rate: number) {
+  const speechRate = Math.max(-50, Math.min(100, Math.round((rate - 1) * 100)));
+  return {
+    user: { uid: 'smart-fun-zone' },
+    req_params: {
+      text: clean,
+      speaker: VOICES[lang],
+      sample_rate: 24000,
+      audio_params: { format: 'mp3', speech_rate: speechRate, loudness_rate: 0, bit_rate: 64000 },
+      additions: JSON.stringify({ post_process: { pitch: 0 }, disable_markdown_filter: true, enable_latex_tn: false }),
+    },
+  };
+}
+
+/** 用非流式方式合成整段（用于预热缓存，不播放） */
+async function synthesizeBlob(clean: string, lang: 'zh' | 'en', rate: number): Promise<Blob | null> {
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Api-Resource-Id': RESOURCE_ID, 'X-Api-Request-Id': uuid() },
+      body: JSON.stringify(makeBody(clean, lang, rate)),
+    });
+    return await readSseAudio(res);
+  } catch {
+    return null;
+  }
+}
+
+/** 预热：预先合成并缓存一段音频（不播放）。之后 speak 命中缓存即秒播。 */
+export async function warmTts(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92): Promise<void> {
+  if (!volcConfigured()) return;
+  const clean = stripEmoji(text);
+  if (!clean) return;
+  const key = cacheKey(lang, rate, clean);
+  if (audioCache.has(key)) return;
+  const blob = await synthesizeBlob(clean, lang, rate);
+  if (blob) {
+    audioCache.set(key, blob);
+    if (audioCache.size > MAX_CACHE) {
+      const k = audioCache.keys().next().value;
+      if (k !== undefined) audioCache.delete(k);
+    }
+  }
+}
+
 export async function speakVolc(
   text: string,
   lang: 'zh' | 'en',
@@ -138,26 +188,16 @@ export async function speakVolc(
   }
   try {
     // 语速映射：0.92x → -8；1.0x → 0；上限 100（2.0x）、下限 -50（0.5x）
-    const speechRate = Math.max(-50, Math.min(100, Math.round((rate - 1) * 100)));
-    const body = {
-      user: { uid: 'smart-fun-zone' },
-      req_params: {
-        text: clean,
-        speaker: VOICES[lang],
-        sample_rate: 24000,
-        audio_params: {
-          format: 'mp3',
-          speech_rate: speechRate,
-          loudness_rate: 0,
-          bit_rate: 64000,
-        },
-        additions: JSON.stringify({
-          post_process: { pitch: 0 },
-          disable_markdown_filter: true,
-          enable_latex_tn: false,
-        }),
-      },
-    };
+    const key = cacheKey(lang, rate, clean);
+    const cached = audioCache.get(key);
+    if (cached) {
+      // 命中缓存：直接播放，几乎零延迟
+      stopVolc();
+      playAudioBlob(cached, onEnd);
+      return;
+    }
+    const myReq = ++reqSeq;
+    const body = makeBody(clean, lang, rate);
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: {
@@ -167,8 +207,19 @@ export async function speakVolc(
       },
       body: JSON.stringify(body),
     });
+    // 整段合成后播放（稳定可靠）；预热命中缓存时走上方 cached 分支秒播
     const blob = await readSseAudio(res);
     if (!blob) {
+      window.setTimeout(() => onEnd?.(), 0);
+      return;
+    }
+    audioCache.set(key, blob);
+    if (audioCache.size > MAX_CACHE) {
+      const k = audioCache.keys().next().value;
+      if (k !== undefined) audioCache.delete(k);
+    }
+    // 已被更新的 speak 越位（stopVolc/新请求触发的 reqSeq 变化）→ 放弃本次播放
+    if (myReq !== reqSeq) {
       window.setTimeout(() => onEnd?.(), 0);
       return;
     }

@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 export type Pose = 'idle' | 'happy' | 'sad' | 'celebrate';
 
 interface MascotProps {
@@ -7,10 +9,12 @@ interface MascotProps {
 }
 
 /**
- * 吉祥物：小恐龙 Dino
- * 纯 SVG 手绘风，无素材依赖；pose 控制表情，动画交给 CSS class。
+ * 吉祥物：「卷卷星」——卷卷星球的本体星球小精灵
+ * 圆形星球脸 + 卷卷呆毛 + 星环 + 星点，纯 SVG 手绘。
+ * pose 控制表情；动画交给 CSS class（沿用 .mascot.pose-* 约定）。
  */
 export default function Mascot({ pose = 'idle', size = 120, className = '' }: MascotProps) {
+  const uid = useId();
   const happyEyes = pose === 'happy' || pose === 'celebrate';
   const celebrate = pose === 'celebrate';
   const sad = pose === 'sad';
@@ -22,57 +26,112 @@ export default function Mascot({ pose = 'idle', size = 120, className = '' }: Ma
       height={size}
       className={`mascot pose-${pose} ${className}`}
       role="img"
-      aria-label="mascot dino"
+      aria-label="mascot juansing"
     >
-      {/* 尾巴 */}
-      <path d="M40 108 C 16 112, 10 84, 24 66 C 34 82, 44 90, 48 98 Z" fill="#6CC98F" />
-      {/* 身体 */}
-      <ellipse cx="94" cy="100" rx="58" ry="44" fill="#7BD39A" />
-      {/* 肚皮 */}
-      <ellipse cx="100" cy="114" rx="40" ry="28" fill="#E3FBE9" />
-      {/* 背刺 */}
-      <path d="M58 60 l 9 -17 l 10 15 Z" fill="#58C07E" />
-      <path d="M78 52 l 9 -17 l 10 15 Z" fill="#58C07E" />
-      <path d="M98 56 l 8 -15 l 9 13 Z" fill="#58C07E" />
-      {/* 手臂 */}
+      <defs>
+        <linearGradient id={`${uid}-body`} x1="0" y1="0" x2="0.8" y2="1">
+          <stop offset="0" stopColor="#A78BFA" />
+          <stop offset="0.55" stopColor="#7C6AF0" />
+          <stop offset="1" stopColor="#5B4AD0" />
+        </linearGradient>
+        <linearGradient id={`${uid}-ring`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#F2A65A" />
+          <stop offset="0.5" stopColor="#F6C24B" />
+          <stop offset="1" stopColor="#C986E8" />
+        </linearGradient>
+      </defs>
+
+      {/* 星环（卷卷星带） */}
+      <ellipse
+        cx="100"
+        cy="96"
+        rx="82"
+        ry="24"
+        fill="none"
+        stroke={`url(#${uid}-ring)`}
+        strokeWidth="9"
+        strokeLinecap="round"
+        transform="rotate(-16 100 96)"
+        opacity="0.95"
+      />
+      <ellipse
+        cx="100"
+        cy="96"
+        rx="70"
+        ry="17"
+        fill="none"
+        stroke="rgba(255,255,255,0.35)"
+        strokeWidth="2.5"
+        transform="rotate(-16 100 96)"
+      />
+
+      {/* 星球身体 */}
+      <circle cx="100" cy="98" r="58" fill={`url(#${uid}-body)`} />
+      <ellipse cx="88" cy="86" rx="34" ry="22" fill="#B8A6FF" opacity="0.5" transform="rotate(-20 88 86)" />
+      <ellipse cx="108" cy="142" rx="30" ry="14" fill="#43349E" opacity="0.35" />
+
+      {/* 卷卷呆毛（螺旋卷） */}
+      <path
+        d="M100 40 C 92 26, 72 22, 68 34 C 64 46, 78 50, 86 42 C 90 38, 90 33, 87 30"
+        fill="none"
+        stroke="#F2A65A"
+        strokeWidth="7"
+        strokeLinecap="round"
+      />
+
+      {/* 脸颊星星点 */}
+      <path d="M52 78 l 2.4 5.2 5.6 0.6 -4.2 3.8 1.2 5.6 -5 -2.8 -5 2.8 1.2 -5.6 -4.2 -3.8 5.6 -0.6 Z" fill="#F6C24B" />
+      <path d="M148 58 l 1.8 4 4.2 0.4 -3.1 2.9 0.9 4.2 -3.8 -2.1 -3.8 2.1 0.9 -4.2 -3.1 -2.9 4.2 -0.4 Z" fill="#F6C24B" opacity="0.9" />
+
+      {/* 小手 */}
       {celebrate ? (
         <>
-          <circle cx="72" cy="76" r="9" fill="#6CC98F" />
-          <circle cx="118" cy="72" r="9" fill="#6CC98F" />
+          <circle cx="56" cy="78" r="10" fill="#5B4AD0" />
+          <circle cx="144" cy="78" r="10" fill="#5B4AD0" />
+          <circle cx="52" cy="72" r="4" fill="#F2A65A" />
+          <circle cx="148" cy="72" r="4" fill="#F2A65A" />
         </>
       ) : (
-        <ellipse cx="112" cy="88" rx="10" ry="7" fill="#6CC98F" transform="rotate(-20 112 88)" />
+        <ellipse cx="54" cy="104" rx="11" ry="8" fill="#5B4AD0" transform="rotate(18 54 104)" />
       )}
-      {/* 腿 */}
-      <rect x="70" y="132" width="25" height="26" rx="11" fill="#6CC98F" />
-      <rect x="102" y="134" width="25" height="26" rx="11" fill="#6CC98F" />
-      <ellipse cx="83" cy="161" rx="17" ry="7.5" fill="#4FAE75" />
-      <ellipse cx="115" cy="162" rx="17" ry="7.5" fill="#4FAE75" />
-      {/* 脖子与头 */}
-      <ellipse cx="138" cy="66" rx="22" ry="36" fill="#7BD39A" />
-      <circle cx="158" cy="54" r="33" fill="#7BD39A" />
-      {/* 嘴巴 */}
-      {sad ? (
-        <path d="M162 70 Q 170 62, 180 68" stroke="#2E7D52" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-      ) : celebrate ? (
-        <ellipse cx="172" cy="72" rx="9" ry="7" fill="#2E7D52" />
-      ) : (
-        <path d="M160 66 Q 170 78, 182 66" stroke="#2E7D52" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-      )}
-      {/* 腮红 */}
-      <ellipse cx="142" cy="62" rx="7.5" ry="5" fill="#FFB3C7" opacity="0.75" />
+
       {/* 眼睛 */}
       {happyEyes ? (
-        <path d="M146 49 q 5 -6, 10 0 M158 47 q 5 -6, 10 0" stroke="#2E7D52" strokeWidth="3.6" fill="none" strokeLinecap="round" />
+        <>
+          <path d="M74 88 q 7 -8, 14 0" stroke="#2A1F66" strokeWidth="4.4" fill="none" strokeLinecap="round" />
+          <path d="M112 88 q 7 -8, 14 0" stroke="#2A1F66" strokeWidth="4.4" fill="none" strokeLinecap="round" />
+        </>
+      ) : sad ? (
+        <>
+          <path d="M74 92 q 7 7, 14 0" stroke="#2A1F66" strokeWidth="4.4" fill="none" strokeLinecap="round" />
+          <path d="M112 92 q 7 7, 14 0" stroke="#2A1F66" strokeWidth="4.4" fill="none" strokeLinecap="round" />
+        </>
       ) : (
         <>
-          <circle cx="152" cy="47" r="10.5" fill="#fff" />
-          <circle cx="155" cy="48" r="5.2" fill="#2E7D52" />
-          <circle cx="157" cy="46" r="2" fill="#fff" />
+          <circle cx="81" cy="88" r="8.5" fill="#fff" />
+          <circle cx="119" cy="88" r="8.5" fill="#fff" />
+          <circle cx="84" cy="89" r="4.4" fill="#2A1F66" />
+          <circle cx="122" cy="89" r="4.4" fill="#2A1F66" />
+          <circle cx="85.6" cy="87.4" r="1.7" fill="#fff" />
+          <circle cx="123.6" cy="87.4" r="1.7" fill="#fff" />
         </>
       )}
-      {/* 鼻孔 */}
-      <circle cx="187" cy="58" r="1.9" fill="#2E7D52" opacity="0.5" />
+
+      {/* 嘴巴 */}
+      {sad ? (
+        <path d="M88 122 Q 100 112, 112 122" stroke="#2A1F66" strokeWidth="4" fill="none" strokeLinecap="round" />
+      ) : celebrate ? (
+        <ellipse cx="100" cy="122" rx="10" ry="8" fill="#2A1F66" />
+      ) : (
+        <path d="M86 118 Q 100 132, 114 118" stroke="#2A1F66" strokeWidth="4" fill="none" strokeLinecap="round" />
+      )}
+
+      {/* 腮红 */}
+      <ellipse cx="66" cy="106" rx="9" ry="6" fill="#FFB3C7" opacity="0.8" />
+      <ellipse cx="134" cy="106" rx="9" ry="6" fill="#FFB3C7" opacity="0.8" />
+
+      {/* 地面小阴影 */}
+      <ellipse cx="100" cy="158" rx="34" ry="7" fill="#2A1F66" opacity="0.25" />
     </svg>
   );
 }
