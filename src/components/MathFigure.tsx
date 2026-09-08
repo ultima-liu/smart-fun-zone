@@ -151,6 +151,9 @@ export default function MathFigure({
     case 'scene':
       body = <SceneFig figure={figure} />;
       break;
+    case 'tianzige':
+      body = <TianZiGeFig figure={figure} />;
+      break;
     default:
       body = null;
   }
@@ -1830,21 +1833,270 @@ function TextFig({ figure }: { figure: MathFigure }) {
   );
 }
 
-/* 语文场景插画：一组情境 emoji 逐个小跳出现（配图随讲解变化） */
+/* ================= SVG 矢量插画（课文配图） =================
+   用 SVG 按主题绘制完整画面：天空渐变 + 太阳/月亮(光晕) + 云 +
+   远山(两层) + 树木 + 地面/水面/田野/建筑/雪/星空等。
+   不再堆叠 emoji，呈现接近课本插画的画面氛围。 */
+function MfSun({ x, y, r, c }: { x: number; y: number; r: number; c: string }) {
+  return (
+    <g>
+      <circle cx={x} cy={y} r={r * 2.1} fill={c} opacity={0.22} />
+      <circle cx={x} cy={y} r={r} fill={c} />
+    </g>
+  );
+}
+function MfMoon({ x, y, r, c }: { x: number; y: number; r: number; c: string }) {
+  return (
+    <g>
+      <circle cx={x} cy={y} r={r * 2.1} fill="#fff" opacity={0.12} />
+      <circle cx={x} cy={y} r={r} fill={c} />
+      <circle cx={x - r * 0.42} cy={y - r * 0.28} r={r} fill="#1b2a45" opacity={0.9} />
+    </g>
+  );
+}
+function MfCloud({ x, y, s, c }: { x: number; y: number; s: number; c: string }) {
+  return (
+    <g fill={c} opacity={0.92} transform={`translate(${x} ${y}) scale(${s})`}>
+      <ellipse cx={0} cy={6} rx={26} ry={16} />
+      <ellipse cx={-22} cy={10} rx={15} ry={11} />
+      <ellipse cx={24} cy={11} rx={16} ry={12} />
+      <ellipse cx={2} cy={-6} rx={16} ry={13} />
+    </g>
+  );
+}
+function MfMountain({ pts, c, opacity = 1 }: { pts: string; c: string; opacity?: number }) {
+  return <polygon points={pts} fill={c} opacity={opacity} />;
+}
+function MfTree({ x, y, s, leaf, trunk }: { x: number; y: number; s: number; leaf: string; trunk: string }) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${s})`}>
+      <rect x={-2.6} y={-2} width={5.2} height={16} rx={2} fill={trunk} />
+      <circle cx={0} cy={-16} r={15} fill={leaf} />
+      <circle cx={-11} cy={-6} r={11} fill={leaf} opacity={0.9} />
+      <circle cx={12} cy={-6} r={11} fill={leaf} opacity={0.9} />
+    </g>
+  );
+}
+function MfHouse({ x, y, s, wall, roof, win }: { x: number; y: number; s: number; wall: string; roof: string; win: string }) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${s})`}>
+      <rect x={-16} y={-8} width={32} height={24} rx={2} fill={wall} />
+      <polygon points="-19,-8 0,-26 19,-8" fill={roof} />
+      <rect x={-6} y={2} width={12} height={10} rx={1.5} fill={win} />
+    </g>
+  );
+}
+void MfHouse;
+function MfReed({ x, y, s, c }: { x: number; y: number; s: number; c: string }) {
+  return (
+    <g stroke={c} strokeWidth={2.4} strokeLinecap="round" fill="none" transform={`translate(${x} ${y}) scale(${s})`}>
+      <path d="M0 0 C -1 -18 -2 -30 -1 -40" />
+      <path d="M6 0 C 7 -16 8 -28 8 -38" />
+      <path d="M-6 0 C -8 -14 -10 -26 -12 -34" />
+      <ellipse cx={-1} cy={-42} rx={3} ry={7} fill={c} stroke="none" />
+      <ellipse cx={9} cy={-39} rx={3} ry={7} fill={c} stroke="none" />
+      <ellipse cx={-13} cy={-35} rx={3} ry={7} fill={c} stroke="none" />
+    </g>
+  );
+}
+
 function SceneFig({ figure }: { figure: MathFigure }) {
-  const emojis = figure.emojis && figure.emojis.length > 0 ? figure.emojis : ['📖'];
   const title = figure.title ?? '';
   const text = figure.text ?? '';
-  const rows = emojis.length <= 4 ? 1 : emojis.length <= 8 ? 2 : 3;
+  const theme = (figure.bg || 'field') as string;
+  const W = 380, H = 212;
+  const near = '#f5fbf0';
+
+  const cfg: Record<string, { sky: [string, string]; ground: [string, string]; sun?: string; moon?: string; leaf: string; trunk: string; water?: string; house?: [string, string]; night?: boolean; snow?: boolean; theme: string }> = {
+    field:    { sky: ['#eceae2', '#f4f3ec'], ground: ['#d7ddcb', '#c1c9b1'], sun: '#e6c76f', leaf: '#9db08a', trunk: '#a39784', theme: 'field' },
+    mountain: { sky: ['#ecedec', '#f2f3ee'], ground: ['#ccd3c4', '#b4bcaa'], sun: '#e2c878', leaf: '#8ba07a', trunk: '#9c9080', theme: 'mountain' },
+    water:    { sky: ['#ebedee', '#f1f3f2'], ground: ['#c3d2d4', '#a9bfc2'], sun: '#e4cd82', water: '#b6cbd1', leaf: '#93a887', trunk: '#a09080', theme: 'water' },
+    sky:      { sky: ['#e9ecef', '#f1f3f4'], ground: ['#cdd6cf', '#b3c0b6'], sun: '#e2c36b', leaf: '#92a685', trunk: '#9c9182', theme: 'sky' },
+    forest:   { sky: ['#eaedec', '#f1f3ee'], ground: ['#c2cdbc', '#a4b49e'], sun: '#dcc377', leaf: '#7f9773', trunk: '#95897a', theme: 'forest' },
+    city:     { sky: ['#e9e8ee', '#f1f0f2'], ground: ['#d2ccdd', '#b8aecd'], sun: '#e2c878', leaf: '#93a786', trunk: '#9c9182', house: ['#b3a8d1', '#9189b8'], theme: 'city' },
+    night:    { sky: ['#d4d9e4', '#dfe4ed'], ground: ['#cdd3e0', '#b3bac9'], moon: '#efe9d4', leaf: '#8fa08f', trunk: '#8b837b', night: true, theme: 'night' },
+    indoor:   { sky: ['#f0ede6', '#f4f2ee'], ground: ['#e3dccb', '#cfc6b0'], leaf: '#94a88a', trunk: '#a09080', theme: 'indoor' },
+    garden:   { sky: ['#ebeee6', '#f2f4ec'], ground: ['#c8d5bb', '#aabf97'], sun: '#e4cb78', leaf: '#92a686', trunk: '#9c9182', theme: 'garden' },
+    desert:   { sky: ['#ece9e0', '#f1efe8'], ground: ['#ded5c1', '#c8bda0'], sun: '#dfc47c', leaf: '#9bab86', trunk: '#a3977f', theme: 'desert' },
+    snow:     { sky: ['#ebedee', '#f2f4f4'], ground: ['#dde3e8', '#c6cfd8'], sun: '#ece4cd', leaf: '#93a4a0', trunk: '#948b82', snow: true, theme: 'snow' },
+  };
+  const c = cfg[theme] ?? cfg.field;
+  const isNight = !!c.night;
+  const hasMount = theme === 'mountain' || theme === 'forest' || theme === 'desert' || theme === 'snow';
+  const mountainFar = theme === 'night' ? '#c2c8d6' : '#c9d4d8';
+  const mountainNear = theme === 'night' ? '#aeb6c6' : '#b6c2c4';
+
   return (
     <div className="mf-scene" aria-hidden="true">
-      <div className={`mf-scene-stage rows-${rows}`}>
-        {emojis.map((e, i) => (
-          <span key={i} className="mf-scene-emoji" style={{ animationDelay: `${0.15 + i * 0.22}s` }}>{e}</span>
-        ))}
-      </div>
+      <svg className="mf-illu" viewBox={`0 0 ${W} ${H}`} width="100%" role="img">
+        <defs>
+          <linearGradient id={`sk-${theme}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor={c.sky[0]} />
+            <stop offset="1" stopColor={c.sky[1]} />
+          </linearGradient>
+          <linearGradient id={`gd-${theme}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor={c.ground[0]} />
+            <stop offset="1" stopColor={c.ground[1]} />
+          </linearGradient>
+          <linearGradient id={`wt-${theme}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor={c.water ?? c.ground[0]} />
+            <stop offset="1" stopColor={c.ground[1]} />
+          </linearGradient>
+        </defs>
+
+        <rect x={0} y={0} width={W} height={H} fill={`url(#sk-${theme})`} />
+
+        {/* 夜：月亮+星星；日：太阳 */}
+        {isNight ? (
+          <g>
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+              <circle key={i} cx={30 + i * 52} cy={22 + (i % 2) * 26} r={1.8} fill="#fff" opacity={0.9} />
+            ))}
+            <MfMoon x={316} y={44} r={24} c={c.moon!} />
+          </g>
+        ) : (
+          <MfSun x={320} y={46} r={22} c={c.sun!} />
+        )}
+
+        <MfCloud x={70} y={36} s={1} c="#fff" />
+        <MfCloud x={205} y={26} s={0.9} c="#fff" />
+        <MfCloud x={150} y={62} s={0.7} c="#fff" />
+
+        {/* 远山（两簇） */}
+        {hasMount && (
+          <g opacity={0.85}>
+            <MfMountain pts={`0,150 60,70 120,150 170,90 230,150 300,80 380,150`} c={mountainFar} />
+            <MfMountain pts={`0,150 90,110 160,150 230,120 300,150 380,120 380,150`} c={mountainNear} opacity={0.9} />
+          </g>
+        )}
+
+        {/* 城市天际线 */}
+        {c.house && (
+          <g>
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+              <rect key={i} x={14 + i * 52} y={92 - (i % 3) * 16} width={40} height={64 + (i % 3) * 16} rx={3} fill={c.house![i % 2]} />
+            ))}
+            <g fill="#e8e2c8">
+              {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+                <rect key={i} x={26 + i * 30} y={104 + (i % 2) * 22} width={5} height={6} rx={1} />
+              ))}
+            </g>
+          </g>
+        )}
+
+        {/* 室内：窗 + 墙脚 */}
+        {theme === 'indoor' && (
+          <g>
+            <rect x={30} y={30} width={52} height={60} rx={4} fill="#fff" stroke="#c9a25f" strokeWidth={3} />
+            <line x1={56} y1={30} x2={56} y2={90} stroke="#c9a25f" strokeWidth={3} />
+            <line x1={30} y1={60} x2={82} y2={60} stroke="#c9a25f" strokeWidth={3} />
+          </g>
+        )}
+
+        {/* 树（非 city/indoor/water 前景） */}
+        {(theme === 'field' || theme === 'forest' || theme === 'mountain' || theme === 'garden' || theme === 'snow' || theme === 'desert') && (
+          <g>
+            <MfTree x={60} y={150} s={1.0} leaf={theme === 'snow' ? '#dce9f5' : c.leaf} trunk={c.trunk} />
+            <MfTree x={318} y={152} s={0.9} leaf={theme === 'snow' ? '#dce9f5' : c.leaf} trunk={c.trunk} />
+          </g>
+        )}
+
+        {/* 地面 */}
+        <rect x={0} y={150} width={W} height={H - 150} fill={`url(#gd-${theme})`} />
+
+        {/* 水面（water） */}
+        {c.water && (
+          <g>
+            <rect x={0} y={150} width={W} height={H - 150} fill={`url(#wt-${theme})`} opacity={0.96} />
+            <g stroke="#d7f0f7" strokeWidth={2} strokeLinecap="round" opacity={0.8} fill="none">
+              <path d="M0 174 H70" /><path d="M96 190 H150" /><path d="M180 176 H240" /><path d="M270 194 H340" />
+            </g>
+            <MfReed x={26} y={150} s={1.0} c="#8fa388" />
+            <MfReed x={352} y={150} s={0.9} c="#8fa388" />
+          </g>
+        )}
+
+        {/* 沙漠沙姆 + 仙人掌 */}
+        {theme === 'desert' && (
+          <g>
+            <ellipse cx={200} cy={176} rx={150} ry={22} fill="#d5cdb4" opacity={0.8} />
+            <g fill="#a2b193">
+              <rect x={150} y={112} width={9} height={44} rx={5} />
+              <rect x={138} y={118} width={8} height={22} rx={4} />
+              <rect x={163} y={122} width={8} height={18} rx={4} />
+            </g>
+          </g>
+        )}
+
+        {/* 花园花 */}
+        {theme === 'garden' && (
+          <g>
+            {([[70, 176, '#c7aebc'], [120, 190, '#d8cfa2'], [250, 178, '#b3a8c6'], [300, 192, '#c7aebc']] as [number, number, string][]).map(([x, y, col], i) => (
+              <g key={i} transform={`translate(${x} ${y})`}>
+                <circle r={5} fill={col} />
+                {[0, 60, 120, 180, 240, 300].map((a) => (
+                  <ellipse key={a} cx={7} cy={0} rx={5} ry={3.4} fill={col} opacity={0.95} transform={`rotate(${a})`} />
+                ))}
+                <circle r={2.2} fill="#fff" />
+              </g>
+            ))}
+          </g>
+        )}
+
+        {/* 雪 */}
+        {c.snow && (
+          <g fill="#fff" opacity={0.9}>
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              <circle key={i} cx={20 + i * 44} cy={30 + (i % 3) * 30} r={3} />
+            ))}
+          </g>
+        )}
+
+        {/* 前景路/草 */}
+        <path d={`M0 ${H} Q ${W / 2} ${H - 22} ${W} ${H} Z`} fill={near} opacity={0.5} />
+      </svg>
       {title && <div className="mf-scene-title">{title}</div>}
       {text && <div className="mf-scene-body">{text}</div>}
+    </div>
+  );
+}
+
+/* 田字格：写字教学配图——方格 + 横/竖中线（虚线），可放入示范字、标注中线名称 */
+function TianZiGeFig({ figure }: { figure: MathFigure }) {
+  const char = (figure.char ?? '').slice(0, 1);
+  const showLabels = figure.showLabels !== false;
+  const S = 150, C = 88;
+  return (
+    <div className="mf-tianzige" aria-hidden="true">
+      <svg viewBox={`0 0 ${S} ${S + (showLabels ? 4 : 0)}`} width={S} height={S + (showLabels ? 4 : 0)}>
+        {/* 外框 */}
+        <rect x={14} y={14} width={C} height={C} fill="#fff" stroke="#4a3b66" strokeWidth={2.5} />
+        {/* 横中线 / 竖中线（虚线） */}
+        <line x1={14} y1={C / 2 + 14} x2={14 + C} y2={C / 2 + 14} stroke="#ef5350" strokeWidth={1.6} strokeDasharray="5 4" />
+        <line x1={14 + C / 2} y1={14} x2={14 + C / 2} y2={14 + C} stroke="#ef5350" strokeWidth={1.6} strokeDasharray="5 4" />
+        {/* 四区虚线角标（轻提示） */}
+        <defs>
+          <marker id="tzw" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0 0 L6 3 L0 6 Z" fill="#ef5350" />
+          </marker>
+        </defs>
+        {/* 示范字 */}
+        {char && (
+          <text x={14 + C / 2} y={14 + C / 2 + 10} textAnchor="middle" fontSize={54} fontWeight="bold" fill="#4a3b66">
+            {char}
+          </text>
+        )}
+        {/* 中线名称 */}
+        {showLabels && (
+          <>
+            <text x={14 + C / 2} y={6} textAnchor="middle" fontSize={12} fill="#e07b00" fontWeight="bold">竖中线</text>
+            <line x1={14 + C / 2} y1={9} x2={14 + C / 2} y2={20} stroke="#ef5350" strokeWidth={1.4} markerEnd="url(#tzw)" />
+            <text x={10} y={C / 2 + 14 + 4} textAnchor="end" fontSize={12} fill="#e07b00" fontWeight="bold">横中线</text>
+            <line x1={12} y1={C / 2 + 14} x2={26} y2={C / 2 + 14} stroke="#ef5350" strokeWidth={1.4} markerEnd="url(#tzw)" />
+          </>
+        )}
+      </svg>
+      {char && <div className="mf-tz-note">田字格：分清上、下、左、右，把字写在中间</div>}
     </div>
   );
 }

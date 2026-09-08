@@ -253,10 +253,10 @@ export default function LessonPracticeEnglish({ text, words, translation, onFini
   };
 
   return (
-    <div className="lesson-practice">
+    <div className="lesson-practice quiz-task">
       <div className="question-row">
-        <button className="speaker-btn" onClick={() => q.speakText && speak(q.speakText, 'en', 0.85)} aria-label="speak">
-          🔊
+        <button className="speaker-btn" onClick={() => q.speakText && speak(q.speakText, 'en', 0.85)} aria-label="再读一次">
+          🔊 {t('replay')}
         </button>
         <div className="question-text">
           {prompt()}

@@ -144,6 +144,7 @@ export const applePickDef: GameDef = {
   icon: '🍎',
   name: { zh: '摘苹果', en: 'Apple Pick' },
   category: 'math',
+  genre: 'count',
   desc: { zh: '摘对数量的苹果', en: 'Pick the right number of apples' },
   levels: pack.levels.length,
   status: 'ready',

@@ -116,6 +116,7 @@ export const oddOneOutDef: GameDef = {
   icon: '🔍',
   name: { zh: '火眼金睛', en: 'Odd One Out' },
   category: 'thinking',
+  genre: 'find',
   desc: { zh: '找出不一样的那一个', en: 'Find the odd one out' },
   levels: pack.levels.length,
   status: 'ready',

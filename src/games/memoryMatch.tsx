@@ -143,6 +143,7 @@ export const memoryMatchDef: GameDef = {
   icon: '🃏',
   name: { zh: '记忆翻牌', en: 'Memory Match' },
   category: 'thinking',
+  genre: 'match',
   desc: { zh: '找出相同的两张卡片', en: 'Find matching pairs' },
   levels: pack.levels.length,
   status: 'ready',

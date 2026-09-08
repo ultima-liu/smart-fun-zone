@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { useI18n } from '../i18n';
-import { KidButton, TopBar, Confetti } from '../components/ui';
+import { KidButton, Confetti } from '../components/ui';
+import { IconBack } from '../components/icons';
 import Mascot from '../components/Mascot';
 import LessonReader from '../components/LessonReader';
 import TraceCard from '../components/TraceCard';
 import WordCard from '../components/WordCard';
 import { StepBar } from '../components/StepBar';
 import { getSkill, skillDesc, skillEmoji, skillGames, type LessonContent } from '../content/skills';
+import { SceneBanner } from '../components/scenes';
+import { SUBJECTS } from '../types';
 import { loadLessonContent } from '../content/contentLoader';
 import MathFigure from '../components/MathFigure';
 import { MATH_FIGURES } from '../content/mathFigures';
@@ -20,6 +23,7 @@ import { MATH_WORKED } from '../content/mathWorked';
 import { MATH_POINTS } from '../content/mathPoints';
 import { CHINESE_ENHANCE } from '../content/chineseEnhance';
 import { MathExample, MathExplain, MathConcepts } from '../components/MathLesson';
+import ChineseCloseRead from '../components/ChineseCloseRead';
 import { TEXT_WORDS } from '../content/textWords';
 import { speak } from '../speech';
 
@@ -67,10 +71,13 @@ export default function LessonPage() {
   const contentReady = !skill || skill.content !== undefined || loadedIds.has(skill.id);
   const figure = (skill && MATH_FIGURES[skill.id]) || content?.figure;
 
-  // 进入课程默认从"看例题/看课文"开始；支持 ?step=N 直接定位到某一步
+  // 已解锁到哪一步（lessonProgress 记录已完成步骤数，0-3）
+  const progress = useStore((s) => (skill ? s.lessonProgress[skill.id] ?? 0 : 0));
+  // 进入课程默认定位到当前未完成的步骤；支持 ?step=N 指定
   const [step, setStep] = useState(() => {
-    const s = Number(params.get('step'));
-    return Number.isInteger(s) && s >= 0 && s <= 3 ? s : 0;
+    const sp = Number(params.get('step'));
+    if (Number.isInteger(sp) && sp >= 0 && sp <= 3) return sp;
+    return Math.min(progress, 3);
   });
   // 语文/英语：认生字/认单词
   const [traceChar, setTraceChar] = useState<string | null>(null);
@@ -90,7 +97,14 @@ export default function LessonPage() {
   if (!contentReady) {
     return (
       <div className="page lesson">
-        <TopBar title={`📖 ${skill.name[lang]}`} onBack={() => nav(backTarget)} />
+        <div className="lesson-hero-top">
+          <KidButton color="white" className="icon-btn" onClick={() => nav(backTarget)} ariaLabel="back">
+            <IconBack size={22} />
+          </KidButton>
+          <div className="lesson-hero-title">
+            <span className="lesson-hero-name">📖 {skill.name[lang]}</span>
+          </div>
+        </div>
         <div className="lesson-stage">
           <div className="lesson-loading">⏳ 加载中…</div>
         </div>
@@ -114,7 +128,6 @@ export default function LessonPage() {
   // 语文课内容增强（情境导入/学课文分节讲解/中心句/要点/想一想）
   const isChinese = skill.subject === 'chinese';
   const ch = isChinese ? CHINESE_ENHANCE[skill.id] : undefined;
-  const chExample = isChinese ? (ch?.example ?? (content?.text ?? '').split('\n').map((s) => s.trim()).find(Boolean) ?? skill.name.zh) : '';
   const chSteps = isChinese ? (ch?.steps ?? []) : undefined;
   const chRhyme = isChinese ? ch?.rhyme : undefined;
   const chPoints = isChinese ? (ch?.points ?? points) : points;
@@ -134,6 +147,11 @@ export default function LessonPage() {
     // 基于本次会话的当前步骤推进（不叠加历史完成数）
     const next = step + 1;
     completeLessonStep(skill.id);
+    // 有真实内容的学科（数学/语文/英语）：记要点完成后直接进入练习，不停在“学完了”
+    if (next >= 3 && content && (skill.subject === 'math' || skill.subject === 'chinese' || skill.subject === 'english')) {
+      goPractice();
+      return;
+    }
     setStep(next);
     if (next >= 3 && !isMath) collectChars(child.id, words);
   };
@@ -145,8 +163,9 @@ export default function LessonPage() {
       : [t('read'), t('listen'), isEnglish ? t('wordStep') : t('chars'), t('goPractice')];
   const bagCount = (charBag[child.id] ?? []).length;
 
-  /** 步骤条点击：任意步骤可自由跳转（练习始终可进） */
+  /** 步骤条点击：顺序推进——仅可点已解锁步骤（0..progress），去练习需前三步完成 */
   const onStepClick = (i: number) => {
+    if (i > progress) return; // 未解锁
     if (i === 3) {
       goPractice();
       return;
@@ -158,11 +177,18 @@ export default function LessonPage() {
   if (!content) {
     return (
       <div className="page lesson">
-        <TopBar title={`📖 ${skill.name[lang]}`} onBack={() => nav(backTarget)} />
+        <div className="lesson-hero-top">
+          <KidButton color="white" className="icon-btn" onClick={() => nav(backTarget)} ariaLabel="back">
+            <IconBack size={22} />
+          </KidButton>
+          <div className="lesson-hero-title">
+            <span className="lesson-hero-name">📖 {skill.name[lang]}</span>
+          </div>
+        </div>
         <div className="lesson-stage">
           <div className="lesson-demo" aria-hidden="true">
             <span className="lesson-emoji">{skillEmoji(skill)}</span>
-            <div className="lesson-dino">
+            <div className="lesson-dino lesson-mascot">
               <Mascot pose="happy" size={96} />
             </div>
           </div>
@@ -192,34 +218,54 @@ export default function LessonPage() {
     );
   }
 
+  const subject = SUBJECTS.find((s) => s.id === skill.subject);
+
   return (
     <div className="page lesson">
-      <TopBar title={`📖 ${skill.name[lang]}`} onBack={() => nav(backTarget)} />
-      <StepBar current={Math.min(step, 3)} labels={stepLabels} onStepClick={onStepClick} />
+      <div className="lesson-hero">
+        {subject ? (
+          <div className="category-hero">
+            <SceneBanner kind={subject.id} height={176} />
+            <div className="category-scrim" aria-hidden="true" />
+            <div className="lesson-hero-back">
+              <KidButton color="white" className="icon-btn" onClick={() => nav(backTarget)} ariaLabel="back">
+                <IconBack size={22} />
+              </KidButton>
+            </div>
+            <div className="lesson-hero-overlay">
+              <div className="lesson-hero-title">
+                <span className="lesson-hero-eyebrow">Subject · {subject?.name.en ?? ''}</span>
+                <span className="lesson-hero-name">📖 {skill.name[lang]}</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="lesson-hero-top">
+            <KidButton color="white" className="icon-btn" onClick={() => nav(backTarget)} ariaLabel="back">
+              <IconBack size={22} />
+            </KidButton>
+            <div className="lesson-hero-title">
+              <span className="lesson-hero-name">📖 {skill.name[lang]}</span>
+            </div>
+          </div>
+        )}
+      </div>
+      <StepBar current={Math.min(step, 3)} labels={stepLabels} onStepClick={onStepClick} lockedFrom={Math.min(progress + 1, 4)} />
 
       <div className="lesson-stage">
         {step === 0 &&
           (isMath ? (
             <MathExample figure={figure} example={example} worked={worked} text={content.text ?? skill.name.zh} lang={speechLang} onDone={completeStep} />
           ) : isChinese ? (
-            <>
-              <div className="example-scene" onClick={() => speak(chExample, speechLang)}>
-                <span className="example-scene-label">📖 课文</span>
-                <span className="example-scene-text">{chExample}</span>
-              </div>
-              <LessonReader
-                key="read"
-                text={content.text ?? skill.name.zh}
-                words={words}
-                mode="read"
-                onDone={completeStep}
-                title={skill.name[lang]}
-                textWords={textWords}
-                speechLang={speechLang}
-                translation={content.translation}
-                highlightWords
-              />
-            </>
+            <ChineseCloseRead
+              key="read"
+              text={content.text ?? skill.name.zh}
+              words={words}
+              sections={chSteps}
+              showText
+              showExplain={false}
+              onDone={completeStep}
+            />
           ) : (
             <>
               {figure && <MathFigure figure={figure} />}
@@ -242,7 +288,13 @@ export default function LessonPage() {
           (isMath ? (
             <MathExplain figure={figure} steps={steps} points={points} lang={speechLang} onDone={completeStep} />
           ) : isChinese ? (
-            <MathExplain figure={undefined} steps={chSteps} points={points} lang={speechLang} onDone={completeStep} />
+            <ChineseCloseRead
+              text={content.text ?? skill.name.zh}
+              words={words}
+              sections={chSteps}
+              showText={false}
+              onDone={completeStep}
+            />
           ) : (
             <>
               {figure && <MathFigure figure={figure} />}

@@ -86,7 +86,8 @@ function EnglishZooGame({ level, onFinish }: GameProps) {
   const session = useQuizSession(questions.length, onFinish);
   const q = questions[session.idx];
 
-  const speakPrompt = () => speak(lang === 'zh' ? q.voiceZh : q.voiceEn, lang);
+  // 英语课内容语音全部为英文（voiceZh/voiceEn 均为英文），显式用 'en' 朗读
+  const speakPrompt = () => speak(lang === 'zh' ? q.voiceZh : q.voiceEn, 'en');
   useEffect(() => {
     speakPrompt();
      
@@ -113,6 +114,7 @@ export const englishZooDef: GameDef = {
   icon: '🦁',
   name: { zh: '英语动物园', en: 'English Zoo' },
   category: 'english',
+  genre: 'listen',
   desc: { zh: '听单词找动物', en: 'Listen and find the animal' },
   levels: pack.levels.length,
   status: 'ready',

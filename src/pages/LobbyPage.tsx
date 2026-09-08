@@ -3,14 +3,15 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore, childTotalStars, starsForGame, todayPlaySec, streakDays } from '../store';
 import { useI18n } from '../i18n';
 import { listGames } from '../games';
-import { KidButton, TopBar, Stars } from '../components/ui';
+import { KidButton, Stars } from '../components/ui';
 import Modal from '../components/Modal';
-import { SceneBanner } from '../components/scenes';
-import { SUBJECTS, type SubjectId } from '../types';
-import { speak, startMusic, stopMusic } from '../speech';
-import { IconClock, IconStar } from '../components/icons';
+import PageHero from '../components/PageHero';
+import { GAME_GENRES, type GameGenre } from '../types';
+import { speak, stopMusic } from '../speech';
+import { IconBean } from '../components/icons';
+import NpcBuddy from '../components/NpcBuddy';
 
-type TabId = 'all' | SubjectId;
+type TabId = 'all' | GameGenre;
 
 export default function LobbyPage() {
   const nav = useNavigate();
@@ -18,7 +19,11 @@ export default function LobbyPage() {
   const [params, setParams] = useSearchParams();
   const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
   const records = useStore((s) => s.records);
+  const points = useStore((s) => (s.activeChildId ? s.points[s.activeChildId] ?? 0 : 0));
   const dailyLimitMin = useStore((s) => s.dailyLimitMin);
+  const bonusMin = useStore((s) => (s.activeChildId ? s.bonusMin[s.activeChildId] : undefined));
+  const today = new Date().toDateString();
+  const effectiveLimitMin = dailyLimitMin + (bonusMin && bonusMin.day === today ? bonusMin.min : 0);
   const [resting, setResting] = useState(false);
 
   const activeTab: TabId = (params.get('cat') as TabId) ?? 'all';
@@ -28,8 +33,7 @@ export default function LobbyPage() {
       nav('/');
       return;
     }
-    startMusic('lobby');
-    speak(t('welcome'), lang);
+    speak(t('welcomeLobby'), lang);
     return () => stopMusic();
   }, [child?.id, lang, nav, t]);
 
@@ -39,19 +43,19 @@ export default function LobbyPage() {
   );
 
   useEffect(() => {
-    if (child && dailyLimitMin > 0 && todaySec >= dailyLimitMin * 60) {
+    if (child && effectiveLimitMin > 0 && todaySec >= effectiveLimitMin * 60) {
       const timer = window.setTimeout(() => setResting(true), 60);
       return () => window.clearTimeout(timer);
     }
-  }, [child, dailyLimitMin, todaySec]);
+  }, [child, effectiveLimitMin, todaySec]);
 
   if (!child) return null;
 
   const games = listGames();
   const totalStars = childTotalStars(records, child.id);
   const streak = streakDays(records, child.id);
-  const shown = activeTab === 'all' ? games : games.filter((g) => g.category === activeTab);
-  const activeCat = activeTab === 'all' ? null : SUBJECTS.find((c) => c.id === activeTab);
+  const shown = activeTab === 'all' ? games : games.filter((g) => g.genre === activeTab);
+  const activeGenre = activeTab === 'all' ? null : GAME_GENRES.find((g) => g.id === activeTab);
 
   const setTab = (tab: TabId) => {
     setParams(tab === 'all' ? {} : { cat: tab }, { replace: true });
@@ -59,32 +63,28 @@ export default function LobbyPage() {
 
   return (
     <div className="page lobby">
-      <TopBar
-        title={
-          <span>
-            {t('lobby')} · {child.avatar} {child.name}
-          </span>
-        }
-        onBack={() => nav('/')}
+      <NpcBuddy npc="泡泡" storyNodeIds={["c2-1","c2-2"]} />
+      {/* 与学习/我的一致的发光玻璃页头 */}
+      <PageHero
+        eyebrow={`${lang === 'zh' ? '空中乐园 · 玩中学' : 'Sky Park · Fun & Learn'}`}
+        title={t('lobby')}
+        planet="funpark"
+        stats={[
+          { icon: '⭐', value: totalStars, tone: 'gold', label: t('totalStars') },
+          { icon: <IconBean size={16} gradient="gold" />, value: points, tone: 'mint', label: t('beans') },
+          { icon: '🔥', value: streak, tone: 'coral', label: t('streakLabel') },
+        ]}
       />
 
-      <div className="lobby-stats">
-        <div className="stat-chip">
-          <IconStar size={18} style={{ color: '#FFB300' }} />
-          <b>{totalStars}</b> {t('stars')}
+      {effectiveLimitMin > 0 && (
+        <div className="lobby-time-note" title="今日可玩时长含奖励加成">
+          {lang === 'zh'
+            ? `⏱ 今日已玩 ${Math.floor(todaySec / 60)} 分钟 · 剩余 ${Math.max(0, effectiveLimitMin - Math.floor(todaySec / 60))} 分钟`
+            : `⏱ ${Math.floor(todaySec / 60)} min played · ${Math.max(0, effectiveLimitMin - Math.floor(todaySec / 60))} min left`}
         </div>
-        <div className="stat-chip today">
-          <IconClock size={16} />
-          {t('todayPlayed', { min: Math.floor(todaySec / 60) })}
-        </div>
-        {streak > 0 && (
-          <div className="stat-chip streak">
-            🔥 {streak} {t('streakLabel')}
-          </div>
-        )}
-      </div>
+      )}
 
-      {/* 分类 Tab */}
+      {/* 分类 Tab：按玩法分（数一数/配一配/找一找/听一听/想一想），不分学科 */}
       <div className="cat-tabs" role="tablist">
         <button
           className={`cat-tab ${activeTab === 'all' ? 'active' : ''}`}
@@ -94,36 +94,41 @@ export default function LobbyPage() {
         >
           {t('all')}
         </button>
-        {SUBJECTS.map((cat) => (
+        {GAME_GENRES.map((g) => (
           <button
-            key={cat.id}
-            className={`cat-tab ${activeTab === cat.id ? 'active' : ''}`}
-            style={activeTab === cat.id ? { background: cat.color } : undefined}
-            onClick={() => setTab(cat.id)}
+            key={g.id}
+            className={`cat-tab ${activeTab === g.id ? 'active' : ''}`}
+            onClick={() => setTab(g.id)}
             role="tab"
-            aria-selected={activeTab === cat.id}
+            aria-selected={activeTab === g.id}
           >
-            {cat.icon} {cat.name[lang]}
+            {g.icon} {g.name[lang]}
           </button>
         ))}
       </div>
 
-      {activeCat && (
+      {activeGenre && (
         <div className="category-head">
-          <SceneBanner kind={activeCat.id} height={86} />
-          <h2 className="category-title">
-            <span style={{ background: activeCat.color }} className="category-badge">
-              {activeCat.icon}
-            </span>
-            {activeCat.name[lang]}
-          </h2>
+          <div className="category-hero genre-hero">
+            <div className="category-scrim" aria-hidden="true" />
+            <div className="subject-title-block">
+              <span
+                style={{ background: activeGenre.color }}
+                className="subject-badge"
+                aria-hidden="true"
+              >
+                {activeGenre.icon}
+              </span>
+              <h2 className="subject-title">{activeGenre.name[lang]}</h2>
+            </div>
+          </div>
         </div>
       )}
 
       <div className="game-grid">
         {shown.map((g) => {
           const best = starsForGame(records, child.id, g.id);
-          const cat = SUBJECTS.find((c) => c.id === g.category);
+          const genre = GAME_GENRES.find((x) => x.id === g.genre);
           return (
             <button
               key={g.id}
@@ -133,7 +138,7 @@ export default function LobbyPage() {
                 nav(`/game/${g.id}`);
               }}
             >
-              <span className="game-cover" style={{ background: cat?.color }}>
+              <span className="game-cover" style={{ background: genre?.color ?? '#2C7D74' }}>
                 <span className="game-icon">{g.icon}</span>
                 {best === 0 && <span className="game-new">NEW</span>}
               </span>

@@ -170,6 +170,7 @@ export const numberFarmDef: GameDef = {
   icon: '🚜',
   name: { zh: '数字农场', en: 'Number Farm' },
   category: 'math',
+  genre: 'count',
   desc: { zh: '数一数农场里的小动物', en: 'Count the farm animals' },
   levels: pack.levels.length,
   status: 'ready',

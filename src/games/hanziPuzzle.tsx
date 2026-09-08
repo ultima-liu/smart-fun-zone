@@ -125,6 +125,7 @@ export const hanziPuzzleDef: GameDef = {
   icon: '🧱',
   name: { zh: '汉字拼图', en: 'Hanzi Puzzle' },
   category: 'chinese',
+  genre: 'match',
   desc: { zh: '认一认常用汉字', en: 'Learn common characters' },
   levels: pack.levels.length,
   status: 'ready',

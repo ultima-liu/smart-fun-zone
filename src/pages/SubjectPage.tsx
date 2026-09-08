@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useStore, skillState } from '../store';
 import { useI18n } from '../i18n';
-import { TopBar, Stars } from '../components/ui';
+import { KidButton, Stars } from '../components/ui';
+import { IconBack } from '../components/icons';
 import { SceneBanner } from '../components/scenes';
 import { GRADES, SUBJECTS, type Grade } from '../types';
 import { lessonsByUnit, skillEmoji } from '../content/skills';
@@ -19,6 +20,7 @@ export default function SubjectPage() {
   // 从 URL 恢复上次选择的年级/上下册（返回时保持原位）
   const [grade, setGrade] = useState<Grade>((params.get('grade') as Grade) ?? 'g1');
   const [term, setTerm] = useState<'上' | '下'>((params.get('term') as '上' | '下') ?? '上');
+  const gradeIdx = GRADES.findIndex((g) => g.id === grade);
 
   useEffect(() => {
     if (!child || !subject) {
@@ -47,32 +49,32 @@ export default function SubjectPage() {
 
   return (
     <div className="page subject-page">
-      <TopBar
-        title={
-          <span>
-            {subject.icon} {subject.name[lang]}
-          </span>
-        }
-        onBack={() => nav('/map')}
-      />
-
       <div className="category-head">
-        <SceneBanner kind={subject.id} height={92} />
-        <h2 className="category-title">
-          <span style={{ background: subject.color }} className="category-badge">
-            {subject.icon}
-          </span>
-          {subject.name[lang]}
-        </h2>
+        {/* 整合头部：横幅 + 返回按钮 + 学科标题（去除独立 TopBar 层，结构更简洁） */}
+        <div className="category-hero">
+          <SceneBanner kind={subject.id} height={176} />
+          <div className="category-scrim" aria-hidden="true" />
+          <div className="lesson-hero-back">
+            <KidButton color="white" className="icon-btn" onClick={() => nav('/map')} ariaLabel="back">
+              <IconBack size={22} />
+            </KidButton>
+          </div>
+          <div className="lesson-hero-overlay">
+            <div className="lesson-hero-title">
+              <span className="lesson-hero-eyebrow">Subject · {subject.name.en ?? subject.name.zh}</span>
+              <span className="lesson-hero-name">📖 {subject.name[lang]}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* 第一行：年级分段开关（学科色滑块） */}
-      <div className="grade-switch" role="tablist">
+      {/* 第一行：年级分段开关（滑动深色游标） */}
+      <div className="grade-switch" style={{ '--gidx': gradeIdx } as CSSProperties} role="tablist">
+        <span className="grade-thumb" aria-hidden="true" />
         {GRADES.map((g) => (
           <button
             key={g.id}
             className={`grade-seg ${grade === g.id ? 'active' : ''}`}
-            style={grade === g.id ? { background: subject.color } : undefined}
             onClick={() => setGrade(g.id)}
             role="tab"
             aria-selected={grade === g.id}
@@ -116,7 +118,9 @@ export default function SubjectPage() {
                   key={lesson.id}
                   className={`skill-chip ${cls}`}
                   onClick={() => {
-                    speak(lesson.name[lang], lang);
+                    // 朗读语言按课程内容：英语课程显式 'en'，其余按界面语言
+                    const spLang: 'zh' | 'en' = lesson.subject === 'english' ? 'en' : lang;
+                    speak(lesson.name[spLang], spLang);
                     nav(`/learn/${lesson.id}?from=subject&grade=${grade}&term=${term}&unit=${gi}`);
                   }}
                 >

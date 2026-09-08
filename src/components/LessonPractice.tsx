@@ -3,6 +3,7 @@ import type { MouseEvent } from 'react';
 import { pinyin } from 'pinyin-pro';
 import { speak, playSfx } from '../speech';
 import { useI18n } from '../i18n';
+import { useStore } from '../store';
 import { StarBurst } from './ui';
 import { WORD_DICT } from '../content/wordDict';
 
@@ -92,6 +93,7 @@ function genQuestions(text: string, words: string[]): Q[] {
       qs.push({
         type: 'fill',
         fillShown: shown,
+        speakText: fillSentence,
         options: shuffle([ans, ...dist]).map((p) => ({ label: p, correct: p === ans })),
       });
     }
@@ -124,13 +126,30 @@ function genQuestions(text: string, words: string[]): Q[] {
 interface Props {
   text: string;
   words: string[];
+  lessonId?: string;
+  lessonName?: string;
   onFinish: (stars: number, correct: number, total: number) => void;
 }
 
 /** 课文练习：题目 100% 来自当前课文 */
-export default function LessonPractice({ text, words, onFinish }: Props) {
+export default function LessonPractice({ text, words, lessonId, lessonName, onFinish }: Props) {
   const { t } = useI18n();
+  const childId = useStore((s) => s.activeChildId);
+  const addWrong = useStore((s) => s.addWrong);
   const questions = useMemo(() => genQuestions(text, words), [text, words]);
+
+  // 记录错题（自动同步到云端，仅登录且有课程上下文时）
+  const recordWrong = (label: string, kind: string) => {
+    if (!childId || !lessonId) return;
+    addWrong(childId, {
+      uid: `w${Date.now()}${Math.random().toString(36).slice(2, 7)}`,
+      lessonId,
+      lessonName: lessonName ?? '',
+      kind,
+      answer: label.slice(0, 40),
+      time: Date.now(),
+    });
+  };
   const [idx, setIdx] = useState(0);
   const [showOK, setShowOK] = useState(false);
   const [wrongFlash, setWrongFlash] = useState(false);
@@ -145,10 +164,12 @@ export default function LessonPractice({ text, words, onFinish }: Props) {
 
   // 听音指字：进入题目自动朗读一次（保留手动重听）
   useEffect(() => {
-    if (q?.type === 'hear' && q.speakText) {
-      const timer = window.setTimeout(() => speak(q.speakText!, 'zh', 0.85), 350);
+    if (q?.speakText) {
+      const text = q.type === 'hear' ? `${t('hearChar')}。${q.speakText}` : q.speakText;
+      const timer = window.setTimeout(() => speak(text, 'zh', 0.85), 350);
       return () => window.clearTimeout(timer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idx, q?.type]);
 
   // 排序题句子打乱（渲染前固定，避免渲染期随机）
@@ -186,6 +207,8 @@ export default function LessonPractice({ text, words, onFinish }: Props) {
       playSfx('wrong');
       wrongThisQRef.current += 1;
       setWrongFlash(true);
+      const label = ((e.target as HTMLElement).closest('button')?.textContent ?? '').trim();
+      recordWrong(label, q?.type ?? 'quiz');
       window.setTimeout(() => setWrongFlash(false), 550);
     }
   };
@@ -205,21 +228,32 @@ export default function LessonPractice({ text, words, onFinish }: Props) {
       playSfx('wrong');
       wrongThisQRef.current += 1;
       setWrongFlash(true);
+      const label = ((e.target as HTMLElement).closest('button')?.textContent ?? '').trim();
+      recordWrong(label, q?.type ?? 'quiz');
       window.setTimeout(() => setWrongFlash(false), 550);
     }
   };
 
   const speakPrompt = () => {
-    if (q.type === 'hear' && q.speakText) speak(q.speakText, 'zh', 0.85);
+    if (q.type === 'hear' && q.speakText) {
+      speak(`${t('hearChar')}。${q.speakText}`, 'zh', 0.85);
+      return;
+    }
+    const label =
+      q.type === 'pinyin' ? t('pinyinChar')
+      : q.type === 'fill' ? t('fillBlank')
+      : q.type === 'sort' ? t('sortSentences')
+      : t('findInText');
+    speak(q.speakText ?? label, 'zh', 0.85);
   };
 
   if (!q) return null;
 
   return (
-    <div className="lesson-practice">
+    <div className="lesson-practice quiz-task">
       <div className="question-row">
-        <button className="speaker-btn" onClick={speakPrompt} aria-label="speak">
-          🔊
+        <button className="speaker-btn" onClick={speakPrompt} aria-label="再读一次">
+          🔊 {t('replay')}
         </button>
         <div className="question-text">
           {q.type === 'hear' && t('hearChar')}
