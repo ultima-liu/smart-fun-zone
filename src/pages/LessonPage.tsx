@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { useI18n } from '../i18n';
@@ -9,9 +9,9 @@ import LessonReader from '../components/LessonReader';
 import TraceCard from '../components/TraceCard';
 import WordCard from '../components/WordCard';
 import { StepBar } from '../components/StepBar';
-import { getSkill, skillDesc, skillEmoji, skillGames, type LessonContent } from '../content/skills';
+import { getSkill, lessonsByUnit, skillDesc, skillEmoji, skillGames, type LessonContent } from '../content/skills';
 import { SceneBanner } from '../components/scenes';
-import { SUBJECTS } from '../types';
+import { SUBJECTS, type Grade } from '../types';
 import { loadLessonContent } from '../content/contentLoader';
 import MathFigure from '../components/MathFigure';
 import { MATH_FIGURES } from '../content/mathFigures';
@@ -32,7 +32,9 @@ export default function LessonPage() {
   const [params] = useSearchParams();
   const nav = useNavigate();
   const { t, lang } = useI18n();
-  const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
+  const profiles = useStore((s) => s.profiles);
+  const activeChildId = useStore((s) => s.activeChildId);
+  const child = useMemo(() => profiles.find((p) => p.id === activeChildId), [profiles, activeChildId]);
   const lessonSkipOn = useStore((s) => s.lessonSkipOn);
   const completeLessonStep = useStore((s) => s.completeLessonStep);
   const collectChars = useStore((s) => s.collectChars);
@@ -106,7 +108,13 @@ export default function LessonPage() {
           </div>
         </div>
         <div className="lesson-stage">
-          <div className="lesson-loading">⏳ 加载中…</div>
+          <div className="lesson-skeleton">
+            <div className="ls-pulse ls-bar lg" />
+            <div className="ls-pulse ls-bar" />
+            <div className="ls-pulse ls-bar md" />
+            <div className="ls-pulse ls-card" />
+            <div className="ls-pulse ls-actions" />
+          </div>
         </div>
       </div>
     );
@@ -147,13 +155,14 @@ export default function LessonPage() {
     // 基于本次会话的当前步骤推进（不叠加历史完成数）
     const next = step + 1;
     completeLessonStep(skill.id);
+    // 生字卡奖励在练习全对后才结算，不能仅靠完成“记一记”提前获得。
     // 有真实内容的学科（数学/语文/英语）：记要点完成后直接进入练习，不停在“学完了”
     if (next >= 3 && content && (skill.subject === 'math' || skill.subject === 'chinese' || skill.subject === 'english')) {
       goPractice();
       return;
     }
     setStep(next);
-    if (next >= 3 && !isMath) collectChars(child.id, words);
+    if (next >= 3 && !isMath && !isChinese) collectChars(child.id, words);
   };
 
   const stepLabels = isMath
@@ -220,6 +229,16 @@ export default function LessonPage() {
 
   const subject = SUBJECTS.find((s) => s.id === skill.subject);
 
+  const unitIdxParam = params.get('unit');
+  let unitName = '';
+  if (gParam) {
+    const units = lessonsByUnit(gParam as Grade, skill.subject);
+    const idx = unitIdxParam !== null ? Number(unitIdxParam) : -1;
+    if (idx >= 0 && units[idx]) {
+      unitName = lang === 'zh' ? units[idx].unit.zh : units[idx].unit.en;
+    }
+  }
+
   return (
     <div className="page lesson">
       <div className="lesson-hero">
@@ -250,6 +269,22 @@ export default function LessonPage() {
           </div>
         )}
       </div>
+
+      <nav className="lesson-breadcrumb" aria-label="breadcrumb">
+        <button onClick={() => nav('/map')}>{lang === 'zh' ? '学校' : 'School'}</button>
+        <span>/</span>
+        {subject && (
+          <>
+            <button onClick={() => nav(`/subject/${subject.id}?grade=${gParam ?? 'g1'}&term=${tParam ?? '上'}`)}>
+              {subject.name[lang]}
+            </button>
+            <span>/</span>
+          </>
+        )}
+        {unitName && <><span className="bc-unit">{unitName}</span><span>/</span></>}
+        <span className="bc-current">{skill.name[lang]}</span>
+      </nav>
+
       <StepBar current={Math.min(step, 3)} labels={stepLabels} onStepClick={onStepClick} lockedFrom={Math.min(progress + 1, 4)} />
 
       <div className="lesson-stage">

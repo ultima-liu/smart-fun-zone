@@ -7,7 +7,7 @@ import type { AppState } from './store';
 
 export interface TaskDef {
   id: string;
-  kind: 'milestone' | 'daily';
+  kind: 'milestone' | 'daily' | 'weekly';
   title: string;
   icon: string;
   reward: number;
@@ -21,9 +21,17 @@ export interface TaskDef {
 
 const S = () => useStore.getState();
 const dayStart = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime(); };
+/** 本周（周一起）开始时间戳 */
+const weekStart = () => { const d = new Date(); const day = d.getDay() || 7; d.setDate(d.getDate() - (day - 1)); d.setHours(0, 0, 0, 0); return d.getTime(); };
 /** 今日内 pointLog 中某 reason 前缀出现的次数 */
 const todayReason = (s: AppState, c: string, prefix: string): number =>
   (s.pointLog[c] ?? []).filter((e) => e.time >= dayStart() && e.reason.includes(prefix)).length;
+/** 周内 pointLog 中某 reason 前缀出现的次数 */
+const weekReason = (s: AppState, c: string, prefix: string): number =>
+  (s.pointLog[c] ?? []).filter((e) => e.time >= weekStart() && e.reason.includes(prefix)).length;
+/** 周内游戏记录 */
+const weekRecords = (s: AppState, c: string) =>
+  s.records.filter((r) => r.childId === c && r.playedAt >= weekStart());
 
 export const TASKS: TaskDef[] = [
   // 每日学习引导（每日重置）
@@ -33,6 +41,11 @@ export const TASKS: TaskDef[] = [
   { id: 'd-char', kind: 'daily', title: '收集 1 个字卡', icon: '🧩', reward: 3, target: 1, progress: (s, c) => todayReason(s, c, '收集字卡') },
   { id: 'd-kind', kind: 'daily', title: '玩 2 种游戏', icon: '🎲', reward: 6, target: 2, go: '/lobby', progress: (s, c) => todayGameKinds(s.records, c) },
   { id: 'd-games', kind: 'daily', title: '玩 3 局', icon: '⚡', reward: 6, target: 3, go: '/lobby', progress: (s, c) => todayRecords(s.records, c).length },
+  // 每周目标（自然周重置）
+  { id: 'w-learn', kind: 'weekly', title: '本周学 3 课', icon: '📚', reward: 15, target: 3, go: '/map', progress: (s, c) => weekReason(s, c, '满星') + weekReason(s, c, '学步骤') },
+  { id: 'w-games', kind: 'weekly', title: '本周玩 5 局', icon: '🎮', reward: 15, target: 5, go: '/lobby', progress: (s, c) => weekRecords(s, c).length },
+  { id: 'w-stars', kind: 'weekly', title: '本周得 20 星', icon: '⭐', reward: 25, target: 20, progress: (s, c) => weekRecords(s, c).reduce((n, r) => n + r.stars, 0) },
+  { id: 'w-chars', kind: 'weekly', title: '本周收 5 张字卡', icon: '🧩', reward: 20, target: 5, progress: (s, c) => weekReason(s, c, '收集字卡') },
   // 里程碑（累计一次性）
   { id: 'gold-5', kind: 'milestone', title: '五课满星', icon: '🏅', reward: 20, target: 5, progress: (s, c) => goldSkillCount(s.mastery, c) },
   { id: 'chars-10', kind: 'milestone', title: '识字小达人', icon: '🧩', reward: 15, target: 10, progress: (s, c) => (s.charBag[c] ?? []).length },
@@ -41,10 +54,14 @@ export const TASKS: TaskDef[] = [
 ];
 
 function sourceFor(t: TaskDef): string {
-  // 每日任务每天独立结算，里程碑一次性
+  // 每日/每周任务按周期独立结算，里程碑一次性
   if (t.kind === 'daily') {
     const day = new Date().toDateString();
     return `task:${t.id}:${day}`;
+  }
+  if (t.kind === 'weekly') {
+    const week = new Date(weekStart()).toDateString();
+    return `task:${t.id}:${week}`;
   }
   return `task:${t.id}`;
 }
@@ -80,6 +97,8 @@ export function claimAutoTasks(childId: string): string[] {
 
 /** 每日引导任务（供首页面板展示） */
 export const DAILY_TASKS: TaskDef[] = TASKS.filter((t) => t.kind === 'daily');
+/** 每周目标（供首页面板展示） */
+export const WEEKLY_TASKS: TaskDef[] = TASKS.filter((t) => t.kind === 'weekly');
 
 /** 便捷：某任务对某孩子的当前进度/是否完成（合并管理端配置） */
 export function taskProgress(t: TaskDef, childId: string): { cur: number; done: boolean; reward: number; enabled: boolean } {

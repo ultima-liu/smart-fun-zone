@@ -3,13 +3,13 @@ import { useStore } from '../store';
 import { useI18n } from '../i18n';
 import { EMPTY, featureOfPath, isFeatureOpen } from '../features';
 import { speak, playSfx } from '../speech';
-import { IconHome, IconSchool, IconFerris, IconTower } from './icons';
+import { IconStar, IconStagePrimary, IconGamepad, IconTrophy } from './icons';
 
 const TABS = [
-  { to: '/', key: 'home', icon: IconHome, end: true },
-  { to: '/map', key: 'map', icon: IconSchool, end: false },
-  { to: '/lobby', key: 'games', icon: IconFerris, end: false },
-  { to: '/profile', key: 'my', icon: IconTower, end: false },
+  { to: '/', key: 'home', icon: IconStar, end: true },
+  { to: '/map', key: 'map', icon: IconStagePrimary, end: false },
+  { to: '/lobby', key: 'games', icon: IconGamepad, end: false },
+  { to: '/profile', key: 'my', icon: IconTrophy, end: false },
 ] as const;
 
 /** 底部 Tab 导航（首页 / 学校 / 乐园 / 总部）；新手剧情未解锁的 tab 不可点 */
@@ -31,6 +31,7 @@ export default function BottomNav() {
 
   return (
     <nav className="bottom-nav" aria-label="main navigation">
+      <span className="bottom-nav-track" aria-hidden="true" />
       {TABS.map(({ to, key, icon: Icon, end }) => {
         const locked = lockedOf(to);
         return (
@@ -44,8 +45,12 @@ export default function BottomNav() {
           >
             {({ isActive }) => (
               <>
-                <Icon size={24} gradient={isActive ? 'gold' : 'teal'} />
+                <span className="nav-icon-shell" aria-hidden="true">
+                  <Icon size={23} gradient={isActive ? 'gold' : 'teal'} />
+                  <i className="nav-orbit" />
+                </span>
                 <span className="nav-label">{t(key)}</span>
+                {isActive && <span className="nav-current-dot" aria-hidden="true" />}
                 {locked && <i className="nav-lock" aria-hidden="true">🔒</i>}
               </>
             )}

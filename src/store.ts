@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { ChildProfile, GameRecord, Lang } from './types';
+import type { ChildProfile, GameRecord, Lang, Theme } from './types';
 import { applyEntry, type PointEntry, type CustomTask, type RewardRequest } from './points';
 import { drawLoot, pendingPacks, type LootDrop } from './content/expedition';
 import { shipBoost } from './content/shipyard';
+import { drawCards as drawStarCards, STAR_CARDS, type CardSetId, type DrawResult } from './content/starCards';
+import { nextDailyCheckin, type CheckinReward, type DailyCheckinState } from './dailyCheckin';
 
 /** 新孩子初始积分（用于体验装扮/兑换） */
 export const INITIAL_POINTS = 200;
@@ -25,6 +27,9 @@ export interface WrongItem {
 
 export interface AppState {
   lang: Lang;
+  /** 主题：深色/浅色（浅色=童趣糖果风） */
+  theme: Theme;
+  setTheme: (t: Theme) => void;
   sound: boolean;
   musicOn: boolean;
   voiceOn: boolean;
@@ -37,10 +42,14 @@ export interface AppState {
   mastery: Record<string, Record<string, MasteryState>>;
   /** 课程学习进度：skillId → 已完成步骤数（0-3，第 4 步=练习由 mastery 体现） */
   lessonProgress: Record<string, number>;
+  /** 每日签到：childId → 最近签到日、连续天数、累计天数 */
+  dailyCheckin: Record<string, DailyCheckinState>;
   /** 字卡袋：childId → 已收集汉字 */
   charBag: Record<string, string[]>;
   /** 剧情进度：childId → 已完成剧情节点 id（顺序解锁，见 content/story.ts） */
   storyDone: Record<string, string[]>;
+  /** 已领取剧情奖励：childId → nodeId[] */
+  storyRewardClaimed: Record<string, string[]>;
   /** 待演示的解锁目标（完成剧情后写入；首页挂载时消费并播放卷星解封动画） */
   storyPulse: string | null;
   /** 错题本：childId → 错题记录（自动同步到云端） */
@@ -102,12 +111,15 @@ export interface AppState {
   removeProfile: (id: string) => void;
   setActiveChild: (id: string | null) => void;
   addRecord: (r: GameRecord) => void;
-  /** 知识点练习达标（正确率≥80%）：+1 星，满 3 星转金色 */
-  addSkillResult: (childId: string, skillId: string) => void;
+  /** 记录一次课程练习星级；同一课保留历史最高星级，3 星转金色 */
+  addSkillResult: (childId: string, skillId: string, stars: number) => void;
   /** 完成一个学习步骤（看课文/听读/认生字），封顶 3 */
   completeLessonStep: (skillId: string) => void;
+  /** 主动领取今日签到奖励；同一天重复领取返回 null。 */
+  claimDailyCheckin: (childId: string) => (CheckinReward & { streak: number; total: number }) | null;
   /** 标记剧情节点完成（幂等；完成奖励由调用方通过 applyPoints 发放） */
   completeStoryNode: (childId: string, nodeId: string) => void;
+  claimStoryReward: (childId: string, nodeId: string) => void;
   /** 重置剧情进度（回到序章起点，从第一章对话开始重玩） */
   resetStory: (childId: string) => void;
   /** 写入/清除待演示解锁目标 */
@@ -132,18 +144,31 @@ export interface AppState {
   setBuddyWake: (on: boolean) => void;
   /** 常驻远征：上次收取远征战利品的时间戳（childId）；undefined 视为刚开启远征 */
   expeditionLastAt: Record<string, number>;
-  /** 远征战利品材料：星屑(飞船升级) 与 星际图鉴卡碎片（childId） */
+  /** 远征战利品材料：星屑(飞船升级) + 星尘(抽卡)（childId） */
   materials: Record<string, { stardust: number; cardShard: number }>;
   /** 收取远征战利品：按时间累积的补给包数入账，返回本次掉落；无可收取返回 null */
   collectExpedition: (childId: string) => LootDrop | null;
   /** 飞船等级（船坞），1 起 */
   shipLevel: Record<string, number>;
-  /** 已合成的星际图鉴卡 id 列表 */
-  archivedCards: Record<string, string[]>;
   /** 飞船升级：消耗星屑+卷星币 → 升 1 级 */
   upgradeShip: (childId: string, stardustCost: number, beansCost: number) => boolean;
-  /** 合成一张星际图鉴卡：消耗图鉴碎片 */
-  craftCard: (childId: string, cardId: string, shardCost: number) => boolean;
+  /** 已解锁的图鉴卡 id：childId → cardId[] */
+  archivedCards: Record<string, string[]>;
+  /** 已领取的套系集齐奖励：childId → setId[] */
+  cardRewardClaimed: Record<string, string[]>;
+  /** 抽卡：消耗星尘，返回本次抽卡结果 */
+  drawCards: (childId: string, count: number, setId?: CardSetId) => DrawResult;
+  /** 领取套系集齐奖励：返回是否成功 */
+  claimCardReward: (childId: string, setId: CardSetId) => boolean;
+  /** 剧情等固定来源授予一张图鉴卡（幂等，不消耗星尘） */
+  grantArchiveCard: (childId: string, cardId: string) => void;
+  /** 首页展示徽章（最多 3 枚，从已点亮的徽章中自选） */
+  showBadges: Record<string, string[]>;
+  /** 新版剧情授勋记录：childId → badgeId[] */
+  badges: Record<string, string[]>;
+  grantBadge: (childId: string, badgeId: string) => void;
+  /** 设置首页展示徽章（自动限 3 枚） */
+  setShowBadges: (childId: string, ids: string[]) => void;
   clearAll: () => void;
 }
 
@@ -151,6 +176,7 @@ export const useStore = create<AppState>()(
   persist(
     (set) => ({
       lang: 'zh',
+      theme: 'dark',
       sound: true,
       musicOn: true,
       voiceOn: true,
@@ -160,8 +186,10 @@ export const useStore = create<AppState>()(
       records: [],
       mastery: {},
       lessonProgress: {},
+      dailyCheckin: {},
       charBag: {},
       storyDone: {},
+      storyRewardClaimed: {},
       storyPulse: null,
       wrongs: {},
       points: {},
@@ -183,6 +211,14 @@ export const useStore = create<AppState>()(
       materials: {},
       shipLevel: {},
       archivedCards: {},
+      cardRewardClaimed: {},
+      showBadges: {},
+      badges: {},
+      grantBadge: (childId, badgeId) => set((s) => {
+        const current = s.badges[childId] ?? [];
+        if (current.includes(badgeId)) return {};
+        return { badges: { ...s.badges, [childId]: [...current, badgeId] } };
+      }),
       openBuddy: (open) => set({ buddyOpen: open }),
       toggleBuddy: () => set((s) => ({ buddyOpen: !s.buddyOpen })),
       setBuddyWake: (on) => set({ buddyWakeOn: on }),
@@ -216,16 +252,17 @@ export const useStore = create<AppState>()(
             points = r.points;
             pointLog = { ...pointLog, [childId]: r.log };
           }
-          // 材料入账：星屑(飞船升级) + 图鉴卡碎片
+          // 材料入账：星屑(飞船升级) + 星尘(抽卡)
           const prevMat = s.materials[childId] ?? { stardust: 0, cardShard: 0 };
+          const cardShardTotal = Math.round((base.cardShard ?? 0) * boost);
           const nextMat = {
             stardust: prevMat.stardust + stardustTotal,
-            cardShard: prevMat.cardShard + base.cardShard,
+            cardShard: prevMat.cardShard + cardShardTotal,
           };
           // 随机装扮：加入已拥有列表（免费获得）
           const owned = new Set(s.ownedItems[childId] ?? []);
           for (const oid of base.outfits) owned.add(oid);
-          result = { ...base, beans: beansEach * packs, stardust: stardustTotal };
+          result = { ...base, beans: beansEach * packs, stardust: stardustTotal, cardShard: cardShardTotal };
           return {
             points,
             pointLog,
@@ -262,18 +299,63 @@ export const useStore = create<AppState>()(
         });
         return did;
       },
-      craftCard: (childId, cardId, shardCost) => {
-        const s = useStore.getState();
-        const owned = s.archivedCards[childId] ?? [];
-        if (owned.includes(cardId)) return true; // 已合成视为成功
-        const mat = s.materials[childId] ?? { stardust: 0, cardShard: 0 };
-        if (mat.cardShard < shardCost) return false;
-        set((st) => ({
-          materials: { ...st.materials, [childId]: { ...st.materials[childId], cardShard: Math.max(0, (st.materials[childId]?.cardShard ?? 0) - shardCost) } },
-          archivedCards: { ...st.archivedCards, [childId]: [...(st.archivedCards[childId] ?? []), cardId] },
-        }));
-        return true;
+      drawCards: (childId, count, setId) => {
+        let result: DrawResult = { ids: [], newCards: [], convertedShards: 0 };
+        set((st) => {
+          const mat = st.materials[childId] ?? { stardust: 0, cardShard: 0 };
+          const cost = count === 10 ? 900 : count * 100;
+          if (mat.cardShard < cost) return {};
+          const owned = st.archivedCards[childId] ?? [];
+          result = drawStarCards(count, owned, setId);
+          const nextOwned = [...new Set([...owned, ...result.ids])];
+          return {
+            materials: { ...st.materials, [childId]: { ...mat, cardShard: mat.cardShard - cost + result.convertedShards } },
+            archivedCards: { ...st.archivedCards, [childId]: nextOwned },
+          };
+        });
+        return result;
       },
+      claimCardReward: (childId, setId) => {
+        let ok = false;
+        set((st) => {
+          const owned = st.archivedCards[childId] ?? [];
+          const claimed = st.cardRewardClaimed[childId] ?? [];
+          if (claimed.includes(setId)) return {};
+          const setCards = STAR_CARDS.filter((c) => c.setId === setId);
+          if (setCards.length === 0) return {};
+          const haveAll = setCards.every((c) => owned.includes(c.id));
+          if (!haveAll) return {};
+          const rewardBeans = setCards[0]?.setId ? 500 : 0;
+          const r = applyEntry(st.points, st.pointLog[childId] ?? [], {
+            id: `card-set:${setId}:${Date.now()}`,
+            time: Date.now(),
+            amount: rewardBeans,
+            reason: '图鉴套系集齐奖励',
+            childId,
+          });
+          ok = true;
+          return {
+            points: r.points,
+            pointLog: { ...st.pointLog, [childId]: r.log },
+            cardRewardClaimed: { ...st.cardRewardClaimed, [childId]: [...claimed, setId] },
+          };
+        });
+        return ok;
+      },
+      grantArchiveCard: (childId, cardId) =>
+        set((s) => {
+          if (!STAR_CARDS.some((card) => card.id === cardId)) return {};
+          const owned = s.archivedCards[childId] ?? [];
+          if (owned.includes(cardId)) return {};
+          return { archivedCards: { ...s.archivedCards, [childId]: [...owned, cardId] } };
+        }),
+      setShowBadges: (childId, ids) =>
+        set((st) => {
+          // 去重 + 限 3 枚（保留用户点选顺序）
+          const seen: string[] = [];
+          for (const id of ids) if (!seen.includes(id) && seen.length < 3) seen.push(id);
+          return { showBadges: { ...st.showBadges, [childId]: seen } };
+        }),
       redeemItem: (childId, itemId, cost) => {
         let ok = false;
         useStore.setState((s) => {
@@ -432,6 +514,7 @@ export const useStore = create<AppState>()(
           return { points: r.points, pointLog: { ...s.pointLog, [childId]: r.log }, customTasks: { ...s.customTasks, [childId]: nextList } };
         }),
       setLang: (lang) => set({ lang }),
+      setTheme: (theme) => set({ theme }),
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       setMusicOn: (musicOn) => set({ musicOn }),
       setVoiceOn: (voiceOn) => set({ voiceOn }),
@@ -445,6 +528,7 @@ export const useStore = create<AppState>()(
           mastery: (() => { const m = { ...s.mastery }; delete m[id]; return m; })(),
           points: (() => { const p = { ...s.points }; delete p[id]; return p; })(),
           pointLog: (() => { const p = { ...s.pointLog }; delete p[id]; return p; })(),
+          dailyCheckin: (() => { const d = { ...s.dailyCheckin }; delete d[id]; return d; })(),
           charBag: (() => { const c = { ...s.charBag }; delete c[id]; return c; })(),
           wrongs: (() => { const w = { ...s.wrongs }; delete w[id]; return w; })(),
           customTasks: (() => { const t = { ...s.customTasks }; delete t[id]; return t; })(),
@@ -453,20 +537,23 @@ export const useStore = create<AppState>()(
           avatarColor: (() => { const a = { ...s.avatarColor }; delete a[id]; return a; })(),
           avatarHair: (() => { const h = { ...s.avatarHair }; delete h[id]; return h; })(),
           storyDone: (() => { const d = { ...s.storyDone }; delete d[id]; return d; })(),
+          storyRewardClaimed: (() => { const r = { ...s.storyRewardClaimed }; delete r[id]; return r; })(),
           rewardRequests: (() => { const r = { ...s.rewardRequests }; delete r[id]; return r; })(),
           expeditionLastAt: (() => { const e = { ...s.expeditionLastAt }; delete e[id]; return e; })(),
           materials: (() => { const m = { ...s.materials }; delete m[id]; return m; })(),
           shipLevel: (() => { const sh = { ...s.shipLevel }; delete sh[id]; return sh; })(),
           archivedCards: (() => { const a = { ...s.archivedCards }; delete a[id]; return a; })(),
+          cardRewardClaimed: (() => { const c = { ...s.cardRewardClaimed }; delete c[id]; return c; })(),
+          showBadges: (() => { const b = { ...s.showBadges }; delete b[id]; return b; })(),
           activeChildId: s.activeChildId === id ? null : s.activeChildId,
         })),
       setActiveChild: (activeChildId) => set({ activeChildId }),
       addRecord: (r) => set((s) => ({ records: [...s.records, r] })),
-      addSkillResult: (childId, skillId) =>
+      addSkillResult: (childId, skillId, resultStars) =>
         set((s) => {
           const childMap = { ...(s.mastery[childId] ?? {}) };
           const prev = childMap[skillId] ?? { stars: 0, gold: false, updatedAt: 0 };
-          const stars = Math.min(3, prev.stars + 1);
+          const stars = Math.max(prev.stars, Math.max(0, Math.min(3, Math.floor(resultStars))));
           const gold = stars >= 3;
           childMap[skillId] = { stars, gold, updatedAt: Date.now() };
           let pts = s.points;
@@ -483,8 +570,14 @@ export const useStore = create<AppState>()(
           if (cur.includes(nodeId)) return {};
           return { storyDone: { ...s.storyDone, [childId]: [...cur, nodeId] } };
         }),
+      claimStoryReward: (childId, nodeId) =>
+        set((s) => {
+          const claimed = s.storyRewardClaimed[childId] ?? [];
+          if (claimed.includes(nodeId)) return {};
+          return { storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [...claimed, nodeId] } };
+        }),
       resetStory: (childId) =>
-        set((s) => ({ storyDone: { ...s.storyDone, [childId]: [] } })),
+        set((s) => ({ storyDone: { ...s.storyDone, [childId]: [] }, storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [] } })),
       setStoryPulse: (target) => set({ storyPulse: target }),
       completeLessonStep: (skillId) =>
         set((s) => {
@@ -500,6 +593,32 @@ export const useStore = create<AppState>()(
           })();
           return { lessonProgress: { ...s.lessonProgress, [skillId]: next }, ...stepPoints };
         }),
+      claimDailyCheckin: (childId) => {
+        let result: (CheckinReward & { streak: number; total: number }) | null = null;
+        set((s) => {
+          const next = nextDailyCheckin(s.dailyCheckin[childId]);
+          if (!next) return {};
+          const entry = {
+            id: `checkin:${childId}:${next.state.lastDate}`,
+            time: Date.now(),
+            amount: next.reward.beans,
+            reason: `每日签到·连续 ${next.state.streak} 天`,
+            childId,
+          };
+          const points = applyEntry(s.points, s.pointLog[childId] ?? [], entry);
+          const mat = s.materials[childId] ?? { stardust: 0, cardShard: 0 };
+          result = { ...next.reward, streak: next.state.streak, total: next.state.total };
+          return {
+            dailyCheckin: { ...s.dailyCheckin, [childId]: next.state },
+            points: points.points,
+            pointLog: { ...s.pointLog, [childId]: points.log },
+            materials: next.reward.stardust > 0
+              ? { ...s.materials, [childId]: { ...mat, stardust: mat.stardust + next.reward.stardust } }
+              : s.materials,
+          };
+        });
+        return result;
+      },
       collectChars: (childId, chars) =>
         set((s) => {
           const bag = new Set(s.charBag[childId] ?? []);
@@ -570,10 +689,32 @@ export const useStore = create<AppState>()(
         set((s) => ({ wrongs: { ...s.wrongs, [childId]: (s.wrongs[childId] ?? []).filter((x) => x.uid !== uid) } })),
       setParentPin: (parentPin) => set({ parentPin }),
       setDailyLimit: (dailyLimitMin) => set({ dailyLimitMin }),
-      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, charBag: {}, storyDone: {}, storyPulse: null, wrongs: {}, points: {}, pointLog: {}, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, rewardRequests: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {} }),
+      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, storyDone: {}, storyRewardClaimed: {}, storyPulse: null, wrongs: {}, points: {}, pointLog: {}, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, rewardRequests: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
     }),
     {
       name: 'smart-fun-zone',
+      // v2：下线旧的商店/自动点亮徽章，切换到剧情授勋体系。
+      version: 2,
+      migrate: (persistedState, version) => {
+        let state = persistedState as Partial<AppState>;
+        if (version < 1) {
+          const npcCardIds = new Set(STAR_CARDS.filter((card) => card.setId === 'npc').map((card) => card.id));
+          const archivedCards = Object.fromEntries(Object.entries(state.archivedCards ?? {}).map(([childId, cardIds]) => [childId, (cardIds ?? []).filter((cardId) => !npcCardIds.has(cardId))]));
+          const cardRewardClaimed = Object.fromEntries(Object.entries(state.cardRewardClaimed ?? {}).map(([childId, setIds]) => [childId, (setIds ?? []).filter((setId) => setId !== 'npc')]));
+          state = { ...state, archivedCards, cardRewardClaimed };
+        }
+        if (version < 2) {
+          const oldBadge = (id: string) => id.startsWith('b-');
+          const ownedItems = Object.fromEntries(Object.entries(state.ownedItems ?? {}).map(([childId, itemIds]) => [childId, (itemIds ?? []).filter((id) => !oldBadge(id))]));
+          const equipped = Object.fromEntries(Object.entries(state.equipped ?? {}).map(([childId, current]) => {
+            const { badge: _oldBadge, ...remaining } = current ?? {};
+            return [childId, remaining];
+          }));
+          const storeOverrides = Object.fromEntries(Object.entries(state.storeOverrides ?? {}).filter(([itemId]) => !oldBadge(itemId)));
+          state = { ...state, ownedItems, equipped, storeOverrides, showBadges: {}, badges: {} };
+        }
+        return state as AppState;
+      },
       // 面板开合状态不持久化（避免刷新后自动弹出）；其余（含唤醒偏好）照常保存
       partialize: (s) => {
         const p = { ...s } as Partial<AppState>;

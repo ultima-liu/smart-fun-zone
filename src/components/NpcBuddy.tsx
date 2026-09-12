@@ -107,11 +107,10 @@ export default function NpcBuddy({ npc, storyNodeIds }: Props) {
           node={storyNode}
           onDone={() => {
             setStoryNode(null);
-            // 完成剧情对话大概率有解锁动画要演示 → 回首页；用最新 store 状态确认
+            // 对话完成后回首页，在任务条领取奖励。
             const st = useStore.getState();
             const done = st.storyDone[child.id] ?? [];
-            const hasFresh = done.length > 0 && !done.includes(storyNode.id);
-            if (hasFresh || st.storyPulse) nav('/');
+            if (done.includes(storyNode.id)) nav('/');
           }}
           onClose={() => setStoryNode(null)}
         />

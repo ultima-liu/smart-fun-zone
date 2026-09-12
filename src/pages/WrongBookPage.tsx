@@ -1,22 +1,34 @@
-import { useNavigate } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { useI18n } from '../i18n';
 import { KidButton, TopBar } from '../components/ui';
-import { gradeLabel } from '../types';
+import { gradeLabel, SUBJECTS } from '../types';
+import { getSkill } from '../content/skills';
 
 /** 孩子的错题本：看自己答错的题，并可“再去练一遍” */
 export default function WrongBookPage() {
   const nav = useNavigate();
   const { t, lang } = useI18n();
+  const [params] = useSearchParams();
+  const subjectFilter = params.get('subject');
   const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
   const wrongs = useStore((s) => s.wrongs);
   const removeWrong = useStore((s) => s.removeWrong);
 
-  const list = child ? wrongs[child.id] ?? [] : [];
+  const allList = child ? wrongs[child.id] ?? [] : [];
+  const list = useMemo(() => {
+    if (!subjectFilter) return allList;
+    return allList.filter((w) => getSkill(w.lessonId)?.subject === subjectFilter);
+  }, [allList, subjectFilter]);
+
+  const subject = SUBJECTS.find((s) => s.id === subjectFilter);
+  const backTarget = subject ? `/subject/${subject.id}` : '/';
+  const title = subject ? `${subject.name[lang]} · ${t('wrongBook')}` : t('wrongBook');
 
   return (
     <div className="page wrongs-page">
-      <TopBar eyebrow="Wrong Book · 错题本" title={t('wrongBook')} onBack={() => nav('/')} />
+      <TopBar eyebrow="Wrong Book · 错题本" title={title} onBack={() => nav(backTarget)} />
       {!child ? (
         <p className="empty-tip">{t('noData')}</p>
       ) : list.length === 0 ? (

@@ -55,7 +55,7 @@ export function SchoolBuilding({ size = 96 }: { size?: number }) {
         <rect key={x} x={x} y="86" width="10" height="12" rx="2.4" fill="#5FB8D8" stroke="#fff" strokeWidth="1.4" />
       ))}
       {/* 门 */}
-      <rect x="58" y="88" width="14" height="20" rx="6.5 6.5 2 2" fill="#8A5A3B" />
+      <path d="M58 94.5 Q58 88 64.5 88 Q72 88 72 94.5 V106 Q72 108 70 108 H60 Q58 108 58 106 Z" fill="#8A5A3B" />
       <circle cx="69" cy="99" r="1.6" fill="#F6C24B" />
       {/* 高光 */}
       <path d="M40 58 q-4 22 0 40 l6 0 q-4 -20 0 -40 z" fill="#fff" opacity="0.25" />
@@ -97,7 +97,7 @@ export function HqBuilding({ size = 96 }: { size?: number }) {
       <rect x="54" y="72" width="22" height="6" rx="3" fill="#F6C24B" opacity="0.95" />
       <rect x="54" y="84" width="22" height="6" rx="3" fill="#F6C24B" opacity="0.95" />
       {/* 门 + 徽章 */}
-      <rect x="58" y="94" width="14" height="16" rx="6.5 6.5 2 2" fill="#43349E" stroke="#F6C24B" strokeWidth="1.6" />
+      <path d="M58 100.5 Q58 94 64.5 94 Q72 94 72 100.5 V108 Q72 110 70 110 H60 Q58 110 58 108 Z" fill="#43349E" stroke="#F6C24B" strokeWidth="1.6" />
       <path d="M65 52 l2.2 4.4 4.9 .7 -3.5 3.4 .8 4.8 -4.4 -2.3 -4.4 2.3 .8 -4.8 -3.5 -3.4 4.9 -.7z" fill="#fff" />
     </svg>
   );
@@ -130,7 +130,7 @@ export function LibraryBuilding({ size = 96 }: { size?: number }) {
       <circle cx="65" cy="22" r="5" fill="#fff" />
       <path d="M56 14 l3 6 -3 6 M74 14 l3 6 -3 6" stroke="#C4B5FD" strokeWidth="1.8" fill="none" strokeLinecap="round" opacity="0.8" />
       {/* 中央门 + 星徽 */}
-      <rect x="57" y="88" width="16" height="22" rx="8 8 2 2" fill="#43349E" stroke="#F6C24B" strokeWidth="1.6" />
+      <path d="M57 96 Q57 88 65 88 Q73 88 73 96 V108 Q73 110 71 110 H59 Q57 110 57 108 Z" fill="#43349E" stroke="#F6C24B" strokeWidth="1.6" />
       <path d="M65 46 l2.2 4.4 4.9 .7 -3.5 3.4 .8 4.8 -4.4 -2.3 -4.4 2.3 .8 -4.8 -3.5 -3.4 4.9 -.7z" fill="#fff" />
     </svg>
   );

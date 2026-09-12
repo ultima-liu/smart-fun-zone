@@ -36,6 +36,8 @@ export interface StoryNode {
   rule: 'login' | 'visitSchool' | 'visitLobby' | 'visitStore' | 'lesson' | 'game' | 'visitLibrary' | 'visitExpedition' | 'visitBuddy' | 'collectLoot';
   /** 完成奖励（卷星币，走 applyPoints + 幂等 sourceId） */
   reward: number;
+  /** 与 NPC 完成对话后附赠的图鉴卡；动作型节点不发卡 */
+  rewardCardId?: string;
 }
 
 export interface StoryChapter {
@@ -68,6 +70,7 @@ export const STORY: StoryChapter[] = [
         task: { zh: '和铁砣聊聊，准备启航', en: 'Talk with Tie-Tuo to set sail' },
         rule: 'login',
         reward: 5,
+        rewardCardId: 'npc-tie-tuo',
       },
     ],
   },
@@ -93,6 +96,7 @@ export const STORY: StoryChapter[] = [
         task: { zh: '和星校长阿光聊聊，了解学校', en: 'Talk with Principal A-Guang about school' },
         rule: 'visitSchool',
         reward: 5,
+        rewardCardId: 'npc-a-guang',
       },
       {
         id: 'c1-2',
@@ -126,6 +130,7 @@ export const STORY: StoryChapter[] = [
         task: { zh: '和乐园主泡泡聊聊', en: 'Talk with Park Master Pao-Pao' },
         rule: 'visitLobby',
         reward: 5,
+        rewardCardId: 'npc-pao-pao',
       },
       {
         id: 'c2-2',
@@ -159,6 +164,7 @@ export const STORY: StoryChapter[] = [
         task: { zh: '和补给站老板铛铛聊聊', en: 'Talk with store owner Dang-Dang' },
         rule: 'visitStore',
         reward: 5,
+        rewardCardId: 'npc-dang-dang',
       },
     ],
   },
@@ -177,12 +183,13 @@ export const STORY: StoryChapter[] = [
           { zh: '欢迎来到星核档案库，我是档案员晶晶。', en: 'Welcome to the Star Archive. I am Jing-Jing the archivist.' },
           { zh: '卷星的星光，藏在一个个被记住的故事里。', en: 'Juan Star’s light lives in stories that are remembered.' },
           { zh: '可乌乌怪把故事卡片偷走了……它们散落在卷星各处。', en: 'But Gloom Gremlins stole the story cards… they’re scattered across Juan Star.' },
-          { zh: '如果你想帮忙，就收集这些卡片，把它们一格格拼回档案库吧。', en: 'If you want to help, collect the cards and place them back into the archive.' },
+          { zh: '如果你想帮忙，就收集星尘召唤这些卡片，把它们一格格拼回档案库吧。', en: 'If you want to help, gather stardust to summon the cards and place them back into the archive.' },
         ],
         text: { zh: '档案库的卡片散落了，去晶晶那儿了解怎么收集吧。', en: 'The archive cards are scattered. Ask Jing-Jing how to collect them.' },
         task: { zh: '找档案管理员晶晶聊聊', en: 'Talk with archivist Jing-Jing' },
         rule: 'visitLibrary',
         reward: 6,
+        rewardCardId: 'npc-jing-jing',
       },
     ],
   },
@@ -224,6 +231,7 @@ export const STORY: StoryChapter[] = [
         task: { zh: '认识小卷，了解她的功能', en: 'Meet Xiao Juan and learn what she can do' },
         rule: 'visitBuddy',
         reward: 8,
+        rewardCardId: 'npc-xiao-juan',
       },
     ],
   },

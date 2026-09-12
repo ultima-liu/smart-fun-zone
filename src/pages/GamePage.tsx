@@ -60,9 +60,9 @@ export default function GamePage() {
     addRecord(buildRecord(child.id, def.id, level, r));
     // 完成游戏 +2（每天每游戏每关只发一次）
     applyPoints(child.id, 2, `完成游戏·${def.name[lang]}`, `game:${def.id}:l${level}:${new Date().toDateString()}`);
-    // 学习流程：正确率达标则知识点 +1 星
+    // 游戏进入学习流程时，按本次游戏结算星级刷新该课的最高星级。
     if (skillId && r.total > 0 && r.correct / r.total >= 0.8) {
-      addSkillResult(child.id, skillId);
+      addSkillResult(child.id, skillId, r.stars);
     }
   };
 

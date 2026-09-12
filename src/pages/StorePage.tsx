@@ -9,10 +9,10 @@ import { IconBean } from '../components/icons';
 import { SystemPlanet } from '../components/cosmos';
 import { KIND_LABEL, shelf, itemById, type ItemKind, type StoreItem } from '../points';
 import { TASKS, effTask } from '../tasks';
-import AvatarFigure from '../components/AvatarFigure';
+import WardrobeAvatar from '../components/WardrobeAvatar';
 import NpcBuddy from '../components/NpcBuddy';
 
-/** 补给站：任务墙 + 4 类货架（装扮/徽章/道具/奖励兑换） + 预览 + 我的装扮 + 流水 */
+/** 补给站：任务墙 + 3 类货架（装扮/道具/奖励兑换） + 预览 + 我的装扮 + 流水 */
 export default function StorePage() {
   const nav = useNavigate();
   const { lang, t } = useI18n();
@@ -62,8 +62,8 @@ export default function StorePage() {
   const renderCard = (it: StoreItem) => {
     const has = owned.includes(it.id);
     const afford = points >= it.cost;
-    const isEquip = it.kind === 'outfit' || it.kind === 'badge';
-    const isOn = (it.kind === 'outfit' && equipped.outfit === it.id) || (it.kind === 'badge' && equipped.badge === it.id);
+    const isEquip = it.kind === 'outfit';
+    const isOn = it.kind === 'outfit' && equipped.outfit === it.id;
     return (
       <div key={it.id} data-kind={it.kind} className={`store-item deck-card ${has ? 'owned' : afford ? '' : 'poor'}`}>
         <div className="store-item-icon">{it.icon}</div>
@@ -99,7 +99,7 @@ export default function StorePage() {
     );
   };
 
-  const SHELVES: ItemKind[] = ['outfit', 'badge', 'item', 'reward'];
+  const SHELVES: ItemKind[] = ['outfit', 'item', 'reward'];
   const SHELF_ICON: Record<ItemKind, string> = { outfit: '🎨', badge: '🎖️', item: '🛠️', reward: '🎁' };
 
   return (
@@ -122,7 +122,7 @@ export default function StorePage() {
           <div className="store-balance-label">{child.name} 的卷卷豆</div>
           <div className="store-balance-num">{points}</div>
         </div>
-        <div className="store-avatar">{child.avatar}</div>
+        <div className="store-avatar"><WardrobeAvatar outfitId={equipped.outfit} className="wardrobe-avatar--store-mini" /></div>
       </div>
 
       {msg && <p className="saved-tip">{msg}</p>}
@@ -173,20 +173,19 @@ export default function StorePage() {
         ) : (
           <>
             <div className="myoutfit-preview">
-              <AvatarFigure size={120} equipped={equipped} colorway={(stateNow.avatarColor[child.id] as never) ?? 'pink'} hairstyle={(stateNow.avatarHair[child.id] as never) ?? 'sporty'} />
+              <WardrobeAvatar outfitId={equipped.outfit} className="wardrobe-avatar--store-preview" />
             </div>
             <div className="myoutfit-grid">
               {owned.map((id) => {
                 const it = itemById(id);
                 if (!it) return null;
                 const isOutfit = it.kind === 'outfit';
-                const isBadge = it.kind === 'badge';
-                const on = (isOutfit && equipped.outfit === id) || (isBadge && equipped.badge === id);
+                const on = isOutfit && equipped.outfit === id;
                 return (
                   <div key={id} className={`myoutfit ${on ? 'on' : ''}`}>
                     <span className="myoutfit-icon">{it.icon}</span>
                     <span className="myoutfit-name">{it.name}</span>
-                    {(isOutfit || isBadge) && (
+                    {isOutfit && (
                       on ? (
                         <button className="preview-btn" onClick={() => unequipItem(child.id, id)}>卸下</button>
                       ) : (
@@ -223,17 +222,15 @@ export default function StorePage() {
       {/* 预览弹层：先试穿后购买 */}
       {preview && (() => {
         const isOutfit = preview.kind === 'outfit';
-        const isBadge = preview.kind === 'badge';
         const tmpEquipped = { ...equipped };
         if (isOutfit) tmpEquipped.outfit = preview.id;
-        if (isBadge) tmpEquipped.badge = preview.id;
         const afford = points >= preview.cost;
         return (
           <div className="preview-overlay" onClick={() => setPreview(null)}>
             <div className="preview-card" onClick={(e) => e.stopPropagation()}>
               <button className="preview-close" onClick={() => setPreview(null)}>✕</button>
               <div className="preview-figure">
-                <AvatarFigure size={180} equipped={tmpEquipped} colorway={(stateNow.avatarColor[child.id] as never) ?? 'pink'} hairstyle={(stateNow.avatarHair[child.id] as never) ?? 'sporty'} pose="happy" />
+                <WardrobeAvatar outfitId={tmpEquipped.outfit} className="wardrobe-avatar--store-modal" />
               </div>
               <div className="preview-name">{preview.icon} {preview.name}</div>
               <div className="preview-desc">{preview.desc}</div>

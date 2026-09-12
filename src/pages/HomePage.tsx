@@ -5,7 +5,7 @@ import { EMPTY, useGates } from '../features';
 import { useI18n } from '../i18n';
 import { KidButton } from '../components/ui';
 import Modal from '../components/Modal';
-import { AVATARS, GRADES, gradeLabel, type Grade } from '../types';
+import { AVATARS, GRADES, SUBJECTS, gradeLabel, type Grade } from '../types';
 import { speak, playSfx } from '../speech';
 import { tryCompleteStoryNode } from '../storyProgress';
 import RewardBurst from '../components/RewardBurst';
@@ -14,13 +14,14 @@ import LoginDialog from '../components/LoginDialog';
 import ArrivalFlight from '../components/ArrivalFlight';
 import StoryStrip from '../components/StoryStrip';
 import Mascot from '../components/Mascot';
-import AvatarFigure from '../components/AvatarFigure';
-import { IconLock, IconSpeakerOff, IconSpeakerOn, IconBean, IconStar, IconPlay, IconClock } from '../components/icons';
-import { getSkill } from '../content/skills';
-import { DAILY_TASKS, taskProgress } from '../tasks';
+import WardrobeAvatar from '../components/WardrobeAvatar';
+import { IconLock, IconSpeakerOff, IconSpeakerOn } from '../components/icons';
+import { getSkill, skillsByGrade } from '../content/skills';
+import { DAILY_TASKS, WEEKLY_TASKS, taskProgress } from '../tasks';
 import InteractiveJuanStar from '../components/InteractiveJuanStar';
 import { CosmicFleet } from '../components/cosmos';
 import CurrencyBar from '../components/CurrencyBar';
+import AttrRadar from '../components/AttrRadar';
 import { pendingPacks, LOOT_MAX_PACKS, type LootDrop } from '../content/expedition';
 
 /** 登录引导小火箭：纯 SVG 自绘，船头固定朝上（星门中央旋转 180° 即“俯冲钻入”，四周飞船直接使用本图） */
@@ -51,6 +52,11 @@ const GATE_TRAILS: Record<'gs1' | 'gs2' | 'gs3', number[]> = {
   gs3: [2.89, 2.98, 3.1, 3.25, 3.44],
 };
 
+/** 头衔档位：由总星星决定（1~5） */
+function tierFor(stars: number): number {
+  return stars >= 60 ? 5 : stars >= 30 ? 4 : stars >= 16 ? 3 : stars >= 6 ? 2 : 1;
+}
+
 export default function HomePage() {
   const nav = useNavigate();
   const { t, lang } = useI18n();
@@ -59,24 +65,26 @@ export default function HomePage() {
   const sound = useStore((s) => s.sound);
   const setLang = useStore((s) => s.setLang);
   const toggleSound = useStore((s) => s.toggleSound);
+  const theme = useStore((s) => s.theme);
+  const setTheme = useStore((s) => s.setTheme);
   const setActiveChild = useStore((s) => s.setActiveChild);
   const addProfile = useStore((s) => s.addProfile);
   const removeProfile = useStore((s) => s.removeProfile);
   const activeChildId = useStore((s) => s.activeChildId);
-  const pointsNow = useStore((s) => (s.activeChildId ? s.points[s.activeChildId] ?? 0 : 0));
   const equippedNow = useStore((s) => (s.activeChildId ? s.equipped[s.activeChildId] : undefined));
-  const colorNow = useStore((s) => (s.activeChildId ? s.avatarColor[s.activeChildId] : undefined));
-  const hairNow = useStore((s) => (s.activeChildId ? s.avatarHair[s.activeChildId] : undefined));
   const child = useMemo(() => profiles.find((p) => p.id === activeChildId) ?? null, [profiles, activeChildId]);
 
   const [creating, setCreating] = useState(false);
   const [switching, setSwitching] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [arrive, setArrive] = useState(false);
+  const [taskTab, setTaskTab] = useState<'day' | 'week'>('day');
   const [pulse, setPulse] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const [lootBurst, setLootBurst] = useState<LootDrop | null>(null);
   const expeditionLastAt = useStore((s) => (s.activeChildId ? s.expeditionLastAt[s.activeChildId] : undefined));
   const materials = useStore((s) => (s.activeChildId ? s.materials[s.activeChildId] : undefined));
+  const ownedItemsNow = useStore((s) => (s.activeChildId ? s.ownedItems[s.activeChildId] ?? EMPTY : EMPTY));
   const collectLoot = useStore((s) => s.collectExpedition);
   // 常驻远征：可收取的补给包数（受上限封顶；首次尚未收取视为可收 1 包）
   const [lootTick, setLootTick] = useState(0);
@@ -104,11 +112,29 @@ export default function HomePage() {
   const [age, setAge] = useState<Grade>('g1');
   const [editMode, setEditMode] = useState(false);
   const storyDone = useStore((s) => (s.activeChildId ? s.storyDone[s.activeChildId] ?? EMPTY : EMPTY));
+  // 必须在“无孩子/建档”早返回之前订阅，避免登录成功激活孩子后改变 Hook 数量。
+  const masteryAll = useStore((s) => s.mastery);
   const gates = useGates();
 
   // 消费待演示的解锁目标（功能页完成剧情后写入 → 回到首页播放解封动画）
   const storyPulse = useStore((s) => s.storyPulse);
   const setStoryPulse = useStore((s) => s.setStoryPulse);
+
+  useEffect(() => {
+    const syncFullscreen = () => setIsFullscreen(Boolean(document.fullscreenElement));
+    document.addEventListener('fullscreenchange', syncFullscreen);
+    syncFullscreen();
+    return () => document.removeEventListener('fullscreenchange', syncFullscreen);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await document.documentElement.requestFullscreen();
+    } catch {
+      // 全屏可能被浏览器策略拒绝，保持页面正常使用即可
+    }
+  };
 
   // Dashboard 一屏：仅桌面视口禁用 body 滚动，确保无滚动条；移动端保持可滚动不锁
   useEffect(() => {
@@ -163,22 +189,29 @@ export default function HomePage() {
   const enter = (id: string) => {
     setActiveChild(id);
     setSwitching(false);
-    speak(t('welcome'), lang);
+    const p = profiles.find((x) => x.id === id);
+    if (p) {
+      const tier = tierFor(childTotalStars(records, p.id));
+      speak(t('welcomeHome', { title: t(`titleTier${tier}`), name: p.name }), lang);
+    } else {
+      speak(t('welcome'), lang);
+    }
     nav('/'); // 建档/切换后先回首页，跟随新手剧情推进
   };
 
   const create = () => {
+    const kidName = name.trim() || (lang === 'zh' ? '小宝贝' : 'Kid');
     const id = `c${Date.now()}`;
     addProfile({
       id,
-      name: name.trim() || (lang === 'zh' ? '小宝贝' : 'Kid'),
+      name: kidName,
       avatar,
       ageBand: age,
       createdAt: Date.now(),
     });
     setActiveChild(id);
     setCreating(false);
-    speak(t('welcome'), lang);
+    speak(t('welcomeHome', { title: t('titleTier1'), name: kidName }), lang);
     nav('/'); // 建档后先回首页，跟随新手剧情推进
   };
 
@@ -294,6 +327,29 @@ export default function HomePage() {
   const garden = gardenStage(totalStars);
   const goldCount = goldSkillCount(useStore.getState().mastery, child.id);
   const litCount = litSkillCount(useStore.getState().mastery, child.id);
+  // 本年级课程进度：圈内=本年级满星课时 / 总课时；右侧按学科逐门显示
+  const gradeSkills = skillsByGrade(child.ageBand);
+  const gMastery = masteryAll[child.id] ?? {};
+  const gradeGold = gradeSkills.filter((s) => gMastery[s.id]?.gold).length;
+  const gradeTotal = gradeSkills.length;
+  const gradeBySubject = SUBJECTS
+    .map((sub) => {
+      const list = gradeSkills.filter((s) => s.subject === sub.id);
+      return { id: sub.id, name: sub.name, icon: sub.icon, list, gold: list.filter((s) => gMastery[s.id]?.gold).length, total: list.length };
+    })
+    .filter((x) => x.total > 0);
+  // 卷星人头衔：按总星星自动成长
+  const explorerTier = totalStars >= 60 ? 5 : totalStars >= 30 ? 4 : totalStars >= 16 ? 3 : totalStars >= 6 ? 2 : 1;
+  const explorerTitle = t(`titleTier${explorerTier}`);
+  const mineRec = records.filter((r) => r.childId === child.id);
+  // 四维属性（行为推导，0~100；雷达以最大值定最长边）
+  const outfitOwned = ownedItemsNow.filter((i) => i.startsWith('o-')).length;
+  const attrValues = {
+    wis: Math.min(100, litCount * 5 + goldCount * 10),
+    cou: Math.min(100, mineRec.length * 8),
+    cre: Math.min(100, outfitOwned * 8),
+    tea: Math.min(100, streak * 10 + (expeditionLastAt !== undefined ? 15 : 0)),
+  };
   // 继续学习：最近更新且未满星的课
   const resumeSkill = (() => {
     const m = useStore.getState().mastery[child.id];
@@ -303,6 +359,8 @@ export default function HomePage() {
     ids.sort((a, b) => (m[b].updatedAt ?? 0) - (m[a].updatedAt ?? 0));
     return getSkill(ids[0]);
   })();
+  // 播放进度：这节课已学到第几步（0~3）
+  const resumeDone = resumeSkill ? Math.min(useStore.getState().lessonProgress[resumeSkill.id] ?? 0, 3) : 0;
   // 花园进度环：当前星级在“本阶段 → 下一阶段”之间的进度（0~1）
   const gardenPct = (() => {
     if (garden.stage >= 5) return 1;
@@ -313,92 +371,141 @@ export default function HomePage() {
   const daily = DAILY_TASKS.map((tk) => ({ tk, p: taskProgress(tk, child.id) })).filter((x) => x.p.enabled);
   const doneCount = daily.filter((x) => x.p.done).length;
   const pendingCount = daily.filter((x) => !x.p.done).length;
+  const weekly = WEEKLY_TASKS.map((tk) => ({ tk, p: taskProgress(tk, child.id) })).filter((x) => x.p.enabled);
+  const weekDone = weekly.filter((x) => x.p.done).length;
 
   return (
     <div className="page home home-dash">
       {/* 登录到达首页：左上舱门开 → 飞船飞向卷星 */}
-      {arrive && <ArrivalFlight greet={t('welcomeHome', { name: child.name })} lang={lang} onDone={() => setArrive(false)} />}
+      {arrive && <ArrivalFlight greet={t('welcomeHome', { title: explorerTitle, name: child.name })} lang={lang} onDone={() => setArrive(false)} />}
       <header className="app-header">
         <div className="brand-mini">
           <Mascot pose="happy" size={44} />
           <span className="brand-name">{t('appName')}</span>
         </div>
-        {/* 顶部货币/材料余额：星星/卷星币/星屑/图鉴碎片 */}
+        {/* 顶部货币/材料余额：星星/卷星币/星屑/星尘 */}
         <CurrencyBar compact />
         <div className="app-header-right">
           <button
-            className={`header-lang ${lang === 'en' ? 'active' : ''}`}
+            className={`top-pill ${lang === 'en' ? 'on' : ''}`}
             onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
             aria-label={t('language')}
           >
             {lang === 'zh' ? 'EN' : '中'}
           </button>
-          <KidButton color="white" className="icon-btn" onClick={toggleSound} ariaLabel="sound">
+          <KidButton color="white" className="top-pill" onClick={toggleSound} ariaLabel="sound">
             {sound ? <IconSpeakerOn size={20} /> : <IconSpeakerOff size={20} />}
           </KidButton>
+          {/* 主题切换：深色(月) / 浅色(日) */}
+          <button
+            className={`top-pill ${theme === 'light' ? 'light' : ''}`}
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            aria-label={t('theme')}
+            title={theme === 'dark' ? (t('themeToLight')) : (t('themeToDark'))}
+          >
+            {theme === 'dark' ? '🌙' : '☀️'}
+          </button>
+          <button
+            className="top-pill fullscreen-pill"
+            onClick={toggleFullscreen}
+            aria-label={isFullscreen ? '退出全屏' : '进入全屏'}
+            title={isFullscreen ? '退出全屏' : '进入全屏'}
+          >
+            {isFullscreen ? '⛶' : '⛶'}
+          </button>
         </div>
       </header>
 
-      {/* 剧情条：当前章节任务（序章起顺序推进） */}
-      <StoryStrip />
-
       {/* 主区三栏：左=个人卡 / 中=卷星 / 右=今日任务（一屏，不滚动） */}
       <div className="home-main">
-        {/* 左栏：孩子成长档案 */}
+        {/* 左栏：星际通行证（孩子身份） */}
         <aside className="home-col home-left">
-          <section className="profile-card">
-            {/* 头像 + 称号 */}
-            <div className="pc-head">
-              <div className="pc-avatar">
-                <AvatarFigure
-                  size={84}
-                  equipped={equippedNow}
-                  colorway={(colorNow as never) ?? 'pink'}
-                  hairstyle={(hairNow as never) ?? 'sporty'}
-                  mood={doneCount >= daily.length ? 'proud' : 'happy'}
+          <section className="pass-card">
+            {/* 身份区：大头像 + 星环 + 名字/头衔 */}
+            <div className="ps-hero">
+              <div className="ps-avatar-wrap">
+                <span className="ps-ring" aria-hidden="true" />
+                <span className="ps-halo" aria-hidden="true" />
+                <WardrobeAvatar outfitId={equippedNow?.outfit} className="wardrobe-avatar--home-card" />
+              </div>
+              <div className="ps-id">
+                <h2 className="ps-name">{child.name}</h2>
+                <span className="hq-title-badge"><span className="hq-title-shield">⭐</span><span>{explorerTitle}</span></span>
+                <span className="ps-grade">{GRADES.find((g) => g.id === child.ageBand)?.name[lang]}</span>
+              </div>
+              <button className="ps-switch" onClick={() => setSwitching(true)} aria-label="switch">⇄</button>
+            </div>
+
+            {/* 四维属性 · 雷达图（以最大属性为最长边） */}
+            <div className="ps-attr">
+              <div className="ps-radar-wrap">
+                <AttrRadar
+                  values={attrValues}
+                  labels={{ wis: t('attrWisdom'), cou: t('attrCourage'), cre: t('attrCraft'), tea: t('attrTeam') }}
+                  size={128}
                 />
               </div>
-              <div className="pc-title">
-                <b className="pc-name">{child.name}</b>
-                <span className="pc-grade">{gradeLabel(child.ageBand, lang)}</span>
+            </div>
+
+            {/* 本年级掌握进度 */}
+            <div className="ps-mastery">
+              <div className="ps-mastery-head">
+                <b>{GRADES.find((g) => g.id === child.ageBand)?.name[lang] ?? ''} · {t('masteredSkills')}</b>
+                <span className="ps-mastery-count">{gradeGold}/{gradeTotal}</span>
               </div>
-              <button className="pc-switch" onClick={() => setSwitching(true)} aria-label="switch">⇄</button>
+              <div className="ps-mastery-body">
+                <div className="ps-ring-progress" style={{ '--m': `${gradeTotal ? (gradeGold / gradeTotal) * 100 : 0}%` } as React.CSSProperties}>
+                  <div className="ps-ring-hole">
+                    <span className="ps-ring-txt"><b>{gradeGold}</b><small>/{gradeTotal}</small></span>
+                  </div>
+                </div>
+                {/* 本年级各学科进度（百分比） */}
+                <div className="ps-course-list">
+                  {gradeBySubject.map((x) => {
+                    const all = x.total > 0 && x.gold === x.total;
+                    const any = x.gold > 0;
+                    const pct = x.total ? Math.round((x.gold / x.total) * 100) : 0;
+                    return (
+                      <button
+                        key={x.id}
+                        className={`ps-course${all ? ' gold' : any ? ' lit' : ''}`}
+                        onClick={() => guardNav(`/subject/${x.id}?grade=${child.ageBand}`)}
+                      >
+                        <span className="ps-course-ic">{x.icon}</span>
+                        <span className="ps-course-name">{x.name[lang]}</span>
+                        <span className="ps-course-bar"><i style={{ width: `${pct}%` }} /></span>
+                        <span className="ps-course-pct">{pct}%</span>
+                        {all && <i className="ps-course-star" aria-hidden="true">★</i>}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
-            {/* 成长数据 */}
-            <div className="pc-stats">
-              <div className="pc-stat"><IconStar size={17} gradient="gold" /><b>{totalStars}</b><small>{t('totalStars')}</small></div>
-              <div className="pc-stat"><IconBean size={17} gradient="gold" /><b>{pointsNow}</b><small>{t('beans')}</small></div>
-              <div className="pc-stat"><IconClock size={17} gradient="coral" /><b>{streak}</b><small>{t('streakLabel')}</small></div>
-              <div className="pc-stat"><IconPlay size={17} gradient="mint" /><b>{litCount}</b><small>{t('coursesLearned')}</small></div>
-            </div>
-
-            {/* 继续学习 */}
+            {/* 行动区：继续学习 · 播放器样式 */}
             {resumeSkill && (
-              <button className="resume-bar" onClick={() => guardNav(`/learn/${resumeSkill.id}`)}>
-                <span className="resume-icon">📖</span>
-                <span className="resume-text">
-                  <small>{t('continueLearn')}</small>
-                  <b>{resumeSkill.name[lang]}</b>
+              <button className="resume-bar player-bar" onClick={() => guardNav(`/learn/${resumeSkill.id}`)}>
+                <span className="player-cover" aria-hidden="true">📖</span>
+                <span className="player-main">
+                  <span className="player-meta">
+                    <small>{t('playerResume')}</small>
+                    <b className="player-title">{resumeSkill.name[lang]}</b>
+                  </span>
+                  <span className="player-track">
+                    <i className="player-track-fill" style={{ width: `${(resumeDone / 3) * 100}%` }} />
+                    <em className="player-pos">▍{resumeDone + 1}/4</em>
+                  </span>
                 </span>
-                <span className="resume-go">▶</span>
+                <span className="player-play" aria-hidden="true">▶</span>
               </button>
             )}
-
-            {/* 成长进度：已学课程中，掌握了多少（满星） */}
-            <div className="pc-progress">
-              <div className="pc-progress-head">
-                <span className="pc-progress-row"><i>⭐</i> {t('masteredSkills')}</span>
-                <span className="pc-progress-num">{goldCount}<em> / {litCount}</em></span>
-              </div>
-              <div className="pc-progress-track"><i style={{ width: `${litCount ? (goldCount / litCount) * 100 : 0}%` }} /></div>
-              <span className="pc-progress-tip">{t('masterNote')}</span>
-            </div>
           </section>
         </aside>
 
-        {/* 中栏：大卷星 */}
+        {/* 中栏：新手引导任务在卷星正上方，避免与左右卡片及下方星球重叠 */}
         <section className="hero-card juan-hero juan-hero-big home-center">
+          <StoryStrip />
           <div className="hero-planet-zone">
             <InteractiveJuanStar
               stars={totalStars}
@@ -435,7 +542,7 @@ export default function HomePage() {
             </button>
             <div className="loot-materials" aria-hidden="true">
               <span>✨ 星屑 {materials?.stardust ?? 0}</span>
-              <span>🎴 图鉴碎片 {materials?.cardShard ?? 0}</span>
+              <span>💠 星尘 {materials?.cardShard ?? 0}</span>
             </div>
           </div>
         </section>
@@ -445,37 +552,37 @@ export default function HomePage() {
         {/* 右栏：今日任务（竖排） */}
         <aside className="home-col home-right">
           <section className="task-panel">
-            {/* 面板头：今日任务 + 进度环 */}
+            {/* 头部：今日/本周 Tab + 进度环 */}
             <div className="tp-head">
-              <div className="tp-title">
-                <span className="tp-emoji">🛰️</span>
-                <div>
-                  <b>{t('stationTasks')}</b>
-                  <small>{t('todayQuest')}</small>
+              <div className="tp-tabs" role="tablist">
+                <button role="tab" aria-selected={taskTab === 'day'} className={`tp-tab ${taskTab === 'day' ? 'on' : ''}`} onClick={() => setTaskTab('day')}>
+                  🛰️ {t('todayTab')}
+                </button>
+                <button role="tab" aria-selected={taskTab === 'week'} className={`tp-tab ${taskTab === 'week' ? 'on' : ''}`} onClick={() => setTaskTab('week')}>
+                  📅 {t('weekTab')}
+                </button>
+              </div>
+              {taskTab === 'day' ? (
+                <div className="tp-ring" style={{ '--p': `${(doneCount / Math.max(1, daily.length)) * 100}%` } as React.CSSProperties}>
+                  <span>{doneCount}/{daily.length}</span>
                 </div>
-              </div>
-              <div className="tp-ring" style={{ '--p': `${(doneCount / Math.max(1, daily.length)) * 100}%` } as React.CSSProperties}>
-                <span>{doneCount}/{daily.length}</span>
-              </div>
+              ) : (
+                <div className="tp-ring" style={{ '--p': `${(weekDone / Math.max(1, weekly.length)) * 100}%` } as React.CSSProperties}>
+                  <span>{weekDone}/{weekly.length}</span>
+                </div>
+              )}
             </div>
 
-            {/* 任务列表 */}
+            {/* 任务列表：按 tab 显示 */}
             <div className="tp-list">
-              {daily.map(({ tk, p }) => {
+              {(taskTab === 'day' ? daily : weekly).map(({ tk, p }) => {
                 const state = p.done ? 'done' : p.cur > 0 ? 'doing' : 'todo';
                 return (
-                  <button
-                    key={tk.id}
-                    className={`tp-task ${state}`}
-                    onClick={() => tk.go && guardNav(tk.go)}
-                  >
-                    <span className="tp-task-icon">{p.done ? '✅' : tk.icon}</span>
+                  <button key={tk.id} className={`tp-task ${state}`} onClick={() => tk.go && guardNav(tk.go)}>
+                    <span className={`tp-check ${p.done ? 'on' : ''}`}>{p.done ? '✓' : ''}</span>
+                    <span className="tp-task-icon">{tk.icon}</span>
                     <span className="tp-task-name">{tk.title}</span>
-                    {state === 'done' ? (
-                      <span className="tp-task-done">✓</span>
-                    ) : (
-                      <span className="tp-task-bar"><i style={{ width: `${(p.cur / tk.target) * 100}%` }} /></span>
-                    )}
+                    <span className="tp-task-bar"><i style={{ width: `${(p.cur / tk.target) * 100}%` }} /></span>
                   </button>
                 );
               })}

@@ -10,7 +10,7 @@ export const CHINESE_G1A: Record<string, LessonContent> = {
   /* ---------- 我上学了（入学教育） ---------- */
   'chinese-g1-a-1-1': {
     text: '我是中国人。\n我们都是中国人。\n中华民族是一家。',
-    words: [],
+    words: ['刘', '翊', '鸣'],
     points: ['知道自己是中国人', '我们都是中国人，都是中华民族的一家人', '热爱自己的祖国'],
   },
   'chinese-g1-a-1-2': {
