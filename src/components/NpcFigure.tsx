@@ -1,4 +1,7 @@
 /** NPC 人形卡通立绘：按 NPC 换发型 / 服饰 / 配饰，圆润童趣 */
+import { useId } from 'react';
+import { npcPortrait } from '../content/characterAssets';
+import Mascot from './Mascot';
 
 const LOOK: Record<string, {
   skin: string; hair: string; hairStyle: 'short' | 'bob' | 'curly';
@@ -13,6 +16,25 @@ const LOOK: Record<string, {
 interface Props { npc: string; size?: number }
 
 export default function NpcFigure({ npc, size = 96 }: Props) {
+  if (npc === '小卷') {
+    return <Mascot pose="happy" size={size} className="npc-figure npc-figure-mascot" />;
+  }
+  if (npc === '晶晶') {
+    return <JingJingFigure size={size} />;
+  }
+  const portrait = npcPortrait(npc);
+  if (portrait) {
+    return (
+      <img
+        className="npc-figure npc-figure-art"
+        src={portrait}
+        width={size}
+        height={size * 1.28}
+        alt=""
+        aria-hidden="true"
+      />
+    );
+  }
   const l = LOOK[npc] ?? LOOK.小卷 ?? {
     skin: '#ffdcc2', hair: '#6b5bd0', hairStyle: 'short', cloth: '#8b7bf0', accent: '#f6c24b', accentKind: 'none',
   };
@@ -67,6 +89,48 @@ export default function NpcFigure({ npc, size = 96 }: Props) {
       {l.accentKind === 'bow' && (
         <path d="M50 32 L42 26 L42 38 Z M50 32 L58 26 L58 38 Z" fill={l.accent} />
       )}
+    </svg>
+  );
+}
+
+/** 档案员晶晶：非人形晶簇精灵，主体是存放星卡记录的棱镜档案核。 */
+export function JingJingFigure({ size }: { size: number }) {
+  const uid = useId().replace(/:/g, '');
+  const coreId = `${uid}-jingjing-core`;
+  const ringId = `${uid}-jingjing-ring`;
+  return (
+    <svg viewBox="0 0 100 120" width={size} height={size * 1.28} className="npc-figure npc-jingjing-figure" aria-hidden="true">
+      <defs>
+        <linearGradient id={coreId} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#F1E8FF" />
+          <stop offset=".46" stopColor="#B99AF6" />
+          <stop offset="1" stopColor="#6B55C7" />
+        </linearGradient>
+        <linearGradient id={ringId} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#79E4E0" />
+          <stop offset=".5" stopColor="#F9E48B" />
+          <stop offset="1" stopColor="#C89AFF" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="50" cy="112" rx="34" ry="7" fill="#332164" opacity=".25" />
+      <ellipse cx="50" cy="103" rx="30" ry="9" fill="#8B7BF0" opacity=".2" />
+      {/* 星卡书页光环 */}
+      <ellipse cx="50" cy="63" rx="40" ry="12" fill="none" stroke={`url(#${ringId})`} strokeWidth="4" transform="rotate(-14 50 63)" opacity=".9" />
+      <path d="M14 55 L25 48 L28 61 L17 67 Z" fill="#DDF9FF" stroke="#7863C9" strokeWidth="1.4" />
+      <path d="M75 48 L86 55 L83 67 L72 61 Z" fill="#DDF9FF" stroke="#7863C9" strokeWidth="1.4" />
+      {/* 棱镜主体 */}
+      <path d="M50 17 L75 36 L68 77 L50 99 L32 77 L25 36 Z" fill={`url(#${coreId})`} stroke="#584599" strokeWidth="2.2" strokeLinejoin="round" />
+      <path d="M50 17 L50 99 M25 36 L68 77 M75 36 L32 77" fill="none" stroke="rgba(255,255,255,.45)" strokeWidth="1.3" />
+      <path d="M31 38 L50 25 L69 38 L50 51 Z" fill="#F8F4FF" opacity=".52" />
+      {/* 档案眼与星形核心 */}
+      <ellipse cx="41" cy="56" rx="6" ry="7" fill="#2F215E" />
+      <ellipse cx="59" cy="56" rx="6" ry="7" fill="#2F215E" />
+      <circle cx="39.5" cy="54" r="2" fill="#fff" />
+      <circle cx="57.5" cy="54" r="2" fill="#fff" />
+      <path d="M44 69 Q50 74 56 69" fill="none" stroke="#3E2B77" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M50 78 l2.4 5.1 5.6 .7 -4.1 4 1 5.7 -4.9 -2.7 -4.9 2.7 1-5.7 -4.1-4 5.6-.7z" fill="#F9E48B" stroke="#fff" strokeWidth="1" />
+      <circle cx="20" cy="34" r="3" fill="#79E4E0" /><circle cx="81" cy="30" r="2.5" fill="#F9E48B" />
+      <circle cx="17" cy="81" r="2" fill="#C89AFF" /><circle cx="82" cy="86" r="3" fill="#79E4E0" />
     </svg>
   );
 }

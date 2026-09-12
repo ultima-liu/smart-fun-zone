@@ -1,7 +1,7 @@
 import { useStore } from '../store';
 import { useI18n } from '../i18n';
 import { gradeLabel } from '../types';
-import AvatarFigure from './AvatarFigure';
+import WardrobeAvatar from './WardrobeAvatar';
 import type { ReactNode } from 'react';
 import { SystemPlanet, type PlanetKind } from './cosmos';
 
@@ -36,8 +36,6 @@ export default function PageHero({
   const { lang } = useI18n();
   const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
   const equipped = useStore((s) => (s.activeChildId ? s.equipped[s.activeChildId] : undefined));
-  const colorway = useStore((s) => (s.activeChildId ? s.avatarColor[s.activeChildId] : undefined));
-  const hair = useStore((s) => (s.activeChildId ? s.avatarHair[s.activeChildId] : undefined));
   return (
     <header className="page-hero">
       <div className="ph-glow" aria-hidden="true" />
@@ -48,7 +46,7 @@ export default function PageHero({
       )}
       {showAvatar && child && (
         <div className="ph-avatar">
-          <AvatarFigure size={88} equipped={equipped} colorway={(colorway as never) ?? 'pink'} hairstyle={(hair as never) ?? 'sporty'} />
+          <WardrobeAvatar outfitId={equipped?.outfit} className="wardrobe-avatar--page-hero" />
         </div>
       )}
       <div className="ph-text">
@@ -56,7 +54,7 @@ export default function PageHero({
         <h1 className="ph-title">{title}</h1>
         {child && (
           <p className="ph-sub">
-            {child.avatar} {child.name} · {gradeLabel(child.ageBand, lang)}
+            {child.name} · {gradeLabel(child.ageBand, lang)}
           </p>
         )}
       </div>

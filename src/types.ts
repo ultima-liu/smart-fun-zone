@@ -1,5 +1,8 @@
 export type Lang = 'zh' | 'en';
 
+/** 主题：深色(午夜玻璃) / 浅色(糖果童趣) */
+export type Theme = 'dark' | 'light';
+
 /**
  * 年级（小学 1–6 年级，真实教材课程）
  */

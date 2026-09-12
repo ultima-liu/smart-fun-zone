@@ -24,6 +24,7 @@ const ChildLoginPage = lazy(() => import('./pages/ChildLoginPage'));
 const ManagePage = lazy(() => import('./pages/ManagePage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+const HqSettingsPage = lazy(() => import('./pages/HqSettingsPage'));
 const ArchivePage = lazy(() => import('./pages/ArchivePage'));
 const DockPage = lazy(() => import('./pages/DockPage'));
 const StorePage = lazy(() => import('./pages/StorePage'));
@@ -283,6 +284,7 @@ function Shell() {
               <Route path="/lobby" element={<FeatureGate feature="park"><LobbyPage /></FeatureGate>} />
               <Route path="/game/:gameId" element={<FeatureGate feature="park"><GamePage /></FeatureGate>} />
               <Route path="/profile" element={<FeatureGate feature="hq"><ProfilePage /></FeatureGate>} />
+              <Route path="/profile/settings" element={<FeatureGate feature="hq"><HqSettingsPage /></FeatureGate>} />
               <Route path="/archive" element={<ArchivePage />} />
               <Route path="/dock" element={<DockPage />} />
               <Route path="/store" element={<FeatureGate feature="store"><StorePage /></FeatureGate>} />
@@ -303,17 +305,22 @@ function Shell() {
 }
 
 export default function App() {
+  // 应用主题（深/浅）到根元素
+  const theme = useStore((s) => s.theme);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
   useEffect(() => {
     // 探测服务端：可用性与 TTS 配置状态（失败静默，离线可用）
     void refreshServerHealth();
     // 家长登录后的自动云端同步（启动拉取 + 学习变化自动推送）
     initAutoSync();
   }, []);
-  // 卷卷豆：每日首次登录打卡（+5）/ 连续 7 天里程碑（+20）
+  // 安装学习任务自动结算；每日签到改为由孩子在总部主动领取。
   useEffect(() => {
     const t = window.setTimeout(() => {
       void import('./checkin').then((m) => {
-        m.tryDailyCheckin();
+        m.injectDemoIfRequested();
         m.installTaskWatcher();
       });
     }, 900);

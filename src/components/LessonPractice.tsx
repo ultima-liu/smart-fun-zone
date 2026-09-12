@@ -40,6 +40,14 @@ function splitSentences(text: string): string[] {
     .filter((s) => [...s].filter((c) => HAN.test(c)).length >= 2);
 }
 
+/** 随机抽取若干原文句子，但返回值始终保持它们在原文中的先后顺序。 */
+export function selectSentencesInSourceOrder(sentences: string[], limit: number): string[] {
+  return shuffle(sentences.map((sentence, index) => ({ sentence, index })))
+    .slice(0, limit)
+    .sort((a, b) => a.index - b.index)
+    .map(({ sentence }) => sentence);
+}
+
 /** 从课文生成整套练习：听音指字 / 看字拼音 / 选词填空 / 句子排序 / 课文寻字 */
 function genQuestions(text: string, words: string[]): Q[] {
   const qs: Q[] = [];
@@ -101,7 +109,8 @@ function genQuestions(text: string, words: string[]): Q[] {
 
   // 句子排序
   if (sentences.length >= 2) {
-    const pickedSentences = shuffle(sentences).slice(0, Math.min(3, sentences.length));
+    // 正确答案必须是原文顺序；仅在界面呈现时打乱选项。
+    const pickedSentences = selectSentencesInSourceOrder(sentences, Math.min(3, sentences.length));
     qs.push({ type: 'sort', sentences: pickedSentences });
   }
 

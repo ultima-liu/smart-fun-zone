@@ -32,7 +32,7 @@ export interface CustomTask {
   createdAt: number;
 }
 
-/** 商品大类（商店分 4 类货架） */
+/** 商品大类（商店分 3 类货架；徽章由剧情授勋，不是商品） */
 export type ItemKind = 'outfit' | 'badge' | 'item' | 'reward';
 
 /** 兑换商品 */
@@ -43,13 +43,19 @@ export interface StoreItem {
   desc?: string;
   cost: number;
   icon: string;
-  /** 只有 reward 类需要家长审批；outfit/badge/item 即时到账 */
+  /** 只有 reward 类需要家长审批；outfit/item 即时到账 */
   on?: boolean; // 管理端上架开关（默认 true）
 }
 
-/** 商店 4 类商品目录 */
+/** 商店 3 类商品目录 */
 export const CATALOG: StoreItem[] = [
   /* 1) 装扮 outfit —— 直接作用于虚拟形象（卷星人）：帽子、光环、翅膀、表情等 */
+  { id: 'o-stellar-detective', kind: 'outfit', name: '星穹侦探', desc: '完整星图风衣与深空罗盘套装', cost: 180, icon: '🔎' },
+  { id: 'o-cloud-mechanic', kind: 'outfit', name: '云端机巧师', desc: '飞行夹克、能量手套与机巧工具套装', cost: 140, icon: '⚙️' },
+  { id: 'o-aurora-ranger', kind: 'outfit', name: '极光巡游者', desc: '会流动发光的极光星纱礼装', cost: 220, icon: '🌌' },
+  { id: 'o-midautumn-moon-rabbit', kind: 'outfit', name: '月桂玉兔', desc: '月白星纱与金桂纹样的中秋限定套装', cost: 200, icon: '🌕' },
+  { id: 'o-national-day-mountains', kind: 'outfit', name: '山河星火', desc: '赤金山河纹的国庆限定探索礼装', cost: 180, icon: '✨' },
+  { id: 'o-spring-festival-snow', kind: 'outfit', name: '瑞雪迎春', desc: '云纹锦缎与暖绒披肩的春节限定套装', cost: 240, icon: '🧧' },
   { id: 'o-hat', kind: 'outfit', name: '小侦探帽', desc: '给角色戴上帅气侦探帽', cost: 20, icon: '🎩' },
   { id: 'o-crown', kind: 'outfit', name: '金色皇冠', desc: '角色戴上闪闪皇冠', cost: 60, icon: '👑' },
   { id: 'o-halo', kind: 'outfit', name: '天使光环', desc: '头顶悬浮柔和光环', cost: 45, icon: '😇' },
@@ -59,19 +65,12 @@ export const CATALOG: StoreItem[] = [
   { id: 'o-frame-gold', kind: 'outfit', name: '金边框', desc: '角色头像加金边相框', cost: 30, icon: '🖼️' },
   { id: 'o-bow', kind: 'outfit', name: '蝴蝶结', desc: '系一个可爱蝴蝶结', cost: 18, icon: '🎀' },
   { id: 'o-antenna', kind: 'outfit', name: '卷星天线', desc: '头顶长出卷卷天线和小星环', cost: 38, icon: '📡' },
-  /* 2) 徽章 badge —— 挂在我/成就页的奖章 */
-  { id: 'b-star', kind: 'badge', name: '小星星徽章', desc: '最闪的小星星', cost: 15, icon: '⭐' },
-  { id: 'b-dino', kind: 'badge', name: '卷星勇士', desc: '勇气卷卷徽章', cost: 25, icon: '🪐' },
-  { id: 'b-reader', kind: 'badge', name: '阅读小博士', desc: '爱读书的孩子', cost: 35, icon: '📚' },
-  { id: 'b-math', kind: 'badge', name: '算术达人', desc: '数学小能手', cost: 35, icon: '🧮' },
-  { id: 'b-singer', kind: 'badge', name: '金嗓子', desc: '跟读超棒', cost: 30, icon: '🎤' },
-  { id: 'b-sun', kind: 'badge', name: '晨光徽章', desc: '每天坚持学习', cost: 40, icon: '☀️' },
-  /* 3) 游戏道具 item —— 在具体游戏里使用 */
+  /* 2) 游戏道具 item —— 在具体游戏里使用 */
   { id: 'i-rocket', kind: 'item', name: '火箭加速', desc: '游戏内快进 5 秒', cost: 12, icon: '🚀' },
   { id: 'i-shield', kind: 'item', name: '星星护盾', desc: '答错一次不扣分', cost: 18, icon: '🛡️' },
   { id: 'i-hint', kind: 'item', name: '提示卡', desc: '卡住时给一个提示', cost: 10, icon: '💡' },
   { id: 'i-heart', kind: 'item', name: '生命之心', desc: '游戏内 +1 次机会', cost: 16, icon: '❤️' },
-  /* 4) 奖励兑换 reward —— 需要家长确认后兑现 */
+  /* 3) 奖励兑换 reward —— 需要家长确认后兑现 */
   { id: 'rw-game15', kind: 'reward', name: '+15 分钟游戏', desc: '今天多玩 15 分钟', cost: 30, icon: '🎮' },
   { id: 'rw-video10', kind: 'reward', name: '+10 分钟动画', desc: '动画时长券', cost: 30, icon: '🎬' },
   { id: 'rw-toy', kind: 'reward', name: '小礼物一份', desc: '家长准备的小惊喜', cost: 100, icon: '🎁' },

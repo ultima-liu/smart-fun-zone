@@ -11,7 +11,7 @@ interface Props {
   compact?: boolean;
 }
 
-/** 货币/材料余额条：显示孩子的星星/卷星币/星屑/图鉴碎片 */
+/** 货币/材料余额条：显示孩子的星星/卷星币/星屑/星尘 */
 export default function CurrencyBar({ only, compact }: Props) {
   const { t } = useI18n();
   const childId = useStore((s) => s.activeChildId);
@@ -27,7 +27,7 @@ export default function CurrencyBar({ only, compact }: Props) {
     { key: 'stars' as CurrencyType, icon: <IconStar size={16} gradient="gold" />, value: stars, label: t('totalStars') },
     { key: 'beans' as CurrencyType, icon: <IconBean size={16} gradient="gold" />, value: beans, label: t('beans') },
     { key: 'stardust' as CurrencyType, icon: <span aria-hidden="true">✨</span>, value: stardust, label: t('stardustLabel') },
-    { key: 'cardShard' as CurrencyType, icon: <span aria-hidden="true">🎴</span>, value: cardShard, label: t('cardShardLabel') },
+    { key: 'cardShard' as CurrencyType, icon: <span aria-hidden="true">💠</span>, value: cardShard, label: t('cardShardLabel') },
   ].filter((i) => !only || only.includes(i.key));
 
   return (

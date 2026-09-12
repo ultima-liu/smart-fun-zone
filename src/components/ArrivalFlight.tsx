@@ -18,6 +18,7 @@ export default function ArrivalFlight({ onDone, greet, lang }: ArrivalFlightProp
   const [start, setStart] = useState<P | null>(null);
   const [target, setTarget] = useState<P | null>(null);
   const [flashOn, setFlashOn] = useState(false);
+  const [welcomeOn, setWelcomeOn] = useState(false);
   const timers = useRef<number[]>([]);
 
   useEffect(() => {
@@ -36,14 +37,15 @@ export default function ArrivalFlight({ onDone, greet, lang }: ArrivalFlightProp
       timers.current.push(window.setTimeout(() => { playSfx('door'); setOpen(true); }, 90));
       // 飞船起飞（is-fly 动画 delay 1.15s → 实际约 1.24s 出发）→ 启动持续引擎声
       timers.current.push(window.setTimeout(() => startThrust(), 1100));
-      // 进入总部大楼（飞行 4s 到约 5.24s）：闪光 + 确认音 + 引擎停机 + 欢迎回家语音
+      // 进入总部大楼：闪光、抵达音效与欢迎词同步出现
       timers.current.push(window.setTimeout(() => {
         stopThrust();
         playSfx('enter');
         if (greet) speak(greet, lang ?? 'zh');
         setFlashOn(true);
+        setWelcomeOn(true);
       }, 4300));
-      timers.current.push(window.setTimeout(() => onDone(), 5200));
+      timers.current.push(window.setTimeout(() => onDone(), 6600));
     }, 1000);
     timers.current.push(wait);
     return () => {
@@ -94,6 +96,15 @@ export default function ArrivalFlight({ onDone, greet, lang }: ArrivalFlightProp
 
       {/* 总部大楼处抵达闪光 */}
       {target && <span className={`af-flash${flashOn ? ' on' : ''}`} style={{ left: target.x, top: target.y }} />}
+
+      {/* 欢迎词：抵达闪光后出现，给视觉与语音留出完整的识别时间 */}
+      <div className={`af-welcome${welcomeOn ? ' on' : ''}`}>
+        <span className="af-welcome-orbit" aria-hidden="true"><i /><i /><i /></span>
+        <span className="af-welcome-kicker">WELCOME BACK · 卷星航站</span>
+        <strong>{lang === 'en' ? 'Welcome home!' : '欢迎回家！'}</strong>
+        {greet && <span className="af-welcome-greet">{greet}</span>}
+        <span className="af-welcome-line" aria-hidden="true" />
+      </div>
     </div>,
     document.body,
   );

@@ -61,7 +61,8 @@ export default function StudyBuddy() {
   const recRef = useRef<SR | null>(null);
   const wakeRef = useRef<SR | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  // 小卷剧情（悄悄话）：进行中且未完成时由小卷助手承接对话
+  // 小卷剧情：仅当它是主线中当前唯一可推进的节点时，才由全局助手承接对话。
+  // 这样晶晶的档案库引导（及其间的前置节点）会始终先于小卷出现。
   const childId = useStore((s) => s.activeChildId);
   const doneList = useStore((s) => (s.activeChildId ? s.storyDone[s.activeChildId] ?? EMPTY : EMPTY));
   const [storyIdx, setStoryIdx] = useState(0);
@@ -70,8 +71,8 @@ export default function StudyBuddy() {
   const buddyStory = useMemo<StoryNode | null>(() => {
     if (!childId || storyDoneUi) return null;
     const done = new Set(doneList);
-    if (done.has('c6-1')) return null;
-    return allNodes().find((n) => n.id === 'c6-1') ?? null;
+    const current = allNodes().find((n) => !done.has(n.id));
+    return current?.rule === 'visitBuddy' ? current : null;
   }, [childId, doneList, storyDoneUi]);
 
   // 剧情开始：面板打开且有剧情 → 朗读第一句

@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useI18n } from '../i18n';
 import type { LootDrop } from '../content/expedition';
+import { cardById } from '../content/starCards';
 
-interface Props { reward?: number; drop?: LootDrop; onDone: () => void }
+interface Props { reward?: number; rewardCardId?: string; drop?: LootDrop; onDone: () => void }
 
 /** 领取奖励庆祝：星星+金币爆开 + 金色横幅，约 1.4s 后自动关闭 */
-export default function RewardBurst({ drop, reward = 0, onDone }: Props) {
+export default function RewardBurst({ drop, reward = 0, rewardCardId, onDone }: Props) {
   const { lang } = useI18n();
   const [gone, setGone] = useState(false);
 
@@ -21,9 +22,10 @@ export default function RewardBurst({ drop, reward = 0, onDone }: Props) {
   const items: { icon: string; label: string; n: number }[] = [
     { icon: '🪙', label: '卷星币', n: drop?.beans ?? (drop ? 0 : reward) },
     { icon: '✨', label: '星屑', n: drop?.stardust ?? 0 },
-    { icon: '🎴', label: '图鉴碎片', n: drop?.cardShard ?? 0 },
+    { icon: '💠', label: '星尘', n: drop?.cardShard ?? 0 },
   ].filter((x) => x.n > 0);
   const hasDrop = !!drop;
+  const rewardCard = rewardCardId ? cardById(rewardCardId) : undefined;
   return createPortal(
     <div className={`reward-burst${gone ? ' gone' : ''}`} aria-hidden="true">
       {/* 粒子 */}
@@ -40,6 +42,7 @@ export default function RewardBurst({ drop, reward = 0, onDone }: Props) {
             <em key={it.label}>{it.icon} +{it.n} {it.label}</em>
           ))}
           {drop && drop.outfits.length > 0 && <em>🎩 稀有装扮 ×{drop.outfits.length}</em>}
+          {rewardCard && <em>🎴 {lang === 'zh' ? `图鉴卡「${rewardCard.name.zh}」` : rewardCard.name.en}</em>}
         </span>
       </div>
     </div>,

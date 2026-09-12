@@ -3,6 +3,7 @@ import { useI18n } from '../i18n';
 import { speak, playSfx } from '../speech';
 import { tryCompleteStoryNode } from '../storyProgress';
 import type { StoryNode } from '../content/story';
+import { cardById } from '../content/starCards';
 
 interface Props {
   childId: string;
@@ -20,6 +21,7 @@ export default function StoryDialog({ childId, node, onDone, onClose }: Props) {
   const doneRef = useRefInit();
 
   const txt = (x: { zh: string; en: string }) => (lang === 'zh' ? x.zh : x.en);
+  const rewardCard = node.rewardCardId ? cardById(node.rewardCardId) : undefined;
 
   const finish = () => {
     if (doneRef.current) return;
@@ -52,6 +54,9 @@ export default function StoryDialog({ childId, node, onDone, onClose }: Props) {
     <div className="sd-bubble-card" role="dialog" aria-label={txt(node.title)}>
       <div className="sd-bubble" key={idx}>
         <p className="sd-text">{lines[idx] ? txt(lines[idx]) : txt(node.text)}</p>
+        {rewardCard && (
+          <p className="sd-reward-card">🎴 {lang === 'zh' ? `完成对话后，回任务条领取「${rewardCard.name.zh}」图鉴卡` : `Complete the dialogue, then claim ${rewardCard.name.en} from the task bar`}</p>
+        )}
         <span className="sd-tail" aria-hidden="true" />
       </div>
 

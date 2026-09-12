@@ -20,6 +20,8 @@ import { MATH_RHYMES } from '../content/mathRhymes';
 import { CHINESE_ENHANCE } from '../content/chineseEnhance';
 import { genMathPractice } from '../content/mathPractice';
 import { speak, playSfx } from '../speech';
+import { hanziCardsForLesson } from '../content/starCards';
+import { isPerfectLessonPractice, starsForLessonPractice } from '../lessonRewards';
 
 export default function PracticePage() {
   const { skillId } = useParams();
@@ -28,6 +30,8 @@ export default function PracticePage() {
   const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
   const addSkillResult = useStore((s) => s.addSkillResult);
   const applyPoints = useStore((s) => s.applyPoints);
+  const collectChars = useStore((s) => s.collectChars);
+  const grantArchiveCard = useStore((s) => s.grantArchiveCard);
   const skill = skillId ? getSkill(skillId) : undefined;
   const subject = skill ? SUBJECTS.find((s) => s.id === skill.subject) : undefined;
   const [contentById, setContentById] = useState<Record<string, LessonContent | undefined>>({});
@@ -98,14 +102,24 @@ export default function PracticePage() {
   }
   if (!canPractice) return null;
 
-  const handleFinish = (stars: number, correct: number, total: number) => {
+  const handleFinish = (_componentStars: number, correct: number, total: number) => {
+    const stars = starsForLessonPractice(correct, total);
     setResult({ stars, correct, total });
     const pass = total > 0 && correct / total >= 0.8;
+    if (stars > 0) {
+      // 课程星级取历史最高值，不需要重复练习累计星星。
+      addSkillResult(child.id, skill.id, stars);
+    }
     if (pass) {
-      addSkillResult(child.id, skill.id);
       // 练习达标 → 每天每课 +1 分（幂等）
       applyPoints(child.id, 1, '练习达标', `prac:${skill.id}:${new Date().toDateString()}`);
       setLit(true);
+    }
+    // 语文课只有练习全对才获得本课生字卡及已关联的汉字图鉴卡。
+    if (skill.subject === 'chinese' && isPerfectLessonPractice(correct, total)) {
+      const words = [...new Set(content?.words ?? [])];
+      collectChars(child.id, words);
+      hanziCardsForLesson(skill.id).forEach((card) => grantArchiveCard(child.id, card.id));
     }
     playSfx('win');
     speak(pass ? t('litTip') : t('practiceDone'), lang);

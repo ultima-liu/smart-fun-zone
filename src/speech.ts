@@ -104,6 +104,10 @@ function newChain(): number {
   return chainToken;
 }
 
+/** 朗读去重：同一段文本在 12 秒内不会重复朗读（减少页面切换/自动欢迎语的频繁打扰） */
+const lastSpeakAt = new Map<string, number>();
+const SPEAK_THROTTLE_MS = 12_000;
+
 export function stopSpeaking() {
   newChain();
   stopVolc();
@@ -116,6 +120,11 @@ export { volcConfigured, warmTts };
 export function speak(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92) {
   const { sound, voiceOn } = useStore.getState();
   if (!sound || !voiceOn || !text) return;
+  const key = `${lang}:${text}`;
+  const now = Date.now();
+  const last = lastSpeakAt.get(key);
+  if (last && now - last < SPEAK_THROTTLE_MS) return;
+  lastSpeakAt.set(key, now);
   newChain();
   stopVolc();
   void speakVolc(lang === 'zh' ? zhSpeakNormalize(text) : text, lang, rate);
@@ -309,7 +318,7 @@ function sweep(
 
 /* ---------- 音效（跟随"声音总开关"，与 BGM 音量独立） ---------- */
 
-export function playSfx(kind: 'tap' | 'correct' | 'wrong' | 'win' | 'flip' | 'collect' | 'pop' | 'deny' | 'door' | 'thrust' | 'enter') {
+export function playSfx(kind: 'tap' | 'correct' | 'wrong' | 'win' | 'flip' | 'collect' | 'pop' | 'deny' | 'door' | 'thrust' | 'enter' | 'verify' | 'warp' | 'arrival') {
   const { sound } = useStore.getState();
   if (!sound) return;
   try {
@@ -343,6 +352,12 @@ export function playSfx(kind: 'tap' | 'correct' | 'wrong' | 'win' | 'flip' | 'co
         tone(880, 0.16, 0.1, 'square', 0.12);
         tone(160, 0.3, 0.5, 'sawtooth', 0.14);
         break;
+      case 'verify':
+        // 身份核验：三次扫描脉冲 + 清亮确认和弦
+        [420, 560, 720].forEach((f, i) => tone(f, i * 0.1, 0.12, 'triangle', 0.1));
+        tone(1046, 0.34, 0.42, 'sine', 0.17);
+        tone(1318, 0.4, 0.38, 'sine', 0.1);
+        break;
       case 'door':
         // 科幻电子门：高频快速"嗖—"上扬 + 数字电子"叮"
         sweep(280, 1600, 0, 0.3, 'sine', 0.16);     // 主嗖声上扬
@@ -354,6 +369,17 @@ export function playSfx(kind: 'tap' | 'correct' | 'wrong' | 'win' | 'flip' | 'co
         tone(96, 0, 1.6, 'sawtooth', 0.1);
         tone(120, 0.05, 1.5, 'square', 0.05);
         tone(180, 0.1, 1.4, 'triangle', 0.06);
+        break;
+      case 'warp':
+        // 跃迁启动：低频推进、能量持续上扬并在末端突破
+        sweep(70, 150, 0, 1.2, 'sawtooth', 0.1);
+        sweep(260, 2200, 0.05, 1.05, 'sine', 0.13);
+        tone(1760, 1.02, 0.32, 'triangle', 0.12);
+        break;
+      case 'arrival':
+        // 抵达：减速下落后以温暖三和弦收束
+        sweep(900, 180, 0, 0.34, 'sine', 0.1);
+        [523, 659, 784, 1046].forEach((f, i) => tone(f, 0.24 + i * 0.09, 0.46, 'triangle', 0.14));
         break;
       case 'enter':
         // 进入总部大楼：上扬"叮咚"确认音

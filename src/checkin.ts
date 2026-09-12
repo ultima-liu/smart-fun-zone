@@ -1,5 +1,4 @@
-import { useStore, streakDays, INITIAL_POINTS } from './store';
-import { src } from './points';
+import { useStore } from './store';
 import { claimAutoTasks } from './tasks';
 
 /** 演示模式：URL 带 ?demo=1 且孩子无真实数据时，注入演示数据（仅看效果用） */
@@ -36,38 +35,6 @@ export function injectDemoIfRequested(): boolean {
     pointLog: { ...s.pointLog, [cid]: [...(s.pointLog[cid] ?? []), ...log] },
   });
   return true;
-}
-
-/** 今日首次登录打卡：只发一次；连续学习满 7 天里程碑 +20 */
-export function tryDailyCheckin() {
-  const s = useStore.getState();
-  const cid = s.activeChildId;
-  if (!cid) return;
-  // 0.5) 演示模式注入
-  injectDemoIfRequested();
-  const today = new Date().toDateString();
-  const log = s.pointLog[cid] ?? [];
-  const got = (id: string) => log.some((e) => e.childId === cid && e.id === id && e.amount > 0);
-
-  // 0) 给尚无积分的孩子发初始积分（体验装扮兑换）
-  if (s.points[cid] === undefined) {
-    s.applyPoints(cid, INITIAL_POINTS, '初始卷卷豆', `init:${INITIAL_POINTS}`);
-  }
-
-  // 1) 每日打卡 +5
-  if (!got(src('daily', today))) {
-    s.applyPoints(cid, 5, '今日打卡', src('daily', today));
-  }
-  // 2) 连续学习 7 天里程碑 +20（用 streakDays 判定：>=7 天连续记录）
-  if (streakDays(s.records, cid) >= 7 && !got('week7')) {
-    s.applyPoints(cid, 20, '连续学习 7 天', 'week7');
-  }
-  // 3) 自动结算任务（达成即加分）
-  const granted = claimAutoTasks(cid);
-  if (granted.length > 0) {
-    // 触发一次 UI 提示的机会留到页面层（此处仅记日志）
-    void granted;
-  }
 }
 
 /** 安装「状态变化 → 自动结算任务」的订阅（学习/游戏/字卡变化即结算） */
