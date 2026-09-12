@@ -6,3 +6,16 @@ npm-debug.log*
 
 # 生词生成脚本的构建产物
 scripts/_gen.mjs
+
+# Playwright 浏览器与测试产物（勿入库）
+.pw-browsers/
+test-results/
+playwright-report/
+.playwright/
+
+# 本地 npm 缓存
+.npm-cache/
+
+# 服务端运行时数据（TTS 缓存 / 构建产物）
+server/var/
+server/node_modules/
