@@ -3,15 +3,22 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { useI18n } from '../i18n';
 import { gradeLabel, SUBJECTS, type SubjectId } from '../types';
-import { getSkill } from '../content/skills';
+import { CHINESE_TEXTBOOK_LESSONS } from '../content/chineseTextbookCurriculum';
 import '../review-hub.css';
 
-const wrongSubject = (lessonId: string) => lessonId.startsWith('math-lab-') ? 'math' : lessonId.startsWith('english-g3a-') ? 'english' : getSkill(lessonId)?.subject;
+/** 学科识别只认 3 本已开课课本；老课程遗留的错题仍可查看/删除，但不再提供「再练」 */
+const wrongSubject = (lessonId: string): SubjectId | undefined =>
+  lessonId.startsWith('math-lab-') ? 'math'
+    : lessonId.startsWith('english-g3a-') ? 'english'
+      : CHINESE_TEXTBOOK_LESSONS.some((lesson) => lesson.id === lessonId) ? 'chinese'
+        : undefined;
 const wrongPracticeTarget = (lessonId: string) => lessonId.startsWith('math-lab-')
   ? `/math-course/${lessonId.replace('math-lab-', '')}`
   : lessonId.startsWith('english-g3a-')
     ? `/english-course/${lessonId.replace('english-g3a-', '')}`
-    : `/practice/${lessonId}`;
+    : CHINESE_TEXTBOOK_LESSONS.some((lesson) => lesson.id === lessonId)
+      ? `/chinese-course/${lessonId}`
+      : undefined;
 
 /** 学科图标与主题色（数学/语文/英语沿用今日复习页配色） */
 const META: Record<SubjectId, { label: string; icon: string; color: string }> = {
@@ -70,6 +77,7 @@ export default function WrongBookPage() {
           {list.map((w) => {
             const sid = wrongSubject(w.lessonId);
             const meta = sid ? META[sid] : undefined;
+            const practiceTarget = wrongPracticeTarget(w.lessonId);
             return (
               <article
                 key={w.uid}
@@ -83,7 +91,7 @@ export default function WrongBookPage() {
                   <p><b>答错的答案：</b>{w.answer || '（这一题没选对哦）'}</p>
                 </div>
                 <div className="review-hub-actions">
-                  <button className="review-go" onClick={() => nav(wrongPracticeTarget(w.lessonId))}>{t('again')} →</button>
+                  {practiceTarget && <button className="review-go" onClick={() => nav(practiceTarget)}>{t('again')} →</button>}
                   <button className="review-done" aria-label="删除" onClick={() => removeWrong(child.id, w.uid)}>✕ 删除</button>
                 </div>
               </article>

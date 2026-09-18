@@ -16,7 +16,7 @@ import StoryStrip from '../components/StoryStrip';
 import Mascot from '../components/Mascot';
 import WardrobeAvatar from '../components/WardrobeAvatar';
 import { IconLock, IconSpeakerOff, IconSpeakerOn } from '../components/icons';
-import { getSkill, skillsByGrade } from '../content/skills';
+import { nextLessonToLearn, activeLessons } from '../activeCourses';
 import { DAILY_TASKS, WEEKLY_TASKS, taskProgress } from '../tasks';
 import InteractiveJuanStar from '../components/InteractiveJuanStar';
 import { CosmicFleet } from '../components/cosmos';
@@ -328,17 +328,17 @@ export default function HomePage() {
   const garden = gardenStage(totalStars);
   const goldCount = goldSkillCount(useStore.getState().mastery, child.id);
   const litCount = litSkillCount(useStore.getState().mastery, child.id);
-  // 本年级课程进度：圈内=本年级满星课时 / 总课时；右侧按学科逐门显示
-  const gradeSkills = skillsByGrade(child.ageBand);
-  const gMastery = masteryAll[child.id] ?? {};
-  const gradeGold = gradeSkills.filter((s) => gMastery[s.id]?.gold).length;
-  const gradeTotal = gradeSkills.length;
-  const gradeBySubject = SUBJECTS
+  // 课程进度：圈内=已开课 3 本课本满星课时 / 总课时；右侧按学科逐门显示
+  const lessons = activeLessons(child.id, masteryAll);
+  const gradeGold = lessons.filter((s) => s.gold).length;
+  const gradeTotal = lessons.length;
+  const gradeBySubject = (['math', 'chinese', 'english'] as const)
     .map((sub) => {
-      const list = gradeSkills.filter((s) => s.subject === sub.id);
-      return { id: sub.id, name: sub.name, icon: sub.icon, list, gold: list.filter((s) => gMastery[s.id]?.gold).length, total: list.length };
+      const info = SUBJECTS.find((s) => s.id === sub);
+      const list = lessons.filter((s) => s.subject === sub);
+      return { id: sub, name: info?.name, icon: info?.icon, gold: list.filter((s) => s.gold).length, total: list.length };
     })
-    .filter((x) => x.total > 0);
+    .filter((x) => x.total > 0 && x.name);
   // 卷星人头衔：按总星星自动成长
   const explorerTier = totalStars >= 60 ? 5 : totalStars >= 30 ? 4 : totalStars >= 16 ? 3 : totalStars >= 6 ? 2 : 1;
   const explorerTitle = t(`titleTier${explorerTier}`);
@@ -351,17 +351,8 @@ export default function HomePage() {
     cre: Math.min(100, outfitOwned * 8),
     tea: Math.min(100, streak * 10 + (expeditionLastAt !== undefined ? 15 : 0)),
   };
-  // 继续学习：最近更新且未满星的课
-  const resumeSkill = (() => {
-    const m = useStore.getState().mastery[child.id];
-    if (!m) return undefined;
-    const ids = Object.keys(m).filter((id) => !m[id].gold);
-    if (ids.length === 0) return undefined;
-    ids.sort((a, b) => (m[b].updatedAt ?? 0) - (m[a].updatedAt ?? 0));
-    return getSkill(ids[0]);
-  })();
-  // 播放进度：这节课已学到第几步（0~3）
-  const resumeDone = resumeSkill ? Math.min(useStore.getState().lessonProgress[resumeSkill.id] ?? 0, 3) : 0;
+  // 继续学习：第一门未满星的已开课课时
+  const resumeSkill = nextLessonToLearn(child.id, masteryAll);
   // 花园进度环：当前星级在“本阶段 → 下一阶段”之间的进度（0~1）
   const gardenPct = (() => {
     if (garden.stage >= 5) return 1;
@@ -452,10 +443,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* 本年级掌握进度 */}
+            {/* 已开课课程掌握进度 */}
             <div className="ps-mastery">
               <div className="ps-mastery-head">
-                <b>{GRADES.find((g) => g.id === child.ageBand)?.name[lang] ?? ''} · {t('masteredSkills')}</b>
+                <b>{t('masteredSkills')}</b>
                 <span className="ps-mastery-count">{gradeGold}/{gradeTotal}</span>
               </div>
               <div className="ps-mastery-body">
@@ -474,10 +465,10 @@ export default function HomePage() {
                       <button
                         key={x.id}
                         className={`ps-course${all ? ' gold' : any ? ' lit' : ''}`}
-                        onClick={() => guardNav(`/subject/${x.id}?grade=${child.ageBand}`)}
+                        onClick={() => guardNav(`/subject/${x.id}`)}
                       >
                         <span className="ps-course-ic">{x.icon}</span>
-                        <span className="ps-course-name">{x.name[lang]}</span>
+                        <span className="ps-course-name">{x.name?.[lang]}</span>
                         <span className="ps-course-bar"><i style={{ width: `${pct}%` }} /></span>
                         <span className="ps-course-pct">{pct}%</span>
                         {all && <i className="ps-course-star" aria-hidden="true">★</i>}
@@ -490,16 +481,16 @@ export default function HomePage() {
 
             {/* 行动区：继续学习 · 播放器样式 */}
             {resumeSkill && (
-              <button className="resume-bar player-bar" onClick={() => guardNav(`/learn/${resumeSkill.id}`)}>
+              <button className="resume-bar player-bar" onClick={() => guardNav(resumeSkill.route)}>
                 <span className="player-cover" aria-hidden="true">📖</span>
                 <span className="player-main">
                   <span className="player-meta">
                     <small>{t('playerResume')}</small>
-                    <b className="player-title">{resumeSkill.name[lang]}</b>
+                    <b className="player-title">{resumeSkill.title}</b>
                   </span>
                   <span className="player-track">
-                    <i className="player-track-fill" style={{ width: `${(resumeDone / 3) * 100}%` }} />
-                    <em className="player-pos">▍{resumeDone + 1}/4</em>
+                    <i className="player-track-fill" style={{ width: `${(resumeSkill.stars / 3) * 100}%` }} />
+                    <em className="player-pos">★ {resumeSkill.stars}/3</em>
                   </span>
                 </span>
                 <span className="player-play" aria-hidden="true">▶</span>

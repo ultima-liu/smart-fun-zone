@@ -27,9 +27,6 @@ const ArchivePage = lazy(() => import('./pages/ArchivePage'));
 const DockPage = lazy(() => import('./pages/DockPage'));
 const StorePage = lazy(() => import('./pages/StorePage'));
 const WorldMapPage = lazy(() => import('./pages/WorldMapPage'));
-const SubjectPage = lazy(() => import('./pages/SubjectPage'));
-const LessonPage = lazy(() => import('./pages/LessonPage'));
-const PracticePage = lazy(() => import('./pages/PracticePage'));
 const MathCatalogPage = lazy(() => import('./pages/MathCatalogPage'));
 const MathTextbookLabPage = lazy(() => import('./pages/MathTextbookLabPage'));
 const ChineseTextbookCatalogPage = lazy(() => import('./pages/ChineseTextbookCatalogPage'));
@@ -43,7 +40,7 @@ const ReviewHubPage = lazy(() => import('./pages/ReviewHubPage'));
 /** 按页面类型区分骨架屏：列表页 / 学习页 / 游戏页 */
 function RouteSkeleton() {
   const { pathname } = useLocation();
-  const kind = pathname.startsWith('/learn') || pathname.startsWith('/practice') || pathname.startsWith('/math-course') || pathname.startsWith('/chinese-course') || pathname.startsWith('/english-course')
+  const kind = pathname.startsWith('/math-course') || pathname.startsWith('/chinese-course') || pathname.startsWith('/english-course')
     ? 'learn'
     : pathname.startsWith('/game')
       ? 'game'
@@ -276,9 +273,6 @@ function Shell() {
               <Route path="/textbook/english/g3/1" element={<FeatureGate feature="school"><EnglishTextbookCatalogPage /></FeatureGate>} />
               <Route path="/english-course/:lessonId" element={<FeatureGate feature="school"><EnglishTextbookLessonPage /></FeatureGate>} />
               <Route path="/review" element={<FeatureGate feature="school"><ReviewHubPage /></FeatureGate>} />
-              <Route path="/subject/:subjectId" element={<FeatureGate feature="school"><SubjectPage /></FeatureGate>} />
-              <Route path="/learn/:skillId" element={<FeatureGate feature="school"><LessonPage /></FeatureGate>} />
-              <Route path="/practice/:skillId" element={<FeatureGate feature="school"><PracticePage /></FeatureGate>} />
               <Route path="/math-textbook" element={<Navigate to="/subject/math" replace />} />
               <Route path="/math-book" element={<Navigate to="/subject/math" replace />} />
               <Route path="/chinese-textbook" element={<Navigate to="/subject/chinese" replace />} />

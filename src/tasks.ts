@@ -1,7 +1,7 @@
 import { useStore, goldSkillCount } from './store';
 import type { AppState } from './store';
 import { localDayKey } from './dailyCheckin';
-import { getSkill } from './content/skills';
+import { CHINESE_TEXTBOOK_LESSONS } from './content/chineseTextbookCurriculum';
 import { SHIP_MAX_LEVEL } from './content/shipyard';
 
 /** 任务系统：任务有进度，完成自动发放积分（幂等 source = task:<id>[:<day>]）
@@ -45,8 +45,9 @@ const completedCourseIds = (s: AppState, c: string, since: number): string[] => 
   });
   return [...ids];
 };
+const CHINESE_LESSON_IDS = new Set(CHINESE_TEXTBOOK_LESSONS.map((lesson) => lesson.id));
 const courseSubject = (id: string): CourseSubject | undefined =>
-  id.startsWith('math-lab-') ? 'math' : id.startsWith('english-g3a-') ? 'english' : getSkill(id)?.subject as CourseSubject | undefined;
+  id.startsWith('math-lab-') ? 'math' : id.startsWith('english-g3a-') ? 'english' : CHINESE_LESSON_IDS.has(id) ? 'chinese' : undefined;
 const completedCourses = (s: AppState, c: string, subject: CourseSubject, since: number) =>
   completedCourseIds(s, c, since).filter((id) => courseSubject(id) === subject).length;
 const todayCourse = (subject: CourseSubject) => (s: AppState, c: string) => completedCourses(s, c, subject, dayStart());

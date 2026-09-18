@@ -580,6 +580,7 @@ export default function ChineseTextbookLessonPage() {
   const nav = useNavigate();
   const activeChildId = useStore((state) => state.activeChildId);
   const collectChars = useStore((state) => state.collectChars);
+  const applyPoints = useStore((state) => state.applyPoints);
   const [phase, setPhase] = useState(0);
   const [unlocked, setUnlocked] = useState(0);
   const [visited, setVisited] = useState<Set<string>>(new Set());
@@ -627,7 +628,11 @@ export default function ChineseTextbookLessonPage() {
       const chars = [...pack.recognize ?? [], ...pack.writing ?? []].map((item) => item.char).filter((c, i, arr) => c && arr.indexOf(c) === i);
       if (chars.length) collectChars(activeChildId, chars);
     }
-    if (activeChildId) scheduleReview(activeChildId, { subject: 'chinese', lessonId: lesson.id, title: lesson.title, focus: lesson.mission, route: `/chinese-course/${lesson.id}` });
+    if (activeChildId) {
+      // 完成本课计入「练习达标」，供每日/每周课程任务统计（与数学、英语同口径）
+      applyPoints(activeChildId, 1, '练习达标', `prac:${lesson.id}:${new Date().toDateString()}`);
+      scheduleReview(activeChildId, { subject: 'chinese', lessonId: lesson.id, title: lesson.title, focus: lesson.mission, route: `/chinese-course/${lesson.id}` });
+    }
     nav('/subject/chinese');
   };
   const visit = (id: string) => {

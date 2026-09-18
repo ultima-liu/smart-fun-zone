@@ -1,18 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStore, goldSkillCount, skillState } from '../store';
+import { useStore, goldSkillCount } from '../store';
 import { useI18n } from '../i18n';
 import PageHero from '../components/PageHero';
 import { GRADES, STAGES, SUBJECTS, type Grade, type SchoolStage } from '../types';
-import { skillsByGrade } from '../content/skills';
 import { TEXTBOOK_SUBJECTS, getTextbook, volLabel } from '../content/textbooks';
+import { nextLessonToLearn } from '../activeCourses';
 import NpcBuddy from '../components/NpcBuddy';
 import { speak, speakAsNpc, stopMusic } from '../speech';
 import { npcMeta } from '../content/npc';
 
 const EMPTY_WRONGS: { lessonId: string; lessonName: string; kind: string; answer: string; time: number }[] = [];
-/** 思维/科学/生活是技能课，不设课本，单独一排入口 */
-const EXT_SUBJECTS = ['thinking', 'science', 'life'];
 
 /** 星卷学校入口页：学段 → 年级书架 → 学科课本（上/下册）全层次一屏展开 */
 export default function WorldMapPage() {
@@ -44,24 +42,7 @@ export default function WorldMapPage() {
     return () => stopMusic();
   }, [child?.id, lang, nav, t]);
 
-  const gradeIdx = Math.max(0, GRADES.findIndex((g) => g.id === grade));
-  const gradeSkills = useMemo(() => skillsByGrade(grade), [grade]);
-
-  const continueSkill = useMemo(() => {
-    if (!child) return undefined;
-    const unfinished = gradeSkills.find((s) => !skillState(mastery, child.id, s.id).gold);
-    if (unfinished) return unfinished;
-    const nextGrade = GRADES[gradeIdx + 1];
-    if (nextGrade) {
-      const next = skillsByGrade(nextGrade.id);
-      if (next.length) return next[0];
-    }
-    return gradeSkills[0];
-  }, [gradeSkills, gradeIdx, mastery, child, child?.id]);
-
-  const continueState = continueSkill && child
-    ? skillState(mastery, child.id, continueSkill.id)
-    : null;
+  const continueLesson = useMemo(() => nextLessonToLearn(child?.id, mastery), [mastery, child?.id]);
 
   if (!child) return null;
 
@@ -131,12 +112,12 @@ export default function WorldMapPage() {
           })}
         </div>
 
-        {stage === 'primary' && continueSkill && (
+        {stage === 'primary' && continueLesson && (
           <div
             className="continue-card"
             onClick={() => {
-              speak(continueSkill.name[lang], lang);
-              nav(`/learn/${continueSkill.id}?from=map`);
+              speak(continueLesson.title, lang);
+              nav(continueLesson.route);
             }}
             role="button"
             tabIndex={0}
@@ -144,19 +125,19 @@ export default function WorldMapPage() {
             <span className="continue-label">{lang === 'zh' ? '继续学习' : 'Continue'}</span>
             <div className="continue-info">
               <span className="continue-subject">
-                {SUBJECTS.find((s) => s.id === continueSkill.subject)?.icon} {' '}
-                {continueSkill.name[lang]}
+                {SUBJECTS.find((s) => s.id === continueLesson.subject)?.icon} {' '}
+                {continueLesson.title}
               </span>
-              <div className="continue-bar" style={{ '--rc': SUBJECTS.find((s) => s.id === continueSkill.subject)?.color ?? '#8f7bf0' } as React.CSSProperties}>
+              <div className="continue-bar" style={{ '--rc': SUBJECTS.find((s) => s.id === continueLesson.subject)?.color ?? '#8f7bf0' } as React.CSSProperties}>
                 <div
                   className="continue-fill"
-                  style={{ width: `${((continueState?.stars ?? 0) / 3) * 100}%` }}
+                  style={{ width: `${((continueLesson.stars ?? 0) / 3) * 100}%` }}
                 />
               </div>
               <span className="continue-meta">
-                {continueState?.gold
+                {continueLesson.gold
                   ? (lang === 'zh' ? '已掌握 · 挑战下一课' : 'Mastered · next lesson')
-                  : `${lang === 'zh' ? '当前进度' : 'Progress'} ${continueState?.stars ?? 0}/3`}
+                  : `${lang === 'zh' ? '当前进度' : 'Progress'} ${continueLesson.stars ?? 0}/3`}
               </span>
             </div>
             <span className="continue-arrow">→</span>
@@ -213,22 +194,6 @@ export default function WorldMapPage() {
                 </div>
               );
             })}
-          </div>
-
-          {/* 拓展技能课入口（无课本，不设上下册） */}
-          <div className="ext-classes" aria-label={lang === 'zh' ? '拓展课程' : 'Skill classes'}>
-            <b>✨ {lang === 'zh' ? '拓展课程' : 'Skill Classes'}</b>
-            <div className="ext-chips">
-              {EXT_SUBJECTS.map((id) => {
-                const sub = SUBJECTS.find((s) => s.id === id);
-                if (!sub) return null;
-                return (
-                  <button key={id} className="ext-chip" style={{ '--ext-color': sub.color } as React.CSSProperties} onClick={() => { speak(sub.name[lang], lang); nav(`/subject/${sub.id}?grade=${grade}`); }}>
-                    <span>{sub.icon}</span>{sub.name[lang]}
-                  </button>
-                );
-              })}
-            </div>
           </div>
         </>
       )}

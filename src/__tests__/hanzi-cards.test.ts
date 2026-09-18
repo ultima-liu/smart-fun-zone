@@ -1,13 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { CHINESE_G1A } from '../content/contents/chineseG1A';
 import { CARD_SETS, cardsBySet, hanziCardsForLesson } from '../content/starCards';
 import { isPerfectLessonPractice, starsForLessonPractice } from '../lessonRewards';
 
 describe('《我是中国人》汉字图鉴卡', () => {
-  it('在记一记中加入刘、翊、鸣', () => {
-    expect(CHINESE_G1A['chinese-g1-a-1-1'].words).toEqual(['刘', '翊', '鸣']);
-  });
-
   it('汉字分类包含三张完整教学卡', () => {
     expect(CARD_SETS.some((set) => set.id === 'hanzi' && set.name.zh === '汉字')).toBe(true);
     const cards = cardsBySet('hanzi');
