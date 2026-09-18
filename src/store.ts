@@ -144,8 +144,8 @@ export interface AppState {
   setBuddyWake: (on: boolean) => void;
   /** 常驻远征：上次收取远征战利品的时间戳（childId）；undefined 视为刚开启远征 */
   expeditionLastAt: Record<string, number>;
-  /** 远征战利品材料：星屑(飞船升级) + 星尘(抽卡)（childId） */
-  materials: Record<string, { stardust: number; cardShard: number }>;
+  /** 远征战利品材料：星屑（飞船升级）（childId） */
+  materials: Record<string, { stardust: number }>;
   /** 收取远征战利品：按时间累积的补给包数入账，返回本次掉落；无可收取返回 null */
   collectExpedition: (childId: string) => LootDrop | null;
   /** 飞船等级（船坞），1 起 */
@@ -156,11 +156,11 @@ export interface AppState {
   archivedCards: Record<string, string[]>;
   /** 已领取的套系集齐奖励：childId → setId[] */
   cardRewardClaimed: Record<string, string[]>;
-  /** 抽卡：消耗星尘，返回本次抽卡结果 */
+  /** 抽卡：消耗卷卷豆，返回本次抽卡结果 */
   drawCards: (childId: string, count: number, setId?: CardSetId) => DrawResult;
   /** 领取套系集齐奖励：返回是否成功 */
   claimCardReward: (childId: string, setId: CardSetId) => boolean;
-  /** 剧情等固定来源授予一张图鉴卡（幂等，不消耗星尘） */
+  /** 剧情等固定来源授予一张图鉴卡（幂等，不消耗卷卷豆） */
   grantArchiveCard: (childId: string, cardId: string) => void;
   /** 首页展示徽章（最多 3 枚，从已点亮的徽章中自选） */
   showBadges: Record<string, string[]>;
@@ -252,17 +252,15 @@ export const useStore = create<AppState>()(
             points = r.points;
             pointLog = { ...pointLog, [childId]: r.log };
           }
-          // 材料入账：星屑(飞船升级) + 星尘(抽卡)
-          const prevMat = s.materials[childId] ?? { stardust: 0, cardShard: 0 };
-          const cardShardTotal = Math.round((base.cardShard ?? 0) * boost);
+          // 材料入账：仅星屑（飞船升级）
+          const prevMat = s.materials[childId] ?? { stardust: 0 };
           const nextMat = {
             stardust: prevMat.stardust + stardustTotal,
-            cardShard: prevMat.cardShard + cardShardTotal,
           };
           // 随机装扮：加入已拥有列表（免费获得）
           const owned = new Set(s.ownedItems[childId] ?? []);
           for (const oid of base.outfits) owned.add(oid);
-          result = { ...base, beans: beansEach * packs, stardust: stardustTotal, cardShard: cardShardTotal };
+          result = { ...base, beans: beansEach * packs, stardust: stardustTotal };
           return {
             points,
             pointLog,
@@ -277,7 +275,7 @@ export const useStore = create<AppState>()(
         if (stardustCost < 0 || beansCost < 0) return false;
         let did = false;
         set((st) => {
-          const mat = st.materials[childId] ?? { stardust: 0, cardShard: 0 };
+          const mat = st.materials[childId] ?? { stardust: 0 };
           const balance = st.points[childId] ?? 0;
           if (mat.stardust < stardustCost || balance < beansCost) return {};
           const cur = st.shipLevel[childId] ?? 1;
@@ -291,7 +289,7 @@ export const useStore = create<AppState>()(
           const r = applyEntry(st.points, st.pointLog[childId] ?? [], entry);
           did = true;
           return {
-            materials: { ...st.materials, [childId]: { ...mat, stardust: Math.max(0, mat.stardust - stardustCost) } },
+            materials: { ...st.materials, [childId]: { stardust: Math.max(0, mat.stardust - stardustCost) } },
             shipLevel: { ...st.shipLevel, [childId]: cur + 1 },
             points: r.points,
             pointLog: { ...st.pointLog, [childId]: r.log },
@@ -300,16 +298,21 @@ export const useStore = create<AppState>()(
         return did;
       },
       drawCards: (childId, count, setId) => {
-        let result: DrawResult = { ids: [], newCards: [], convertedShards: 0 };
+        let result: DrawResult = { ids: [], newCards: [], duplicateCount: 0 };
         set((st) => {
-          const mat = st.materials[childId] ?? { stardust: 0, cardShard: 0 };
+          const balance = st.points[childId] ?? 0;
           const cost = count === 10 ? 900 : count * 100;
-          if (mat.cardShard < cost) return {};
+          if (balance < cost) return {};
           const owned = st.archivedCards[childId] ?? [];
           result = drawStarCards(count, owned, setId);
           const nextOwned = [...new Set([...owned, ...result.ids])];
+          const points = applyEntry(st.points, st.pointLog[childId] ?? [], {
+            id: `card-draw:${childId}:${Date.now()}:${count}`,
+            time: Date.now(), amount: -cost, reason: `图鉴召唤 ×${count}`, childId,
+          });
           return {
-            materials: { ...st.materials, [childId]: { ...mat, cardShard: mat.cardShard - cost + result.convertedShards } },
+            points: points.points,
+            pointLog: { ...st.pointLog, [childId]: points.log },
             archivedCards: { ...st.archivedCards, [childId]: nextOwned },
           };
         });
@@ -606,14 +609,14 @@ export const useStore = create<AppState>()(
             childId,
           };
           const points = applyEntry(s.points, s.pointLog[childId] ?? [], entry);
-          const mat = s.materials[childId] ?? { stardust: 0, cardShard: 0 };
+          const mat = s.materials[childId] ?? { stardust: 0 };
           result = { ...next.reward, streak: next.state.streak, total: next.state.total };
           return {
             dailyCheckin: { ...s.dailyCheckin, [childId]: next.state },
             points: points.points,
             pointLog: { ...s.pointLog, [childId]: points.log },
             materials: next.reward.stardust > 0
-              ? { ...s.materials, [childId]: { ...mat, stardust: mat.stardust + next.reward.stardust } }
+              ? { ...s.materials, [childId]: { stardust: mat.stardust + next.reward.stardust } }
               : s.materials,
           };
         });
@@ -693,8 +696,8 @@ export const useStore = create<AppState>()(
     }),
     {
       name: 'smart-fun-zone',
-      // v2：下线旧的商店/自动点亮徽章，切换到剧情授勋体系。
-      version: 2,
+      // v3：图鉴召唤改消耗卷卷豆，移除旧的抽卡材料余额。
+      version: 3,
       migrate: (persistedState, version) => {
         let state = persistedState as Partial<AppState>;
         if (version < 1) {
@@ -712,6 +715,13 @@ export const useStore = create<AppState>()(
           }));
           const storeOverrides = Object.fromEntries(Object.entries(state.storeOverrides ?? {}).filter(([itemId]) => !oldBadge(itemId)));
           state = { ...state, ownedItems, equipped, storeOverrides, showBadges: {}, badges: {} };
+        }
+        if (version < 3) {
+          const materials = Object.fromEntries(Object.entries(state.materials ?? {}).map(([childId, material]) => [
+            childId,
+            { stardust: (material as { stardust?: number }).stardust ?? 0 },
+          ]));
+          state = { ...state, materials };
         }
         return state as AppState;
       },

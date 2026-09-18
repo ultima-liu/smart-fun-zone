@@ -1,7 +1,7 @@
 import type { MathFigure } from '../skills';
 
 /** 二年级数学（人教版）· 逐课时配图
- *  id 规则：math-g2-a-单元序号-课序号（上）/ math-g2-b-单元序号-课序号（下），按 mathCurriculum.ts 顺序从 1 起
+ * 旧版数学素材的历史 id 规则：math-g2-a-单元序号-课序号（上）/ math-g2-b-单元序号-课序号（下）。
  *  只收录能明确配图的课时：长度单位→numberline；加减乘除/混合/有余数除法→equation；
  *  乘法口诀→count 或 equation；认识时间→clock；其余（角、观察物体、搭配、数据、图形运动、克和千克、推理）跳过。
  */

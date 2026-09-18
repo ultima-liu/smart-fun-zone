@@ -10,6 +10,21 @@ export const CHARACTER_PORTRAITS = {
   'npc-tie-tuo': '/assets/npc-tie-tuo-v3.png',
   'npc-dang-dang': '/assets/npc-dang-dang-v3.png',
   'npc-pao-pao': '/assets/npc-pao-pao-v3.png',
+  'brook-captain': '/assets/cards/brook-team/brook-captain.png',
+  'brook-xing-shan': '/assets/cards/brook-team/xing-shan-scout.png',
+  'brook-yan-dun': '/assets/cards/brook-team/yan-dun-guardian.png',
+  'brook-lu-mi': '/assets/cards/brook-team/lu-mi-medic.png',
+  'bruco-red-hero': '/assets/cards/bruco-team/bruco-red-hero.png',
+  'bruco-lulu': '/assets/cards/bruco-team/bruco-lulu.png',
+  'bruco-coco': '/assets/cards/bruco-team/bruco-coco.png',
+  'bruco-purple-flight': '/assets/cards/bruco-team/bruco-purple-flight.png',
+  'bruco-bronze-guard': '/assets/cards/bruco-team/bruco-bronze-guard.png',
+  'bruco-blue-glider': '/assets/cards/bruco-team/bruco-blue-glider.png',
+  'bruco-red-04': '/assets/cards/bruco-team/bruco-red-04.png',
+  'bruco-green-03': '/assets/cards/bruco-team/bruco-green-03.png',
+  'bruco-blue-05': '/assets/cards/bruco-team/bruco-blue-05.png',
+  'bruco-orange-sprinter': '/assets/cards/bruco-team/bruco-orange-sprinter.png',
+  'bruco-purple-skater': '/assets/cards/bruco-team/bruco-purple-skater.png',
 } as const;
 
 /** 场景/对话使用中文 NPC 名称，集中在此映射到图鉴卡角色 id。 */

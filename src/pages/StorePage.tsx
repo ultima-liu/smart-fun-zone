@@ -4,11 +4,12 @@ import { useStore } from '../store';
 import { KidButton } from '../components/ui';
 import PageHero from '../components/PageHero';
 import { useI18n } from '../i18n';
-import { speak } from '../speech';
+import { speakAsNpc } from '../speech';
+import { npcMeta } from '../content/npc';
 import { IconBean } from '../components/icons';
 import { SystemPlanet } from '../components/cosmos';
 import { KIND_LABEL, shelf, itemById, type ItemKind, type StoreItem } from '../points';
-import { TASKS, effTask } from '../tasks';
+import { TASKS, effTask, taskProgress } from '../tasks';
 import WardrobeAvatar from '../components/WardrobeAvatar';
 import NpcBuddy from '../components/NpcBuddy';
 
@@ -34,7 +35,7 @@ export default function StorePage() {
 
   // 进入补给站欢迎语
   useEffect(() => {
-    if (child) speak(t('welcomeStore'), lang);
+    if (child) speakAsNpc(t('welcomeStore'), npcMeta('铛铛'), lang);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [child?.id]);
 
@@ -133,10 +134,10 @@ export default function StorePage() {
         <div className="task-wall">
           {TASKS.map((raw) => {
             const tk = effTask(raw);
-            if (!tk.enabled) return null;
-            const daySrc = tk.kind === 'daily' ? `task:${tk.id}:${new Date().toDateString()}` : `task:${tk.id}`;
-            const done = log.some((e) => e.id === daySrc && e.amount > 0);
-            const cur = Math.min(tk.target, tk.progress(stateNow, child.id));
+            const progress = taskProgress(tk, child.id);
+            if (!progress.enabled) return null;
+            const done = progress.done;
+            const cur = progress.cur;
             const pct = Math.round((cur / tk.target) * 100);
             return (
               <div key={tk.id} className={`task-cell deck-card ${done ? 'done' : ''}`}>

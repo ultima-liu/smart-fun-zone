@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useStore } from '../store';
 import { useI18n } from '../i18n';
-import { speak } from '../speech';
+import { speak, speakAsNpc } from '../speech';
+import { npcMeta } from '../content/npc';
 import { KidButton } from '../components/ui';
 import PageHero from '../components/PageHero';
 import NpcBuddy from '../components/NpcBuddy';
@@ -45,7 +46,7 @@ export default function ArchivePage() {
   useEffect(() => {
     if (child && spokenFor.current !== child.id) {
       spokenFor.current = child.id;
-      speak(t('welcomeArchive'), lang);
+      speakAsNpc(t('welcomeArchive'), npcMeta('晶晶'), lang);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [child?.id]);
@@ -79,11 +80,11 @@ export default function ArchivePage() {
       <section className="summon-panel">
         <div className="summon-glow" />
         <div className="summon-info">
-          <h3>{zh ? '星尘召唤' : 'Stardust Summon'}</h3>
+          <h3>{zh ? '卷卷豆召唤' : 'Bean Summon'}</h3>
           <p>
             {zh
-              ? `消耗星尘召唤图鉴卡。已收集 ${totalOwned}/${totalCards}`
-              : `Spend stardust to summon cards. Collected ${totalOwned}/${totalCards}`}
+              ? `消耗卷卷豆召唤图鉴卡。已收集 ${totalOwned}/${totalCards}`
+              : `Spend beans to summon cards. Collected ${totalOwned}/${totalCards}`}
           </p>
         </div>
         <div className="summon-actions">

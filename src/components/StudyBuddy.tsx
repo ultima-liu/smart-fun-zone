@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from '../store';
 import { api } from '../api';
 import { speak, stopSpeaking, playSfx } from '../speech';
-import Mascot, { type Pose } from './Mascot';
+import RobotAssistant from './RobotAssistant';
 import { IconClose, IconMic } from './icons';
 import { EMPTY } from '../features';
 import { allNodes, type StoryNode } from '../content/story';
@@ -298,14 +298,14 @@ export default function StudyBuddy() {
     };
   }, [buddyWakeOn, buddyOpen]);
 
-  const pose: Pose = thinking ? 'idle' : listening ? 'happy' : messages.length > 0 ? 'happy' : 'idle';
+  const robotState = thinking ? 'thinking' : listening ? 'listening' : messages.length > 0 ? 'happy' : 'idle';
 
   return (
     <>
       {/* 悬浮球 */}
       <button className="buddy-fab" onClick={toggleBuddy} aria-label="小卷学习助手">
         <span className="buddy-fab-ring" aria-hidden="true" />
-        <Mascot pose="happy" size={64} className="buddy-fab-mascot" />
+        <RobotAssistant state="happy" size={64} className="buddy-fab-mascot" />
         {buddyStory && <i className="npc-buddy-quest" aria-hidden="true">!</i>}
       </button>
 
@@ -314,7 +314,7 @@ export default function StudyBuddy() {
         <div className="buddy-panel" role="dialog" aria-label="小卷学习助手">
           <header className="buddy-head">
             <span className="buddy-head-mascot">
-              <Mascot pose={pose} size={64} />
+              <RobotAssistant state={robotState} size={64} />
             </span>
             <div className="buddy-head-info">
               <b>小卷</b>
@@ -343,7 +343,7 @@ export default function StudyBuddy() {
                       key={i}
                       className={`buddy-story-line ${i === storyIdx ? 'on' : i < storyIdx ? 'seen' : ''}`}
                     >
-                      <span className="buddy-story-ava"><Mascot pose={i === storyIdx ? 'happy' : 'idle'} size={22} /></span>
+                      <span className="buddy-story-ava"><RobotAssistant state={i === storyIdx ? 'happy' : 'idle'} size={22} /></span>
                       <span className="buddy-story-bubble">{l.zh}</span>
                     </p>
                   ))}
@@ -379,7 +379,7 @@ export default function StudyBuddy() {
               m.role === 'assistant' ? (
                 <div key={i} className="buddy-msg assistant">
                   <span className="buddy-msg-ava">
-                    <Mascot pose="happy" size={26} />
+                    <RobotAssistant state="happy" size={26} />
                   </span>
                   <div className="buddy-col">
                     <span className="buddy-bubble">{m.content}</span>
@@ -397,7 +397,7 @@ export default function StudyBuddy() {
             {thinking && (
               <div className="buddy-msg assistant">
                 <span className="buddy-msg-ava">
-                  <Mascot pose="idle" size={26} />
+                  <RobotAssistant state="thinking" size={26} />
                 </span>
                 <span className="buddy-bubble thinking">
                   <i>·</i>

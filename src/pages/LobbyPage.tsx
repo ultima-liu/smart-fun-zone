@@ -7,7 +7,8 @@ import { KidButton, Stars } from '../components/ui';
 import Modal from '../components/Modal';
 import PageHero from '../components/PageHero';
 import { GAME_GENRES, type GameGenre } from '../types';
-import { speak, stopMusic } from '../speech';
+import { speak, speakAsNpc, stopMusic } from '../speech';
+import { npcMeta } from '../content/npc';
 import { IconBean } from '../components/icons';
 import NpcBuddy from '../components/NpcBuddy';
 
@@ -33,7 +34,7 @@ export default function LobbyPage() {
       nav('/');
       return;
     }
-    speak(t('welcomeLobby'), lang);
+    speakAsNpc(t('welcomeLobby'), npcMeta('泡泡'), lang);
     return () => stopMusic();
   }, [child?.id, lang, nav, t]);
 

@@ -1,5 +1,5 @@
 import { useStore } from './store';
-import { speakVolc, stopVolc, volcConfigured, warmTts } from './volcTts';
+import { speakVolc, stopVolc, volcConfigured, warmTts, voiceForProfile, type VoiceProfile } from './volcTts';
 
 /* =====================================================================
    音频系统：语音朗读（火山引擎 seed-tts-2.0，唯一通道、无兜底）
@@ -52,16 +52,6 @@ const PZ_SYL: Record<string, string> = {
   xie: '写', jie: '借', qie: '切', zhe: '这', che: '车', she: '舌', re: '热',
 };
 
-// 带调单字母 → 读成一串"含该韵母的各声调汉字"，保证四个声调真实且稳定
-// （引擎按汉字朗读最可靠；用不同声调的同韵母字来示范四声）
-const TONE_HANZI: Record<string, string> = {
-  ā: '妈', á: '麻', ǎ: '马', à: '骂',
-  ō: '摸', ó: '魔', ǒ: '抹', ò: '墨',
-  ē: '哥', é: '格', ě: '葛', è: '个',
-  ī: '衣', í: '姨', ǐ: '以', ì: '意',
-  ū: '乌', ú: '无', ǔ: '五', ù: '物',
-  ǖ: '迂', ǘ: '鱼', ǚ: '雨', ǜ: '玉',
-};
 // 每个韵母的四个带调字母（用于识别"四声示范"行）
 const VOWEL_TONE_CLASSES = ['āáǎà', 'ōóǒò', 'ēéěè', 'īíǐì', 'ūúǔù', 'ǖǘǚǜ'];
 const TONE_VOWEL = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/;
@@ -71,17 +61,27 @@ function stripTone(s: string): string {
   return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
 
+// 独立大写单字母（选项编号 A、B、C…）→ 英文字母名，不读成拼音声母（啊/玻/雌）
+const LETTER_NAMES: Record<string, string> = { A: '诶', B: '必', C: '西', D: '第', E: '衣', F: '艾弗', G: '吉' };
+
 /** 中文朗读前归一化：
-    1) 只有"四声示范"行（同韵母、≥2 个带调字母相邻）才读成对应声调汉字，示范真实四声；
+    1) "四声示范"行（同韵母、≥2 个带调字母相邻）：保留带调字母、空格换成逗号，占位跳过字母归一化——
+       实测 seed-tts-2.0 原样收到"ā，á，ǎ，à"能读准纯韵母的四个声调（旧方案读同韵母汉字，孩子听到的是"妈"而非 a 的本音）；
     2) 其余字母（含拼读里孤立的带调字母）读字母名/音节汉字，避免把示范字混进别处。 */
 export function zhSpeakNormalize(text: string): string {
-  // 1) 识别同韵母相邻成一组的带调字母（如"ā á ǎ à"）→ 各读成示范汉字，保留空格
+  // 1) 识别同韵母相邻成一组的带调字母（如"ā á ǎ à"）→ 逗号分隔并占位，原样交引擎
+  const toneRows: string[] = [];
   for (const cls of VOWEL_TONE_CLASSES) {
     const re = new RegExp('[' + cls + '](?:[ \\t]*[' + cls + '])+', 'g');
-    text = text.replace(re, (m) => m.replace(/[\u00C0-\u024F]/g, (ch) => TONE_HANZI[ch] ?? ch));
+    text = text.replace(re, (m) => {
+      toneRows.push(m.split(/[ \t]+/).join('，'));
+      return `\u0000${toneRows.length - 1}\u0000`;
+    });
   }
   // 2) 其余字母处理：拼读里孤立的带调字母读字母名，不读示范字
-  return text.replace(/[A-Za-z\u00C0-\u024F]+/g, (token) => {
+  text = text.replace(/[A-Za-z\u00C0-\u024F]+/g, (token) => {
+    // 独立的大写单字母：选项编号，读英文字母名
+    if (token.length === 1 && LETTER_NAMES[token]) return LETTER_NAMES[token];
     const hasTone = TONE_VOWEL.test(token);
     const base = stripTone(token);
     // 独立的带调单元音（拼读里的 à 等）：读字母名（啊/衣…），不读示范字
@@ -92,6 +92,8 @@ export function zhSpeakNormalize(text: string): string {
     if (base.length === 1 && PZ_SINGLE[base]) return PZ_SINGLE[base];
     return token;
   });
+  // 3) 还原四声示范行（带调字母原样，引擎按纯韵母四声朗读）
+  return text.replace(/\u0000(\d+)\u0000/g, (_, index) => toneRows[Number(index)]);
 }
 
 /* ---------- 语音朗读（火山引擎 豆包语音合成大模型 2.0） ---------- */
@@ -108,9 +110,22 @@ function newChain(): number {
 const lastSpeakAt = new Map<string, number>();
 const SPEAK_THROTTLE_MS = 12_000;
 
+/* ---------- 接续播报：当前语音没播完时，把下一条排到它播完之后（不打断刚点亮/刚答对的内容语音） ---------- */
+let currentSpeakEnd: (() => void) | null = null; // 当前朗读自然播完时的收尾（含触发接续队列）
+const afterCurrent: (() => void)[] = [];
+
+/* ---------- 连读令牌：逐句连读进行中等于 chainToken，结束/被打断后置 -1 ---------- */
+let seqToken = -1;
+
+/** 当前是否有语音在播（speakOnce 的朗读/接续，或 speakSeq 的逐句连读）；自动导览据此避让内容语音 */
+export function isSpeaking(): boolean {
+  return currentSpeakEnd !== null || seqToken === chainToken;
+}
+
 export function stopSpeaking() {
   newChain();
   stopVolc();
+  afterCurrent.length = 0; // 主动停止/翻页：接续提示一并作废
 }
 
 /** 火山引擎语音是否已配置（未配置时页面会提示） */
@@ -130,6 +145,36 @@ export function speak(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92) {
   void speakVolc(lang === 'zh' ? zhSpeakNormalize(text) : text, lang, rate);
 }
 
+/** 按 NPC 性别与年龄选择音色；若环境未配置专属音色则回退默认音色。 */
+export function speakAsNpc(
+  text: string,
+  npc: { gender?: { zh: string; en: string }; age?: number; voicePitch?: number } | undefined,
+  lang: 'zh' | 'en' = 'zh',
+  rate = 0.92,
+  onEnd?: () => void,
+) {
+  if (!text) {
+    window.setTimeout(() => onEnd?.(), 0);
+    return;
+  }
+  // 兼容元数据中的“男/男性/male”等写法，避免未知写法落回中性女声默认档。
+  const gender = String(npc?.gender?.zh ?? npc?.gender?.en ?? '').trim().toLowerCase();
+  const age = npc?.age ?? 30;
+  let profile: VoiceProfile = 'neutral';
+  if (gender === '女' || gender === '女性' || gender === 'female') profile = age < 13 ? 'female-child' : age < 25 ? 'female-young' : age >= 60 ? 'female-elder' : 'female-adult';
+  else if (gender === '男' || gender === '男性' || gender === 'male') profile = age < 13 ? 'male-child' : age < 25 ? 'male-young' : age >= 60 ? 'male-elder' : 'male-adult';
+  const { sound, voiceOn } = useStore.getState();
+  if (!sound || !voiceOn) {
+    window.setTimeout(() => onEnd?.(), 0);
+    return;
+  }
+  const clean = lang === 'zh' ? zhSpeakNormalize(text) : text;
+  newChain();
+  stopVolc();
+  const pitch = Math.max(-12, Math.min(12, npc?.voicePitch ?? 0));
+  void speakVolc(clean, lang, rate, onEnd, voiceForProfile(profile, lang), pitch);
+}
+
 /** 朗读一句，读完后回调 onEnd（语音被关闭/未配置/失败时也会回调，保证跟读流程不卡住） */
 export function speakOnce(
   text: string,
@@ -144,7 +189,24 @@ export function speakOnce(
   }
   newChain();
   stopVolc();
-  void speakVolc(lang === 'zh' ? zhSpeakNormalize(text) : text, lang, rate, onEnd);
+  const end = () => {
+    currentSpeakEnd = null;
+    onEnd?.();
+    afterCurrent.shift()?.(); // 播完当前，接续的下一条才开始
+  };
+  currentSpeakEnd = end;
+  void speakVolc(lang === 'zh' ? zhSpeakNormalize(text) : text, lang, rate, end);
+}
+
+/** 排队播报：当前有语音在播时等它播完再读（不截断正在播的内容），没有则立即读；stopSpeaking 会清空队列 */
+export function speakAfterCurrent(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92) {
+  const { sound, voiceOn } = useStore.getState();
+  if (!sound || !voiceOn || !text) return;
+  if (!currentSpeakEnd) {
+    speakOnce(text, lang, rate);
+    return;
+  }
+  afterCurrent.push(() => speakOnce(text, lang, rate));
 }
 
 /** 逐句朗读序列：每句播完回调 onIndex（用于高亮跟随），全部播完回调 onEnd */
@@ -158,10 +220,12 @@ export function speakSeq(
   const { sound, voiceOn } = useStore.getState();
   if (!sound || !voiceOn || texts.length === 0) return;
   const token = newChain();
+  seqToken = token;
   let i = 0;
   const next = () => {
     if (token !== chainToken) return; // 已被停止/新朗读打断
     if (i >= texts.length) {
+      seqToken = -1;
       onEnd?.();
       return;
     }
@@ -172,6 +236,63 @@ export function speakSeq(
     void speakVolc(lang === 'zh' ? zhSpeakNormalize(text) : text, lang, rate, next);
   };
   next();
+}
+
+/** 按中英文把混排文本切段：拉丁字母/数字与常规西文标点连续段为英文，其余（CJK 与中文标点）为中文 */
+export function splitMixedSegments(text: string): { text: string; lang: 'zh' | 'en' }[] {
+  const runs = text.match(/[A-Za-z0-9’'\-.,;:!?%]+|[^A-Za-z0-9’'\-.,;:!?%]+/g) ?? [];
+  const segs: { text: string; lang: 'zh' | 'en' }[] = [];
+  for (const run of runs) {
+    const lang: 'zh' | 'en' = /[A-Za-z0-9]/.test(run) ? 'en' : /[\u4e00-\u9fff]/.test(run) ? 'zh' : (segs[segs.length - 1]?.lang ?? 'zh');
+    if (segs.length && segs[segs.length - 1].lang === lang) segs[segs.length - 1].text += run;
+    else segs.push({ text: run, lang });
+  }
+  return segs
+    .map((s) => ({ ...s, text: s.text.trim() }))
+    .filter((s) => s.text.length > 0 && /[A-Za-z0-9\u4e00-\u9fff]/.test(s.text));
+}
+
+/**
+ * 把混排文案交给同一条中文主持人音轨前，只归一化其中的中文部分。
+ *
+ * 不能直接调用 zhSpeakNormalize(text)：它会把英文中的独立 A、B… 当作
+ * 中文选项字母替换。保留英文原文，让火山的中文主持人音色在同一个请求内
+ * 自然处理英文词；纯英文点读仍由 speakOnce(..., 'en') 走英文音色。
+ */
+function mixedSpeakNormalize(text: string): string {
+  return splitMixedSegments(text)
+    .map((segment) => segment.lang === 'zh' ? zhSpeakNormalize(segment.text) : segment.text)
+    .join(' ');
+}
+
+/**
+ * 中英混排朗读：一整句只合成一条火山音频，使用同一位中文主持人音色。
+ *
+ * 旧实现会为“中文 → English → 中文”分别发起请求、依次播放；不仅有网络
+ * 空档，音色也会突然切换，听起来像被剪成三段。混排内容多为教师提示、题干
+ * 和反馈，连续的句流比在提示语中切换英文示范音色更重要。需要标准英语发音
+ * 的单词、句子与教材对话仍走独立的英文点读，不受这里影响。
+ */
+export function speakMixedSeq(text: string, rate = 0.92, onEnd?: () => void) {
+  const { sound, voiceOn } = useStore.getState();
+  if (!sound || !voiceOn || !text) return;
+  const token = newChain();
+  stopVolc();
+  void speakVolc(mixedSpeakNormalize(text), 'zh', rate, () => {
+    if (token !== chainToken) return; // 已被停止/新朗读打断
+    onEnd?.();
+  });
+}
+
+/** 接续版中英混读：当前有语音在播时排到它播完之后（用于跟在聪聪导览后面） */
+export function speakMixedAfterCurrent(text: string, rate = 0.92) {
+  const { sound, voiceOn } = useStore.getState();
+  if (!sound || !voiceOn || !text) return;
+  if (!currentSpeakEnd) {
+    speakMixedSeq(text, rate);
+    return;
+  }
+  afterCurrent.push(() => speakMixedSeq(text, rate));
 }
 
 /* ---------- WebAudio 基础 ---------- */

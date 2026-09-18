@@ -41,7 +41,7 @@ function buildState(theme: 'dark' | 'light') {
       expeditionLastAt: { [childId]: Date.now() - 3_600_000 },
       materials: { [childId]: { stardust: 999, cardShard: 5000 } },
       shipLevel: { [childId]: 1 },
-      archivedCards: { [childId]: ['npc-a-guang','npc-tie-tuo','npc-dang-dang','npc-pao-pao','npc-xiao-juan','npc-jing-jing','mon-mist','mon-dawdle','mon-sloppy','mon-fidget','mon-quitter','hanzi-liu','hanzi-yi','hanzi-ming'] },
+      archivedCards: { [childId]: ['npc-a-guang','npc-tie-tuo','npc-dang-dang','npc-pao-pao','npc-xiao-juan','npc-jing-jing','brook-captain','brook-xing-shan','brook-yan-dun','brook-lu-mi','bruco-red-hero','bruco-lulu','bruco-coco','bruco-purple-flight','bruco-bronze-guard','bruco-blue-glider','bruco-red-04','bruco-green-03','bruco-blue-05','bruco-orange-sprinter','bruco-purple-skater','mon-mist','mon-dawdle','mon-sloppy','mon-fidget','mon-quitter','hanzi-liu','hanzi-yi','hanzi-ming'] },
       cardRewardClaimed: { [childId]: [] },
       showBadges: {},
     },
@@ -97,7 +97,7 @@ for (const theme of ['dark', 'light'] as const) {
 
     // 双层筛选（第一层套系 / 第二层稀有度）与图鉴墙
     await expect(page.locator('.filter-panels')).toBeVisible();
-    await expect(page.locator('.ccard')).toHaveCount(14);
+    await expect(page.locator('.ccard')).toHaveCount(29);
 
     const setTier = page.locator('.filter-tier').first();
     const rarityTier = page.locator('.filter-tier').nth(1);
@@ -112,11 +112,33 @@ for (const theme of ['dark', 'light'] as const) {
     );
     expect(new Set(portraitHrefs).size).toBe(4);
     expect(portraitHrefs.every((href) => href?.endsWith('.png'))).toBe(true);
-    await expect(page.locator('.ccard .ccard-xiao-juan-mascot')).toHaveCount(1);
+    await expect(page.locator('.ccard .ccard-xiao-juan-robot')).toHaveCount(1);
     await expect(page.locator('.ccard .ccard-jing-jing-art')).toHaveCount(1);
     await setTier.getByRole('tab', { name: /全部/ }).click();
     await expect(setTier.locator('.filter-chip.active')).toContainText('全部');
-    await expect(page.locator('.ccard')).toHaveCount(14);
+    await expect(page.locator('.ccard')).toHaveCount(29);
+
+    // 星航协作队为四张独立高精度立绘，资源不依赖人物合图。
+    await setTier.getByRole('tab', { name: /星航协作队/ }).click();
+    await expect(page.locator('.ccard')).toHaveCount(4);
+    const brookHrefs = await page.locator('.ccard image.ccard-brook-art').evaluateAll((images) =>
+      images.map((image) => image.getAttribute('href')),
+    );
+    expect(new Set(brookHrefs).size).toBe(4);
+    expect(brookHrefs.every((href) => href?.startsWith('/assets/cards/brook-team/'))).toBe(true);
+    await setTier.getByRole('tab', { name: /全部/ }).click();
+    await expect(page.locator('.ccard')).toHaveCount(29);
+
+    // 布鲁克战队十一张角色图：白底均已转换为独立透明立绘。
+    await setTier.getByRole('tab', { name: /布鲁克战队/ }).click();
+    await expect(page.locator('.ccard')).toHaveCount(11);
+    const brucoHrefs = await page.locator('.ccard image.ccard-bruco-art').evaluateAll((images) =>
+      images.map((image) => image.getAttribute('href')),
+    );
+    expect(new Set(brucoHrefs).size).toBe(11);
+    expect(brucoHrefs.every((href) => href?.startsWith('/assets/cards/bruco-team/'))).toBe(true);
+    await setTier.getByRole('tab', { name: /全部/ }).click();
+    await expect(page.locator('.ccard')).toHaveCount(29);
 
     // 汉字套系：三张教学卡，正面包含田字格大字、拼音、部首与笔画。
     await setTier.getByRole('tab', { name: /汉字/ }).click();
@@ -128,10 +150,10 @@ for (const theme of ['dark', 'light'] as const) {
     // 第二层：稀有度筛选 + 回全部
     await rarityTier.locator('.filter-chip.c-SP').click();
     await expect(rarityTier.locator('.filter-chip.active')).toContainText('SP');
-    await expect(page.locator('.ccard.c-SP')).toHaveCount(2);
-    await expect(page.locator('.ccard')).toHaveCount(2);
+    await expect(page.locator('.ccard.c-SP')).toHaveCount(3);
+    await expect(page.locator('.ccard')).toHaveCount(3);
     await rarityTier.getByRole('tab', { name: /全部/ }).click();
-    await expect(page.locator('.ccard')).toHaveCount(14);
+    await expect(page.locator('.ccard')).toHaveCount(29);
 
     // 组合筛选：卷星人 + SR → 铛铛、泡泡与晶晶三张
     await setTier.getByRole('tab', { name: /卷星人/ }).click();
@@ -140,7 +162,7 @@ for (const theme of ['dark', 'light'] as const) {
     // 清理回全部
     await setTier.getByRole('tab', { name: /全部/ }).click();
     await rarityTier.getByRole('tab', { name: /全部/ }).click();
-    await expect(page.locator('.ccard')).toHaveCount(14);
+    await expect(page.locator('.ccard')).toHaveCount(29);
 
     // 点击第一张卡放大预览
     await page.locator('.ccard').first().click();

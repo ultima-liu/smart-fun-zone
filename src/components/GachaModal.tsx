@@ -15,7 +15,7 @@ interface Props {
 export default function GachaModal({ open, onClose }: Props) {
   const { lang } = useI18n();
   const childId = useStore((s) => s.activeChildId);
-  const cardShard = useStore((s) => (childId ? s.materials[childId]?.cardShard ?? 0 : 0));
+  const beans = useStore((s) => (childId ? s.points[childId] ?? 0 : 0));
   const draw = useStore((s) => s.drawCards);
   const [result, setResult] = useState<DrawResult | null>(null);
   const [revealed, setRevealed] = useState(0);
@@ -47,7 +47,7 @@ export default function GachaModal({ open, onClose }: Props) {
   const startDraw = (count: number) => {
     if (!childId) return;
     const cost = count === 10 ? DRAW_COST.ten : DRAW_COST.single;
-    if (cardShard < cost) return;
+    if (beans < cost) return;
     setPhase('casting');
     setResult(null);
     setRevealed(0);
@@ -82,7 +82,7 @@ export default function GachaModal({ open, onClose }: Props) {
   const castMsg = burst
     ? (zh ? '星门爆发！' : 'The gate bursts!')
     : castTick === 0
-      ? (zh ? '星尘汇聚…' : 'Gathering stardust…')
+      ? (zh ? '卷卷豆能量汇聚…' : 'Gathering bean energy…')
       : castTick === 1
         ? (zh ? '法阵震颤…' : 'The circle trembles…')
         : castTick === 2
@@ -96,23 +96,23 @@ export default function GachaModal({ open, onClose }: Props) {
       <div className="gacha-stage">
         {phase === 'idle' && (
           <div className="gacha-intro">
-            <h2>{zh ? '星尘召唤' : 'Stardust Summon'}</h2>
+            <h2>{zh ? '卷卷豆召唤' : 'Bean Summon'}</h2>
             <p className="gacha-shard-count">
-              <span className="gs-icon">💠</span>
-              {zh ? `当前星尘：${cardShard}` : `Stardust: ${cardShard}`}
+              <span className="gs-icon">🫘</span>
+              {zh ? `当前卷卷豆：${beans}` : `Beans: ${beans}`}
             </p>
             <div className="gacha-buttons">
-              <button className="gacha-btn single" onClick={() => startDraw(1)} disabled={cardShard < DRAW_COST.single}>
+              <button className="gacha-btn single" onClick={() => startDraw(1)} disabled={beans < DRAW_COST.single}>
                 <b>{zh ? '召唤 ×1' : 'Summon ×1'}</b>
-                <small>💠 {DRAW_COST.single}</small>
+                <small>🫘 {DRAW_COST.single}</small>
               </button>
-              <button className="gacha-btn ten" onClick={() => startDraw(10)} disabled={cardShard < DRAW_COST.ten}>
+              <button className="gacha-btn ten" onClick={() => startDraw(10)} disabled={beans < DRAW_COST.ten}>
                 <b>{zh ? '召唤 ×10' : 'Summon ×10'}</b>
-                <small>💠 {DRAW_COST.ten}</small>
+                <small>🫘 {DRAW_COST.ten}</small>
               </button>
             </div>
-            {cardShard < DRAW_COST.single && (
-              <p className="gacha-hint">{zh ? '星尘不足，去收取远征战利品吧！' : 'Not enough stardust. Collect expedition loot!'}</p>
+            {beans < DRAW_COST.single && (
+              <p className="gacha-hint">{zh ? '卷卷豆不足，完成课程和任务来获取吧！' : 'Not enough beans. Complete lessons and quests!'}</p>
             )}
             <KidButton color="purple" onClick={() => { sfx.click(); onClose(); }}>{zh ? '关闭' : 'Close'}</KidButton>
           </div>
@@ -154,8 +154,8 @@ export default function GachaModal({ open, onClose }: Props) {
               </div>
             )}
 
-            {result.convertedShards > 0 && (
-              <p className="gacha-dup">{zh ? `重复卡已兑换 💠 +${result.convertedShards}` : `Duplicates converted 💠 +${result.convertedShards}`}</p>
+            {result.duplicateCount > 0 && (
+              <p className="gacha-dup">{zh ? `本次获得 ${result.duplicateCount} 张重复卡` : `${result.duplicateCount} duplicate card(s) this draw`}</p>
             )}
 
             {revealed >= revealedCards.length && (

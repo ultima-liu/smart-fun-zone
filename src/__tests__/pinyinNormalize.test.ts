@@ -6,9 +6,9 @@ describe('拼音朗读归一化', () => {
     expect(zhSpeakNormalize('a o e b p m f')).toBe('啊 喔 鹅 玻 坡 摸 佛');
     expect(zhSpeakNormalize('zh ch sh r')).toBe('知 吃 诗 日');
   });
-  it('带调字母读成对应的四声示范汉字', () => {
-    expect(zhSpeakNormalize('ā á ǎ à ō ó ǒ ò ē é ě è')).toBe('妈 麻 马 骂 摸 魔 抹 墨 哥 格 葛 个');
-    expect(zhSpeakNormalize('ī í ǐ ì ǖ ǘ ǚ ǜ')).toBe('衣 姨 以 意 迂 鱼 雨 玉');
+  it('四声示范行保留带调字母、逗号分隔，交给引擎读纯韵母四声（不读成"妈"等整音节）', () => {
+    expect(zhSpeakNormalize('ā á ǎ à ō ó ǒ ò ē é ě è')).toBe('ā，á，ǎ，à ō，ó，ǒ，ò ē，é，ě，è');
+    expect(zhSpeakNormalize('ī í ǐ ì ǖ ǘ ǚ ǜ')).toBe('ī，í，ǐ，ì ǖ，ǘ，ǚ，ǜ');
   });
   it('音节/复韵母读成对应汉字', () => {
     expect(zhSpeakNormalize('bà 爸 mā 妈')).toBe('爸 爸 妈 妈');

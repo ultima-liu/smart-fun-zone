@@ -14,6 +14,8 @@ interface CharCardProps {
   context?: string;
   /** 本课分词得到的真词表（构建期 segmentit 生成） */
   textWords?: string[];
+  /** 生字卡组翻页：提供后显示"上一个/下一个"和位置（新语文课文整课浏览用） */
+  deck?: { index: number; total: number; onPrev: () => void; onNext: () => void };
 }
 
 const HAN = /[\u4e00-\u9fff]/;
@@ -49,7 +51,7 @@ export function extractContextWords(char: string, text: string): string[] {
 }
 
 /** 点字卡片：拼音 + 笔顺动画 + 释义/组词 + 课文里的词 + 朗读 */
-export default function CharCard({ char, onClose, context, textWords }: CharCardProps) {
+export default function CharCard({ char, onClose, context, textWords, deck }: CharCardProps) {
   const { t, lang } = useI18n();
   const strokeRef = useRef<HTMLDivElement>(null);
   const entry = WORD_DICT[char];
@@ -134,6 +136,17 @@ export default function CharCard({ char, onClose, context, textWords }: CharCard
         )}
 
         <div className="char-card-btns">
+          {deck && (
+            <>
+              <KidButton color="white" onClick={deck.onPrev} className="char-card-nav" disabled={deck.index <= 0}>
+                ← 上一个
+              </KidButton>
+              <span className="char-card-pos">{deck.index + 1} / {deck.total}</span>
+              <KidButton color="white" onClick={deck.onNext} className="char-card-nav" disabled={deck.index >= deck.total - 1}>
+                下一个 →
+              </KidButton>
+            </>
+          )}
           <KidButton
             color="green"
             onClick={() => {

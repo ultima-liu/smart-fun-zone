@@ -10,7 +10,8 @@ import {
 } from '../store';
 import { useI18n } from '../i18n';
 import { gradeLabel } from '../types';
-import { speak, playSfx } from '../speech';
+import { speak, speakAsNpc, playSfx } from '../speech';
+import { npcMeta } from '../content/npc';
 import NpcBuddy from '../components/NpcBuddy';
 import { useGates } from '../features';
 import WardrobeAvatar from '../components/WardrobeAvatar';
@@ -66,7 +67,7 @@ export default function ProfilePage() {
 
   // 进入总部欢迎语
   useEffect(() => {
-    if (child) speak(t('welcomeHQ'), lang);
+    if (child) speakAsNpc(t('welcomeHQ'), npcMeta('铁砣'), lang);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -114,7 +115,7 @@ export default function ProfilePage() {
     : { wis: 0, cou: 0, cre: 0, tea: 0 };
 
   // 材料
-  const mat = child ? materialsMap[child.id] ?? { stardust: 0, cardShard: 0 } : { stardust: 0, cardShard: 0 };
+  const mat = child ? materialsMap[child.id] ?? { stardust: 0 } : { stardust: 0 };
   const approvedRewards = child ? (rewardRequestsMap[child.id] ?? []).filter((r) => r.status === 'approved') : [];
   const earnedBadges = child ? (badgesMap[child.id] ?? []).map((id) => BADGES.find((badge) => badge.id === id)).filter(Boolean) : [];
 
@@ -139,7 +140,7 @@ export default function ProfilePage() {
   }
   const nextCheckinReward = rewardForCheckinStreak(checkinStreak + 1);
   const rewardLabel = (reward: { beans: number; stardust: number }) =>
-    `${reward.beans} ${lang === 'zh' ? '卷卷豆' : 'beans'}${reward.stardust ? ` + ${reward.stardust} ${lang === 'zh' ? '星尘' : 'stardust'}` : ''}`;
+    `${reward.beans} ${lang === 'zh' ? '卷卷豆' : 'beans'}${reward.stardust ? ` + ${reward.stardust} ${lang === 'zh' ? '星屑' : 'star fragments'}` : ''}`;
   const handleDailyCheckin = () => {
     const reward = claimDailyCheckin(child.id);
     if (!reward) {
@@ -381,14 +382,6 @@ export default function ProfilePage() {
                   <small>{lang === 'zh' ? '升级飞船' : 'Upgrade ship'}</small>
                 </div>
                 <span className="hq-mat-count">{mat.stardust}</span>
-              </button>
-              <button className="hq-mat-card" onClick={() => nav('/archive')}>
-                <span className="hq-mat-icon">💎</span>
-                <div className="hq-mat-info">
-                  <b>{lang === 'zh' ? '星尘' : 'Card Shard'}</b>
-                  <small>{lang === 'zh' ? '星尘召唤' : 'Card summon'}</small>
-                </div>
-                <span className="hq-mat-count">{mat.cardShard}</span>
               </button>
             </div>
           </section>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"><linearGradient id="bk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#57bd8d"/><stop offset="1" stop-color="#2e7a3a"/></linearGradient>
+<ellipse cx="120" cy="210" rx="64" ry="10" fill="rgba(70,90,130,.16)"/>
+<rect x="52" y="52" width="136" height="140" rx="22" fill="url(#bk)" stroke="#3c4258" stroke-width="4"/>
+<rect x="66" y="66" width="108" height="112" rx="16" fill="#fff" opacity=".88"/>
+<text x="120" y="146" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="62" fill="#2e7a3a">10</text></svg>

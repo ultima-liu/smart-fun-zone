@@ -19,6 +19,27 @@ const VOICES: Record<'zh' | 'en', string> = {
   zh: import.meta.env.VITE_VOLC_SPEAKER_ZH ?? 'zh_female_shuangkuaisisi_uranus_bigtts',
   en: import.meta.env.VITE_VOLC_SPEAKER_EN ?? 'en_female_dacey_uranus_bigtts',
 };
+export type VoiceProfile = 'female-child' | 'female-young' | 'female-adult' | 'female-elder' | 'male-child' | 'male-young' | 'male-adult' | 'male-elder' | 'neutral';
+const PROFILE_VOICES: Partial<Record<VoiceProfile, string>> = {
+  'female-child': import.meta.env.VITE_VOLC_VOICE_FEMALE_CHILD,
+  'female-young': import.meta.env.VITE_VOLC_VOICE_FEMALE_YOUNG,
+  'female-adult': import.meta.env.VITE_VOLC_VOICE_FEMALE_ADULT,
+  'female-elder': import.meta.env.VITE_VOLC_VOICE_FEMALE_ELDER,
+  'male-child': import.meta.env.VITE_VOLC_VOICE_MALE_CHILD,
+  'male-young': import.meta.env.VITE_VOLC_VOICE_MALE_YOUNG,
+  'male-adult': import.meta.env.VITE_VOLC_VOICE_MALE_ADULT,
+  'male-elder': import.meta.env.VITE_VOLC_VOICE_MALE_ELDER,
+  neutral: import.meta.env.VITE_VOLC_VOICE_NEUTRAL,
+};
+/** 返回档位音色；男声没有单独配置时使用项目内置的中文男声，避免静默回落到女声。 */
+export function voiceForProfile(profile: VoiceProfile, lang: 'zh' | 'en' = 'zh'): string | undefined {
+  const configured = PROFILE_VOICES[profile];
+  if (configured) return configured;
+  if (profile.startsWith('male-')) {
+    return lang === 'zh' ? 'zh_male_m191_uranus_bigtts' : 'en_male_tim_uranus_bigtts';
+  }
+  return undefined;
+}
 
 export function volcConfigured(): boolean {
   const w = window as unknown as { __VOLC_TTS_ENABLED__?: boolean };
@@ -26,11 +47,12 @@ export function volcConfigured(): boolean {
   return __VOLC_TTS_KEY_PRESENT__;
 }
 
-/** 去除 emoji 等符号（避免 TTS 读出乱码），保留文字/数字/标点 */
+/** 去除 emoji 等符号（避免 TTS 读出乱码），保留文字/数字/标点；弯引号转直引号，避免 I'm/Let's 被读散 */
 function stripEmoji(s: string): string {
   return s
     .replace(/\p{Extended_Pictographic}/gu, '')
     .replace(/[\u{FE00}-\u{FE0F}\u{200D}]/gu, '')
+    .replace(/[’‘]/g, "'")
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -122,31 +144,42 @@ async function readSseAudio(res: Response): Promise<Blob | null> {
 /** 合成结果缓存：同一文本（lang+rate）再次朗读直接秒播 */
 const audioCache = new Map<string, Blob>();
 const MAX_CACHE = 80;
-function cacheKey(lang: string, rate: number, text: string): string {
-  return `${lang}|${rate}|${text}`;
+
+/* ---------- TTS 服务降级标记 ----------
+ * 上游合成失败（典型：火山 seed-tts 资源授权过期/额度用尽）时置位并广播事件，
+ * UI 据此提示"语音暂不可用"，避免点击朗读毫无反应、无法排查。 */
+let degraded = false;
+export function volcDegraded(): boolean { return degraded; }
+function markDegraded() {
+  if (degraded) return;
+  degraded = true;
+  try { window.dispatchEvent(new CustomEvent('volc-tts-degraded')); } catch { /* 非 browser 环境 */ }
+}
+function cacheKey(lang: string, rate: number, text: string, speaker?: string, pitch = 0): string {
+  return `${lang}|${rate}|${speaker ?? ''}|${pitch}|${text}`;
 }
 
-function makeBody(clean: string, lang: 'zh' | 'en', rate: number) {
+function makeBody(clean: string, lang: 'zh' | 'en', rate: number, speaker?: string, pitch = 0) {
   const speechRate = Math.max(-50, Math.min(100, Math.round((rate - 1) * 100)));
   return {
     user: { uid: 'smart-fun-zone' },
     req_params: {
       text: clean,
-      speaker: VOICES[lang],
+      speaker: speaker ?? VOICES[lang],
       sample_rate: 24000,
       audio_params: { format: 'mp3', speech_rate: speechRate, loudness_rate: 0, bit_rate: 64000 },
-      additions: JSON.stringify({ post_process: { pitch: 0 }, disable_markdown_filter: true, enable_latex_tn: false }),
+      additions: JSON.stringify({ post_process: { pitch }, disable_markdown_filter: true, enable_latex_tn: false }),
     },
   };
 }
 
 /** 用非流式方式合成整段（用于预热缓存，不播放） */
-async function synthesizeBlob(clean: string, lang: 'zh' | 'en', rate: number): Promise<Blob | null> {
+async function synthesizeBlob(clean: string, lang: 'zh' | 'en', rate: number, speaker?: string, pitch = 0): Promise<Blob | null> {
   try {
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Api-Resource-Id': RESOURCE_ID, 'X-Api-Request-Id': uuid() },
-      body: JSON.stringify(makeBody(clean, lang, rate)),
+      body: JSON.stringify(makeBody(clean, lang, rate, speaker, pitch)),
     });
     return await readSseAudio(res);
   } catch {
@@ -155,13 +188,13 @@ async function synthesizeBlob(clean: string, lang: 'zh' | 'en', rate: number): P
 }
 
 /** 预热：预先合成并缓存一段音频（不播放）。之后 speak 命中缓存即秒播。 */
-export async function warmTts(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92): Promise<void> {
+export async function warmTts(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92, speaker?: string, pitch = 0): Promise<void> {
   if (!volcConfigured()) return;
   const clean = stripEmoji(text);
   if (!clean) return;
-  const key = cacheKey(lang, rate, clean);
+  const key = cacheKey(lang, rate, clean, speaker, pitch);
   if (audioCache.has(key)) return;
-  const blob = await synthesizeBlob(clean, lang, rate);
+  const blob = await synthesizeBlob(clean, lang, rate, speaker, pitch);
   if (blob) {
     audioCache.set(key, blob);
     if (audioCache.size > MAX_CACHE) {
@@ -176,6 +209,8 @@ export async function speakVolc(
   lang: 'zh' | 'en',
   rate = 0.92,
   onEnd?: () => void,
+  speaker?: string,
+  pitch = 0,
 ): Promise<void> {
   if (!volcConfigured()) {
     window.setTimeout(() => onEnd?.(), 0);
@@ -188,7 +223,7 @@ export async function speakVolc(
   }
   try {
     // 语速映射：0.92x → -8；1.0x → 0；上限 100（2.0x）、下限 -50（0.5x）
-    const key = cacheKey(lang, rate, clean);
+    const key = cacheKey(lang, rate, clean, speaker, pitch);
     const cached = audioCache.get(key);
     if (cached) {
       // 命中缓存：直接播放，几乎零延迟
@@ -197,7 +232,7 @@ export async function speakVolc(
       return;
     }
     const myReq = ++reqSeq;
-    const body = makeBody(clean, lang, rate);
+    const body = makeBody(clean, lang, rate, speaker, pitch);
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: {
@@ -210,6 +245,7 @@ export async function speakVolc(
     // 整段合成后播放（稳定可靠）；预热命中缓存时走上方 cached 分支秒播
     const blob = await readSseAudio(res);
     if (!blob) {
+      markDegraded();
       window.setTimeout(() => onEnd?.(), 0);
       return;
     }
@@ -227,6 +263,7 @@ export async function speakVolc(
     playAudioBlob(blob, onEnd);
   } catch (e) {
     console.warn('volc tts exception:', e);
+    markDegraded();
     window.setTimeout(() => onEnd?.(), 0);
   }
 }

@@ -114,8 +114,8 @@ export const GLOOMS: GloomMeta[] = [
       en: 'The final boss. It appears only when a kid meets a hard problem, misses several times, or is tired and tearful—whispering “you can’t, just quit.”',
     },
     weakness: {
-      zh: '坚持与求助。连续再试一次、请老师家长帮忙、把错题重做，它胸口的星形伤就越亮；光聚满时王冠落地、身体碎裂，化作星尘。',
-      en: 'Persistence and asking for help. Trying again, asking a grown-up, redoing a mistake—each makes its star scar brighter until the crown falls and it shatters into stardust.',
+      zh: '坚持与求助。连续再试一次、请老师家长帮忙、把错题重做，它胸口的星形伤就越亮；光聚满时王冠落地、身体碎裂，化作光点。',
+      en: 'Persistence and asking for help. Trying again, asking a grown-up, redoing a mistake—each makes its star scar brighter until the crown falls and it shatters into glimmers.',
     },
     taunt: { zh: '这么难，你肯定做不到的。', en: 'Too hard. You will never make it.' },
     palette: ['#4a3f7a', '#2a2350', '#b9a8ff'],
@@ -133,8 +133,8 @@ export const GLOOM_LORE = {
     en: 'Gloom Gremlins dread the starlight of earnestness. Every honest effort brightens Juan Star and weakens them.',
   },
   drop: {
-    zh: '被击败的乌乌怪会化作星尘与星屑，可用于星尘召唤与飞船升级。',
-    en: 'Defeated gremlins turn into card shards and stardust, used for summons and ship upgrades.',
+    zh: '被击败的乌乌怪会化作星屑，可用于飞船升级。',
+    en: 'Defeated gremlins turn into star fragments for ship upgrades.',
   },
 };
 

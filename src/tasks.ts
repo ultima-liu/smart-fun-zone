@@ -1,5 +1,8 @@
-import { useStore, goldSkillCount, todayGameKinds, todayRecords, childRecords } from './store';
+import { useStore, goldSkillCount } from './store';
 import type { AppState } from './store';
+import { localDayKey } from './dailyCheckin';
+import { getSkill } from './content/skills';
+import { SHIP_MAX_LEVEL } from './content/shipyard';
 
 /** 任务系统：任务有进度，完成自动发放积分（幂等 source = task:<id>[:<day>]）
  *  数据源只用「按孩子」的字段（mastery/records/charBag），避免跨孩子污染。
@@ -13,6 +16,8 @@ export interface TaskDef {
   reward: number;
   target: number;
   enabled?: boolean;
+  /** 此孩子当前是否具备完成条件；不可达的可选任务不展示。 */
+  available?: (s: AppState, childId: string) => boolean;
   /** 点击引导：跳转路由（可选） */
   go?: string;
   /** 返回当前进度 */
@@ -23,34 +28,53 @@ const S = () => useStore.getState();
 const dayStart = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime(); };
 /** 本周（周一起）开始时间戳 */
 const weekStart = () => { const d = new Date(); const day = d.getDay() || 7; d.setDate(d.getDate() - (day - 1)); d.setHours(0, 0, 0, 0); return d.getTime(); };
-/** 今日内 pointLog 中某 reason 前缀出现的次数 */
+/** 今日内 pointLog 中某 reason 关键字出现的次数 */
 const todayReason = (s: AppState, c: string, prefix: string): number =>
   (s.pointLog[c] ?? []).filter((e) => e.time >= dayStart() && e.reason.includes(prefix)).length;
 /** 周内 pointLog 中某 reason 前缀出现的次数 */
 const weekReason = (s: AppState, c: string, prefix: string): number =>
   (s.pointLog[c] ?? []).filter((e) => e.time >= weekStart() && e.reason.includes(prefix)).length;
-/** 周内游戏记录 */
-const weekRecords = (s: AppState, c: string) =>
-  s.records.filter((r) => r.childId === c && r.playedAt >= weekStart());
+type CourseSubject = 'chinese' | 'math' | 'english';
+/** 课堂练习达到 80% 后写入 prac:<lessonId>:<day>；按课去重后即“完成一节课程”。 */
+const completedCourseIds = (s: AppState, c: string, since: number): string[] => {
+  const ids = new Set<string>();
+  (s.pointLog[c] ?? []).forEach((entry) => {
+    if (entry.time < since || entry.reason !== '练习达标') return;
+    const match = entry.id.match(/^prac:(.+?):/);
+    if (match?.[1]) ids.add(match[1]);
+  });
+  return [...ids];
+};
+const courseSubject = (id: string): CourseSubject | undefined =>
+  id.startsWith('math-lab-') ? 'math' : id.startsWith('english-g3a-') ? 'english' : getSkill(id)?.subject as CourseSubject | undefined;
+const completedCourses = (s: AppState, c: string, subject: CourseSubject, since: number) =>
+  completedCourseIds(s, c, since).filter((id) => courseSubject(id) === subject).length;
+const todayCourse = (subject: CourseSubject) => (s: AppState, c: string) => completedCourses(s, c, subject, dayStart());
+const weekCourse = (subject: CourseSubject) => (s: AppState, c: string) => completedCourses(s, c, subject, weekStart());
+const todayParentTasks = (s: AppState, c: string) =>
+  (s.customTasks[c] ?? []).filter((task) => task.done && (task.doneAt ?? 0) >= dayStart()).length;
 
 export const TASKS: TaskDef[] = [
-  // 每日学习引导（每日重置）
-  { id: 'd-learn', kind: 'daily', title: '学习 1 课', icon: '📖', reward: 5, target: 1, go: '/map', progress: (s, c) => todayReason(s, c, '满星') + todayReason(s, c, '学步骤') },
-  { id: 'd-read', kind: 'daily', title: '跟读 1 次', icon: '🎤', reward: 4, target: 1, progress: (s, c) => todayReason(s, c, '跟读') },
-  { id: 'd-play', kind: 'daily', title: '玩 1 局游戏', icon: '🎮', reward: 3, target: 1, go: '/lobby', progress: (s, c) => todayRecords(s.records, c).length },
-  { id: 'd-char', kind: 'daily', title: '收集 1 个字卡', icon: '🧩', reward: 3, target: 1, progress: (s, c) => todayReason(s, c, '收集字卡') },
-  { id: 'd-kind', kind: 'daily', title: '玩 2 种游戏', icon: '🎲', reward: 6, target: 2, go: '/lobby', progress: (s, c) => todayGameKinds(s.records, c) },
-  { id: 'd-games', kind: 'daily', title: '玩 3 局', icon: '⚡', reward: 6, target: 3, go: '/lobby', progress: (s, c) => todayRecords(s.records, c).length },
-  // 每周目标（自然周重置）
-  { id: 'w-learn', kind: 'weekly', title: '本周学 3 课', icon: '📚', reward: 15, target: 3, go: '/map', progress: (s, c) => weekReason(s, c, '满星') + weekReason(s, c, '学步骤') },
-  { id: 'w-games', kind: 'weekly', title: '本周玩 5 局', icon: '🎮', reward: 15, target: 5, go: '/lobby', progress: (s, c) => weekRecords(s, c).length },
-  { id: 'w-stars', kind: 'weekly', title: '本周得 20 星', icon: '⭐', reward: 25, target: 20, progress: (s, c) => weekRecords(s, c).reduce((n, r) => n + r.stars, 0) },
-  { id: 'w-chars', kind: 'weekly', title: '本周收 5 张字卡', icon: '🧩', reward: 20, target: 5, progress: (s, c) => weekReason(s, c, '收集字卡') },
+  // 每日清单按具体行为拆分；所有课程完成都以课堂练习正确率达到 80% 为准。
+  { id: 'd-checkin', kind: 'daily', title: '完成今日签到', icon: '☀️', reward: 3, target: 1, go: '/profile', progress: (s, c) => s.dailyCheckin[c]?.lastDate === localDayKey(new Date()) ? 1 : 0 },
+  { id: 'd-chinese-course', kind: 'daily', title: '完成一节语文课程', icon: '📕', reward: 8, target: 1, go: '/subject/chinese', progress: todayCourse('chinese') },
+  { id: 'd-math-course', kind: 'daily', title: '完成一节数学课程', icon: '📐', reward: 8, target: 1, go: '/subject/math', progress: todayCourse('math') },
+  { id: 'd-english-course', kind: 'daily', title: '完成一节英语课程', icon: '🔤', reward: 8, target: 1, go: '/subject/english', progress: todayCourse('english') },
+  { id: 'd-card-draw', kind: 'daily', title: '完成一次图鉴召唤', icon: '🎴', reward: 3, target: 1, go: '/archive', progress: (s, c) => todayReason(s, c, '图鉴召唤') },
+  { id: 'd-store-buy', kind: 'daily', title: '在商店兑换一次物品', icon: '🛍️', reward: 3, target: 1, go: '/store', progress: (s, c) => todayReason(s, c, '兑换商品') },
+  { id: 'd-ship-upgrade', kind: 'daily', title: '升级一次飞船', icon: '🚀', reward: 15, target: 1, go: '/dock', progress: (s, c) => todayReason(s, c, '飞船升级'), available: (s, c) => (s.shipLevel[c] ?? 1) < SHIP_MAX_LEVEL || todayReason(s, c, '飞船升级') > 0 },
+  { id: 'd-parent-task', kind: 'daily', title: '完成一个家长任务', icon: '🤝', reward: 12, target: 1, progress: todayParentTasks, available: (s, c) => (s.customTasks[c] ?? []).some((task) => !task.done || (task.doneAt ?? 0) >= dayStart()) },
+  // 每周目标沿用相同的明确口径，鼓励持续学习，而非游戏时长或局数。
+  { id: 'w-chinese-course', kind: 'weekly', title: '完成 3 节语文课程', icon: '📚', reward: 20, target: 3, go: '/subject/chinese', progress: weekCourse('chinese') },
+  { id: 'w-math-course', kind: 'weekly', title: '完成 3 节数学课程', icon: '📏', reward: 20, target: 3, go: '/subject/math', progress: weekCourse('math') },
+  { id: 'w-english-course', kind: 'weekly', title: '完成 2 节英语课程', icon: '🗣️', reward: 16, target: 2, go: '/subject/english', progress: weekCourse('english') },
+  { id: 'w-card-draw', kind: 'weekly', title: '完成 2 次图鉴召唤', icon: '🃏', reward: 8, target: 2, go: '/archive', progress: (s, c) => weekReason(s, c, '图鉴召唤') },
+  { id: 'w-store-buy', kind: 'weekly', title: '兑换 2 件学习补给', icon: '🎒', reward: 8, target: 2, go: '/store', progress: (s, c) => weekReason(s, c, '兑换商品') },
   // 里程碑（累计一次性）
   { id: 'gold-5', kind: 'milestone', title: '五课满星', icon: '🏅', reward: 20, target: 5, progress: (s, c) => goldSkillCount(s.mastery, c) },
   { id: 'chars-10', kind: 'milestone', title: '识字小达人', icon: '🧩', reward: 15, target: 10, progress: (s, c) => (s.charBag[c] ?? []).length },
-  { id: 'games-10', kind: 'milestone', title: '游戏闯关者', icon: '🎮', reward: 15, target: 10, progress: (s, c) => childRecords(s.records, c).length },
-  { id: 'stars-30', kind: 'milestone', title: '收集 30 星', icon: '⭐', reward: 25, target: 30, progress: (s, c) => s.records.filter((r) => r.childId === c).reduce((n, r) => n + r.stars, 0) },
+  { id: 'lessons-10', kind: 'milestone', title: '十课探索者', icon: '🧭', reward: 15, target: 10, progress: (s, c) => Object.keys(s.mastery[c] ?? {}).length },
+  { id: 'stars-30', kind: 'milestone', title: '收集 30 颗课程星', icon: '⭐', reward: 25, target: 30, progress: (s, c) => Object.values(s.mastery[c] ?? {}).reduce((sum, item) => sum + item.stars, 0) },
 ];
 
 function sourceFor(t: TaskDef): string {
@@ -106,5 +130,6 @@ export function taskProgress(t: TaskDef, childId: string): { cur: number; done: 
   const cur = eff.progress(S(), childId);
   const src = sourceFor(t);
   const done = (S().pointLog[childId] ?? []).some((e) => e.id === src && e.amount > 0);
-  return { cur: Math.min(eff.target, cur), done, reward: eff.reward, enabled: eff.enabled ?? true };
+  const available = !eff.available || eff.available(S(), childId);
+  return { cur: Math.min(eff.target, cur), done, reward: eff.reward, enabled: (eff.enabled ?? true) && available };
 }
