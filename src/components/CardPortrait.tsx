@@ -1,6 +1,6 @@
 import type { StarCard, CardRarity } from '../content/starCards';
 import { characterPortrait } from '../content/characterAssets';
-import Mascot from './Mascot';
+import RobotAssistant from './RobotAssistant';
 import { JingJingFigure } from './NpcFigure';
 
 interface Props {
@@ -154,15 +154,15 @@ export default function CardPortrait({ card, size = 168, className = '' }: Props
         <circle cx="14" cy="0" r="2" fill={c3} opacity="0.8" />
       </g>
 
-      {/* 卷星人采用根据人物档案绘制的高精度全身立绘；其他套系继续使用轻量矢量插画。 */}
+      {/* 人物套系采用独立全身立绘；其他套系继续使用轻量矢量插画。 */}
       {card.role === 'hanzi' && card.hanzi ? (
         <HanziPortrait card={card} />
       ) : card.id === 'npc-xiao-juan' ? (
         <GlobalXiaoJuanPortrait idBase={idBase} />
       ) : card.id === 'npc-jing-jing' ? (
         <JingJingCardPortrait idBase={idBase} />
-      ) : card.setId === 'npc' && card.role === 'figure' ? (
-        <RasterNpcPortrait card={card} idBase={idBase} />
+      ) : (card.setId === 'npc' || card.setId === 'brook' || card.setId === 'bruco') && card.role === 'figure' ? (
+        <RasterCharacterPortrait card={card} idBase={idBase} />
       ) : (
         <g className="ink" transform="translate(100, 148)">
           {card.role === 'figure' && (card.setId === 'monster' ? <MonsterPortrait card={card} idBase={idBase} /> : <FigureArt card={card} />)}
@@ -215,13 +215,13 @@ function HanziPortrait({ card }: { card: StarCard }) {
   );
 }
 
-/** 小卷与全局学习助手共用同一份卷卷星 SVG，而不是复制或导出一张独立卡牌贴图。 */
+/** 小卷图鉴卡与全局学习助手共用同一份机器人 SVG。 */
 function GlobalXiaoJuanPortrait({ idBase }: { idBase: string }) {
   return (
     <g clipPath={`url(#portrait-clip-${idBase})`}>
       <ellipse cx="100" cy="228" rx="64" ry="25" fill="#8b7bf0" opacity=".22" filter={`url(#glow-${idBase})`} />
-      <g transform="translate(20 46) scale(.8)">
-        <Mascot pose="happy" size={200} className="ccard-xiao-juan-mascot" />
+      <g transform="translate(20 53) scale(.8)">
+        <RobotAssistant state="happy" size={200} className="ccard-xiao-juan-robot" />
       </g>
     </g>
   );
@@ -240,7 +240,8 @@ function JingJingCardPortrait({ idBase }: { idBase: string }) {
   );
 }
 
-function RasterNpcPortrait({ card, idBase }: { card: StarCard; idBase: string }) {
+/** 所有高精度角色资产均为独立全身图，卡牌仅以圆角舞台裁切显示。 */
+function RasterCharacterPortrait({ card, idBase }: { card: StarCard; idBase: string }) {
   const asset = characterPortrait(card.id);
   if (!asset) {
     return <g className="ink" transform="translate(100, 148)"><NpcPortrait card={card} /></g>;
@@ -255,7 +256,7 @@ function RasterNpcPortrait({ card, idBase }: { card: StarCard; idBase: string })
         width="144"
         height="216"
         preserveAspectRatio="xMidYMid meet"
-        className="ccard-npc-art"
+        className={`ccard-character-art ${card.setId === 'npc' ? 'ccard-npc-art' : card.setId === 'brook' ? 'ccard-brook-art' : 'ccard-bruco-art'}`}
       />
       <rect x="22" y="32" width="156" height="224" fill={`url(#stage-${idBase})`} />
     </g>

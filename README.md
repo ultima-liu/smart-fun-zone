@@ -5,6 +5,8 @@
 
 ## 运行
 
+本地启动的完整步骤（含语音 TTS、服务端数据库、测试与资产脚本）见 [`docs/本地启动.md`](docs/本地启动.md)。快速开始：
+
 ```bash
 npm install
 npm run dev       # 开发服务器 http://localhost:5173

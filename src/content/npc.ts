@@ -7,6 +7,8 @@ export interface NpcMeta {
   /* —— 人物细化档案 —— */
   gender?: { zh: string; en: string };
   age?: number;
+  /** 个别角色的音高微调（火山引擎 post_process pitch，-12 ~ 12） */
+  voicePitch?: number;
   personality?: { zh: string; en: string };
   role?: { zh: string; en: string };
   backstory?: { zh: string; en: string };
@@ -18,6 +20,8 @@ export const NPCS: Record<string, NpcMeta> = {
     name: { zh: '星校长阿光', en: 'Principal A-Guang' },
     gender: { zh: '男', en: 'Male' },
     age: 48,
+    // 校长使用更低沉的男声，和少年/女声在听感上明确区分。
+    voicePitch: -8,
     personality: {
       zh: '温和博学、慈祥爱鼓励，有点爱唠叨，坚信每个孩子都能发光。',
       en: 'Gentle, learned and encouraging. A little chatty, and sure every child can shine.',
@@ -121,8 +125,8 @@ export const NPCS: Record<string, NpcMeta> = {
       en: 'Newcomer guide & guardian star-spirit of Juan Star (quest & growth companion)',
     },
     backstory: {
-      zh: '由卷星上空一枚星核苏醒而成的星灵，专门引导初来卷星的小宇航员。小卷不属于任何性别或人类年龄，而是以星光、彗尾与好奇心为形；总把“一步一步来”挂在嘴边。',
-      en: 'A star-spirit awakened from a star core above Juan Star, guiding newly arrived young astronauts. Xiao Juan has no gender or human age, taking the form of starlight, comet tails and curiosity; always saying “one step at a time.”',
+      zh: '由卷星星核科技唤醒的学习助手机器人，专门引导初来卷星的小宇航员。小卷没有性别或人类年龄，拥有会眨眼的星光屏幕、感应天线与轻型悬浮外壳；总把“一步一步来”挂在嘴边。',
+      en: 'A learning-assistant robot awakened by Juan Star core technology, guiding newly arrived young astronauts. Xiao Juan has no gender or human age, with a blinking starlight display, sensor antenna and lightweight hovering shell; always saying “one step at a time.”',
     },
     chitchat: [
       { zh: '跟着任务条走，一步一步来！', en: 'Follow the quest bar, step by step!' },
@@ -149,12 +153,13 @@ export const NPCS: Record<string, NpcMeta> = {
     chitchat: [
       { zh: '每一张卡，都是一次努力留下的星光记录。', en: 'Every card records a glimmer from a moment of effort.' },
       { zh: '图鉴卡散落在卷星各处，慢慢收集就好。', en: 'Archive cards are scattered across Juan Star—collect them at your own pace.' },
-      { zh: '重复的卡片也会变成星尘，继续前进吧。', en: 'Duplicate cards become stardust. Keep going!' },
+      { zh: '重复卡会记录在本次召唤结果里，继续前进吧。', en: 'Duplicate cards are recorded in this summon result. Keep going!' },
       { zh: '我已经把你新得到的星光好好归档啦。', en: 'I have carefully filed your newest starlight.' },
     ],
   },
 };
 
 export function npcMeta(name: string): NpcMeta {
+  if (name === '星校长阿光') return NPCS.阿光;
   return NPCS[name] ?? { icon: '⭐', name: { zh: name, en: name }, chitchat: [] };
 }

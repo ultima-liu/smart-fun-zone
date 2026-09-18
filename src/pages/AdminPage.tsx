@@ -519,7 +519,7 @@ export default function AdminPage() {
                 return (
                   <div className="adm-tr" key={t.id}>
                     <span>{t.icon} {t.title}<small style={{ display: 'block', color: 'var(--ink-faint)' }}>{t.id}</small></span>
-                    <span>{t.kind === 'daily' ? '每日' : '里程碑'}</span>
+                    <span>{t.kind === 'daily' ? '每日' : t.kind === 'weekly' ? '每周' : '里程碑'}</span>
                     <span><IconBean size={15} gradient="gold" /> {cur}</span>
                     <span className="adm-ops">
                       <input className="adm-input" style={{ width: 70 }} inputMode="numeric" placeholder={String(t.reward)} value={taskEdits[t.id] ?? ''} onChange={(e) => setTaskEdits({ ...taskEdits, [t.id]: e.target.value.replace(/\D/g, '') })} />

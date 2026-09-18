@@ -12,8 +12,6 @@ import { refreshServerHealth } from './api';
 import { initAutoSync } from './autosync';
 import { useStore } from './store';
 import FeatureGate from './components/FeatureGate';
-import { EMPTY } from './features';
-import { allNodes } from './content/story';
 
 /* 路由级代码分割：首屏只加载首页，其余页面按需下载（减少主包体积） */
 const LobbyPage = lazy(() => import('./pages/LobbyPage'));
@@ -32,13 +30,20 @@ const WorldMapPage = lazy(() => import('./pages/WorldMapPage'));
 const SubjectPage = lazy(() => import('./pages/SubjectPage'));
 const LessonPage = lazy(() => import('./pages/LessonPage'));
 const PracticePage = lazy(() => import('./pages/PracticePage'));
+const MathCatalogPage = lazy(() => import('./pages/MathCatalogPage'));
+const MathTextbookLabPage = lazy(() => import('./pages/MathTextbookLabPage'));
+const ChineseTextbookCatalogPage = lazy(() => import('./pages/ChineseTextbookCatalogPage'));
+const ChineseTextbookLessonPage = lazy(() => import('./pages/ChineseTextbookLessonPage'));
+const EnglishTextbookCatalogPage = lazy(() => import('./pages/EnglishTextbookCatalogPage'));
+const EnglishTextbookLessonPage = lazy(() => import('./pages/EnglishTextbookLessonPage'));
+const ReviewHubPage = lazy(() => import('./pages/ReviewHubPage'));
 
 /** 显示底部导航的页面（游戏/演示/家长中心保持全屏沉浸） */
 
 /** 按页面类型区分骨架屏：列表页 / 学习页 / 游戏页 */
 function RouteSkeleton() {
   const { pathname } = useLocation();
-  const kind = pathname.startsWith('/learn') || pathname.startsWith('/practice')
+  const kind = pathname.startsWith('/learn') || pathname.startsWith('/practice') || pathname.startsWith('/math-course') || pathname.startsWith('/chinese-course') || pathname.startsWith('/english-course')
     ? 'learn'
     : pathname.startsWith('/game')
       ? 'game'
@@ -221,24 +226,8 @@ function Shell() {
   const showNav = ['/', '/map', '/lobby', '/profile', '/archive', '/dock'].includes(location.pathname);
   const noChrome = ['/child-login', '/parent'].includes(location.pathname);
   const hasKid = useStore((s) => !!s.activeChildId);
-  const storyDone = useStore((s) => (s.activeChildId ? s.storyDone[s.activeChildId] ?? EMPTY : EMPTY));
 
-  // 新手剧情未全部完成前：锁定页面滚动（学习端专注引导；noChrome 家长页除外）
-  useEffect(() => {
-    if (!hasKid) return;
-    if (noChrome) return;
-    const nodes = allNodes();
-    const doneSet = new Set(storyDone);
-    const doneAll = nodes.every((n) => doneSet.has(n.id));
-    const body = document.body;
-    if (!doneAll) {
-      body.classList.add('story-lock-scroll');
-      window.scrollTo({ top: 0 });
-    } else {
-      body.classList.remove('story-lock-scroll');
-    }
-    return () => body.classList.remove('story-lock-scroll');
-  }, [hasKid, noChrome, storyDone]);
+  // 新手剧情未全部完成时不再锁定页面滚动：引导期间也允许自由滚动浏览（原 story-lock-scroll 已移除）
 
   useEffect(() => {
     // 字体就绪 + 最短展示时间都满足后才揭幕，避免闪烁
@@ -278,9 +267,21 @@ function Shell() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/map" element={<FeatureGate feature="school"><WorldMapPage /></FeatureGate>} />
+              <Route path="/subject/math" element={<FeatureGate feature="school"><MathCatalogPage /></FeatureGate>} />
+              <Route path="/textbook/:subject/:grade/:vol" element={<FeatureGate feature="school"><MathCatalogPage /></FeatureGate>} />
+              <Route path="/math-course/:lessonId" element={<FeatureGate feature="school"><MathTextbookLabPage /></FeatureGate>} />
+              <Route path="/subject/chinese" element={<FeatureGate feature="school"><ChineseTextbookCatalogPage /></FeatureGate>} />
+              <Route path="/chinese-course/:lessonId" element={<FeatureGate feature="school"><ChineseTextbookLessonPage /></FeatureGate>} />
+              <Route path="/subject/english" element={<FeatureGate feature="school"><EnglishTextbookCatalogPage /></FeatureGate>} />
+              <Route path="/textbook/english/g3/1" element={<FeatureGate feature="school"><EnglishTextbookCatalogPage /></FeatureGate>} />
+              <Route path="/english-course/:lessonId" element={<FeatureGate feature="school"><EnglishTextbookLessonPage /></FeatureGate>} />
+              <Route path="/review" element={<FeatureGate feature="school"><ReviewHubPage /></FeatureGate>} />
               <Route path="/subject/:subjectId" element={<FeatureGate feature="school"><SubjectPage /></FeatureGate>} />
               <Route path="/learn/:skillId" element={<FeatureGate feature="school"><LessonPage /></FeatureGate>} />
               <Route path="/practice/:skillId" element={<FeatureGate feature="school"><PracticePage /></FeatureGate>} />
+              <Route path="/math-textbook" element={<Navigate to="/subject/math" replace />} />
+              <Route path="/math-book" element={<Navigate to="/subject/math" replace />} />
+              <Route path="/chinese-textbook" element={<Navigate to="/subject/chinese" replace />} />
               <Route path="/lobby" element={<FeatureGate feature="park"><LobbyPage /></FeatureGate>} />
               <Route path="/game/:gameId" element={<FeatureGate feature="park"><GamePage /></FeatureGate>} />
               <Route path="/profile" element={<FeatureGate feature="hq"><ProfilePage /></FeatureGate>} />

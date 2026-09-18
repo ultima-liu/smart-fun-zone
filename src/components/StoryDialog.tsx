@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useI18n } from '../i18n';
-import { speak, playSfx } from '../speech';
+import { speakAsNpc, playSfx } from '../speech';
+import { npcMeta } from '../content/npc';
 import { tryCompleteStoryNode } from '../storyProgress';
 import type { StoryNode } from '../content/story';
 import { cardById } from '../content/starCards';
@@ -8,13 +9,14 @@ import { cardById } from '../content/starCards';
 interface Props {
   childId: string;
   node: StoryNode;
+  npc?: string;
   /** 对话全部说完后（已完成节点）回调 */
   onDone: () => void;
   onClose: () => void;
 }
 
 /** 剧情对话：NPC 旁的小气泡，逐句朗读，不遮住页面 */
-export default function StoryDialog({ childId, node, onDone, onClose }: Props) {
+export default function StoryDialog({ childId, node, npc, onDone, onClose }: Props) {
   const { lang } = useI18n();
   const lines = node.lines ?? [];
   const [idx, setIdx] = useState(0);
@@ -35,7 +37,7 @@ export default function StoryDialog({ childId, node, onDone, onClose }: Props) {
   // 每句入场播放语音
   useEffect(() => {
     const line = lines[idx];
-    if (line) speak(txt(line), lang);
+    if (line) speakAsNpc(txt(line), npcMeta(npc ?? ''), lang);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idx]);
 

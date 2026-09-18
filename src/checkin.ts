@@ -37,7 +37,7 @@ export function injectDemoIfRequested(): boolean {
   return true;
 }
 
-/** 安装「状态变化 → 自动结算任务」的订阅（学习/游戏/字卡变化即结算） */
+/** 安装「状态变化 → 自动结算任务」的订阅（签到、学习和练习变化即结算） */
 let subInstalled = false;
 export function installTaskWatcher(): void {
   if (subInstalled) return;
@@ -47,7 +47,11 @@ export function installTaskWatcher(): void {
       state.mastery === prev.mastery &&
       state.records === prev.records &&
       state.charBag === prev.charBag &&
-      state.lessonProgress === prev.lessonProgress
+      state.lessonProgress === prev.lessonProgress &&
+      state.dailyCheckin === prev.dailyCheckin &&
+      state.customTasks === prev.customTasks &&
+      state.shipLevel === prev.shipLevel &&
+      state.pointLog === prev.pointLog
     )
       return;
     const cid = state.activeChildId;

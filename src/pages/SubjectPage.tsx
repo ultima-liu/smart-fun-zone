@@ -47,7 +47,7 @@ export default function SubjectPage() {
   );
 
   const subjectWrongs = useMemo(
-    () => (subject ? wrongs.filter((w) => getSkill(w.lessonId)?.subject === subject.id) : []),
+    () => (subject ? wrongs.filter((w) => (w.lessonId.startsWith('english-g3a-') ? 'english' : getSkill(w.lessonId)?.subject) === subject.id) : []),
     [wrongs, subject?.id],
   );
 

@@ -23,6 +23,7 @@ import { CosmicFleet } from '../components/cosmos';
 import CurrencyBar from '../components/CurrencyBar';
 import AttrRadar from '../components/AttrRadar';
 import { pendingPacks, LOOT_MAX_PACKS, type LootDrop } from '../content/expedition';
+import { dueReviewDays, reviewEntries } from '../reviewPlan';
 
 /** 登录引导小火箭：纯 SVG 自绘，船头固定朝上（星门中央旋转 180° 即“俯冲钻入”，四周飞船直接使用本图） */
 const GateRocket = (
@@ -97,7 +98,7 @@ export default function HomePage() {
   const collectLootNow = () => {
     if (!child) return;
     const drop = collectLoot(child.id);
-    if (drop && (drop.beans > 0 || drop.stardust > 0 || drop.cardShard > 0 || drop.outfits.length > 0)) {
+    if (drop && (drop.beans > 0 || drop.stardust > 0 || drop.outfits.length > 0)) {
       playSfx('collect');
       setLootBurst(drop);
       // 首次远征：完成第5章教程剧情节点
@@ -373,6 +374,7 @@ export default function HomePage() {
   const pendingCount = daily.filter((x) => !x.p.done).length;
   const weekly = WEEKLY_TASKS.map((tk) => ({ tk, p: taskProgress(tk, child.id) })).filter((x) => x.p.enabled);
   const weekDone = weekly.filter((x) => x.p.done).length;
+  const reviewDueCount = reviewEntries(child.id).filter((entry) => dueReviewDays(entry).length > 0).length;
 
   return (
     <div className="page home home-dash">
@@ -383,7 +385,7 @@ export default function HomePage() {
           <Mascot pose="happy" size={44} />
           <span className="brand-name">{t('appName')}</span>
         </div>
-        {/* 顶部货币/材料余额：星星/卷星币/星屑/星尘 */}
+        {/* 顶部货币/材料余额：星星/卷卷豆/星屑 */}
         <CurrencyBar compact />
         <div className="app-header-right">
           <button
@@ -412,6 +414,9 @@ export default function HomePage() {
             title={isFullscreen ? '退出全屏' : '进入全屏'}
           >
             {isFullscreen ? '⛶' : '⛶'}
+          </button>
+          <button className={`top-pill home-review-entry ${reviewDueCount ? 'ready' : ''}`} onClick={() => guardNav('/review')} aria-label={`今日复习${reviewDueCount}节`} title="今日复习">
+            📚<span>复习</span>{reviewDueCount > 0 && <b>{reviewDueCount}</b>}
           </button>
         </div>
       </header>
@@ -542,7 +547,6 @@ export default function HomePage() {
             </button>
             <div className="loot-materials" aria-hidden="true">
               <span>✨ 星屑 {materials?.stardust ?? 0}</span>
-              <span>💠 星尘 {materials?.cardShard ?? 0}</span>
             </div>
           </div>
         </section>
@@ -581,8 +585,11 @@ export default function HomePage() {
                   <button key={tk.id} className={`tp-task ${state}`} onClick={() => tk.go && guardNav(tk.go)}>
                     <span className={`tp-check ${p.done ? 'on' : ''}`}>{p.done ? '✓' : ''}</span>
                     <span className="tp-task-icon">{tk.icon}</span>
-                    <span className="tp-task-name">{tk.title}</span>
-                    <span className="tp-task-bar"><i style={{ width: `${(p.cur / tk.target) * 100}%` }} /></span>
+                    <span className="tp-task-main">
+                      <span className="tp-task-name">{tk.title}</span>
+                      <span className="tp-task-meta">{p.done ? (lang === 'zh' ? '已领取' : 'Claimed') : `${p.cur}/${tk.target}`} · 🫘 {p.reward}</span>
+                      <span className="tp-task-bar"><i style={{ width: `${(p.cur / tk.target) * 100}%` }} /></span>
+                    </span>
                   </button>
                 );
               })}

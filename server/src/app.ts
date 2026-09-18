@@ -7,7 +7,7 @@ import { config } from './config.js';
 import { db, q, ping, insertOne, type RowDataPacket } from './db.js';
 import { signToken, signChildToken, verifyAny, hashPassword, verifyPassword } from './auth.js';
 import { scoreText } from './score.js';
-import { synthesizeCache } from './tts.js';
+import { synthesizeCache, sseLooksValid } from './tts.js';
 import { smsProvider } from './sms.js';
 import { writeVersion, type LessonContent } from './content-store.js';
 
@@ -362,16 +362,27 @@ export function buildApp(): FastifyInstance {
     const key = crypto.createHash('sha256').update(`${resourceId}|${bodyText}`).digest('hex');
     fs.mkdirSync(config.ttsCacheDir, { recursive: true });
     const file = path.join(config.ttsCacheDir, `${key}.sse`);
-    if (!fs.existsSync(file)) {
-      if (!config.volc.apiKey) {
-        return reply.code(503).send({ ok: false, error: '服务端未配置 VOLC_SPEECH_API_KEY' });
-      }
-      await synthesizeCache({ bodyText, resourceId, requestId: (req.headers['x-api-request-id'] as string) || crypto.randomUUID(), outFile: file });
+    const sendSse = (buf: Buffer) => {
+      reply.header('Content-Type', 'text/event-stream');
+      reply.header('Cache-Control', 'public, max-age=31536000, immutable');
+      return reply.send(buf);
+    };
+    // 命中缓存先校验：历史上上游失败（如授权过期）的错误 SSE 可能曾被误缓存，删除并重新合成
+    if (fs.existsSync(file)) {
+      const cached = fs.readFileSync(file);
+      if (sseLooksValid(cached)) return sendSse(cached);
+      fs.rmSync(file, { force: true });
     }
-    const cached = fs.readFileSync(file);
-    reply.header('Content-Type', 'text/event-stream');
-    reply.header('Cache-Control', 'public, max-age=31536000, immutable');
-    return reply.send(cached);
+    if (!config.volc.apiKey) {
+      return reply.code(503).send({ ok: false, error: '服务端未配置 VOLC_SPEECH_API_KEY' });
+    }
+    try {
+      await synthesizeCache({ bodyText, resourceId, requestId: (req.headers['x-api-request-id'] as string) || crypto.randomUUID(), outFile: file });
+    } catch (e) {
+      req.log.warn(e, 'tts synthesize failed');
+      return reply.code(502).send({ ok: false, error: '语音合成失败，请稍后重试' });
+    }
+    return sendSse(fs.readFileSync(file));
   });
 
   /* ---------- 同步（进度 / 练习错题 / 跟读记录） ---------- */

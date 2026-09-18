@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"><linearGradient id="bd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e4e9ef"/></linearGradient>
+<ellipse cx="120" cy="210" rx="64" ry="10" fill="rgba(70,90,130,.16)"/>
+<ellipse cx="120" cy="162" rx="46" ry="42" fill="url(#bd)" stroke="#3c4258" stroke-width="3"/>
+<circle cx="84" cy="160" r="15" fill="#3a3f52"/><circle cx="156" cy="160" r="15" fill="#3a3f52"/>
+<circle cx="120" cy="96" r="48" fill="url(#bd)" stroke="#3c4258" stroke-width="3"/>
+<circle cx="88" cy="62" r="15" fill="#3a3f52"/><circle cx="152" cy="62" r="15" fill="#3a3f52"/>
+<ellipse cx="102" cy="94" rx="15" ry="18" fill="#3a3f52" transform="rotate(-14 102 94)"/>
+<ellipse cx="138" cy="94" rx="15" ry="18" fill="#3a3f52" transform="rotate(14 138 94)"/>
+<circle cx="103" cy="92" r="6" fill="#fff"/><circle cx="137" cy="92" r="6" fill="#fff"/>
+<ellipse cx="120" cy="114" rx="11" ry="8" fill="#3a3f52"/>
+<path d="M120 122 L120 128 M120 128 C115 133 108 132 105 128 M120 128 C125 133 132 132 135 128" fill="none" stroke="#3c4258" stroke-width="3" stroke-linecap="round"/>
+<path d="M148 140 C160 128 172 128 178 136" fill="none" stroke="#4a7d3f" stroke-width="9" stroke-linecap="round"/></svg>

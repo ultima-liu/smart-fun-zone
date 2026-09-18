@@ -22,7 +22,6 @@ export default function RewardBurst({ drop, reward = 0, rewardCardId, onDone }: 
   const items: { icon: string; label: string; n: number }[] = [
     { icon: '🪙', label: '卷星币', n: drop?.beans ?? (drop ? 0 : reward) },
     { icon: '✨', label: '星屑', n: drop?.stardust ?? 0 },
-    { icon: '💠', label: '星尘', n: drop?.cardShard ?? 0 },
   ].filter((x) => x.n > 0);
   const hasDrop = !!drop;
   const rewardCard = rewardCardId ? cardById(rewardCardId) : undefined;

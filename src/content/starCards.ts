@@ -4,7 +4,7 @@
  */
 
 export type CardRarity = 'R' | 'SR' | 'SSR' | 'SP';
-export type CardSetId = 'npc' | 'monster' | 'ship' | 'mystery' | 'outfit' | 'badge' | 'game' | 'hanzi';
+export type CardSetId = 'npc' | 'brook' | 'bruco' | 'monster' | 'ship' | 'mystery' | 'outfit' | 'badge' | 'game' | 'hanzi';
 
 export interface HanziTeaching {
   /** 对应的语文课；完成该课时作为学习奖励直接点亮。 */
@@ -45,6 +45,8 @@ export interface CardSet {
 
 export const CARD_SETS: CardSet[] = [
   { id: 'npc', icon: '👤', name: { zh: '卷星人', en: 'NPC' }, color: '#8b7bf0', rewardBeans: 500 },
+  { id: 'brook', icon: '✦', name: { zh: '星航协作队', en: 'Starlight Crew' }, color: '#42a5ff', rewardBeans: 500 },
+  { id: 'bruco', icon: '🤖', name: { zh: '布鲁克战队', en: 'Bruco Team' }, color: '#ed4c58', rewardBeans: 300 },
   { id: 'monster', icon: '👾', name: { zh: '乌乌怪', en: 'Gloom Gremlins' }, color: '#ff73b8', rewardBeans: 500 },
   { id: 'ship', icon: '🚀', name: { zh: '舰船', en: 'Ships' }, color: '#4aa3ff', rewardBeans: 500 },
   { id: 'mystery', icon: '🔮', name: { zh: '神秘·剧情物品', en: 'Mystery' }, color: '#f6c24a', rewardBeans: 500 },
@@ -88,7 +90,7 @@ export const STAR_CARDS: StarCard[] = [
     id: 'npc-xiao-juan', setId: 'npc', rarity: 'R', no: 5,
     name: { zh: '守护星灵·小卷', en: 'Guardian Star Spirit Xiao Juan' },
     quote: { zh: '跟着任务条走，一步一步来！', en: 'Follow the quest bar, step by step!' },
-    desc: { zh: '天真好奇的守护星灵，由卷星上空的星核苏醒而成。小卷没有性别与人类年龄，外形是会发光的星核、彗光与星尘；专门引导初来卷星的小宇航员，总把“一步一步来”挂在嘴边。', en: 'A curious guardian star-spirit awakened from a star core above Juan Star. Xiao Juan has no gender or human age, appearing as a luminous star core, comet light and stardust; guiding newly arrived young astronauts one step at a time.' },
+    desc: { zh: '由卷星星核科技唤醒的学习助手机器人。小卷没有性别与人类年龄，拥有会眨眼的星光屏幕、感应天线和轻型悬浮外壳；专门引导初来卷星的小宇航员，总把“一步一步来”挂在嘴边。', en: 'A learning-assistant robot awakened by Juan Star core technology. Xiao Juan has no gender or human age, with a blinking starlight display, sensor antenna and lightweight hovering shell; guiding new astronauts one step at a time.' },
     role: 'figure', palette: ['#3bd89e', '#aef0d8', '#effff8'],
   },
   {
@@ -97,6 +99,113 @@ export const STAR_CARDS: StarCard[] = [
     quote: { zh: '每一张卡，都是一次努力留下的星光记录。', en: 'Every card preserves a shining record of your effort.' },
     desc: { zh: '细心安静的晶簇精灵，由星核档案库最早的一枚星核碎片凝成。晶晶以悬浮的棱镜档案核、书页光环与星卡碎片示人，收藏并守护孩子在卷星留下的每一次成长闪光。', en: 'A careful, quiet crystal-cluster spirit formed from the Archive Vault’s first star-core fragment. With a prism archive core, page halo and card shards, Jing-Jing preserves every glimmer of growth left on Juan Star.' },
     role: 'figure', palette: ['#b99af6', '#e9e0ff', '#f9e48b'],
+  },
+  /* —— 星航协作队（原创角色套系）—— */
+  {
+    id: 'brook-captain', setId: 'brook', rarity: 'SP', no: 1,
+    name: { zh: '星航·队长', en: 'Star Captain' },
+    quote: { zh: '先看清方向，再一起出发！', en: 'Find the direction, then set off together!' },
+    desc: { zh: '星航协作队的队长，也是最擅长把复杂任务画成清晰路线的人。他的星盘会把散落的线索连成航线；遇到分歧时，他总会先听完每位队员的想法，再下达出发指令。', en: 'Captain of the Starlight Crew and a master at turning a difficult mission into a clear route. His star compass joins scattered clues into a course; he listens to every teammate before giving the launch call.' },
+    role: 'figure', palette: ['#306fc9', '#7fbfff', '#ffe49a'],
+  },
+  {
+    id: 'brook-xing-shan', setId: 'brook', rarity: 'SSR', no: 2,
+    name: { zh: '星闪·信号侦察员', en: 'Xing-Shan · Signal Scout' },
+    quote: { zh: '听，星光正在告诉我们答案。', en: 'Listen—the starlight is giving us a clue.' },
+    desc: { zh: '行动最快的信号侦察员。星闪能把远处微弱的星光讯号织成可读的星图，也会用光杖为同伴标出安全路径。她相信观察不是匆匆看一眼，而是发现别人还没发现的细节。', en: 'The team’s quickest signal scout. Xing-Shan turns faint starlight messages into readable maps and marks safe paths with her light baton. To her, observing means noticing the detail everyone else missed.' },
+    role: 'figure', palette: ['#f17d5e', '#ffc180', '#fff3cf'],
+  },
+  {
+    id: 'brook-yan-dun', setId: 'brook', rarity: 'SR', no: 3,
+    name: { zh: '岩盾·守护工程师', en: 'Yan-Dun · Guardian Engineer' },
+    quote: { zh: '把大家守在身后，也把难题修好。', en: 'I protect the team—and fix the hard part.' },
+    desc: { zh: '负责修复、守护与装备检查的工程师。岩盾的折叠护盾既能挡住风暴，也能变成临时工作台；他会逐项确认工具是否安全，直到每一位队友都能放心向前。', en: 'The engineer in charge of repairs, protection and gear checks. Yan-Dun’s folding shield blocks a storm or becomes a workbench; he checks every tool so each teammate can move ahead with confidence.' },
+    role: 'figure', palette: ['#168b7a', '#84e0c5', '#e9fff8'],
+  },
+  {
+    id: 'brook-lu-mi', setId: 'brook', rarity: 'SSR', no: 4,
+    name: { zh: '露米·晶光医师', en: 'Lu-Mi · Crystal Medic' },
+    quote: { zh: '慢一点也没关系，先照顾好自己。', en: 'It is okay to slow down—care for yourself first.' },
+    desc: { zh: '携带晶光药瓶与守护浮游机的医师。露米会用柔和的光核安抚受惊的星兽，也会提醒队员休息、补水和整理心情。她认为真正的勇敢，包含向同伴说“我需要帮忙”。', en: 'A medic with a crystal-light vial and guardian drones. Lu-Mi calms frightened star creatures with gentle core light and reminds teammates to rest, drink water and reset. To her, true courage includes saying, “I need help.”' },
+    role: 'figure', palette: ['#55c7be', '#b7f3ea', '#f3fffd'],
+  },
+  /* —— 布鲁可战队（基于用户提供角色素材的独立卡牌套系）—— */
+  {
+    id: 'bruco-red-hero', setId: 'bruco', rarity: 'SSR', no: 1,
+    name: { zh: '布布·赤红闪电', en: 'Bubu · Crimson Lightning' },
+    quote: { zh: '红色星徽，准备出击！', en: 'Red star badge—ready to roll!' },
+    desc: { zh: '布布与鲁鲁、可可组成布鲁可战队，肩负守护源星石的任务。需要突破时，布布会借助创新力晶块切换为“赤红闪电”形态；红色装甲与胸前星徽，是他冲在最前方的识别标志。', en: 'Bubu forms the Bruco Team with Lulu and Coco to protect the Source Star Stone. When a breakthrough is needed, he shifts into Crimson Lightning with an innovation crystal; his red armor and chest star mark the vanguard.' },
+    role: 'figure', palette: ['#ed4c58', '#ff9694', '#dffaff'],
+  },
+  {
+    id: 'bruco-lulu', setId: 'bruco', rarity: 'SSR', no: 2,
+    name: { zh: '鲁鲁·冰蓝战锤', en: 'Lulu · Ice-Blue Hammer' },
+    quote: { zh: '障碍清除，大家跟上！', en: 'Obstacle cleared—keep up!' },
+    desc: { zh: '鲁鲁擅长工程、清障和大型装备协作。守护源星石的行动中，他能变身为“冰蓝战锤”，把难走的路变成队友可以安心通过的通道。', en: 'Lulu excels at engineering, clearance and heavy-equipment teamwork. In the Source Star Stone mission, he transforms into the Ice-Blue Hammer to make a safe way through for the team.' },
+    role: 'figure', palette: ['#237fd4', '#81d8ff', '#efffff'],
+  },
+  {
+    id: 'bruco-coco', setId: 'bruco', rarity: 'SSR', no: 3,
+    name: { zh: '可可·光辉之翼', en: 'Coco · Radiant Wings' },
+    quote: { zh: '天空、陆地、海面，都有救援的路！', en: 'Sky, land or sea—there is always a rescue route!' },
+    desc: { zh: '可可负责多用途海陆空救援，与队友一同守护源星石。她变身为“光辉之翼”后，以轻盈的机动与准确的判断，为每次救援打开新的路线。', en: 'Coco handles multi-purpose rescue across sea, land and air while helping guard the Source Star Stone. As Radiant Wings, she opens a new route for every rescue with agile movement and sound judgment.' },
+    role: 'figure', palette: ['#f0c525', '#ffe688', '#fffdf1'],
+  },
+  {
+    id: 'bruco-purple-flight', setId: 'bruco', rarity: 'SR', no: 4,
+    name: { zh: '葡萄队长', en: 'Captain Putao' },
+    quote: { zh: '创新力晶块的潜力，要靠你们自己发现！', en: 'The Innovation Crystal’s potential is yours to discover!' },
+    desc: { zh: '葡萄队长是布鲁可战队训练与任务中的引导者。在危客对决篇中，他向队员讲解创新力晶块仍有待开发的潜力，鼓励大家在训练和实战中找到自己的方法。', en: 'Captain Putao guides the Bruco Team through training and missions. In the Wike Showdown arc, he explains that the Innovation Crystal still has untapped potential and encourages the team to discover their own methods through practice.' },
+    role: 'figure', palette: ['#6f3fd1', '#c08cff', '#fff1c8'],
+  },
+  {
+    id: 'bruco-bronze-guard', setId: 'bruco', rarity: 'SR', no: 5,
+    name: { zh: '闷闷蛋', en: 'Mumundan' },
+    quote: { zh: '危客军团，出发！', en: 'Wike Corps, move out!' },
+    desc: { zh: '闷闷蛋是危客军团的团长，带领危客成员与布鲁可战队争夺源星石。厚重的装甲、炮口和角状头盔体现了他正面压制与指挥作战的风格。', en: 'Mumundan is the leader of the Wike Corps, directing its attempts to seize the Source Star Stone from the Bruco Team. His heavy armor, cannon and horned helmet reflect a front-line command style.' },
+    role: 'figure', palette: ['#a77942', '#e4bd75', '#fff0c8'],
+  },
+  {
+    id: 'bruco-blue-glider', setId: 'bruco', rarity: 'R', no: 6,
+    name: { zh: '吐司蛋', en: 'Toast Egg' },
+    quote: { zh: '滑行突袭，瑟丝蛋，跟上！', en: 'Gliding strike—Silk Egg, follow me!' },
+    desc: { zh: '吐司蛋是危客军团中的高速行动角色，擅长利用滑行装置接近目标。公开剧情中，他曾与瑟丝蛋合作对付布鲁可战队；冰蓝光翼和贴地滑行是这张卡的识别特征。', en: 'Toast Egg is a fast-moving member of the Wike Corps who closes in with a gliding rig. In the published story, he works with Silk Egg against the Bruco Team; icy fins and low gliding define this card.' },
+    role: 'figure', palette: ['#1855b6', '#6ddcff', '#edffff'],
+  },
+  {
+    id: 'bruco-red-04', setId: 'bruco', rarity: 'SR', no: 7,
+    name: { zh: '瑟丝蛋', en: 'Silk Egg' },
+    quote: { zh: '丝线锁定，吐司蛋，开始行动！', en: 'Thread locked—Toast Egg, begin!' },
+    desc: { zh: '瑟丝蛋是危客军团的行动成员，常与吐司蛋协同制造麻烦。公开剧情中，吐司蛋与瑟丝蛋曾合作挑战布鲁可；胸前“4”号标记和炮口结构保留为视觉识别点。', en: 'Silk Egg is an operative of the Wike Corps who often works with Toast Egg. In the published story, the pair cooperate against the Bruco Team; the visible “4” mark and cannon remain this card’s identifiers.' },
+    role: 'figure', palette: ['#d64640', '#fb9588', '#fff0da'],
+  },
+  {
+    id: 'bruco-green-03', setId: 'bruco', rarity: 'SR', no: 8,
+    name: { zh: '温斯蛋', en: 'Wensi Egg' },
+    quote: { zh: '旋叶启动，危客军团继续推进！', en: 'Rotor online—the Wike Corps advances!' },
+    desc: { zh: '温斯蛋是危客军团成员，使用绿色旋叶装备执行推进与清障任务。卡面保留其头部“3”号标记和前置旋叶；在团队行动中，他代表危客军团的机械作业力量。', en: 'Wensi Egg is a Wike Corps member who uses green rotor equipment for advance and clearance missions. The “3” head mark and forward rotor are preserved; he represents the corps’ mechanical field strength.' },
+    role: 'figure', palette: ['#22a96d', '#91e6aa', '#eaffee'],
+  },
+  {
+    id: 'bruco-blue-05', setId: 'bruco', rarity: 'R', no: 9,
+    name: { zh: '福来蛋', en: 'Fulai Egg' },
+    quote: { zh: '计划准备好了吗？这次一定成功！', en: 'Is the plan ready? This time we will succeed!' },
+    desc: { zh: '福来蛋参与危客军团的行动，并与闷闷蛋共同谋划对付布鲁可战队。蓝色圆形机体、胸前“5”号标记与观测镜结构完整保留，体现其侦察和支援定位。', en: 'Fulai Egg takes part in Wike Corps operations and plots with Mumundan against the Bruco Team. The blue round body, “5” chest mark and scope are preserved to express a scout-and-support role.' },
+    role: 'figure', palette: ['#27aee1', '#90e8fa', '#effdff'],
+  },
+  {
+    id: 'bruco-orange-sprinter', setId: 'bruco', rarity: 'R', no: 10,
+    name: { zh: '萨特蛋', en: 'Sate Egg' },
+    quote: { zh: '闪电突进，别让布鲁可跑掉！', en: 'Lightning rush—don’t let the Bruco Team escape!' },
+    desc: { zh: '萨特蛋是危客军团的快速突击成员。橙色装甲、闪电头饰和前冲姿态表现了他的速度型战斗风格；在危客对决中，他与其他成员共同执行阻截布鲁可的任务。', en: 'Sate Egg is a rapid-assault member of the Wike Corps. Orange armor, a lightning crest and a forward rush express his speed-focused style as he joins the corps’ attempts to intercept the Bruco Team.' },
+    role: 'figure', palette: ['#d9791b', '#ffca4b', '#fff3c9'],
+  },
+  {
+    id: 'bruco-purple-skater', setId: 'bruco', rarity: 'R', no: 11,
+    name: { zh: '森森蛋', en: 'Sensen Egg' },
+    quote: { zh: '升级完成，轮到我来追上你们了！', en: 'Upgrade complete—it is my turn to catch you!' },
+    desc: { zh: '森森蛋是危客军团中经过强化升级的机器人。公开剧情以“机器人森森蛋强化升级，布鲁可危险了”为线索，突出他的升级形态和追击威胁；紫粉护具与轮滑装置保留为卡面特色。', en: 'Sensen Egg is an upgraded robot in the Wike Corps. Published episode material highlights his reinforced upgrade as a danger to the Bruco Team; violet-pink gear and skates remain this card’s signature.' },
+    role: 'figure', palette: ['#bd4bd8', '#ef99ff', '#ffe0ff'],
   },
   /* —— 乌乌怪（怪物）—— */
   {
@@ -195,14 +304,6 @@ export const RARITY_WEIGHTS: Record<CardRarity, number> = {
 
 export const RARITY_ORDER: CardRarity[] = ['SP', 'SSR', 'SR', 'R'];
 
-/** 重复卡自动兑换的星尘数 */
-export const DUPLICATE_SHARDS: Record<CardRarity, number> = {
-  R: 20,
-  SR: 50,
-  SSR: 120,
-  SP: 300,
-};
-
 /** 单抽 / 十连花费 */
 export const DRAW_COST = { single: 100, ten: 900 };
 
@@ -232,17 +333,17 @@ export interface DrawResult {
   ids: string[];
   /** 本次抽到的新卡 */
   newCards: string[];
-  /** 重复卡转换成的星尘 */
-  convertedShards: number;
+  /** 重复卡数量（只展示，不兑换额外货币） */
+  duplicateCount: number;
 }
 
 /** 抽卡：count 张，可选指定套系；返回结果（自动处理重复卡） */
 export function drawCards(count: number, owned: string[], setId?: CardSetId): DrawResult {
   const pool = setId ? STAR_CARDS.filter((c) => c.setId === setId) : STAR_CARDS;
-  if (pool.length === 0) return { ids: [], newCards: [], convertedShards: 0 };
+  if (pool.length === 0) return { ids: [], newCards: [], duplicateCount: 0 };
   const totalWeight = pool.reduce((sum, c) => sum + RARITY_WEIGHTS[c.rarity], 0);
   const ids: string[] = [];
-  let convertedShards = 0;
+  let duplicateCount = 0;
   const ownSet = new Set(owned);
 
   for (let i = 0; i < count; i++) {
@@ -254,12 +355,12 @@ export function drawCards(count: number, owned: string[], setId?: CardSetId): Dr
     }
     ids.push(picked.id);
     if (ownSet.has(picked.id)) {
-      convertedShards += DUPLICATE_SHARDS[picked.rarity];
+      duplicateCount += 1;
     } else {
       ownSet.add(picked.id);
     }
   }
 
   const newCards = ids.filter((id) => owned.includes(id) === false);
-  return { ids, newCards, convertedShards };
+  return { ids, newCards, duplicateCount };
 }

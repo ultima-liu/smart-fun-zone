@@ -5,7 +5,7 @@ import { useStore } from '../store';
 import { useI18n } from '../i18n';
 import { allNodes, type StoryNode } from '../content/story';
 import { npcMeta } from '../content/npc';
-import { speak, playSfx } from '../speech';
+import { speakAsNpc, playSfx } from '../speech';
 import { EMPTY } from '../features';
 import NpcFigure from './NpcFigure';
 import StoryDialog from './StoryDialog';
@@ -14,10 +14,12 @@ interface Props {
   npc: string;
   /** 该 NPC 负责的剧情节点 id（若其中有进行中且带对话的，头像出现「!」，点击优先剧情） */
   storyNodeIds?: string[];
+  /** 用于先播页面入场语；解除后才自动弹出剧情，避免两段 TTS 互相取消。 */
+  deferAutoStory?: boolean;
 }
 
 /** NPC 人形立绘：放在页头标题栏右上空白区；点击 → 剧情优先，否则固定闲聊 */
-export default function NpcBuddy({ npc, storyNodeIds }: Props) {
+export default function NpcBuddy({ npc, storyNodeIds, deferAutoStory = false }: Props) {
   const { lang } = useI18n();
   const nav = useNavigate();
   const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
@@ -55,7 +57,7 @@ export default function NpcBuddy({ npc, storyNodeIds }: Props) {
     if (isOpen && chat.length) {
       const rnd = Math.floor(Math.random() * chat.length);
       setChatIdx(rnd);
-      speak(txt(chat[rnd]), lang);
+      speakAsNpc(txt(chat[rnd]), meta, lang);
     }
   };
 
@@ -64,12 +66,13 @@ export default function NpcBuddy({ npc, storyNodeIds }: Props) {
 
   // 进入页面时若有进行中的剧情对话 → 强制自动触发（若从剧情条跳转来，该节点即进行中）
   useEffect(() => {
+    if (deferAutoStory) return;
     if (pendingStory) {
       const t = window.setTimeout(() => setStoryNode((cur) => cur ?? pendingStory), 220);
       return () => window.clearTimeout(t);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pendingStory?.id]);
+  }, [pendingStory?.id, deferAutoStory]);
 
   return createPortal(
     <div className="npc-buddy">
@@ -91,7 +94,7 @@ export default function NpcBuddy({ npc, storyNodeIds }: Props) {
                 let ni = chatIdx;
                 while (chat.length > 1 && ni === chatIdx) ni = Math.floor(Math.random() * chat.length);
                 setChatIdx(ni);
-                speak(txt(chat[ni]), lang);
+                speakAsNpc(txt(chat[ni]), meta, lang);
               }}>
                 {lang === 'zh' ? '再聊一句' : 'Next'}
               </button>
@@ -105,6 +108,7 @@ export default function NpcBuddy({ npc, storyNodeIds }: Props) {
         <StoryDialog
           childId={child.id}
           node={storyNode}
+          npc={npc}
           onDone={() => {
             setStoryNode(null);
             // 对话完成后回首页，在任务条领取奖励。

@@ -1,7 +1,7 @@
 /** NPC 人形卡通立绘：按 NPC 换发型 / 服饰 / 配饰，圆润童趣 */
 import { useId } from 'react';
 import { npcPortrait } from '../content/characterAssets';
-import Mascot from './Mascot';
+import RobotAssistant from './RobotAssistant';
 
 const LOOK: Record<string, {
   skin: string; hair: string; hairStyle: 'short' | 'bob' | 'curly';
@@ -17,7 +17,7 @@ interface Props { npc: string; size?: number }
 
 export default function NpcFigure({ npc, size = 96 }: Props) {
   if (npc === '小卷') {
-    return <Mascot pose="happy" size={size} className="npc-figure npc-figure-mascot" />;
+    return <RobotAssistant state="happy" size={size} className="npc-figure npc-figure-robot" />;
   }
   if (npc === '晶晶') {
     return <JingJingFigure size={size} />;

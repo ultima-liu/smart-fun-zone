@@ -1,5 +1,4 @@
 import type { Grade, SubjectId } from '../types';
-import { MATH_UNITS } from './mathCurriculum';
 
 /* =====================================================================
    真实教材课程体系（浙江省 · 分科录入）
@@ -1324,11 +1323,7 @@ function buildSkills(): Skill[] {
     });
   };
 
-  // 数学：人教版逐课目录（1~6 年级）
-  (Object.keys(MATH_UNITS) as Grade[]).forEach((g) => {
-    pushDetail('math', g, '上', MATH_UNITS[g].上);
-    pushDetail('math', g, '下', MATH_UNITS[g].下);
-  });
+  // 数学课程由 MathTextbookLabPage 统一承载；不再向通用课程目录注入旧课时。
   pushDetail('chinese', 'g1', '上', G1_CHINESE.上);
   pushDetail('chinese', 'g1', '下', G1_CHINESE.下);
   // 英语：PEP 三年级起点，3~6 年级按单元→课时（每单元 6 课）
@@ -1429,5 +1424,5 @@ export function skillDesc(s: Skill, lang: 'zh' | 'en'): string {
   return lang === 'zh' ? `我们来学习「${s.name.zh}」吧！` : `Let's learn: ${s.name.en}!`;
 }
 
-// 保留旧数学目录定义（历史数据，已由 mathCurriculum.ts 的逐课目录取代）
+// 数学课程已迁入 MathTextbookLabPage；其余学科仍按各自教材目录构建。
 export { MATH, G1_MATH };

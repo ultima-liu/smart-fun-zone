@@ -157,7 +157,7 @@ export const STORY: StoryChapter[] = [
         npc: '铛铛',
         lines: [
           { zh: '欢迎光临补给站！我是铛铛，卷星的好东西都从我这儿出发。', en: 'Welcome to the Supply Station! I am Dang-Dang, everything good starts here.' },
-          { zh: '用卷星币可以兑换装扮、游戏道具，还有抽卡的星尘。', en: 'With coins you can get outfits, game items and stardust for card draws.' },
+          { zh: '用卷卷豆可以兑换装扮、游戏道具，还能在档案库召唤图鉴卡。', en: 'With beans you can get outfits, game items, and summon Archive cards.' },
           { zh: '小提示：完成剧情和学习任务会奖励卷星币，别乱花哦！', en: 'Tip: story and lesson tasks reward coins — spend them wisely!' },
         ],
         text: { zh: '欢迎光临！铁砣给你发了卷星币，来看看能换点什么。', en: 'Welcome! Chief Tie-Tuo gave you coins. Take a look around.' },
@@ -183,7 +183,7 @@ export const STORY: StoryChapter[] = [
           { zh: '欢迎来到星核档案库，我是档案员晶晶。', en: 'Welcome to the Star Archive. I am Jing-Jing the archivist.' },
           { zh: '卷星的星光，藏在一个个被记住的故事里。', en: 'Juan Star’s light lives in stories that are remembered.' },
           { zh: '可乌乌怪把故事卡片偷走了……它们散落在卷星各处。', en: 'But Gloom Gremlins stole the story cards… they’re scattered across Juan Star.' },
-          { zh: '如果你想帮忙，就收集星尘召唤这些卡片，把它们一格格拼回档案库吧。', en: 'If you want to help, gather stardust to summon the cards and place them back into the archive.' },
+          { zh: '如果你想帮忙，就赚取卷卷豆召唤这些卡片，把它们一格格拼回档案库吧。', en: 'If you want to help, earn beans to summon the cards and place them back into the archive.' },
         ],
         text: { zh: '档案库的卡片散落了，去晶晶那儿了解怎么收集吧。', en: 'The archive cards are scattered. Ask Jing-Jing how to collect them.' },
         task: { zh: '找档案管理员晶晶聊聊', en: 'Talk with archivist Jing-Jing' },
