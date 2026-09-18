@@ -24,7 +24,7 @@ describe('learning task design', () => {
       pointLog: {
         taskKid: [
           { id: 'prac:math-lab-numbers:Sun Sep 20 2026', time: new Date('2026-09-16T09:00:00').getTime(), amount: 1, reason: '练习达标', childId: 'taskKid' },
-          { id: 'prac:chinese-g1-a-1-1:Sun Sep 20 2026', time: new Date('2026-09-18T09:00:00').getTime(), amount: 1, reason: '练习达标', childId: 'taskKid' },
+          { id: 'prac:china:Sun Sep 20 2026', time: new Date('2026-09-18T09:00:00').getTime(), amount: 1, reason: '练习达标', childId: 'taskKid' },
         ],
       },
     });
