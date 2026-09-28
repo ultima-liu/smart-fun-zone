@@ -53,7 +53,7 @@ const completedCourses = (s: AppState, c: string, subject: CourseSubject, since:
 const todayCourse = (subject: CourseSubject) => (s: AppState, c: string) => completedCourses(s, c, subject, dayStart());
 const weekCourse = (subject: CourseSubject) => (s: AppState, c: string) => completedCourses(s, c, subject, weekStart());
 const todayParentTasks = (s: AppState, c: string) =>
-  (s.customTasks[c] ?? []).filter((task) => task.done && (task.doneAt ?? 0) >= dayStart()).length;
+  (s.customTasks[c] ?? []).filter((task) => task.doneDays.includes(localDayKey())).length;
 
 export const TASKS: TaskDef[] = [
   // 每日清单按具体行为拆分；所有课程完成都以课堂练习正确率达到 80% 为准。
@@ -64,7 +64,7 @@ export const TASKS: TaskDef[] = [
   { id: 'd-card-draw', kind: 'daily', title: '完成一次图鉴召唤', icon: '🎴', reward: 3, target: 1, go: '/archive', progress: (s, c) => todayReason(s, c, '图鉴召唤') },
   { id: 'd-store-buy', kind: 'daily', title: '在商店兑换一次物品', icon: '🛍️', reward: 3, target: 1, go: '/store', progress: (s, c) => todayReason(s, c, '兑换商品') },
   { id: 'd-ship-upgrade', kind: 'daily', title: '升级一次飞船', icon: '🚀', reward: 15, target: 1, go: '/dock', progress: (s, c) => todayReason(s, c, '飞船升级'), available: (s, c) => (s.shipLevel[c] ?? 1) < SHIP_MAX_LEVEL || todayReason(s, c, '飞船升级') > 0 },
-  { id: 'd-parent-task', kind: 'daily', title: '完成一个家长任务', icon: '🤝', reward: 12, target: 1, progress: todayParentTasks, available: (s, c) => (s.customTasks[c] ?? []).some((task) => !task.done || (task.doneAt ?? 0) >= dayStart()) },
+  { id: 'd-parent-task', kind: 'daily', title: '完成一个家长任务', icon: '🤝', reward: 12, target: 1, progress: todayParentTasks, available: (s, c) => (s.customTasks[c] ?? []).some((task) => !task.doneDays.includes(localDayKey())) },
   // 每周目标沿用相同的明确口径，鼓励持续学习，而非游戏时长或局数。
   { id: 'w-chinese-course', kind: 'weekly', title: '完成 3 节语文课程', icon: '📚', reward: 20, target: 3, go: '/subject/chinese', progress: weekCourse('chinese') },
   { id: 'w-math-course', kind: 'weekly', title: '完成 3 节数学课程', icon: '📏', reward: 20, target: 3, go: '/subject/math', progress: weekCourse('math') },

@@ -5,6 +5,7 @@ import {
   streakDays,
   todayPlaySec,
   gardenStage,
+  useStore,
 } from '../store';
 import type { GameRecord } from '../types';
 
@@ -59,5 +60,19 @@ describe('store 辅助函数', () => {
     expect(gardenStage(20).stage).toBe(3);
     expect(gardenStage(40).stage).toBe(4);
     expect(gardenStage(80).stage).toBe(5);
+  });
+
+  it('云端剧情仅用较新的存档恢复，并支持跨端重置', () => {
+    useStore.setState({
+      storyDone: { c1: ['p1', 'c1-1'] },
+      storyRewardClaimed: { c1: ['p1'] },
+      storyUpdatedAt: { c1: 100 },
+    });
+    useStore.getState().applyCloudStory('c1', { done: [], rewardClaimed: [], updatedAt: 200 });
+    expect(useStore.getState().storyDone.c1).toEqual([]);
+    expect(useStore.getState().storyRewardClaimed.c1).toEqual([]);
+
+    useStore.getState().applyCloudStory('c1', { done: ['p1'], rewardClaimed: ['p1'], updatedAt: 150 });
+    expect(useStore.getState().storyDone.c1).toEqual([]);
   });
 });

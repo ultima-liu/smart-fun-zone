@@ -202,12 +202,12 @@ function RolePlayPanel({ lessonId, items, onShadowTarget }: { lessonId: string; 
     <div className="en-role-choices" aria-label="选择要扮演的角色">{roles.map((speaker) => <button type="button" key={speaker} className={role === speaker ? 'active' : ''} onClick={() => selectRole(speaker)}><i style={{ background: speakerColor(speaker) }}>{speaker.slice(0, 1)}</i><span>我来演 {speaker}</span></button>)}</div>
     {role && <div className={`en-role-stage ${started ? 'playing' : ''} ${complete ? 'complete' : ''}`}>
       <div className="en-role-cast" aria-label="本次演出角色"><span className={systemSpeaking ? 'speaking' : ''}><i>✦</i>系统演 {roles.filter((speaker) => speaker !== role).join(' / ')}</span><b>↔</b><span className={current?.speaker === role && started ? 'speaking child' : 'child'}><i style={{ background: speakerColor(role) }}>{role.slice(0, 1)}</i>我演 {role}</span></div>
-      {!started ? <div className="en-role-ready"><p>角色选好了。系统会先说自己的台词；轮到你时，打开跟读窗说出这一句。</p><button type="button" onClick={start}>开始演出 →</button></div> : complete ? <div className="en-role-finish"><b>✓ 这段对话演完了</b><p>你完成了自己的 {said.size} 句台词，系统已接完其余角色。</p><button type="button" onClick={start}>↻ 再演一遍</button></div> : <div className="en-role-script" aria-live="polite">{turns.map((item, index) => {
+      {!started ? <div className="en-role-ready"><p>角色选好了。系统会先说自己的台词；轮到你时，打开跟读窗说出这一句。</p><button type="button" onClick={start}>开始演出 →</button></div> : <>{complete && <div className="en-role-finish"><b>✓ 这段对话演完了</b><p>你完成了自己的 {said.size} 句台词，系统已接完其余角色；下面保留完整台词，方便回看。</p><button type="button" onClick={start}>↻ 再演一遍</button></div>}<div className="en-role-script" aria-live="polite">{turns.map((item, index) => {
         const mine = item.speaker === role;
         const done = mine ? said.has(item.id) : systemSaid.has(item.id);
         const active = index === turnIndex;
         return <article key={item.id} className={`${mine ? 'child-line' : 'system-line'} ${done ? 'said' : ''} ${active ? 'active' : ''}`}><i style={{ background: mine ? speakerColor(role) : speakerColor(item.speaker!) }}>{item.speaker!.slice(0, 1)}</i><div><small>{mine ? '轮到我' : '系统角色'} · {item.speaker}</small><strong>{item.text}</strong></div>{mine && active ? <button type="button" onClick={() => onShadowTarget(item, () => { setSaid((currentSaid) => new Set(currentSaid).add(item.id)); setTurnIndex((indexNow) => indexNow + 1); playSfx('correct'); })}>🎙 我来说</button> : <em>{done ? '✓' : active && systemSpeaking ? '系统正在说…' : mine ? '等待' : '待接话'}</em>}</article>;
-      })}</div>}
+      })}</div></>}
     </div>}
   </section>;
 }

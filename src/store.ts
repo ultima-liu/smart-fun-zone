@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { ChildProfile, GameRecord, Lang, Theme } from './types';
-import { applyEntry, type PointEntry, type CustomTask, type RewardRequest } from './points';
+import { localDayKey } from './dailyCheckin';
+import { applyEntry, type PointEntry, type CustomTask, customTaskDueToday } from './points';
 import { drawLoot, pendingPacks, type LootDrop } from './content/expedition';
 import { shipBoost } from './content/shipyard';
 import { drawCards as drawStarCards, STAR_CARDS, type CardSetId, type DrawResult } from './content/starCards';
@@ -20,8 +21,17 @@ export interface WrongItem {
   uid: string;
   lessonId: string;
   lessonName: string;
+  /** 旧记录只有 kind；新数学错题用 question 保存可再次作答的题干。 */
+  question?: string;
   kind: string;
+  /** 孩子当时选的错误答案。 */
   answer: string;
+  /** 可选的诊断信息：旧错题没有这些字段时仍可正常展示。 */
+  objective?: string;
+  diagnosis?: string;
+  remedy?: string;
+  options?: string[];
+  correctAnswer?: string;
   time: number;
 }
 
@@ -31,10 +41,7 @@ export interface AppState {
   theme: Theme;
   setTheme: (t: Theme) => void;
   sound: boolean;
-  musicOn: boolean;
   voiceOn: boolean;
-  /** 家长设置：演示页可跳过（默认强制先看） */
-  lessonSkipOn: boolean;
   profiles: ChildProfile[];
   activeChildId: string | null;
   records: GameRecord[];
@@ -50,6 +57,8 @@ export interface AppState {
   storyDone: Record<string, string[]>;
   /** 已领取剧情奖励：childId → nodeId[] */
   storyRewardClaimed: Record<string, string[]>;
+  /** 剧情存档最近一次变更时间；用于跨端按最新版恢复，也让「重置剧情」能同步生效。 */
+  storyUpdatedAt: Record<string, number>;
   /** 待演示的解锁目标（完成剧情后写入；首页挂载时消费并播放卷星解封动画） */
   storyPulse: string | null;
   /** 错题本：childId → 错题记录（自动同步到云端） */
@@ -83,30 +92,24 @@ export interface AppState {
   unequipItem: (childId: string, itemId: string) => void;
   /** 兑换一个虚拟商品（余额足够才扣分，不重复购买） */
   redeemItem: (childId: string, itemId: string, cost: number) => boolean;
-  /** 数字奖励/家长奖励兑换请求：childId → RewardRequest[]（孩子提交，家长审批） */
-  rewardRequests: Record<string, RewardRequest[]>;
-  /** 孩子提交一个奖励兑换请求（挂起不扣分，等家长审批） */
-  requestReward: (childId: string, req: Omit<RewardRequest, 'id' | 'childId' | 'createdAt' | 'status'>) => boolean;
-  /** 家长批准请求 → 扣分并发放奖励（记入流水） */
-  approveReward: (childId: string, requestId: string) => boolean;
-  /** 家长拒绝请求（不扣分） */
-  declineReward: (childId: string, requestId: string) => void;
+  /** 兑换奖励类商品（即时扣分到账、可重复购买；时长券直接加当日游戏时长） */
+  buyReward: (childId: string, item: { id: string; name: string; cost: number }) => boolean;
   /** 记录一笔积分变动（自动来源传 sourceId 幂等；消费 amount 为负且不重复） */
   applyPoints: (childId: string, amount: number, reason: string, sourceId?: string) => void;
-  /** 家长部署自定义任务 */
-  addCustomTask: (childId: string, text: string, points: number) => void;
+  /** 家长部署自定义任务（周期/判定/奖励） */
+  addCustomTask: (childId: string, task: Omit<CustomTask, 'id' | 'createdAt' | 'doneDays' | 'pendingDays'>) => void;
   removeCustomTask: (childId: string, taskId: string) => void;
-  /** 家长手动确认任务完成 → 给孩子加分 */
-  confirmCustomTask: (childId: string, taskId: string) => void;
+  /** 孩子点「已完成」：auto 立即发放；parent 进入待审核。返回结果供界面提示 */
+  childCompleteTask: (childId: string, taskId: string) => 'granted' | 'pending' | 'already' | 'missing';
+  /** 家长审核确认待审核的完成记录 → 发放奖励 */
+  confirmCustomTask: (childId: string, taskId: string, day: string) => void;
   parentPin: string;
   dailyLimitMin: number;
   /** 当日加成时长（来自已审批时长券）：childId → { day: 'YYYY-MM-DD', min: n } */
   bonusMin: Record<string, { day: string; min: number }>;
   setLang: (l: Lang) => void;
   toggleSound: () => void;
-  setMusicOn: (v: boolean) => void;
   setVoiceOn: (v: boolean) => void;
-  setLessonSkipOn: (v: boolean) => void;
   addProfile: (p: ChildProfile) => void;
   removeProfile: (id: string) => void;
   setActiveChild: (id: string | null) => void;
@@ -133,7 +136,8 @@ export interface AppState {
   /** 云端同步：合并拉取到的进度（按 updatedAt 取新） */
   applyCloudProgress: (childId: string, map: Record<string, { stars?: number; stepIdx?: number; updatedAt?: number }>) => void;
   applyCloudPoints: (childId: string, entries: { id: string; amount: number; reason?: string; time?: number }[], items?: string[]) => void;
-  applyCloudRewards: (childId: string, rewards: Omit<RewardRequest, 'childId'>[]) => void;
+  /** 按存档更新时间恢复云端剧情；云端更新时整体替换，确保重置剧情可跨端同步。 */
+  applyCloudStory: (childId: string, story: { done: string[]; rewardClaimed: string[]; updatedAt: number }) => void;
   setParentPin: (pin: string) => void;
   setDailyLimit: (min: number) => void;
   /** 学习助手「小卷」 */
@@ -172,15 +176,30 @@ export interface AppState {
   clearAll: () => void;
 }
 
+/** 计算任务奖励的状态补丁：卷卷豆（幂等 sourceId）+ 可选物品。已发放过返回 null */
+function grantTaskRewardPatch(s: AppState, childId: string, task: CustomTask, day: string): Partial<AppState> | null {
+  const sourceId = `custom-task:${task.id}:${day}`;
+  const childLog = s.pointLog[childId] ?? [];
+  if (childLog.some((e) => e.id === sourceId && e.amount > 0)) return null;
+  let points = s.points;
+  let log = childLog;
+  if (task.points > 0) {
+    const r = applyEntry(points, log, { id: sourceId, time: Date.now(), amount: task.points, reason: `任务·${task.text}`, childId });
+    points = r.points;
+    log = r.log;
+  }
+  let owned = s.ownedItems[childId] ?? [];
+  if (task.itemId && !owned.includes(task.itemId)) owned = [...owned, task.itemId];
+  return { points, pointLog: { ...s.pointLog, [childId]: log }, ownedItems: { ...s.ownedItems, [childId]: owned } };
+}
+
 export const useStore = create<AppState>()(
   persist(
     (set) => ({
       lang: 'zh',
       theme: 'dark',
       sound: true,
-      musicOn: true,
       voiceOn: true,
-      lessonSkipOn: false,
       profiles: [],
       activeChildId: null,
       records: [],
@@ -190,6 +209,7 @@ export const useStore = create<AppState>()(
       charBag: {},
       storyDone: {},
       storyRewardClaimed: {},
+      storyUpdatedAt: {},
       storyPulse: null,
       wrongs: {},
       points: {},
@@ -201,7 +221,6 @@ export const useStore = create<AppState>()(
       avatarHair: {},
       storeOverrides: {},
       taskOverrides: {},
-      rewardRequests: {},
       bonusMin: {},
       parentPin: '1234',
       dailyLimitMin: 0,
@@ -377,6 +396,31 @@ export const useStore = create<AppState>()(
         });
         return ok;
       },
+      buyReward: (childId, item) => {
+        let ok = false;
+        useStore.setState((s) => {
+          const bal = s.points[childId] ?? 0;
+          if (bal < item.cost) return {};
+          const r = applyEntry(s.points, s.pointLog[childId] ?? [], {
+            id: `buy:reward:${item.id}:${Date.now()}`,
+            time: Date.now(),
+            amount: -item.cost,
+            reason: `奖励·${item.name}`,
+            childId,
+          });
+          ok = true;
+          // 时长券：rw-game*（+15 分钟）/ rw-video*（+10 分钟）直接加当日游戏时长
+          let bonus = s.bonusMin[childId];
+          if (item.id.startsWith('rw-game') || item.id.startsWith('rw-video')) {
+            const today = new Date().toDateString();
+            const addMin = item.id.startsWith('rw-video') ? 10 : 15;
+            bonus = bonus && bonus.day === today ? { day: today, min: bonus.min + addMin } : { day: today, min: addMin };
+            return { points: r.points, pointLog: { ...s.pointLog, [childId]: r.log }, bonusMin: { ...s.bonusMin, [childId]: bonus } };
+          }
+          return { points: r.points, pointLog: { ...s.pointLog, [childId]: r.log } };
+        });
+        return ok;
+      },
       equipItem: (childId, itemId) =>
         set((s) => {
           const owned = s.ownedItems[childId] ?? [];
@@ -407,72 +451,6 @@ export const useStore = create<AppState>()(
       patchTask: (id, patch) =>
         set((s) => ({ taskOverrides: { ...s.taskOverrides, [id]: { ...(s.taskOverrides[id] ?? {}), ...patch } } })),
       applyRemoteConfig: (storeOverrides, taskOverrides) => set({ storeOverrides, taskOverrides }),
-      requestReward: (childId, req) => {
-        let ok = false;
-        useStore.setState((s) => {
-          const pending = s.rewardRequests[childId] ?? [];
-          if (pending.some((x) => x.itemId === req.itemId && x.status === 'pending')) return {};
-          const full: RewardRequest = {
-            id: `rw-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-            childId,
-            itemId: req.itemId,
-            name: req.name,
-            icon: req.icon,
-            kind: req.kind,
-            cost: req.cost,
-            createdAt: Date.now(),
-            status: 'pending',
-          };
-          ok = true;
-          return { rewardRequests: { ...s.rewardRequests, [childId]: [...pending, full] } };
-        });
-        return ok;
-      },
-      approveReward: (childId, requestId) => {
-        let ok = false;
-        useStore.setState((s) => {
-          const list = s.rewardRequests[childId] ?? [];
-          const req = list.find((x) => x.id === requestId);
-          if (!req || req.status !== 'pending') return {};
-          const bal = s.points[childId] ?? 0;
-          if (bal < req.cost) return {};
-          const r = applyEntry(s.points, s.pointLog[childId] ?? [], {
-            id: `buy:${req.kind}:${req.itemId}:${Date.now()}`,
-            time: Date.now(),
-            amount: -req.cost,
-            reason: `奖励·${req.name}`,
-            childId,
-          });
-          const nextList = list.map((x) => (x.id === requestId ? { ...x, status: 'approved' as const, decidedAt: Date.now() } : x));
-          ok = true;
-          // 时长券：批准后给当日加成时长（游戏/动画各按商品面额 +min）
-          const isTime = req.itemId.startsWith('rw-game') || req.itemId.startsWith('rw-video');
-          let bonus = s.bonusMin[childId];
-          if (isTime && bonus) {
-            const today = new Date().toDateString();
-            if (bonus.day !== today) bonus = { day: today, min: 0 };
-            const addMin = req.itemId.startsWith('rw-video') ? 10 : 15;
-            bonus = { day: bonus.day, min: bonus.min + addMin };
-          } else if (isTime) {
-            const today = new Date().toDateString();
-            const addMin = req.itemId.startsWith('rw-video') ? 10 : 15;
-            bonus = { day: today, min: addMin };
-          }
-          return {
-            points: r.points,
-            pointLog: { ...s.pointLog, [childId]: r.log },
-            rewardRequests: { ...s.rewardRequests, [childId]: nextList },
-            ...(bonus ? { bonusMin: { ...s.bonusMin, [childId]: bonus } } : {}),
-          };
-        });
-        return ok;
-      },
-      declineReward: (childId, requestId) =>
-        set((s) => {
-          const list = s.rewardRequests[childId] ?? [];
-          const nextList = list.map((x) => (x.id === requestId ? { ...x, status: 'declined' as const, decidedAt: Date.now() } : x));
-          return { rewardRequests: { ...s.rewardRequests, [childId]: nextList } };
-        }),
       applyPoints: (childId, amount, reason, sourceId) =>
         set((s) => {
                     const id = sourceId && amount > 0 ? sourceId : sourceId ?? `tx-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -486,42 +464,59 @@ export const useStore = create<AppState>()(
           const r = applyEntry(s.points, s.pointLog[childId] ?? [], entry);
           return { points: r.points, pointLog: { ...s.pointLog, [childId]: r.log } };
         }),
-      addCustomTask: (childId, text, points) =>
+      addCustomTask: (childId, task) =>
         set((s) => {
-          const task: CustomTask = {
+          const full: CustomTask = {
+            ...task,
             id: `t-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-            text,
-            points: Math.max(1, Math.round(points)),
-            done: false,
             createdAt: Date.now(),
+            doneDays: [],
+            pendingDays: [],
           };
-          return { customTasks: { ...s.customTasks, [childId]: [...(s.customTasks[childId] ?? []), task] } };
+          return { customTasks: { ...s.customTasks, [childId]: [...(s.customTasks[childId] ?? []), full] } };
         }),
       removeCustomTask: (childId, taskId) =>
         set((s) => ({ customTasks: { ...s.customTasks, [childId]: (s.customTasks[childId] ?? []).filter((t) => t.id !== taskId) } })),
-      confirmCustomTask: (childId, taskId) =>
+      childCompleteTask: (childId, taskId) => {
+        let verdict: 'granted' | 'pending' | 'already' | 'missing' = 'missing';
         set((s) => {
           const list = s.customTasks[childId] ?? [];
           const task = list.find((t) => t.id === taskId);
-          if (!task || task.done) return {};
-          // 家长手动确认 → 发放积分
-                    const entry: PointEntry = {
-            id: `task:${task.id}`,
-            time: Date.now(),
-            amount: task.points,
-            reason: `任务·${task.text}`,
-            childId,
-          };
-          const r = applyEntry(s.points, s.pointLog[childId] ?? [], entry);
-          const nextList = list.map((t) => (t.id === taskId ? { ...t, done: true, doneAt: Date.now() } : t));
-          return { points: r.points, pointLog: { ...s.pointLog, [childId]: r.log }, customTasks: { ...s.customTasks, [childId]: nextList } };
+          if (!task) return {};
+          const day = localDayKey();
+          if (!customTaskDueToday(task) || task.doneDays.includes(day)) {
+            verdict = 'already';
+            return {};
+          }
+          if (task.judge === 'parent') {
+            if (task.pendingDays.includes(day)) {
+              verdict = 'already';
+              return {};
+            }
+            verdict = 'pending';
+            const nextList = list.map((t) => (t.id === taskId ? { ...t, pendingDays: [...t.pendingDays, day] } : t));
+            return { customTasks: { ...s.customTasks, [childId]: nextList } };
+          }
+          verdict = 'granted';
+          const reward = grantTaskRewardPatch(s, childId, task, day);
+          const nextList = list.map((t) => (t.id === taskId ? { ...t, doneDays: [...t.doneDays, day] } : t));
+          return { ...reward, customTasks: { ...s.customTasks, [childId]: nextList } };
+        });
+        return verdict;
+      },
+      confirmCustomTask: (childId, taskId, day) =>
+        set((s) => {
+          const list = s.customTasks[childId] ?? [];
+          const task = list.find((t) => t.id === taskId);
+          if (!task || !task.pendingDays.includes(day) || task.doneDays.includes(day)) return {};
+          const reward = grantTaskRewardPatch(s, childId, task, day);
+          const nextList = list.map((t) => (t.id === taskId ? { ...t, pendingDays: t.pendingDays.filter((d) => d !== day), doneDays: [...t.doneDays, day] } : t));
+          return { ...reward, customTasks: { ...s.customTasks, [childId]: nextList } };
         }),
       setLang: (lang) => set({ lang }),
       setTheme: (theme) => set({ theme }),
       toggleSound: () => set((s) => ({ sound: !s.sound })),
-      setMusicOn: (musicOn) => set({ musicOn }),
       setVoiceOn: (voiceOn) => set({ voiceOn }),
-      setLessonSkipOn: (lessonSkipOn) => set({ lessonSkipOn }),
       addProfile: (p) =>
         set((s) => ({ profiles: [...s.profiles, p], points: { ...s.points, [p.id]: INITIAL_POINTS } })),
       removeProfile: (id) =>
@@ -541,7 +536,7 @@ export const useStore = create<AppState>()(
           avatarHair: (() => { const h = { ...s.avatarHair }; delete h[id]; return h; })(),
           storyDone: (() => { const d = { ...s.storyDone }; delete d[id]; return d; })(),
           storyRewardClaimed: (() => { const r = { ...s.storyRewardClaimed }; delete r[id]; return r; })(),
-          rewardRequests: (() => { const r = { ...s.rewardRequests }; delete r[id]; return r; })(),
+          storyUpdatedAt: (() => { const t = { ...s.storyUpdatedAt }; delete t[id]; return t; })(),
           expeditionLastAt: (() => { const e = { ...s.expeditionLastAt }; delete e[id]; return e; })(),
           materials: (() => { const m = { ...s.materials }; delete m[id]; return m; })(),
           shipLevel: (() => { const sh = { ...s.shipLevel }; delete sh[id]; return sh; })(),
@@ -571,16 +566,26 @@ export const useStore = create<AppState>()(
         set((s) => {
           const cur = s.storyDone[childId] ?? [];
           if (cur.includes(nodeId)) return {};
-          return { storyDone: { ...s.storyDone, [childId]: [...cur, nodeId] } };
+          return {
+            storyDone: { ...s.storyDone, [childId]: [...cur, nodeId] },
+            storyUpdatedAt: { ...s.storyUpdatedAt, [childId]: Date.now() },
+          };
         }),
       claimStoryReward: (childId, nodeId) =>
         set((s) => {
           const claimed = s.storyRewardClaimed[childId] ?? [];
           if (claimed.includes(nodeId)) return {};
-          return { storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [...claimed, nodeId] } };
+          return {
+            storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [...claimed, nodeId] },
+            storyUpdatedAt: { ...s.storyUpdatedAt, [childId]: Date.now() },
+          };
         }),
       resetStory: (childId) =>
-        set((s) => ({ storyDone: { ...s.storyDone, [childId]: [] }, storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [] } })),
+        set((s) => ({
+          storyDone: { ...s.storyDone, [childId]: [] },
+          storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [] },
+          storyUpdatedAt: { ...s.storyUpdatedAt, [childId]: Date.now() },
+        })),
       setStoryPulse: (target) => set({ storyPulse: target }),
       completeLessonStep: (skillId) =>
         set((s) => {
@@ -663,22 +668,14 @@ export const useStore = create<AppState>()(
           for (const it of items ?? []) if (!owned.includes(it)) owned = [...owned, it];
           return { points: { ...s.points, [childId]: Math.max(0, balance) }, pointLog: { ...s.pointLog, [childId]: log }, ownedItems: { ...s.ownedItems, [childId]: owned } };
         }),
-      applyCloudRewards: (childId, rewards) =>
+      applyCloudStory: (childId, story) =>
         set((s) => {
-          const mine = s.rewardRequests[childId] ?? [];
-          const byId = new Map(mine.map((r) => [r.id, r]));
-          const incoming = (rewards ?? []).map((r) => ({ ...r, childId }) as RewardRequest);
-          for (const rw of incoming) {
-            const prev = byId.get(rw.id);
-            // 云端状态更新（pending→approved/declined）；本地已有且更新则跳过
-            if (prev) {
-              if (prev.status === 'pending' && rw.status !== 'pending') byId.set(rw.id, rw);
-              continue;
-            }
-            byId.set(rw.id, rw);
-          }
-          const merged = [...byId.values()];
-          return { rewardRequests: { ...s.rewardRequests, [childId]: merged } };
+          if (story.updatedAt <= (s.storyUpdatedAt[childId] ?? 0)) return {};
+          return {
+            storyDone: { ...s.storyDone, [childId]: [...new Set(story.done)] },
+            storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [...new Set(story.rewardClaimed)] },
+            storyUpdatedAt: { ...s.storyUpdatedAt, [childId]: story.updatedAt },
+          };
         }),
       addWrong: (childId, w) =>
         set((s) => {
@@ -692,12 +689,12 @@ export const useStore = create<AppState>()(
         set((s) => ({ wrongs: { ...s.wrongs, [childId]: (s.wrongs[childId] ?? []).filter((x) => x.uid !== uid) } })),
       setParentPin: (parentPin) => set({ parentPin }),
       setDailyLimit: (dailyLimitMin) => set({ dailyLimitMin }),
-      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, storyDone: {}, storyRewardClaimed: {}, storyPulse: null, wrongs: {}, points: {}, pointLog: {}, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, rewardRequests: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
+      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, storyDone: {}, storyRewardClaimed: {}, storyUpdatedAt: {}, storyPulse: null, wrongs: {}, points: {}, pointLog: {}, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
     }),
     {
       name: 'smart-fun-zone',
       // v3：图鉴召唤改消耗卷卷豆，移除旧的抽卡材料余额。
-      version: 3,
+      version: 4,
       migrate: (persistedState, version) => {
         let state = persistedState as Partial<AppState>;
         if (version < 1) {
@@ -722,6 +719,20 @@ export const useStore = create<AppState>()(
             { stardust: (material as { stardust?: number }).stardust ?? 0 },
           ]));
           state = { ...state, materials };
+        }
+        if (version < 4) {
+          // 自定义任务 v4：周期/判定/物品奖励 + 完成记录按日存储；旧结构（done/doneAt）一次性转换
+          const customTasks = Object.fromEntries(Object.entries(state.customTasks ?? {}).map(([childId, list]) => [
+            childId,
+            ((list ?? []) as unknown as Array<Record<string, unknown>>).map((t) => ({
+              ...t,
+              repeat: (t.repeat as string) ?? 'once',
+              judge: (t.judge as string) ?? 'parent',
+              doneDays: t.done ? [localDayKey(new Date(typeof t.doneAt === 'number' ? t.doneAt : Date.now()))] : [],
+              pendingDays: [],
+            })),
+          ]));
+          state = { ...state, customTasks } as unknown as Partial<AppState>;
         }
         return state as AppState;
       },

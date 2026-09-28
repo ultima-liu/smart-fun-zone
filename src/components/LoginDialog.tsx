@@ -4,7 +4,8 @@ import { useStore } from '../store';
 import { playSfx, speak, startThrust, stopThrust } from '../speech';
 import { useI18n } from '../i18n';
 import { api, setToken } from '../api';
-import { saveChildMap, childMap, pullAll } from '../cloud';
+import { saveChildMap, childMap } from '../cloud';
+import { syncAfterLogin } from '../autosync';
 import type { Grade } from '../types';
 
 interface LoginDialogProps {
@@ -128,7 +129,7 @@ export default function LoginDialog({ onClose, onArrived }: LoginDialogProps) {
     const m = { ...childMap() } as Record<string, number>;
     m[localId] = r.childId;
     saveChildMap(m);
-    void pullAll(r.childId, localId);
+    await syncAfterLogin(localId);
     // 暂不切换孩子 —— 等过场结束再激活，否则欢迎页分支会卸载掉本弹窗
     setPendingId(localId);
     // 成功语音：验证通过、星门已打开

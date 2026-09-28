@@ -189,6 +189,15 @@ test('拼音园地二至四用栏目任务和共读内容替代扫描页确认',
   await page.locator('.ct-pinyin-garden-question').getByRole('button', { name: '姓名' }).click();
   await page.getByRole('button', { name: '这项完成，继续下一项 →' }).click();
   await expect(page.getByRole('heading', { name: '声调实验 · 读准声音' })).toBeVisible();
+  for (const [index, activity] of CHINESE_PINYIN_GARDENS['garden-2'].slice(1).entries()) {
+    for (const button of await page.locator('.ct-pinyin-garden-material button').all()) await button.click();
+    await page.locator('.ct-pinyin-garden-question button').getByText(activity.answer, { exact: true }).click();
+    await page.getByRole('button', { name: index === 3 ? '完成园地学习 →' : '这项完成，继续下一项 →' }).click();
+  }
+  const review = page.getByRole('region', { name: '本园地教材任务完成回顾' });
+  await expect(review).toContainText('生活识字 · 拼音本');
+  await expect(review).toContainText('小白兔为什么后来有白菜送人？');
+  await expect(review).toContainText('我的答案：他自己种菜并照料');
 });
 
 test('金木水火土首次讲透田字格中线汉字数字占格与常见结构', async ({ page }) => {
@@ -274,4 +283,25 @@ test('入学、识字、拼音、阅读和园地页面均有独立观察场景�
     const color = await page.locator('.ct-stage').evaluate((element) => getComputedStyle(element).color);
     expect(color).toBe('rgb(39, 51, 74)');
   }
+});
+
+test('目录显示继续上次学习：点击回到保留的阶段，无断点时不显示', async ({ page }) => {
+  await page.addInitScript(() => {
+    // 与语文课时页的断点键一致：第一阶段已完成，停在第三阶段（教材练习）
+    localStorage.setItem('sfz-chinese-flow-v1:chinese-textbook-child:china', JSON.stringify({ phase: 2, unlocked: 2 }));
+  });
+  await page.goto('/#/subject/chinese');
+  const btn = page.locator('.mc-continue');
+  await expect(btn).toContainText('继续上次学习');
+  await expect(btn).toContainText('我是中国人');
+  await expect(btn).toContainText('正在进行：教材练习');
+  await btn.click();
+  await expect(page).toHaveURL(/chinese-course\/china/);
+  await expect(page.locator('.ct-phase-nav button').nth(2)).toHaveClass(/active/);
+});
+
+test('没有断点时目录不显示继续上次学习', async ({ page }) => {
+  await page.goto('/#/subject/chinese');
+  await expect(page.getByRole('heading', { name: '一年级语文上册' })).toBeVisible();
+  await expect(page.locator('.mc-continue')).toHaveCount(0);
 });

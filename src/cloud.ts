@@ -6,7 +6,6 @@
    ===================================================================== */
 import { api } from './api';
 import { useStore } from './store';
-import type { RewardRequest } from './points';
 
 export interface CloudChild {
   id: number;
@@ -75,28 +74,16 @@ export async function pullAll(cloudChildId: number, localChildId: string): Promi
   return Object.keys(map).length;
 }
 
-/** 把本地积分流水 + 已购商品 + 奖励兑换请求推送到云端（幂等） */
+/** 把本地积分流水 + 已购商品推送到云端（幂等） */
 export async function pushPoints(cloudChildId: number, localChildId: string): Promise<number> {
   const s = useStore.getState();
   const log = s.pointLog[localChildId] ?? [];
   const items = s.ownedItems[localChildId] ?? [];
-  const rewards = (s.rewardRequests[localChildId] ?? []).map((r) => ({
-    id: r.id,
-    itemId: r.itemId,
-    name: r.name,
-    icon: r.icon,
-    kind: r.kind,
-    cost: r.cost,
-    status: r.status,
-    createdAt: r.createdAt,
-    decidedAt: r.decidedAt ?? 0,
-  }));
-  if (log.length === 0 && items.length === 0 && rewards.length === 0) return 0;
+  if (log.length === 0 && items.length === 0) return 0;
   const r = await api.syncPoints(
     cloudChildId,
     log.map((e) => ({ id: e.id, amount: e.amount, reason: e.reason, time: e.time })),
     items,
-    rewards,
   );
   return r?.applied ?? 0;
 }
@@ -111,21 +98,42 @@ export async function pullPoints(cloudChildId: number, localChildId: string): Pr
     reason: x.reason,
     time: x.ts * 1000,
   }));
-  const rewards = ((r.rewards as { request_id: string; item_id: string; name: string; icon: string; kind: string; cost: number; status: string; created_at: number; decided_at: number }[]) ?? []).map((x) => ({
-    id: x.request_id,
-    itemId: x.item_id,
-    name: x.name,
-    icon: x.icon,
-    kind: x.kind as RewardRequest['kind'],
-    cost: x.cost,
-    status: x.status as RewardRequest['status'],
-    createdAt: x.created_at,
-    decidedAt: x.decided_at,
-  }));
-  const st = useStore.getState();
-  st.applyCloudPoints(localChildId, entries, r.items ?? []);
-  if (rewards.length > 0) st.applyCloudRewards(localChildId, rewards);
+  useStore.getState().applyCloudPoints(localChildId, entries, r.items ?? []);
   return entries.length;
+}
+
+/* ---------- 剧情存档同步 ---------- */
+
+function stringList(value: unknown): string[] {
+  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === 'string');
+  if (typeof value !== 'string') return [];
+  try {
+    return stringList(JSON.parse(value));
+  } catch {
+    return [];
+  }
+}
+
+/** 保存剧情节点与已领取奖励；更新时间让「重置剧情」也可跨端覆盖旧存档。 */
+export async function pushStory(cloudChildId: number, localChildId: string): Promise<boolean> {
+  const s = useStore.getState();
+  return !!(await api.syncStory(cloudChildId, {
+    done: s.storyDone[localChildId] ?? [],
+    rewardClaimed: s.storyRewardClaimed[localChildId] ?? [],
+    updatedAt: s.storyUpdatedAt[localChildId] ?? 0,
+  }));
+}
+
+/** 从云端恢复剧情存档。仅当云端版本较新时覆盖本地，避免旧端反向覆盖新进度。 */
+export async function pullStory(cloudChildId: number, localChildId: string): Promise<number> {
+  const r = await api.syncPull(cloudChildId, 0);
+  if (!r?.story) return 0;
+  const done = stringList(r.story.done);
+  const rewardClaimed = stringList(r.story.reward_claimed);
+  const updatedAt = Number(r.story.updated_at ?? 0);
+  if (!Number.isFinite(updatedAt) || updatedAt <= 0) return 0;
+  useStore.getState().applyCloudStory(localChildId, { done, rewardClaimed, updatedAt });
+  return done.length;
 }
 
 /* ---------- 错题自动同步 ---------- */

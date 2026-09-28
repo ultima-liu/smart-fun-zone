@@ -6,13 +6,13 @@ export default defineConfig({
   fullyParallel: true,
   reporter: [['list']],
   use: {
-    baseURL: 'http://localhost:4173',
+    baseURL: 'http://localhost:5173',
     headless: true,
     locale: 'zh-CN',
   },
   webServer: {
-    command: 'npm run build && npm run preview -- --port 4173 --strictPort',
-    url: 'http://localhost:4173',
+    command: 'npm run build && npm run preview',
+    url: 'http://localhost:5173',
     reuseExistingServer: true,
     timeout: 120_000,
   },

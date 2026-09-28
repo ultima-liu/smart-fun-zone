@@ -79,6 +79,15 @@ CREATE TABLE IF NOT EXISTS progress (
   KEY idx_progress_child_updated (child_id, updated_at)
 ) ENGINE=InnoDB;
 
+-- 剧情存档（每个孩子一份；客户端时间戳用于跨端恢复及同步「重置剧情」）
+CREATE TABLE IF NOT EXISTS story_progress (
+  child_id BIGINT UNSIGNED NOT NULL PRIMARY KEY,
+  done JSON NOT NULL,
+  reward_claimed JSON NOT NULL,
+  updated_at BIGINT UNSIGNED NOT NULL,
+  KEY idx_story_updated (updated_at)
+) ENGINE=InnoDB;
+
 -- 练习/错题记录
 CREATE TABLE IF NOT EXISTS practice_records (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

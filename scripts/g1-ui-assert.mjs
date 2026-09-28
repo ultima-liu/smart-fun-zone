@@ -1,6 +1,6 @@
 /* 语文一年级上册（2022修订）内容 UI 抽查：目录课数、课文页能走通读/学/认/练 */
 import { chromium } from '@playwright/test';
-const BASE = 'http://localhost:4173';
+const BASE = 'http://localhost:5173';
 const fails = [];
 const check = (name, cond, extra = '') => {
   console.log(`${cond ? 'PASS' : 'FAIL'} ${name}${extra ? ' — ' + extra : ''}`);

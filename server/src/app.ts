@@ -202,7 +202,7 @@ export function buildApp(): FastifyInstance {
 
   app.get('/api/admin/parents', authed, async (req, reply) => {
     if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
-    const rows = await q<RowDataPacket>('SELECT id, nickname, login_name, role, created_at FROM users WHERE role<>"child" ORDER BY id');
+    const rows = await q<RowDataPacket>('SELECT id, nickname, login_name, role, disabled, created_at FROM users WHERE role<>"child" ORDER BY id');
     return { ok: true, parents: rows };
   });
 
@@ -277,14 +277,15 @@ export function buildApp(): FastifyInstance {
   app.post<{ Body: { loginName?: string; password?: string } }>('/api/auth/child-login', async (req, reply) => {
     const loginName = (req.body?.loginName ?? '').trim();
     const password = req.body?.password ?? '';
-    const rows = await q<{ id: number; name: string; avatar: string; grade: string; login_hash: string | null } & RowDataPacket>(
-      'SELECT id, name, avatar, grade, login_hash FROM children WHERE login_name=? LIMIT 1',
+    const rows = await q<{ id: number; name: string; avatar: string; grade: string; login_hash: string | null; disabled: number } & RowDataPacket>(
+      'SELECT id, name, avatar, grade, login_hash, disabled FROM children WHERE login_name=? LIMIT 1',
       [loginName],
     );
     const row = rows[0];
     if (!row || !row.login_hash || !verifyPassword(password, row.login_hash)) {
       return reply.code(401).send({ ok: false, error: '账号或密码不正确' });
     }
+    if (row.disabled) return reply.code(403).send({ ok: false, error: '该账号已被停用，请联系管理员' });
     const token = signChildToken(row.id);
     return { ok: true, token, childId: row.id, name: row.name, avatar: row.avatar, grade: row.grade };
   });
@@ -391,12 +392,13 @@ export function buildApp(): FastifyInstance {
     const since = Number(req.query.since ?? 0);
     const where = 'child_id=? AND updated_at > FROM_UNIXTIME(?)';
     const progress = await q<RowDataPacket>('SELECT lesson_id, step_idx, stars, score, payload, UNIX_TIMESTAMP(updated_at) AS ts FROM progress WHERE ' + where, [childId, since / 1000]);
+    const storyRows = await q<RowDataPacket>('SELECT done, reward_claimed, updated_at FROM story_progress WHERE child_id=? LIMIT 1', [childId]);
     const wrongs = await q<RowDataPacket>('SELECT id, lesson_id, kind, question, answer, wrong, created_at FROM practice_records WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 500', [childId, since / 1000]);
     const readAloud = await q<RowDataPacket>('SELECT id, lesson_id, sentence, score, accuracy, created_at FROM read_aloud_records WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 200', [childId, since / 1000]);
     const points = await q<RowDataPacket>('SELECT source_id, amount, reason, UNIX_TIMESTAMP(created_at) AS ts FROM points_ledger WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 800', [childId, since / 1000]);
     const items = await q<RowDataPacket>('SELECT item_id FROM child_items WHERE child_id=?', [childId]);
     const rewards = await q<RowDataPacket>('SELECT request_id, item_id, name, icon, kind, cost, status, created_at, decided_at FROM reward_requests WHERE child_id=? ORDER BY created_at DESC LIMIT 200', [childId]);
-    return { ok: true, now: Date.now(), progress, wrongs, readAloud, points, items: items.map((i) => i.item_id), rewards };
+    return { ok: true, now: Date.now(), progress, story: storyRows[0] ?? null, wrongs, readAloud, points, items: items.map((i) => i.item_id), rewards };
   });
 
   /* ---------- 积分流水推送（幂等批量写入） ---------- */
@@ -436,6 +438,28 @@ export function buildApp(): FastifyInstance {
       );
       return { ok: true };
     });
+
+  /* ---------- 剧情存档（跨端恢复；新版时间戳优先，支持同步重置） ---------- */
+  app.put<{ Body: { childId?: number; done?: unknown; rewardClaimed?: unknown; updatedAt?: number } }>(
+    '/api/sync/story', authed, async (req, reply) => {
+      const b = req.body ?? {};
+      const childId = childScope(req) ?? Number(b.childId ?? 0);
+      if (!childId) return reply.code(400).send({ ok: false, error: '缺少 childId' });
+      const cleanList = (value: unknown) => Array.isArray(value)
+        ? [...new Set(value.filter((item): item is string => typeof item === 'string').map((item) => item.slice(0, 64)))].slice(0, 200)
+        : [];
+      const done = cleanList(b.done);
+      const rewardClaimed = cleanList(b.rewardClaimed);
+      const requestedAt = Math.floor(Number(b.updatedAt ?? 0));
+      // 旧版本地剧情没有时间戳：首次上传时由服务端补一个当前版本。
+      const updatedAt = Number.isFinite(requestedAt) && requestedAt > 0 ? requestedAt : Date.now();
+      await q(
+        'INSERT INTO story_progress (child_id, done, reward_claimed, updated_at) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE done=IF(VALUES(updated_at)>=updated_at, VALUES(done), done), reward_claimed=IF(VALUES(updated_at)>=updated_at, VALUES(reward_claimed), reward_claimed), updated_at=GREATEST(updated_at, VALUES(updated_at))',
+        [childId, JSON.stringify(done), JSON.stringify(rewardClaimed), updatedAt],
+      );
+      return { ok: true };
+    },
+  );
 
   app.post<{ Body: { childId?: number; lessonId?: string; kind?: string; question?: string; answer?: string; wrong?: boolean; durationMs?: number } }>(
     '/api/sync/practice', authed, async (req, reply) => {
@@ -603,12 +627,20 @@ export function buildApp(): FastifyInstance {
     if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
     const s = (req.query.search ?? '').trim();
     const rows = await q<RowDataPacket>(
-      'SELECT c.id, c.name, c.avatar, c.grade, c.login_name, c.login_hash IS NOT NULL AS has_login, u.nickname AS parent_nick, u.login_name AS parent_login ' +
+      'SELECT c.id, c.name, c.avatar, c.grade, c.login_name, c.login_hash IS NOT NULL AS has_login, c.disabled, u.nickname AS parent_nick, u.login_name AS parent_login ' +
       'FROM children c JOIN families f ON f.id=c.family_id JOIN users u ON u.id=f.owner_user_id ' +
       'WHERE c.name LIKE CONCAT("%", ?, "%") ORDER BY c.id DESC LIMIT 200', [s],
     );
     return { ok: true, children: rows };
   });
+
+  /** 删除孩子档案及其全部学习数据（进度/剧情/练习/跟读/计划/积分/道具/兑换记录） */
+  async function deleteChildCascade(childId: number): Promise<void> {
+    for (const tbl of ['progress', 'story_progress', 'practice_records', 'read_aloud_records', 'plans', 'points_ledger', 'child_items', 'reward_requests']) {
+      await q(`DELETE FROM \`${tbl}\` WHERE child_id=?`, [childId]);
+    }
+    await q('DELETE FROM children WHERE id=?', [childId]);
+  }
 
   app.patch<{ Params: { id: string }; Body: { password?: string; role?: string; disabled?: boolean } }>('/api/admin/parents/:id', authed, async (req, reply) => {
     if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
@@ -619,6 +651,56 @@ export function buildApp(): FastifyInstance {
     if (b.role && (b.role === 'admin' || b.role === 'parent')) await q('UPDATE users SET role=? WHERE id=?', [b.role, id]);
     if (typeof b.disabled === 'boolean') await q('UPDATE users SET disabled=? WHERE id=?', [b.disabled ? 1 : 0, id]);
     await q('INSERT INTO audit_logs (admin_id, action, detail) VALUES (?,?,?)', [parentId(req)!, 'parent.update', `parent#${id}`]);
+    return { ok: true };
+  });
+
+  /** 删除家长账号：连同其家庭、孩子档案与全部学习数据 */
+  app.delete<{ Params: { id: string } }>('/api/admin/parents/:id', authed, async (req, reply) => {
+    if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
+    const id = Number(req.params.id);
+    if (id === parentId(req)) return reply.code(400).send({ ok: false, error: '不能删除自己' });
+    const rows = await q<RowDataPacket>('SELECT id, role, nickname FROM users WHERE id=? LIMIT 1', [id]);
+    const u = rows[0];
+    if (!u) return reply.code(404).send({ ok: false, error: '账号不存在' });
+    if (u.role === 'admin') return reply.code(400).send({ ok: false, error: '不能删除管理员账号' });
+    const fams = await q<RowDataPacket>('SELECT id FROM families WHERE owner_user_id=?', [id]);
+    for (const f of fams) {
+      const kids = await q<RowDataPacket>('SELECT id FROM children WHERE family_id=?', [f.id]);
+      for (const k of kids) await deleteChildCascade(Number(k.id));
+      await q('DELETE FROM families WHERE id=?', [f.id]);
+    }
+    await q('DELETE FROM users WHERE id=?', [id]);
+    await q('INSERT INTO audit_logs (admin_id, action, detail) VALUES (?,?,?)', [parentId(req)!, 'parent.delete', `parent#${id} ${u.nickname}`]);
+    return { ok: true };
+  });
+
+  /** 管理员停用/启用/改密孩子账号（孩子须已开通登录） */
+  app.patch<{ Params: { id: string }; Body: { password?: string; disabled?: boolean } }>('/api/admin/children/:id', authed, async (req, reply) => {
+    if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
+    const id = Number(req.params.id);
+    const rows = await q<RowDataPacket>('SELECT id, login_name FROM children WHERE id=? LIMIT 1', [id]);
+    if (!rows[0]) return reply.code(404).send({ ok: false, error: '未找到该儿童档案' });
+    const b = req.body ?? {};
+    if (typeof b.disabled === 'boolean') {
+      if (b.disabled && !rows[0].login_name) return reply.code(400).send({ ok: false, error: '该孩子尚未开通账号' });
+      await q('UPDATE children SET disabled=? WHERE id=?', [b.disabled ? 1 : 0, id]);
+    }
+    if (b.password && b.password.length >= 4) {
+      if (!rows[0].login_name) return reply.code(400).send({ ok: false, error: '该孩子尚未开通账号，请先开通' });
+      await q('UPDATE children SET login_hash=? WHERE id=?', [hashPassword(b.password), id]);
+    }
+    await q('INSERT INTO audit_logs (admin_id, action, detail) VALUES (?,?,?)', [parentId(req)!, 'child.update', `child#${id}`]);
+    return { ok: true };
+  });
+
+  /** 删除孩子档案及其全部学习数据 */
+  app.delete<{ Params: { id: string } }>('/api/admin/children/:id', authed, async (req, reply) => {
+    if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
+    const id = Number(req.params.id);
+    const rows = await q<RowDataPacket>('SELECT id FROM children WHERE id=? LIMIT 1', [id]);
+    if (!rows[0]) return reply.code(404).send({ ok: false, error: '未找到该儿童档案' });
+    await deleteChildCascade(id);
+    await q('INSERT INTO audit_logs (admin_id, action, detail) VALUES (?,?,?)', [parentId(req)!, 'child.delete', `child#${id}`]);
     return { ok: true };
   });
 

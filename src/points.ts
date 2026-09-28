@@ -4,6 +4,10 @@
  *  - 家长部署的自定义任务：customTasks（家长配置）→ 完成时 earnPoints(childId, sourceId, pts)
  */
 
+import { PREMIUM_OUTFITS } from './content/outfits';
+import { BADGES } from './content/badges';
+import { localDayKey } from './dailyCheckin';
+
 export interface PointEntry {
   /** 全局唯一：sourceId 或消费单号 */
   id: string;
@@ -18,18 +22,46 @@ export interface PointEntry {
 }
 
 /** 家长部署的自定义任务 */
+/** 自定义任务的周期类型 */
+export type CustomTaskRepeat = 'once' | 'daily' | 'weekly' | 'monthly' | 'dated';
+/** 自定义任务的完成判定：auto=系统自动发放；parent=孩子点已完成、家长审核后发放 */
+export type CustomTaskJudge = 'auto' | 'parent';
+
 export interface CustomTask {
   id: string;
   /** 任务描述（家长填写，如"自己整理书包"） */
   text: string;
-  /** 完成后给多少积分 */
+  /** 周期：一次性 / 每天 / 每周若干天 / 每月若干天 / 指定日期 */
+  repeat: CustomTaskRepeat;
+  /** weekly：星期几（0=周日 … 6=周六） */
+  weekDays?: number[];
+  /** monthly：每月几号（1-31） */
+  monthDays?: number[];
+  /** dated：指定日期（YYYY-MM-DD） */
+  date?: string;
+  /** 完成判定方式 */
+  judge: CustomTaskJudge;
+  /** 奖励卷卷豆数量（可为 0） */
   points: number;
-  /** 是否已确认发放（家长手动确认加分） */
-  done: boolean;
-  /** 确认时间 */
-  doneAt?: number;
-  /** 创建时间 */
+  /** 奖励物品（管理员物品目录 id，可选） */
+  itemId?: string;
   createdAt: number;
+  /** 已完成并发放奖励的日期（YYYY-MM-DD） */
+  doneDays: string[];
+  /** 家长判断类：孩子已完成、待家长审核的日期 */
+  pendingDays: string[];
+}
+
+/** 自定义任务今天是否到期（once 任务恒显示，直至完成） */
+export function customTaskDueToday(task: CustomTask, now: number | Date = Date.now()): boolean {
+  const d = new Date(now);
+  switch (task.repeat) {
+    case 'daily': return true;
+    case 'weekly': return (task.weekDays ?? []).includes(d.getDay());
+    case 'monthly': return (task.monthDays ?? []).includes(d.getDate());
+    case 'dated': return task.date === localDayKey(d);
+    case 'once': return true;
+  }
 }
 
 /** 商品大类（商店分 3 类货架；徽章由剧情授勋，不是商品） */
@@ -42,35 +74,67 @@ export interface StoreItem {
   name: string;
   desc?: string;
   cost: number;
-  icon: string;
-  /** 只有 reward 类需要家长审批；outfit/item 即时到账 */
+  /** 装扮类无图标（用立绘），道具/奖励类为 emoji */
+  icon?: string;
+  /** 装扮类：与总部衣柜共用的立绘资源 */
+  image?: string;
+  /** 装扮类：与总部一致的主题色 */
+  accent?: string;
+  /** 装扮类：稀有度（初见/稀有/典藏） */
+  rarity?: string;
+  /** 装扮类活动类型：购买=补给站出售；活动=限定活动发放（补给站不显示） */
+  acqType?: 'purchase' | 'event';
+  /** reward 类可重复购买、即时到账（时长券直接加当日时长）；outfit/item 即时到账 */
   on?: boolean; // 管理端上架开关（默认 true）
 }
 
 /** 商店 3 类商品目录 */
+/* 1) 装扮 outfit —— 与总部衣柜同一份数据（content/outfits.ts 的 PREMIUM_OUTFITS）：
+   默认套装（o-academy）人人免费拥有、不上架；购买型在补给站兑换，
+   活动型（节日限定）补给站不显示，仅总部衣柜展示 */
+const OUTFIT_PRICES: Record<string, number> = {
+  'o-stellar-detective': 180,
+  'o-cloud-mechanic': 140,
+  'o-aurora-ranger': 220,
+  'o-midautumn-moon-rabbit': 200,
+  'o-national-day-mountains': 180,
+  'o-spring-festival-snow': 240,
+};
+const outfitCatalog: StoreItem[] = PREMIUM_OUTFITS
+  .filter((outfit) => !outfit.default)
+  .map((outfit) => ({
+    id: outfit.id,
+    kind: 'outfit' as const,
+    name: outfit.name,
+    desc: outfit.description,
+    cost: OUTFIT_PRICES[outfit.id] ?? 180,
+    image: outfit.image,
+    accent: outfit.accent,
+    rarity: outfit.rarity,
+    acqType: outfit.acqType,
+  }));
+
+/* 1.5) 徽章 badge —— 与剧情徽章（content/badges.ts）同一份数据：剧情授勋获得，
+   不上架出售（商店货架不含徽章），管理端可查看与维护名称/图标 */
+const badgeCatalog: StoreItem[] = BADGES.map((badge) => ({
+  id: badge.id,
+  kind: 'badge' as const,
+  name: badge.name,
+  desc: badge.unlockCondition,
+  cost: 0,
+  icon: badge.icon,
+  rarity: badge.rarity,
+}));
+
 export const CATALOG: StoreItem[] = [
-  /* 1) 装扮 outfit —— 直接作用于虚拟形象（卷星人）：帽子、光环、翅膀、表情等 */
-  { id: 'o-stellar-detective', kind: 'outfit', name: '星穹侦探', desc: '完整星图风衣与深空罗盘套装', cost: 180, icon: '🔎' },
-  { id: 'o-cloud-mechanic', kind: 'outfit', name: '云端机巧师', desc: '飞行夹克、能量手套与机巧工具套装', cost: 140, icon: '⚙️' },
-  { id: 'o-aurora-ranger', kind: 'outfit', name: '极光巡游者', desc: '会流动发光的极光星纱礼装', cost: 220, icon: '🌌' },
-  { id: 'o-midautumn-moon-rabbit', kind: 'outfit', name: '月桂玉兔', desc: '月白星纱与金桂纹样的中秋限定套装', cost: 200, icon: '🌕' },
-  { id: 'o-national-day-mountains', kind: 'outfit', name: '山河星火', desc: '赤金山河纹的国庆限定探索礼装', cost: 180, icon: '✨' },
-  { id: 'o-spring-festival-snow', kind: 'outfit', name: '瑞雪迎春', desc: '云纹锦缎与暖绒披肩的春节限定套装', cost: 240, icon: '🧧' },
-  { id: 'o-hat', kind: 'outfit', name: '小侦探帽', desc: '给角色戴上帅气侦探帽', cost: 20, icon: '🎩' },
-  { id: 'o-crown', kind: 'outfit', name: '金色皇冠', desc: '角色戴上闪闪皇冠', cost: 60, icon: '👑' },
-  { id: 'o-halo', kind: 'outfit', name: '天使光环', desc: '头顶悬浮柔和光环', cost: 45, icon: '😇' },
-  { id: 'o-wings', kind: 'outfit', name: '小翅膀', desc: '背上长出俏皮翅膀', cost: 80, icon: '🪽' },
-  { id: 'o-glasses', kind: 'outfit', name: '圆框眼镜', desc: '很有学问的圆框眼镜', cost: 15, icon: '🤓' },
-  { id: 'o-flower', kind: 'outfit', name: '头上小花', desc: '发间别一朵小粉花', cost: 12, icon: '🌸' },
-  { id: 'o-frame-gold', kind: 'outfit', name: '金边框', desc: '角色头像加金边相框', cost: 30, icon: '🖼️' },
-  { id: 'o-bow', kind: 'outfit', name: '蝴蝶结', desc: '系一个可爱蝴蝶结', cost: 18, icon: '🎀' },
-  { id: 'o-antenna', kind: 'outfit', name: '卷星天线', desc: '头顶长出卷卷天线和小星环', cost: 38, icon: '📡' },
+  ...outfitCatalog,
+  ...badgeCatalog,
   /* 2) 游戏道具 item —— 在具体游戏里使用 */
   { id: 'i-rocket', kind: 'item', name: '火箭加速', desc: '游戏内快进 5 秒', cost: 12, icon: '🚀' },
   { id: 'i-shield', kind: 'item', name: '星星护盾', desc: '答错一次不扣分', cost: 18, icon: '🛡️' },
   { id: 'i-hint', kind: 'item', name: '提示卡', desc: '卡住时给一个提示', cost: 10, icon: '💡' },
   { id: 'i-heart', kind: 'item', name: '生命之心', desc: '游戏内 +1 次机会', cost: 16, icon: '❤️' },
-  /* 3) 奖励兑换 reward —— 需要家长确认后兑现 */
+  /* 3) 奖励兑换 reward —— 卷卷豆直接兑换、即时到账（时长券加当日游戏时长） */
   { id: 'rw-game15', kind: 'reward', name: '+15 分钟游戏', desc: '今天多玩 15 分钟', cost: 30, icon: '🎮' },
   { id: 'rw-video10', kind: 'reward', name: '+10 分钟动画', desc: '动画时长券', cost: 30, icon: '🎬' },
   { id: 'rw-toy', kind: 'reward', name: '小礼物一份', desc: '家长准备的小惊喜', cost: 100, icon: '🎁' },
@@ -91,40 +155,23 @@ export interface Equipped {
   badge?: string;
 }
 
-/** 按 kind 分货架（可带覆盖配置） */
+/** 按 kind 分货架（可带覆盖配置；不含已下架商品） */
 export const shelf = (kind: ItemKind, overrides: Record<string, Partial<StoreItem>> = {}) =>
   effectiveCatalog(overrides).filter((i) => i.kind === kind);
 
 export const itemById = (id: string, overrides: Record<string, Partial<StoreItem>> = {}): StoreItem | undefined =>
-  effectiveCatalog(overrides).find((i) => i.id === id);
+  effectiveCatalog(overrides, true).find((i) => i.id === id);
 
-/** 应用管理端覆盖：改字段 / 上下架 / 新增 */
-export function effectiveCatalog(overrides: Record<string, Partial<StoreItem>> = {}): StoreItem[] {
+/** 应用管理端覆盖：改字段 / 上下架 / 新增。
+ *  includeOffShelf=false 供孩子端货架（过滤已下架）；管理端传 true 以查看并重新上架。 */
+export function effectiveCatalog(overrides: Record<string, Partial<StoreItem>> = {}, includeOffShelf = false): StoreItem[] {
   const map = new Map(CATALOG.map((i) => [i.id, { ...i }]));
   for (const [id, patch] of Object.entries(overrides)) {
     const base = map.get(id) ?? ({ id } as StoreItem);
     map.set(id, { ...base, ...patch, id });
   }
-  return [...map.values()].filter((i) => i.on !== false);
-}
-
-
-
-/** 家长奖励/数字时长兑换请求（孩子提交 → 家长审批） */
-export interface RewardRequest {
-  id: string;
-  childId: string;
-  itemId: string;
-  name: string;
-  icon: string;
-  /** reward 类商品；时长类靠 itemId 前缀 rw-game/rw-video 识别 */
-  kind: 'reward' | string;
-  cost: number;
-  createdAt: number;
-  /** pending / approved / declined */
-  status: 'pending' | 'approved' | 'declined';
-  /** 审批时间 */
-  decidedAt?: number;
+  const all = [...map.values()];
+  return includeOffShelf ? all : all.filter((i) => i.on !== false);
 }
 
 

@@ -2,12 +2,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore, goldSkillCount } from '../store';
 import { useI18n } from '../i18n';
-import PageHero from '../components/PageHero';
 import { GRADES, STAGES, SUBJECTS, type Grade, type SchoolStage } from '../types';
 import { TEXTBOOK_SUBJECTS, getTextbook, volLabel } from '../content/textbooks';
 import { nextLessonToLearn } from '../activeCourses';
 import NpcBuddy from '../components/NpcBuddy';
-import { speak, speakAsNpc, stopMusic } from '../speech';
+import { speak, speakAsNpc } from '../speech';
 import { npcMeta } from '../content/npc';
 
 const EMPTY_WRONGS: { lessonId: string; lessonName: string; kind: string; answer: string; time: number }[] = [];
@@ -28,6 +27,7 @@ export default function WorldMapPage() {
   const [stage, setStage] = useState<SchoolStage>('primary');
   const grade = (child?.ageBand ?? 'g1') as Grade;
   const [schoolWelcomeDone, setSchoolWelcomeDone] = useState(false);
+  const [openingBook, setOpeningBook] = useState<{ key: string; route: string } | null>(null);
 
   useEffect(() => {
     if (!child) {
@@ -39,8 +39,13 @@ export default function WorldMapPage() {
       setSchoolWelcomeDone(false);
       speakAsNpc(t('welcomeSchool'), npcMeta('阿光'), lang, 0.92, () => setSchoolWelcomeDone(true));
     }
-    return () => stopMusic();
   }, [child?.id, lang, nav, t]);
+
+  useEffect(() => {
+    if (!openingBook) return undefined;
+    const timer = window.setTimeout(() => nav(openingBook.route), 560);
+    return () => window.clearTimeout(timer);
+  }, [nav, openingBook]);
 
   const continueLesson = useMemo(() => nextLessonToLearn(child?.id, mastery), [mastery, child?.id]);
 
@@ -61,8 +66,10 @@ export default function WorldMapPage() {
     const book = getTextbook(subject, g, vol);
     const name = `${TEXTBOOK_SUBJECTS.find((s) => s.id === subject)?.zh ?? subject}${GRADES.find((x) => x.id === g)?.name.zh ?? ''}${volLabel(vol)}`;
     if (book.available && book.route) {
+      const bookKey = `${subject}-${g}-${vol}`;
+      if (openingBook) return;
+      setOpeningBook({ key: bookKey, route: book.route });
       speak(`打开${name}`, lang);
-      nav(book.route);
     } else {
       speak(`${name}还在筹备中，先去已经开课的课本吧。`, lang);
     }
@@ -71,29 +78,36 @@ export default function WorldMapPage() {
   return (
     <div className="page map-page">
       <NpcBuddy npc="阿光" storyNodeIds={['c1-1', 'c1-2']} deferAutoStory={!schoolWelcomeDone} />
-      <PageHero
-        eyebrow={`${lang === 'zh' ? '学校 · 课本书架' : 'School · Bookshelf'}`}
-        title={t('worldMap')}
-        planet="academy"
-        stats={[
-          { icon: '⭐', value: starTotal, tone: 'gold', label: t('totalStars') },
-          { icon: '💎', value: goldCount, tone: 'mint', label: t('mastered') },
-          ...(wrongs.length > 0
-            ? [{
-                icon: '📕',
-                value: wrongs.length,
-                tone: 'coral' as const,
-                label: t('wrongBook'),
-                onClick: () => nav('/wrongs'),
-                ariaLabel: t('wrongBook'),
-              }]
-            : []),
-        ]}
-      />
+      <header className="academy-command-header">
+        <div className="academy-crest" aria-hidden="true"><i>✦</i><span /><b /></div>
+        <div className="academy-command-copy">
+          <span>{lang === 'zh' ? 'JUAN STAR SCHOOL · 学习航站' : 'JUAN STAR SCHOOL · LEARNING PORT'}</span>
+          <h1>{t('worldMap')}</h1>
+          <p>{lang === 'zh' ? `${child.name}，${GRADES.find((item) => item.id === grade)?.name.zh ?? ''}的探索航线已准备就绪。` : `${child.name}, your learning route is ready.`}</p>
+        </div>
+        <div className="academy-metrics" aria-label={lang === 'zh' ? '我的学习数据' : 'My learning statistics'}>
+          <span><i>⭐</i><b>{starTotal}</b><small>{t('totalStars')}</small></span>
+          <span><i>💎</i><b>{goldCount}</b><small>{t('mastered')}</small></span>
+          {wrongs.length > 0 && <button onClick={() => nav('/wrongs')} aria-label={t('wrongBook')}><i>📕</i><b>{wrongs.length}</b><small>{t('wrongBook')}</small></button>}
+        </div>
+      </header>
+
+      <section className="school-portal" aria-label={lang === 'zh' ? '卷星学校校园前庭' : 'Juan Star School campus'}>
+        <img src="/assets/school/star-academy-hero-v1.png" alt="云海中的卷星学校星穹校园" />
+        <div className="school-portal-shade" aria-hidden="true" />
+        <div className="school-portal-copy">
+          <span>{lang === 'zh' ? '✦ 晨光已抵达星穹课本馆' : '✦ Morning at the Astral Library'}</span>
+          <h2>{lang === 'zh' ? '今天，点亮哪一间课堂？' : 'Which classroom will you light up today?'}</h2>
+          <p>{lang === 'zh' ? '沿着星光课程航线，从一本课本开始新的探索。' : 'Follow the starlight course path and begin with a book.'}</p>
+        </div>
+        <div className="school-portal-route" aria-hidden="true"><span>✦</span><i /><span>◌</span><i /><span>✧</span></div>
+      </section>
 
       {/* 学段 + 继续学习：一行工具条（左边切学段，右边接着学） */}
-      <div className="map-toolbar">
-        <div className="stage-deck" role="tablist" aria-label={lang === 'zh' ? '学段' : 'Stage'}>
+      <div className="map-toolbar academy-route-console">
+        <div className="academy-stage-selector">
+          <div className="academy-console-label"><b>{lang === 'zh' ? '选择学习星域' : 'Choose a learning sector'}</b></div>
+          <div className="stage-deck" role="tablist" aria-label={lang === 'zh' ? '学段' : 'Stage'}>
           {STAGES.map((sg) => {
             const active = stage === sg.id;
             const ready = sg.id === 'primary';
@@ -105,11 +119,12 @@ export default function WorldMapPage() {
                 aria-selected={active}
                 onClick={() => handleStage(sg.id)}
               >
-                <span>{sg.name[lang]}</span>
-                {!ready && <span className="stage-card-badge">{lang === 'zh' ? '筹备中' : 'Soon'}</span>}
+                <span className="stage-card-planet" aria-hidden="true"><i /><em /><strong>✦</strong></span>
+                <span className="stage-card-copy"><b>{sg.name[lang]}</b></span>
               </button>
             );
           })}
+          </div>
         </div>
 
         {stage === 'primary' && continueLesson && (
@@ -154,36 +169,45 @@ export default function WorldMapPage() {
       ) : (
         <>
           {/* 课本书架：年级 × 学科 × 上下册 全层次直接展开 */}
-          <div className="bookcase" aria-label={lang === 'zh' ? '课本书架：选择年级、学科和上下册' : 'Textbook shelves'}>
+          <div className="bookcase academy-library" aria-label={lang === 'zh' ? '课堂星图：选择年级、学科和上下册' : 'Classroom constellation map'}>
             <div className="bookcase-head">
               <div className="bookcase-title">
-                <span className="bookcase-kicker" aria-hidden="true">{lang === 'zh' ? '✦ 星穹书院 ✦' : '✦ Astral Academy ✦'}</span>
-                <b>{lang === 'zh' ? '课本书架' : 'Bookshelf'}</b>
+                <span className="bookcase-kicker" aria-hidden="true">{lang === 'zh' ? '课堂星图' : 'CLASSROOM CONSTELLATION'}</span>
+                <b>{lang === 'zh' ? '选择一束知识星光' : 'Choose a beam of knowledge'}</b>
               </div>
-              <span>{lang === 'zh' ? '每个年级一层 · 每科两册 · 点击亮着的课本进入目录' : 'One shelf per grade · tap a lit book'}</span>
+              <span>{lang === 'zh' ? '每层代表一个年级 · 已点亮的课程可以立刻启程' : 'Each level is a grade · lit courses are ready to launch'}</span>
             </div>
             {GRADES.map((g) => {
               const mine = g.id === grade;
               return (
                 <div className={`shelf ${mine ? 'mine' : ''}`} key={g.id}>
                   <div className="shelf-rail">
+                    <span className="grade-station-sigil" aria-hidden="true"><i>✦</i></span>
+                    <small>GRADE {g.id.slice(1).padStart(2, '0')}</small>
                     <b>{g.name.zh}</b>
-                    {mine && <i>{lang === 'zh' ? '我的年级' : 'Mine'}</i>}
+                    {mine && <i>{lang === 'zh' ? '当前航线' : 'Current route'}</i>}
                   </div>
                   <div className="shelf-plank" role="list">
+                    <div className="shelf-constellation" aria-hidden="true"><i /><i /><i /><i /><span /><span /></div>
+                    <div className="shelf-plank-head" aria-hidden="true"><span>✦</span><b>{mine ? (lang === 'zh' ? '我的课堂星门' : 'My classroom gates') : (lang === 'zh' ? '待探索课堂星门' : 'Classroom gates')}</b><small>{lang === 'zh' ? '选择一门课程启程' : 'Choose a course to launch'}</small></div>
                     {TEXTBOOK_SUBJECTS.map((sub) => ([1, 2] as const).map((vol) => {
                       const book = getTextbook(sub.id, g.id, vol);
                       return (
                         <button
                           key={`${sub.id}-${vol}`}
                           role="listitem"
-                          className={`book-spine book-${sub.id} ${book.available ? 'open' : 'locked'}`}
+                          className={`book-spine book-${sub.id} ${book.available ? 'open' : 'locked'}${openingBook?.key === `${sub.id}-${g.id}-${vol}` ? ' is-opening' : ''}`}
                           data-motif={sub.id === 'math' ? '123' : sub.id === 'chinese' ? '文' : 'ABC'}
                           style={{ '--spine-c': sub.color } as React.CSSProperties}
                           onClick={() => openBook(sub.id, g.id, vol)}
+                          aria-busy={openingBook?.key === `${sub.id}-${g.id}-${vol}` || undefined}
                           aria-label={`${sub.zh} ${g.name.zh} ${volLabel(vol)}${book.available ? '，进入目录' : '，筹备中'}`}
                         >
-                          <span className="book-head" aria-hidden="true"><em>{sub.icon}</em><b>{sub.zh}</b></span>
+                          <span className="book-head" aria-hidden="true"><b>{sub.zh}</b></span>
+                          <span className={`course-field-mark field-${sub.id}`} aria-hidden="true">
+                            {sub.id === 'math' ? '1 + 2' : sub.id === 'chinese' ? '横 · 竖 · 撇' : 'Aa · Bb'}
+                          </span>
+                          <span className="course-star-gate" aria-hidden="true"><i>✦</i><b /></span>
                           <span className="book-spine-vol" aria-hidden="true">{volLabel(vol)}</span>
                           {book.available && <span className="book-spine-badge">{lang === 'zh' ? '开课中' : 'Open'}</span>}
                           {!book.available && <span className="book-spine-lock" aria-hidden="true">🔒</span>}

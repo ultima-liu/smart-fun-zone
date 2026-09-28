@@ -25,6 +25,13 @@ export const CHARACTER_PORTRAITS = {
   'bruco-blue-05': '/assets/cards/bruco-team/bruco-blue-05.png',
   'bruco-orange-sprinter': '/assets/cards/bruco-team/bruco-orange-sprinter.png',
   'bruco-purple-skater': '/assets/cards/bruco-team/bruco-purple-skater.png',
+  'paw-ryder': '/assets/cards/paw-patrol/ryder.png?v=transparent-1',
+  'paw-chase': '/assets/cards/paw-patrol/chase.png?v=transparent-1',
+  'paw-marshall': '/assets/cards/paw-patrol/marshall.png?v=transparent-1',
+  'paw-rubble': '/assets/cards/paw-patrol/rubble.png?v=transparent-1',
+  'paw-skye': '/assets/cards/paw-patrol/skye.png?v=transparent-1',
+  'paw-rocky': '/assets/cards/paw-patrol/rocky.png?v=transparent-1',
+  'paw-zuma': '/assets/cards/paw-patrol/zuma.png?v=transparent-1',
 } as const;
 
 /** 场景/对话使用中文 NPC 名称，集中在此映射到图鉴卡角色 id。 */

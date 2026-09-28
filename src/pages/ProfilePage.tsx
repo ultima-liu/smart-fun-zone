@@ -19,7 +19,7 @@ import AttrRadar from '../components/AttrRadar';
 import { IconBean } from '../components/icons';
 import { shelf } from '../points';
 import { localDayKey, localWeekdayIndex, rewardForCheckinStreak } from '../dailyCheckin';
-import { PREMIUM_OUTFITS, premiumOutfitById } from '../content/outfits';
+import { PREMIUM_OUTFITS } from '../content/outfits';
 import { BADGES } from '../content/badges';
 import BadgeIcon from '../components/BadgeIcon';
 
@@ -51,7 +51,6 @@ export default function ProfilePage() {
   const mastery = useStore((s) => s.mastery);
   const expeditionLastAt = useStore((s) => s.expeditionLastAt);
   const materialsMap = useStore((s) => s.materials);
-  const rewardRequestsMap = useStore((s) => s.rewardRequests);
   const dailyCheckinMap = useStore((s) => s.dailyCheckin);
   const claimDailyCheckin = useStore((s) => s.claimDailyCheckin);
 
@@ -99,6 +98,12 @@ export default function ProfilePage() {
   const outfitOwned = owned.filter((i) => i.startsWith('o-')).length;
   const itemOwned = owned.filter((i) => i.startsWith('i-')).length;
   const equipped = child ? equippedMap[child.id] ?? {} : {};
+  // 衣柜装扮 = 总部基础数据 + 管理端覆盖（获得状态可改）
+  const wardrobeOutfits = useMemo(
+    () => PREMIUM_OUTFITS.map((o) => ({ ...o, acqType: overrides[o.id]?.acqType ?? o.acqType })),
+    [overrides],
+  );
+  const wardrobeById = (id?: string) => wardrobeOutfits.find((o) => o.id === id) ?? wardrobeOutfits[0];
   const equippedPremiumId = PREMIUM_OUTFITS.some((outfit) => outfit.id === equipped.outfit) ? equipped.outfit : undefined;
   const displayedOutfitId = activeLocker === 'outfit' && previewOutfitId ? previewOutfitId : equippedPremiumId;
 
@@ -116,7 +121,6 @@ export default function ProfilePage() {
 
   // 材料
   const mat = child ? materialsMap[child.id] ?? { stardust: 0 } : { stardust: 0 };
-  const approvedRewards = child ? (rewardRequestsMap[child.id] ?? []).filter((r) => r.status === 'approved') : [];
   const earnedBadges = child ? (badgesMap[child.id] ?? []).map((id) => BADGES.find((badge) => badge.id === id)).filter(Boolean) : [];
 
   if (!child) {
@@ -326,16 +330,16 @@ export default function ProfilePage() {
                 <div className="wardrobe-stage-glow" />
                 <WardrobeAvatar outfitId={previewOutfitId ?? equippedPremiumId} className="wardrobe-avatar--preview" />
                 <div className="wardrobe-stage-copy">
-                  <span className="wardrobe-rarity">{premiumOutfitById(previewOutfitId ?? equippedPremiumId).rarity}</span>
-                  <h3>{premiumOutfitById(previewOutfitId ?? equippedPremiumId).name}</h3>
-                  <small>{premiumOutfitById(previewOutfitId ?? equippedPremiumId).subtitle}</small>
-                  <p>{premiumOutfitById(previewOutfitId ?? equippedPremiumId).description}</p>
+                  <span className="wardrobe-rarity">{wardrobeById(previewOutfitId ?? equippedPremiumId).rarity}</span>
+                  <h3>{wardrobeById(previewOutfitId ?? equippedPremiumId).name}</h3>
+                  <small>{wardrobeById(previewOutfitId ?? equippedPremiumId).subtitle}</small>
+                  <p>{wardrobeById(previewOutfitId ?? equippedPremiumId).description}</p>
                 </div>
               </div>
               <div className="wardrobe-picker">
                 <p className="wardrobe-tip">{lang === 'zh' ? '点击任意套装自由试穿，不会立即替换当前穿戴' : 'Select any outfit to preview before equipping'}</p>
                 <div className="wardrobe-cards">
-                  {PREMIUM_OUTFITS.map((outfit) => {
+                  {wardrobeOutfits.map((outfit) => {
                     const isOwned = outfit.default || owned.includes(outfit.id);
                     const isEquipped = outfit.default ? !equippedPremiumId : equippedPremiumId === outfit.id;
                     const isPreviewing = (previewOutfitId ?? equippedPremiumId ?? 'o-academy') === outfit.id;
@@ -348,10 +352,11 @@ export default function ProfilePage() {
                   })}
                 </div>
                 {(() => {
-                  const selected = premiumOutfitById(previewOutfitId ?? equippedPremiumId);
+                  const selected = wardrobeById(previewOutfitId ?? equippedPremiumId);
                   const isOwned = selected.default || owned.includes(selected.id);
                   const isEquipped = selected.default ? !equippedPremiumId : equippedPremiumId === selected.id;
                   if (isEquipped) return <button className="wardrobe-confirm is-equipped" disabled>✓ {lang === 'zh' ? '当前穿戴' : 'Equipped'}</button>;
+                  if (!isOwned && selected.acqType === 'event') return <button className="wardrobe-confirm is-locked" disabled>🎁 {lang === 'zh' ? '限定活动获取' : 'Event reward only'}</button>;
                   if (!isOwned) return <button className="wardrobe-confirm is-locked" onClick={() => nav('/store')}>🔒 {lang === 'zh' ? '前往补给站获取' : 'Get in Store'}</button>;
                   return <button className="wardrobe-confirm" onClick={() => {
                     if (selected.default) {
@@ -408,18 +413,8 @@ export default function ProfilePage() {
                   </div>
                 );
               })}
-              {approvedRewards.map((r) => (
-                <div key={r.id} className="hq-row">
-                  <span className="hq-row-icon">{r.icon}</span>
-                  <span className="hq-row-name">
-                    {r.name}
-                    <small>{lang === 'zh' ? '已批准的奖励卡' : 'Approved reward card'}</small>
-                  </span>
-                  <span className="hq-row-count">1</span>
-                </div>
-              ))}
-              {itemOwned === 0 && approvedRewards.length === 0 && (
-                <p className="empty-tip small">{lang === 'zh' ? '还没有道具或奖励卡～' : 'No items or reward cards yet.'}</p>
+              {itemOwned === 0 && (
+                <p className="empty-tip small">{lang === 'zh' ? '还没有道具～' : 'No items yet.'}</p>
               )}
             </div>
           </section>

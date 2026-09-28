@@ -3,7 +3,7 @@
    场景二：模拟未配置 → 页面出现配置提示 */
 import { chromium } from '@playwright/test';
 
-const BASE = 'http://localhost:4173';
+const BASE = 'http://localhost:5173';
 const browser = await chromium.launch();
 const fails = [];
 const check = (name, cond, extra = '') => {

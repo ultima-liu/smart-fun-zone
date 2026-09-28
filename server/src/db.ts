@@ -46,6 +46,7 @@ async function ensureColumns(): Promise<void> {
     const adds: string[] = [];
     if (!names.has('login_name')) adds.push('ADD COLUMN login_name VARCHAR(64) NULL');
     if (!names.has('login_hash')) adds.push('ADD COLUMN login_hash VARCHAR(255) NULL');
+    if (tbl === 'children' && !names.has('disabled')) adds.push('ADD COLUMN disabled TINYINT NOT NULL DEFAULT 0');
     if (tbl === 'users' && !names.has('role')) adds.push("ADD COLUMN role VARCHAR(16) NOT NULL DEFAULT 'parent'");
     if (tbl === 'users' && !names.has('disabled')) adds.push('ADD COLUMN disabled TINYINT NOT NULL DEFAULT 0');
     if (adds.length) {

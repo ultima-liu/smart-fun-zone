@@ -17,7 +17,7 @@ export default function ChinesePinyinGardenStudyStage({ lessonId, onDone }: { le
 
   return <div className="ct-pinyin-garden">
     <div className="ct-pinyin-garden-progress"><span style={{ width: `${(index / activities.length) * 100}%` }} /><b>{Math.min(index + 1, activities.length)} / {activities.length}</b></div>
-    {complete ? <div className="ct-pinyin-garden-done"><b>✓ 本园地教材任务已完成</b><p>你已经把认字、拼音比较、词句运用、诗文和共读内容用到自己的学习里。</p></div> : <section className="ct-pinyin-panel">
+    {complete ? <section className="ct-pinyin-garden-review" aria-label="本园地教材任务完成回顾"><header><b>✓ 本园地教材任务已完成</b><p>题目、材料和正确作答仍保留在这里，方便回看和讲给家人听。</p></header><div>{activities.map((item, itemIndex) => <article key={item.title}><small>园地任务 {itemIndex + 1}</small><h3>{item.title}</h3><p>{item.prompt}</p><div className="ct-pinyin-garden-material">{item.material.map((line) => <span key={line}><b>{line}</b></span>)}</div><h4>{item.question}</h4><p className="ct-pinyin-review-answer">✓ 我的答案：<strong>{item.answer}</strong></p><p>{item.feedback}</p></article>)}</div></section> : <section className="ct-pinyin-panel">
       <div className="ct-pinyin-panel-head"><small>园地任务 {index + 1} / {activities.length}</small><h3>{activity.title}<SpeakChip text={`园地任务。${activity.title}。${activity.prompt}`} label="听任务" /></h3><p>{activity.prompt}</p></div>
       <div className="ct-pinyin-garden-material">{activity.material.map((line, lineIndex) => <button key={lineIndex} className={readLines.has(lineIndex) ? 'seen' : ''} onClick={() => {
         setReadLines((value) => new Set(value).add(lineIndex));

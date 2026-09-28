@@ -23,14 +23,10 @@ export default function HqSettingsPage() {
 
   const sound = useStore((s) => s.sound);
   const toggleSound = useStore((s) => s.toggleSound);
-  const musicOn = useStore((s) => s.musicOn);
-  const setMusicOn = useStore((s) => s.setMusicOn);
   const voiceOn = useStore((s) => s.voiceOn);
   const setVoiceOn = useStore((s) => s.setVoiceOn);
   const setLang = useStore((s) => s.setLang);
   const langNow = useStore((s) => s.lang);
-  const lessonSkipOn = useStore((s) => s.lessonSkipOn);
-  const setLessonSkipOn = useStore((s) => s.setLessonSkipOn);
   const theme = useStore((s) => s.theme);
   const setTheme = useStore((s) => s.setTheme);
 
@@ -152,16 +148,8 @@ export default function HqSettingsPage() {
               <Toggle on={sound} onClick={toggleSound} label={t('sound')} />
             </div>
             <div className="hq-setting-row">
-              <span>🎵 {t('bgm')}</span>
-              <Toggle on={musicOn} onClick={() => setMusicOn(!musicOn)} label={t('bgm')} />
-            </div>
-            <div className="hq-setting-row">
               <span>🗣️ {t('voice')}</span>
               <Toggle on={voiceOn} onClick={() => setVoiceOn(!voiceOn)} label={t('voice')} />
-            </div>
-            <div className="hq-setting-row">
-              <span>⏭️ {t('skipDemo')}</span>
-              <Toggle on={lessonSkipOn} onClick={() => setLessonSkipOn(!lessonSkipOn)} label={t('skipDemo')} />
             </div>
             <div className="hq-setting-row">
               <span>{t('language')}</span>

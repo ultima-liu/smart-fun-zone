@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { useI18n } from '../i18n';
@@ -30,6 +30,42 @@ const META: Record<SubjectId, { label: string; icon: string; color: string }> = 
   life: { label: '生活', icon: '活', color: '#e08a68' },
 };
 
+type MathAbility = '数与顺序' | '数量关系' | '凑十与位值' | '图形与空间' | '方法与检查';
+
+/** 把逐题错因收拢为少量可行动的能力方向，避免孩子只看到一长串题目。 */
+function mathAbilityOf(wrong: { objective?: string; kind: string; question?: string }): MathAbility {
+  const source = `${wrong.objective ?? ''} ${wrong.kind} ${wrong.question ?? ''}`;
+  if (/凑十|十格|数位|补空|满十/.test(source)) return '凑十与位值';
+  if (/图形|稳定|分类|滚动|拼搭/.test(source)) return '图形与空间';
+  if (/逆向|还原|图式|模型|运算|关系|整体|部分/.test(source)) return '数量关系';
+  if (/点数|后继|数序|顺序|变化|相邻/.test(source)) return '数与顺序';
+  return '方法与检查';
+}
+
+/** 新版数学闯关错题可在错题本内立即重做，避免每次都重新走完整节课。 */
+function MathWrongRetry({ question, onResolved }: { question: { question?: string; options?: string[]; correctAnswer?: string; diagnosis?: string; remedy?: string }; onResolved: () => void }) {
+  const [pick, setPick] = useState<string | null>(null);
+  const [done, setDone] = useState(false);
+  if (!question.question || !question.options?.length || !question.correctAnswer) return null;
+  const choose = (option: string) => {
+    if (done) return;
+    setPick(option);
+    if (option === question.correctAnswer) {
+      setDone(true);
+      window.setTimeout(onResolved, 850);
+    } else {
+      window.setTimeout(() => setPick(null), 900);
+    }
+  };
+  return <div className="wrong-math-retry">
+    <p><b>马上重练：</b>{question.question}</p>
+    <div className="wrong-math-options">
+      {question.options.map((option) => <button type="button" key={option} disabled={done} className={pick === option ? option === question.correctAnswer ? 'correct' : 'wrong' : ''} onClick={() => choose(option)}>{option}</button>)}
+    </div>
+    {pick && <small className={done ? 'good' : 'try'}>{done ? '答对了，已经从错题本移出！' : question.remedy ?? question.diagnosis ?? '再回看题目中的数量关系，慢慢想一次。'}</small>}
+  </div>;
+}
+
 /** 孩子的错题本：看自己答错的题，并可“再去练一遍”（版式与今日复习页一致） */
 export default function WrongBookPage() {
   const nav = useNavigate();
@@ -49,6 +85,14 @@ export default function WrongBookPage() {
   const subject = SUBJECTS.find((s) => s.id === subjectFilter);
   const backTarget = subject ? `/subject/${subject.id}` : '/';
   const title = subject ? `${subject.name[lang]} · ${t('wrongBook')}` : t('wrongBook');
+  const mathProfile = useMemo(() => {
+    const counts = new Map<MathAbility, number>();
+    allList.filter((wrong) => wrongSubject(wrong.lessonId) === 'math').forEach((wrong) => {
+      const ability = mathAbilityOf(wrong);
+      counts.set(ability, (counts.get(ability) ?? 0) + 1);
+    });
+    return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+  }, [allList]);
 
   return (
     <main className="page review-hub">
@@ -73,6 +117,11 @@ export default function WrongBookPage() {
           <button onClick={() => nav('/map')}>去学习新课程</button>
         </section>
       ) : (
+        <>
+        {(!subjectFilter || subjectFilter === 'math') && mathProfile.length > 0 && <section className="wrong-math-profile" aria-label="数学学习画像">
+          <div><span>数学学习画像</span><h2>先复习最常卡住的方法</h2><p>按错题的考查能力归类；答对卡内重练后，画像会同步变轻。</p></div>
+          <div className="wrong-profile-tags">{mathProfile.map(([ability, count], index) => <span key={ability} className={index === 0 ? 'priority' : ''}><b>{ability}</b><small>{count} 道待复习</small></span>)}</div>
+        </section>}
         <section className="review-hub-list" aria-label="错题列表">
           {list.map((w) => {
             const sid = wrongSubject(w.lessonId);
@@ -89,6 +138,8 @@ export default function WrongBookPage() {
                   <small>{meta?.label ?? '错题'} · 题型 {w.kind}</small>
                   <h2>{w.lessonName || w.lessonId}</h2>
                   <p><b>答错的答案：</b>{w.answer || '（这一题没选对哦）'}</p>
+                  {sid === 'math' && (w.diagnosis || w.remedy) && <p className="wrong-diagnosis"><b>这次先练：</b>{w.remedy ?? w.diagnosis}</p>}
+                  {sid === 'math' && <MathWrongRetry question={w} onResolved={() => removeWrong(child.id, w.uid)} />}
                 </div>
                 <div className="review-hub-actions">
                   {practiceTarget && <button className="review-go" onClick={() => nav(practiceTarget)}>{t('again')} →</button>}
@@ -98,6 +149,7 @@ export default function WrongBookPage() {
             );
           })}
         </section>
+        </>
       )}
     </main>
   );

@@ -2,11 +2,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api, setToken, logout } from '../api';
 import { useStore as useStoreState } from '../store';
-import { effectiveCatalog, KIND_LABEL, CATALOG, type ItemKind } from '../points';
+import { effectiveCatalog, KIND_LABEL, CATALOG } from '../points';
 import { TASKS, type TaskDef } from '../tasks';
 import { IconBean } from '../components/icons';
 
-type Section = 'dashboard' | 'children' | 'parents' | 'content' | 'store';
+type Section = 'dashboard' | 'children' | 'parents' | 'store';
 
 interface ChildRow {
   id: number;
@@ -14,38 +14,15 @@ interface ChildRow {
   avatar: string;
   grade: string;
   has_login: number;
+  disabled: number;
   login_name: string | null;
   parent_nick: string | null;
   parent_login: string | null;
 }
-interface VersionRow {
-  version: number;
-  note: string;
-  created_at: string;
-}
-interface LessonRow {
-  id: string;
-  name: string;
-  subject: string;
-  grade: string;
-  term: string;
-}
-interface EditedLesson {
-  id: string;
-  text: string;
-  words: string;
-  points: string;
-  dirty: boolean;
-}
 
-const SUBJECT_LABELS: Record<string, string> = { math: '数学', chinese: '语文' };
 const GRADE_LABELS: Record<string, string> = {
   g1: '一年级', g2: '二年级', g3: '三年级', g4: '四年级', g5: '五年级', g6: '六年级',
 };
-
-function fmtDate(s: string): string {
-  try { return new Date(s).toLocaleString(); } catch { return s; }
-}
 
 /** 管理员后台：独立 /admin 路由 + 侧边栏。角色=admin 才可访问 */
 export default function AdminPage() {
@@ -63,32 +40,36 @@ export default function AdminPage() {
   const patchStoreItem = useStoreState((s) => s.patchStoreItem);
   const removeStoreItem = useStoreState((s) => s.removeStoreItem);
   const patchTask = useStoreState((s) => s.patchTask);
-  const [edits, setEdits] = useState<Record<string, { name: string; cost: string; icon: string }>>({});
+  const [edits, setEdits] = useState<Record<string, { name: string; cost: string; icon: string; acqType?: 'purchase' | 'event' }>>({});
   const [taskEdits, setTaskEdits] = useState<Record<string, string>>({});
-  const [newItem, setNewItem] = useState<{ kind: ItemKind; name: string; cost: string; icon: string }>({ kind: 'outfit', name: '', cost: '', icon: '🎁' });
-  const storeItems = effectiveCatalog(storeOverrides);
-  const saveItem = (id: string) => {
+  const [storeTab, setStoreTab] = useState<'outfit' | 'badge' | 'item' | 'reward' | 'tasks'>('outfit');
+  const storeItems = effectiveCatalog(storeOverrides, true);
+  const saveItem = async (id: string) => {
     const e = edits[id];
     if (!e) return;
-    patchStoreItem(id, { name: e.name || undefined, cost: Number(e.cost) || undefined, icon: e.icon || undefined });
-    setMsg(`已保存商品 ${id}`); pushRemote();
+    patchStoreItem(id, { name: e.name || undefined, cost: Number(e.cost) || undefined, icon: e.icon || undefined, acqType: e.acqType });
+    if (await pushRemote()) setMsg(`✅ 已保存商品 ${id}`);
   };
-  const toggleOn = (id: string, on: boolean) => { patchStoreItem(id, { on }); pushRemote(); };
-  const patchKindItem = () => {
-    if (!newItem.name.trim() || !newItem.cost) return setMsg('请填写名称与价格');
-    const id = `${newItem.kind === 'outfit' ? 'o' : newItem.kind === 'badge' ? 'b' : newItem.kind === 'item' ? 'i' : 'rw'}-custom-${Date.now()}`;
-    patchStoreItem(id, { id, kind: newItem.kind, name: newItem.name.trim(), cost: Number(newItem.cost), icon: newItem.icon || '🎁', on: true });
-    setNewItem({ kind: 'outfit', name: '', cost: '', icon: '🎁' });
-    setMsg('已新增商品'); pushRemote();
+  const toggleOn = async (id: string, on: boolean) => {
+    patchStoreItem(id, { on });
+    if (await pushRemote()) setMsg(on ? `✅ 已上架 ${id}` : `⚠️ 已下架 ${id}`);
   };
-  const saveTask = (id: string) => {
+  const saveTask = async (id: string) => {
     const v = Number(taskEdits[id]);
-    if (Number.isFinite(v) && v > 0) { patchTask(id, { reward: v }); setMsg(`已设置任务 ${id} 分值 ${v}`); pushRemote(); }
+    if (Number.isFinite(v) && v > 0) {
+      patchTask(id, { reward: v });
+      if (await pushRemote()) setMsg(`✅ 已设置任务 ${id} 分值 ${v}`);
+    }
   };
-  // 发布到服务端（全局唯一权威），所有端启动拉取
-  const pushRemote = () => {
+  // 发布到服务端（全局唯一权威），所有端启动拉取；失败必须显式提示，避免本地与远端脱节
+  const pushRemote = async (): Promise<boolean> => {
     const s = useStoreState.getState();
-    void api.saveStoreConfig(s.storeOverrides, s.taskOverrides);
+    const r = await api.saveStoreConfig(s.storeOverrides, s.taskOverrides);
+    if (!r?.ok) {
+      setMsg('⚠️ 已保存到本机，但同步到服务端失败：请确认管理员仍在登录状态，否则其他设备不会生效');
+      return false;
+    }
+    return true;
   };
 
   // 管理员登录（未登录/非 admin 时直接在 /admin 页登录）
@@ -97,7 +78,7 @@ export default function AdminPage() {
   const [lgErr, setLgErr] = useState('');
 
   // 总览
-  const [dash, setDash] = useState<{ parents: number; children: number; weekPractice: number; weekWrong: number; weekRead: number; totalStars: number; contentVersion: number; contentNote: string } | null>(null);
+  const [dash, setDash] = useState<{ parents: number; children: number; weekPractice: number; weekWrong: number; weekRead: number; totalStars: number } | null>(null);
 
   // 孩子检索
   const [kids, setKids] = useState<ChildRow[]>([]);
@@ -107,20 +88,11 @@ export default function AdminPage() {
   const kidResetRef = useRef<HTMLInputElement>(null);
 
   // 家长账号
-  const [parents, setParents] = useState<{ id: number; nickname: string; login_name: string; role: string }[]>([]);
+  const [parents, setParents] = useState<{ id: number; nickname: string; login_name: string; role: string; disabled: number }[]>([]);
   const [pName, setPName] = useState('');
   const [pPw, setPPw] = useState('');
-  const [pSel, setPSel] = useState<{ id: number; nickname: string; login_name: string; role: string } | null>(null);
+  const [pSel, setPSel] = useState<{ id: number; nickname: string; login_name: string; role: string; disabled: number } | null>(null);
   const [pNewPw, setPNewPw] = useState('');
-
-  // 内容编辑
-  const [lessons, setLessons] = useState<LessonRow[]>([]);
-  const [lSubject, setLSubject] = useState('math');
-  const [lGrade, setLGrade] = useState('g1');
-  const [lSearch, setLSearch] = useState('');
-  const [lSel, setLSel] = useState<LessonRow | null>(null);
-  const [edit, setEdit] = useState<EditedLesson | null>(null);
-  const [versions, setVersions] = useState<VersionRow[]>([]);
 
   // 未通过 admin 校验时不加载数据；由渲染分支决定是否显示登录
   const guard = () => authed;
@@ -144,7 +116,7 @@ export default function AdminPage() {
   const doLogout = () => {
     logout();
     setAuthed(false);
-    setDash(null); setKids([]); setParents([]); setLessons([]); setEdit(null); setVersions([]);
+    setDash(null); setKids([]); setParents([]);
     setMsg(''); setLgName(''); setLgPw('');
     setSection('dashboard');
   };
@@ -167,26 +139,8 @@ export default function AdminPage() {
     if (r?.ok) setParents(r.parents);
   };
 
-  const loadVersions = async () => {
-    const r = await api.adminVersions();
-    if (r?.ok) setVersions(r.versions);
-  };
-
-  const loadLessons = async () => {
-    const r = await api.adminLessons({ subject: lSubject, grade: lGrade, search: lSearch.trim() });
-    if (r?.ok) { setLessons(r.lessons); setLSel(null); setEdit(null); } else setLessons([]);
-  };
-
-  const openLesson = async (row: LessonRow) => {
-    setLSel(row);
-    const r = await api.adminLesson(row.id);
-    if (r?.ok) setEdit({ id: row.id, text: r.lesson.text ?? '', words: (r.lesson.words ?? []).join('、'), points: (r.lesson.points ?? []).join('；'), dirty: false });
-    else setEdit(null);
-  };
-
   useEffect(() => { if (authed) void loadDashboard(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [authed]);
-  useEffect(() => { if (authed && section === 'children') void loadChildren(); if (authed && section === 'parents') void loadParents(); if (authed && section === 'content') { void loadVersions(); void loadLessons(); } /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [section, authed]);
-  useEffect(() => { if (authed && section === 'content') void loadVersions(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [dash]);
+  useEffect(() => { if (authed && section === 'children') void loadChildren(); if (authed && section === 'parents') void loadParents(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [section, authed]);
 
   // ---- 操作 ----
   const openChildAccount = async (childId: number) => {
@@ -218,42 +172,35 @@ export default function AdminPage() {
     setPNewPw('');
   };
 
-  const toggleDisable = async (p: { id: number; nickname: string; role: string }) => {
-    if (p.nickname === '管理员') return setMsg('不能停用管理员');
-    const r = await api.adminParentUpdate(p.id, { disabled: true });
-    setMsg(r?.ok ? `⚠️ 已停用「${p.nickname}」` : '操作失败');
+  const toggleParentDisabled = async (p: { id: number; nickname: string; role: string; disabled: number }) => {
+    if (p.role === 'admin') return setMsg('管理员账号不可停用');
+    const next = !p.disabled;
+    const r = await api.adminParentUpdate(p.id, { disabled: next });
+    setMsg(r?.ok ? (next ? `⚠️ 已停用「${p.nickname}」` : `✅ 已启用「${p.nickname}」`) : '操作失败');
     void loadParents();
   };
 
-  const saveLesson = async () => {
-    if (!edit) return;
-    setBusy(true);
-    const r = await api.adminSaveLesson({
-      id: edit.id,
-      text: edit.text.trim() || undefined,
-      words: edit.words.trim() ? edit.words.split(/[、,，\s]+/).filter(Boolean) : undefined,
-      points: edit.points.trim() ? edit.points.split(/[；;、\n]+/).map((s) => s.trim()).filter(Boolean) : undefined,
-    });
-    setBusy(false);
-    setMsg(r?.ok ? `已保存第 ${edit.id} 课的修改（未发布）` : '保存失败');
-    setEdit((e) => (e ? { ...e, dirty: false } : e));
+  const deleteParent = async (p: { id: number; nickname: string; role: string }) => {
+    if (p.role === 'admin') return setMsg('管理员账号不可删除');
+    if (!window.confirm(`确认删除家长「${p.nickname}」？其家庭、孩子档案与全部学习数据将一并删除，不可恢复！`)) return;
+    const r = await api.adminDeleteParent(p.id);
+    setMsg(r?.ok ? `🗑️ 已删除「${p.nickname}」` : '删除失败');
+    void loadParents();
   };
 
-  const publish = async () => {
-    setBusy(true);
-    const r = await api.adminPublish();
-    setBusy(false);
-    setMsg(r?.ok ? `✅ 已发布 v${r.version}：应用 ${r.applied} 课修改` : '发布失败');
-    if (r?.ok) void loadVersions();
+  const toggleChildDisabled = async (k: ChildRow) => {
+    if (!k.has_login) return setMsg('该孩子尚未开通账号');
+    const next = !k.disabled;
+    const r = await api.adminPatchChild(k.id, { disabled: next });
+    setMsg(r?.ok ? (next ? `⚠️ 已停用「${k.name}」的账号` : `✅ 已启用「${k.name}」的账号`) : '操作失败');
+    void loadChildren();
   };
 
-  const rollback = async (version: number) => {
-    if (!window.confirm(`确认回滚到 v${version}？（将内容复制为最新版本，保留历史）`)) return;
-    setBusy(true);
-    const r = await api.adminRollback(version);
-    setBusy(false);
-    setMsg(r?.ok ? `✅ 已回滚并发布为 v${r.version}` : '回滚失败');
-    if (r?.ok) void loadVersions();
+  const deleteChild = async (k: ChildRow) => {
+    if (!window.confirm(`确认删除孩子「${k.name}」？其全部学习数据将一并删除，不可恢复！`)) return;
+    const r = await api.adminDeleteChild(k.id);
+    setMsg(r?.ok ? `🗑️ 已删除「${k.name}」` : '删除失败');
+    void loadChildren();
   };
 
   const dashCard = (label: string, value: string | number, icon: string) => (
@@ -298,8 +245,7 @@ export default function AdminPage() {
             ['dashboard', '📊 数据总览'],
             ['children', '🧒 孩子账号'],
             ['parents', '👩 家长账号'],
-            ['content', '✏️ 内容编辑'],
-            ['store', '🏪 卷卷豆与补给站'],
+            ['store', '📦 物品管理'],
           ] as [Section, string][]).map(([k, label]) => (
             <button key={k} type="button" className={`adm-nav-btn ${section === k ? 'active' : ''}`} onClick={() => setSection(k)}>{label}</button>
           ))}
@@ -310,7 +256,7 @@ export default function AdminPage() {
 
       <main className="adm-main">
         <header className="adm-head">
-          <div className="adm-head-title">{section === 'dashboard' ? '数据总览' : section === 'children' ? '孩子账号' : section === 'parents' ? '家长账号' : section === 'content' ? '内容编辑' : '卷卷豆与补给站'}</div>
+          <div className="adm-head-title">{section === 'dashboard' ? '数据总览' : section === 'children' ? '孩子账号' : section === 'parents' ? '家长账号' : '物品管理'}</div>
           {msg && <div className="adm-toast">{msg}</div>}
         </header>
 
@@ -327,11 +273,6 @@ export default function AdminPage() {
                   {dashCard('近7天跟读', dash.weekRead, '🎙️')}
                   {dashCard('累计星星', dash.totalStars, '⭐')}
                 </div>
-                <div className="adm-info-card">
-                  <b>内容包状态</b>
-                  <p>当前版本 <b>v{dash.contentVersion}</b> — {dash.contentNote || '（无说明）'}</p>
-                  <button type="button" className="kid-btn coral" onClick={() => setSection('content')}>进入内容编辑 →</button>
-                </div>
               </>
             )}
           </div>
@@ -344,16 +285,23 @@ export default function AdminPage() {
               <button type="button" className="kid-btn green" onClick={() => void loadChildren()}>检索</button>
             </div>
             <div className="adm-table">
-              <div className="adm-tr adm-th"><span>孩子</span><span>年级</span><span>家长</span><span>账号</span><span>操作</span></div>
+              <div className="adm-tr adm-th adm-tr--kids"><span>孩子</span><span>年级</span><span>家长</span><span>账号</span><span>状态</span><span>操作</span></div>
               {kids.length === 0 && <p className="adm-empty">没有匹配结果</p>}
               {kids.map((k) => (
-                <div className="adm-tr" key={k.id}>
+                <div className="adm-tr adm-tr--kids" key={k.id}>
                   <span>{k.avatar} {k.name}</span>
                   <span>{GRADE_LABELS[k.grade] ?? k.grade}</span>
                   <span>{k.parent_nick ?? k.parent_login ?? '—'}</span>
                   <span>{k.has_login ? `✅ ${k.login_name ?? ''}` : '未开通'}</span>
+                  <span>{!k.has_login
+                    ? <span className="adm-badge mute">未开通</span>
+                    : k.disabled ? <span className="adm-badge off">停用</span> : <span className="adm-badge ok">正常</span>}</span>
                   <span className="adm-ops">
                     <button type="button" className="kid-btn purple small" onClick={() => { setKidSel(k); setKidResetPw(''); window.setTimeout(() => kidResetRef.current?.focus(), 60); }}>开通/重置</button>
+                    {!!k.has_login && (
+                      <button type="button" className={`kid-btn ${k.disabled ? 'mint' : 'coral'} small`} onClick={() => void toggleChildDisabled(k)}>{k.disabled ? '启用' : '停用'}</button>
+                    )}
+                    <button type="button" className="kid-btn coral small" onClick={() => void deleteChild(k)}>删除</button>
                   </span>
                 </div>
               ))}
@@ -375,17 +323,21 @@ export default function AdminPage() {
               <button type="button" className="kid-btn purple" disabled={busy || pName.trim().length < 2 || pPw.length < 4} onClick={() => void createParent()}>创建家长</button>
             </div>
             <div className="adm-table">
-              <div className="adm-tr adm-th"><span>家长</span><span>登录名</span><span>角色</span><span>操作</span></div>
+              <div className="adm-tr adm-th adm-tr--parents"><span>家长</span><span>登录名</span><span>角色</span><span>状态</span><span>操作</span></div>
               {parents.length === 0 && <p className="adm-empty">暂无家长账号</p>}
               {parents.map((p) => (
-                <div className="adm-tr" key={p.id}>
+                <div className="adm-tr adm-tr--parents" key={p.id}>
                   <span>{p.nickname}</span>
                   <span>{p.login_name || p.nickname}</span>
                   <span>{p.role === 'admin' ? '管理员' : '家长'}</span>
+                  <span>{p.disabled ? <span className="adm-badge off">停用</span> : <span className="adm-badge ok">正常</span>}</span>
                   <span className="adm-ops">
                     <button type="button" className="kid-btn sky small" onClick={() => { setPSel(p); setPNewPw(''); }}>改密</button>
                     {p.role !== 'admin' && (
-                      <button type="button" className="kid-btn coral small" onClick={() => void toggleDisable(p)}>停用</button>
+                      <button type="button" className={`kid-btn ${p.disabled ? 'mint' : 'coral'} small`} onClick={() => void toggleParentDisabled(p)}>{p.disabled ? '启用' : '停用'}</button>
+                    )}
+                    {p.role !== 'admin' && (
+                      <button type="button" className="kid-btn coral small" onClick={() => void deleteParent(p)}>删除</button>
                     )}
                   </span>
                 </div>
@@ -400,136 +352,88 @@ export default function AdminPage() {
           </div>
         )}
 
-        {section === 'content' && (
-          <div className="adm-panel">
-            <div className="adm-filters">
-              <select className="adm-input" value={lSubject} onChange={(e) => setLSubject(e.target.value)}>
-                {Object.entries(SUBJECT_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
-              </select>
-              <select className="adm-input" value={lGrade} onChange={(e) => setLGrade(e.target.value)}>
-                {Object.entries(GRADE_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
-              </select>
-              <input className="adm-input" placeholder="搜索课文/课程名" value={lSearch} onChange={(e) => setLSearch(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && void loadLessons()} />
-              <button type="button" className="kid-btn green" onClick={() => void loadLessons()}>检索课程</button>
-            </div>
-
-            <div className="adm-split">
-              <div className="adm-lessons">
-                <div className="adm-lessons-title">课程列表（{lessons.length}）</div>
-                {lessons.length === 0 && <p className="adm-empty">无匹配课程</p>}
-                {lessons.map((l) => (
-                  <button key={l.id} type="button" className={`adm-lesson ${lSel?.id === l.id ? 'active' : ''}`} onClick={() => void openLesson(l)}>
-                    <span className="adm-lesson-name">{l.name}</span>
-                    <span className="adm-lesson-id">{l.id}</span>
-                  </button>
-                ))}
-              </div>
-
-              <div className="adm-editor">
-                {!edit && <p className="adm-empty">← 从左侧选择一课进行可视化编辑</p>}
-                {edit && (
-                  <>
-                    <div className="adm-editor-title">编辑：{edit.id}</div>
-                    <label className="adm-field">课文正文（text）
-                      <textarea className="adm-textarea" rows={6} value={edit.text} onChange={(e) => setEdit({ ...edit, text: e.target.value, dirty: true })} />
-                    </label>
-                    <label className="adm-field">生字/关键词（用 、 或逗号分隔）
-                      <textarea className="adm-textarea" rows={3} value={edit.words} onChange={(e) => setEdit({ ...edit, words: e.target.value, dirty: true })} />
-                    </label>
-                    <label className="adm-field">知识点要点（用 ；或换行分隔）
-                      <textarea className="adm-textarea" rows={4} value={edit.points} onChange={(e) => setEdit({ ...edit, points: e.target.value, dirty: true })} />
-                    </label>
-                    <div className="adm-editor-btns">
-                      <button type="button" className="kid-btn purple" disabled={busy} onClick={() => void saveLesson()}>保存修改（未发布）</button>
-                      <button type="button" className="kid-btn green" disabled={busy} onClick={() => void publish()}>🚀 发布为新版本</button>
-                    </div>
-                  </>
-                )}
-
-                <div className="adm-versions">
-                  <div className="adm-lessons-title">已发布版本</div>
-                  {versions.map((v) => (
-                    <div key={v.version} className="adm-version">
-                      <div><b>v{v.version}</b> — {v.note || '（无说明）'}</div>
-                      <small>{fmtDate(v.created_at)}</small>
-                      {v.version !== versions[0]?.version && (
-                        <button type="button" className="kid-btn coral xsmall" disabled={busy} onClick={() => void rollback(v.version)}>回滚到此版</button>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
         {section === 'store' && (
           <div className="adm-panel">
             <div className="adm-info-card">
-              <b>🏪 卷卷豆与补给站配置（保存后立即生效，孩子端同步读取）</b>
-              <p>改价格 / 上下架 / 新增商品 / 配置任务分值。卷卷豆与余额在孩子端各自独立计算。</p>
+              <b>📦 物品管理（保存后立即生效，孩子端同步读取）</b>
+              <p>改价格 / 上下架 / 配置任务分值。商品不可新增，仅管理现有目录。</p>
             </div>
 
-            {/* 新增商品 */}
-            <div className="adm-toolbar">
-              <select className="adm-input" value={newItem.kind} onChange={(e) => setNewItem({ ...newItem, kind: e.target.value as ItemKind })}>
-                {(Object.keys(KIND_LABEL) as ItemKind[]).map((k) => <option key={k} value={k}>{KIND_LABEL[k]}</option>)}
-              </select>
-              <input className="adm-input" placeholder="商品名" value={newItem.name} onChange={(e) => setNewItem({ ...newItem, name: e.target.value })} />
-              <input className="adm-input" placeholder="图标(emoji)" value={newItem.icon} onChange={(e) => setNewItem({ ...newItem, icon: e.target.value })} style={{ width: 90 }} />
-              <input className="adm-input" placeholder="价格" inputMode="numeric" value={newItem.cost} onChange={(e) => setNewItem({ ...newItem, cost: e.target.value.replace(/\D/g, '') })} style={{ width: 90 }} />
-              <button type="button" className="kid-btn green" onClick={patchKindItem}>+ 新增商品</button>
+            {/* 内部页签：按类别查看，页面不再过长 */}
+            <div className="adm-tabs" role="tablist" aria-label="物品管理分类">
+              {([['outfit', '🎨 装扮'], ['badge', '🎖️ 徽章'], ['item', '🛠️ 游戏道具'], ['reward', '🎁 奖励兑换'], ['tasks', '📊 任务分值']] as const).map(([k, label]) => (
+                <button key={k} type="button" role="tab" aria-selected={storeTab === k} className={`adm-tab ${storeTab === k ? 'active' : ''}`} onClick={() => setStoreTab(k)}>{label}</button>
+              ))}
             </div>
 
-            {/* 商品列表 */}
-            {(['outfit', 'badge', 'item', 'reward'] as ItemKind[]).map((kind) => (
-              <div key={kind} className="adm-table">
-                <div className="adm-tr adm-th"><span>🎨 {KIND_LABEL[kind]}（{storeItems.filter((i) => i.kind === kind).length}）</span><span>价格</span><span>上架</span><span>操作</span></div>
-                {storeItems.filter((i) => i.kind === kind).map((it) => {
-                  const e = edits[it.id] ?? { name: it.name, cost: String(it.cost), icon: it.icon };
+            {storeTab !== 'tasks' && (
+              <div className="adm-table">
+                <div className="adm-tr adm-th adm-tr--items"><span>{KIND_LABEL[storeTab]}（{storeItems.filter((i) => i.kind === storeTab).length}）</span><span>价格</span><span>上架</span><span>操作</span></div>
+                {storeItems.filter((i) => i.kind === storeTab).map((it) => {
+                  const e = edits[it.id] ?? { name: it.name, cost: String(it.cost), icon: it.icon ?? '', acqType: it.acqType ?? 'purchase' };
                   return (
-                    <div className="adm-tr" key={it.id}>
-                      <span>
-                        <input className="adm-input" style={{ width: 60 }} value={e.icon} onChange={(ev) => setEdits({ ...edits, [it.id]: { ...e, icon: ev.target.value } })} />
-                        <input className="adm-input" value={e.name} onChange={(ev) => setEdits({ ...edits, [it.id]: { ...e, name: ev.target.value } })} />
-                        <small style={{ display: 'block', color: 'var(--ink-faint)' }}>{it.id}</small>
+                    <div className="adm-tr adm-tr--items" key={it.id}>
+                      <span className="adm-item-main">
+                        <span className="adm-item-row">
+                          {it.kind === 'outfit' ? (
+                            <select
+                              className="adm-input adm-input--compact"
+                              aria-label="获得状态"
+                              title="获得状态"
+                              value={e.acqType ?? 'purchase'}
+                              onChange={(ev) => setEdits({ ...edits, [it.id]: { ...e, acqType: ev.target.value as 'purchase' | 'event' } })}
+                            >
+                              <option value="purchase">购买</option>
+                              <option value="event">活动</option>
+                            </select>
+                          ) : (
+                            <input className="adm-input adm-input--compact" aria-label="图标" value={e.icon} onChange={(ev) => setEdits({ ...edits, [it.id]: { ...e, icon: ev.target.value } })} />
+                          )}
+                          <input className="adm-input" aria-label="名称" value={e.name} onChange={(ev) => setEdits({ ...edits, [it.id]: { ...e, name: ev.target.value } })} />
+                        </span>
+                        <small className="adm-item-id">{it.id}</small>
                       </span>
                       <span><input className="adm-input" style={{ width: 80 }} inputMode="numeric" value={e.cost} onChange={(ev) => setEdits({ ...edits, [it.id]: { ...e, cost: ev.target.value.replace(/\D/g, '') } })} /></span>
                       <span>
-                        <button type="button" className={`kid-btn ${it.on === false ? 'white' : 'mint'} xsmall`} onClick={() => toggleOn(it.id, it.on === false)}>
-                          {it.on === false ? '已下架·上架' : '上架中·下架'}
+                        <button type="button" className={`kid-btn ${it.on === false ? 'mint' : 'white'} xsmall`} onClick={() => toggleOn(it.id, it.on === false)}>
+                          {it.on === false ? '上架' : '下架'}
                         </button>
                       </span>
                       <span className="adm-ops">
-                        <button type="button" className="kid-btn purple xsmall" onClick={() => saveItem(it.id)}>保存</button>
-                        <button type="button" className="kid-btn coral xsmall" onClick={() => { if (window.confirm('确认下架？')) { removeStoreItem(it.id); pushRemote(); } }}>下架</button>
+                        <button type="button" className="kid-btn purple xsmall" onClick={() => void saveItem(it.id)}>保存</button>
+                        {storeOverrides[it.id] && (
+                          <button type="button" className="kid-btn coral xsmall" onClick={async () => { if (window.confirm('确认删除该商品的修改记录，恢复为默认配置？')) { removeStoreItem(it.id); await pushRemote(); } }}>恢复默认</button>
+                        )}
                       </span>
                     </div>
                   );
                 })}
               </div>
-            ))}
+            )}
 
-            {/* 任务分值配置 */}
+            {/* 任务分值配置：仅在「任务分值」页签显示 */}
+            {storeTab === 'tasks' && (
             <div className="adm-table">
-              <div className="adm-tr adm-th"><span>任务</span><span>类型</span><span>当前/默认分值</span><span>修改</span></div>
+              <div className="adm-tr adm-th adm-tr--tasks"><span>任务</span><span>类型</span><span>当前/默认分值</span><span>修改</span></div>
               {TASKS.map((t: TaskDef) => {
                 const ov = taskOverrides[t.id];
                 const cur = ov?.reward ?? t.reward;
                 const enabled = ov?.enabled ?? t.enabled ?? true;
                 return (
-                  <div className="adm-tr" key={t.id}>
+                  <div className="adm-tr adm-tr--tasks" key={t.id}>
                     <span>{t.icon} {t.title}<small style={{ display: 'block', color: 'var(--ink-faint)' }}>{t.id}</small></span>
                     <span>{t.kind === 'daily' ? '每日' : t.kind === 'weekly' ? '每周' : '里程碑'}</span>
                     <span><IconBean size={15} gradient="gold" /> {cur}</span>
                     <span className="adm-ops">
                       <input className="adm-input" style={{ width: 70 }} inputMode="numeric" placeholder={String(t.reward)} value={taskEdits[t.id] ?? ''} onChange={(e) => setTaskEdits({ ...taskEdits, [t.id]: e.target.value.replace(/\D/g, '') })} />
-                      <button type="button" className="kid-btn purple xsmall" onClick={() => saveTask(t.id)}>设分</button>
+                      <button type="button" className="kid-btn purple xsmall" onClick={() => void saveTask(t.id)}>设分</button>
                       <button type="button" className={`kid-btn ${enabled ? 'white' : 'coral'} xsmall`} onClick={() => { patchTask(t.id, { enabled: !enabled }); pushRemote(); }}>{enabled ? '启用中' : '已停用'}</button>
                     </span>
                   </div>
                 );
               })}
             </div>
+            )}
             <p className="empty-tip small">默认商品目录共 {CATALOG.length} 件 · 实时生效</p>
           </div>
         )}

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
 import { api, setToken } from '../api';
-import { saveChildMap, childMap, pullAll } from '../cloud';
+import { saveChildMap, childMap } from '../cloud';
+import { syncAfterLogin } from '../autosync';
 import type { Grade } from '../types';
 
 interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -51,7 +52,7 @@ export default function ChildLoginPage() {
     m[localId] = r.childId;
     saveChildMap(m);
     setActiveChild(localId);
-    void pullAll(r.childId, localId);
+    await syncAfterLogin(localId);
     nav('/lobby');
   };
 

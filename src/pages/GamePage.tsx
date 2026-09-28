@@ -6,7 +6,7 @@ import { useI18n } from '../i18n';
 import { KidButton, TopBar, Stars, Confetti } from '../components/ui';
 import { SceneBanner } from '../components/scenes';
 import Mascot from '../components/Mascot';
-import { speak, playSfx, startMusic, stopMusic } from '../speech';
+import { speak, playSfx } from '../speech';
 import type { GameRecord, GameResult } from '../types';
 
 function buildRecord(childId: string, gameId: string, level: number, r: GameResult): GameRecord {
@@ -45,11 +45,6 @@ export default function GamePage() {
   useEffect(() => {
     if (!child || !def || def.status !== 'ready') nav('/lobby');
   }, [child, def, nav]);
-
-  useEffect(() => {
-    startMusic('game');
-    return () => stopMusic();
-  }, []);
 
   if (!child || !def || def.status !== 'ready') return null;
 

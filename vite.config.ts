@@ -17,12 +17,18 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    // 前端端口统一固定为 5173（dev 与 preview 一致）；strictPort 保证端口被占时直接报错，
+    // 绝不自动漂移到其他端口，避免"访问地址一直在变"。
     server: {
       host: true,
       port: 5173,
+      strictPort: true,
       proxy: apiProxy,
     },
     preview: {
+      host: true,
+      port: 5173,
+      strictPort: true,
       proxy: apiProxy,
     },
     // 构建期注入"服务端密钥是否已配置"标记（页面据此显示配置提示；服务端 /api/health 会覆盖该值）

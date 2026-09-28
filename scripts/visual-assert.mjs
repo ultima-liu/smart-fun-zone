@@ -1,7 +1,7 @@
 /* 动画行为断言：验证数一数/第几/比一比/加法配图的动态计数效果 */
 import { chromium } from '@playwright/test';
 
-const BASE = 'http://localhost:4173';
+const BASE = 'http://localhost:5173';
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 480, height: 900 }, locale: 'zh-CN' });
 const fails = [];
