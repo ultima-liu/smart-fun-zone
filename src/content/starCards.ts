@@ -4,7 +4,7 @@
  */
 
 export type CardRarity = 'R' | 'SR' | 'SSR' | 'SP';
-export type CardSetId = 'npc' | 'brook' | 'bruco' | 'monster' | 'ship' | 'mystery' | 'outfit' | 'badge' | 'game' | 'hanzi';
+export type CardSetId = 'npc' | 'brook' | 'bruco' | 'paw-patrol' | 'monster' | 'ship' | 'mystery' | 'outfit' | 'badge' | 'game' | 'hanzi';
 
 export interface HanziTeaching {
   /** 对应的语文课；完成该课时作为学习奖励直接点亮。 */
@@ -47,6 +47,7 @@ export const CARD_SETS: CardSet[] = [
   { id: 'npc', icon: '👤', name: { zh: '卷星人', en: 'NPC' }, color: '#8b7bf0', rewardBeans: 500 },
   { id: 'brook', icon: '✦', name: { zh: '星航协作队', en: 'Starlight Crew' }, color: '#42a5ff', rewardBeans: 500 },
   { id: 'bruco', icon: '🤖', name: { zh: '布鲁克战队', en: 'Bruco Team' }, color: '#ed4c58', rewardBeans: 300 },
+  { id: 'paw-patrol', icon: '🐾', name: { zh: '汪汪队立大功', en: 'PAW Patrol' }, color: '#ff7b45', rewardBeans: 300 },
   { id: 'monster', icon: '👾', name: { zh: '乌乌怪', en: 'Gloom Gremlins' }, color: '#ff73b8', rewardBeans: 500 },
   { id: 'ship', icon: '🚀', name: { zh: '舰船', en: 'Ships' }, color: '#4aa3ff', rewardBeans: 500 },
   { id: 'mystery', icon: '🔮', name: { zh: '神秘·剧情物品', en: 'Mystery' }, color: '#f6c24a', rewardBeans: 500 },
@@ -206,6 +207,56 @@ export const STAR_CARDS: StarCard[] = [
     quote: { zh: '升级完成，轮到我来追上你们了！', en: 'Upgrade complete—it is my turn to catch you!' },
     desc: { zh: '森森蛋是危客军团中经过强化升级的机器人。公开剧情以“机器人森森蛋强化升级，布鲁可危险了”为线索，突出他的升级形态和追击威胁；紫粉护具与轮滑装置保留为卡面特色。', en: 'Sensen Egg is an upgraded robot in the Wike Corps. Published episode material highlights his reinforced upgrade as a danger to the Bruco Team; violet-pink gear and skates remain this card’s signature.' },
     role: 'figure', palette: ['#bd4bd8', '#ef99ff', '#ffe0ff'],
+  },
+  /* —— 汪汪队立大功（基于用户提供角色素材的独立卡牌套系）—— */
+  {
+    id: 'paw-ryder', setId: 'paw-patrol', rarity: 'SP', no: 1,
+    name: { zh: '莱德', en: 'Ryder' },
+    quote: { zh: '没有困难的工作，只有勇敢的狗狗！', en: 'No job is too big, no pup is too small!' },
+    desc: { zh: '汪汪队的队长。莱德善于把每次救援拆成清楚的任务，并根据伙伴们的特长安排行动；他用冷静、合作和鼓励带领大家守护冒险湾。', en: 'The PAW Patrol leader. Ryder turns every rescue into clear jobs and matches each pup to their strengths, guiding Adventure Bay with calm teamwork and encouragement.' },
+    role: 'figure', palette: ['#e94f4f', '#28b8db', '#fff1c7'],
+  },
+  {
+    id: 'paw-chase', setId: 'paw-patrol', rarity: 'SSR', no: 2,
+    name: { zh: '阿奇', en: 'Chase' },
+    quote: { zh: '交给我吧！', en: 'Chase is on the case!' },
+    desc: { zh: '担任警察和交通救援任务的德国牧羊犬。阿奇细心又有责任感，擅长维持秩序、寻找线索，并在伙伴需要时迅速赶到现场。', en: 'A German Shepherd who handles police and traffic rescues. Chase is careful and dependable, skilled at keeping order, following clues and arriving quickly when friends need help.' },
+    role: 'figure', palette: ['#1755a5', '#4ba8ed', '#ffe36f'],
+  },
+  {
+    id: 'paw-marshall', setId: 'paw-patrol', rarity: 'SR', no: 3,
+    name: { zh: '毛毛', en: 'Marshall' },
+    quote: { zh: '我火力全开！', en: 'I’m fired up!' },
+    desc: { zh: '负责消防和医疗支援的大麦町犬。毛毛热情、乐观，偶尔会手忙脚乱，但总能在关键时刻拿出勇气，用消防装备帮助伙伴完成救援。', en: 'A Dalmatian in charge of fire and medical support. Marshall is warm and upbeat; even when he gets flustered, he finds his courage and brings the right rescue gear at the crucial moment.' },
+    role: 'figure', palette: ['#e53935', '#ff8b77', '#eff8ff'],
+  },
+  {
+    id: 'paw-rubble', setId: 'paw-patrol', rarity: 'SR', no: 4,
+    name: { zh: '小砾', en: 'Rubble' },
+    quote: { zh: '小砾准备好开工！', en: 'Rubble on the double!' },
+    desc: { zh: '专长是工程和建筑的斗牛犬。小砾有力量也有耐心，最擅长用工程车清理障碍、搬运材料，把难走的路变成安全通道。', en: 'A construction-minded Bulldog. Rubble combines strength with patience, using his rig to clear obstacles, move supplies and turn a blocked route into a safe way through.' },
+    role: 'figure', palette: ['#f2bb18', '#ffe36b', '#fff8d8'],
+  },
+  {
+    id: 'paw-skye', setId: 'paw-patrol', rarity: 'SSR', no: 5,
+    name: { zh: '天天', en: 'Skye' },
+    quote: { zh: '让我们飞上天空吧！', en: 'This pup’s gotta fly!' },
+    desc: { zh: '负责空中救援的可卡颇犬。天天勇敢又开朗，善于从高处观察情况；她驾驶直升机穿过天空，为地面伙伴找到新的救援路线。', en: 'A Cockapoo who leads aerial rescues. Brave and cheerful, Skye surveys from above and pilots her helicopter to find fresh rescue routes for the team below.' },
+    role: 'figure', palette: ['#db3c91', '#fa9bc8', '#ffe3f1'],
+  },
+  {
+    id: 'paw-rocky', setId: 'paw-patrol', rarity: 'SR', no: 6,
+    name: { zh: '灰灰', en: 'Rocky' },
+    quote: { zh: '别丢掉，回收再利用！', en: 'Green means go!' },
+    desc: { zh: '负责回收和维修的混血犬。灰灰总能从旧物中发现新用途，带着工具车修补损坏物品，也提醒大家珍惜资源、减少浪费。', en: 'A mixed-breed pup who handles recycling and repairs. Rocky spots new uses for old things, fixes broken gear from his tool truck and reminds everyone to care for resources.' },
+    role: 'figure', palette: ['#25a44e', '#8bd66b', '#e9ffe8'],
+  },
+  {
+    id: 'paw-zuma', setId: 'paw-patrol', rarity: 'SR', no: 7,
+    name: { zh: '路马', en: 'Zuma' },
+    quote: { zh: '准备好下水救援！', en: 'Let’s dive in!' },
+    desc: { zh: '负责水上救援的拉布拉多犬。路马沉着、爱玩水，熟悉海湾和水上装备；遇到河流、海面或码头上的难题时，他总会带来可靠的帮助。', en: 'A Labrador who handles water rescues. Calm and happy around water, Zuma knows the bay and its gear well, bringing dependable help to problems on rivers, docks and the sea.' },
+    role: 'figure', palette: ['#ef791e', '#ffb44f', '#fff0d0'],
   },
   /* —— 乌乌怪（怪物）—— */
   {

@@ -8,9 +8,9 @@ import VoiceQualityTip from '../components/VoiceQualityTip';
 import { listGames } from '../games';
 import { gradeLabel } from '../types';
 import { playSfx } from '../speech';
-import { IconBean } from '../components/icons';
-import { api, isLoggedIn, logout as cloudLogout, setToken, type Plan, type WeeklyReport, type ChildInfo } from '../api';
-import { pushAll, pullAll, childMap, saveChildMap } from '../cloud';
+import { effectiveCatalog, type CustomTask, type CustomTaskJudge, type CustomTaskRepeat } from '../points';
+import { api, isLoggedIn, logout as cloudLogout, setToken, type ChildInfo } from '../api';
+import { childMap, saveChildMap } from '../cloud';
 import { syncAfterLogin } from '../autosync';
 
 export default function ParentPage() {
@@ -19,12 +19,8 @@ export default function ParentPage() {
   const parentPin = useStore((s) => s.parentPin);
   const sound = useStore((s) => s.sound);
   const toggleSound = useStore((s) => s.toggleSound);
-  const musicOn = useStore((s) => s.musicOn);
-  const setMusicOn = useStore((s) => s.setMusicOn);
   const voiceOn = useStore((s) => s.voiceOn);
   const setVoiceOn = useStore((s) => s.setVoiceOn);
-  const lessonSkipOn = useStore((s) => s.lessonSkipOn);
-  const setLessonSkipOn = useStore((s) => s.setLessonSkipOn);
   const dailyLimitMin = useStore((s) => s.dailyLimitMin);
   const setDailyLimit = useStore((s) => s.setDailyLimit);
   const setParentPin = useStore((s) => s.setParentPin);
@@ -58,44 +54,63 @@ export default function ParentPage() {
   const [cloudCode, setCloudCode] = useState('');
   const [cloudMsg, setCloudMsg] = useState('');
   const [logged, setLogged] = useState(isLoggedIn());
-  const [plans, setPlans] = useState<Plan[]>([]);
-  const [planTitle, setPlanTitle] = useState('');
   const [accPass, setAccPass] = useState('');
   const [serverChildren, setServerChildren] = useState<ChildInfo[]>([]);
   const [accChildId, setAccChildId] = useState<number | null>(null);
   const [newChildName, setNewChildName] = useState('');
   const [accMsg, setAccMsg] = useState('');
-  const [report, setReport] = useState<WeeklyReport | null>(null);
   const activeChildId = useStore((s) => s.activeChildId);
-  const wrongs = useStore((s) => s.wrongs);
-  const removeWrong = useStore((s) => s.removeWrong);
 
-  // 卷卷豆 · 自定义任务
+  // 卷卷豆 · 自定义任务（周期/判定/物品奖励）
   const customTasks = useStore((s) => s.customTasks);
   const addCustomTask = useStore((s) => s.addCustomTask);
   const removeCustomTask = useStore((s) => s.removeCustomTask);
   const confirmCustomTask = useStore((s) => s.confirmCustomTask);
+  const storeOverrides = useStore((s) => s.storeOverrides);
   const pointsOf = useStore((s) => s.points);
   const [taskText, setTaskText] = useState('');
-  const [taskPts, setTaskPts] = useState('');
+  const [taskRepeat, setTaskRepeat] = useState<CustomTaskRepeat>('once');
+  const [taskWeekDays, setTaskWeekDays] = useState<number[]>([1]);
+  const [taskMonthDays, setTaskMonthDays] = useState('1');
+  const [taskDate, setTaskDate] = useState('');
+  const [taskJudge, setTaskJudge] = useState<CustomTaskJudge>('parent');
+  const [taskPts, setTaskPts] = useState('5');
+  const [taskItem, setTaskItem] = useState('');
+  const [taskMsg, setTaskMsg] = useState('');
   const targetChild = profiles.find((p) => p.id === activeChildId) ?? profiles[0] ?? null;
   const targetPoints = targetChild ? pointsOf[targetChild.id] ?? 0 : 0;
   const tasks = targetChild ? customTasks[targetChild.id] ?? [] : [];
-  const addTaskTo = (cid: string) => {
-    addCustomTask(cid, taskText.trim(), Number(taskPts || 5));
-    setTaskText(''); setTaskPts('');
+  const itemOptions = effectiveCatalog(storeOverrides, true);
+  const WEEK_LABELS = ['日', '一', '二', '三', '四', '五', '六'];
+  const repeatText = (t: CustomTask): string => {
+    switch (t.repeat) {
+      case 'once': return '一次性';
+      case 'daily': return '每天';
+      case 'weekly': return `每周${(t.weekDays ?? []).map((d) => WEEK_LABELS[d]).join('、')}`;
+      case 'monthly': return `每月 ${(t.monthDays ?? []).join('、')} 号`;
+      case 'dated': return `指定日期 ${t.date ?? ''}`;
+    }
   };
-  const confirmTask = (cid: string, tid: string) => confirmCustomTask(cid, tid);
+  const addTaskTo = (cid: string) => {
+    const text = taskText.trim();
+    if (text.length < 2) { setTaskMsg('请填写任务描述（至少 2 字）'); return; }
+    if (taskRepeat === 'weekly' && taskWeekDays.length === 0) { setTaskMsg('请选择每周执行的日子'); return; }
+    if (taskRepeat === 'monthly' && taskMonthDays.split(/[,，]/).some((v) => !(Number(v) >= 1 && Number(v) <= 31))) { setTaskMsg('每月几号请填写 1-31 的数字'); return; }
+    if (taskRepeat === 'dated' && !taskDate) { setTaskMsg('请选择指定日期'); return; }
+    addCustomTask(cid, {
+      text,
+      repeat: taskRepeat,
+      weekDays: taskRepeat === 'weekly' ? [...taskWeekDays].sort() : undefined,
+      monthDays: taskRepeat === 'monthly' ? taskMonthDays.split(/[,，]/).map((v) => Number(v.trim())).filter((v) => v >= 1 && v <= 31) : undefined,
+      date: taskRepeat === 'dated' ? taskDate : undefined,
+      judge: taskJudge,
+      points: Math.max(0, Number(taskPts) || 0),
+      itemId: taskItem || undefined,
+    });
+    setTaskText(''); setTaskItem('');
+    setTaskMsg('✅ 已添加任务');
+  };
   const removeTask = (cid: string, tid: string) => removeCustomTask(cid, tid);
-
-  // 卷卷豆 · 奖励兑换审批
-  const rewardRequests = useStore((s) => s.rewardRequests);
-  const approveReward = useStore((s) => s.approveReward);
-  const declineReward = useStore((s) => s.declineReward);
-  const [rwMsg, setRwMsg] = useState('');
-  const pendingRewards = targetChild ? (rewardRequests[targetChild.id] ?? []).filter((r) => r.status === 'pending') : [];
-
-  const cloudChildId = activeChildId ? childMap()[activeChildId] ?? null : null;
 
   const cloudLogin = async () => {
     setCloudMsg('');
@@ -121,22 +136,12 @@ export default function ParentPage() {
           }
           // 登录成功：先拉取云端合并，再推送本地（自动双向一致）
           const syn = await syncAfterLogin(activeChildId);
-          if (syn) setCloudMsg(`登录成功，已双向同步（拉取 ${syn.pulled} / 推送 ${syn.pushed} / 错题 ${syn.wrongs}）`);
+          if (syn) setCloudMsg(`登录成功，已双向同步（课程拉取 ${syn.pulled} / 推送 ${syn.pushed} / 剧情 ${syn.story} / 错题 ${syn.wrongs}）`);
         }
       }
     } else {
       setCloudMsg('登录失败（验证码 123456）');
     }
-  };
-
-  const cloudSync = async (dir: 'push' | 'pull') => {
-    setCloudMsg('');
-    if (!activeChildId || !cloudChildId) {
-      setCloudMsg('请先登录并选择孩子');
-      return;
-    }
-    const n = dir === 'push' ? await pushAll(cloudChildId, activeChildId) : await pullAll(cloudChildId, activeChildId);
-    setCloudMsg(`${dir === 'push' ? '已推送' : '已拉取'} ${n} 条`);
   };
 
   const loadCloudTab = async () => {
@@ -145,17 +150,6 @@ export default function ParentPage() {
       setServerChildren(me.children);
       setAccChildId((prev) => (prev ?? me.children[0]?.id ?? null));
     }
-    if (!cloudChildId) return;
-    const [p, r] = await Promise.all([api.plans(cloudChildId), api.weeklyReport(cloudChildId)]);
-    if (p?.ok) setPlans(p.plans);
-    if (r?.ok) setReport(r);
-  };
-
-  const addCloudPlan = async () => {
-    if (!cloudChildId || !planTitle.trim()) return;
-    await api.addPlan({ childId: cloudChildId, kind: 'custom', title: planTitle.trim() });
-    setPlanTitle('');
-    void loadCloudTab();
   };
 
   const createChildAccount = async (makeNew = false) => {
@@ -179,22 +173,12 @@ export default function ParentPage() {
   };
 
 
-  const genSystemPlan = async () => {
-    if (!cloudChildId) return;
-    const r = await api.systemPlan(cloudChildId);
-    setCloudMsg(r?.ok ? `已按年级自动排期 ${r.created} 项` : '自动排期失败');
-    void loadCloudTab();
-  };
-
-  const toggleCloudPlan = async (id: number, done: boolean) => {
-    await api.patchPlan(id, !done);
-    void loadCloudTab();
-  };
-
   const tryUnlock = () => {
     if (pin === parentPin) {
       playSfx('correct');
       setUnlocked(true);
+      // 会话内免密：本次打开应用期间再次进入家长中心不再要求输入 PIN
+      try { sessionStorage.setItem('sfz_parent_authed', '1'); } catch { /* ignore */ }
     } else {
       playSfx('wrong');
       setPinErr(true);
@@ -255,22 +239,10 @@ export default function ParentPage() {
                 <Toggle on={sound} onClick={toggleSound} label={t('sound')} />
               </div>
               <div className="setting-row">
-                <span>🎵 {t('bgm')}</span>
-                <Toggle on={musicOn} onClick={() => setMusicOn(!musicOn)} label={t('bgm')} />
-              </div>
-              <div className="setting-row">
                 <span>🗣️ {t('voice')}</span>
                 <Toggle on={voiceOn} onClick={() => setVoiceOn(!voiceOn)} label={t('voice')} />
               </div>
               <VoiceQualityTip />
-              <div className="setting-row">
-                <span>⏭️ {t('skipDemo')}</span>
-                <Toggle
-                  on={lessonSkipOn}
-                  onClick={() => setLessonSkipOn(!lessonSkipOn)}
-                  label={t('skipDemo')}
-                />
-              </div>
 
               <div className="setting-row col">
                 <span>{t('dailyLimit')}</span>
@@ -289,91 +261,87 @@ export default function ParentPage() {
 
               {/* 卷卷豆 · 家长自定义任务 */}
               <div className="setting-row col task-panel">
-                <span>⭐ 卷卷豆 · 自定义任务（家长确认后加分）</span>
+                <span>⭐ 家长任务 · 自定义（发给 {targetChild ? `${targetChild.avatar ?? '🧒'} ${targetChild.name}` : '孩子'}）</span>
                 {targetChild && (
                   <>
-                    <div className="task-add">
-                      <input
-                        className="pin-input wide"
-                        value={taskText}
-                        placeholder="如：自己整理书包 / 主动做家务"
-                        onChange={(e) => setTaskText(e.target.value)}
-                      />
-                      <input
-                        className="pin-input wide small-num"
-                        inputMode="numeric"
-                        value={taskPts}
-                        placeholder="卷卷豆"
-                        onChange={(e) => setTaskPts(e.target.value.replace(/\D/g, ''))}
-                      />
-                      <KidButton
-                        color="mint"
-                        disabled={taskText.trim().length < 2 || !taskPts}
-                        onClick={() => addTaskTo(targetChild.id)}
-                      >
-                        + 添加
-                      </KidButton>
+                    <div className="task-form">
+                      <div className="task-form-row">
+                        <input className="pin-input wide" value={taskText} placeholder="任务描述，如：自己整理书包" onChange={(e) => setTaskText(e.target.value)} />
+                      </div>
+                      <div className="task-form-row">
+                        <span className="task-form-label">周期</span>
+                        <select className="adm-input" value={taskRepeat} onChange={(e) => setTaskRepeat(e.target.value as CustomTaskRepeat)} aria-label="任务周期">
+                          <option value="once">一次性</option>
+                          <option value="daily">每天</option>
+                          <option value="weekly">每周若干天</option>
+                          <option value="monthly">每月若干天</option>
+                          <option value="dated">指定日期</option>
+                        </select>
+                        {taskRepeat === 'weekly' && (
+                          <span className="task-chips">
+                            {WEEK_LABELS.map((label, idx) => (
+                              <button key={idx} type="button" className={`task-chip ${taskWeekDays.includes(idx) ? 'on' : ''}`} onClick={() => setTaskWeekDays(taskWeekDays.includes(idx) ? taskWeekDays.filter((d) => d !== idx) : [...taskWeekDays, idx])}>{label}</button>
+                            ))}
+                          </span>
+                        )}
+                        {taskRepeat === 'monthly' && (
+                          <input className="adm-input" style={{ width: 120 }} value={taskMonthDays} placeholder="几号，如 1,15" onChange={(e) => setTaskMonthDays(e.target.value.replace(/[^0-9,,]/g, ''))} />
+                        )}
+                        {taskRepeat === 'dated' && (
+                          <input className="adm-input" type="date" value={taskDate} onChange={(e) => setTaskDate(e.target.value)} />
+                        )}
+                      </div>
+                      <div className="task-form-row">
+                        <span className="task-form-label">完成判定</span>
+                        <select className="adm-input" value={taskJudge} onChange={(e) => setTaskJudge(e.target.value as CustomTaskJudge)} aria-label="完成判定">
+                          <option value="auto">系统自动判断（完成后立即发奖励）</option>
+                          <option value="parent">家长判断（孩子提交后家长确认）</option>
+                        </select>
+                      </div>
+                      <div className="task-form-row">
+                        <span className="task-form-label">奖励</span>
+                        <input className="adm-input" style={{ width: 90 }} inputMode="numeric" value={taskPts} placeholder="卷卷豆" onChange={(e) => setTaskPts(e.target.value.replace(/\D/g, ''))} />
+                        <select className="adm-input" value={taskItem} onChange={(e) => setTaskItem(e.target.value)} aria-label="奖励物品">
+                          <option value="">无物品（仅卷卷豆）</option>
+                          {itemOptions.map((it) => (
+                            <option key={it.id} value={it.id}>{it.icon} {it.name}{it.cost ? `（原价 ${it.cost}）` : ''}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="task-form-row">
+                        <KidButton color="mint" disabled={taskText.trim().length < 2} onClick={() => addTaskTo(targetChild.id)}>+ 添加任务</KidButton>
+                        {taskMsg && <p className="saved-tip" style={{ margin: 0 }}>{taskMsg}</p>}
+                        <p className="task-tip" style={{ margin: 0 }}>当前卷卷豆 {targetPoints} · 发放物品会直接放进孩子的物品/衣柜</p>
+                      </div>
                     </div>
-                    <p className="task-tip">发给：{targetChild.avatar} {targetChild.name} · 当前卷卷豆 {targetPoints}</p>
                     {tasks.length === 0 ? (
                       <p className="task-empty">还没有任务，添加一个试试～</p>
                     ) : (
                       <div className="task-list">
-                        {tasks.map((task) => (
-                          <div key={task.id} className={`task-row ${task.done ? 'done' : ''}`}>
-                            <span className="task-row-text">
-                              {task.done ? '✅' : '📋'} {task.text}
-                              <small><IconBean size={13} gradient="gold" /> +{task.points}</small>
-                            </span>
-                            {!task.done ? (
-                              <KidButton color="green" className="xsmall" onClick={() => confirmTask(targetChild.id, task.id)}>
-                                确认完成
-                              </KidButton>
-                            ) : (
-                              <button className="task-del" onClick={() => removeTask(targetChild.id, task.id)}>✕</button>
-                            )}
-                          </div>
-                        ))}
+                        {tasks.map((task) => {
+                          const pending = task.pendingDays;
+                          const rewardName = task.itemId ? itemOptions.find((it) => it.id === task.itemId)?.name ?? task.itemId : null;
+                          return (
+                            <div key={task.id} className={`task-row ${task.doneDays.length > 0 && task.repeat === 'once' ? 'done' : ''}`}>
+                              <span className="task-row-text">
+                                📋 {task.text}
+                                <small>{repeatText(task)} · {task.judge === 'auto' ? '系统自动判断' : '家长审核'} · 🫘 {task.points}{rewardName ? ` · 🎁 ${rewardName}` : ''}</small>
+                                {pending.length > 0 && <small className="task-pending-tip">待审核：{pending.join('、')}</small>}
+                              </span>
+                              <span className="adm-ops">
+                                {task.judge === 'parent' && pending.map((day) => (
+                                  <button key={day} type="button" className="kid-btn green xsmall" onClick={() => confirmCustomTask(targetChild.id, task.id, day)}>确认发放（{day}）</button>
+                                ))}
+                                <button className="task-del" aria-label="删除任务" onClick={() => removeTask(targetChild.id, task.id)}>✕</button>
+                              </span>
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </>
                 )}
                 {!targetChild && <p className="task-empty">请先为孩子登录进入应用（无本地孩子档案）</p>}
-              </div>
-
-              {/* 卷卷豆 · 奖励兑换审批 */}
-              <div className="setting-row col task-panel">
-                <span>🎫 卷卷豆 · 兑换申请（孩子已提交）</span>
-                {targetChild && (
-                  <>
-                    {rwMsg && <p className="saved-tip">{rwMsg}</p>}
-                    {pendingRewards.length === 0 ? (
-                      <p className="task-empty">暂无待审批的兑换申请</p>
-                    ) : (
-                      <div className="task-list">
-                        {pendingRewards.map((r) => (
-                          <div key={r.id} className="task-row">
-                            <span className="task-row-text">
-                              {r.icon} {r.name}
-                              <small>需要 {r.cost} 卷卷豆 · 孩子余额 {targetPoints}</small>
-                            </span>
-                            <KidButton
-                              color="green"
-                              className="xsmall"
-                              onClick={() => {
-                                const ok = approveReward(targetChild.id, r.id);
-                                setRwMsg(ok ? `✅ 已批准「${r.name}」` : '卷卷豆不足，无法批准');
-                              }}
-                            >
-                              批准
-                            </KidButton>
-                            <button className="task-del" onClick={() => { declineReward(targetChild.id, r.id); setRwMsg('已拒绝该申请'); }}>✕</button>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                )}
               </div>
 
               <div className="setting-row col">
@@ -517,9 +485,7 @@ export default function ParentPage() {
                       ? `当前孩子：${profiles.find((p) => p.id === activeChildId)?.name}`
                       : '未选择本地孩子（云端功能照常可用）'}
                     <div className="cloud-actions">
-                      <KidButton color="green" onClick={() => void cloudSync('push')}>立即推送</KidButton>
-                      <KidButton color="sky" onClick={() => void cloudSync('pull')}>立即拉取</KidButton>
-                      <KidButton color="white" onClick={() => { cloudLogout(); setLogged(false); setPlans([]); setReport(null); setServerChildren([]); }}>退出</KidButton>
+                      <KidButton color="white" onClick={() => { cloudLogout(); setLogged(false); setServerChildren([]); }}>退出</KidButton>
                     </div>
                     <p className="plan-note">💡 已开启自动同步：学习完成后会自动备份到云端，无需手动操作。</p>
                   </div>
@@ -549,60 +515,6 @@ export default function ParentPage() {
                   <p className="plan-note">把「登录名（孩子名字）+ 密码」告诉孩子；孩子点首页「我是孩子，用账号登录」。</p>
 </div>
 
-                  <div className="cloud-card">
-                    <b>📋 学习计划</b>
-                    <div className="plan-add">
-                      <input className="pin-input small" placeholder="例如：每天读一篇课文" value={planTitle} onChange={(e) => setPlanTitle(e.target.value)} />
-                      <KidButton color="purple" disabled={!planTitle.trim()} onClick={() => void addCloudPlan()}>布置</KidButton>
-                    </div>
-                    <div className="cloud-actions">
-                      <KidButton color="yellow" onClick={() => void genSystemPlan()}>按年级自动排期</KidButton>
-                    </div>
-                    {plans.length === 0 ? (
-                      <p className="empty-tip small">还没有计划</p>
-                    ) : (
-                      <div className="plan-list">
-                        {plans.map((pl) => (
-                          <div key={pl.id} className={`plan-row ${pl.done ? 'done' : ''}`}>
-                            <button className="plan-check" onClick={() => void toggleCloudPlan(pl.id, pl.done === 1)}>{pl.done === 1 ? '✅' : '⬜'}</button>
-                            <div className="plan-text">
-                              <b>{pl.title}</b>
-                              {pl.detail && <small>{pl.detail}</small>}
-                              {pl.due_date && <small>截止 {pl.due_date}</small>}
-                            </div>
-                            <button className="plan-del" onClick={() => { void api.removePlan(pl.id); void loadCloudTab(); }}>✕</button>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="cloud-card">
-                    <b>❌ 错题本（{activeChildId ? (wrongs[activeChildId]?.length ?? 0) : 0}，学习时自动记录并同步）</b>
-                    {activeChildId && (wrongs[activeChildId] ?? []).length === 0 && <p className="empty-tip small">还没有错题</p>}
-                    {activeChildId && (wrongs[activeChildId] ?? []).map((w) => (
-                      <div key={w.uid} className="plan-row">
-                        <div className="plan-text">
-                          <small>{w.lessonName || w.lessonId} · {w.kind}</small>
-                          <b>{w.answer}</b>
-                        </div>
-                        <button className="plan-del" onClick={() => removeWrong(activeChildId, w.uid)}>✕</button>
-                      </div>
-                    ))}
-                  </div>
-
-                  {report && (
-                    <div className="cloud-card">
-                      <b>📊 本周学习报告（{report.weekStart} ~ {report.weekEnd}）</b>
-                      <div className="report-rows">
-                        <div className="report-row"><span className="report-game">练习次数</span><span className="report-metric">{report.summary.practiceCount}</span></div>
-                        <div className="report-row"><span className="report-game">错题数</span><span className="report-metric">{report.summary.wrongCount}</span></div>
-                        <div className="report-row"><span className="report-game">跟读次数</span><span className="report-metric">{report.summary.readAloudCount}</span></div>
-                        <div className="report-row"><span className="report-game">跟读均分</span><span className="report-metric">{report.summary.readAloudAvg}</span></div>
-                        <div className="report-row"><span className="report-game">累计星星</span><span className="report-metric">⭐ {report.summary.totalStars}</span></div>
-                      </div>
-                    </div>
-                  )}
                 </>
               )}
               {cloudMsg && <p className="saved-tip">{cloudMsg}</p>}

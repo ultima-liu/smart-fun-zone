@@ -581,6 +581,8 @@ export default function ChineseTextbookLessonPage() {
   const activeChildId = useStore((state) => state.activeChildId);
   const collectChars = useStore((state) => state.collectChars);
   const applyPoints = useStore((state) => state.applyPoints);
+  // 学习断点（与数学/英语课同思路）：记住本课进行到的阶段，语文目录页据此显示"继续上次学习"；完成本课后清除
+  const flowKey = `sfz-chinese-flow-v1:${activeChildId ?? 'guest'}:${lessonId}`;
   const [phase, setPhase] = useState(0);
   const [unlocked, setUnlocked] = useState(0);
   const [visited, setVisited] = useState<Set<string>>(new Set());
@@ -591,9 +593,21 @@ export default function ChineseTextbookLessonPage() {
   const saidPhaseDone = useRef(-1);
 
   useEffect(() => {
-    setPhase(0); setUnlocked(0); setVisited(new Set()); setReadDone(false); setStudyDone(false); setExtensionDone(false); setTaskDone(false); saidPhaseDone.current = -1; stopSpeaking();
-  }, [lessonId]);
+    let savedPhase = 0;
+    let savedUnlocked = 0;
+    try {
+      const saved = JSON.parse(localStorage.getItem(flowKey) ?? '{}') as { phase?: number; unlocked?: number };
+      savedPhase = Math.min(4, Math.max(0, Number(saved.phase) || 0));
+      savedUnlocked = Math.min(4, Math.max(0, Number(saved.unlocked) || 0));
+    } catch { /* 损坏的旧断点忽略 */ }
+    setPhase(savedPhase); setUnlocked(savedUnlocked); setVisited(new Set()); setReadDone(false); setStudyDone(false); setExtensionDone(false); setTaskDone(false); saidPhaseDone.current = -1; stopSpeaking();
+  }, [lessonId, flowKey]);
   useEffect(() => () => stopSpeaking(), []);
+
+  // 断点只在阶段切换时写入（不在恢复时回写，避免把旧值带到新课）
+  const saveFlow = (nextPhase: number, nextUnlocked: number) => {
+    try { localStorage.setItem(flowKey, JSON.stringify({ phase: nextPhase, unlocked: nextUnlocked })); } catch { /* 存储不可用不影响学习 */ }
+  };
 
   const lessonIndex = useMemo(() => CHINESE_TEXTBOOK_LESSONS.findIndex((item) => item.id === lesson?.id), [lesson]);
   if (!lesson) return <main className="ct-page ct-missing page"><h1>这节课还没有开放</h1><button onClick={() => nav('/subject/chinese')}>返回语文目录</button></main>;
@@ -610,8 +624,13 @@ export default function ChineseTextbookLessonPage() {
       narrateAfterCurrent('这一步全部完成，真棒！点下面亮起来的按钮，继续下一步。');
     }
   }, [phase, observeDone, readDone, studyDone, extensionDone, taskDone]);
-  const goNext = () => { const next = Math.min(4, phase + 1); setUnlocked((value) => Math.max(value, next)); setPhase(next); stopSpeaking(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const goNext = () => {
+    const next = Math.min(4, phase + 1);
+    const mergedUnlocked = Math.max(unlocked, next);
+    setUnlocked(mergedUnlocked); setPhase(next); saveFlow(next, mergedUnlocked); stopSpeaking(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const finish = (stars: number) => {
+    try { localStorage.removeItem(flowKey); } catch { /* 忽略存储不可用 */ }
     const key = `sfz-chinese-textbook-progress:${activeChildId ?? 'guest'}`;
     try {
       const stored = JSON.parse(localStorage.getItem(key) ?? '{}');
@@ -648,7 +667,7 @@ export default function ChineseTextbookLessonPage() {
       <div><span>{lesson.unit} · 教材 {lesson.page}</span><h1>{lesson.title}</h1><p>{lesson.subtitle}</p></div>
     </header>
     <nav className="ct-phase-nav" aria-label="本课学习步骤">
-      {['看图发现', '逐句点读', '教材练习', '动手表达', '迁移挑战'].map((label, index) => <button key={label} disabled={index > unlocked} className={`${phase === index ? 'active' : ''} ${index < unlocked ? 'done' : ''}`} onClick={() => { stopSpeaking(); setPhase(index); }}><b>{index < unlocked ? '✓' : index + 1}</b><span>{label}</span></button>)}
+      {['看图发现', '逐句点读', '教材练习', '动手表达', '迁移挑战'].map((label, index) => <button key={label} disabled={index > unlocked} className={`${phase === index ? 'active' : ''} ${index < unlocked ? 'done' : ''}`} onClick={() => { stopSpeaking(); setPhase(index); saveFlow(index, unlocked); }}><b>{index < unlocked ? '✓' : index + 1}</b><span>{label}</span></button>)}
     </nav>
     {/* 进入每一页（课 × 阶段）都自动播报一次引导：key 带上课 id，上一课/下一课即使阶段号相同也会重讲 */}
     <TeacherGuideNote key={`${lesson.id}:${phase}`} text={phaseGuides(lesson)[phase]} />

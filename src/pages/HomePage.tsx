@@ -5,6 +5,7 @@ import { EMPTY, useGates } from '../features';
 import { useI18n } from '../i18n';
 import { KidButton } from '../components/ui';
 import Modal from '../components/Modal';
+import VoiceField from '../components/VoiceField';
 import { AVATARS, GRADES, SUBJECTS, gradeLabel, type Grade } from '../types';
 import { speak, playSfx } from '../speech';
 import { tryCompleteStoryNode } from '../storyProgress';
@@ -23,6 +24,8 @@ import { CosmicFleet } from '../components/cosmos';
 import CurrencyBar from '../components/CurrencyBar';
 import AttrRadar from '../components/AttrRadar';
 import { pendingPacks, LOOT_MAX_PACKS, type LootDrop } from '../content/expedition';
+import { customTaskDueToday, itemById } from '../points';
+import { localDayKey } from '../dailyCheckin';
 import { dueReviewDays, reviewEntries } from '../reviewPlan';
 
 /** 登录引导小火箭：纯 SVG 自绘，船头固定朝上（星门中央旋转 180° 即“俯冲钻入”，四周飞船直接使用本图） */
@@ -120,6 +123,9 @@ export default function HomePage() {
   // 消费待演示的解锁目标（功能页完成剧情后写入 → 回到首页播放解封动画）
   const storyPulse = useStore((s) => s.storyPulse);
   const setStoryPulse = useStore((s) => s.setStoryPulse);
+  // 必须在“无孩子/建档”早返回之前订阅，避免登录后激活孩子时改变 Hook 数量。
+  const customTasksMap = useStore((s) => s.customTasks);
+  const childCompleteTask = useStore((s) => s.childCompleteTask);
 
   useEffect(() => {
     const syncFullscreen = () => setIsFullscreen(Boolean(document.fullscreenElement));
@@ -277,11 +283,11 @@ export default function HomePage() {
         ) : (
           <div className="create-card">
             <h3>{t('yourName')}</h3>
-            <input
-              className="name-input"
+            <VoiceField
+              inputClass="name-input"
               value={name}
               placeholder={t('namePlaceholder')}
-              onChange={(e) => setName(e.target.value)}
+              onChange={setName}
               maxLength={12}
             />
             <h3>{t('chooseAvatar')}</h3>
@@ -361,6 +367,9 @@ export default function HomePage() {
     return floors[garden.stage] > 0 ? cur / floors[garden.stage] : totalStars >= 6 ? 1 : totalStars / 6;
   })();
   const daily = DAILY_TASKS.map((tk) => ({ tk, p: taskProgress(tk, child.id) })).filter((x) => x.p.enabled);
+  // 家长自定义任务：今天到期的
+  const todayKey = localDayKey();
+  const dueCustom = child ? (customTasksMap[child.id] ?? []).filter(customTaskDueToday) : [];
   const doneCount = daily.filter((x) => x.p.done).length;
   const pendingCount = daily.filter((x) => !x.p.done).length;
   const weekly = WEEKLY_TASKS.map((tk) => ({ tk, p: taskProgress(tk, child.id) })).filter((x) => x.p.enabled);
@@ -584,6 +593,36 @@ export default function HomePage() {
                   </button>
                 );
               })}
+              {taskTab === 'day' && dueCustom.length > 0 && (
+                <>
+                  <div className="tp-custom-head">📋 家长任务</div>
+                  {dueCustom.map((task) => {
+                    const doneToday = task.doneDays.includes(todayKey);
+                    const pending = task.pendingDays.includes(todayKey);
+                    const rewardName = task.itemId ? itemById(task.itemId)?.name : null;
+                    return (
+                      <div key={task.id} className={`tp-task ${doneToday ? 'done' : pending ? 'doing' : 'todo'}`}>
+                        <span className={`tp-check ${doneToday ? 'on' : ''}`}>{doneToday ? '✓' : ''}</span>
+                        <span className="tp-task-icon">📋</span>
+                        <span className="tp-task-main">
+                          <span className="tp-task-name">{task.text}</span>
+                          <span className="tp-task-meta">
+                            {doneToday ? '已完成，奖励已发放' : pending ? '待家长确认' : task.judge === 'parent' ? '完成后由家长确认' : '完成后自动发放'}
+                            {' · '}
+                            {task.points > 0 && <>🫘 {task.points}</>}
+                            {task.points > 0 && rewardName && ' + '}
+                            {rewardName && <>🎁 {rewardName}</>}
+                            {!task.points && !rewardName && '无奖励'}
+                          </span>
+                        </span>
+                        {!doneToday && !pending && (
+                          <button className="tp-custom-done" onClick={() => childCompleteTask(child.id, task.id)}>已完成</button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </>
+              )}
             </div>
           </section>
         </aside>

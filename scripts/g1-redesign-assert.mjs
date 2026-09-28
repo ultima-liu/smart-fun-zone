@@ -1,6 +1,6 @@
 /* 样板课《金木水火土》学课文图文分步走查：出现配图、田字格步骤、口诀不与要点重复 */
 import { chromium } from '@playwright/test';
-const BASE = 'http://localhost:4173';
+const BASE = 'http://localhost:5173';
 const fails = [];
 const check = (n, c, e = '') => { console.log(`${c ? 'PASS' : 'FAIL'} ${n}${e ? ' — ' + e : ''}`); if (!c) fails.push(n); };
 const browser = await chromium.launch();

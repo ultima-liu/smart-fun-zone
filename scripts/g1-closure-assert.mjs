@@ -1,6 +1,6 @@
 /* 闭环终检：认生字(TraceCard) 与 去练习 节点可走通，不白屏、有内容 */
 import { chromium } from '@playwright/test';
-const BASE = 'http://localhost:4173';
+const BASE = 'http://localhost:5173';
 const fails = [];
 const check = (n, c, e = '') => { console.log(`${c ? 'PASS' : 'FAIL'} ${n}${e ? ' — ' + e : ''}`); if (!c) fails.push(n); };
 const browser = await chromium.launch();

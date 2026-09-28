@@ -51,13 +51,13 @@ export default function ArchivePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [child?.id]);
 
-  if (!child) return null;
-
   const setCards = useMemo(() => (activeSet === 'all' ? STAR_CARDS : cardsBySet(activeSet)), [activeSet]);
   const displayCards = useMemo(() => {
     if (activeRarity === 'all') return setCards;
     return setCards.filter((c) => c.rarity === activeRarity);
   }, [setCards, activeRarity]);
+
+  if (!child) return <ArchiveGuestPreview zh={zh} />;
 
   const totalOwned = owned.length;
   const totalCards = STAR_CARDS.length;
@@ -182,7 +182,7 @@ export default function ArchivePage() {
               return (
                 <div
                   key={c.id}
-                  className={`ccard${lit ? ' lit' : ' unlit'} c-${c.rarity}`}
+                  className={`ccard${lit ? ' lit' : ' unlit'} c-${c.rarity}${!lit && c.setId === 'paw-patrol' ? ' ccard-character-preview' : ''}`}
                   style={{ '--rc': rarityColor(c.rarity) } as React.CSSProperties}
                   onClick={() => { sfx.click(); setPreview(c); setPreviewFlipped(false); }}
                   title={zh ? c.name.zh : c.name.en}
@@ -290,6 +290,61 @@ export default function ArchivePage() {
           </div>,
           document.body,
         )}
+    </div>
+  );
+}
+
+/** 未登录时也保留图鉴入口，避免新套系在空白页中不可见。 */
+function ArchiveGuestPreview({ zh }: { zh: boolean }) {
+  return (
+    <div className="page archive-page archive-guest-preview">
+      <PageHero
+        eyebrow={zh ? '星核档案库' : 'Star Archive'}
+        title={zh ? '图鉴预览' : 'Card Preview'}
+        planet="academy"
+      />
+      <section className="summon-panel">
+        <div className="summon-glow" />
+        <div className="summon-info">
+          <h3>{zh ? '先看看伙伴们吧' : 'Meet the collection'}</h3>
+          <p>{zh ? `档案库共有 ${STAR_CARDS.length} 张卡牌。登录孩子档案后即可召唤、点亮和领取套系奖励。` : `The Archive has ${STAR_CARDS.length} cards. Sign in to summon, unlock and claim set rewards.`}</p>
+        </div>
+      </section>
+      <section className="filter-panels" aria-label={zh ? '套系预览' : 'Set preview'}>
+        <div className="filter-tier">
+          <span className="filter-label">{zh ? '套系' : 'Series'}</span>
+          <div className="filter-row">
+            {CARD_SETS.map((set) => (
+              <span className="filter-chip" key={set.id}>
+                <span className="fc-icon">{set.icon}</span>
+                <b>{zh ? set.name.zh : set.name.en}</b>
+                <small>0/{cardsBySet(set.id).length}</small>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="gallery-shelf">
+        <div className="rarity-cards">
+          {STAR_CARDS.map((card) => (
+            <div
+              key={card.id}
+              className={`ccard unlit c-${card.rarity}${card.setId === 'paw-patrol' ? ' ccard-character-preview' : ''}`}
+              style={{ '--rc': rarityColor(card.rarity) } as React.CSSProperties}
+              title={zh ? card.name.zh : card.name.en}
+            >
+              <div className="ccard-face ccard-front">
+                <CardPortrait card={card} size={172} />
+                <div className="ccard-titleplate">
+                  <span className="ccard-name">{zh ? card.name.zh : card.name.en}</span>
+                  <small>{zh ? CARD_SETS.find((set) => set.id === card.setId)?.name.zh : CARD_SETS.find((set) => set.id === card.setId)?.name.en}</small>
+                </div>
+                <div className="ccard-veil" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

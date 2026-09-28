@@ -3,9 +3,9 @@ import { ALL_MATH_LESSONS } from '../content/mathUpperCurriculum';
 import { MATH_KNOWLEDGE_EXTENSION } from '../content/mathKnowledgeExtension';
 
 describe('整册数学知识延伸', () => {
-  it('42 课逐课有知识桥，答案在选项中，复现来源是已存在课时', () => {
+  it('47 课逐课有知识桥，答案在选项中，复现来源是已存在课时', () => {
     const ids = ALL_MATH_LESSONS.map((lesson) => lesson.id);
-    expect(ids).toHaveLength(42);
+    expect(ids).toHaveLength(47);
     expect(Object.keys(MATH_KNOWLEDGE_EXTENSION).sort()).toEqual([...ids].sort());
     for (const [id, card] of Object.entries(MATH_KNOWLEDGE_EXTENSION)) {
       expect(card.title, id).not.toBe('');

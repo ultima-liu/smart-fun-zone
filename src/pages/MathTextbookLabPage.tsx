@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { api } from '../api';
@@ -6,6 +6,10 @@ import { speakOnce, speakSeq, stopSpeaking, playSfx } from '../speech';
 import { useAsr, readScore } from '../speechAssess';
 import { ALL_MATH_LESSONS, EXTENDED_MATH_LESSONS, MATH_UPPER_UNITS, type ExtendedMathLesson, type MathActivity } from '../content/mathUpperCurriculum';
 import { MathKnowledgeBridge } from './MathKnowledgeBridge';
+import MathTextbookTaskPack, { ACTION_TASK_NUMERALS, ActionStation, IsoBlock, MathLessonTaskProgressProvider, OblComposition, textbookTaskTitle, useMathLessonTaskProgress, useMathTaskCompletion } from '../components/MathTextbookTaskPack';
+import { SolidShapeGlyph, solidKindByName } from '../components/SolidShapeGlyph';
+import VoiceField from '../components/VoiceField';
+import { MATH_FLOW_CONTENT_VERSION, migrateMathFlowSnapshot } from '../content/mathLearningProgress';
 import { scheduleReview } from '../reviewPlan';
 import '../math-textbook-lab.css';
 import '../chinese-textbook.css';
@@ -13,6 +17,57 @@ import '../chinese-textbook.css';
 type LessonId = string;
 
 type Prompt = { question: string; options: string[]; answer?: number };
+
+/**
+ * 逐课审核后的“先猜”视觉证据。每条都只写题干已经给出的条件，不能把选项答案
+ * 或验证结果画进图里。不存在此表中的课时会在开发阶段直接显示审计提示，避免悄悄
+ * 回退到通用 emoji 场景。
+ */
+type GuessEvidence = { kind: 'quantity' | 'change' | 'relation' | 'position' | 'structure' | 'shape'; facts: string[] };
+const GUESS_EVIDENCE: Record<string, GuessEvidence> = {
+  playground: { kind: 'quantity', facts: ['游戏口令：开 3 朵', '需要围成一圈的人数'] },
+  'classroom-discover': { kind: 'position', facts: ['小朋友面向黑板', '窗户的位置要以小朋友为参照'] },
+  'classroom-games': { kind: 'position', facts: ['任务：摸左耳', '先分清自己的左、右'] },
+  'learning-readiness': { kind: 'structure', facts: ['钟面指向 8:30', '这是一天中的上课时刻'] },
+  'add-within-5': { kind: 'change', facts: ['原来有 3 只', '又来了 1 只'] },
+  'subtract-within-5': { kind: 'change', facts: ['原来有 4 只小鸟', '其中 1 只飞走'] },
+  zero: { kind: 'change', facts: ['盘子里原有苹果', '苹果被全部拿走'] },
+  'unit1-review': { kind: 'relation', facts: ['两部分可以合成整体', '整体也能去掉一部分'] },
+  'six-to-nine': { kind: 'change', facts: ['已有 5 个', '再添 1 个'] },
+  'compare-order-nine': { kind: 'quantity', facts: ['左边有 6 个点', '右边有 7 个点'] },
+  'compose-six-nine': { kind: 'relation', facts: ['整体是 8', '其中一部分是 3'] },
+  'addsub-six-seven': { kind: 'relation', facts: ['两个部分：5 和 1', '整体：6'] },
+  'solve-total-within-7': { kind: 'relation', facts: ['左边 4 只', '右边 2 只', '问题问一共'] },
+  'solve-remain-within-7': { kind: 'change', facts: ['一共有 7 只', '跳走 2 只'] },
+  'addsub-eight-nine': { kind: 'relation', facts: ['两个部分：5 和 4', '寻找它们合成的整体'] },
+  'select-info-eight-nine': { kind: 'structure', facts: ['9 只鹿，跑走 3 只', '旁边还有蘑菇和天鹅', '问题只问鹿'] },
+  ten: { kind: 'structure', facts: ['十格框已有 9 格', '还有 1 个空格'] },
+  'addsub-ten': { kind: 'structure', facts: ['十格框已有 6 个', '寻找补满十的空格'] },
+  'continuous-add-sub': { kind: 'change', facts: ['原来 5 只', '先来 2 只，再来 1 只'] },
+  'mixed-add-sub': { kind: 'change', facts: ['车上原有 4 人', '上来 3 人，再下去 2 人'] },
+  'unit2-review': { kind: 'relation', facts: ['用分与合看加减法', '整体和部分彼此相关'] },
+  'solid-shapes': { kind: 'shape', facts: ['盒子、骰子、罐子、球', '比较它们能不能滚动'] },
+  'solid-building': { kind: 'shape', facts: ['要搭高塔', '需要选择稳定的底座'] },
+  'solid-compose': { kind: 'shape', facts: ['两个相同小正方体', '并排、贴紧放置'] },
+  'ten-again': { kind: 'structure', facts: ['有 10 根小棒', '每 10 根可以捆成一组'] },
+  'eleven-twenty': { kind: 'structure', facts: ['1 个十', '5 个一'] },
+  'order-twenty': { kind: 'position', facts: ['数线标出 10、12、20', '比较 12 到两端的距离'] },
+  'simple-addsub-twenty': { kind: 'relation', facts: ['1 个十和 3 个一', '合起来表示一个数'] },
+  'between-positions': { kind: 'position', facts: ['标出第 10 人和第 15 人', '观察两端与中间的位置'] },
+  'unit4-review': { kind: 'structure', facts: ['1 个十', '8 个一'] },
+  'plus-nine': { kind: 'structure', facts: ['9 和 4', '9 还差 1 个凑成十'] },
+  'plus-eight-seven-six': { kind: 'structure', facts: ['8', '8 还差 2 个凑成十'] },
+  'plus-eight-nine-strategies': { kind: 'structure', facts: ['8 和 9', '8 还差 2 个凑成十'] },
+  'plus-five-four-three-two': { kind: 'relation', facts: ['5 和 8 相加', '两个加数可以交换位置'] },
+  'solve-total': { kind: 'relation', facts: ['男生 5 人', '女生 10 人', '问题问一共'] },
+  'find-original': { kind: 'relation', facts: ['领走 6 个', '还剩 5 个', '问题问原来'] },
+  'addition-table': { kind: 'structure', facts: ['加法表中有多道算式', '观察相同得数的位置'] },
+  'unit5-review': { kind: 'structure', facts: ['进位加法先凑整十', '十是关键的中间数'] },
+  'review-numbers': { kind: 'structure', facts: ['10 个一', '可以看成 1 个十'] },
+  'review-relations': { kind: 'relation', facts: ['两个部分', '合成一个整体'] },
+  'review-shapes': { kind: 'shape', facts: ['积木有不同形状', '搭建前先看形状和稳定性'] },
+  'review-application': { kind: 'structure', facts: ['图中有信息和问题', '先找与问题有关的信息'] },
+};
 
 const LESSONS = ALL_MATH_LESSONS;
 
@@ -138,7 +193,7 @@ function TeacherBar({ text, auto = true, ask }: { text: string; auto?: boolean; 
           </div>
           {askDown && <p className="mt-ask-down">🔇 聪聪暂时回答不了（需要家长登录且 AI 服务已配置），稍后再试哦。</p>}
           <form className="mt-ask-form" onSubmit={(e) => { e.preventDefault(); ask_(input); }}>
-            <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="输入你的问题，比如：为什么要一个对一个？" maxLength={120} />
+            <VoiceField value={input} onChange={setInput} placeholder="说出你的问题，比如：为什么要一个对一个？" maxLength={120} />
             <button type="submit" disabled={!input.trim() || loading}>发送</button>
           </form>
         </div>
@@ -161,7 +216,45 @@ type ArenaQuestion = {
   answer: string;
   say: string;
   objective?: string;
+  /** 错题后的方法复盘题不再进入错题本，避免同一误区重复记账。 */
+  remedial?: boolean;
+  /** 连对后的进阶迁移题：仍计入闯关表现与错题诊断。 */
+  challenge?: boolean;
 };
+
+/** 把题目考查的能力翻译成孩子和家长都能用的复习动作，而不是只记一次错选。 */
+function arenaReviewMeta(question: ArenaQuestion) {
+  const objective = question.objective ?? '数学方法';
+  if (/凑十|十格|补空|等量转换|找凑十伙伴/.test(objective)) return { diagnosis: '可能只盯着算式，没有先看十格框还空几格。', remedy: '先数空格，找到“还差几”，再把剩下的数分开。' };
+  if (/图形|稳定|分类/.test(objective)) return { diagnosis: '可能只看了物品的样子，没有观察它的面和能不能滚。', remedy: '摸一摸、想一想：它有哪些平平的面？会往哪个方向滚？' };
+  if (/逆向|还原|反向/.test(objective)) return { diagnosis: '可能把“原来、拿走、还剩”三个量的位置弄混了。', remedy: '先在图上圈出已知的两部分，再想要求的是哪一部分。' };
+  if (/图式|模型|运算|关系/.test(objective)) return { diagnosis: '可能还没先看清题目里的整体和部分。', remedy: '先把“谁是一共、谁是一部分、问什么”说出来，再选方法。' };
+  if (/顺序|后继|点数|数序|变化/.test(objective)) return { diagnosis: '可能没有从确定的起点按顺序一个一个数。', remedy: '手指从起点开始，数过一个就指住一个，最后一个数词就是总数。' };
+  return { diagnosis: '这道题的方法还不够稳，换个说法再想一次。', remedy: '回到题目，先找已知信息和要解决的问题，再慢慢作答。' };
+}
+
+/** 先把方法补稳，再回到原题；避免孩子只是碰巧记住一次选项。 */
+function remedialArenaQuestion(source: ArenaQuestion): ArenaQuestion {
+  const objective = source.objective ?? '';
+  const base = { remedial: true, objective: '方法复盘', say: '先复盘一下刚才的方法，再回到原题。' };
+  if (/凑十|十格|补空|等量转换|找凑十伙伴/.test(objective)) return { ...base, q: '十格框里已经有一些圆片，算之前应该先看什么？', opts: ['还空着几格', '圆片是什么颜色', '框有多宽'], answer: '还空着几格' };
+  if (/图形|稳定|分类/.test(objective)) return { ...base, q: '给物品分图形家族时，先观察什么最可靠？', opts: ['面的形状和能不能滚', '物品颜色', '名字有几个字'], answer: '面的形状和能不能滚' };
+  if (/逆向|还原|反向/.test(objective)) return { ...base, q: '题目里有“原来、拿走、还剩”时，先做什么？', opts: ['圈出已知的两部分和所求部分', '只看最大的数', '先猜一个答案'], answer: '圈出已知的两部分和所求部分' };
+  if (/图式|模型|运算|关系/.test(objective)) return { ...base, q: '决定用加法还是减法前，先要看清什么？', opts: ['整体、部分和问题', '数字写得大不大', '题目有几行'], answer: '整体、部分和问题' };
+  if (/顺序|后继|点数|数序|变化/.test(objective)) return { ...base, q: '数一排物品时，怎样做才不容易漏？', opts: ['从一端开始，一个一个数', '从中间随便跳着数', '只看最大的物品'], answer: '从一端开始，一个一个数' };
+  return { ...base, q: '遇到新的数学题，第一步最该做什么？', opts: ['看清信息和要解决的问题', '马上猜一个答案', '只挑最大的数字'], answer: '看清信息和要解决的问题' };
+}
+
+/** 连对后换一层表征或逆向关系，避免已经掌握的孩子只重复同难度题。 */
+function progressiveArenaQuestion(source: ArenaQuestion): ArenaQuestion {
+  const objective = source.objective ?? '';
+  const base = { challenge: true, say: '你已经连对三题了，试试这一道进阶挑战。' };
+  if (/凑十|十格|补空|等量转换|找凑十伙伴/.test(objective)) return { ...base, objective: '进阶挑战 · 凑十', q: '9＋6 时，先从 6 里分出几给 9，剩下几？', opts: ['分 1，剩 5', '分 2，剩 4', '分 5，剩 1'], answer: '分 1，剩 5' };
+  if (/图形|稳定|分类/.test(objective)) return { ...base, objective: '进阶挑战 · 图形空间', q: '把圆柱和正方体搭高塔，怎样放更稳？', opts: ['正方体在下面，圆柱平面朝下', '圆柱横放在下面', '球放在最下面'], answer: '正方体在下面，圆柱平面朝下' };
+  if (/逆向|还原|图式|模型|运算|关系/.test(objective)) return { ...base, objective: '进阶挑战 · 数量关系', q: '一共有 12 个，拿走一些后还剩 5 个，拿走了几个？', opts: ['7 个', '5 个', '17 个'], answer: '7 个' };
+  if (/顺序|后继|点数|数序|变化/.test(objective)) return { ...base, objective: '进阶挑战 · 数与顺序', q: '从 8 开始接着数 4 个数，最后一个数是？', opts: ['12', '11', '4'], answer: '12' };
+  return { ...base, objective: '进阶挑战 · 方法检查', q: '做完一道题，哪种检查最可靠？', opts: ['把答案放回原来的情境检查', '只看答案写得大不大', '立刻换一个答案'], answer: '把答案放回原来的情境检查' };
+}
 
 const numberOptions = (answer: number, min = 0) => {
   const values = [answer, Math.max(min, answer - 1), answer + 1];
@@ -176,6 +269,7 @@ function PracticeArena({ gen, count = 5, onPass, onWrong }: { gen: (round: numbe
   const [picked, setPicked] = useState<string | null>(null);
   const [wrong, setWrong] = useState(0);
   const [streak, setStreak] = useState(0);
+  const [challengeAdded, setChallengeAdded] = useState(false);
   const [passed, setPassed] = useState(false);
   const q = queue[idx];
 
@@ -189,24 +283,32 @@ function PracticeArena({ gen, count = 5, onPass, onWrong }: { gen: (round: numbe
     if (right) {
       const nextStreak = streak + 1;
       setStreak(nextStreak);
+      const addChallenge = nextStreak === 3 && !challengeAdded;
+      if (addChallenge) setChallengeAdded(true);
       setTimeout(() => {
-        setPicked(null);
-        if (idx + 1 >= queue.length) {
+        if (idx + 1 >= queue.length && !addChallenge) {
           const stars = wrong === 0 ? 3 : wrong <= 2 ? 2 : 1;
           setPassed(true);
           playSfx('win');
           teacherSay(`闯关成功！你获得了${stars}颗星！`);
           onPass(stars);
-        } else setIdx((i) => i + 1);
+        } else {
+          if (addChallenge) setQueue((qq) => [...qq.slice(0, idx + 1), progressiveArenaQuestion(q), ...qq.slice(idx + 1)]);
+          setPicked(null);
+          setIdx((i) => i + 1);
+        }
       }, 800);
     } else {
       setWrong((w) => w + 1);
       setStreak(0);
-      onWrong?.(q, o);
+      if (!q.remedial) onWrong?.(q, o);
       setTimeout(() => {
-        setQueue((qq) => [...qq, q]); // 错题插队尾重练
+        // 原题先留到队尾，下一题立刻补方法；复盘题答错只把自身排回下一位，不会无限生成新题。
+        setQueue((qq) => q.remedial
+          ? [...qq.slice(0, idx + 1), q, ...qq.slice(idx + 1)]
+          : [...qq.slice(0, idx + 1), remedialArenaQuestion(q), ...qq.slice(idx + 1), q]);
         setPicked(null);
-        setIdx((i) => (i + 1 < queue.length ? i + 1 : i));
+        setIdx((i) => i + 1);
       }, 950);
     }
   };
@@ -217,6 +319,7 @@ function PracticeArena({ gen, count = 5, onPass, onWrong }: { gen: (round: numbe
     setPicked(null);
     setWrong(0);
     setStreak(0);
+    setChallengeAdded(false);
     setPassed(false);
     teacherSay('再来一次。这次慢慢看清楚每一题，冲刺三颗星！');
   };
@@ -287,29 +390,222 @@ function Checkpoint({ question, options, answer, onPass }: { question: string; o
   );
 }
 
-/** 动手环节只保留一个主任务；聪聪的提示随操作状态变化，文字和语音同步。 */
-function OperationCoach({ task, coach, complete }: { task: string; coach: string; complete: boolean }) {
-  const lastCoach = useRef<string | null>(null);
+/** 把“选到正确理由”再往前推一步：用完整句式说出观察和判断。 */
+function ReasonVoicePractice({ reason }: { reason: string }) {
+  const sentence = `我这样想：${reason}。`;
+  const [said, setSaid] = useState('');
+  const [score, setScore] = useState<number | null>(null);
+  const onResult = (heard: string) => {
+    setSaid(heard);
+    const next = readScore(sentence, heard);
+    setScore(next);
+    feedback(next >= .45);
+  };
+  const asr = useAsr(onResult);
+  return <div className="mt-readaloud mt-reason-voice" aria-label="把理由说完整">
+    <small>把理由说完整 🎤</small>
+    <b className="mt-readaloud-sentence">「{sentence}」</b>
+    <p>先听示范，再用自己的话把理由讲出来；不必和示范一字不差。</p>
+    <div className="mt-readaloud-ops">
+      <button type="button" onClick={() => speakOnce(sentence, 'zh', .85)}>🔊 听示范</button>
+      {asr.supported
+        ? <button type="button" className={`mt-mic ${asr.listening ? 'listening' : ''}`} onClick={() => asr.listening ? asr.stop() : asr.start()}>{asr.listening ? '🎙️ 正在听…说完点这里' : '🎤 我来讲理由'}</button>
+        : <button type="button" onClick={() => setScore(1)}>设备不支持语音识别 · 我已说完</button>}
+    </div>
+    {said && <i className="mt-readaloud-heard">听到你说：{said}</i>}
+    {score !== null && <div className="mt-readaloud-scores"><span className={score >= .45 ? 'ok' : 'no'}>{score >= .45 ? '✓ 理由讲清楚啦' : '再试着说出“因为”和关键方法'}</span></div>}
+  </div>;
+}
+
+/** 动手试顶部的聪聪老师任务牌：逐条列出教材任务的标题与完成状态，提示随操作变化。 */
+function OperationCoach({ tasks, coach, hideHint = false }: { tasks: { title: string; done: boolean }[]; coach?: string; hideHint?: boolean }) {
+  const complete = tasks.length > 0 && tasks.every((task) => task.done);
+  const activeIndex = tasks.findIndex((task) => !task.done);
+  const hint = complete
+    ? '教材任务都完成了，可以进入下一步。'
+    : coach ?? `先完成教材任务${ACTION_TASK_NUMERALS[activeIndex] ?? ''}：${tasks[activeIndex]?.title ?? ''}。`;
+  const lastHint = useRef<string | null>(null);
   useEffect(() => {
-    if (lastCoach.current !== null && lastCoach.current !== coach) teacherSay(coach);
-    lastCoach.current = coach;
-  }, [coach]);
+    if (hideHint) return;
+    if (lastHint.current !== null && lastHint.current !== hint) teacherSay(hint);
+    lastHint.current = hint;
+  }, [hint, hideHint]);
   return (
     <aside className={`mt-operation-coach ${complete ? 'complete' : ''}`} aria-live="polite">
       <div className="mt-operation-coach-tag"><span aria-hidden="true">🤖</span><b>聪聪老师</b></div>
-      <div><small>本环节只做这一件事</small><strong>{complete ? '关键操作已完成，可以继续探索。' : task}</strong><p>{coach}</p></div>
+      <div className="mt-operation-coach-body">
+        <ul className="mt-operation-tasks">
+          {tasks.map((task, index) => (
+            <li key={index} className={task.done ? 'done' : index === activeIndex ? 'active' : ''}>
+              <i aria-hidden="true">{task.done ? '✓' : index + 1}</i>
+              <b>教材任务{ACTION_TASK_NUMERALS[index]}：</b>
+              <span>{task.title}</span>
+            </li>
+          ))}
+        </ul>
+        {!hideHint && <p>{hint}</p>}
+      </div>
     </aside>
   );
 }
 
+type SortMatchLine = { x1: number; y1: number; x2: number; y2: number };
+
+/** 教材任务一「连一连」：上排生活物品与下排形状家族都打乱顺序，点物品再点形状即上下连线。 */
+function SortMatchBoard({ objects, sorted, setSorted, selected, setSelected, onCoach, praiseStep }: {
+  objects: { emoji: string; shape: string }[];
+  sorted: Record<number, string>;
+  setSorted: (value: Record<number, string> | ((previous: Record<number, string>) => Record<number, string>)) => void;
+  selected: number | null;
+  setSelected: (value: number | null) => void;
+  onCoach: (text: string) => void;
+  praiseStep: (text: string, complete: boolean) => void;
+}) {
+  // 每次进入本课时重新打乱两排顺序，连线才会真正交叉，而不是按列对号入座。
+  const [objectOrder, shapeOrder] = useMemo(() => [shuffle(objects.map((_, index) => index)), shuffle(['长方体', '正方体', '圆柱', '球'])], [objects]);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const objectRefs = useRef(new Map<number, HTMLButtonElement | null>());
+  const shapeRefs = useRef(new Map<string, HTMLButtonElement | null>());
+  const [lines, setLines] = useState<SortMatchLine[]>([]);
+  const [wrongShape, setWrongShape] = useState<string | null>(null);
+
+  const measure = () => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const base = stage.getBoundingClientRect();
+    const next: SortMatchLine[] = [];
+    Object.entries(sorted).forEach(([indexText, shape]) => {
+      const objectButton = objectRefs.current.get(Number(indexText));
+      const shapeButton = shapeRefs.current.get(shape);
+      if (!objectButton || !shapeButton) return;
+      const objectBox = objectButton.getBoundingClientRect();
+      const shapeBox = shapeButton.getBoundingClientRect();
+      next.push({
+        x1: objectBox.left + objectBox.width / 2 - base.left,
+        y1: objectBox.bottom - base.top,
+        x2: shapeBox.left + shapeBox.width / 2 - base.left,
+        y2: shapeBox.top - base.top,
+      });
+    });
+    setLines(next);
+  };
+  useLayoutEffect(() => { measure(); }, [sorted, selected]);
+  useEffect(() => {
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  const chooseObject = (index: number) => {
+    if (sorted[index] !== undefined) return;
+    setSelected(index);
+    playSfx('tap');
+    onCoach(`选中了${objects[index].emoji}，观察它的面和能不能滚，再到下面点它所属的形状家族完成连线。`);
+  };
+
+  const chooseShape = (shape: string) => {
+    if (selected === null) { onCoach('先在上面点一个生活物品，再点下面的形状家族完成连线。'); return; }
+    const object = objects[selected];
+    if (object.shape !== shape) {
+      feedback(false);
+      setWrongShape(shape);
+      window.setTimeout(() => setWrongShape((current) => (current === shape ? null : current)), 700);
+      onCoach(`${object.emoji}不属于${shape}，摸一摸它的面，再试一次。`);
+      return;
+    }
+    const next = { ...sorted, [selected]: shape };
+    setSorted(next);
+    setSelected(null);
+    const done = Object.keys(next).length === objects.length;
+    praiseStep(done ? '四种物品都连线正确，分类完成！' : `${object.emoji}属于${shape}，连线成功，继续下一个。`, done);
+  };
+
+  const matchedShapes = Object.values(sorted);
+  return (
+    <div className="mt-match-board" ref={stageRef}>
+      <svg className="mt-match-overlay" aria-hidden="true">
+        {lines.map((line, index) => <line key={index} className="mt-match-line" x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} />)}
+      </svg>
+      <div className="mt-match-objects">
+        {objectOrder.map((index) => {
+          const object = objects[index];
+          return <button key={index} ref={(el) => { objectRefs.current.set(index, el); }} className={sorted[index] ? 'done' : selected === index ? 'selected' : ''} aria-label={sorted[index] ? `${object.emoji}，已连到${sorted[index]}` : object.emoji} onClick={() => chooseObject(index)}>
+            <span aria-hidden="true">{object.emoji}</span>
+            <small>{sorted[index] ?? '待连线'}</small>
+          </button>;
+        })}
+      </div>
+      <div className="mt-match-shapes">
+        {shapeOrder.map((shape) => <button key={shape} ref={(el) => { shapeRefs.current.set(shape, el); }} className={[matchedShapes.includes(shape) ? 'done' : '', wrongShape === shape ? 'wrong' : '', selected !== null && !matchedShapes.includes(shape) ? 'awaiting' : ''].filter(Boolean).join(' ')} aria-label={shape} onClick={() => chooseShape(shape)}>
+          <SolidShapeGlyph kind={solidKindByName(shape)} size={30} />
+          <span>{shape}</span>
+        </button>)}
+      </div>
+    </div>
+  );
+}
+
+/** P71 任务一的拼法参考图：2×2 方块、一行四个、散开三种摆法，孩子对照画面选择。 */
+function ComposeWayArt({ index }: { index: number }) {
+  if (index === 0) return <span className="mt-build-way-art" aria-hidden="true"><OblComposition scale={0.36} positions={[{ x: 0, y: 100 }, { x: 100, y: 100 }, { x: 0, y: 0 }, { x: 100, y: 0 }]} /></span>;
+  if (index === 1) return <span className="mt-build-way-art" aria-hidden="true"><OblComposition scale={0.4} positions={[{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 200, y: 0 }, { x: 300, y: 0 }]} /></span>;
+  return <span className="mt-build-way-art" aria-hidden="true"><OblComposition scale={0.32} positions={[{ x: 0, y: 40 }, { x: 150, y: 0 }, { x: 60, y: 130 }, { x: 230, y: 90 }]} /></span>;
+}
+
+/** P69 任务一的搭法参考图：三个选项各配一幅积木搭法小图，孩子对照画面判断稳不稳，而不是只读文字。 */
+function BuildWayArt({ index }: { index: number }) {
+  if (index === 0) return <span className="mt-build-way-art" aria-hidden="true"><span className="mt-build-stack"><i className="mt-build-tilt"><SolidShapeGlyph kind="cuboid" size={46} /></i><SolidShapeGlyph kind="ball" size={44} /></span></span>;
+  if (index === 1) return <span className="mt-build-way-art" aria-hidden="true"><span className="mt-build-stack"><SolidShapeGlyph kind="cylinder" size={42} /><SolidShapeGlyph kind="cuboid" size={48} /></span></span>;
+  return <span className="mt-build-way-art" aria-hidden="true"><span className="mt-build-roll"><SolidShapeGlyph kind="ball" size={40} /><i className="mt-build-lying"><SolidShapeGlyph kind="cylinder" size={40} /></i></span></span>;
+}
+
+/** P51 任务一：用数量图呈现三种关系，避免低年级儿童先读完长文字再做判断。 */
+function DeerModelArt({ index }: { index: number }) {
+  const deer = (total: number, className = '') => <span className={`mt-deer-model-group ${className}`}>{Array.from({ length: total }, (_, itemIndex) => <i key={itemIndex}>🦌</i>)}</span>;
+  if (index === 0) return <span className="mt-deer-model-art deer-story-take" aria-hidden="true">
+    <span className="mt-deer-scene herd-before">{deer(9)}</span>
+    <span className="mt-deer-story-arrow">➜</span>
+    <span className="mt-deer-scene herd-after">{deer(6)}</span>
+  </span>;
+  if (index === 1) return <span className="mt-deer-model-art deer-story-join" aria-hidden="true">
+    <span className="mt-deer-scene small-herd">{deer(3)}</span><span className="mt-deer-merge-arrows">↘<i>↙</i></span><span className="mt-deer-scene large-herd">{deer(9)}</span>
+  </span>;
+  return <span className="mt-deer-model-art deer-story-run-only" aria-hidden="true"><span className="mt-deer-wind">⌁</span>{deer(3, 'deer-running')}<span className="mt-deer-motion">↗</span></span>;
+}
+
 /** 全册通用数字学具：每种活动都要求孩子真实操作，不以“我看过了”代替完成。 */
-function CurriculumManipulative({ activity, onDone, onCoach }: { activity: MathActivity; onDone: () => void; onCoach: (text: string) => void }) {
-  const [step, setStep] = useState(0);
-  const [removed, setRemoved] = useState<number[]>([]);
-  const [selected, setSelected] = useState<number | null>(null);
-  const [sorted, setSorted] = useState<Record<number, string>>({});
-  const [pickedModel, setPickedModel] = useState<number | null>(null);
-  useEffect(() => { setStep(0); setRemoved([]); setSelected(null); setSorted({}); setPickedModel(null); }, [activity]);
+function CurriculumManipulative({ lessonId, activity, onDone, onCoach }: { lessonId: string; activity: MathActivity; onDone: () => void; onCoach: (text: string) => void }) {
+  const [progress, setProgress] = useMathLessonTaskProgress('primary-manipulative', {
+    step: 0,
+    removed: [] as number[],
+    selected: null as number | null,
+    sorted: {} as Record<number, string>,
+    pickedModel: null as number | null,
+  });
+  const { step, removed, selected, sorted, pickedModel } = progress;
+  const setStep = (value: number | ((previous: number) => number)) => setProgress((state) => ({ ...state, step: typeof value === 'function' ? value(state.step) : value }));
+  const setRemoved = (value: number[] | ((previous: number[]) => number[])) => setProgress((state) => ({ ...state, removed: typeof value === 'function' ? value(state.removed) : value }));
+  const setSelected = (value: number | null) => setProgress((state) => ({ ...state, selected: value }));
+  const setSorted = (value: Record<number, string> | ((previous: Record<number, string>) => Record<number, string>)) => setProgress((state) => ({ ...state, sorted: typeof value === 'function' ? value(state.sorted) : value }));
+  const setPickedModel = (value: number | null) => setProgress((state) => ({ ...state, pickedModel: value }));
+  // 选错后的短暂红色反馈不能覆盖孩子紧接着改对的绿色选中态。
+  const modelResetTimer = useRef<number | null>(null);
+  const clearModelResetTimer = () => {
+    if (modelResetTimer.current !== null) window.clearTimeout(modelResetTimer.current);
+    modelResetTimer.current = null;
+  };
+  const clearWrongModelChoice = () => {
+    clearModelResetTimer();
+    modelResetTimer.current = window.setTimeout(() => { setPickedModel(null); modelResetTimer.current = null; }, 850);
+  };
+  useEffect(() => () => clearModelResetTimer(), []);
+  const primaryComplete = activity.kind === 'count' ? step === activity.total
+    : activity.kind === 'join' ? step === activity.a + activity.b
+      : activity.kind === 'take' ? removed.length === activity.take
+        : activity.kind === 'tenframe' ? step === activity.add
+          : activity.kind === 'order' ? step === activity.values.length
+            : activity.kind === 'sort' ? Object.keys(sorted).length === activity.objects.length
+              : pickedModel === activity.answer;
+  useMathTaskCompletion(primaryComplete, onDone, onCoach, '教材任务一完成。');
   const praiseStep = (text: string, complete: boolean) => {
     playSfx(complete ? 'correct' : 'pop');
     onCoach(text);
@@ -342,41 +638,81 @@ function CurriculumManipulative({ activity, onDone, onCoach }: { activity: MathA
     return <div className="mt-curriculum-tool"><div className="mt-order-target">{activity.values.map((value, index) => <span key={value} className={index < step ? 'done' : index === step ? 'next' : ''}>{index < step ? value : '?'}</span>)}</div><div className="mt-tool-options">{choices.map((value) => <button key={value} disabled={activity.values.indexOf(value) < step} onClick={() => { if (value !== activity.values[step]) { playSfx('tap'); onCoach(`下一步应该接在 ${step ? activity.values[step - 1] : '起点'} 后面，看看哪个数符合顺序。`); return; } const next = step + 1; setStep(next); praiseStep(next === activity.values.length ? `顺序完成：${activity.values.join('、')}。` : `放对了 ${value}，接着找下一个数。`, next === activity.values.length); }}>{value}</button>)}</div></div>;
   }
   if (activity.kind === 'sort') {
-    const shapes = ['长方体', '正方体', '圆柱', '球'] as const;
     const complete = Object.keys(sorted).length === activity.objects.length;
-    return <div className="mt-curriculum-tool"><div className="mt-sort-objects">{activity.objects.map((object, index) => <button key={index} className={sorted[index] ? 'done' : selected === index ? 'selected' : ''} disabled={!!sorted[index]} onClick={() => { setSelected(index); onCoach(`选中了${object.emoji}，观察它的面和能不能滚，再选择形状家族。`); }}>{object.emoji}<small>{sorted[index] || '待分类'}</small></button>)}</div><div className="mt-shape-homes">{shapes.map((shape) => <button key={shape} onClick={() => { if (selected === null) { onCoach('先选一个生活物品，再选择它属于哪种形状。'); return; } const object = activity.objects[selected]; if (object.shape !== shape) { feedback(false); onCoach(`${object.emoji}不属于${shape}，摸一摸它的面，再试一次。`); return; } const next = { ...sorted, [selected]: shape }; setSorted(next); setSelected(null); const done = Object.keys(next).length === activity.objects.length; praiseStep(done ? '四种物品都分类正确了！' : `${object.emoji}属于${shape}，继续分类下一个。`, done); }}>{shape}</button>)}</div>{complete && <p>✓ 分类完成</p>}</div>;
+    return <div className="mt-curriculum-tool"><SortMatchBoard objects={activity.objects} sorted={sorted} setSorted={setSorted} selected={selected} setSelected={setSelected} onCoach={onCoach} praiseStep={praiseStep} />{complete && <p>✓ 分类完成</p>}</div>;
+  }
+  if (lessonId === 'solid-building' || lessonId === 'solid-compose') {
+    const right = pickedModel === activity.answer;
+    const building = lessonId === 'solid-building';
+    const coachLines = building
+      ? { good: '长方体平面朝下当底座，圆柱竖着放上去，塔就又稳又高。', bad: ['球会向各个方向滚，垫在最下面塔站不稳。', '积木横着放会滚走，塔也搭不高，再对照图看一看。'] }
+      : { good: '4 个小正方体贴紧排成一行，拼成了一个长方体。', bad: ['这幅是 2×2 的方块，不是排成一行的长方体，再对照蓝图看一看。', '散开的小方块没有贴在一起，先让它们面贴面。'] };
+    return <div className="mt-curriculum-tool">
+      <p>{building ? '对照三张搭法图，选出又稳又高的一种。' : '对照三幅拼法图，选出由 4 个小正方体排成一行拼成的长方体。'}</p>
+      <div className="mt-build-ways">
+        {activity.options.map((option, index) => <button key={option} aria-pressed={pickedModel === index} className={pickedModel === index ? (right ? 'is-correct' : 'is-wrong') : ''} onClick={() => {
+          clearModelResetTimer();
+          setPickedModel(index);
+          if (index === activity.answer) praiseStep(coachLines.good, true);
+          else { feedback(false); onCoach(coachLines.bad[index] ?? coachLines.bad[coachLines.bad.length - 1]); clearWrongModelChoice(); }
+        }}>
+          {building ? <BuildWayArt index={index} /> : <ComposeWayArt index={index} />}
+          <span className="mt-build-way-label">{option}</span>
+        </button>)}
+      </div>
+    </div>;
+  }
+  if (lessonId === 'select-info-eight-nine') {
+    const choiceLabels = ['9 只鹿中跑走 3 只，还剩 6 只', '3 只鹿和 9 只鹿合起来', '只画跑走的 3 只鹿'];
+    return <div className="mt-curriculum-tool mt-deer-model-choice">
+      <div className="mt-deer-model-choices">
+        {activity.options.map((option, index) => <button key={option} aria-label={choiceLabels[index]} aria-pressed={pickedModel === index} className={pickedModel === index ? (pickedModel === activity.answer ? 'is-correct' : 'is-wrong') : ''} onClick={() => {
+          clearModelResetTimer();
+          setPickedModel(index);
+          if (index === activity.answer) praiseStep('这张图先看到 9 只鹿，再跑走 3 只，正好能求还剩几只。', true);
+          else { feedback(false); onCoach('再看一看：题目要先有一整群鹿，再跑走一部分。'); clearWrongModelChoice(); }
+        }}><DeerModelArt index={index} /></button>)}
+      </div>
+    </div>;
   }
   const right = pickedModel === activity.answer;
-  return <div className="mt-curriculum-tool"><div className="mt-model-visual">{activity.visual}</div><div className="mt-tool-options">{activity.options.map((option, index) => <button key={option} className={pickedModel === index ? (right ? 'is-correct' : 'is-wrong') : ''} onClick={() => { if (right) return; setPickedModel(index); if (index === activity.answer) praiseStep('模型和画面中的数量关系完全一致。', true); else { feedback(false); onCoach('这个模型和画面关系还不一致，重新看看“整体”和“部分”。'); setTimeout(() => setPickedModel(null), 850); } }}>{option}</button>)}</div></div>;
+  const readinessTime = lessonId === 'learning-readiness';
+  return <div className="mt-curriculum-tool"><div className="mt-model-visual">{activity.visual}</div><div className="mt-tool-options">{activity.options.map((option, index) => <button key={option} aria-pressed={pickedModel === index} className={pickedModel === index ? (right ? 'is-correct' : 'is-wrong') : ''} onClick={() => { clearModelResetTimer(); setPickedModel(index); if (index === activity.answer) praiseStep(readinessTime ? '钟面和课程表都说明：8:30 是上课开始的时间。' : '模型和画面中的数量关系完全一致。', true); else { feedback(false); onCoach(readinessTime ? '再看钟面和“上午第 1 节”：8:30 说的是上课的时间。' : '这个模型和画面关系还不一致，重新看看“整体”和“部分”。'); clearWrongModelChoice(); } }}>{option}</button>)}</div>{right && <p className="mt-model-retry-hint">答对了。还可以继续点其他选项，重新核对自己的判断。</p>}</div>;
 }
 
 /** 全册课时的迁移题：同一个知识点换问法、换情境，不照抄动手试和小检测。 */
-function genericArena(activity: MathActivity, round: number): ArenaQuestion {
+/**
+ * 闯关题里的图示必须展示题干给出的「两个量」或「变化前后」，不能只画结果再要求孩子额外加减。
+ * 不截断数量：图标数量本身也是题目的证据，题干、图示和答案三者必须表示同一关系。
+ */
+const quantityPictures = (emoji: string, count: number) => Array.from({ length: count }, () => emoji).join('');
+
+export function genericArena(activity: MathActivity, round: number): ArenaQuestion {
   const type = round % 5;
   if (activity.kind === 'count') {
     const n = activity.total;
-    if (type === 0) return { objective: '换情境点数', q: '小卷又放进了 1 个，一共有几个？', emo: activity.emoji.repeat(Math.min(n + 1, 12)), opts: numberOptions(n + 1), answer: String(n + 1), say: `换一个情境数一数，一共有几个？` };
+    if (type === 0) return { objective: '换情境点数', q: `图中原来有 ${n} 个，小卷又放进 1 个，一共有几个？`, emo: `${quantityPictures(activity.emoji, n)} ＋ ${activity.emoji}`, opts: numberOptions(n + 1), answer: String(n + 1), say: `原来有${n}个，又放进1个，一共有几个？` };
     if (type === 1) return { objective: '数的后继', q: `聪聪已经按顺序数到 ${n}，下一个数是？`, opts: numberOptions(n + 1), answer: String(n + 1), say: `数到${n}以后，下一个数是几？` };
-    if (type === 2) return { objective: '倒着想一想', q: `${n} 个物品遮住 1 个，还看见几个？`, opts: numberOptions(Math.max(0, n - 1)), answer: String(Math.max(0, n - 1)), say: `${n}个物品遮住一个，还看见几个？` };
+    if (type === 2) return { objective: '倒着想一想', q: `一共有 ${n} 个，其中 1 个被遮住，还看见几个？`, emo: `${quantityPictures(activity.emoji, Math.max(0, n - 1))} □`, opts: numberOptions(Math.max(0, n - 1)), answer: String(Math.max(0, n - 1)), say: `一共有${n}个，其中一个被遮住，还看见几个？` };
     if (type === 3) return { objective: '数序关联', q: `${n} 前面的一个数是？`, opts: numberOptions(Math.max(0, n - 1)), answer: String(Math.max(0, n - 1)), say: `${n}前面的一个数是几？` };
     return { objective: '方法判断', q: '数一排物品时，怎样做才不容易漏？', opts: ['从一端开始，一个一个数', '从中间随便跳着数', '只看最大的物品'], answer: '从一端开始，一个一个数', say: '数一排物品时，怎样做才不容易漏？' };
   }
   if (activity.kind === 'join') {
     const total = activity.a + activity.b;
-    if (type === 0) return { objective: '逆向找部分', q: `一共有 ${total} 个，其中 ${activity.a} 个在左边，右边有几个？`, emo: activity.emoji.repeat(Math.min(total, 12)), opts: numberOptions(activity.b), answer: String(activity.b), say: `一共有${total}个，其中${activity.a}个在左边，右边有几个？` };
-    if (type === 1) return { objective: '新情境合并', q: `原来有 ${activity.a} 个，又来了 ${activity.b + 1} 个，现在有几个？`, opts: numberOptions(total + 1), answer: String(total + 1), say: `原来有${activity.a}个，又来了${activity.b + 1}个，现在有几个？` };
+    if (type === 0) return { objective: '逆向找部分', q: `一共有 ${total} 个，其中左边有 ${activity.a} 个，右边有几个？`, emo: `${quantityPictures(activity.emoji, activity.a)} ｜ ${quantityPictures(activity.emoji, activity.b)}`, opts: numberOptions(activity.b), answer: String(activity.b), say: `一共有${total}个，其中左边有${activity.a}个，右边有几个？` };
+    if (type === 1) return { objective: '新情境合并', q: `原来有 ${activity.a} 个，又来了 ${activity.b + 1} 个，现在有几个？`, emo: `${quantityPictures(activity.emoji, activity.a)} ＋ ${quantityPictures(activity.emoji, activity.b + 1)}`, opts: numberOptions(total + 1), answer: String(total + 1), say: `原来有${activity.a}个，又来了${activity.b + 1}个，现在有几个？` };
     if (type === 2) return { objective: '图式转算式', q: '哪道算式能表示“两部分合成一个整体”？', opts: [`${activity.a}＋${activity.b}＝${total}`, `${total}－${activity.a}＝${total + activity.b}`, `${activity.a}－${activity.b}＝${total}`], answer: `${activity.a}＋${activity.b}＝${total}`, say: '哪道算式能表示两部分合成一个整体？' };
     if (type === 3) return { objective: '加减互相检查', q: `要检查 ${activity.a}＋${activity.b}＝${total} 对不对，可以用哪道减法？`, opts: [`${total}－${activity.a}＝${activity.b}`, `${total}－${activity.b}＝${total}`, `${activity.a}－${activity.b}＝${total}`], answer: `${total}－${activity.a}＝${activity.b}`, say: '用哪道减法可以检查这道加法？' };
     return { objective: '选择运算', q: '题目问“合起来一共多少”，最适合用什么方法？', opts: ['加法', '减法', '只比较大小'], answer: '加法', say: '题目问合起来一共多少，最适合用什么方法？' };
   }
   if (activity.kind === 'take') {
     const left = activity.total - activity.take;
-    if (type === 0) return { objective: '逆向还原', q: `拿走 ${activity.take} 个后还剩 ${left} 个，原来有几个？`, opts: numberOptions(activity.total), answer: String(activity.total), say: `拿走${activity.take}个后还剩${left}个，原来有几个？` };
-    if (type === 1) return { objective: '新情境减少', q: `${activity.total + 1} 个里拿走 ${activity.take} 个，还剩几个？`, opts: numberOptions(left + 1), answer: String(left + 1), say: `${activity.total + 1}个里拿走${activity.take}个，还剩几个？` };
+    if (type === 0) return { objective: '逆向还原', q: `拿走 ${activity.take} 个后还剩 ${left} 个，原来有几个？`, emo: `${quantityPictures(activity.emoji, left)} ＋ ${quantityPictures(activity.emoji, activity.take)}`, opts: numberOptions(activity.total), answer: String(activity.total), say: `拿走${activity.take}个后还剩${left}个，原来有几个？` };
+    if (type === 1) return { objective: '新情境减少', q: `${activity.total + 1} 个里拿走 ${activity.take} 个，还剩几个？`, emo: `${quantityPictures(activity.emoji, activity.total + 1)} − ${quantityPictures(activity.emoji, activity.take)}`, opts: numberOptions(left + 1), answer: String(left + 1), say: `${activity.total + 1}个里拿走${activity.take}个，还剩几个？` };
     if (type === 2) return { objective: '图式转算式', q: '“原来有一些，拿走一部分，求剩下”对应哪道算式？', opts: [`${activity.total}－${activity.take}＝${left}`, `${activity.total}＋${activity.take}＝${left}`, `${left}－${activity.take}＝${activity.total}`], answer: `${activity.total}－${activity.take}＝${left}`, say: '原来有一些，拿走一部分，求剩下，对应哪道算式？' };
     if (type === 3) {
       if (left === 0) return { objective: '反向变化', q: `原来如果多放 1 个，拿走 ${activity.take} 个后还剩几个？`, opts: numberOptions(1), answer: '1', say: `原来如果多放一个，拿走${activity.take}个后还剩几个？` };
-      return { objective: '结果变化', q: '如果再拿走 1 个，剩下的会是几个？', opts: numberOptions(left - 1), answer: String(left - 1), say: '如果再拿走一个，剩下的会是几个？' };
+      return { objective: '结果变化', q: `还剩 ${left} 个，如果再拿走 1 个，会是几个？`, emo: `${quantityPictures(activity.emoji, left)} − ${activity.emoji}`, opts: numberOptions(left - 1), answer: String(left - 1), say: `还剩${left}个，如果再拿走一个，会是几个？` };
     }
     return { objective: '选择运算', q: '题目问“还剩多少”，应该先想哪种数量关系？', opts: ['从整体去掉一部分', '把两部分合起来', '只看最大的数'], answer: '从整体去掉一部分', say: '题目问还剩多少，应该先想哪种数量关系？' };
   }
@@ -413,24 +749,28 @@ function genericArena(activity: MathActivity, round: number): ArenaQuestion {
 
 function ExtendedLessonPage({ config, onPass }: { config: ExtendedMathLesson; onPass: (stars: number) => void }) {
   const [taskDone, setTaskDone] = useState(false);
+  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
   const [coach, setCoach] = useState(config.activity.prompt);
-  useEffect(() => { setTaskDone(false); setCoach(config.activity.prompt); }, [config]);
+  useEffect(() => { setTaskDone(false); setTextbookTaskDone(false); setCoach(config.activity.prompt); }, [config]);
   return <section className="mt-lesson mt-extended-lesson">
-    <div className="mt-lesson-copy"><span className="mt-kicker">教材 {config.page} · 数字化探索课</span><h2>{config.title}</h2><p>{config.concept}</p></div>
-    <LearningFlow lessonId={config.id} lessonName={config.title} guess={config.guess} guessVisual={<div className="mt-extended-scene" role="img" aria-label={`${config.title}观察图`}>{config.scene}</div>} reason={config.reason} checkpoint={config.checkpoint} actionReady={taskDone} actionHint={config.activity.prompt} actionCoach={coach} ask={{ title: config.title, context: `${config.concept} 本课依据教材${config.page}的主题图、例题与练习重构。`, quick: config.quick }} narrations={[
+    <div className="mt-lesson-copy"><span className="mt-kicker">教材 {config.page} · 数字化探索课</span><h2>{config.title}</h2><p>{config.concept}</p><div className="mt-task-summary" aria-label="本课教材任务">{config.tasks.map((task, index) => <span key={task.id}>教材任务{ACTION_TASK_NUMERALS[index]}：{task.title}</span>)}</div></div>
+    <LearningFlow lessonId={config.id} lessonName={config.title} guess={config.guess} guessVisual={<GuessScene lessonId={config.id} activity={config.activity} ariaLabel={`${config.title}观察图`} />} reason={config.reason} checkpoint={config.checkpoint} actionReady={taskDone && textbookTaskDone} actionTasks={config.tasks.map((task, index) => ({ title: task.title, done: index === 0 ? taskDone : index === 1 ? textbookTaskDone : true }))} actionCoach={coach} ask={{ title: config.title, context: `${config.concept} 本课依据教材${config.page}的主题图、例题与练习重构。`, quick: config.quick }} narrations={[
       `先看观察图，想一想：${config.guess.question} 这里先记录猜想，不急着判断。`,
-      `现在做一个关键操作：${config.activity.prompt} 聪聪会根据你做到哪一步继续提示。`,
+      `本课有两项教材任务。教材任务一：${config.tasks[0]?.title ?? ''}，${config.activity.prompt.replace(/。$/, '')}；完成后继续教材任务二：${config.tasks[1]?.title ?? ''}。聪聪会根据你做到哪一步继续提示。`,
       `把刚才的操作说成理由：${config.reason.question}`,
       '小检测只检查本课最核心的理解，仔细看清问题再选择。',
       '进入智能闯关。答错的题会回到队尾再练，真正理解后再点亮课程。',
     ]} arena={(round) => genericArena(config.activity, round)} onPass={onPass}>
-      <CurriculumManipulative key={config.id} activity={config.activity} onDone={() => setTaskDone(true)} onCoach={setCoach} />
-      <div className="mt-concept-card"><b>把操作变成数学</b><span>{config.concept}</span></div>
+      <ActionStation index={0} title={config.tasks[0]?.title ?? config.activity.prompt} brief={config.activity.prompt}>
+        <CurriculumManipulative key={config.id} lessonId={config.id} activity={config.activity} onDone={() => setTaskDone(true)} onCoach={setCoach} />
+        {config.id === 'six-to-nine' && <SixToNineDigitPractice />}
+      </ActionStation>
+      <MathTextbookTaskPack lessonId={config.id} onDone={() => setTextbookTaskDone(true)} onCoach={setCoach} />
     </LearningFlow>
   </section>;
 }
 
-function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkpoint, arena, narrations, ask, onPass, actionReady, actionHint, actionCoach, children }: {
+function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkpoint, arena, narrations, ask, onPass, actionReady, actionTasks, actionCoach, children }: {
   lessonId: LessonId;
   lessonName: string;
   guess: Prompt;
@@ -445,23 +785,23 @@ function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkp
   onPass: (stars: number) => void;
   /** 动手环节是否已完成关键操作；未完成前不能跳到说理由。 */
   actionReady?: boolean;
-  actionHint?: string;
+  /** 动手试阶段的教材任务清单（标题 + 实时完成状态），由聪聪老师任务牌展示。 */
+  actionTasks: { title: string; done: boolean }[];
   /** 根据当前操作实时变化的聪聪提示。 */
   actionCoach?: string;
   children: React.ReactNode;
 }) {
   const activeChildId = useStore((s) => s.activeChildId);
   const addWrong = useStore((s) => s.addWrong);
-  // v2 起动手环节改为固定、可核验的任务，旧版“任意操作已完成”的断点不能复用。
-  const flowKey = `sfz-math-flow-v2:${activeChildId ?? 'guest'}:${window.location.hash}`;
+  // v4 起流程快照带内容版本；v2/v3 旧的“单任务完成”不会绕过新增教材任务。
+  const flowKey = `sfz-math-flow-v4:${activeChildId ?? 'guest'}:${window.location.hash}`;
+  const v3FlowKey = `sfz-math-flow-v3:${activeChildId ?? 'guest'}:${window.location.hash}`;
+  const v2FlowKey = `sfz-math-flow-v2:${activeChildId ?? 'guest'}:${window.location.hash}`;
   const restored = useMemo(() => {
     try {
-      const saved = localStorage.getItem(flowKey);
-      if (!saved) return { phase: 0, unlocked: 0, actionDone: false, knowledgeDone: false };
-      const value = JSON.parse(saved) as { phase?: number; unlocked?: number; actionDone?: boolean; knowledgeDone?: boolean };
-      return { phase: Math.max(0, Math.min(4, value.phase ?? 0)), unlocked: Math.max(0, Math.min(4, value.unlocked ?? 0)), actionDone: !!value.actionDone, knowledgeDone: !!value.knowledgeDone || (value.phase ?? 0) >= 3 };
-    } catch { return { phase: 0, unlocked: 0, actionDone: false, knowledgeDone: false }; }
-  }, [flowKey]);
+      return migrateMathFlowSnapshot(localStorage.getItem(flowKey), localStorage.getItem(v3FlowKey), localStorage.getItem(v2FlowKey));
+    } catch { return migrateMathFlowSnapshot(null, null, null); }
+  }, [flowKey, v2FlowKey, v3FlowKey]);
   const [phase, setPhase] = useState(restored.phase);
   const [unlocked, setUnlocked] = useState(restored.unlocked);
   const [savedActionDone, setSavedActionDone] = useState(restored.actionDone);
@@ -475,7 +815,7 @@ function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkp
     if (actionReady) setSavedActionDone(true);
   }, [actionReady]);
   useEffect(() => {
-    try { localStorage.setItem(flowKey, JSON.stringify({ phase, unlocked, actionDone, knowledgeDone })); } catch { /* 私密模式下不影响上课 */ }
+    try { localStorage.setItem(flowKey, JSON.stringify({ contentVersion: MATH_FLOW_CONTENT_VERSION, phase, unlocked, actionDone, knowledgeDone })); } catch { /* 私密模式下不影响上课 */ }
   }, [actionDone, flowKey, knowledgeDone, phase, unlocked]);
   const goPhase = (next: number) => {
     setPhase(next);
@@ -510,12 +850,13 @@ function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkp
           <button className="ct-primary mt-flow-next" disabled={guessPick === null} onClick={() => advance(1)}>带着猜想去验证 →</button>
         </div>
       )}
-      {phase === 1 && <div className="mt-action-phase"><OperationCoach task={actionHint ?? '完成上面的操作，再继续。'} coach={actionCoach ?? actionHint ?? '先完成上面的操作，再继续。'} complete={actionDone} />{children}{savedActionDone && !actionReady && <p className="mt-action-complete">✓ 这个动手环节已完成；你也可以继续操作，再去说理由。</p>}{!actionDone && <p className="mt-action-required">{actionHint ?? '先完成上面的操作，再继续。'}</p>}<button className="ct-primary mt-flow-next" disabled={!actionDone} onClick={() => advance(2)}>我动手试过了，去说理由 →</button></div>}
+      {phase === 1 && <div className="mt-action-phase"><OperationCoach tasks={actionTasks} coach={actionCoach} hideHint={lessonId === 'select-info-eight-nine'} />{children}<button className="ct-primary mt-flow-next" disabled={!actionDone} onClick={() => advance(2)}>我动手试过了，去说理由 →</button></div>}
       {phase === 2 && (
         <div className="mt-phase-card mt-reason-card">
           <span>把发现说清楚</span><h3>{reason.question}</h3>
           <div className="mt-answer-row">{reason.options.map((option, index) => <button key={option} className={reasonPick === index ? (index === reason.answer ? 'is-correct' : 'is-wrong') : ''} onClick={() => { if (reasonPick !== null) return; setReasonPick(index); const right = index === reason.answer; feedback(right); if (!right) setTimeout(() => setReasonPick(null), 950); }}>{option}</button>)}</div>
           {reasonPick !== null && <p className={reasonPick === reason.answer ? 'mt-feedback good' : 'mt-feedback try'}>{reasonPick === reason.answer ? '理由说清楚了，再把方法用到新情境。' : '这个理由还不能解释刚才的操作，再试一次。'}</p>}
+          {reasonPick === reason.answer && <ReasonVoicePractice key={reason.options[reason.answer]} reason={reason.options[reason.answer]} />}
           {reasonPick === reason.answer && <MathKnowledgeBridge key={lessonId} lessonId={lessonId} complete={knowledgeDone} onComplete={() => setKnowledgeDone(true)} />}
           <button className="ct-primary mt-flow-next" disabled={reasonPick !== reason.answer || !knowledgeDone} onClick={() => advance(3)}>进入小检测 →</button>
         </div>
@@ -528,12 +869,19 @@ function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkp
             gen={arena}
             onWrong={(question, answer) => {
               if (!activeChildId) return;
+              const review = arenaReviewMeta(question);
               addWrong(activeChildId, {
                 uid: `math:${lessonId}:${Date.now()}:${Math.random().toString(36).slice(2, 7)}`,
                 lessonId: `math-lab-${lessonId}`,
                 lessonName,
-                kind: question.emo ? `${question.q} ${question.emo}` : question.q,
+                question: question.emo ? `${question.q} ${question.emo}` : question.q,
+                kind: question.objective ?? '智能闯关',
                 answer,
+                objective: question.objective,
+                diagnosis: review.diagnosis,
+                remedy: review.remedy,
+                options: question.opts,
+                correctAnswer: question.answer,
                 time: Date.now(),
               });
             }}
@@ -551,6 +899,10 @@ const DIGIT_STROKES: Record<number, string[]> = {
   3: ['M29 28 C52 8 94 17 92 49 C91 66 75 74 57 74 C79 73 98 84 94 111 C89 143 46 145 25 120'],
   4: ['M73 17 L25 96 L101 96', 'M78 17 L78 134'],
   5: ['M97 22 L39 22 L32 69', 'M32 69 C48 56 89 57 96 91 C102 127 62 146 27 122'],
+  6: ['M92 26 C75 10 43 22 31 62 C19 103 39 137 68 130 C96 123 100 84 76 73 C52 62 33 81 38 106'],
+  7: ['M26 25 L99 25', 'M94 25 L45 133'],
+  8: ['M59 74 C33 63 30 30 52 19 C78 5 99 26 88 50 C82 62 70 68 59 74 C39 83 30 102 43 123 C57 145 88 140 91 113 C94 91 77 80 59 74'],
+  9: ['M37 103 C13 76 33 20 68 20 C106 21 101 86 82 113 L60 136'],
 };
 
 const DIGIT_STROKE_HINTS: Record<number, string[]> = {
@@ -559,6 +911,10 @@ const DIGIT_STROKE_HINTS: Record<number, string[]> = {
   3: ['从左上起笔，先向右弯；不停笔，继续向下向右弯。'],
   4: ['从上方起笔，斜着向左下写，再横着向右。', '从上方起笔，竖着向下写。'],
   5: ['从右上向左写横，再向下短竖。', '从左上起笔，向右下方弯着写到终点。'],
+  6: ['从右上方起笔，向左下写弯，再绕成下面的圆，顺着收笔。'],
+  7: ['从左到右写一横。', '从横的右端起笔，向左下方斜着写。'],
+  8: ['从中间偏上起笔，先绕上面的圈，再顺着绕下面的圈回到中间。'],
+  9: ['从左下向上绕出圆圈，再顺势向右下方收笔。'],
 };
 
 /** 手写描红：笔顺动画 + 起笔/方向提示 + 轨迹智能批改。书写结果不参与数量掌握度。 */
@@ -568,9 +924,21 @@ function DigitPractice({ number, replay, onReplay }: { number: number; replay: n
   const [passed, setPassed] = useState<Record<number, boolean>>({});
   const drawingRef = useRef(false);
   const padRef = useRef<SVGSVGElement>(null);
-  const point = (event: React.PointerEvent<SVGSVGElement>) => {
+  const point = (event: { currentTarget: SVGSVGElement; clientX: number; clientY: number }) => {
     const rect = event.currentTarget.getBoundingClientRect();
     return `${Math.round(((event.clientX - rect.left) / rect.width) * 120)},${Math.round(((event.clientY - rect.top) / rect.height) * 150)}`;
+  };
+  const beginStroke = (event: { currentTarget: SVGSVGElement; clientX: number; clientY: number }) => {
+    // 浏览器会同时派发 pointer / mouse 兼容事件；已开始时忽略第二次，避免多出一笔。
+    if (drawingRef.current) return;
+    drawingRef.current = true;
+    const nextPoint = point(event);
+    setInk((lines) => [...lines, nextPoint]);
+  };
+  const extendStroke = (event: { currentTarget: SVGSVGElement; clientX: number; clientY: number }) => {
+    if (!drawingRef.current) return;
+    const nextPoint = point(event);
+    setInk((lines) => lines.length === 0 ? [nextPoint] : [...lines.slice(0, -1), `${lines[lines.length - 1]} ${nextPoint}`]);
   };
   useEffect(() => { setInk([]); setJudge(null); }, [number]);
 
@@ -669,13 +1037,14 @@ function DigitPractice({ number, replay, onReplay }: { number: number; replay: n
         <svg className="mt-write-pad" ref={padRef} viewBox="0 0 120 150"
           onPointerDown={(event) => {
             event.preventDefault();
-            const nextPoint = point(event);
-            drawingRef.current = true;
-            setInk((lines) => [...lines, nextPoint]);
+            beginStroke(event);
             try { event.currentTarget.setPointerCapture(event.pointerId); } catch { /* 部分触控环境不支持捕获，仍可继续书写 */ }
           }}
-          onPointerMove={(event) => { if (!drawingRef.current) return; event.preventDefault(); const nextPoint = point(event); setInk((lines) => lines.length === 0 ? [nextPoint] : [...lines.slice(0, -1), `${lines[lines.length - 1]} ${nextPoint}`]); }}
-          onPointerUp={() => { drawingRef.current = false; }} onPointerCancel={() => { drawingRef.current = false; }} onLostPointerCapture={() => { drawingRef.current = false; }}>
+          onPointerMove={(event) => { event.preventDefault(); extendStroke(event); }}
+          onPointerUp={() => { drawingRef.current = false; }} onPointerCancel={() => { drawingRef.current = false; }} onLostPointerCapture={() => { drawingRef.current = false; }}
+          onMouseDown={(event) => { event.preventDefault(); beginStroke(event); }}
+          onMouseMove={(event) => { event.preventDefault(); extendStroke(event); }}
+          onMouseUp={() => { drawingRef.current = false; }}>
           <line x1="60" y1="0" x2="60" y2="150" /><line x1="0" y1="75" x2="120" y2="75" />
           <g className="mt-digit-guide">{DIGIT_STROKES[number].map((path, index) => <path key={`write-guide-${index}`} d={path} />)}</g>
           {ink.map((points, index) => <polyline key={index} points={points} />)}
@@ -692,6 +1061,19 @@ function DigitPractice({ number, replay, onReplay }: { number: number; replay: n
   );
 }
 
+/** P34-P36：6～9 复用认数课的笔顺动画和田字格跟写，不用单行文本输入替代书写体验。 */
+function SixToNineDigitPractice() {
+  const [number, setNumber] = useState(6);
+  const [replay, setReplay] = useState(0);
+  return <section className="mt-six-nine-writing" aria-label="6到9笔顺和跟写练习">
+    <header><small>教材 P34-P36 · 笔顺演示和跟写</small><h3>选一个数字，先看笔顺，再在田字格里跟着写</h3></header>
+    <div className="mt-digit-selector" role="group" aria-label="选择要跟写的数字">
+      {[6, 7, 8, 9].map((value) => <button key={value} type="button" aria-pressed={number === value} className={number === value ? 'selected' : ''} onClick={() => setNumber(value)}>数字 {value}</button>)}
+    </div>
+    <DigitPractice number={number} replay={replay} onReplay={() => { setReplay((value) => value + 1); speakOnce(String(number), 'zh', 0.8); }} />
+  </section>;
+}
+
 function CampusGuessPicture() {
   return (
     <div className="mt-campus-guess-picture" role="img" aria-label="三栋教学楼，中间教学楼底层有入口，上方有三排窗户">
@@ -705,43 +1087,169 @@ function CampusGuessPicture() {
 
 function NumberGuessPicture() {
   return (
-    <div className="mt-object-guess mt-number-guess" role="img" aria-label="桌面上摆着四个南瓜">
-      <span>🎃</span><span>🎃</span><span>🎃</span><span>🎃</span>
-      <div><i /><i /><i /><i /><i /></div>
-    </div>
+    <GuessScene lessonId="numbers" activity={{ kind: 'count', prompt: '数一数桌面上的南瓜。', emoji: '🎃', total: 4 }} ariaLabel="桌面上摆着四个南瓜" />
   );
 }
 
 function CompareGuessPicture() {
   return (
-    <div className="mt-object-guess mt-compare-guess" role="img" aria-label="三只小猴和两个香蕉等待配对">
-      <div><span>🐒</span><span>🐒</span><span>🐒</span></div><b>和</b><div><span>🍌</span><span>🍌</span></div>
-    </div>
+    <GuessComparisonScene />
   );
 }
 
 function OrdinalGuessPicture() {
   return (
-    <div className="mt-object-guess mt-ordinal-guess" role="img" aria-label="火车前有五个人排队，穿绿色衣服的小朋友排在第二位">
-      <span className="train">🚆</span>
-      <div><span>👩🏻</span><span className="focus">🧒🏻</span><span>👩🏽</span><span>👨🏻</span><span>🧑🏻</span></div>
-      <i>从火车方向开始数 →</i>
-    </div>
+    <GuessOrdinalScene />
   );
 }
 
 function ComposeGuessPicture() {
   return (
-    <div className="mt-object-guess mt-compose-guess" role="img" aria-label="五个玉米和左右两个空篮子">
-      <div className="corns"><span>🌽</span><span>🌽</span><span>🌽</span><span>🌽</span><span>🌽</span></div>
-      <div className="arrow">↙　↘</div><div className="empty-baskets"><i /><i /></div>
-    </div>
+    <GuessSplitScene />
   );
 }
 
+/** 先猜阶段只提供“可观察的条件”，不显示计算结论或操作后的状态。 */
+function GuessScene({ lessonId, activity, ariaLabel }: { lessonId: string; activity: MathActivity; ariaLabel?: string }) {
+  const evidence = GUESS_EVIDENCE[lessonId];
+  const visibleLabel = ariaLabel ?? `${lessonId}观察图`;
+  return <div className={`mt-guess-evidence mt-guess-evidence--${evidence?.kind ?? 'structure'}`} role="img" aria-label={visibleLabel}>
+    {lessonId !== 'mixed-add-sub' && (evidence ? <div className="mt-guess-evidence-facts" aria-hidden="true">{evidence.facts.map((fact, index) => <span key={fact}><i>{index + 1}</i>{fact}</span>)}</div> : <div className="mt-guess-evidence-audit" aria-hidden="true">此课尚未完成先猜视觉审核</div>)}
+    <GuessActivityDiagram lessonId={lessonId} activity={activity} ariaLabel="数学观察材料" />
+  </div>;
+}
+
+function GuessActivityDiagram({ lessonId, activity, ariaLabel }: { lessonId: string; activity: MathActivity; ariaLabel?: string }) {
+  const tokens = (emoji: string, total: number, className = '') => <div className={`mt-guess-tokens ${className}`}>{Array.from({ length: Math.min(total, 20) }, (_, index) => <span key={index}>{emoji}</span>)}</div>;
+  if (lessonId === 'solid-building') return <GuessBuildScene />;
+  if (lessonId === 'solid-compose') return <GuessComposeScene />;
+  if (lessonId === 'classroom-games') return <GuessDirectionCommandScene />;
+  if (lessonId === 'learning-readiness') return <GuessLearningReadinessScene />;
+  if (lessonId === 'compare-order-nine') return <GuessCompareOrderNineScene />;
+  if (lessonId === 'select-info-eight-nine') return <GuessSelectInfoEightNineScene />;
+  if (lessonId === 'mixed-add-sub') return <GuessMixedAddSubScene />;
+  if (activity.kind === 'count') return <div className="mt-guess-scene mt-guess-count" role="img" aria-label={ariaLabel ?? `观察图：${activity.total} 个${activity.emoji}`}><small>请按顺序观察</small>{tokens(activity.emoji, activity.total)}<i aria-hidden="true">○　○　○　○　○</i></div>;
+  if (activity.kind === 'join') return <div className="mt-guess-scene mt-guess-join" role="img" aria-label={ariaLabel ?? '两组物体等待合在一起'}><section>{tokens(activity.emoji, activity.a)}<small>这一组</small></section><b aria-hidden="true">＋</b><section>{tokens(activity.emoji, activity.b)}<small>那一组</small></section><em>先看两组各有多少</em></div>;
+  if (activity.kind === 'take') return <div className="mt-guess-scene mt-guess-take" role="img" aria-label={ariaLabel ?? `一组${activity.total}个物体，其中${activity.take}个准备离开`}>{tokens(activity.emoji, activity.total - activity.take)}<div className="mt-guess-leaving">{tokens(activity.emoji, activity.take)}<small>离开</small></div><em>观察：哪些还在，哪些离开</em></div>;
+  if (activity.kind === 'tenframe') return <div className="mt-guess-scene mt-guess-tenframe" role="img" aria-label={ariaLabel ?? `十格框中已有${activity.filled}个，留有空格`}><div>{Array.from({ length: 10 }, (_, index) => <i key={index} className={index < activity.filled ? 'filled' : ''}>{index < activity.filled ? '●' : ''}</i>)}</div><em>十格框里还有空位</em></div>;
+  if (activity.kind === 'order') return <div className="mt-guess-scene mt-guess-order" role="img" aria-label={ariaLabel ?? '按发生先后排列的数量记录'}><small>按发生顺序观察</small><div>{activity.values.map((value, index) => <span key={`${value}-${index}`}>{value}{index < activity.values.length - 1 && <i>→</i>}</span>)}</div><em>不要跳过中间一步</em></div>;
+  if (activity.kind === 'sort') return <div className="mt-guess-scene mt-guess-shapes" role="img" aria-label={ariaLabel ?? '几种生活物品等待观察形状特征'}>{activity.objects.map((object, index) => <span key={`${object.shape}-${index}`}><SolidShapeGlyph kind={solidKindByName(object.shape)} /><small aria-hidden="true">{object.emoji}</small></span>)}<em>观察形状、平面和曲面</em></div>;
+  const positionLike = /位置|第几|方向|左右/.test(activity.prompt) || /position|between/.test(lessonId);
+  return <div className={`mt-guess-scene mt-guess-model ${positionLike ? 'position' : ''}`} role="img" aria-label={ariaLabel ?? '观察信息与问题的关系图'}><div className="mt-guess-model-card"><small>图中信息</small><b>{positionLike ? '●　●　●　●　●' : '●　●　●　｜　●　●'}</b></div><i aria-hidden="true">→</i><div className="mt-guess-model-card"><small>想一想</small><b>？</b></div><em>先从图中找到和问题有关的信息</em></div>;
+}
+
+/** P60 先猜图：车窗里的 4 位原有乘客和上下车人物都用图画呈现，不把故事退回成数字流程。 */
+function GuessMixedAddSubScene() {
+  const person = (key: string, className = '') => <i key={key} className={`mt-bus-person ${className}`} aria-hidden="true"><b /><em /></i>;
+  return <div className="mt-guess-scene mt-guess-bus-change" role="img" aria-label="一辆车上原有四位乘客，三人正准备上车，两人正走下车；请观察人数变化的先后顺序">
+    <div className="mt-bus-sun" aria-hidden="true" />
+    <div className="mt-bus-stop" aria-hidden="true"><i /></div>
+    <div className="mt-bus-illustration" aria-hidden="true">
+      <div className="mt-bus-roof" />
+      <div className="mt-bus-windows">{Array.from({ length: 4 }, (_, index) => <span key={index}>{person(`rider-${index}`, 'on-bus')}</span>)}</div>
+      <div className="mt-bus-door" />
+      <i className="mt-bus-wheel left" /><i className="mt-bus-wheel right" />
+    </div>
+    <div className="mt-bus-arriving" aria-hidden="true"><span>{person('arriving-1')}{person('arriving-2')}{person('arriving-3')}</span><i>→</i></div>
+    <div className="mt-bus-leaving" aria-hidden="true"><i>→</i><span>{person('leaving-1')}{person('leaving-2')}</span></div>
+    <div className="mt-bus-road" aria-hidden="true" />
+  </div>;
+}
+
+/** P8 先猜图：与「听指令辨左右」保持同一情境，只展示指令与要辨认的身体部位。 */
+function GuessDirectionCommandScene() {
+  return <div className="mt-guess-scene mt-guess-direction-command" role="img" aria-label="聪聪发出指令：请摸自己的左耳；小朋友需要先辨认自己的左耳">
+    <small>听清聪聪的指令</small>
+    <div className="mt-direction-command-bubble">聪聪说：<b>请摸自己的左耳</b></div>
+    <div className="mt-direction-person" aria-hidden="true"><i className="left-ear">左耳</i><span>🧒🏻</span><i className="right-ear">右耳</i></div>
+    <em>先分清指令说的是哪一个部位</em>
+  </div>;
+}
+
+/** P10 先猜图：钟面、课程表与准备物品共同说明“8:30”所在的上课情境。 */
+function GuessLearningReadinessScene() {
+  return <div className="mt-guess-scene mt-guess-learning-readiness" role="img" aria-label="钟面显示八点三十分，旁边是上午课程表和准备好的书本">
+    <small>观察钟面和课程信息</small>
+    <div className="mt-readiness-time-card"><span aria-hidden="true">🕣</span><div><b>8:30</b><i>上午课程表 · 第 1 节</i></div></div>
+    <div className="mt-readiness-materials" aria-hidden="true"><span>📚</span><span>✏️</span><b>书本和文具已经准备好</b></div>
+    <em>想一想：这里的 8:30 表示什么？</em>
+  </div>;
+}
+
+/** P37 先猜观察图：只呈现题目中的左右两组点子，不提前写出比较符号或结论。 */
+function GuessCompareOrderNineScene() {
+  const dots = (total: number) => Array.from({ length: total }, (_, index) => <i key={index} aria-hidden="true" />);
+  return <div className="mt-guess-scene mt-guess-compare-order-nine" role="img" aria-label="左边有六个点，右边有七个点，等待比较数量">
+    <small>数一数两边的点子</small>
+    <div className="mt-guess-compare-groups" aria-hidden="true">
+      <section><b>左边</b><div>{dots(6)}</div><small>6 个点</small></section>
+      <section><b>右边</b><div>{dots(7)}</div><small>7 个点</small></section>
+    </div>
+    <em>先猜一猜：6 和 7，谁表示的数量更多？</em>
+  </div>;
+}
+
+/** P51 先猜观察图：保留鹿的整体、跑走部分和无关的蘑菇、天鹅，供学生按问题筛选信息。 */
+function GuessSelectInfoEightNineScene() {
+  const items = (emoji: string, total: number) => Array.from({ length: total }, (_, index) => <i key={index} aria-hidden="true">{emoji}</i>);
+  return <div className="mt-guess-scene mt-guess-select-info-eight-nine" role="img" aria-label="图中有九只鹿，其中三只跑走；旁边还有六朵蘑菇和八只天鹅，问题问还剩几只鹿">
+    <small>问题：还剩几只鹿？</small>
+    <div className="mt-guess-info-cards" aria-hidden="true">
+      <section className="deer-total"><b>一共有 9 只鹿</b><div>{items('🦌', 9)}</div></section>
+      <section className="deer-leave"><b>跑走 3 只鹿</b><div>{items('🦌', 3)}<span>→</span></div></section>
+      <section className="other-facts"><b>旁边还有</b><div><span>🍄 × 6</span><span>🦢 × 8</span></div></section>
+    </div>
+    <em>先看问题，再找和“鹿”有关的信息。</em>
+  </div>;
+}
+
+function GuessComparisonScene() {
+  return <div className="mt-guess-scene mt-guess-comparison" role="img" aria-label="三只小猴和两个香蕉等待配对"><section><small>小猴</small><div><span>🐒</span><span>🐒</span><span>🐒</span></div></section><div className="mt-guess-pair-slots" aria-hidden="true"><i /><i /><i /></div><section><small>香蕉</small><div><span>🍌</span><span>🍌</span></div></section><em>先猜一猜：一对一配完会怎样</em></div>;
+}
+
+function GuessOrdinalScene() {
+  return <div className="mt-guess-scene mt-guess-ordinal" role="img" aria-label="火车前有五个人排队，穿绿色衣服的小朋友排在第二位"><div><span className="mt-guess-train" aria-hidden="true" /><i>从火车方向开始</i></div><section>{Array.from({ length: 5 }, (_, index) => <span className={`mt-guess-person ${index === 1 ? 'green-shirt' : ''}`} key={index}><i aria-hidden="true" /><b>{index === 1 ? '绿色衣服' : '小朋友'}</b></span>)}</section><em>先确认从哪边数，再找位置</em></div>;
+}
+
+function GuessSplitScene() {
+  return <div className="mt-guess-scene mt-guess-split" role="img" aria-label="五个玉米和左右两个空篮子"><div>{Array.from({ length: 5 }, (_, index) => <span key={index}>🌽</span>)}</div><i aria-hidden="true">↙　　↘</i><section><b>空篮子</b><b>空篮子</b></section><em>5 个都要分进两个篮子</em></div>;
+}
+
+/** P69 先猜观察图：塔的底座空着，旁边摆着长方体、球和圆柱三种积木；只给可观察条件，不标注答案。 */
+function GuessBuildScene() {
+  return <div className="mt-guess-scene mt-guess-build" role="img" aria-label="搭高塔观察图：底座位置还空着，材料有长方体、球和圆柱">
+    <small>要搭一座高塔，底座还空着</small>
+    <div className="mt-guess-build-stage">
+      <div className="mt-guess-build-tower" aria-hidden="true"><i className="top" /><i className="mid" /><i className="base">底座？</i></div>
+      <div className="mt-guess-build-materials" aria-hidden="true">
+        <span><SolidShapeGlyph kind="cuboid" size={58} /><small>长方体</small></span>
+        <span><SolidShapeGlyph kind="ball" size={58} /><small>球</small></span>
+        <span><SolidShapeGlyph kind="cylinder" size={58} /><small>圆柱</small></span>
+      </div>
+    </div>
+    <em>先猜一猜：哪种积木放在最下面，塔才能又稳又高？</em>
+  </div>;
+}
+
+/** P71 先猜观察图：两个相同的小正方体贴在一起；只呈现条件，不提示能拼成什么。 */
+function GuessComposeScene() {
+  return <div className="mt-guess-scene mt-guess-compose" role="img" aria-label="两个相同的小正方体正要贴在一起">
+    <small>两个一样的小正方体</small>
+    <div className="mt-guess-compose-stage" aria-hidden="true">
+      <span className="mt-guess-compose-pair"><IsoBlock state="placed" /><IsoBlock state="placed" /></span>
+      <i>→</i>
+      <b>？</b>
+    </div>
+    <em>先猜一猜：它们贴在一起，能拼成哪种图形？</em>
+  </div>;
+}
+
 function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
-  const [found, setFound] = useState<string | null>(null);
-  const [floorCount, setFloorCount] = useState(0);
+  const [campusProgress, setCampusProgress] = useMathLessonTaskProgress('campus-primary', { found: null as string | null, floorCount: 0 });
+  const { found, floorCount } = campusProgress;
+  const setFound = (found: string | null) => setCampusProgress((state) => ({ ...state, found }));
+  const setFloorCount = (floorCount: number) => setCampusProgress((state) => ({ ...state, floorCount }));
+  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
   const [countFeedback, setCountFeedback] = useState<{ right: boolean; text: string } | null>(null);
   const countFloor = (index: number) => {
     if (index < floorCount) return;
@@ -777,9 +1285,12 @@ function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
         guessVisual={<CampusGuessPicture />}
         reason={{ question: '为什么中间教学楼是 4 层？', options: ['只数上面的三排窗户', '底层入口是第 1 层，再数上面三层', '因为有四个标记'], answer: 1 }}
         checkpoint={{ question: '从下往上数，中间教学楼共有几层？', options: ['3 层', '4 层', '5 层'], answer: 1 }}
-        actionReady={floorCount === 4}
-        actionHint="请从底层入口开始，按顺序点亮中间教学楼的 4 层。"
-        actionCoach={floorCount === 0 ? '先点最下面的底层入口，它就是第 1 层。' : floorCount === 4 ? '四层都点亮了！底层入口也算一层，所以一共有 4 层。' : `已经数到第 ${floorCount} 层了，再点它上面紧挨着的一层。`}
+        actionReady={floorCount === 4 && textbookTaskDone}
+        actionTasks={[
+          { title: '从底层入口开始，按顺序点亮中间教学楼的 4 层', done: floorCount === 4 },
+          { title: textbookTaskTitle('campus'), done: textbookTaskDone },
+        ]}
+        actionCoach={floorCount === 0 ? '先点最下面的底层入口，它就是第 1 层。' : floorCount === 4 && !textbookTaskDone ? '四层都点亮了！继续完成教材任务二。' : floorCount === 4 ? '两项教材任务都完成了。' : `已经数到第 ${floorCount} 层了，再点它上面紧挨着的一层。`}
         ask={askOf('campus')}
         narrations={[
           '欢迎来到数学探索课！我是聪聪老师。先看一看这幅校园图，不用数得很仔细，凭感觉猜一猜：中间的教学楼看起来有几层？猜错没关系，下一步用操作来验证。',
@@ -800,11 +1311,12 @@ function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
         }}
         onPass={onPass}
       >
+      <ActionStation index={0} title="从底层入口开始，按顺序点亮中间教学楼的 4 层">
       <div className="mt-campus-scene" aria-label="可探索校园场景">
         <div className="mt-sun" />
         <div className="mt-cloud cloud-a" /><div className="mt-cloud cloud-b" />
         <div className="mt-building building-a"><i /><i /><i /><i /><i /><i /></div>
-        <div className="mt-building building-b"><i /><i /><i /><i /><i /><i /><i /><i />
+        <div className="mt-building building-b"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i className="entrance" />
           <div className="mt-floor-buttons" aria-label="点亮中间教学楼楼层">
             {['底层入口', '第 2 层', '第 3 层', '第 4 层'].map((label, index) => (
               <button
@@ -831,6 +1343,8 @@ function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
         <div><small>{floorCount === 4 ? '数完后回看：底层入口也要算一层' : '直接在中间教学楼上，从底层入口开始点数'}</small><b>已经点亮 {floorCount} / 4 层</b></div>
         {countFeedback && <p className={`mt-feedback ${countFeedback.right ? 'good' : 'try'}`}>{countFeedback.text}</p>}
       </div>
+      </ActionStation>
+      <MathTextbookTaskPack lessonId="campus" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
       <div className="mt-teach-note"><b>观察方法</b><span>先确认数的是中间教学楼；从底层入口开始，由下往上一层一层数。</span></div>
       </LearningFlow>
     </section>
@@ -839,13 +1353,16 @@ function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
 
 function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
   // 按 1→2→3→4→5 顺序认识：每个数字都要把对应数量的珠子拨到左边
-  const [number, setNumber] = useState(1);
-  const [trace, setTrace] = useState(0);
-  const [completed, setCompleted] = useState<Record<number, boolean>>({});
+  const [numbersProgress, setNumbersProgress] = useMathLessonTaskProgress('numbers-primary', { number: 1, trace: 0, completed: {} as Record<number, boolean>, abacusCount: 0 });
+  const { number, trace, completed, abacusCount } = numbersProgress;
+  const setNumber = (number: number) => setNumbersProgress((state) => ({ ...state, number }));
+  const setTrace = (value: number | ((previous: number) => number)) => setNumbersProgress((state) => ({ ...state, trace: typeof value === 'function' ? value(state.trace) : value }));
+  const setCompleted = (completed: Record<number, boolean>) => setNumbersProgress((state) => ({ ...state, completed }));
+  const setAbacusCount = (abacusCount: number) => setNumbersProgress((state) => ({ ...state, abacusCount }));
+  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
   const completedCount = [1, 2, 3, 4, 5].filter((n) => completed[n]).length;
   const allDone = completedCount === 5;
   const targetNumber = [1, 2, 3, 4, 5].find((n) => !completed[n]);
-  const [abacusCount, setAbacusCount] = useState(0);
   const [abacusFeedback, setAbacusFeedback] = useState<{ right: boolean; text: string } | null>(null);
   const [draggingBead, setDraggingBead] = useState<{ index: number; left: number } | null>(null);
   const abacusRef = useRef<HTMLDivElement>(null);
@@ -916,9 +1433,12 @@ function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
         guessVisual={<NumberGuessPicture />}
         reason={{ question: '为什么要把实物、点子和数字放在一起看？', options: ['为了让页面更热闹', '它们表示的是同一个数量', '因为数字一定比实物大'], answer: 1 }}
         checkpoint={{ question: '4 朵花应该和哪个数字连起来？', options: ['3', '4', '5'], answer: 1 }}
-        actionReady={allDone}
-        actionHint={allDone ? '' : `依次认识 1～5：每个数字都把对应数量的珠子拨到左边（已完成 ${completedCount}/5）。`}
-        actionCoach={allDone ? '1～5 全部完成！每个数字的实物、点子、数字和珠子都对上了。' : targetNumber === number ? (abacusCount === 0 ? `现在认识数字 ${number}：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。` : `左边已经有 ${abacusCount} 颗珠，还差 ${number - abacusCount} 颗。`) : `下一个是数字 ${targetNumber}：点上面的 ${targetNumber}，把 ${targetNumber} 颗珠子拨到左边。`}
+        actionReady={allDone && textbookTaskDone}
+        actionTasks={[
+          { title: '依次认识 1～5，把对应数量的珠子拨到左边', done: allDone },
+          { title: textbookTaskTitle('numbers'), done: textbookTaskDone },
+        ]}
+        actionCoach={allDone && !textbookTaskDone ? '1～5 的珠子都拨好了。继续完成教材任务二。' : allDone ? '两项教材任务都完成了。' : targetNumber === number ? (abacusCount === 0 ? `现在认识数字 ${number}：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。` : `左边已经有 ${abacusCount} 颗珠，还差 ${number - abacusCount} 颗。`) : `下一个是数字 ${targetNumber}：点上面的 ${targetNumber}，把 ${targetNumber} 颗珠子拨到左边。`}
         ask={askOf('numbers')}
         narrations={[
           '先看这幅图，不逐个点数，你觉得桌上有几个南瓜？大胆猜一猜，猜错也没关系。',
@@ -939,6 +1459,7 @@ function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
         }}
         onPass={onPass}
       >
+      <ActionStation index={0} title="依次认识 1～5，把对应数量的珠子拨到左边" brief={`按顺序认识每一个数字：选中后把它对应数量的珠子拨到左边（已完成 ${completedCount}/5），再描一描。`}>
       <section className="mt-number-showcase" aria-label={`数字 ${number} 的三种表示`}>
         <div className="mt-number-selector"><span>从 1 开始，按顺序认识：每个数字都把对应数量的珠子拨到左边（已完成 {completedCount}/5）</span>{[1, 2, 3, 4, 5].map((n) => <button key={n} className={`${number === n ? 'active' : ''} ${completed[n] ? 'done' : ''}`} onClick={() => { setNumber(n); setAbacusCount(0); setDraggingBead(null); setAbacusFeedback(null); }}>{n}</button>)}</div>
         <div className="mt-cra-heading"><span>数量 {number}</span><b>看得见 · 数得出 · 写得下</b></div>
@@ -964,18 +1485,23 @@ function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
         </div>
       </section>
       <DigitPractice number={number} replay={trace} onReplay={() => { setTrace((value) => value + 1); speakOnce(String(number), 'zh', 0.8); }} />
+      </ActionStation>
+      <MathTextbookTaskPack lessonId="numbers" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
 }
 
 function CompareLesson({ onPass }: { onPass: (stars: number) => void }) {
-  const [left, setLeft] = useState(3);
-  const [right, setRight] = useState(3);
-  const [fruit, setFruit] = useState({ icon: '🍑', name: '桃子' });
-  const [pairedCount, setPairedCount] = useState(0);
-  const [selectedMonkey, setSelectedMonkey] = useState<number | null>(null);
+  const [compareProgress, setCompareProgress] = useMathLessonTaskProgress('compare-primary', { left: 3, right: 3, fruit: { icon: '🍑', name: '桃子' }, pairedCount: 0, selectedMonkey: null as number | null });
+  const { left, right, fruit, pairedCount, selectedMonkey } = compareProgress;
+  const setLeft = (left: number) => setCompareProgress((state) => ({ ...state, left }));
+  const setRight = (right: number) => setCompareProgress((state) => ({ ...state, right }));
+  const setFruit = (fruit: { icon: string; name: string }) => setCompareProgress((state) => ({ ...state, fruit }));
+  const setPairedCount = (pairedCount: number) => setCompareProgress((state) => ({ ...state, pairedCount }));
+  const setSelectedMonkey = (selectedMonkey: number | null) => setCompareProgress((state) => ({ ...state, selectedMonkey }));
   const [pairFeedback, setPairFeedback] = useState<{ right: boolean; text: string } | null>(null);
+  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
   const relation = left === right ? '=' : left > right ? '>' : '<';
   const max = Math.max(left, right);
   const pairLimit = Math.min(left, right);
@@ -1054,9 +1580,12 @@ function CompareLesson({ onPass }: { onPass: (stars: number) => void }) {
         guessVisual={<CompareGuessPicture />}
         reason={{ question: '怎样判断哪边更多最可靠？', options: ['看图形大小', '一个小猴配一个水果，看哪边有剩余', '凭感觉'], answer: 1 }}
         checkpoint={{ question: '3 只小猴和 4 个梨，应该用哪个符号？', options: ['3 = 4', '3 > 4', '3 < 4'], answer: 2 }}
-        actionReady={left === 3 && right === 3 && fruit.name === '桃子' && pairedCount === 3}
-        actionHint="本次任务是：给 3 只小猴各分 1 个桃子，完成 3 对一一配对。"
-        actionCoach={left !== 3 || right !== 3 || fruit.name !== '桃子' ? '先选择“3 和 3 · 同样多”，让 3 只小猴和 3 个桃子准备好。' : selectedMonkey !== null ? `第 ${selectedMonkey + 1} 只小猴在等桃子，点同一排的桃子给它。` : pairedCount === 3 ? '3 只小猴都有桃子了，哪边都没有剩余，所以同样多。' : `已经配好 ${pairedCount} 对，还有 ${3 - pairedCount} 只小猴没有桃子。`}
+        actionReady={left === 3 && right === 3 && fruit.name === '桃子' && pairedCount === 3 && textbookTaskDone}
+        actionTasks={[
+          { title: '给 3 只小猴各分 1 个桃子，完成一一配对', done: left === 3 && right === 3 && fruit.name === '桃子' && pairedCount === 3 },
+          { title: textbookTaskTitle('compare'), done: textbookTaskDone },
+        ]}
+        actionCoach={left !== 3 || right !== 3 || fruit.name !== '桃子' ? '先选择“3 和 3 · 同样多”，让 3 只小猴和 3 个桃子准备好。' : selectedMonkey !== null ? `第 ${selectedMonkey + 1} 只小猴在等桃子，点同一排的桃子给它。` : pairedCount === 3 && !textbookTaskDone ? '3 只小猴都有桃子了。继续完成教材任务二。' : pairedCount === 3 ? '两项教材任务都完成了。' : `已经配好 ${pairedCount} 对，还有 ${3 - pairedCount} 只小猴没有桃子。`}
         ask={askOf('compare')}
         narrations={[
           '三只小猴和两个香蕉，一个对一个配，你觉得哪边会有剩余？先猜一猜。',
@@ -1077,6 +1606,7 @@ function CompareLesson({ onPass }: { onPass: (stars: number) => void }) {
         }}
         onPass={onPass}
       >
+      <ActionStation index={0} title="给 3 只小猴各分 1 个桃子，完成一一配对" brief="先点一只小猴，再点同一排的桃子，连成一对；三对都完成后，可以自由切换数量继续探索。">
       <div className="mt-example-switch" aria-label="教材三组比较情境">
         <button onClick={() => chooseExample(3, 3, { icon: '🍑', name: '桃子' })}>3 和 3 · 同样多</button>
         <button onClick={() => chooseExample(3, 2, { icon: '🍌', name: '香蕉' })}>3 和 2 · 谁更多</button>
@@ -1100,19 +1630,27 @@ function CompareLesson({ onPass }: { onPass: (stars: number) => void }) {
         {pairFeedback && <p className={`mt-feedback ${pairFeedback.right ? 'good' : 'try'}`}>{pairFeedback.text}</p>}
       </div>
       <div className="mt-equation"><b>{left}</b><em>{relation}</em><b>{right}</b><span>{left === right ? `小猴和${fruit.name}同样多` : left > right ? `小猴比${fruit.name}多` : `小猴比${fruit.name}少`}</span></div>
+      </ActionStation>
+      <MathTextbookTaskPack lessonId="compare" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
 }
 
 function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
-  const [from, setFrom] = useState<'left' | 'right'>('left');
-  const [selected, setSelected] = useState<number | null>(null);
-  const [directionChosen, setDirectionChosen] = useState(false);
+  const [ordinalProgress, setOrdinalProgress] = useMathLessonTaskProgress('ordinal-primary', { from: 'left' as 'left' | 'right', selected: null as number | null, directionChosen: false });
+  const { from, selected, directionChosen } = ordinalProgress;
+  const setFrom = (from: 'left' | 'right') => setOrdinalProgress((state) => ({ ...state, from }));
+  const setSelected = (selected: number | null) => setOrdinalProgress((state) => ({ ...state, selected }));
+  const setDirectionChosen = (directionChosen: boolean) => setOrdinalProgress((state) => ({ ...state, directionChosen }));
   const [positionFeedback, setPositionFeedback] = useState<{ right: boolean; text: string } | null>(null);
+  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
   const people = ['👩🏻', '🧒🏻', '👩🏽', '👨🏻', '🧑🏻'];
-  const visual = from === 'left' ? people : [...people].reverse();
-  const correct = directionChosen && selected === 1;
+  // 队伍在画面中始终按左→右保持原位；改变方向只改变起点和目标位置。
+  // 不能靠翻转数据让“从右数第 2 个”再次落在视觉左边的第 2 位。
+  const targetIndex = from === 'left' ? 1 : people.length - 2;
+  const startIndex = from === 'left' ? 0 : people.length - 1;
+  const correct = directionChosen && selected === targetIndex;
   return (
     <section className="mt-lesson">
       <div className="mt-lesson-copy">
@@ -1127,9 +1665,12 @@ function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
         guessVisual={<OrdinalGuessPicture />}
         reason={{ question: '确定“第几”之前，必须先知道什么？', options: ['从哪一边开始数', '队伍里谁最高', '一共有多少种颜色'], answer: 0 }}
         checkpoint={{ question: '队伍里一共有 5 人，小朋友排第 2。“5”和“2”的意思相同吗？', options: ['相同', '不同'], answer: 1 }}
-        actionReady={correct}
-        actionHint="请先选定方向，再点出从该方向数的第 2 个人。"
-        actionCoach={!directionChosen ? '先选择从左数或从右数；起点不一样，“第 2”也会不一样。' : correct ? `找对了：从${from === 'left' ? '左' : '右'}数，第 2 个人已经亮起来。` : `起点已经定在${from === 'left' ? '左' : '右'}边，现在从起点数到第 2 个人。`}
+        actionReady={correct && textbookTaskDone}
+        actionTasks={[
+          { title: '先定方向，再点出从该方向数的第 2 个人', done: correct },
+          { title: textbookTaskTitle('ordinal'), done: textbookTaskDone },
+        ]}
+        actionCoach={!directionChosen ? '先选择从左数或从右数；起点不一样，“第 2”也会不一样。' : correct && !textbookTaskDone ? '第 2 个人已经找对。继续完成教材任务二。' : correct ? '两项教材任务都完成了。' : `起点已经定在${from === 'left' ? '左' : '右'}边，现在从起点数到第 2 个人。`}
         ask={askOf('ordinal')}
         narrations={[
           '从火车方向开始数，穿绿色衣服的小朋友排第几？先凭观察猜一猜。',
@@ -1150,9 +1691,13 @@ function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
         }}
         onPass={onPass}
       >
+      <ActionStation index={0} title="先定方向，再点出从该方向数的第 2 个人">
       <div className="mt-direction-switch"><button className={directionChosen && from === 'left' ? 'active' : ''} onClick={() => { setFrom('left'); setSelected(null); setDirectionChosen(true); setPositionFeedback({ right: true, text: '起点定好了：现在从左边开始数。' }); }}>从左数 →</button><button className={directionChosen && from === 'right' ? 'active' : ''} onClick={() => { setFrom('right'); setSelected(null); setDirectionChosen(true); setPositionFeedback({ right: true, text: '起点定好了：现在从右边开始数。' }); }}>← 从右数</button></div>
-      <div className="mt-ordinal-route" aria-live="polite">{directionChosen ? <><b>{from === 'left' ? '左边' : '右边'}是起点</b><span>① 从这里开始</span><i>→</i><span>② 找第 2 个人</span></> : <span>先定方向，才知道从哪里算第 1 个。</span>}</div>
-      <div className="mt-platform"><div className="mt-train">🚆</div><div className="mt-queue">{visual.map((person, index) => <button key={`${from}-${index}`} className={`${selected === index ? (correct ? 'correct' : 'wrong') : ''} ${directionChosen && index === 0 ? 'start' : ''} ${directionChosen && index === 1 ? 'target' : ''}`} aria-label={`${directionChosen ? `从${from === 'left' ? '左' : '右'}数的第 ${index + 1} 个人` : '请先选择计数方向'}`} onClick={() => { if (!directionChosen) { feedback(false); teacherSay('先选从左数还是从右数，再找第 2 个人。'); setPositionFeedback({ right: false, text: '还没有确定起点，先选择从左数还是从右数。' }); return; } setSelected(index); const right = index === 1; feedback(right); setPositionFeedback({ right, text: right ? '找对了！这是从这个方向数的第 2 个人。' : '先从选定的起点开始，一个一个数到第 2 个。' }); if (right) speakOnce('找对了！方向变了，第几也会跟着变。', 'zh', 0.9); }}><span>{person}</span><small>{directionChosen ? `第 ${index + 1}` : '？'}</small>{directionChosen && index === 0 && <i>起点</i>}</button>)}</div></div>
+      <div className="mt-ordinal-route" aria-live="polite">{directionChosen ? <><b>{from === 'left' ? '左边' : '右边'}是起点</b><span>① 从这里开始</span><i>{from === 'left' ? '→' : '←'}</i><span>② 找第 2 个人</span></> : <span>先定方向，才知道从哪里算第 1 个。</span>}</div>
+      <div className={`mt-platform ${from === 'right' ? 'from-right' : ''}`}><div className="mt-train">🚆</div><div className="mt-queue">{people.map((person, index) => {
+        const ordinal = from === 'left' ? index + 1 : people.length - index;
+        return <button key={index} className={`${selected === index ? (correct ? 'correct' : 'wrong') : ''} ${directionChosen && index === startIndex ? 'start' : ''} ${directionChosen && index === targetIndex ? 'target' : ''}`} aria-label={`${directionChosen ? `从${from === 'left' ? '左' : '右'}数的第 ${ordinal} 个人` : '请先选择计数方向'}`} onClick={() => { if (!directionChosen) { feedback(false); teacherSay('先选从左数还是从右数，再找第 2 个人。'); setPositionFeedback({ right: false, text: '还没有确定起点，先选择从左数还是从右数。' }); return; } setSelected(index); const right = index === targetIndex; feedback(right); setPositionFeedback({ right, text: right ? '找对了！这是从这个方向数的第 2 个人。' : '先从选定的起点开始，一个一个数到第 2 个。' }); if (right) speakOnce('找对了！方向变了，第几也会跟着变。', 'zh', 0.9); }}><span>{person}</span><small>{directionChosen ? `第 ${ordinal}` : '？'}</small>{directionChosen && index === startIndex && <i>起点</i>}</button>;
+      })}</div></div>
       <div className="mt-ordinal-facts">
         <article><small>队伍一共有</small><b>5</b><span>人</span></article>
         <article><small>第 2 人前面有</small><b>1</b><span>人</span></article>
@@ -1160,6 +1705,8 @@ function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
       </div>
       <div className="mt-teach-note"><b>任务</b><span>{directionChosen ? `请点出从${from === 'left' ? '左' : '右'}数的第 2 个人。` : '先选择从左数还是从右数，再点出第 2 个人。'}</span></div>
       {positionFeedback && <p className={`mt-feedback ${positionFeedback.right ? 'good' : 'try'}`}>{positionFeedback.text}</p>}
+      </ActionStation>
+      <MathTextbookTaskPack lessonId="ordinal" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
@@ -1168,10 +1715,16 @@ function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
 /** 拖拽分一分：把 5 个玉米拖进两个篮子（学具操作的数字化） */
 function ComposeDragStage({ onPlaced, onProgress }: { onPlaced: (leftCount: number) => void; onProgress: (placed: number, leftCount: number, rightCount: number) => void }) {
   type Corn = { id: number; where: 'pool' | 'A' | 'B' };
-  const [corns, setCorns] = useState<Corn[]>(() => Array.from({ length: 5 }, (_, id) => ({ id, where: 'pool' as const })));
+  const [dragProgress, setDragProgress] = useMathLessonTaskProgress('compose-drag', {
+    corns: Array.from({ length: 5 }, (_, id) => ({ id, where: 'pool' as const })) as Corn[],
+    selectedCorn: null as number | null,
+    history: [] as number[],
+  });
+  const { corns, selectedCorn, history } = dragProgress;
+  const setCorns = (value: Corn[] | ((previous: Corn[]) => Corn[])) => setDragProgress((state) => ({ ...state, corns: typeof value === 'function' ? value(state.corns) : value }));
+  const setSelectedCorn = (selectedCorn: number | null) => setDragProgress((state) => ({ ...state, selectedCorn }));
+  const setHistory = (value: number[] | ((previous: number[]) => number[])) => setDragProgress((state) => ({ ...state, history: typeof value === 'function' ? value(state.history) : value }));
   const [dragId, setDragId] = useState<number | null>(null);
-  const [selectedCorn, setSelectedCorn] = useState<number | null>(null);
-  const [history, setHistory] = useState<number[]>([]);
   const [transferFeedback, setTransferFeedback] = useState<string | null>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [over, setOver] = useState<'A' | 'B' | null>(null);
@@ -1182,6 +1735,13 @@ function ComposeDragStage({ onPlaced, onProgress }: { onPlaced: (leftCount: numb
   const countA = corns.filter((c) => c.where === 'A').length;
   const countB = corns.filter((c) => c.where === 'B').length;
   const allPlaced = countA + countB === 5;
+
+  useEffect(() => {
+    if (!allPlaced || completedRef.current) return;
+    completedRef.current = true;
+    onProgress(5, countA, countB);
+    onPlaced(countA);
+  }, [allPlaced, countA, countB, onPlaced, onProgress]);
 
   const placeCorn = (id: number, target: 'A' | 'B') => {
     const corn = corns.find((item) => item.id === id);
@@ -1323,10 +1883,13 @@ function ComposeReadAloud({ sentence }: { sentence: string }) {
 }
 
 function ComposeLesson({ onPass }: { onPass: (stars: number) => void }) {
-  const [left, setLeft] = useState(2);
-  const [seen, setSeen] = useState<number[]>([]);
-  const [draggedSplit, setDraggedSplit] = useState(false);
-  const [dragProgress, setDragProgress] = useState({ placed: 0, left: 0, right: 0 });
+  const [composeProgress, setComposeProgress] = useMathLessonTaskProgress('compose-primary', { left: 2, seen: [] as number[], draggedSplit: false, dragProgress: { placed: 0, left: 0, right: 0 } });
+  const { left, seen, draggedSplit, dragProgress } = composeProgress;
+  const setLeft = (left: number) => setComposeProgress((state) => ({ ...state, left }));
+  const setSeen = (value: number[] | ((previous: number[]) => number[])) => setComposeProgress((state) => ({ ...state, seen: typeof value === 'function' ? value(state.seen) : value }));
+  const setDraggedSplit = (draggedSplit: boolean) => setComposeProgress((state) => ({ ...state, draggedSplit }));
+  const setDragProgress = (dragProgress: { placed: number; left: number; right: number }) => setComposeProgress((state) => ({ ...state, dragProgress }));
+  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
   const right = 5 - left;
   const sentence = `5 可以分成 ${left} 和 ${right}`;
   const recordSplit = (n: number) => {
@@ -1349,9 +1912,12 @@ function ComposeLesson({ onPass }: { onPass: (stars: number) => void }) {
         guessVisual={<ComposeGuessPicture />}
         reason={{ question: '为什么 2 和 3 合起来是 5？', options: ['把两部分重新数在一起共有 5 个', '因为两个数字长得像 5', '左右两堆一样多'], answer: 0 }}
         checkpoint={{ question: '5 可以分成 2 和几？', options: ['1', '2', '3'], answer: 2 }}
-        actionReady={draggedSplit}
-        actionHint="请把 5 个玉米全部拖进两个篮子，完成一种分法。分法按钮只能用来回看，不会代替动手操作。"
-        actionCoach={dragProgress.placed === 0 ? '先选一个玉米，再把它放进左边或右边的篮子。' : draggedSplit ? `5 个玉米都分好了：左边 ${dragProgress.left} 个，右边 ${dragProgress.right} 个。` : `已经放好 ${dragProgress.placed} 个玉米，还剩 ${5 - dragProgress.placed} 个；继续把每一个都放进篮子。`}
+        actionReady={draggedSplit && textbookTaskDone}
+        actionTasks={[
+          { title: '把 5 个玉米全部拖进两个篮子，完成一种分法', done: draggedSplit },
+          { title: textbookTaskTitle('compose'), done: textbookTaskDone },
+        ]}
+        actionCoach={dragProgress.placed === 0 ? '先选一个玉米，再把它放进左边或右边的篮子。' : draggedSplit && !textbookTaskDone ? `5 个玉米都分好了：左边 ${dragProgress.left} 个，右边 ${dragProgress.right} 个。继续完成教材任务二。` : draggedSplit ? '两项教材任务都完成了。' : `已经放好 ${dragProgress.placed} 个玉米，还剩 ${5 - dragProgress.placed} 个；继续把每一个都放进篮子。`}
         ask={askOf('compose')}
         narrations={[
           '把 5 个玉米分成两堆，下面的分法哪种可行？先猜一猜。',
@@ -1372,6 +1938,7 @@ function ComposeLesson({ onPass }: { onPass: (stars: number) => void }) {
         }}
         onPass={onPass}
       >
+      <ActionStation index={0} title="把 5 个玉米全部拖进两个篮子，完成一种分法" brief="下面的分法卡可以回看分法，但不能代替拖拽操作。">
       <div className="mt-discovery-head"><div><small>探索教材中的全部分法</small><b>已发现 {seen.length}/4</b></div><span>{seen.length === 4 ? '✓ 四种位置关系都找到了' : '拖一拖或点一点，观察不同分法'}</span></div>
       <ComposeDragStage onPlaced={(split) => { recordSplit(split); setDraggedSplit(true); }} onProgress={(placed, leftCount, rightCount) => { setDragProgress({ placed, left: leftCount, right: rightCount }); if (placed < 5) setDraggedSplit(false); }} />
       <div className="mt-split-picker">{[1, 2, 3, 4].map((n) => <button key={n} className={`${left === n ? 'active' : ''} ${seen.includes(n) ? 'seen' : ''}`} onClick={() => recordSplit(n)}>{seen.includes(n) ? '✓ ' : ''}{n} 和 {5 - n}</button>)}</div>
@@ -1382,6 +1949,8 @@ function ComposeLesson({ onPass }: { onPass: (stars: number) => void }) {
       </div>
       <div className="mt-compose-sentence"><b>5</b><span>可以分成</span><b>{left}</b><span>和</span><b>{right}</b><i>；</i><b>{left}</b><span>和</span><b>{right}</b><span>组成</span><b>5</b></div>
       <ComposeReadAloud sentence={sentence} />
+      </ActionStation>
+      <MathTextbookTaskPack lessonId="compose" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
@@ -1456,6 +2025,10 @@ export default function MathTextbookLabPage() {
   useEffect(() => {
     if (isLessonId(lessonId)) setActive(lessonId);
   }, [lessonId]);
+  useEffect(() => {
+    // 记录最近学习的课文：返回数学目录时按它定位所在单元，而不是回到第一单元。
+    try { localStorage.setItem(`sfz-math-last-lesson:${activeChildId ?? 'guest'}`, active); } catch { /* 存储不可用不影响 */ }
+  }, [active, activeChildId]);
   const goLesson = (id: LessonId) => {
     stopSpeaking();
     setActive(id);
@@ -1483,7 +2056,7 @@ export default function MathTextbookLabPage() {
         </div>
         <button className="ct-teacher-play" onClick={() => speakOnce(`${currentLesson.title}。${EXTENDED_MATH_LESSONS.find((item) => item.id === active)?.concept ?? currentLesson.subtitle}`, 'zh', 0.9)}>🔊 听聪聪讲</button>
       </header>
-      {lesson}
+      <MathLessonTaskProgressProvider lessonId={active} key={active}>{lesson}</MathLessonTaskProgressProvider>
       <footer className="ct-lesson-footer">
         <button disabled={activeIndex === 0} onClick={() => goLesson(LESSONS[activeIndex - 1].id)}>← 上一课</button>
         <span>{done.includes(active) ? '✓ 本课已理解 · ' : '完成智能闯关即点亮 · '}{activeIndex + 1} / {LESSONS.length}</span>

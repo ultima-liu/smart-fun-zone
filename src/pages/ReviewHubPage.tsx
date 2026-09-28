@@ -3,16 +3,51 @@ import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
 import { completeReviewDay, dueReviewDays, importReviewEntry, reviewEntries, type ReviewEntry } from '../reviewPlan';
 import { ENGLISH_G3_ALL_LESSONS } from '../content/englishGrade3Upper';
+import { EXTENDED_MATH_LESSONS } from '../content/mathUpperCurriculum';
 import '../review-hub.css';
 
 const SUBJECT: Record<ReviewEntry['subject'], { label: string; icon: string }> = {
   chinese: { label: '语文', icon: '文' }, math: { label: '数学', icon: '数' }, english: { label: '英语', icon: 'A' },
 };
 
+type MathReviewCheck = { question: string; options: string[]; answer: number };
+
+/** 前五节专属课不在通用课程数据内，其余课直接复用每课的小检测。 */
+const FOUNDATION_MATH_REVIEW: Record<string, MathReviewCheck> = {
+  campus: { question: '从下往上数，中间教学楼共有几层？', options: ['3 层', '4 层', '5 层'], answer: 1 },
+  numbers: { question: '4 朵花应该和哪个数字连起来？', options: ['3', '4', '5'], answer: 1 },
+  compare: { question: '3 只小猴和 4 个梨，应该用哪个符号？', options: ['3 = 4', '3 > 4', '3 < 4'], answer: 2 },
+  ordinal: { question: '队伍里一共有 5 人，小朋友排第 2。“5”和“2”的意思相同吗？', options: ['相同', '不同'], answer: 1 },
+  compose: { question: '5 可以分成哪两个部分？', options: ['1 和 4', '1 和 5', '2 和 4'], answer: 0 },
+};
+
+function mathReviewCheck(lessonId: string): MathReviewCheck | undefined {
+  return FOUNDATION_MATH_REVIEW[lessonId] ?? EXTENDED_MATH_LESSONS.find((lesson) => lesson.id === lessonId)?.checkpoint;
+}
+
+function MathReviewMiniCheck({ check, onPass }: { check: MathReviewCheck; onPass: () => void }) {
+  const [picked, setPicked] = useState<number | null>(null);
+  const [passed, setPassed] = useState(false);
+  const choose = (index: number) => {
+    if (passed) return;
+    setPicked(index);
+    if (index === check.answer) {
+      setPassed(true);
+      window.setTimeout(onPass, 700);
+    } else window.setTimeout(() => setPicked(null), 850);
+  };
+  return <div className="review-math-check">
+    <b>回想小检验</b><p>{check.question}</p>
+    <div>{check.options.map((option, index) => <button type="button" key={option} className={picked === index ? index === check.answer ? 'correct' : 'wrong' : ''} disabled={passed} onClick={() => choose(index)}>{option}</button>)}</div>
+    {picked !== null && <small className={passed ? 'good' : 'try'}>{passed ? '答对了，这次复习已完成！' : '再看看本课的方法卡，慢慢想一次。'}</small>}
+  </div>;
+}
+
 export default function ReviewHubPage() {
   const nav = useNavigate();
   const childId = useStore((state) => state.activeChildId);
   const [revision, setRevision] = useState(0);
+  const [reviewingId, setReviewingId] = useState<string | null>(null);
   // 英语课原先已保存「第几天复习」的学习反馈；首次打开总入口时无损接入，
   // 避免新入口只显示更新之后新学的课。
   useEffect(() => {
@@ -44,7 +79,9 @@ export default function ReviewHubPage() {
     {due.length > 0 ? <section className="review-hub-list" aria-label="今日待复习课程">{due.map(({ entry, days }) => {
       const subject = SUBJECT[entry.subject];
       const day = days[days.length - 1];
-      return <article key={entry.id} className={`review-hub-card ${entry.subject}`}><span className="review-subject-icon">{subject.icon}</span><div className="review-hub-main"><small>{subject.label} · {day === 0 ? '当天回顾' : `第 ${day} 天复习`}</small><h2>{entry.title}</h2><p><b>这次回顾：</b>{entry.focus}</p></div><div className="review-hub-actions"><button className="review-go" onClick={() => nav(entry.route)}>去课程复习 →</button><button className="review-done" onClick={() => complete(entry, day)}>✓ 已完成回顾</button></div></article>;
+      const check = entry.subject === 'math' ? mathReviewCheck(entry.lessonId) : undefined;
+      const reviewing = reviewingId === entry.id;
+      return <article key={entry.id} className={`review-hub-card ${entry.subject}`}><span className="review-subject-icon">{subject.icon}</span><div className="review-hub-main"><small>{subject.label} · {day === 0 ? '当天回顾' : `第 ${day} 天复习`}</small><h2>{entry.title}</h2><p><b>这次回顾：</b>{entry.focus}</p>{reviewing && check && <MathReviewMiniCheck check={check} onPass={() => complete(entry, day)} />}</div><div className="review-hub-actions"><button className="review-go" onClick={() => nav(entry.route)}>去课程复习 →</button>{check ? <button className="review-done" onClick={() => setReviewingId(reviewing ? null : entry.id)}>{reviewing ? '收起小检验' : '开始小检验'}</button> : <button className="review-done" onClick={() => complete(entry, day)}>✓ 已完成回顾</button>}</div></article>;
     })}</section> : <section className="review-empty"><i>✓</i><h2>今天没有待复习的课程</h2><p>学习过的内容会在当天、第 2 天和第 4 天自动出现在这里。</p><button onClick={() => nav('/subject/english')}>去学习新课程</button></section>}
     {upcoming.length > 0 && <section className="review-upcoming"><header><span>接下来</span><h2>之后会回来复习的课程</h2></header><div>{upcoming.map(({ entry, next }) => <article key={entry.id}><b>{SUBJECT[entry.subject].icon}</b><span><strong>{entry.title}</strong><small>{next === 0 ? '今天' : `${next} 天后`}再见一次 · {entry.focus}</small></span></article>)}</div></section>}
   </main>;

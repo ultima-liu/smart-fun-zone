@@ -426,3 +426,26 @@ test('深浅主题与桌面、平板宽度下目录和课时没有横向溢出',
     }
   }
 });
+
+test('目录显示继续上次学习：跳过已完成的课，回到进行中的阶段', async ({ page }) => {
+  await page.addInitScript(() => {
+    // 与英语课时页的断点键一致：第一课已到学习反馈（阶段 4，视为完成），第二课停在听读原课
+    const childId = 'english-g3a-child';
+    localStorage.setItem(`sfz-english-g3a-flow-v5:${childId}:friends-opening`, JSON.stringify({ phase: 4 }));
+    localStorage.setItem(`sfz-english-g3a-flow-v5:${childId}:friends-a`, JSON.stringify({ phase: 1, unlocked: 1 }));
+  });
+  await page.goto('/#/subject/english');
+  const btn = page.locator('.mc-continue');
+  await expect(btn).toContainText('继续上次学习');
+  await expect(btn).toContainText('Making friends · Part A · 听说与词汇');
+  await expect(btn).toContainText('正在进行：听读原课');
+  await btn.click();
+  await expect(page).toHaveURL(/english-course\/friends-a/);
+  await expect(page.locator('.ct-phase-nav button').nth(1)).toHaveClass(/active/);
+});
+
+test('英语课没有进行中断点时目录不显示继续上次学习', async ({ page }) => {
+  await page.goto('/#/subject/english');
+  await expect(page.getByRole('heading', { name: '三年级英语上册' })).toBeVisible();
+  await expect(page.locator('.mc-continue')).toHaveCount(0);
+});

@@ -11,6 +11,9 @@ const TABS = [
   { id: 'revision', title: 'Revision · Being a good guest', question: 'How can we be a good guest?', color: '#78a5d9', lessonIds: ENGLISH_G3_UPPER_REVISION.pages.map((page) => page.id) },
 ];
 
+/** 与英语课时页的阶段条一致，用于"继续上次学习"显示进行中的阶段名 */
+const ENGLISH_PHASE_LABELS = ['看图与预测', '听读原课', '实际表达', '知识延伸', '学习反馈'];
+
 export default function EnglishTextbookCatalogPage() {
   const nav = useNavigate();
   const childId = useStore((s) => s.activeChildId);
@@ -21,6 +24,20 @@ export default function EnglishTextbookCatalogPage() {
   const all = ENGLISH_G3_ALL_LESSONS;
   const done = all.filter((lesson) => starsOf(lesson.id) > 0).length;
   const starTotal = all.reduce((sum, lesson) => sum + starsOf(lesson.id), 0);
+
+  // 继续上次学习（与数学目录同思路）：按课本顺序找第一节有断点的课。
+  // 阶段 1–3 算进行中；阶段 4（学习反馈）说明本课已完成、星级已记录，不再提示。
+  const resumable = (() => {
+    if (!childId) return undefined;
+    for (const lesson of all) {
+      try {
+        const saved = JSON.parse(localStorage.getItem(`sfz-english-g3a-flow-v5:${childId}:${lesson.id}`) ?? '{}') as { phase?: number };
+        const phase = Math.min(ENGLISH_PHASE_LABELS.length - 1, Math.max(0, Number(saved.phase) || 0));
+        if (phase > 0 && phase < ENGLISH_PHASE_LABELS.length - 1) return { lesson, phase };
+      } catch { /* 损坏的旧断点忽略 */ }
+    }
+    return undefined;
+  })();
   useEffect(() => () => stopSpeaking(), []);
 
   return <main className="ct-page ct-catalog en-catalog page">
@@ -36,6 +53,11 @@ export default function EnglishTextbookCatalogPage() {
       <div><span>③</span><b>实际表达</b><small>角色回应与项目制作</small></div><i>→</i>
       <div><span>④</span><b>知识延伸</b><small>换情境，解释为什么</small></div>
     </section>
+    {resumable && (
+      <button className="mc-continue" onClick={() => nav(`/english-course/${resumable.lesson.id}`)}>
+        <span>继续上次学习</span><b>{resumable.lesson.title}</b><small>正在进行：{ENGLISH_PHASE_LABELS[resumable.phase]}</small><em>继续 →</em>
+      </button>
+    )}
     <section className="ct-open-lessons en-open-lessons">
       <div className="ct-section-title"><div><span>{active.title}</span><h2>{active.question}</h2></div><p>本单元已完成 {active.lessonIds.filter((id) => starsOf(id) > 0).length} / {active.lessonIds.length} 课</p></div>
       <nav className="ct-unit-tabs en-unit-tabs" aria-label="选择英语单元">{TABS.map((unit, index) => {

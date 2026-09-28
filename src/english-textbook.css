@@ -223,9 +223,7 @@
 .en-word-card.seen { border-color: rgba(94,207,153,.44); background: rgba(66,169,114,.13); }
 .en-word-card.seen i { color: #58c58d; }
 .en-word-card.playing { border-color: #6fd0ee; box-shadow: 0 0 0 2px rgba(102,202,233,.22); transform: scale(1.04); }
-/* index.css 的统一深色卡片规则（.app :is([class*="-card"],…)!important）以子串匹配命中
-   en-word-card / en-letter-card（连容器 en-word-cards 也命中），其 border-color/box-shadow 的
-   !important 会盖掉 seen/playing 状态；这里按同优先级夺回。 */
+/* 单词卡的 seen/playing 状态需要始终压过基础卡片外观。 */
 .app .en-word-card.seen,
 .app .en-letter-card.seen { border-color: rgba(94,207,153,.44) !important; background: rgba(66,169,114,.13) !important; }
 .app .en-word-card.playing,
@@ -314,8 +312,7 @@
 :root[data-theme="light"] .en-unit-tabs button:not(.active) small { color: #176b9f; background: #e9f4fb; }
 :root[data-theme="light"] .en-unit-tabs button:not(.active) span { color: #27334a; }
 :root[data-theme="light"] .en-unit-tabs button:not(.active) b { color: #647087; }
-/* index.css 的统一深色卡片规则（.app :is([class*="-card"],…)!important）会命中 en-lesson-card，
-   浅色覆盖必须同样 !important 才能在浅色主题下生效 */
+/* 浅色主题下的课卡使用纸面底色。 */
 :root[data-theme="light"] .en-lesson-card { color: #27334a !important; border-color: #d6e0eb !important; background: rgba(255,255,255,.92) !important; box-shadow: 0 14px 34px rgba(54,72,105,.11) !important; }
 :root[data-theme="light"] .en-lesson-card .ct-lesson-copy h3 { color: #27334a; }
 :root[data-theme="light"] .en-lesson-card .ct-lesson-copy small,
@@ -374,8 +371,7 @@
 .en-four-line { border-color: #8ab5cb; background: linear-gradient(to bottom,transparent 14%,#accad9 14.7%,transparent 15.4%,transparent 38%,#accad9 38.7%,transparent 39.4%,transparent 62%,#accad9 62.7%,transparent 63.4%,transparent 86%,#accad9 86.7%,transparent 87.4%),#fff; }
 .en-letter-model-upper { font-size: 132px; }.en-letter-model-lower { font-size: 72px; }
 @media (max-width: 560px) { .en-four-line-rules { grid-template-columns: 1fr; }.en-four-line-rules article { min-height: 0; }.en-four-line-rules strong { font-size: 21px; } }
-/* en-word-card / en-letter-card / en-word-cards 被 index.css 的 .app :is([class*="-card"])!important
-   深色规则命中，浅色覆盖必须同样 !important（含 seen/playing 状态） */
+/* 浅色主题下的单词与字母卡使用独立纸面卡样式（含 seen/playing 状态）。 */
 :root[data-theme="light"] .en-word-cards { background: none !important; border-color: transparent !important; box-shadow: none !important; }
 :root[data-theme="light"] .en-word-card,
 :root[data-theme="light"] .en-letter-card { color: #27334a !important; border-color: #d2e2ec !important; background: #fff !important; box-shadow: 0 5px 16px rgba(54,72,105,.08) !important; }

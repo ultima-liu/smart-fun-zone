@@ -44,8 +44,9 @@ npm run smoke
 | POST/PUT/DELETE | /api/family/children[/:id] | 儿童档案管理 |
 | GET | /api/content/package?ver= | 内容包 v1（版本化下发） |
 | POST | /api/volc-tts/api/v3/tts/unidirectional/sse | TTS 代理（服务端密钥 + 磁盘缓存） |
-| GET | /api/sync?childId=&since= | 增量拉取（进度/错题/跟读记录） |
+| GET | /api/sync?childId=&since= | 增量拉取（课程进度/剧情存档/错题/跟读记录） |
 | PUT | /api/sync/progress | 写进度 |
+| PUT | /api/sync/story | 写剧情节点与领奖状态（跨端恢复、重置同步） |
 | POST | /api/sync/practice | 写练习/错题 |
 | POST | /api/score/read-aloud | 跟读评测（可插拔评分） |
 | GET/POST | /api/plans | 学习计划 |
@@ -54,7 +55,7 @@ npm run smoke
 
 ## 数据表（src/schema.sql）
 
-users / families / children / sms_codes / content_packages / progress /
+users / families / children / sms_codes / content_packages / progress / story_progress /
 practice_records / read_aloud_records / plans / tts_cache
 
 ## 生产注意事项

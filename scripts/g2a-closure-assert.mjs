@@ -2,7 +2,7 @@
    目录课时数、带增强课文/无增强课文/语文园地 均能走通 读/学/认/练，
    验证"读课文→学课文→认生字→去练习"闭环不白屏。 */
 import { chromium } from '@playwright/test';
-const BASE = 'http://localhost:4173';
+const BASE = 'http://localhost:5173';
 const fails = [];
 const check = (name, cond, extra = '') => {
   console.log(`${cond ? 'PASS' : 'FAIL'} ${name}${extra ? ' — ' + extra : ''}`);

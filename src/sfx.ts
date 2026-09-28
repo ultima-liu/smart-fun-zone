@@ -3,6 +3,9 @@ import { useStore } from './store';
 
 let ctx: AudioContext | null = null;
 
+// 抽卡音效只由 GachaModal 使用；稍高于常规交互音，确保在背景音乐和环境噪声下仍清晰可辨。
+const GACHA_MASTER_GAIN = 0.8;
+
 function getCtx(): AudioContext | null {
   if (typeof window === 'undefined') return null;
   if (!useStore.getState().sound) return null;
@@ -38,7 +41,7 @@ function tone(
   const osc = c.createOscillator();
   const gain = c.createGain();
   const master = c.createGain();
-  master.gain.value = 0.45;
+  master.gain.value = GACHA_MASTER_GAIN;
 
   osc.type = opts.type ?? 'sine';
   osc.frequency.setValueAtTime(freq, t);
@@ -93,7 +96,7 @@ function noise(dur: number, opts: { gain?: number; filter?: number; delay?: numb
   gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
 
   const master = c.createGain();
-  master.gain.value = 0.5;
+  master.gain.value = GACHA_MASTER_GAIN;
 
   src.connect(filter);
   filter.connect(gain);
@@ -113,7 +116,7 @@ function thump(delay = 0) {
   osc.frequency.exponentialRampToValueAtTime(35, t + 0.22);
   const gain = c.createGain();
   gain.gain.setValueAtTime(0.0001, t);
-  gain.gain.exponentialRampToValueAtTime(0.45, t + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.65, t + 0.01);
   gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
   osc.connect(gain);
   gain.connect(c.destination);
@@ -130,7 +133,7 @@ function chime(freq: number, dur = 0.6, delay = 0) {
   osc.frequency.setValueAtTime(freq, t);
   const gain = c.createGain();
   gain.gain.setValueAtTime(0.0001, t);
-  gain.gain.exponentialRampToValueAtTime(0.12, t + 0.005);
+  gain.gain.exponentialRampToValueAtTime(0.2, t + 0.005);
   gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
   osc.connect(gain);
   gain.connect(c.destination);

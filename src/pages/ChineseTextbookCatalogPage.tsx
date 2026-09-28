@@ -5,6 +5,9 @@ import { stopSpeaking } from '../speech';
 import { CHINESE_BOOK_UNITS, CHINESE_TEXTBOOK_LESSONS } from '../content/chineseTextbookCurriculum';
 import '../chinese-textbook.css';
 
+/** 与语文课时页的阶段条一致，用于"继续上次学习"显示进行中的阶段名 */
+const CHINESE_PHASE_LABELS = ['看图发现', '逐句点读', '教材练习', '动手表达', '迁移挑战'];
+
 /** 读取每课星级：新格式 { [id]: 星数 }；旧格式（纯完成的 id 数组）视为 3 星 */
 function readStars(childId: string | null) {
   try {
@@ -35,6 +38,19 @@ export default function ChineseTextbookCatalogPage() {
   const curUnitDone = unitDone(activeUnit.lessonIds);
   const curUnitTotal = activeUnit.lessonIds.length;
 
+  // 继续上次学习（与数学目录同思路）：按课本顺序找第一节有断点的课（阶段已开始但未到最终挑战之后）
+  const resumable = (() => {
+    if (!activeChildId) return undefined;
+    for (const lesson of CHINESE_TEXTBOOK_LESSONS) {
+      try {
+        const saved = JSON.parse(localStorage.getItem(`sfz-chinese-flow-v1:${activeChildId}:${lesson.id}`) ?? '{}') as { phase?: number };
+        const phase = Math.min(CHINESE_PHASE_LABELS.length, Math.max(0, Number(saved.phase) || 0));
+        if (phase > 0 && phase < CHINESE_PHASE_LABELS.length) return { lesson, phase };
+      } catch { /* 损坏的旧断点忽略 */ }
+    }
+    return undefined;
+  })();
+
   // 离开本页时停掉可能还在播的语音，不把声音带去别的页面
   useEffect(() => () => stopSpeaking(), []);
 
@@ -64,6 +80,12 @@ export default function ChineseTextbookCatalogPage() {
         <i>→</i>
         <div><span>⑤</span><b>迁移挑战</b><small>换情境真正会用</small></div>
       </section>
+
+      {resumable && (
+        <button className="mc-continue" onClick={() => nav(`/chinese-course/${resumable.lesson.id}`)}>
+          <span>继续上次学习</span><b>{resumable.lesson.title}</b><small>正在进行：{CHINESE_PHASE_LABELS[resumable.phase]}</small><em>继续 →</em>
+        </button>
+      )}
 
       <section className="ct-open-lessons">
         <div className="ct-section-title">

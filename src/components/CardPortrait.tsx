@@ -161,7 +161,7 @@ export default function CardPortrait({ card, size = 168, className = '' }: Props
         <GlobalXiaoJuanPortrait idBase={idBase} />
       ) : card.id === 'npc-jing-jing' ? (
         <JingJingCardPortrait idBase={idBase} />
-      ) : (card.setId === 'npc' || card.setId === 'brook' || card.setId === 'bruco') && card.role === 'figure' ? (
+      ) : (card.setId === 'npc' || card.setId === 'brook' || card.setId === 'bruco' || card.setId === 'paw-patrol') && card.role === 'figure' ? (
         <RasterCharacterPortrait card={card} idBase={idBase} />
       ) : (
         <g className="ink" transform="translate(100, 148)">
@@ -256,7 +256,7 @@ function RasterCharacterPortrait({ card, idBase }: { card: StarCard; idBase: str
         width="144"
         height="216"
         preserveAspectRatio="xMidYMid meet"
-        className={`ccard-character-art ${card.setId === 'npc' ? 'ccard-npc-art' : card.setId === 'brook' ? 'ccard-brook-art' : 'ccard-bruco-art'}`}
+        className={`ccard-character-art ${card.setId === 'npc' ? 'ccard-npc-art' : card.setId === 'brook' ? 'ccard-brook-art' : card.setId === 'paw-patrol' ? 'ccard-paw-patrol-art' : 'ccard-bruco-art'}`}
       />
       <rect x="22" y="32" width="156" height="224" fill={`url(#stage-${idBase})`} />
     </g>
