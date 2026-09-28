@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  useStore,
-  childTotalStars,
-} from '../store';
+import { useStore } from '../store';
+import { courseTotalStars } from '../activeCourses';
 import { useI18n } from '../i18n';
 import { KidButton, Toggle } from '../components/ui';
 import { AVATARS, GRADES, gradeLabel, type Grade } from '../types';
@@ -16,6 +14,7 @@ export default function HqSettingsPage() {
   const { t, lang } = useI18n();
 
   const profiles = useStore((s) => s.profiles);
+  const mastery = useStore((s) => s.mastery);
   const records = useStore((s) => s.records);
   const activeChildId = useStore((s) => s.activeChildId);
   const setActiveChild = useStore((s) => s.setActiveChild);
@@ -92,7 +91,7 @@ export default function HqSettingsPage() {
                 <span className="hq-switch-name">
                   {p.name}
                   <small>
-                    {gradeLabel(p.ageBand, lang)} · ⭐ {childTotalStars(records, p.id)}
+                    {gradeLabel(p.ageBand, lang)} · ⭐ {courseTotalStars(p.id, mastery, records)}
                   </small>
                 </span>
                 {p.id === child?.id && <span className="hq-switch-current">✓</span>}

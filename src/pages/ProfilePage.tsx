@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { courseTotalStars } from '../activeCourses';
 import {
   useStore,
-  childTotalStars,
   childRecords,
   streakDays,
   goldSkillCount,
@@ -41,6 +41,7 @@ export default function ProfilePage() {
   const profiles = useStore((s) => s.profiles);
   const activeChildId = useStore((s) => s.activeChildId);
   const records = useStore((s) => s.records);
+  const mastery = useStore((s) => s.mastery);
   const badgesMap = useStore((s) => s.badges);
   const pointsMap = useStore((s) => s.points);
   const ownedMap = useStore((s) => s.ownedItems);
@@ -48,7 +49,6 @@ export default function ProfilePage() {
   const equipItem = useStore((s) => s.equipItem);
   const unequipItem = useStore((s) => s.unequipItem);
   const overrides = useStore((s) => s.storeOverrides);
-  const mastery = useStore((s) => s.mastery);
   const expeditionLastAt = useStore((s) => s.expeditionLastAt);
   const materialsMap = useStore((s) => s.materials);
   const dailyCheckinMap = useStore((s) => s.dailyCheckin);
@@ -74,7 +74,7 @@ export default function ProfilePage() {
   const [previewOutfitId, setPreviewOutfitId] = useState<string | null>(null);
   const [checkinReward, setCheckinReward] = useState<{ childId: string; beans: number; stardust: number; streak: number } | null>(null);
 
-  const totalStars = child ? childTotalStars(records, child.id) : 0;
+  const totalStars = child ? courseTotalStars(child.id, mastery, records) : 0;
   const streak = child ? streakDays(records, child.id) : 0;
   const mine = child ? childRecords(records, child.id) : [];
 

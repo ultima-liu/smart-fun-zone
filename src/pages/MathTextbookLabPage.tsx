@@ -11,6 +11,8 @@ import { SolidShapeGlyph, solidKindByName } from '../components/SolidShapeGlyph'
 import VoiceField from '../components/VoiceField';
 import { MATH_FLOW_CONTENT_VERSION, migrateMathFlowSnapshot } from '../content/mathLearningProgress';
 import { scheduleReview } from '../reviewPlan';
+import { FRUIT_SHOP_ABILITY_LABELS, fruitShopAbilityForLesson } from '../content/fruitShop';
+import { mathLifeSceneForLesson, mathLifeSceneRoute } from '../content/mathLifeScenes';
 import '../math-textbook-lab.css';
 import '../chinese-textbook.css';
 
@@ -691,7 +693,7 @@ export function genericArena(activity: MathActivity, round: number): ArenaQuesti
   const type = round % 5;
   if (activity.kind === 'count') {
     const n = activity.total;
-    if (type === 0) return { objective: '换情境点数', q: `图中原来有 ${n} 个，小卷又放进 1 个，一共有几个？`, emo: `${quantityPictures(activity.emoji, n)} ＋ ${activity.emoji}`, opts: numberOptions(n + 1), answer: String(n + 1), say: `原来有${n}个，又放进1个，一共有几个？` };
+    if (type === 0) return { objective: '换情境点数', q: `图中原来有 ${n} 个，小熊又放进 1 个，一共有几个？`, emo: `${quantityPictures(activity.emoji, n)} ＋ ${activity.emoji}`, opts: numberOptions(n + 1), answer: String(n + 1), say: `原来有${n}个，小熊又放进1个，一共有几个？` };
     if (type === 1) return { objective: '数的后继', q: `聪聪已经按顺序数到 ${n}，下一个数是？`, opts: numberOptions(n + 1), answer: String(n + 1), say: `数到${n}以后，下一个数是几？` };
     if (type === 2) return { objective: '倒着想一想', q: `一共有 ${n} 个，其中 1 个被遮住，还看见几个？`, emo: `${quantityPictures(activity.emoji, Math.max(0, n - 1))} □`, opts: numberOptions(Math.max(0, n - 1)), answer: String(Math.max(0, n - 1)), say: `一共有${n}个，其中一个被遮住，还看见几个？` };
     if (type === 3) return { objective: '数序关联', q: `${n} 前面的一个数是？`, opts: numberOptions(Math.max(0, n - 1)), answer: String(Math.max(0, n - 1)), say: `${n}前面的一个数是几？` };
@@ -2005,8 +2007,17 @@ export default function MathTextbookLabPage() {
       : [],
     [activeChildId, mastery],
   );
+  const completedLessonIds = useMemo(
+    () => activeChildId
+      ? LESSONS.filter((lesson) => (mastery[activeChildId]?.[`math-lab-${lesson.id}`]?.stars ?? 0) > 0).map((lesson) => lesson.id)
+      : [],
+    [activeChildId, mastery],
+  );
   const activeIndex = LESSONS.findIndex((lesson) => lesson.id === active);
   const currentLesson = LESSONS[activeIndex];
+  const fruitShopAbility = fruitShopAbilityForLesson(active);
+  const lifeScene = mathLifeSceneForLesson(active);
+  const activeLessonComplete = completedLessonIds.includes(active);
   const pass = (id: LessonId, stars: number) => {
     if (done.includes(id)) return;
     if (!activeChildId) return;
@@ -2056,6 +2067,11 @@ export default function MathTextbookLabPage() {
         </div>
         <button className="ct-teacher-play" onClick={() => speakOnce(`${currentLesson.title}。${EXTENDED_MATH_LESSONS.find((item) => item.id === active)?.concept ?? currentLesson.subtitle}`, 'zh', 0.9)}>🔊 听聪聪讲</button>
       </header>
+      {lifeScene && <section className={`mt-fruit-shop-transfer scene-${lifeScene.kind} ${activeLessonComplete ? '' : 'locked'}`} aria-label="本课生活小剧场">
+        <div aria-hidden="true"><span>{lifeScene.kind === 'repair-shop' ? '🦊' : '🐰'}</span><i>{lifeScene.props[0]}</i><i>{lifeScene.props[1]}</i><b>{lifeScene.icon}</b></div>
+        <section><small>{activeLessonComplete ? '本课已完成 · 专属生活小剧场' : '本课专属生活小剧场 · 完成课程后开放'}</small><h2>《{currentLesson.title}》· {lifeScene.title}</h2><p>{fruitShopAbility ? `三张订单都练习「${FRUIT_SHOP_ABILITY_LABELS[fruitShopAbility]}」。` : lifeScene.summary}</p></section>
+        <button disabled={!activeLessonComplete} onClick={() => activeLessonComplete && navigate(mathLifeSceneRoute(active, 'course'))}>{activeLessonComplete ? lifeScene.action : '完成本课后开放'}</button>
+      </section>}
       <MathLessonTaskProgressProvider lessonId={active} key={active}>{lesson}</MathLessonTaskProgressProvider>
       <footer className="ct-lesson-footer">
         <button disabled={activeIndex === 0} onClick={() => goLesson(LESSONS[activeIndex - 1].id)}>← 上一课</button>

@@ -34,13 +34,15 @@ const ChineseTextbookLessonPage = lazy(() => import('./pages/ChineseTextbookLess
 const EnglishTextbookCatalogPage = lazy(() => import('./pages/EnglishTextbookCatalogPage'));
 const EnglishTextbookLessonPage = lazy(() => import('./pages/EnglishTextbookLessonPage'));
 const ReviewHubPage = lazy(() => import('./pages/ReviewHubPage'));
+const FruitShopPage = lazy(() => import('./pages/FruitShopPage'));
+const MathLifeScenePage = lazy(() => import('./pages/MathLifeScenePage'));
 
 /** 显示底部导航的页面（游戏/演示/家长中心保持全屏沉浸） */
 
 /** 按页面类型区分骨架屏：列表页 / 学习页 / 游戏页 */
 function RouteSkeleton() {
   const { pathname } = useLocation();
-  const kind = pathname.startsWith('/math-course') || pathname.startsWith('/chinese-course') || pathname.startsWith('/english-course')
+  const kind = pathname.startsWith('/math-course') || pathname.startsWith('/math-practice') || pathname.startsWith('/chinese-course') || pathname.startsWith('/english-course')
     ? 'learn'
     : pathname.startsWith('/game')
       ? 'game'
@@ -267,6 +269,8 @@ function Shell() {
               <Route path="/subject/math" element={<FeatureGate feature="school"><MathCatalogPage /></FeatureGate>} />
               <Route path="/textbook/:subject/:grade/:vol" element={<FeatureGate feature="school"><MathCatalogPage /></FeatureGate>} />
               <Route path="/math-course/:lessonId" element={<FeatureGate feature="school"><MathTextbookLabPage /></FeatureGate>} />
+              <Route path="/math-practice/fruit-shop" element={<FeatureGate feature="school"><FruitShopPage /></FeatureGate>} />
+              <Route path="/math-practice/life-scene" element={<FeatureGate feature="school"><MathLifeScenePage /></FeatureGate>} />
               <Route path="/subject/chinese" element={<FeatureGate feature="school"><ChineseTextbookCatalogPage /></FeatureGate>} />
               <Route path="/chinese-course/:lessonId" element={<FeatureGate feature="school"><ChineseTextbookLessonPage /></FeatureGate>} />
               <Route path="/subject/english" element={<FeatureGate feature="school"><EnglishTextbookCatalogPage /></FeatureGate>} />

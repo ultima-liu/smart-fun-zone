@@ -124,7 +124,7 @@ export const STORY: StoryChapter[] = [
         lines: [
           { zh: '欢迎来空中乐园！我是泡泡，这里装着卷星所有的笑声。', en: 'Welcome to Sky Park! I am Pao-Pao, keeper of all laughter on Juan Star.' },
           { zh: '可是乌乌怪偷走了笑声，现在乐园的灯都点不亮了。', en: 'But Gloom Gremlins stole it, and now the park lights are out.' },
-          { zh: '玩一局小游戏就能找回一点勇气之光，让乐园重新亮起来！', en: 'Play a game and courage-light returns to re-light the park!' },
+          { zh: '去街机游乐岛玩一局，就能找回一点勇气之光，让乐园重新亮起来！', en: 'Play a round on the arcade islands and courage-light returns to re-light the park!' },
         ],
         text: { zh: '乐园好久没有欢笑声了，来玩一局吧，勇气之光会回来的！', en: 'The park misses laughter. Play a game and courage will return!' },
         task: { zh: '和乐园主泡泡聊聊', en: 'Talk with Park Master Pao-Pao' },

@@ -14,25 +14,6 @@ export type SubjectId = 'math' | 'chinese' | 'english' | 'thinking' | 'science' 
 /** 学段（学习导航第一层：小学有完整课程，初中/高中内容准备中占位） */
 export type SchoolStage = 'primary' | 'junior' | 'senior';
 
-/** 游戏玩法类型（大厅分类用：按玩法而非学科分组，避免与学习页学科重复） */
-export type GameGenre = 'count' | 'match' | 'find' | 'listen' | 'think';
-
-export interface GameGenreInfo {
-  id: GameGenre;
-  icon: string;
-  name: { zh: string; en: string };
-  color: string;
-}
-
-/** 卷星游乐场玩法分组：数一数 / 配一配 / 找一找 / 听一听 / 想一想 */
-export const GAME_GENRES: GameGenreInfo[] = [
-  { id: 'count', icon: '🧮', name: { zh: '数一数', en: 'Counting' }, color: '#F2B661' },
-  { id: 'match', icon: '🧩', name: { zh: '配一配', en: 'Matching' }, color: '#A186C4' },
-  { id: 'find', icon: '🔍', name: { zh: '找一找', en: 'Spotting' }, color: '#4FB3D9' },
-  { id: 'listen', icon: '🎧', name: { zh: '听一听', en: 'Listening' }, color: '#5FC8A8' },
-  { id: 'think', icon: '🧠', name: { zh: '想一想', en: 'Thinking' }, color: '#F0A06A' },
-];
-
 export const STAGES: { id: SchoolStage; icon: string; name: { zh: string; en: string } }[] = [
   { id: 'primary', icon: '🎒', name: { zh: '小学', en: 'Primary' } },
   { id: 'junior', icon: '📚', name: { zh: '初中', en: 'Junior High' } },
@@ -92,17 +73,19 @@ export interface GameRecord {
   total: number;
   durationSec: number;
   playedAt: number;
+  /** 街机分数（乐园纯休闲游戏口径；旧教学游戏记录无此字段） */
+  score?: number;
 }
 
+/** 街机局结算：分数制，无星级无对错（2026-09-28 乐园改版起） */
 export interface GameResult {
-  correct: number;
-  total: number;
-  stars: number;
+  score: number;
   durationSec: number;
 }
 
 export interface GameProps {
   child: ChildProfile;
-  level: number;
+  /** 一局时长（秒）；e2e 可通过 ?t= 缩短 */
+  durationSec: number;
   onFinish: (r: GameResult) => void;
 }

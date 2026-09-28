@@ -1179,7 +1179,7 @@ test('智能闯关的数量变化题让图示、题干和答案表示同一数�
   });
   await page.reload();
 
-  await expect(page.locator('.mt-arena-q b')).toHaveText('图中原来有 3 个，小卷又放进 1 个，一共有几个？');
+  await expect(page.locator('.mt-arena-q b')).toHaveText('图中原来有 3 个，小熊又放进 1 个，一共有几个？');
   await expect(page.locator('.mt-arena-emo')).toHaveText('🧒🏻🧒🏻🧒🏻 ＋ 🧒🏻');
   await expect(page.locator('.mt-arena-opts')).toContainText('4');
 });

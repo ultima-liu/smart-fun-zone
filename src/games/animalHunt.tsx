@@ -1,119 +1,98 @@
-import { useEffect, useMemo, useState } from 'react';
-import type { ReactNode } from 'react';
-import pack from './levels/animalHunt.json';
+import { useEffect, useState } from 'react';
 import type { GameDef } from '../gameRegistry';
 import type { GameProps } from '../types';
-import { speak } from '../speech';
-import { useI18n } from '../i18n';
-import { useQuizSession, QuizShell } from './quiz';
+import { playSfx } from '../speech';
+import { ArcadeHud, useArcadeRound, paceForGrade } from './arcade';
 
-interface HuntLevel {
-  level: number;
-  questionCount: number;
-  clueIds: string[];
+/* 动物猎影：小动物影子在草丛里穿梭，看准点中得分（纯反应游戏） */
+
+const ANIMALS = ['🐼', '🐱', '🐶', '🐰', '🦁', '🐘', '🐢', '🐬', '🦒', '🐸', '🦆', '🦊', '🐧', '🐨'];
+
+interface Runner {
+  id: number;
+  emoji: string;
+  lane: number; // 0~4 行
+  x: number; // -0.2~1.2
+  dir: 1 | -1;
+  v: number;
 }
 
-const CLUES: Record<string, { zh: string; en: string; animalZh: string; animalEn: string; g: string }> = {
-  panda: { zh: '爱吃竹子', en: 'loves to eat bamboo', animalZh: '熊猫', animalEn: 'panda', g: '🐼' },
-  cat: { zh: '喵喵叫', en: 'says meow', animalZh: '小猫', animalEn: 'cat', g: '🐱' },
-  dog: { zh: '汪汪叫', en: 'says woof', animalZh: '小狗', animalEn: 'dog', g: '🐶' },
-  bird: { zh: '会飞', en: 'can fly', animalZh: '小鸟', animalEn: 'bird', g: '🐦' },
-  cow: { zh: '会产奶', en: 'gives us milk', animalZh: '奶牛', animalEn: 'cow', g: '🐮' },
-  rabbit: { zh: '会蹦蹦跳', en: 'hops around', animalZh: '兔子', animalEn: 'rabbit', g: '🐰' },
-  penguin: { zh: '住在南极', en: 'lives at the South Pole', animalZh: '企鹅', animalEn: 'penguin', g: '🐧' },
-  lion: { zh: '森林之王', en: 'king of the forest', animalZh: '狮子', animalEn: 'lion', g: '🦁' },
-  elephant: { zh: '鼻子很长', en: 'has a long trunk', animalZh: '大象', animalEn: 'elephant', g: '🐘' },
-  turtle: { zh: '走路慢吞吞', en: 'is very slow', animalZh: '乌龟', animalEn: 'turtle', g: '🐢' },
-  dolphin: { zh: '住在海里', en: 'lives in the sea', animalZh: '海豚', animalEn: 'dolphin', g: '🐬' },
-  giraffe: { zh: '脖子很长', en: 'has a long neck', animalZh: '长颈鹿', animalEn: 'giraffe', g: '🦒' },
-  frog: { zh: '呱呱叫', en: 'says ribbit', animalZh: '青蛙', animalEn: 'frog', g: '🐸' },
-  duck: { zh: '嘎嘎叫', en: 'says quack', animalZh: '鸭子', animalEn: 'duck', g: '🦆' },
-};
+let seq = 0;
+const LANES = 5;
 
-const PROMPT = {
-  zh: '听一听，是哪个动物？',
-  en: 'Listen — which animal is it?',
-};
+function AnimalHuntGame({ child, durationSec, onFinish }: GameProps) {
+  const [runners, setRunners] = useState<Runner[]>([]);
+  const [score, setScore] = useState(0);
+  const { timeLeft, scoreRef, startRef } = useArcadeRound(durationSec, onFinish);
+  const pace = paceForGrade(child.ageBand);
 
-interface Question {
-  promptZh: string;
-  promptEn: string;
-  voiceZh: string;
-  voiceEn: string;
-  options: { key: string; node: ReactNode; correct: boolean }[];
-}
-
-function buildQuestions(lv: HuntLevel): Question[] {
-  const qs: Question[] = [];
-  for (let i = 0; i < lv.questionCount; i++) {
-    const targetId = lv.clueIds[Math.floor(Math.random() * lv.clueIds.length)];
-    const target = CLUES[targetId];
-    const others = lv.clueIds.filter((id) => id !== targetId);
-    const distractors = [...others].sort(() => Math.random() - 0.5).slice(0, 3);
-    const opts = [...distractors, targetId].sort(() => Math.random() - 0.5);
-    qs.push({
-      promptZh: `${PROMPT.zh}（${target.zh}）`,
-      promptEn: `${PROMPT.en} (${target.en})`,
-      voiceZh: target.zh,
-      voiceEn: target.en,
-      options: opts.map((id) => {
-        const a = CLUES[id];
-        return {
-          key: id,
-          node: (
-            <>
-              <span className="quiz-option-icon big">{a.g}</span>
-              <span className="quiz-option-label">{a.animalZh}</span>
-            </>
-          ),
-          correct: id === targetId,
-        };
-      }),
-    });
-  }
-  return qs;
-}
-
-function AnimalHuntGame({ level, onFinish }: GameProps) {
-  const { lang } = useI18n();
-  const lv = useMemo(
-    () => (pack.levels.find((l) => l.level === level) ?? pack.levels[0]) as HuntLevel,
-    [level],
-  );
-  const [questions] = useState<Question[]>(() => buildQuestions(lv));
-  const session = useQuizSession(questions.length, onFinish);
-  const q = questions[session.idx];
-
-  const speakPrompt = () => speak(lang === 'zh' ? q.voiceZh : q.voiceEn, lang);
   useEffect(() => {
-    speakPrompt();
-     
-  }, [session.idx, lang]);
+    const id = window.setInterval(() => {
+      const now = Date.now();
+      const progress = Math.min(1, (now - startRef.current) / (durationSec * 1000));
+      const baseV = (0.008 + progress * 0.009) * pace;
+      setRunners((prev) => {
+        const moved = prev
+          .map((r) => ({ ...r, x: r.x + r.dir * r.v }))
+          .filter((r) => r.x > -0.25 && r.x < 1.25);
+        if (moved.length < 3 + Math.floor(progress * 3) && Math.random() < (0.2 + progress * 0.25) * pace) {
+          const dir = Math.random() < 0.5 ? 1 : -1;
+          moved.push({
+            id: ++seq,
+            emoji: ANIMALS[Math.floor(Math.random() * ANIMALS.length)],
+            lane: Math.floor(Math.random() * LANES),
+            x: dir === 1 ? -0.2 : 1.2,
+            dir,
+            v: baseV * (0.8 + Math.random() * 0.5),
+          });
+        }
+        return moved;
+      });
+    }, 60);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const catchIt = (r: Runner) => {
+    setRunners((prev) => prev.filter((x) => x.id !== r.id));
+    playSfx('collect');
+    scoreRef.current += 10;
+    setScore(scoreRef.current);
+  };
 
   return (
-    <QuizShell
-      session={session}
-      promptZh={q.promptZh}
-      promptEn={q.promptEn}
-      speakPrompt={speakPrompt}
-    >
-      {q.options.map((o) => (
-        <button key={o.key} className="quiz-option" onClick={(e) => session.pick(o.correct, e)}>
-          {o.node}
-        </button>
-      ))}
-    </QuizShell>
+    <div className="arcade-game animal-hunt">
+      <ArcadeHud score={score} timeLeft={timeLeft} />
+      <div className="hunt-field">
+        {Array.from({ length: LANES }, (_, lane) => (
+          <div key={lane} className="hunt-lane">
+            {runners.filter((r) => r.lane === lane).map((r) => (
+              <button
+                key={r.id}
+                className={`hunt-runner ${r.dir === -1 ? 'flip' : ''}`}
+                style={{ left: `${r.x * 100}%` }}
+                onClick={() => catchIt(r)}
+              >
+                {r.emoji}
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
 export const animalHuntDef: GameDef = {
   id: 'animal-hunt',
-  icon: '🦉',
-  name: { zh: '动物在哪里', en: 'Animal Hunt' },
-  category: 'science',
-  genre: 'find',
-  desc: { zh: '根据线索找动物', en: 'Find the animal by clues' },
-  levels: pack.levels.length,
+  icon: '🦎',
+  name: { zh: '动物猎影', en: 'Animal Dash' },
+  desc: { zh: '点中草丛里跑过的小动物', en: 'Tap the animals dashing through' },
+  rules: {
+    zh: ['🦎 小动物会从草丛两边跑过，快点中它们', '✅ 点中一只得 10 分，没点中不扣分，大胆点', '⏱ 60 秒内小动物会跑得越来越快'],
+    en: ['🦎 Animals dash across the grass — tap them', '✅ Each catch is 10 points; missing costs nothing, so tap away', '⏱ They run faster and faster for 60 seconds'],
+  },
+  durationSec: 60,
+  color: '#5FC8A8',
   status: 'ready',
   Component: AnimalHuntGame,
 };

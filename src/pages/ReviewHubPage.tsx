@@ -4,6 +4,9 @@ import { useStore } from '../store';
 import { completeReviewDay, dueReviewDays, importReviewEntry, reviewEntries, type ReviewEntry } from '../reviewPlan';
 import { ENGLISH_G3_ALL_LESSONS } from '../content/englishGrade3Upper';
 import { EXTENDED_MATH_LESSONS } from '../content/mathUpperCurriculum';
+import { readFruitShopProgress } from '../fruitShopProgress';
+import { FRUIT_SHOP_ABILITY_LABELS, fruitShopAbilityForLesson } from '../content/fruitShop';
+import { mathLifeSceneForLesson, mathLifeSceneRoute } from '../content/mathLifeScenes';
 import '../review-hub.css';
 
 const SUBJECT: Record<ReviewEntry['subject'], { label: string; icon: string }> = {
@@ -67,7 +70,12 @@ export default function ReviewHubPage() {
     if (imported) setRevision((value) => value + 1);
   }, [childId]);
   const entries = useMemo(() => childId ? reviewEntries(childId) : [], [childId, revision]);
+  const fruitShopProgress = useMemo(() => childId ? readFruitShopProgress(childId) : null, [childId, revision]);
   const due = entries.map((entry) => ({ entry, days: dueReviewDays(entry) })).filter((item) => item.days.length > 0);
+  const matchedLifeReview = due.find(({ entry }) => entry.subject === 'math' && mathLifeSceneForLesson(entry.lessonId));
+  const matchedLifeScene = mathLifeSceneForLesson(matchedLifeReview?.entry.lessonId);
+  const matchedFruitAbility = fruitShopAbilityForLesson(matchedLifeReview?.entry.lessonId);
+  const matchedLifeDay = matchedLifeReview?.days[matchedLifeReview.days.length - 1] ?? 0;
   const upcoming = entries.map((entry) => ({ entry, days: dueReviewDays(entry), next: [0, 2, 4].find((day) => !entry.completedDays.includes(day) && day > Math.floor((Date.now() - entry.learnedAt) / 86_400_000)) })).filter((item) => item.days.length === 0 && item.next !== undefined).slice(0, 6);
   const complete = (entry: ReviewEntry, day: number) => {
     if (!childId) return;
@@ -76,6 +84,11 @@ export default function ReviewHubPage() {
   };
   return <main className="page review-hub">
     <header className="review-hub-head"><button onClick={() => nav('/')} aria-label="返回首页">←</button><div><span>STUDY RHYTHM</span><h1>今日复习</h1><p>把不同课程需要再见一次的内容集中在这里。</p></div><b>{due.length} 节待复习</b></header>
+    {matchedLifeReview && matchedLifeScene && <section className="review-story-practice" aria-label="今日情境实践">
+      <div className="review-story-art" aria-hidden="true"><span>{matchedLifeScene.kind === 'repair-shop' ? '🦊' : '🐰'}</span><i>{matchedLifeScene.props[0]}</i><i>{matchedLifeScene.props[1]}</i><b>{matchedLifeScene.icon}</b></div>
+      <div><small>今日情境实践 · 数学</small><h2>《{matchedLifeReview.entry.title}》· {matchedLifeScene.title}</h2><p>{matchedFruitAbility ? `三张订单继续练习「${FRUIT_SHOP_ABILITY_LABELS[matchedFruitAbility]}」。` : matchedLifeScene.summary}</p><span>{matchedLifeScene.kind === 'fruit-shop' && fruitShopProgress?.sessions.length ? `已经开店 ${fruitShopProgress.sessions.length} 次 · 收藏 ${fruitShopProgress.stickers.length} 张贴纸` : '把本课方法用到新的生活任务里'}</span></div>
+      <button onClick={() => nav(mathLifeSceneRoute(matchedLifeReview.entry.lessonId, 'review', matchedLifeDay))}>开始实践 →</button>
+    </section>}
     {due.length > 0 ? <section className="review-hub-list" aria-label="今日待复习课程">{due.map(({ entry, days }) => {
       const subject = SUBJECT[entry.subject];
       const day = days[days.length - 1];
