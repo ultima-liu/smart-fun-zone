@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStore, childTotalStars, streakDays, gardenStage, goldSkillCount, litSkillCount } from '../store';
+import { useStore, streakDays, gardenStage, goldSkillCount, litSkillCount } from '../store';
+import { courseTotalStars } from '../activeCourses';
 import { EMPTY, useGates } from '../features';
 import { useI18n } from '../i18n';
 import { KidButton } from '../components/ui';
@@ -198,7 +199,7 @@ export default function HomePage() {
     setSwitching(false);
     const p = profiles.find((x) => x.id === id);
     if (p) {
-      const tier = tierFor(childTotalStars(records, p.id));
+      const tier = tierFor(courseTotalStars(p.id, masteryAll, records));
       speak(t('welcomeHome', { title: t(`titleTier${tier}`), name: p.name }), lang);
     } else {
       speak(t('welcome'), lang);
@@ -329,7 +330,7 @@ export default function HomePage() {
   }
 
   /* ---------- 正式首页（卷星观测台） ---------- */
-  const totalStars = childTotalStars(records, child.id);
+  const totalStars = courseTotalStars(child.id, masteryAll, records);
   const streak = streakDays(records, child.id);
   const garden = gardenStage(totalStars);
   const goldCount = goldSkillCount(useStore.getState().mastery, child.id);
@@ -645,7 +646,7 @@ export default function HomePage() {
                   <span className="switch-name">
                     {p.name}
                     <small>
-                      {gradeLabel(p.ageBand, lang)} · ⭐ {childTotalStars(records, p.id)}
+                      {gradeLabel(p.ageBand, lang)} · ⭐ {courseTotalStars(p.id, masteryAll, records)}
                     </small>
                   </span>
                   {p.id === child.id && <span className="switch-current">✓</span>}

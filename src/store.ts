@@ -65,6 +65,10 @@ export interface AppState {
   wrongs: Record<string, WrongItem[]>;
   /** 积分余额：childId → 当前积分 */
   points: Record<string, number>;
+  /** 乐园币余额：childId → 数量（街机游戏局内掉落，只在乐园内闭环，不混 points） */
+  gameCoins: Record<string, number>;
+  /** 乐园币变动：正数发放（负数为二期局内道具消费预留） */
+  applyGameCoins: (childId: string, delta: number) => void;
   /** 积分流水：childId → 明细（最近 600 条；id 幂等） */
   pointLog: Record<string, PointEntry[]>;
   /** 家长部署的自定义任务（全局，按 childId 归属） */
@@ -213,6 +217,7 @@ export const useStore = create<AppState>()(
       storyPulse: null,
       wrongs: {},
       points: {},
+      gameCoins: {},
       pointLog: {},
       customTasks: {},
       ownedItems: {},
@@ -525,6 +530,7 @@ export const useStore = create<AppState>()(
           records: s.records.filter((r) => r.childId !== id),
           mastery: (() => { const m = { ...s.mastery }; delete m[id]; return m; })(),
           points: (() => { const p = { ...s.points }; delete p[id]; return p; })(),
+          gameCoins: (() => { const g = { ...s.gameCoins }; delete g[id]; return g; })(),
           pointLog: (() => { const p = { ...s.pointLog }; delete p[id]; return p; })(),
           dailyCheckin: (() => { const d = { ...s.dailyCheckin }; delete d[id]; return d; })(),
           charBag: (() => { const c = { ...s.charBag }; delete c[id]; return c; })(),
@@ -547,6 +553,8 @@ export const useStore = create<AppState>()(
         })),
       setActiveChild: (activeChildId) => set({ activeChildId }),
       addRecord: (r) => set((s) => ({ records: [...s.records, r] })),
+      applyGameCoins: (childId, delta) =>
+        set((s) => ({ gameCoins: { ...s.gameCoins, [childId]: Math.max(0, (s.gameCoins[childId] ?? 0) + delta) } })),
       addSkillResult: (childId, skillId, resultStars) =>
         set((s) => {
           const childMap = { ...(s.mastery[childId] ?? {}) };
@@ -689,7 +697,7 @@ export const useStore = create<AppState>()(
         set((s) => ({ wrongs: { ...s.wrongs, [childId]: (s.wrongs[childId] ?? []).filter((x) => x.uid !== uid) } })),
       setParentPin: (parentPin) => set({ parentPin }),
       setDailyLimit: (dailyLimitMin) => set({ dailyLimitMin }),
-      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, storyDone: {}, storyRewardClaimed: {}, storyUpdatedAt: {}, storyPulse: null, wrongs: {}, points: {}, pointLog: {}, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
+      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, storyDone: {}, storyRewardClaimed: {}, storyUpdatedAt: {}, storyPulse: null, wrongs: {}, points: {}, gameCoins: {}, pointLog: {}, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
     }),
     {
       name: 'smart-fun-zone',
@@ -750,13 +758,18 @@ export function childRecords(records: GameRecord[], childId: string): GameRecord
   return records.filter((r) => r.childId === childId);
 }
 
-export function childTotalStars(records: GameRecord[], childId: string): number {
-  return childRecords(records, childId).reduce((sum, r) => sum + r.stars, 0);
+/** 某街机游戏的最高分（乐园纯休闲口径，无星级） */
+export function bestScoreForGame(records: GameRecord[], childId: string, gameId: string): number {
+  return childRecords(records, childId)
+    .filter((r) => r.gameId === gameId)
+    .reduce((best, r) => Math.max(best, r.score ?? 0), 0);
 }
 
-export function starsForGame(records: GameRecord[], childId: string, gameId: string): number {
-  const list = childRecords(records, childId).filter((r) => r.gameId === gameId);
-  return list.length === 0 ? 0 : Math.max(...list.map((r) => r.stars));
+/** 某街机游戏的累计局数与总时长（家长报告用） */
+export function gamePlayStats(records: GameRecord[], childId: string, gameId: string): { rounds: number; totalSec: number } {
+  return childRecords(records, childId)
+    .filter((r) => r.gameId === gameId)
+    .reduce((acc, r) => ({ rounds: acc.rounds + 1, totalSec: acc.totalSec + r.durationSec }), { rounds: 0, totalSec: 0 });
 }
 
 export function todayPlaySec(records: GameRecord[], childId: string): number {
@@ -773,14 +786,6 @@ export function todayRecords(records: GameRecord[], childId: string): GameRecord
   const start = new Date();
   start.setHours(0, 0, 0, 0);
   return childRecords(records, childId).filter((r) => r.playedAt >= start.getTime());
-}
-
-export function todayStars(records: GameRecord[], childId: string): number {
-  return todayRecords(records, childId).reduce((s, r) => s + r.stars, 0);
-}
-
-export function todayGameKinds(records: GameRecord[], childId: string): number {
-  return new Set(todayRecords(records, childId).map((r) => r.gameId)).size;
 }
 
 export function streakDays(records: GameRecord[], childId: string): number {

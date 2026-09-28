@@ -1,29 +1,19 @@
 import { registerGame, getGame, listGames } from '../gameRegistry';
-import { numberFarmDef } from './numberFarm';
+import { bubblePopDef } from './bubblePop';
+import { starCatchDef } from './starCatch';
+import { ringTossDef } from './ringToss';
+import { balloonBurstDef } from './balloonBurst';
 import { memoryMatchDef } from './memoryMatch';
 import { oddOneOutDef } from './oddOneOut';
-import { applePickDef } from './applePick';
-import { shapeCastleDef } from './shapeCastle';
-import { pinyinFishingDef } from './pinyinFishing';
-import { hanziPuzzleDef } from './hanziPuzzle';
-import { englishZooDef } from './englishZoo';
-import { patternTrainDef } from './patternTrain';
-import { trashSortDef } from './trashSort';
 import { animalHuntDef } from './animalHunt';
-import { trafficLightDef } from './trafficLight';
 
-/* 全部 12 个游戏已实现 */
-registerGame(numberFarmDef);
+/* 乐园纯休闲街机游戏（与课程教学无关，2026-09-28 改版）：4 新作 + 3 翻新 */
+registerGame(bubblePopDef);
+registerGame(starCatchDef);
+registerGame(ringTossDef);
+registerGame(balloonBurstDef);
 registerGame(memoryMatchDef);
 registerGame(oddOneOutDef);
-registerGame(applePickDef);
-registerGame(shapeCastleDef);
-registerGame(pinyinFishingDef);
-registerGame(hanziPuzzleDef);
-registerGame(englishZooDef);
-registerGame(patternTrainDef);
-registerGame(trashSortDef);
 registerGame(animalHuntDef);
-registerGame(trafficLightDef);
 
 export { getGame, listGames };

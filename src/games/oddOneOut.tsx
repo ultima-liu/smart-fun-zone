@@ -1,111 +1,108 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
-import pack from './levels/oddOneOut.json';
 import type { GameDef } from '../gameRegistry';
 import type { GameProps } from '../types';
-import { speak, playSfx } from '../speech';
+import { playSfx } from '../speech';
 import { useI18n } from '../i18n';
-import { ProgressBar, StarBurst } from '../components/ui';
+import { StarBurst } from '../components/ui';
+import { ArcadeHud, useArcadeRound } from './arcade';
 
-interface SpotLevel {
-  level: number;
+/* 火眼金睛：限时内连续找异类图，找得越多分越高（纯观察，无知识问答） */
+
+const PAIRS: [string, string][] = [
+  ['🐻', '🐼'],
+  ['🐸', '🐢'],
+  ['🚗', '🚙'],
+  ['🌞', '🌝'],
+  ['⭐', '🌟'],
+  ['🍎', '❤️'],
+  ['🐤', '🐥'],
+  ['🐬', '🐟'],
+  ['🦊', '🐺'],
+  ['🍪', '🧭'],
+];
+
+function gridFor(round: number): number {
+  if (round <= 3) return 3;
+  if (round <= 7) return 4;
+  return 5;
+}
+
+interface RoundData {
   cols: number;
-  rows: number;
-  mainEmoji: string;
+  cells: string[];
   oddEmoji: string;
-  oddCount: number;
+  oddIdx: number;
 }
 
-function nowMs(): number {
-  return Date.now();
+function buildRound(round: number): RoundData {
+  const cols = gridFor(round);
+  const total = cols * cols;
+  const [main, odd] = PAIRS[Math.floor(Math.random() * PAIRS.length)];
+  const cells = Array<string>(total).fill(main);
+  const oddIdx = Math.floor(Math.random() * total);
+  cells[oddIdx] = odd;
+  return { cols, cells, oddEmoji: odd, oddIdx };
 }
 
-function buildGrid(lv: SpotLevel): string[] {
-  const total = lv.cols * lv.rows;
-  const cells = Array<string>(total).fill(lv.mainEmoji);
-  const odds = [...Array(total).keys()].sort(() => Math.random() - 0.5).slice(0, lv.oddCount);
-  odds.forEach((i) => (cells[i] = lv.oddEmoji));
-  return cells;
-}
-
-function OddOneOutGame({ level, onFinish }: GameProps) {
-  const { t, lang } = useI18n();
-  const lv = useMemo(
-    () => (pack.levels.find((l) => l.level === level) ?? pack.levels[0]) as SpotLevel,
-    [level],
-  );
-  const [grid, setGrid] = useState<string[]>(() => buildGrid(lv));
+function OddOneOutGame({ durationSec, onFinish }: GameProps) {
+  const { t } = useI18n();
+  const [round, setRound] = useState(1);
+  const [data, setData] = useState<RoundData>(() => buildRound(1));
+  const [score, setScore] = useState(0);
   const [wrongIdx, setWrongIdx] = useState<number | null>(null);
-  const [done, setDone] = useState(false);
   const [burst, setBurst] = useState<{ x: number; y: number } | null>(null);
-  const [foundCount, setFoundCount] = useState(0);
-  const correctRef = useRef(0);
-  const doneRef = useRef(false);
-  const startRef = useRef(nowMs());
-  const oddTotal = lv.oddCount;
-
-  useEffect(() => {
-    speak(t('findDifferent'), lang);
-  }, [t, lang]);
+  const { timeLeft, scoreRef } = useArcadeRound(durationSec, onFinish);
+  const lockRef = useRef(false);
 
   const tap = (i: number, e: MouseEvent) => {
-    if (done || wrongIdx !== null) return;
-    if (grid[i] === lv.oddEmoji) {
+    if (lockRef.current) return;
+    if (data.cells[i] === data.oddEmoji) {
+      lockRef.current = true;
       playSfx('collect');
-      correctRef.current += 1;
-      setFoundCount((c) => c + 1);
+      scoreRef.current += 10;
+      setScore(scoreRef.current);
       setBurst({ x: e.clientX, y: e.clientY });
-      window.setTimeout(() => setBurst(null), 800);
-      setGrid((g) => g.map((c, j) => (j === i ? '✅' : c)));
-      if (correctRef.current >= oddTotal) {
-        setDone(true);
-        playSfx('win');
-        speak(t('great'), lang);
-        window.setTimeout(() => {
-          if (!doneRef.current) {
-            doneRef.current = true;
-            const got = correctRef.current;
-            const stars = got >= oddTotal ? 3 : 2;
-            onFinish({
-              correct: oddTotal,
-              total: oddTotal,
-              stars,
-              durationSec: Math.round((Date.now() - startRef.current) / 1000),
-            });
-          }
-        }, 800);
-      } else {
-        speak(t('keepGoing'), lang);
-      }
+      window.setTimeout(() => setBurst(null), 700);
+      window.setTimeout(() => {
+        setRound((r) => {
+          const next = r + 1;
+          setData(buildRound(next));
+          return next;
+        });
+        lockRef.current = false;
+      }, 350);
     } else {
       playSfx('wrong');
+      scoreRef.current = Math.max(0, scoreRef.current - 5);
+      setScore(scoreRef.current);
       setWrongIdx(i);
       window.setTimeout(() => setWrongIdx(null), 600);
     }
   };
 
+  const cols = data.cols;
+  const roundLabel = useMemo(() => `${t('level', { n: round })}`, [round, t]);
+
   return (
-    <div className="odd-one-out">
+    <div className="arcade-game odd-one-out">
+      <ArcadeHud score={score} timeLeft={timeLeft} />
       <div className="spot-head">
-        <div className="question-text">{t('findDifferent')}</div>
+        <div className="question-text">
+          {t('findDifferent')} <span className="question-count">{roundLabel}</span>
+        </div>
       </div>
       {burst && <StarBurst x={burst.x} y={burst.y} />}
-      <div
-        className="spot-grid"
-        style={{ gridTemplateColumns: `repeat(${lv.cols}, 1fr)` }}
-      >
-        {grid.map((cell, i) => (
+      <div className="spot-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+        {data.cells.map((cell, i) => (
           <button
-            key={i}
-            className={`spot-cell ${wrongIdx === i ? 'shake' : ''} ${cell === '✅' ? 'found' : ''}`}
+            key={`${round}-${i}`}
+            className={`spot-cell ${wrongIdx === i ? 'shake' : ''}`}
             onClick={(e) => tap(i, e)}
           >
-            {cell === '✅' ? '✅' : cell}
+            {cell}
           </button>
         ))}
-      </div>
-      <div className="spot-progress">
-        <ProgressBar value={foundCount} max={oddTotal} />
       </div>
     </div>
   );
@@ -115,10 +112,13 @@ export const oddOneOutDef: GameDef = {
   id: 'odd-one-out',
   icon: '🔍',
   name: { zh: '火眼金睛', en: 'Odd One Out' },
-  category: 'thinking',
-  genre: 'find',
-  desc: { zh: '找出不一样的那一个', en: 'Find the odd one out' },
-  levels: pack.levels.length,
+  desc: { zh: '限时找不同，越找越快', en: 'Spot the odd one against the clock' },
+  rules: {
+    zh: ['🔍 每一格里都藏着一个小小的「不一样的」，把它点出来', '✅ 点对得 10 分，马上进入下一格；点错扣 5 分', '⏱ 60 秒内找得越多越好，格子会越来越大'],
+    en: ['🔍 One item in the grid is different — tap it', '✅ Correct tap is 10 points and jumps to the next grid; a miss costs 5', '⏱ Grids grow bigger as you go — find as many as you can in 60 seconds'],
+  },
+  durationSec: 60,
+  color: '#4FB3D9',
   status: 'ready',
   Component: OddOneOutGame,
 };

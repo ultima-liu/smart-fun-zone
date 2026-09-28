@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
-  childTotalStars,
+  bestScoreForGame,
+  gamePlayStats,
   childRecords,
   streakDays,
   todayPlaySec,
@@ -13,12 +14,12 @@ function rec(over: Partial<GameRecord>): GameRecord {
   return {
     id: 'r1',
     childId: 'c1',
-    gameId: 'number-farm',
+    gameId: 'bubble-pop',
     level: 1,
-    stars: 2,
-    correct: 8,
-    total: 10,
-    durationSec: 120,
+    stars: 0,
+    correct: 0,
+    total: 0,
+    durationSec: 60,
     playedAt: Date.now(),
     ...over,
   };
@@ -28,10 +29,10 @@ describe('store 辅助函数', () => {
   const now = Date.now();
   const day = 24 * 60 * 60 * 1000;
   const records: GameRecord[] = [
-    rec({ id: 'a', childId: 'c1', stars: 3, durationSec: 60, playedAt: now }),
-    rec({ id: 'b', childId: 'c1', stars: 2, durationSec: 90, playedAt: now - day }),
-    rec({ id: 'c', childId: 'c1', stars: 1, durationSec: 30, playedAt: now - day * 2 }),
-    rec({ id: 'd', childId: 'c2', stars: 3, playedAt: now }),
+    rec({ id: 'a', childId: 'c1', score: 120, durationSec: 60, playedAt: now }),
+    rec({ id: 'b', childId: 'c1', score: 80, durationSec: 90, playedAt: now - day }),
+    rec({ id: 'c', childId: 'c1', score: 200, durationSec: 30, playedAt: now - day * 2 }),
+    rec({ id: 'd', childId: 'c2', score: 50, playedAt: now }),
   ];
 
   it('childRecords 按孩子过滤', () => {
@@ -39,9 +40,15 @@ describe('store 辅助函数', () => {
     expect(childRecords(records, 'c2')).toHaveLength(1);
   });
 
-  it('childTotalStars 求和', () => {
-    expect(childTotalStars(records, 'c1')).toBe(6);
-    expect(childTotalStars(records, 'c2')).toBe(3);
+  it('bestScoreForGame 取街机最高分', () => {
+    expect(bestScoreForGame(records, 'c1', 'bubble-pop')).toBe(200);
+    expect(bestScoreForGame(records, 'c2', 'bubble-pop')).toBe(50);
+    expect(bestScoreForGame(records, 'c1', 'not-exist')).toBe(0);
+  });
+
+  it('gamePlayStats 统计局数与总时长', () => {
+    expect(gamePlayStats(records, 'c1', 'bubble-pop')).toEqual({ rounds: 3, totalSec: 180 });
+    expect(gamePlayStats(records, 'c1', 'not-exist')).toEqual({ rounds: 0, totalSec: 0 });
   });
 
   it('streakDays 计算连续打卡天数', () => {

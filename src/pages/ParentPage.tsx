@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStore, childRecords, childTotalStars, starsForGame } from '../store';
+import { useStore, childRecords, bestScoreForGame, gamePlayStats } from '../store';
+import { courseTotalStars } from '../activeCourses';
 import { useI18n } from '../i18n';
 import { KidButton, TopBar, Toggle } from '../components/ui';
 import Modal from '../components/Modal';
@@ -26,6 +27,7 @@ export default function ParentPage() {
   const setParentPin = useStore((s) => s.setParentPin);
   const profiles = useStore((s) => s.profiles);
   const records = useStore((s) => s.records);
+  const mastery = useStore((s) => s.mastery);
   const clearAll = useStore((s) => s.clearAll);
 
   const [unlocked, setUnlocked] = useState(() => {
@@ -388,15 +390,15 @@ export default function ParentPage() {
           {tab === 'report' && (
             <div className="parent-report">
               {profiles.length === 0 && <p className="empty-tip">{t('noData')}</p>}
-              {profiles.map((p) => {
-                const mine = childRecords(records, p.id);
-                return (
-                  <div key={p.id} className="report-child">
-                    <div className="report-head">
+      {profiles.map((p) => {
+        const mine = childRecords(records, p.id);
+        return (
+          <div key={p.id} className="report-child">
+            <div className="report-head">
                       <span className="report-avatar">{p.avatar}</span>
                       <b>{p.name}</b>
                       <span className="report-age">{gradeLabel(p.ageBand, lang)}</span>
-                      <span className="report-stars">⭐ {childTotalStars(records, p.id)}</span>
+                      <span className="report-stars">⭐ {courseTotalStars(p.id, mastery, records)}</span>
                     </div>
                     {mine.length === 0 ? (
                       <p className="empty-tip small">{t('noData')}</p>
@@ -406,24 +408,19 @@ export default function ParentPage() {
                           {games
                             .filter((g) => g.status === 'ready')
                             .map((g) => {
-                              const recs = mine.filter((r) => r.gameId === g.id);
-                              if (recs.length === 0) return null;
-                              const best = starsForGame(records, p.id, g.id);
-                              const acc = Math.round(
-                                (recs.reduce((s, r) => s + r.correct, 0) /
-                                  recs.reduce((s, r) => s + r.total, 0)) *
-                                  100,
-                              );
+                              const stats = gamePlayStats(records, p.id, g.id);
+                              if (stats.rounds === 0) return null;
+                              const best = bestScoreForGame(records, p.id, g.id);
                               return (
                                 <div key={g.id} className="report-row">
                                   <span className="report-game">
                                     {g.icon} {g.name[lang]}
                                   </span>
-                                  <span className="report-metric">⭐{best}</span>
+                                  <span className="report-metric">🏆 {best}</span>
                                   <span className="report-metric">
-                                    {t('playCount')} {recs.length}
+                                    {t('playCount')} {stats.rounds}
                                   </span>
-                                  <span className="report-metric">{acc}%</span>
+                                  <span className="report-metric">{Math.round(stats.totalSec / 60)}min</span>
                                 </div>
                               );
                             })}

@@ -73,3 +73,16 @@ export function nextLessonToLearn(
   const lessons = activeLessons(childId, mastery);
   return lessons.find((lesson) => !lesson.gold) ?? lessons[0];
 }
+
+/** 全局星星口径 = 课程星（数学 + 语文 + 英语课本课时星 + 数学情境实践·水果店；乐园小游戏不发光星，2026-09-28 起） */
+export function courseTotalStars(
+  childId: string | undefined,
+  mastery: Record<string, Record<string, MasteryState>> | undefined,
+  records: { childId: string; gameId: string; stars: number }[] = [],
+): number {
+  const lessonStars = activeLessons(childId, mastery).reduce((sum, lesson) => sum + lesson.stars, 0);
+  const fruitShopStars = records
+    .filter((r) => r.childId === childId && r.gameId === 'fruit-shop')
+    .reduce((sum, r) => sum + r.stars, 0);
+  return lessonStars + fruitShopStars;
+}

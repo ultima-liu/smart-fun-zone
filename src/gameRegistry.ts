@@ -1,15 +1,20 @@
 import type { ComponentType } from 'react';
-import type { SubjectId, GameGenre, GameProps } from './types';
+import type { GameProps } from './types';
 
+/** 乐园街机游戏定义（与课程教学无关的纯休闲游戏） */
 export interface GameDef {
   id: string;
   icon: string;
   name: { zh: string; en: string };
-  category: SubjectId;
-  /** 大厅玩法分组（count/match/find/listen/think），非学科 */
-  genre: GameGenre;
   desc: { zh: string; en: string };
-  levels: number;
+  /** 玩法规则（开局说明卡逐条展示，也是语音讲解词；末条写明怎么结束/时长） */
+  rules: { zh: string[]; en: string[] };
+  /** 一局标准时长（秒），游戏内随时间提速 */
+  durationSec: number;
+  /** 非计时局（如记忆配对：清完全牌即结束），说明与卡片不显示秒数 */
+  untimed?: boolean;
+  /** 乐园设施卡片主色 */
+  color: string;
   status: 'ready' | 'soon';
   Component?: ComponentType<GameProps>;
 }

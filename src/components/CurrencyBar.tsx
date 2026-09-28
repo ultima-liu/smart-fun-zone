@@ -1,4 +1,5 @@
-import { useStore, childTotalStars } from '../store';
+import { useStore } from '../store';
+import { courseTotalStars } from '../activeCourses';
 import { useI18n } from '../i18n';
 import { IconBean, IconStar } from './icons';
 
@@ -15,11 +16,12 @@ interface Props {
 export default function CurrencyBar({ only, compact }: Props) {
   const { t } = useI18n();
   const childId = useStore((s) => s.activeChildId);
+  const mastery = useStore((s) => s.mastery);
   const records = useStore((s) => s.records);
   const beans = useStore((s) => (s.activeChildId ? s.points[s.activeChildId] ?? 0 : 0));
   const materials = useStore((s) => (s.activeChildId ? s.materials[s.activeChildId] : undefined));
 
-  const stars = childId ? childTotalStars(records, childId) : 0;
+  const stars = childId ? courseTotalStars(childId, mastery, records) : 0;
   const stardust = materials?.stardust ?? 0;
 
   const items: { key: CurrencyType; icon: React.ReactNode; value: number; label: string }[] = [

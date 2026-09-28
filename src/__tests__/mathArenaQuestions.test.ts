@@ -5,7 +5,7 @@ import { genericArena } from '../pages/MathTextbookLabPage';
 describe('数学智能闯关题目', () => {
   it('变化题把原有数量和变化数量分开画出，答案与题干一致', () => {
     const addOne = genericArena({ kind: 'count', prompt: '', emoji: '🧒', total: 3 }, 0);
-    expect(addOne.q).toBe('图中原来有 3 个，小卷又放进 1 个，一共有几个？');
+    expect(addOne.q).toBe('图中原来有 3 个，小熊又放进 1 个，一共有几个？');
     expect(addOne.emo).toBe('🧒🧒🧒 ＋ 🧒');
     expect(addOne.answer).toBe('4');
     expect(addOne.opts).toContain('4');

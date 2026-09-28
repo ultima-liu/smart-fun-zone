@@ -5,6 +5,7 @@ import { GRADES, SUBJECTS } from '../types';
 import { getTextbook, textbookRoute, volLabel, firstAvailableTextbook } from '../content/textbooks';
 import { migrateMathFlowSnapshot } from '../content/mathLearningProgress';
 import { MATH_G1_UPPER_COVERAGE } from '../content/mathTextbookCoverage';
+import { mathLifeSceneForLesson } from '../content/mathLifeScenes';
 import MathLessonArtwork, { mathLessonCoverLabel } from '../components/MathLessonArtwork';
 import '../chinese-textbook.css';
 import '../math-catalog.css';
@@ -152,6 +153,7 @@ export default function MathCatalogPage() {
               {activeUnit.lessons.map((lesson) => {
                 const starCount = starsOf(lesson.id);
                 const done = starCount > 0;
+                const lifeScene = mathLifeSceneForLesson(lesson.id);
                 const lessonNo = allLessons.findIndex((item) => item.id === lesson.id) + 1;
                 return (
                   <button className={`ct-lesson-entry ${done ? 'done' : ''}`} key={lesson.id} onClick={() => nav(`/math-course/${lesson.id}`)} aria-label={`${lesson.title}，${done ? `已获得 ${starCount} 星` : '未学习'}`}>
@@ -164,6 +166,7 @@ export default function MathCatalogPage() {
                     <div className="ct-lesson-copy">
                       <small>{activeUnit.no === '数学游戏' ? '数学游戏' : `第${activeUnit.no}单元`} · {lesson.page ?? activeUnit.page}</small>
                       <h3>{lesson.title}</h3><p>{lesson.subtitle}</p>
+                      {lifeScene && <em className={`mc-life-scene-tag ${done ? 'ready' : ''}`}><b>{lifeScene.icon} 生活小剧场 · {lifeScene.title}</b><i>{done ? '已开放' : '完成本课后开放'}</i></em>}
                       <span>{done ? (starCount >= 3 ? '★ 已满星 · 再练一遍' : `已获 ${starCount} 星 · 再练冲刺满星`) : '开始学习'} →</span>
                     </div>
                   </button>

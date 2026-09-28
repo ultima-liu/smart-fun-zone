@@ -1,63 +1,55 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
-import pack from './levels/memoryMatch.json';
 import type { GameDef } from '../gameRegistry';
 import type { GameProps } from '../types';
 import { speak, playSfx } from '../speech';
 import { useI18n } from '../i18n';
 import { StarBurst } from '../components/ui';
 
-interface MatchLevel {
-  level: number;
-  cols: number;
-  rows: number;
-  emojiPool: string[];
-}
-
-const EMOJI_NAMES: Record<string, { zh: string; en: string }> = {
-  '🍎': { zh: '苹果', en: 'apple' },
-  '🍌': { zh: '香蕉', en: 'banana' },
-  '🍇': { zh: '葡萄', en: 'grape' },
-  '🍓': { zh: '草莓', en: 'strawberry' },
-  '🍑': { zh: '桃子', en: 'peach' },
-  '🍒': { zh: '樱桃', en: 'cherry' },
-  '🥝': { zh: '猕猴桃', en: 'kiwi' },
-  '🍉': { zh: '西瓜', en: 'watermelon' },
-  '🍍': { zh: '菠萝', en: 'pineapple' },
-  '🥥': { zh: '椰子', en: 'coconut' },
-  '🍊': { zh: '橙子', en: 'orange' },
-  '🫐': { zh: '蓝莓', en: 'blueberry' },
-};
-
 function nowMs(): number {
   return Date.now();
 }
 
-function buildDeck(lv: MatchLevel): string[] {
-  const pairs = (lv.cols * lv.rows) / 2;
-  const chosen = [...lv.emojiPool].sort(() => Math.random() - 0.5).slice(0, pairs);
+/* 乐园图案记忆翻牌：一局一副牌，配对越连顺分数越高（无知识内容） */
+
+const EMOJI_NAMES: Record<string, { zh: string; en: string }> = {
+  '🎡': { zh: '摩天轮', en: 'Ferris wheel' },
+  '🎠': { zh: '旋转木马', en: 'carousel' },
+  '🎢': { zh: '过山车', en: 'roller coaster' },
+  '🎪': { zh: '马戏团', en: 'big top' },
+  '🎈': { zh: '气球', en: 'balloon' },
+  '🍦': { zh: '冰淇淋', en: 'ice cream' },
+  '🎟️': { zh: '游乐券', en: 'ticket' },
+  '🎯': { zh: '靶子', en: 'target' },
+  '🫧': { zh: '泡泡', en: 'bubble' },
+};
+
+const POOL = Object.keys(EMOJI_NAMES);
+
+function boardFor(grade: string): { cols: number; rows: number } {
+  return ['g1', 'g2'].includes(grade) ? { cols: 4, rows: 3 } : { cols: 4, rows: 4 };
+}
+
+function buildDeck(pairs: number): string[] {
+  const chosen = [...POOL].sort(() => Math.random() - 0.5).slice(0, pairs);
   return [...chosen, ...chosen].sort(() => Math.random() - 0.5);
 }
 
-function MemoryMatchGame({ level, onFinish }: GameProps) {
+function MemoryMatchGame({ child, onFinish }: GameProps) {
   const { t, lang } = useI18n();
-  const lv = useMemo(
-    () => (pack.levels.find((l) => l.level === level) ?? pack.levels[0]) as MatchLevel,
-    [level],
-  );
-  const deck = useMemo(() => buildDeck(lv), [lv]);
+  const { cols, rows } = useMemo(() => boardFor(child.ageBand), [child.ageBand]);
+  const deck = useMemo(() => buildDeck((cols * rows) / 2), [cols, rows]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matched, setMatched] = useState<Set<number>>(new Set());
   const [moves, setMoves] = useState(0);
   const [lock, setLock] = useState(false);
+  const [score, setScore] = useState(0);
   const [burst, setBurst] = useState<{ x: number; y: number } | null>(null);
   const movesRef = useRef(0);
+  const comboRef = useRef(0);
+  const scoreRef = useRef(0);
   const doneRef = useRef(false);
   const startRef = useRef(nowMs());
-
-  useEffect(() => {
-    speak(t('memoryTitle'), lang);
-  }, [t, lang]);
 
   const flip = (i: number, e: MouseEvent) => {
     if (lock || flipped.includes(i) || matched.has(i)) return;
@@ -74,12 +66,11 @@ function MemoryMatchGame({ level, onFinish }: GameProps) {
         setBurst({ x: e.clientX, y: e.clientY });
         window.setTimeout(() => setBurst(null), 800);
         const nm = EMOJI_NAMES[deck[a]];
-        speak(
-          nm
-            ? t('pairFoundName', { name: lang === 'zh' ? nm.zh : nm.en })
-            : t('pairFoundName', { name: '🎉' }),
-          lang,
-        );
+        speak(t('pairFoundName', { name: lang === 'zh' ? nm.zh : nm.en }), lang);
+        // 连续配对成功有连击加分；翻错一次连击清零
+        comboRef.current += 1;
+        scoreRef.current += 10 + (comboRef.current - 1) * 5;
+        setScore(scoreRef.current);
         const newMatched = new Set(matched);
         newMatched.add(a);
         newMatched.add(b);
@@ -89,19 +80,15 @@ function MemoryMatchGame({ level, onFinish }: GameProps) {
           setLock(false);
           if (newMatched.size === deck.length && !doneRef.current) {
             doneRef.current = true;
-            const pairs = deck.length / 2;
-            const m = movesRef.current;
-            const stars = m <= pairs * 1.5 ? 3 : m <= pairs * 2.2 ? 2 : 1;
             onFinish({
-              correct: pairs,
-              total: pairs,
-              stars,
+              score: scoreRef.current,
               durationSec: Math.round((Date.now() - startRef.current) / 1000),
             });
           }
         }, 600);
       } else {
         playSfx('wrong');
+        comboRef.current = 0;
         window.setTimeout(() => {
           setFlipped([]);
           setLock(false);
@@ -111,13 +98,16 @@ function MemoryMatchGame({ level, onFinish }: GameProps) {
   };
 
   return (
-    <div className="memory-match">
+    <div className="arcade-game memory-match">
+      <div className="arcade-hud" aria-label={t('scoreLabel')}>
+        <span className="arcade-hud-score">🏆 {score}</span>
+        <span className="arcade-hud-time">🔄 {moves}</span>
+      </div>
       <div className="memory-head">
         <div className="memory-title">{t('memoryTitle')}</div>
-        <div className="moves">🔄 {t('moves')}：{moves}</div>
       </div>
       {burst && <StarBurst x={burst.x} y={burst.y} />}
-      <div className="memory-grid" style={{ gridTemplateColumns: `repeat(${lv.cols}, 1fr)` }}>
+      <div className="memory-grid" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
         {deck.map((e, i) => {
           const up = flipped.includes(i) || matched.has(i);
           return (
@@ -141,11 +131,15 @@ function MemoryMatchGame({ level, onFinish }: GameProps) {
 export const memoryMatchDef: GameDef = {
   id: 'memory-match',
   icon: '🃏',
-  name: { zh: '记忆翻牌', en: 'Memory Match' },
-  category: 'thinking',
-  genre: 'match',
-  desc: { zh: '找出相同的两张卡片', en: 'Find matching pairs' },
-  levels: pack.levels.length,
+  name: { zh: '记忆配对', en: 'Memory Match' },
+  desc: { zh: '翻牌配对，连对加分', en: 'Flip and match pairs for combos' },
+  rules: {
+    zh: ['🃏 点开两张卡片，图案一样就配对成功', '🔥 连续配对成功分数越滚越高，翻错一次连击就清零', '🎉 把所有配对找完，这一局就结束啦'],
+    en: ['🃏 Tap two cards — matching pictures stay open', '🔥 Back-to-back matches grow your combo; one miss resets it', '🎉 Find every pair to finish the round'],
+  },
+  durationSec: 90,
+  untimed: true,
+  color: '#5FC8A8',
   status: 'ready',
   Component: MemoryMatchGame,
 };
