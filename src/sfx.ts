@@ -179,6 +179,177 @@ export const sfx = {
   click() {
     tone(880, 0.08, { type: 'triangle', gain: 0.03 });
   },
+
+  /** 连连看：点选一块牌 */
+  lkSelect() {
+    tone(620, 0.09, { type: 'triangle', gain: 0.05, endFreq: 880 });
+  },
+
+  /** 连连看：消除成功，combo 越高旋律沿五声音阶爬得越高（封顶两个八度） */
+  lkMatch(combo: number) {
+    const steps = [0, 2, 4, 7, 9, 12, 14, 16];
+    const lift = steps[Math.min(Math.max(combo, 1), steps.length) - 1];
+    const base = 523.25 * Math.pow(2, lift / 12);
+    chime(base, 0.45, 0);
+    chime(base * 1.25, 0.4, 0.07);
+    chime(base * 1.5, 0.55, 0.14);
+  },
+
+  /** 连连看：同图案但路径不通 */
+  lkBlocked() {
+    tone(200, 0.16, { type: 'sine', gain: 0.05, endFreq: 150 });
+  },
+
+  /** 连连看：提示高亮 */
+  lkHint() {
+    chime(1318, 0.3, 0);
+    chime(1760, 0.4, 0.09);
+  },
+
+  /** 连连看：云朵重排 */
+  lkShuffle() {
+    noise(0.5, { gain: 0.12, filter: 700 });
+    tone(320, 0.5, { type: 'sine', gain: 0.045, endFreq: 640, attack: 0.12 });
+  },
+
+  /** 连连看：通关小号角 */
+  lkWin() {
+    [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => chime(f, 0.7, i * 0.13));
+    chime(1567.98, 1.1, 0.55);
+  },
+
+  /** 连连看：闯关时间到（温和的下行音，不刺耳） */
+  lkFail() {
+    tone(392, 0.4, { type: 'sine', gain: 0.06, endFreq: 262, attack: 0.02 });
+    tone(262, 0.55, { type: 'sine', gain: 0.05, delay: 0.22, endFreq: 196, attack: 0.02 });
+  },
+
+  /** 连连看：开始云端音乐盒背景音乐（游戏挂载时调用，全局 sound 关闭时为空操作） */
+  lkBgmStart() {
+    const c = getCtx();
+    if (!c || lkBgmTimer !== null) return;
+    lkBgmGain = c.createGain();
+    lkBgmGain.gain.setValueAtTime(0.0001, c.currentTime);
+    lkBgmGain.gain.exponentialRampToValueAtTime(LK_BGM_MASTER, c.currentTime + 1.6);
+    lkBgmGain.connect(c.destination);
+    lkBgmNext = c.currentTime + 0.25;
+    lkBgmBeat = 0;
+    lkBgmTimer = window.setInterval(lkBgmTick, 300);
+  },
+
+  /** 连连看：停止背景音乐并淡出 */
+  lkBgmStop() {
+    if (lkBgmTimer !== null) {
+      window.clearInterval(lkBgmTimer);
+      lkBgmTimer = null;
+    }
+    const c = ctx;
+    const gainNode = lkBgmGain;
+    lkBgmGain = null;
+    if (gainNode && c) {
+      try {
+        const now = c.currentTime;
+        gainNode.gain.cancelScheduledValues(now);
+        gainNode.gain.setValueAtTime(Math.max(gainNode.gain.value, 0.0001), now);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+        window.setTimeout(() => {
+          try { gainNode.disconnect(); } catch { /* 已断开则忽略 */ }
+        }, 700);
+      } catch { /* 音频图已失效则忽略 */ }
+    }
+  },
 };
+
+// ---------- 连连看背景音乐：云端音乐盒 ----------
+// 8 小节一循环（72bpm）：Cmaj7 → Am7 → Fmaj7 → G6 的柔和垫弦，
+// 配 C 大调五声的音乐盒旋律；全部实时合成，无音频文件。
+
+const LK_BGM_MASTER = 0.5;
+const LK_BEAT = 60 / 72;
+const LK_PATTERN_BEATS = 32;
+
+const midiFreq = (midi: number) => 440 * Math.pow(2, (midi - 69) / 12);
+
+// [起拍, 和弦 MIDI]，每 2 小节（8 拍）一次
+const LK_CHORDS: Array<[number, number[]]> = [
+  [0, [48, 55, 64, 59]],
+  [8, [45, 52, 60, 55]],
+  [16, [41, 48, 57, 52]],
+  [24, [43, 50, 59, 52]],
+];
+
+// [拍, 旋律 MIDI]，C 大调五声（C D E G A）
+const LK_MELODY: Array<[number, number]> = [
+  [0, 76], [1.5, 79], [2.5, 84], [4, 79], [5, 76], [6, 74], [7, 76],
+  [8, 72], [9.5, 76], [10.5, 81], [12, 79], [13.5, 76], [15, 74],
+  [16, 69], [17.5, 72], [18.5, 76], [20, 74], [21.5, 72], [23, 74],
+  [24, 79], [25.5, 76], [26.5, 74], [28, 76], [29.5, 79], [31, 84],
+];
+
+let lkBgmTimer: number | null = null;
+let lkBgmGain: GainNode | null = null;
+let lkBgmNext = 0;
+let lkBgmBeat = 0;
+
+function lkPad(c: AudioContext, dest: AudioNode, midis: number[], t: number) {
+  const dur = 8 * LK_BEAT;
+  midis.forEach((midi) => {
+    const osc = c.createOscillator();
+    osc.type = 'triangle';
+    osc.frequency.value = midiFreq(midi);
+    const gain = c.createGain();
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.02, t + 2.2);
+    gain.gain.setValueAtTime(0.02, t + dur - 1.8);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + dur + 0.9);
+    osc.connect(gain);
+    gain.connect(dest);
+    osc.start(t);
+    osc.stop(t + dur + 1);
+  });
+}
+
+function lkBoxNote(c: AudioContext, dest: AudioNode, midi: number, t: number, peak: number) {
+  // 音乐盒音色：基频 + 2/3 倍频泛音，快起慢衰；0.36s 后叠一份弱回声营造云端空间感
+  [[0, 1], [0.36, 0.32]].forEach(([delay, echo]) => {
+    [[1, 1], [2, 0.28], [3, 0.08]].forEach(([mult, amp]) => {
+      const osc = c.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = midiFreq(midi) * mult;
+      const gain = c.createGain();
+      const at = t + delay;
+      gain.gain.setValueAtTime(0.0001, at);
+      gain.gain.exponentialRampToValueAtTime(peak * amp * echo, at + 0.006);
+      gain.gain.exponentialRampToValueAtTime(0.0001, at + 1.5);
+      osc.connect(gain);
+      gain.connect(dest);
+      osc.start(at);
+      osc.stop(at + 1.6);
+    });
+  });
+}
+
+function lkBgmTick() {
+  const c = getCtx();
+  if (!c || !lkBgmGain || c.state !== 'running') return;
+  const now = c.currentTime;
+  // 页面标签页被挂起等导致时间轴落后时重新对齐，避免积压的音符恢复后齐鸣
+  if (lkBgmNext < now - 0.2) {
+    lkBgmNext = now + 0.2;
+    lkBgmBeat = 0;
+  }
+  while (lkBgmNext < now + 1.2) {
+    LK_CHORDS.forEach(([beat, midis]) => {
+      if (beat >= lkBgmBeat && beat < lkBgmBeat + 4) lkPad(c, lkBgmGain!, midis, lkBgmNext);
+    });
+    LK_MELODY.forEach(([beat, midi]) => {
+      if (beat >= lkBgmBeat && beat < lkBgmBeat + 4) {
+        lkBoxNote(c, lkBgmGain!, midi, lkBgmNext + (beat - lkBgmBeat) * LK_BEAT, 0.09);
+      }
+    });
+    lkBgmBeat = (lkBgmBeat + 4) % LK_PATTERN_BEATS;
+    lkBgmNext += 4 * LK_BEAT;
+  }
+}
 
 export default sfx;

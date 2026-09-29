@@ -227,8 +227,8 @@ function Shell() {
     };
     document.title = `${titleByPath[location.pathname] ?? '卷卷星球'} · Smart Fun Zone`;
   }, [location.pathname]);
-  // 底部导航只在主玩法页显示（首页/学习/游戏/我的）；登录/学习内页隐藏
-  const showNav = ['/', '/map', '/lobby', '/profile', '/archive', '/dock'].includes(location.pathname);
+  // 首页已有卷星场景入口，不重复显示列车；列车仅在主要二级页面承担全局导航。
+  const showNav = ['/map', '/lobby', '/profile', '/archive', '/dock'].includes(location.pathname);
   const noChrome = ['/child-login', '/parent'].includes(location.pathname);
   const hasKid = useStore((s) => !!s.activeChildId);
 

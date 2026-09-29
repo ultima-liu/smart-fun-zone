@@ -11,7 +11,7 @@ import { IconBean } from '../components/icons';
 import NpcBuddy from '../components/NpcBuddy';
 import GomokuGame from '../games/GomokuGame';
 import ChineseChessGame from '../games/ChineseChessGame';
-import LianliankanGame from '../games/LianliankanGame';
+import LianliankanGame, { type LianliankanOutcome } from '../games/LianliankanGame';
 import '../park-games.css';
 
 type ParkCategory = 'board' | 'card' | 'match' | 'puzzle' | 'reflex';
@@ -91,17 +91,19 @@ export default function LobbyPage() {
     });
   }, [addRecord, child]);
 
-  const handleLianliankanComplete = useCallback((_result: 'win', durationSec: number, difficulty: 'easy' | 'normal' | 'hard') => {
+  const handleLianliankanComplete = useCallback((outcome: LianliankanOutcome) => {
     if (!child) return;
     addRecord({
       id: `lianliankan-${child.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       childId: child.id,
-      gameId: 'sky-lianliankan',
-      level: difficulty === 'easy' ? 1 : difficulty === 'normal' ? 2 : 3,
-      stars: 0,
-      correct: 1,
+      gameId: outcome.mode === 'levels' ? 'sky-lianliankan-levels' : 'sky-lianliankan',
+      level: outcome.mode === 'levels'
+        ? outcome.level
+        : outcome.difficulty === 'easy' ? 1 : outcome.difficulty === 'normal' ? 2 : 3,
+      stars: outcome.mode === 'levels' ? outcome.stars : 0,
+      correct: outcome.result === 'win' ? 1 : 0,
       total: 1,
-      durationSec,
+      durationSec: outcome.durationSec,
       playedAt: Date.now(),
     });
   }, [addRecord, child]);
@@ -237,8 +239,8 @@ export default function LobbyPage() {
                 <div className="park-game-card-copy">
                   <span>{lang === 'zh' ? '消除 · 云上配对' : 'MATCH · SKY PAIRS'}</span>
                   <h3>{lang === 'zh' ? '云径连连看' : 'Cloud Path Match'}</h3>
-                  <p>{lang === 'zh' ? '点亮两块相同的云间图案，用不超过两个弯的折线把它们连在一起消掉；全清棋盘即通关。' : 'Link two matching tiles with a path of at most two bends to clear them. Empty the sky to win.'}</p>
-                  <div className="park-game-tags"><span>8 × 6</span><span>{lang === 'zh' ? '三档棋盘' : '3 boards'}</span><span>{lang === 'zh' ? '提示与重排' : 'Hint & shuffle'}</span></div>
+                  <p>{lang === 'zh' ? '点亮两块相同的云间图案，用不超过两个弯的折线把它们连在一起消掉。自由练习随时玩，闯关模式 20 关难度递增：云岩障碍与限时挑战逐步登场。' : 'Link two matching tiles with a path of at most two bends. Free play any time, or take on 20 stages of rising challenge with cloud rocks and time limits.'}</p>
+                  <div className="park-game-tags"><span>8 × 6</span><span>{lang === 'zh' ? '闯关 20 关' : '20 stages'}</span><span>{lang === 'zh' ? '提示与重排' : 'Hint & shuffle'}</span></div>
                 </div>
                 <button type="button" className="park-game-launch lianliankan" onClick={() => openGame('lianliankan')}>
                   <span>{activeGame === 'lianliankan' ? (lang === 'zh' ? '继续配对' : 'Continue') : (lang === 'zh' ? '开始配对' : 'Play now')}</span>
