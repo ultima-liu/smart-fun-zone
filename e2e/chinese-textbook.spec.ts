@@ -57,7 +57,7 @@ test.beforeEach(async ({ page }) => {
         lang: 'zh', theme: 'dark', sound: false, musicOn: false, voiceOn: false,
         profiles: [{ id: childId, name: '语文体验生', avatarId: 'boy', age: 6, createdAt: Date.now() }],
         activeChildId: childId, records: [], mastery: {}, lessonProgress: {}, charBag: {},
-        storyDone: { [childId]: ['p1'] }, storyPulse: null, wrongs: {}, points: { [childId]: 0 }, pointLog: { [childId]: [] },
+        wrongs: {}, points: { [childId]: 0 }, pointLog: { [childId]: [] },
         customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, rewardRequests: {}, bonusMin: {}, parentPin: '1234', dailyLimitMin: 0,
         buddyOpen: false, buddyWakeOn: false, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {},
       },

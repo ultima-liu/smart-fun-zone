@@ -44,7 +44,6 @@ test.beforeEach(async ({ page }) => {
         lang: 'zh', theme: 'dark', sound: true, musicOn: false, voiceOn: false,
         profiles: [{ id, name: '数学体验生', avatarId: 'boy', age: 6, createdAt: Date.now() }],
         activeChildId: id, records: [], mastery: {}, lessonProgress: {}, charBag: {},
-        storyDone: { [id]: ['p1'] }, storyPulse: null,
         wrongs: { [id]: [{ uid: 'math-wrong-1', lessonId: 'math-lab-compare', lessonName: '比大小', kind: '3 ○ 4，填什么符号？', answer: '＞', time: Date.now() }] },
         points: { [id]: 0 }, pointLog: { [id]: [] },
         customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {},

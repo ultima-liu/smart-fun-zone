@@ -1,12 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useStore } from '../store';
 import { api } from '../api';
-import { speak, stopSpeaking, playSfx } from '../speech';
+import { speak, stopSpeaking } from '../speech';
 import RobotAssistant from './RobotAssistant';
 import { IconClose, IconMic } from './icons';
-import { EMPTY } from '../features';
-import { allNodes, type StoryNode } from '../content/story';
-import { tryCompleteStoryNode } from '../storyProgress';
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
@@ -50,7 +47,6 @@ export default function StudyBuddy() {
   const buddyWakeOn = useStore((s) => s.buddyWakeOn);
   const toggleBuddy = useStore((s) => s.toggleBuddy);
   const setBuddyWake = useStore((s) => s.setBuddyWake);
-  const openBuddy = useStore((s) => s.openBuddy);
 
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
@@ -61,29 +57,6 @@ export default function StudyBuddy() {
   const recRef = useRef<SR | null>(null);
   const wakeRef = useRef<SR | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  // 小卷剧情：仅当它是主线中当前唯一可推进的节点时，才由全局助手承接对话。
-  // 这样晶晶的档案库引导（及其间的前置节点）会始终先于小卷出现。
-  const childId = useStore((s) => s.activeChildId);
-  const doneList = useStore((s) => (s.activeChildId ? s.storyDone[s.activeChildId] ?? EMPTY : EMPTY));
-  const [storyIdx, setStoryIdx] = useState(0);
-  const [storyDoneUi, setStoryDoneUi] = useState(false);
-
-  const buddyStory = useMemo<StoryNode | null>(() => {
-    if (!childId || storyDoneUi) return null;
-    const done = new Set(doneList);
-    const current = allNodes().find((n) => !done.has(n.id));
-    return current?.rule === 'visitBuddy' ? current : null;
-  }, [childId, doneList, storyDoneUi]);
-
-  // 剧情开始：面板打开且有剧情 → 朗读第一句
-  useEffect(() => {
-    if (buddyStory && buddyOpen && storyIdx === 0) {
-      const line = buddyStory.lines?.[0];
-      if (line) speak(line.zh, 'zh');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [buddyStory?.id, buddyOpen]);
-
 
   // 自动滚到底部
   useEffect(() => {
@@ -118,24 +91,8 @@ export default function StudyBuddy() {
       /* ignore */
     }
     // 仅在挂载时恢复一次
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  const finishBuddyStory = () => {
-    if (!childId || !buddyStory) return;
-    const ok = tryCompleteStoryNode(childId, buddyStory.id);
-    stopSpeaking();
-    if (ok) {
-      setStoryDoneUi(true);
-      playSfx('collect');
-      // 剧情完成：关闭小卷面板
-      openBuddy(false);
-    } else {
-      // 顺序未满足：提示解锁前面剧情
-      playSfx('deny');
-      speak('先完成前面的任务，我们才能认识小卷哦。', 'zh');
-    }
-  };
+  }, []);
 
   const clearSession = () => {
     stopSpeaking();
@@ -306,7 +263,6 @@ export default function StudyBuddy() {
       <button className="buddy-fab" onClick={toggleBuddy} aria-label="小卷学习助手">
         <span className="buddy-fab-ring" aria-hidden="true" />
         <RobotAssistant state="happy" size={64} className="buddy-fab-mascot" />
-        {buddyStory && <i className="npc-buddy-quest" aria-hidden="true">!</i>}
       </button>
 
       {/* 面板 */}
@@ -334,41 +290,6 @@ export default function StudyBuddy() {
           </header>
 
           <div className="buddy-body" ref={scrollRef}>
-            {buddyStory && (
-              <div className="buddy-story">
-                <span className="buddy-story-tag">📖 剧情 · 小卷的自我介绍</span>
-                <div className="buddy-story-lines">
-                  {buddyStory.lines?.map((l, i) => (
-                    <p
-                      key={i}
-                      className={`buddy-story-line ${i === storyIdx ? 'on' : i < storyIdx ? 'seen' : ''}`}
-                    >
-                      <span className="buddy-story-ava"><RobotAssistant state={i === storyIdx ? 'happy' : 'idle'} size={22} /></span>
-                      <span className="buddy-story-bubble">{l.zh}</span>
-                    </p>
-                  ))}
-                </div>
-                <div className="buddy-story-actions">
-                  {storyIdx < (buddyStory.lines?.length ?? 1) - 1 ? (
-                    <button
-                      className="kid-btn"
-                      onClick={() => {
-                        const ni = storyIdx + 1;
-                        setStoryIdx(ni);
-                        const nl = buddyStory.lines?.[ni];
-                        if (nl) speak(nl.zh, 'zh');
-                      }}
-                    >
-                      继续 ▸
-                    </button>
-                  ) : (
-                    <button className="kid-btn green" onClick={finishBuddyStory}>
-                      完成剧情 ✓
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
             {messages.length === 0 && !thinking && (
               <div className="buddy-empty">
                 <span className="buddy-empty-emoji">👋</span>

@@ -15,7 +15,7 @@ export default function RewardBurst({ drop, reward = 0, rewardCardId, onDone }: 
     const t = window.setTimeout(() => setGone(true), 1300);
     const t2 = window.setTimeout(onDone, 1450);
     return () => { window.clearTimeout(t); window.clearTimeout(t2); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
   const parts = ['⭐', '✨', '🌟', '🪙', '⭐', '💛', '✨', '🌟'];

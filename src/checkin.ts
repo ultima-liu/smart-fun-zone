@@ -1,5 +1,4 @@
 import { useStore } from './store';
-import { claimAutoTasks } from './tasks';
 
 /** 演示模式：URL 带 ?demo=1 且孩子无真实数据时，注入演示数据（仅看效果用） */
 export function injectDemoIfRequested(): boolean {
@@ -37,28 +36,7 @@ export function injectDemoIfRequested(): boolean {
   return true;
 }
 
-/** 安装「状态变化 → 自动结算任务」的订阅（签到、学习和练习变化即结算） */
-let subInstalled = false;
+/** 兼容旧启动调用；新版任务在明确完成点结算，不再全局扫描每日/每周清单。 */
 export function installTaskWatcher(): void {
-  if (subInstalled) return;
-  subInstalled = true;
-  useStore.subscribe((state, prev) => {
-    if (
-      state.mastery === prev.mastery &&
-      state.records === prev.records &&
-      state.charBag === prev.charBag &&
-      state.lessonProgress === prev.lessonProgress &&
-      state.dailyCheckin === prev.dailyCheckin &&
-      state.customTasks === prev.customTasks &&
-      state.shipLevel === prev.shipLevel &&
-      state.pointLog === prev.pointLog
-    )
-      return;
-    const cid = state.activeChildId;
-    if (!cid) return;
-    const granted = claimAutoTasks(cid);
-    if (granted.length > 0) {
-      window.dispatchEvent(new CustomEvent('sfz-task-done', { detail: granted }));
-    }
-  });
+  // no-op
 }

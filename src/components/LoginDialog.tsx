@@ -92,7 +92,7 @@ export default function LoginDialog({ onClose, onArrived }: LoginDialogProps) {
       onArrived?.();
     }, 1550);
     return () => window.clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [passing]);
 
   const fail = (msg: string) => {

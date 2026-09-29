@@ -103,8 +103,12 @@ export default function AdminPage() {
     if (!lgName.trim() || lgPw.length < 4) return setLgErr('请输入管理员账号和至少 4 位密码');
     setBusy(true); setLgErr('');
     const r = await api.parentLogin(lgName.trim(), lgPw);
+    if (!r?.ok || !r.token) {
+      const health = await api.health();
+      setBusy(false);
+      return setLgErr(health?.ok ? '账号、密码错误或登录服务异常' : '服务端暂不可用，请先启动服务端后重试');
+    }
     setBusy(false);
-    if (!r?.ok || !r.token) return setLgErr('账号或密码不正确');
     if (r.role !== 'admin') return setLgErr('该账号不是管理员');
     setToken(r.token);
     try { localStorage.setItem('sfz_role', 'admin'); } catch { /* ignore */ }
@@ -139,8 +143,8 @@ export default function AdminPage() {
     if (r?.ok) setParents(r.parents);
   };
 
-  useEffect(() => { if (authed) void loadDashboard(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [authed]);
-  useEffect(() => { if (authed && section === 'children') void loadChildren(); if (authed && section === 'parents') void loadParents(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [section, authed]);
+  useEffect(() => { if (authed) void loadDashboard();   }, [authed]);
+  useEffect(() => { if (authed && section === 'children') void loadChildren(); if (authed && section === 'parents') void loadParents();   }, [section, authed]);
 
   // ---- 操作 ----
   const openChildAccount = async (childId: number) => {
@@ -422,7 +426,7 @@ export default function AdminPage() {
                 return (
                   <div className="adm-tr adm-tr--tasks" key={t.id}>
                     <span>{t.icon} {t.title}<small style={{ display: 'block', color: 'var(--ink-faint)' }}>{t.id}</small></span>
-                    <span>{t.kind === 'daily' ? '每日' : t.kind === 'weekly' ? '每周' : '里程碑'}</span>
+                    <span>{({ course: '课程', chapter: '章节', review: '每日复习', challenge: '专项挑战', exploration: '探索支线', event: '主题活动', parent: '家长任务' } as Record<TaskDef['kind'], string>)[t.kind]}</span>
                     <span><IconBean size={15} gradient="gold" /> {cur}</span>
                     <span className="adm-ops">
                       <input className="adm-input" style={{ width: 70 }} inputMode="numeric" placeholder={String(t.reward)} value={taskEdits[t.id] ?? ''} onChange={(e) => setTaskEdits({ ...taskEdits, [t.id]: e.target.value.replace(/\D/g, '') })} />

@@ -8,14 +8,12 @@ import StudyBuddy from './components/StudyBuddy';
 import { CosmosSky } from './components/cosmos';
 import BeanRainHost from './components/BeanRain';
 import { stopSpeaking } from './speech';
-import { refreshServerHealth } from './api';
+import { api, refreshServerHealth } from './api';
 import { initAutoSync } from './autosync';
 import { useStore } from './store';
-import FeatureGate from './components/FeatureGate';
 
 /* 路由级代码分割：首屏只加载首页，其余页面按需下载（减少主包体积） */
 const LobbyPage = lazy(() => import('./pages/LobbyPage'));
-const GamePage = lazy(() => import('./pages/GamePage'));
 const ParentPage = lazy(() => import('./pages/ParentPage'));
 const WrongBookPage = lazy(() => import('./pages/WrongBookPage'));
 const ChildLoginPage = lazy(() => import('./pages/ChildLoginPage'));
@@ -36,6 +34,7 @@ const EnglishTextbookLessonPage = lazy(() => import('./pages/EnglishTextbookLess
 const ReviewHubPage = lazy(() => import('./pages/ReviewHubPage'));
 const FruitShopPage = lazy(() => import('./pages/FruitShopPage'));
 const MathLifeScenePage = lazy(() => import('./pages/MathLifeScenePage'));
+const TaskActivityPage = lazy(() => import('./pages/TaskActivityPage'));
 
 /** 显示底部导航的页面（游戏/演示/家长中心保持全屏沉浸） */
 
@@ -44,11 +43,9 @@ function RouteSkeleton() {
   const { pathname } = useLocation();
   const kind = pathname.startsWith('/math-course') || pathname.startsWith('/math-practice') || pathname.startsWith('/chinese-course') || pathname.startsWith('/english-course')
     ? 'learn'
-    : pathname.startsWith('/game')
-      ? 'game'
-      : pathname.startsWith('/subject') || pathname.startsWith('/map') || pathname.startsWith('/lobby')
-        ? 'list'
-        : 'admin';
+    : pathname.startsWith('/subject') || pathname.startsWith('/map') || pathname.startsWith('/lobby')
+      ? 'list'
+      : 'admin';
   return (
     <div className={`page skeleton sk-kind-${kind}`} aria-hidden="true">
       <div className="sk-head">
@@ -69,7 +66,7 @@ function RouteSkeleton() {
         </div>
       )}
 
-      {(kind === 'learn' || kind === 'game') && (
+      {kind === 'learn' && (
         <div className="sk-learn">
           <div className="sk-block sk-hero" />
           <div className="sk-block sk-stage" />
@@ -181,6 +178,7 @@ function useParallax(pathname: string) {
 /** 3D 倾斜：对学科/游戏/入口卡做指针追踪俯仰偏航（带光泽），松开回弹 */
 function useCardTilt() {
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse)').matches) return;
     const sel = '.subject-card, .game-card, .cat-entry';
     const onMove = (e: PointerEvent) => {
       const el = (e.target as HTMLElement)?.closest?.(sel) as HTMLElement | null;
@@ -221,18 +219,25 @@ function Shell() {
   useScrollReveal(location.pathname);
   useParallax(location.pathname);
   useCardTilt();
+  useEffect(() => {
+    const titleByPath: Record<string, string> = {
+      '/': '卷卷星球', '/map': '星卷学校', '/lobby': '空中乐园', '/profile': '卷星总部',
+      '/archive': '图鉴档案', '/dock': '星际船坞', '/store': '补给站', '/review': '今日复习',
+      '/parent': '家长中心', '/admin': '管理员后台',
+    };
+    document.title = `${titleByPath[location.pathname] ?? '卷卷星球'} · Smart Fun Zone`;
+  }, [location.pathname]);
   // 底部导航只在主玩法页显示（首页/学习/游戏/我的）；登录/学习内页隐藏
   const showNav = ['/', '/map', '/lobby', '/profile', '/archive', '/dock'].includes(location.pathname);
   const noChrome = ['/child-login', '/parent'].includes(location.pathname);
   const hasKid = useStore((s) => !!s.activeChildId);
 
-  // 新手剧情未全部完成时不再锁定页面滚动：引导期间也允许自由滚动浏览（原 story-lock-scroll 已移除）
-
   useEffect(() => {
     // 字体就绪 + 最短展示时间都满足后才揭幕，避免闪烁
     const root = document.documentElement;
     root.classList.add('fonts-loading');
-    const minDelay = new Promise((r) => window.setTimeout(r, 1050));
+    const splashDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1050;
+    const minDelay = new Promise((r) => window.setTimeout(r, splashDelay));
     const fontsReady =
       typeof document !== 'undefined' && document.fonts?.ready
         ? document.fonts.ready.then(() => undefined)
@@ -255,6 +260,7 @@ function Shell() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">跳到主要内容</a>
       <IconGradientDefs />
       <Splash done={booted} />
       <div className="grain" aria-hidden="true" />
@@ -262,31 +268,31 @@ function Shell() {
       <BeanRainHost />
       <div className="app">
         <Suspense fallback={routeFallback}>
-          <div key={location.pathname} className="route-view">
+          <div key={location.pathname} id="main-content" className="route-view" tabIndex={-1}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/map" element={<FeatureGate feature="school"><WorldMapPage /></FeatureGate>} />
-              <Route path="/subject/math" element={<FeatureGate feature="school"><MathCatalogPage /></FeatureGate>} />
-              <Route path="/textbook/:subject/:grade/:vol" element={<FeatureGate feature="school"><MathCatalogPage /></FeatureGate>} />
-              <Route path="/math-course/:lessonId" element={<FeatureGate feature="school"><MathTextbookLabPage /></FeatureGate>} />
-              <Route path="/math-practice/fruit-shop" element={<FeatureGate feature="school"><FruitShopPage /></FeatureGate>} />
-              <Route path="/math-practice/life-scene" element={<FeatureGate feature="school"><MathLifeScenePage /></FeatureGate>} />
-              <Route path="/subject/chinese" element={<FeatureGate feature="school"><ChineseTextbookCatalogPage /></FeatureGate>} />
-              <Route path="/chinese-course/:lessonId" element={<FeatureGate feature="school"><ChineseTextbookLessonPage /></FeatureGate>} />
-              <Route path="/subject/english" element={<FeatureGate feature="school"><EnglishTextbookCatalogPage /></FeatureGate>} />
-              <Route path="/textbook/english/g3/1" element={<FeatureGate feature="school"><EnglishTextbookCatalogPage /></FeatureGate>} />
-              <Route path="/english-course/:lessonId" element={<FeatureGate feature="school"><EnglishTextbookLessonPage /></FeatureGate>} />
-              <Route path="/review" element={<FeatureGate feature="school"><ReviewHubPage /></FeatureGate>} />
+              <Route path="/map" element={<WorldMapPage />} />
+              <Route path="/subject/math" element={<MathCatalogPage />} />
+              <Route path="/textbook/:subject/:grade/:vol" element={<MathCatalogPage />} />
+              <Route path="/math-course/:lessonId" element={<MathTextbookLabPage />} />
+              <Route path="/math-practice/fruit-shop" element={<FruitShopPage />} />
+              <Route path="/math-practice/life-scene" element={<MathLifeScenePage />} />
+              <Route path="/subject/chinese" element={<ChineseTextbookCatalogPage />} />
+              <Route path="/chinese-course/:lessonId" element={<ChineseTextbookLessonPage />} />
+              <Route path="/subject/english" element={<EnglishTextbookCatalogPage />} />
+              <Route path="/textbook/english/g3/1" element={<EnglishTextbookCatalogPage />} />
+              <Route path="/english-course/:lessonId" element={<EnglishTextbookLessonPage />} />
+              <Route path="/review" element={<ReviewHubPage />} />
+              <Route path="/task/:taskId" element={<TaskActivityPage />} />
               <Route path="/math-textbook" element={<Navigate to="/subject/math" replace />} />
               <Route path="/math-book" element={<Navigate to="/subject/math" replace />} />
               <Route path="/chinese-textbook" element={<Navigate to="/subject/chinese" replace />} />
-              <Route path="/lobby" element={<FeatureGate feature="park"><LobbyPage /></FeatureGate>} />
-              <Route path="/game/:gameId" element={<FeatureGate feature="park"><GamePage /></FeatureGate>} />
-              <Route path="/profile" element={<FeatureGate feature="hq"><ProfilePage /></FeatureGate>} />
-              <Route path="/profile/settings" element={<FeatureGate feature="hq"><HqSettingsPage /></FeatureGate>} />
+              <Route path="/lobby" element={<LobbyPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/profile/settings" element={<HqSettingsPage />} />
               <Route path="/archive" element={<ArchivePage />} />
               <Route path="/dock" element={<DockPage />} />
-              <Route path="/store" element={<FeatureGate feature="store"><StorePage /></FeatureGate>} />
+              <Route path="/store" element={<StorePage />} />
               <Route path="/parent" element={<ParentPage />} />
               <Route path="/wrongs" element={<WrongBookPage />} />
               <Route path="/child-login" element={<ChildLoginPage />} />
@@ -306,29 +312,34 @@ function Shell() {
 export default function App() {
   // 应用主题（深/浅）到根元素
   const theme = useStore((s) => s.theme);
+  const lang = useStore((s) => s.lang);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
+  useEffect(() => {
+    document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+  }, [lang]);
   useEffect(() => {
     // 探测服务端：可用性与 TTS 配置状态（失败静默，离线可用）
     void refreshServerHealth();
     // 家长登录后的自动云端同步（启动拉取 + 学习变化自动推送）
     initAutoSync();
   }, []);
-  // 安装学习任务自动结算；每日签到改为由孩子在总部主动领取。
+  // 初始化演示数据与新版任务事实；旧学习记录只登记为已完成，不补发奖励。
   useEffect(() => {
     const t = window.setTimeout(() => {
       void import('./checkin').then((m) => {
         m.injectDemoIfRequested();
-        m.installTaskWatcher();
+        void import('./taskSystem').then(({ initializeTaskSystem }) => {
+          for (const profile of useStore.getState().profiles) initializeTaskSystem(profile.id);
+        });
       });
     }, 900);
     return () => window.clearTimeout(t);
   }, []);
   // 启动拉取全局「卷卷豆与杂货铺」配置（管理员发布 → 全端生效）
   useEffect(() => {
-    void import('./api').then(async ({ api }) => {
-      const r = await api.storeConfig();
+    void api.storeConfig().then((r) => {
       if (r?.ok) useStore.getState().applyRemoteConfig(r.storeOverrides, r.taskOverrides);
     });
   }, []);

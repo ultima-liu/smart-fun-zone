@@ -10,6 +10,7 @@ import { scoreText } from './score.js';
 import { synthesizeCache, sseLooksValid } from './tts.js';
 import { smsProvider } from './sms.js';
 import { writeVersion, type LessonContent } from './content-store.js';
+import { authorizeChildAccess } from './access.js';
 
 /* ---------- 家长账号 / 家庭 / 儿童 ---------- */
 async function getOrCreateFamily(userId: number): Promise<number> {
@@ -23,12 +24,37 @@ async function familyOfUser(userId: number): Promise<number> {
 }
 
 export function buildApp(): FastifyInstance {
-  const app = Fastify({ logger: false, bodyLimit: 8 * 1024 * 1024 });
+  const app = Fastify({ logger: config.production, bodyLimit: 2 * 1024 * 1024 });
 
-  void app.register(cors, { origin: true });
+  void app.register(cors, {
+    origin: config.corsOrigins.length ? config.corsOrigins : !config.production,
+  });
+
+  type RateBucket = { count: number; resetAt: number };
+  const rateBuckets = new Map<string, RateBucket>();
+  function rateLimit(scope: string, limit: number, windowMs: number) {
+    return async (req: any, reply: any) => {
+      const now = Date.now();
+      const key = `${scope}:${req.ip ?? 'unknown'}`;
+      const current = rateBuckets.get(key);
+      const bucket = !current || current.resetAt <= now ? { count: 0, resetAt: now + windowMs } : current;
+      bucket.count += 1;
+      rateBuckets.set(key, bucket);
+      reply.header('RateLimit-Limit', String(limit));
+      reply.header('RateLimit-Remaining', String(Math.max(0, limit - bucket.count)));
+      if (bucket.count > limit) {
+        reply.header('Retry-After', String(Math.ceil((bucket.resetAt - now) / 1000)));
+        return reply.code(429).send({ ok: false, error: '请求过于频繁，请稍后再试' });
+      }
+      // 小型单机限流器：惰性清理过期桶，避免长期运行无限增长。
+      if (rateBuckets.size > 5000) {
+        for (const [bucketKey, value] of rateBuckets) if (value.resetAt <= now) rateBuckets.delete(bucketKey);
+      }
+    };
+  }
 
   /** 统一鉴权 preHandler（家长或孩子令牌） */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   async function requireAuth(req: any, reply: any) {
     const h = req.headers.authorization ?? '';
     const token = h.startsWith('Bearer ') ? h.slice(7) : '';
@@ -37,10 +63,35 @@ export function buildApp(): FastifyInstance {
       reply.code(401).send({ ok: false, error: '未登录或登录已过期' });
       return;
     }
+    if (auth.kind === 'user') {
+      const rows = await q<{ disabled: number } & RowDataPacket>('SELECT disabled FROM users WHERE id=? LIMIT 1', [auth.userId]);
+      if (!rows[0] || rows[0].disabled) {
+        reply.code(403).send({ ok: false, error: '账号不存在或已停用' });
+        return;
+      }
+    } else {
+      const rows = await q<{ disabled: number } & RowDataPacket>('SELECT disabled FROM children WHERE id=? LIMIT 1', [auth.childId]);
+      if (!rows[0] || rows[0].disabled) {
+        reply.code(403).send({ ok: false, error: '孩子账号不存在或已停用' });
+        return;
+      }
+    }
     (req as any).auth = auth;
   }
   app.decorateRequest('auth', null);
   const authed = { preHandler: requireAuth };
+  async function requireParent(req: any, reply: any) {
+    await requireAuth(req, reply);
+    if (reply.sent) return;
+    if (req.auth?.kind !== 'user') return reply.code(403).send({ ok: false, error: '请使用家长账号' });
+  }
+  async function requireAdmin(req: any, reply: any) {
+    await requireAuth(req, reply);
+    if (reply.sent) return;
+    if (req.auth?.kind !== 'user' || req.auth?.role !== 'admin') return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
+  }
+  const parentAuthed = { preHandler: requireParent };
+  const adminAuthed = { preHandler: requireAdmin };
 
   /** 家长令牌的 userId（孩子令牌在家长专属路由返回 null） */
   function parentId(req: any): number | null {
@@ -56,6 +107,31 @@ export function buildApp(): FastifyInstance {
   function isAdmin(req: any): boolean {
     const a = req.auth as { kind?: string; role?: string } | null;
     return a?.kind === 'user' && a.role === 'admin';
+  }
+
+  /** 把请求中的 childId 收敛到当前令牌允许访问的孩子，杜绝跨家庭 IDOR。 */
+  async function resolveOwnedChild(req: any, requestedChildId: number): Promise<number | null> {
+    if (!Number.isSafeInteger(requestedChildId) || requestedChildId <= 0) return null;
+    const auth = req.auth as { kind?: string; userId?: number; role?: string; childId?: number } | null;
+    return authorizeChildAccess(auth as Parameters<typeof authorizeChildAccess>[0], requestedChildId, {
+      childExists: async (childId) => {
+        const rows = await q<RowDataPacket>('SELECT id FROM children WHERE id=? LIMIT 1', [childId]);
+        return !!rows[0];
+      },
+      childOwnedByUser: async (childId, userId) => {
+        const rows = await q<RowDataPacket>(
+          'SELECT c.id FROM children c JOIN families f ON f.id=c.family_id WHERE c.id=? AND f.owner_user_id=? LIMIT 1',
+          [childId, userId],
+        );
+        return !!rows[0];
+      },
+    });
+  }
+
+  async function ownedChildOrReply(req: any, reply: any, requestedChildId: number): Promise<number | null> {
+    const childId = await resolveOwnedChild(req, requestedChildId);
+    if (childId === null) reply.code(403).send({ ok: false, error: '无权访问该儿童档案' });
+    return childId;
   }
 
   /* ---------- 健康检查 ---------- */
@@ -82,7 +158,7 @@ export function buildApp(): FastifyInstance {
 
   app.post<{ Body: { messages?: { role: string; content: string }[] } }>(
     '/api/buddy/chat',
-    authed,
+    { preHandler: [rateLimit('buddy-chat', 30, 60_000), requireAuth] },
     async (req, reply) => {
       const { baseUrl, apiKey, model } = config.chat;
       if (!baseUrl || !apiKey || !model) {
@@ -125,7 +201,7 @@ export function buildApp(): FastifyInstance {
   );
 
   /* ---------- 认证 ---------- */
-  app.post<{ Body: { phone?: string } }>('/api/auth/send-code', async (req, reply) => {
+  app.post<{ Body: { phone?: string } }>('/api/auth/send-code', { preHandler: rateLimit('send-code', 5, 10 * 60_000) }, async (req, reply) => {
     const phone = (req.body?.phone ?? '').trim();
     if (!/^1\d{10}$/.test(phone)) {
       return reply.code(400).send({ ok: false, error: '手机号格式不正确' });
@@ -145,7 +221,7 @@ export function buildApp(): FastifyInstance {
     return { ok: true, mock: config.smsProviderName === 'mock', devCode: config.smsProviderName === 'mock' ? code : undefined };
   });
 
-  app.post<{ Body: { phone?: string; code?: string } }>('/api/auth/login', async (req, reply) => {
+  app.post<{ Body: { phone?: string; code?: string } }>('/api/auth/login', { preHandler: rateLimit('sms-login', 10, 10 * 60_000) }, async (req, reply) => {
     const phone = (req.body?.phone ?? '').trim();
     const code = (req.body?.code ?? '').trim();
     if (!/^1\d{10}$/.test(phone)) return reply.code(400).send({ ok: false, error: '手机号格式不正确' });
@@ -159,37 +235,38 @@ export function buildApp(): FastifyInstance {
       return reply.code(401).send({ ok: false, error: '验证码不正确或已过期' });
     }
     await q('UPDATE sms_codes SET consumed=1 WHERE phone=? AND code=? AND consumed=0', [phone, code]);
-    let rows = await q<{ id: number; nickname: string; role: string } & RowDataPacket>('SELECT id, nickname, role FROM users WHERE phone=? LIMIT 1', [phone]);
+    let rows = await q<{ id: number; nickname: string; role: string; disabled: number } & RowDataPacket>('SELECT id, nickname, role, disabled FROM users WHERE phone=? LIMIT 1', [phone]);
     let user = rows[0];
     if (!user) {
       await q('INSERT INTO users (phone, nickname, role) VALUES (?,?,?)', [phone, `家长${phone.slice(-4)}`, 'parent']);
-      rows = await q<{ id: number; nickname: string; role: string } & RowDataPacket>('SELECT id, nickname, role FROM users WHERE phone=? LIMIT 1', [phone]);
+      rows = await q<{ id: number; nickname: string; role: string; disabled: number } & RowDataPacket>('SELECT id, nickname, role, disabled FROM users WHERE phone=? LIMIT 1', [phone]);
       user = rows[0];
     }
+    if (user.disabled) return reply.code(403).send({ ok: false, error: '账号已停用，请联系管理员' });
     const familyId = await familyOfUser(user.id);
     const token = signToken({ userId: user.id, phone }, user.role === 'admin' ? 'admin' : 'parent');
     return { ok: true, token, userId: user.id, familyId, nickname: user.nickname, role: user.role };
   });
 
   /* ---------- 家长账号登录（账号密码，由管理员在管理页创建） ---------- */
-  app.post<{ Body: { loginName?: string; password?: string } }>('/api/auth/parent-login', async (req, reply) => {
+  app.post<{ Body: { loginName?: string; password?: string } }>('/api/auth/parent-login', { preHandler: rateLimit('password-login', 10, 10 * 60_000) }, async (req, reply) => {
     const loginName = (req.body?.loginName ?? '').trim();
     const password = req.body?.password ?? '';
-    const rows = await q<{ id: number; role: string; nickname: string; login_hash: string | null } & RowDataPacket>(
-      'SELECT id, role, nickname, login_hash FROM users WHERE login_name=? LIMIT 1',
+    const rows = await q<{ id: number; role: string; nickname: string; login_hash: string | null; disabled: number } & RowDataPacket>(
+      'SELECT id, role, nickname, login_hash, disabled FROM users WHERE login_name=? LIMIT 1',
       [loginName],
     );
     const row = rows[0];
     if (!row || !row.login_hash || !verifyPassword(password, row.login_hash)) {
       return reply.code(401).send({ ok: false, error: '账号或密码不正确' });
     }
+    if (row.disabled) return reply.code(403).send({ ok: false, error: '账号已停用，请联系管理员' });
     const token = signToken({ userId: row.id, phone: '' }, row.role === 'admin' ? 'admin' : 'parent');
     return { ok: true, token, userId: row.id, role: row.role, nickname: row.nickname };
   });
 
   /* ---------- 管理员：创建/查看家长账号 ---------- */
-  app.post<{ Body: { name?: string; password?: string } }>('/api/admin/parents', authed, async (req, reply) => {
-    if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
+  app.post<{ Body: { name?: string; password?: string } }>('/api/admin/parents', adminAuthed, async (req, reply) => {
     const name = (req.body?.name ?? '').trim();
     const password = (req.body?.password ?? '').trim();
     if (!name || password.length < 4) return reply.code(400).send({ ok: false, error: '请填写家长名与至少4位密码' });
@@ -200,21 +277,20 @@ export function buildApp(): FastifyInstance {
     return { ok: true, loginName: name };
   });
 
-  app.get('/api/admin/parents', authed, async (req, reply) => {
-    if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
+  app.get('/api/admin/parents', adminAuthed, async () => {
     const rows = await q<RowDataPacket>('SELECT id, nickname, login_name, role, disabled, created_at FROM users WHERE role<>"child" ORDER BY id');
     return { ok: true, parents: rows };
   });
 
   /* ---------- 家庭与儿童档案 ---------- */
-  app.get('/api/me', authed, async (req) => {
+  app.get('/api/me', parentAuthed, async (req) => {
     const userId = parentId(req)!;
     const familyId = await familyOfUser(userId);
     const children = await q<RowDataPacket>('SELECT id, name, avatar, grade FROM children WHERE family_id=? ORDER BY id', [familyId]);
     return { ok: true, familyId, children };
   });
 
-  app.post<{ Body: { name?: string; avatar?: string; grade?: string } }>('/api/family/children', authed, async (req, reply) => {
+  app.post<{ Body: { name?: string; avatar?: string; grade?: string } }>('/api/family/children', parentAuthed, async (req, reply) => {
     const userId = parentId(req)!;
     const familyId = await familyOfUser(userId);
     const name = (req.body?.name ?? '').trim();
@@ -226,7 +302,7 @@ export function buildApp(): FastifyInstance {
   });
 
   app.put<{ Params: { id: string }; Body: { name?: string; avatar?: string; grade?: string } }>(
-    '/api/family/children/:id', authed, async (req, reply) => {
+    '/api/family/children/:id', parentAuthed, async (req, reply) => {
       const userId = parentId(req)!;
       const familyId = await familyOfUser(userId);
       const id = Number(req.params.id);
@@ -241,28 +317,27 @@ export function buildApp(): FastifyInstance {
       return { ok: true };
     });
 
-  app.delete<{ Params: { id: string } }>('/api/family/children/:id', authed, async (req, reply) => {
+  app.delete<{ Params: { id: string } }>('/api/family/children/:id', parentAuthed, async (req, reply) => {
     const userId = parentId(req)!;
     const familyId = await familyOfUser(userId);
     const id = Number(req.params.id);
-    await q('DELETE FROM children WHERE id=? AND family_id=?', [id, familyId]);
+    const owned = await q<RowDataPacket>('SELECT id FROM children WHERE id=? AND family_id=? LIMIT 1', [id, familyId]);
+    if (!owned[0]) return reply.code(404).send({ ok: false, error: '未找到该儿童档案' });
+    await deleteChildCascade(id);
     return { ok: true };
   });
 
 
   /* ---------- 孩子账号（家长创建；孩子登录） ---------- */
-  app.post<{ Body: { childId?: number; loginName?: string; password?: string } }>('/api/auth/child-account', authed, async (req, reply) => {
+  app.post<{ Body: { childId?: number; loginName?: string; password?: string } }>('/api/auth/child-account', parentAuthed, async (req, reply) => {
     const userId = parentId(req);
     const admin = isAdmin(req);
     if (!userId && !admin) return reply.code(403).send({ ok: false, error: '请使用家长/管理员账号' });
     const childId = Number(req.body?.childId ?? 0);
-    let owned: RowDataPacket[] = [];
-    if (admin) {
-      owned = await q<RowDataPacket>('SELECT id, name FROM children WHERE id=? LIMIT 1', [childId]);
-    } else {
-      const familyId = await familyOfUser(userId!);
-      owned = await q<RowDataPacket>('SELECT id, name FROM children WHERE id=? AND family_id=? LIMIT 1', [childId, familyId]);
-    }
+    const familyId = admin ? null : await familyOfUser(userId!);
+    const owned = admin
+      ? await q<RowDataPacket>('SELECT id, name FROM children WHERE id=? LIMIT 1', [childId])
+      : await q<RowDataPacket>('SELECT id, name FROM children WHERE id=? AND family_id=? LIMIT 1', [childId, familyId]);
     if (!owned[0]) return reply.code(404).send({ ok: false, error: '未找到该儿童档案' });
     const password = (req.body?.password ?? '').trim();
     if (password.length < 4) return reply.code(400).send({ ok: false, error: '密码至少 4 位' });
@@ -274,7 +349,7 @@ export function buildApp(): FastifyInstance {
     return { ok: true, loginName };
   });
 
-  app.post<{ Body: { loginName?: string; password?: string } }>('/api/auth/child-login', async (req, reply) => {
+  app.post<{ Body: { loginName?: string; password?: string } }>('/api/auth/child-login', { preHandler: rateLimit('child-login', 10, 10 * 60_000) }, async (req, reply) => {
     const loginName = (req.body?.loginName ?? '').trim();
     const password = req.body?.password ?? '';
     const rows = await q<{ id: number; name: string; avatar: string; grade: string; login_hash: string | null; disabled: number } & RowDataPacket>(
@@ -357,7 +432,7 @@ export function buildApp(): FastifyInstance {
   );
 
   /* ---------- TTS 代理（火山 seed-tts-2.0，服务端注入密钥 + 磁盘缓存） ---------- */
-  app.post('/api/volc-tts/api/v3/tts/unidirectional/sse', async (req, reply) => {
+  app.post('/api/volc-tts/api/v3/tts/unidirectional/sse', { preHandler: rateLimit('tts', 120, 60_000) }, async (req, reply) => {
     const bodyText = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
     const resourceId = (req.headers['x-api-resource-id'] as string) || config.volc.resourceId;
     const key = crypto.createHash('sha256').update(`${resourceId}|${bodyText}`).digest('hex');
@@ -387,28 +462,36 @@ export function buildApp(): FastifyInstance {
   });
 
   /* ---------- 同步（进度 / 练习错题 / 跟读记录） ---------- */
-  app.get<{ Querystring: { childId?: string; since?: string } }>('/api/sync', authed, async (req) => {
-    const childId = childScope(req) ?? Number(req.query.childId ?? 0);
+  app.get<{ Querystring: { childId?: string; since?: string } }>('/api/sync', authed, async (req, reply) => {
+    const requestedChildId = childScope(req) ?? Number(req.query.childId ?? 0);
+    const childId = await ownedChildOrReply(req, reply, requestedChildId);
+    if (childId === null) return;
     const since = Number(req.query.since ?? 0);
     const where = 'child_id=? AND updated_at > FROM_UNIXTIME(?)';
     const progress = await q<RowDataPacket>('SELECT lesson_id, step_idx, stars, score, payload, UNIX_TIMESTAMP(updated_at) AS ts FROM progress WHERE ' + where, [childId, since / 1000]);
-    const storyRows = await q<RowDataPacket>('SELECT done, reward_claimed, updated_at FROM story_progress WHERE child_id=? LIMIT 1', [childId]);
     const wrongs = await q<RowDataPacket>('SELECT id, lesson_id, kind, question, answer, wrong, created_at FROM practice_records WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 500', [childId, since / 1000]);
     const readAloud = await q<RowDataPacket>('SELECT id, lesson_id, sentence, score, accuracy, created_at FROM read_aloud_records WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 200', [childId, since / 1000]);
     const points = await q<RowDataPacket>('SELECT source_id, amount, reason, UNIX_TIMESTAMP(created_at) AS ts FROM points_ledger WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 800', [childId, since / 1000]);
     const items = await q<RowDataPacket>('SELECT item_id FROM child_items WHERE child_id=?', [childId]);
     const rewards = await q<RowDataPacket>('SELECT request_id, item_id, name, icon, kind, cost, status, created_at, decided_at FROM reward_requests WHERE child_id=? ORDER BY created_at DESC LIMIT 200', [childId]);
-    return { ok: true, now: Date.now(), progress, story: storyRows[0] ?? null, wrongs, readAloud, points, items: items.map((i) => i.item_id), rewards };
+    return { ok: true, now: Date.now(), progress, wrongs, readAloud, points, items: items.map((i) => i.item_id), rewards };
   });
 
   /* ---------- 积分流水推送（幂等批量写入） ---------- */
   app.post<{ Body: { childId?: number; ledger?: { id: string; amount: number; reason?: string; time?: number }[]; items?: string[]; rewards?: { id: string; itemId: string; name: string; icon: string; kind: string; cost: number; status: string; createdAt: number; decidedAt: number }[] } }>(
     '/api/sync/points', authed, async (req, reply) => {
       const b = req.body ?? {};
-      const childId = childScope(req) ?? Number(b.childId ?? 0);
-      if (!childId) return reply.code(400).send({ ok: false, error: '缺少 childId' });
+      const requestedChildId = childScope(req) ?? Number(b.childId ?? 0);
+      const childId = await ownedChildOrReply(req, reply, requestedChildId);
+      if (childId === null) return;
+      if ((b.ledger?.length ?? 0) > 800 || (b.items?.length ?? 0) > 500 || (b.rewards?.length ?? 0) > 200) {
+        return reply.code(413).send({ ok: false, error: '同步批次过大，请分批提交' });
+      }
       let n = 0;
       for (const e of b.ledger ?? []) {
+        if (!e || typeof e.id !== 'string' || !Number.isSafeInteger(e.amount) || Math.abs(e.amount) > 500) {
+          return reply.code(400).send({ ok: false, error: '积分流水格式不正确' });
+        }
         const res = await q<RowDataPacket>('INSERT IGNORE INTO points_ledger (child_id, source_id, amount, reason, created_at) VALUES (?,?,?,?,FROM_UNIXTIME(?))', [
           childId, String(e.id).slice(0, 128), e.amount, String(e.reason ?? '').slice(0, 255), Math.floor((e.time ?? Date.now()) / 1000),
         ]);
@@ -429,9 +512,11 @@ export function buildApp(): FastifyInstance {
   app.put<{ Body: { childId?: number; lessonId?: string; stepIdx?: number; stars?: number; score?: number; payload?: unknown } }>(
     '/api/sync/progress', authed, async (req, reply) => {
       const b2 = req.body ?? {};
-      const childId = childScope(req) ?? Number(b2.childId ?? 0);
+      const requestedChildId = childScope(req) ?? Number(b2.childId ?? 0);
+      const childId = await ownedChildOrReply(req, reply, requestedChildId);
+      if (childId === null) return;
       const { lessonId, stepIdx, stars, score, payload } = b2;
-      if (!childId || !lessonId) return reply.code(400).send({ ok: false, error: '缺少 childId/lessonId' });
+      if (!lessonId || lessonId.length > 128) return reply.code(400).send({ ok: false, error: '缺少或无效的 lessonId' });
       await q(
         'INSERT INTO progress (child_id, lesson_id, step_idx, stars, score, payload) VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE step_idx=VALUES(step_idx), stars=VALUES(stars), score=VALUES(score), payload=VALUES(payload)',
         [childId, lessonId, stepIdx ?? 0, stars ?? 0, score ?? 0, payload ? JSON.stringify(payload) : null],
@@ -439,33 +524,13 @@ export function buildApp(): FastifyInstance {
       return { ok: true };
     });
 
-  /* ---------- 剧情存档（跨端恢复；新版时间戳优先，支持同步重置） ---------- */
-  app.put<{ Body: { childId?: number; done?: unknown; rewardClaimed?: unknown; updatedAt?: number } }>(
-    '/api/sync/story', authed, async (req, reply) => {
-      const b = req.body ?? {};
-      const childId = childScope(req) ?? Number(b.childId ?? 0);
-      if (!childId) return reply.code(400).send({ ok: false, error: '缺少 childId' });
-      const cleanList = (value: unknown) => Array.isArray(value)
-        ? [...new Set(value.filter((item): item is string => typeof item === 'string').map((item) => item.slice(0, 64)))].slice(0, 200)
-        : [];
-      const done = cleanList(b.done);
-      const rewardClaimed = cleanList(b.rewardClaimed);
-      const requestedAt = Math.floor(Number(b.updatedAt ?? 0));
-      // 旧版本地剧情没有时间戳：首次上传时由服务端补一个当前版本。
-      const updatedAt = Number.isFinite(requestedAt) && requestedAt > 0 ? requestedAt : Date.now();
-      await q(
-        'INSERT INTO story_progress (child_id, done, reward_claimed, updated_at) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE done=IF(VALUES(updated_at)>=updated_at, VALUES(done), done), reward_claimed=IF(VALUES(updated_at)>=updated_at, VALUES(reward_claimed), reward_claimed), updated_at=GREATEST(updated_at, VALUES(updated_at))',
-        [childId, JSON.stringify(done), JSON.stringify(rewardClaimed), updatedAt],
-      );
-      return { ok: true };
-    },
-  );
-
   app.post<{ Body: { childId?: number; lessonId?: string; kind?: string; question?: string; answer?: string; wrong?: boolean; durationMs?: number } }>(
     '/api/sync/practice', authed, async (req, reply) => {
       const b = req.body ?? {};
-      const childId = childScope(req) ?? Number(b.childId ?? 0);
-      if (!childId || !b.lessonId) return reply.code(400).send({ ok: false, error: '缺少 childId/lessonId' });
+      const requestedChildId = childScope(req) ?? Number(b.childId ?? 0);
+      const childId = await ownedChildOrReply(req, reply, requestedChildId);
+      if (childId === null) return;
+      if (!b.lessonId) return reply.code(400).send({ ok: false, error: '缺少 childId/lessonId' });
       await q('INSERT INTO practice_records (child_id, lesson_id, kind, question, answer, wrong, duration_ms) VALUES (?,?,?,?,?,?,?)', [
         childId, b.lessonId, b.kind ?? 'quiz', b.question ?? '', b.answer ?? '', b.wrong ? 1 : 0, b.durationMs ?? 0,
       ]);
@@ -476,7 +541,9 @@ export function buildApp(): FastifyInstance {
   app.post<{ Body: { childId?: number; lessonId?: string; target?: string; transcript?: string } }>(
     '/api/score/read-aloud', authed, async (req, reply) => {
       const b = req.body ?? {};
-      const childId = childScope(req) ?? Number(b.childId ?? 0);
+      const requestedChildId = childScope(req) ?? Number(b.childId ?? 0);
+      const childId = await ownedChildOrReply(req, reply, requestedChildId);
+      if (childId === null) return;
       if (!b.target) return reply.code(400).send({ ok: false, error: '缺少目标句 target' });
       const transcript = b.transcript ?? '';
       const { score, accuracy } = scoreText(String(b.target), transcript);
@@ -489,8 +556,10 @@ export function buildApp(): FastifyInstance {
     });
 
   /* ---------- 学习计划 ---------- */
-  app.get<{ Querystring: { childId?: string } }>('/api/plans', authed, async (req) => {
-    const childId = childScope(req) ?? Number(req.query.childId ?? 0);
+  app.get<{ Querystring: { childId?: string } }>('/api/plans', authed, async (req, reply) => {
+    const requestedChildId = childScope(req) ?? Number(req.query.childId ?? 0);
+    const childId = await ownedChildOrReply(req, reply, requestedChildId);
+    if (childId === null) return;
     const rows = await q<RowDataPacket>('SELECT id, kind, title, detail, DATE_FORMAT(due_date,"%Y-%m-%d") AS due_date, done, created_at FROM plans WHERE child_id=? ORDER BY done, due_date IS NULL, due_date, id DESC', [childId]);
     return { ok: true, plans: rows };
   });
@@ -498,28 +567,41 @@ export function buildApp(): FastifyInstance {
   app.post<{ Body: { childId?: number; kind?: string; title?: string; detail?: string; dueDate?: string } }>(
     '/api/plans', authed, async (req, reply) => {
       const b = req.body ?? {};
-      const childId = childScope(req) ?? Number(b.childId ?? 0);
-      if (!childId || !b.title?.trim()) return reply.code(400).send({ ok: false, error: '缺少 childId/title' });
+      const requestedChildId = childScope(req) ?? Number(b.childId ?? 0);
+      const childId = await ownedChildOrReply(req, reply, requestedChildId);
+      if (childId === null) return;
+      if (!b.title?.trim()) return reply.code(400).send({ ok: false, error: '缺少 childId/title' });
       const id = await insertOne('INSERT INTO plans (child_id, kind, title, detail, due_date) VALUES (?,?,?,?,?)', [
         childId, b.kind ?? 'custom', b.title, b.detail ?? '', b.dueDate || null,
       ]);
       return { ok: true, id };
     });
 
-  app.patch<{ Params: { id: string }; Body: { done?: boolean } }>('/api/plans/:id', authed, async (req) => {
-    await q('UPDATE plans SET done=? WHERE id=?', [req.body?.done ? 1 : 0, Number(req.params.id)]);
+  app.patch<{ Params: { id: string }; Body: { done?: boolean } }>('/api/plans/:id', authed, async (req, reply) => {
+    const planId = Number(req.params.id);
+    const plans = await q<{ child_id: number } & RowDataPacket>('SELECT child_id FROM plans WHERE id=? LIMIT 1', [planId]);
+    if (!plans[0]) return reply.code(404).send({ ok: false, error: '计划不存在' });
+    const childId = await ownedChildOrReply(req, reply, Number(plans[0].child_id));
+    if (childId === null) return;
+    await q('UPDATE plans SET done=? WHERE id=? AND child_id=?', [req.body?.done ? 1 : 0, planId, childId]);
     return { ok: true };
   });
 
-  app.delete<{ Params: { id: string } }>('/api/plans/:id', authed, async (req) => {
-    await q('DELETE FROM plans WHERE id=?', [Number(req.params.id)]);
+  app.delete<{ Params: { id: string } }>('/api/plans/:id', authed, async (req, reply) => {
+    const planId = Number(req.params.id);
+    const plans = await q<{ child_id: number } & RowDataPacket>('SELECT child_id FROM plans WHERE id=? LIMIT 1', [planId]);
+    if (!plans[0]) return reply.code(404).send({ ok: false, error: '计划不存在' });
+    const childId = await ownedChildOrReply(req, reply, Number(plans[0].child_id));
+    if (childId === null) return;
+    await q('DELETE FROM plans WHERE id=? AND child_id=?', [planId, childId]);
     return { ok: true };
   });
 
   /* ---------- 系统按年级自动排期 ---------- */
   app.post<{ Body: { childId?: number } }>('/api/plans/system', authed, async (req, reply) => {
-    const childId = Number(req.body?.childId ?? 0);
-    if (!childId) return reply.code(400).send({ ok: false, error: '缺少 childId' });
+    const requestedChildId = childScope(req) ?? Number(req.body?.childId ?? 0);
+    const childId = await ownedChildOrReply(req, reply, requestedChildId);
+    if (childId === null) return;
     const kids = await q<{ grade: string } & RowDataPacket>('SELECT grade FROM children WHERE id=? LIMIT 1', [childId]);
     if (!kids[0]) return reply.code(404).send({ ok: false, error: '未找到儿童档案' });
     const grade = kids[0].grade;
@@ -560,8 +642,10 @@ export function buildApp(): FastifyInstance {
   });
 
   /* ---------- 学习周报 ---------- */
-  app.get<{ Querystring: { childId?: string; weekStart?: string } }>('/api/reports/weekly', authed, async (req) => {
-    const childId = childScope(req) ?? Number(req.query.childId ?? 0);
+  app.get<{ Querystring: { childId?: string; weekStart?: string } }>('/api/reports/weekly', authed, async (req, reply) => {
+    const requestedChildId = childScope(req) ?? Number(req.query.childId ?? 0);
+    const childId = await ownedChildOrReply(req, reply, requestedChildId);
+    if (childId === null) return;
     const start = req.query.weekStart ?? new Date(Date.now() - 6 * 86400_000).toISOString().slice(0, 10);
     const end = new Date(new Date(start).getTime() + 7 * 86400_000).toISOString().slice(0, 10);
     const lessons = await q<{ n: number } & RowDataPacket>('SELECT COUNT(*) AS n FROM practice_records WHERE child_id=? AND created_at>=? AND created_at<?', [childId, start, end]);
@@ -634,9 +718,9 @@ export function buildApp(): FastifyInstance {
     return { ok: true, children: rows };
   });
 
-  /** 删除孩子档案及其全部学习数据（进度/剧情/练习/跟读/计划/积分/道具/兑换记录） */
+  /** 删除孩子档案及其全部学习数据（进度/练习/跟读/计划/积分/道具/兑换记录） */
   async function deleteChildCascade(childId: number): Promise<void> {
-    for (const tbl of ['progress', 'story_progress', 'practice_records', 'read_aloud_records', 'plans', 'points_ledger', 'child_items', 'reward_requests']) {
+    for (const tbl of ['progress', 'practice_records', 'read_aloud_records', 'plans', 'points_ledger', 'child_items', 'reward_requests']) {
       await q(`DELETE FROM \`${tbl}\` WHERE child_id=?`, [childId]);
     }
     await q('DELETE FROM children WHERE id=?', [childId]);

@@ -36,7 +36,7 @@ export default function HqSettingsPage() {
     const s = useStore.getState();
     const hasSession = !!s.activeChildId || !!localStorage.getItem('sfz_token');
     if (!hasSession) nav('/child-login');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [activeChildId]);
 
   const [creating, setCreating] = useState(false);

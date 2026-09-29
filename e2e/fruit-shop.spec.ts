@@ -15,12 +15,12 @@ test.beforeEach(async ({ page }) => {
       state: {
         lang: 'zh', theme: 'dark', sound: true, voiceOn: false,
         profiles: [{ id, name: '水果店长', avatar: '🐰', ageBand: 'g1', createdAt: Date.now() }], activeChildId: id,
-        records: [], mastery: { [id]: seededMastery }, lessonProgress: {}, dailyCheckin: {}, charBag: {}, storyDone: { [id]: ['p1'] }, storyRewardClaimed: {}, storyUpdatedAt: {}, storyPulse: null,
+        records: [], mastery: { [id]: seededMastery }, lessonProgress: {}, dailyCheckin: {}, charBag: {},
         wrongs: {}, points: { [id]: 0 }, pointLog: { [id]: [] }, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, bonusMin: {}, parentPin: '1234', dailyLimitMin: 0,
         buddyOpen: false, buddyWakeOn: false, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {},
       }, version: 4,
     }));
-    localStorage.removeItem(`sfz-fruit-shop-v1:${id}`);
+    if (!sessionStorage.getItem('fruit-shop-preserve-progress')) localStorage.removeItem(`sfz-fruit-shop-v1:${id}`);
     if (location.hash.includes('/review')) {
       localStorage.setItem(`sfz-review-plan-v1:${id}`, JSON.stringify([{
         id: 'math:add-within-5', subject: 'math', lessonId: 'add-within-5', title: '1～5 的加法',
@@ -98,6 +98,53 @@ test('从适合的数学课进入专属水果店，完成三张订单并保存�
   expect(stored.app.records[0]).toMatchObject({ gameId: 'fruit-shop', stars: 3, correct: 3, total: 3 });
   expect(stored.progress.sessions[0]).toMatchObject({ hints: 0, independentRounds: 3 });
   expect(stored.progress.stickers).toHaveLength(1);
+});
+
+test('兔兔水果店重新开张后会记住招牌和两种分法', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#/math-practice/fruit-shop?from=course&lesson=add-within-5');
+  await page.getByRole('button', { name: '帮兔兔重新开张 →' }).click();
+  await expect(page.getByRole('region', { name: '水果店重新开张' })).toBeVisible();
+  await page.getByRole('button', { name: '葡萄招牌' }).click();
+  await page.getByRole('button', { name: '挂好招牌，准备苹果 →' }).click();
+
+  const addApples = async (left: number, right: number) => {
+    await page.getByRole('button', { name: /选择第 1 只篮子/ }).click();
+    for (let index = 0; index < left; index += 1) await page.getByRole('button', { name: '拿一个苹果' }).click();
+    await page.getByRole('button', { name: /选择第 2 只篮子/ }).click();
+    for (let index = 0; index < right; index += 1) await page.getByRole('button', { name: '拿一个苹果' }).click();
+  };
+  await addApples(1, 4);
+  await page.getByRole('button', { name: '请兔兔看看第一种分法' }).click();
+  await expect(page.locator('.fs-split-progress')).toContainText('第一种：1+4');
+  await addApples(4, 1);
+  await page.getByRole('button', { name: '请兔兔看看第二种分法' }).click();
+  await expect(page.getByRole('status')).toContainText('还是同一种分法');
+  for (let basket = 1; basket <= 2; basket += 1) {
+    for (let index = 0; index < (basket === 1 ? 4 : 1); index += 1) {
+      await page.getByRole('button', { name: `从第 ${basket} 只篮子拿回一个苹果` }).first().click();
+    }
+  }
+  await addApples(2, 3);
+  await page.getByRole('button', { name: '请兔兔看看第二种分法' }).click();
+  await expect(page.locator('.fs-shop-memory')).toContainText('你做的葡萄招牌还挂着');
+  await expect(page.locator('.fs-shop-memory')).toContainText('1+4 和 2+3');
+  await expect(page.getByRole('region', { name: '把两部分合起来订单' })).toBeVisible();
+
+  const progress = await page.evaluate(() => JSON.parse(localStorage.getItem('sfz-fruit-shop-v1:fruit-shop-child') ?? '{}'));
+  expect(progress.reopening).toMatchObject({ signId: 'grape', firstWay: [1, 4], secondWay: [2, 3] });
+  await page.evaluate(() => sessionStorage.setItem('fruit-shop-preserve-progress', 'yes'));
+  await page.reload();
+  await expect(page.locator('.fs-shop-memory')).toContainText('你做的葡萄招牌还挂着');
+  await expect(page.locator('.fs-sign')).toContainText('葡萄招牌');
+  await expect(page.getByRole('button', { name: '帮兔兔重新开张 →' })).toHaveCount(0);
+});
+
+test('数学目录能直接找到开张体验', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#/subject/math');
+  await page.getByRole('button', { name: /兔兔水果店重新开张/ }).click();
+  await expect(page.getByRole('region', { name: '水果店重新开张' })).toBeVisible();
 });
 
 test('完成数学课后进入匹配的水果店订单，并能返回原课程', async ({ page }) => {

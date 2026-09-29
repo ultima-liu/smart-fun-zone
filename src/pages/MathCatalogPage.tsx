@@ -6,6 +6,7 @@ import { getTextbook, textbookRoute, volLabel, firstAvailableTextbook } from '..
 import { migrateMathFlowSnapshot } from '../content/mathLearningProgress';
 import { MATH_G1_UPPER_COVERAGE } from '../content/mathTextbookCoverage';
 import { mathLifeSceneForLesson } from '../content/mathLifeScenes';
+import { readFruitShopProgress } from '../fruitShopProgress';
 import MathLessonArtwork, { mathLessonCoverLabel } from '../components/MathLessonArtwork';
 import '../chinese-textbook.css';
 import '../math-catalog.css';
@@ -49,6 +50,7 @@ export default function MathCatalogPage() {
   const bookTotal = allLessons.length;
   const bookStars = allLessons.reduce((sum, lesson) => sum + starsOf(lesson.id), 0);
   const bookPct = bookTotal ? Math.round((bookDone / bookTotal) * 100) : 0;
+  const shopReopened = activeChildId ? !!readFruitShopProgress(activeChildId).reopening : false;
 
   const resumable = (() => {
     if (!activeChildId) return undefined;
@@ -113,6 +115,9 @@ export default function MathCatalogPage() {
 
       {book.available && activeUnit ? (
         <>
+          <button className="mc-fruit-invite" onClick={() => nav('/math-practice/fruit-shop?from=catalog&reopen=1')}>
+            <span aria-hidden="true">🐰🍎</span><span><b>{shopReopened ? '回兔兔水果店' : '兔兔水果店重新开张'}</b><small>{shopReopened ? '看看你做的招牌，招待新客人' : '做一块招牌，再试两种分苹果的方法'}</small></span><strong>{shopReopened ? '去看看 →' : '去体验 →'}</strong>
+          </button>
           <section className="ct-method-strip" aria-label="数学课五步学习方式">
             {FLOW_STEPS.map((step, index) => <Fragment key={step.label}>
               {index > 0 && <i>→</i>}

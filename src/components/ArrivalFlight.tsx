@@ -52,7 +52,7 @@ export default function ArrivalFlight({ onDone, greet, lang }: ArrivalFlightProp
       timers.current.forEach((t) => window.clearTimeout(t));
       stopThrust();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
   return createPortal(

@@ -15,9 +15,10 @@ import {
   type FruitShopLevel,
   type FruitShopRound,
 } from '../content/fruitShop';
+import { fruitSplitKey, REOPENING_FRUIT_COUNT, SHOP_SIGNS, type FruitSplit, type ShopSignId } from '../content/fruitShopReopening';
 import { ALL_MATH_LESSONS } from '../content/mathUpperCurriculum';
 import { localDayKey } from '../dailyCheckin';
-import { readFruitShopProgress, saveFruitShopSession } from '../fruitShopProgress';
+import { readFruitShopProgress, saveFruitShopReopening, saveFruitShopSession, type FruitShopReopening } from '../fruitShopProgress';
 import { playSfx, speakOnce, stopSpeaking } from '../speech';
 import { useStore } from '../store';
 import '../fruit-shop.css';
@@ -104,20 +105,32 @@ export default function FruitShopPage() {
   const [feedback, setFeedback] = useState('');
   const [roundDone, setRoundDone] = useState(false);
   const [result, setResult] = useState<{ stars: number; sticker: string; stickerName: string; newSticker: boolean; nextLevel: FruitShopLevel } | null>(null);
+  const [shopMemory, setShopMemory] = useState<FruitShopReopening | undefined>(() => child ? readFruitShopProgress(child.id).reopening : undefined);
+  const [reopeningOpen, setReopeningOpen] = useState(() => params.get('reopen') === '1' && !shopMemory);
+  const [selectedSign, setSelectedSign] = useState<ShopSignId | null>(null);
+  const [reopeningStep, setReopeningStep] = useState<'sign' | 'split'>('sign');
+  const [reopeningBaskets, setReopeningBaskets] = useState<FruitSplit>([0, 0]);
+  const [reopeningActiveBasket, setReopeningActiveBasket] = useState<0 | 1>(0);
+  const [firstWay, setFirstWay] = useState<FruitSplit | null>(null);
+  const [reopeningFeedback, setReopeningFeedback] = useState('');
   const startedAt = useRef(0);
+  const reopeningSpeechUntil = useRef(0);
 
   const fruit = FRUIT_META[round.fruit];
-  const backTarget = params.get('from') === 'review' ? '/review' : params.get('from') === 'course' && sourceLessonId ? `/math-course/${sourceLessonId}` : '/subject/math';
+  const backTarget = params.get('from') === 'home' ? '/' : params.get('from') === 'review' ? '/review' : params.get('from') === 'course' && sourceLessonId ? `/math-course/${sourceLessonId}` : '/subject/math';
+  const backLabel = backTarget === '/' ? '首页' : backTarget === '/review' ? '今日复习' : sourceLesson ? sourceLesson.title : '数学目录';
+  const displayedSign = SHOP_SIGNS.find((sign) => sign.id === shopMemory?.signId);
 
   useEffect(() => {
     if (!child) nav('/map');
   }, [child, nav]);
 
   useEffect(() => {
-    if (!round || result) return;
-    const timer = window.setTimeout(() => speakOnce(instructionFor(round), 'zh', .82), 260);
+    if (!round || result || reopeningOpen) return;
+    const delay = Math.max(260, reopeningSpeechUntil.current - nowMs());
+    const timer = window.setTimeout(() => speakOnce(instructionFor(round), 'zh', .82), delay);
     return () => window.clearTimeout(timer);
-  }, [round, result]);
+  }, [round, result, reopeningOpen]);
 
   useEffect(() => {
     startedAt.current = nowMs();
@@ -125,6 +138,65 @@ export default function FruitShopPage() {
   }, []);
 
   if (!child || !round) return null;
+
+  const startReopening = () => {
+    stopSpeaking();
+    setSelectedSign(null);
+    setReopeningStep('sign');
+    setReopeningBaskets([0, 0]);
+    setFirstWay(null);
+    setReopeningFeedback('兔兔想请你做一块招牌，再用两种方法分好 5 个苹果。');
+    setReopeningOpen(true);
+    speakOnce('水果店要重新开张啦！请先选一块你喜欢的招牌。', 'zh', .82);
+  };
+
+  const addReopeningApple = () => {
+    if (reopeningBaskets[0] + reopeningBaskets[1] >= REOPENING_FRUIT_COUNT) return;
+    setReopeningBaskets((current) => current.map((count, index) => index === reopeningActiveBasket ? count + 1 : count) as FruitSplit);
+    setReopeningFeedback('');
+    playSfx('pop');
+  };
+
+  const removeReopeningApple = (basket: 0 | 1) => {
+    setReopeningBaskets((current) => current.map((count, index) => index === basket ? Math.max(0, count - 1) : count) as FruitSplit);
+    setReopeningFeedback('');
+    playSfx('tap');
+  };
+
+  const checkReopeningSplit = () => {
+    const key = fruitSplitKey(reopeningBaskets);
+    if (!key) {
+      const message = `把 ${REOPENING_FRUIT_COUNT} 个苹果都放进两只篮子，每只篮子都要有苹果。`;
+      setReopeningFeedback(message);
+      speakOnce(message, 'zh', .82);
+      return;
+    }
+    if (!firstWay) {
+      setFirstWay([...reopeningBaskets]);
+      setReopeningBaskets([0, 0]);
+      setReopeningActiveBasket(0);
+      const message = `第一种是 ${key}。再试一种不一样的分法吧！`;
+      setReopeningFeedback(message);
+      playSfx('correct');
+      speakOnce(message, 'zh', .82);
+      return;
+    }
+    if (key === fruitSplitKey(firstWay)) {
+      const message = '两只篮子交换位置，还是同一种分法。换一换每只篮子的苹果数吧。';
+      setReopeningFeedback(message);
+      speakOnce(message, 'zh', .82);
+      return;
+    }
+    if (!selectedSign) return;
+    const saved = saveFruitShopReopening(child.id, {
+      signId: selectedSign, firstWay, secondWay: [...reopeningBaskets], completedAt: nowMs(),
+    });
+    setShopMemory(saved.reopening);
+    reopeningSpeechUntil.current = nowMs() + 3200;
+    setReopeningOpen(false);
+    playSfx('win');
+    speakOnce(`水果店开张啦！你用两种方法分好了苹果，${SHOP_SIGNS.find((sign) => sign.id === selectedSign)?.name}也挂好了。`, 'zh', .82);
+  };
 
   const resetRoundState = (next: FruitShopRound, useTeacherMode = false) => {
     setAllocations(allocationInitial(next));
@@ -348,6 +420,29 @@ export default function FruitShopPage() {
     startedAt.current = nowMs();
   };
 
+  if (reopeningOpen) {
+    const chosen = SHOP_SIGNS.find((sign) => sign.id === selectedSign);
+    const placed = reopeningBaskets[0] + reopeningBaskets[1];
+    return <main className="fs-page page">
+      <header className="fs-topbar"><button className="fs-back" onClick={() => setReopeningOpen(false)} aria-label="返回水果店">←</button><div><span>兔兔的小委托</span><h1>水果店重新开张</h1></div></header>
+      <section className="fs-reopening" aria-label="水果店重新开张">
+        <div className="fs-reopening-rabbit"><span aria-hidden="true">🐰</span><p>{reopeningStep === 'sign' ? '请你挑一块喜欢的招牌。店里以后会一直挂着它！' : `请把 ${REOPENING_FRUIT_COUNT} 个苹果分进两只篮子，找出两种不同的分法。`}</p></div>
+        {reopeningStep === 'sign' ? <>
+          <div className="fs-sign-choices" aria-label="选择水果店招牌">{SHOP_SIGNS.map((sign) => <button key={sign.id} className={selectedSign === sign.id ? 'selected' : ''} onClick={() => { setSelectedSign(sign.id); playSfx('tap'); }} aria-pressed={selectedSign === sign.id}><span>{sign.emoji}</span><b>{sign.name}</b></button>)}</div>
+          <div className="fs-sign-preview"><small>店门口的招牌</small><strong>{chosen?.emoji ?? '❔'} {chosen?.name ?? '等你来选择'}</strong></div>
+          <button className="fs-reopening-primary" disabled={!selectedSign} onClick={() => { setReopeningStep('split'); setReopeningFeedback('先点一只篮子，再点苹果。两只篮子都要有苹果。'); speakOnce('先点一只篮子，再点苹果。两只篮子都要有苹果。', 'zh', .82); }}>挂好招牌，准备苹果 →</button>
+        </> : <>
+          <div className="fs-reopening-sign">{chosen?.emoji} {chosen?.name}</div>
+          <div className="fs-split-progress"><span>{firstWay ? `第一种：${fruitSplitKey(firstWay)}` : '第一种：等你来分'}</span><span>{firstWay ? '再找另一种分法' : '一共 5 个苹果'}</span></div>
+          <div className="fs-reopening-baskets">{reopeningBaskets.map((count, index) => <div key={index} className={reopeningActiveBasket === index ? 'active' : ''}><button className="fs-reopening-basket-select" onClick={() => setReopeningActiveBasket(index as 0 | 1)} aria-label={`选择第 ${index + 1} 只篮子，现在 ${count} 个苹果`} aria-pressed={reopeningActiveBasket === index}><span aria-hidden="true">🧺</span><b>第 {index + 1} 只篮子</b><strong>{count} 个</strong></button><div className="fs-reopening-apples">{Array.from({ length: count }, (_, appleIndex) => <button key={appleIndex} onClick={() => removeReopeningApple(index as 0 | 1)} aria-label={`从第 ${index + 1} 只篮子拿回一个苹果`}>🍎</button>)}</div></div>)}</div>
+          <div className="fs-reopening-supply"><span>还剩 {REOPENING_FRUIT_COUNT - placed} 个</span><button onClick={addReopeningApple} disabled={placed >= REOPENING_FRUIT_COUNT} aria-label="拿一个苹果">🍎<small>点我放入选中的篮子</small></button></div>
+          <button className="fs-reopening-primary" onClick={checkReopeningSplit}>{firstWay ? '请兔兔看看第二种分法' : '请兔兔看看第一种分法'}</button>
+        </>}
+        <p className="fs-reopening-feedback" role="status">{reopeningFeedback}</p>
+      </section>
+    </main>;
+  }
+
   if (result) {
     return <main className="fs-page page">
       <Confetti show count={28} />
@@ -358,9 +453,10 @@ export default function FruitShopPage() {
         <Stars count={result.stars} size={52} />
         <p>你完成了 3 张订单，练习了{[...new Set(rounds.map((item) => FRUIT_SHOP_ABILITY_LABELS[item.ability]))].join('、')}。</p>
         <div className="fs-sticker"><span>{result.sticker}</span><div><b>{result.stickerName}</b><small>{result.newSticker ? '新贴纸已经放进收藏册' : '这张贴纸已经在收藏册里啦'}</small></div></div>
+        {displayedSign && <p className="fs-reopening-result">🐰 兔兔说：你选的{displayedSign.name}还挂在店门口呢！</p>}
         {teacherRounds > 0 && <p className="fs-adapt-note">你还当了 {teacherRounds} 次小老师，把方法教会了兔兔店长。</p>}
         {result.nextLevel !== level && <p className="fs-adapt-note">下一轮为你准备了「{LEVELS.find((item) => item.id === result.nextLevel)?.name}」难度。</p>}
-        <div className="fs-result-actions"><button onClick={() => restart()}>再招待一组</button><button onClick={() => nav(backTarget)}>返回{backTarget === '/review' ? '今日复习' : sourceLesson ? sourceLesson.title : '数学课'}</button></div>
+        <div className="fs-result-actions"><button onClick={() => restart()}>再招待一组</button><button onClick={() => nav(backTarget)}>返回{backLabel}</button></div>
       </section>
     </main>;
   }
@@ -385,9 +481,11 @@ export default function FruitShopPage() {
 
     {sourceLesson && focusAbility && <aside className="fs-course-link"><span>{params.get('from') === 'review' ? reviewDay === 2 || reviewDay === 4 ? `第 ${reviewDay} 天复习` : '当天回顾' : '本课专属'}</span><div><b>《{sourceLesson.title}》的小卷水果店</b><small>三张订单都练习：{FRUIT_SHOP_ABILITY_LABELS[focusAbility]}</small></div></aside>}
 
+    <aside className="fs-shop-memory">{displayedSign ? <><span aria-hidden="true">🐰</span><p>欢迎回来！你做的{displayedSign.name}还挂着。上次你把 {REOPENING_FRUIT_COUNT} 个苹果分成了 {fruitSplitKey(shopMemory!.firstWay)} 和 {fruitSplitKey(shopMemory!.secondWay)}，客人都记得呢！</p></> : <><span aria-hidden="true">🐰</span><p>兔兔想重新开张水果店，邀请你做招牌，再用两种方法分苹果。</p><button onClick={startReopening}>帮兔兔重新开张 →</button></>}</aside>
+
     <section className="fs-shop-stage">
       <div className="fs-awning" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
-      <div className="fs-sign"><span>🫘</span><div><small>卷星生活小剧场</small><b>{sourceLesson ? `${sourceLesson.title} · 专属订单` : '今天请你当水果店长'}</b></div><button onClick={() => speakOnce(instructionFor(round), 'zh', .82)} aria-label="再听一次任务">🔊</button></div>
+      <div className="fs-sign"><span>{displayedSign?.emoji ?? '🫘'}</span><div><small>{displayedSign?.name ?? '卷星生活小剧场'}</small><b>{sourceLesson ? `${sourceLesson.title} · 专属订单` : '今天请你当水果店长'}</b></div><button onClick={() => speakOnce(instructionFor(round), 'zh', .82)} aria-label="再听一次任务">🔊</button></div>
 
       <div className="fs-coach" role="status"><span className={roundDone ? 'happy' : ''}>🐰</span><div><small>兔兔店长说</small><p>{feedback || instructionFor(round)}</p></div></div>
 

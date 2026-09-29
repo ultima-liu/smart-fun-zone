@@ -35,18 +35,6 @@ const FLOATERS = [
 
 const TREE_STAGE = ['🌱', '🌿', '🌸', '🌰', '🪐'];
 
-/** 解锁特效：多颗粒子 + 上飘文字 */
-function UnlockFx({ word }: { word: string }) {
-  return (
-    <span className="js-unfx" aria-hidden="true">
-      <i className="unf-word">{word}</i>
-      {Array.from({ length: 10 }).map((_, i) => (
-        <i key={i} className={`unf-p p${(i % 6) + 1}`} />
-      ))}
-    </span>
-  );
-}
-
 interface Props {
   stars: number;
   streak: number;
@@ -55,10 +43,6 @@ interface Props {
   pendingTasks: number;
   lang: 'zh' | 'en';
   onNav: (to: string) => void;
-  /** 剧情封印：未解锁的建筑灰暗 + 锁（school/park/store） */
-  sealed?: { school?: boolean; park?: boolean; store?: boolean };
-  /** 刚解封的目标路径（'/map'|'/lobby'|'/store'|'/profile'|'core'），触发一次解封光效 */
-  pulse?: string | null;
 }
 
 /** 星环亮度分级（总星星 0/6/16/30/60） */
@@ -78,8 +62,6 @@ export default function InteractiveJuanStar({
   pendingTasks,
   lang,
   onNav,
-  sealed,
-  pulse,
 }: Props) {
   const surfaceRef = useRef<HTMLDivElement>(null);
   const surfaceFarRef = useRef<HTMLDivElement>(null);
@@ -332,50 +314,31 @@ export default function InteractiveJuanStar({
 
       {/* 球面建筑（学校 / 总部）：固定在星球顶部两侧，贴合地面 */}
       <div className="js-buildings">
-        {SPOTS.map((sp) => {
-          const locked = sp.to === '/map' ? !!sealed?.school : false; // 总部不锁
-          const hot = !!pulse && pulse === sp.to;
-          return (
-            <button
-              key={sp.to}
-              className={`js-spot ${sp.cls}${locked ? ' sealed' : ''}${hot ? ' burst' : ''}`}
-              onClick={() => onNav(sp.to)}
-              aria-label={sp.name[lang]}
-            >
-              {locked && <i className="spot-lock" aria-hidden="true">🔒</i>}
-              <span className="js-spot-art">{sp.node}</span>
-              <span className="js-spot-label">{sp.name[lang]}</span>
-              {hot && <UnlockFx word={lang === 'zh' ? `${sp.name[lang]} · 解锁！` : `${sp.name[lang]} unlocked!`} />}
-            </button>
-          );
-        })}
+        {SPOTS.map((sp) => (
+          <button
+            key={sp.to}
+            className={`js-spot ${sp.cls}`}
+            onClick={() => onNav(sp.to)}
+            aria-label={sp.name[lang]}
+          >
+            <span className="js-spot-art">{sp.node}</span>
+            <span className="js-spot-label">{sp.name[lang]}</span>
+          </button>
+        ))}
       </div>
 
       {/* 悬浮建筑（补给站 / 空中乐园） */}
-      {FLOATERS.map((f) => {
-        const locked = f.to === '/lobby' ? !!sealed?.park : f.to === '/store' ? !!sealed?.store : false;
-        const hot = !!pulse && pulse === f.to;
-        return (
-          <button
-            key={f.to}
-            className={`js-floater ${f.cls}${locked ? ' sealed' : ''}${hot ? ' burst' : ''}`}
-            onClick={() => onNav(f.to)}
-            aria-label={f.name[lang]}
-          >
-            {locked && <i className="spot-lock" aria-hidden="true">🔒</i>}
-            <span className="js-floater-art">{f.node}</span>
-            <span className="js-floater-label">{f.name[lang]}</span>
-            {hot && <UnlockFx word={lang === 'zh' ? `${f.name[lang]} · 解锁！` : `${f.name[lang]} unlocked!`} />}
-          </button>
-        );
-      })}
-
-      {/* 卷星中心点灯（通用剧情完成反馈） */}
-      {pulse === 'core' && (
-        <span className="js-core-lamp" aria-hidden="true">
-          <i className="core-word">{lang === 'zh' ? '任务完成！' : 'Quest done!'}</i>
-        </span>
-      )}
+      {FLOATERS.map((f) => (
+        <button
+          key={f.to}
+          className={`js-floater ${f.cls}`}
+          onClick={() => onNav(f.to)}
+          aria-label={f.name[lang]}
+        >
+          <span className="js-floater-art">{f.node}</span>
+          <span className="js-floater-label">{f.name[lang]}</span>
+        </button>
+      ))}
     </div>
   );
 }

@@ -15,6 +15,7 @@ import ChinesePinyinGardenStudyStage from './ChinesePinyinGardenStudyStage';
 import ChineseKnowledgeExtensionStage from './ChineseKnowledgeExtensionStage';
 import { CHINESE_PINYIN_GARDENS } from '../content/chinesePinyinGardenStudy';
 import { scheduleReview } from '../reviewPlan';
+import { settleCourseTask } from '../taskSystem';
 import '../chinese-textbook.css';
 
 /* ============================================================
@@ -384,7 +385,7 @@ function PictMatchTask({ content, onDone }: { content: string[]; onDone: () => v
     ))}</div>
     <div className="ct-pict-link" aria-hidden="true">{matched.size}/{content.length}</div>
     <div className="ct-pict-col">{shuffled.map((char) => (
-      <button key={char} className={`ct-pict-pic ${matched.has(char) ? 'done' : ''} ${wrong === char ? 'wrong' : ''}`} disabled={!!picked ? false : true} onClick={() => pickPict(char)} aria-label={`图画：${char}`}><span>{PICT_EMOJI[char] ?? '❓'}</span></button>
+      <button key={char} className={`ct-pict-pic ${matched.has(char) ? 'done' : ''} ${wrong === char ? 'wrong' : ''}`} disabled={!picked} onClick={() => pickPict(char)} aria-label={`图画：${char}`}><span>{PICT_EMOJI[char] ?? '❓'}</span></button>
     ))}</div>
   </div>;
 }
@@ -580,7 +581,6 @@ export default function ChineseTextbookLessonPage() {
   const nav = useNavigate();
   const activeChildId = useStore((state) => state.activeChildId);
   const collectChars = useStore((state) => state.collectChars);
-  const applyPoints = useStore((state) => state.applyPoints);
   // 学习断点（与数学/英语课同思路）：记住本课进行到的阶段，语文目录页据此显示"继续上次学习"；完成本课后清除
   const flowKey = `sfz-chinese-flow-v1:${activeChildId ?? 'guest'}:${lessonId}`;
   const [phase, setPhase] = useState(0);
@@ -610,9 +610,7 @@ export default function ChineseTextbookLessonPage() {
   };
 
   const lessonIndex = useMemo(() => CHINESE_TEXTBOOK_LESSONS.findIndex((item) => item.id === lesson?.id), [lesson]);
-  if (!lesson) return <main className="ct-page ct-missing page"><h1>这节课还没有开放</h1><button onClick={() => nav('/subject/chinese')}>返回语文目录</button></main>;
-
-  const observations = getObservations(lesson.id);
+  const observations = lesson ? getObservations(lesson.id) : [];
   const observeDone = observations.length > 0 && visited.size === observations.length;
   const phaseDone = [observeDone, readDone, studyDone && extensionDone, taskDone, false];
   // 完成确认播报：当前阶段的必做项全部完成时，口头告诉孩子"可以按下面的按钮了"（每阶段只说一次）。
@@ -624,6 +622,8 @@ export default function ChineseTextbookLessonPage() {
       narrateAfterCurrent('这一步全部完成，真棒！点下面亮起来的按钮，继续下一步。');
     }
   }, [phase, observeDone, readDone, studyDone, extensionDone, taskDone]);
+
+  if (!lesson) return <main className="ct-page ct-missing page"><h1>这节课还没有开放</h1><button onClick={() => nav('/subject/chinese')}>返回语文目录</button></main>;
   const goNext = () => {
     const next = Math.min(4, phase + 1);
     const mergedUnlocked = Math.max(unlocked, next);
@@ -648,9 +648,8 @@ export default function ChineseTextbookLessonPage() {
       if (chars.length) collectChars(activeChildId, chars);
     }
     if (activeChildId) {
-      // 完成本课计入「练习达标」，供每日/每周课程任务统计（与数学、英语同口径）
-      applyPoints(activeChildId, 1, '练习达标', `prac:${lesson.id}:${new Date().toDateString()}`);
       scheduleReview(activeChildId, { subject: 'chinese', lessonId: lesson.id, title: lesson.title, focus: lesson.mission, route: `/chinese-course/${lesson.id}` });
+      settleCourseTask(activeChildId, 'chinese', lesson.id, `${stars} 星`);
     }
     nav('/subject/chinese');
   };

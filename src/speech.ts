@@ -55,6 +55,7 @@ const PZ_SYL: Record<string, string> = {
 // 每个韵母的四个带调字母（用于识别"四声示范"行）
 const VOWEL_TONE_CLASSES = ['āáǎà', 'ōóǒò', 'ēéěè', 'īíǐì', 'ūúǔù', 'ǖǘǚǜ'];
 const TONE_VOWEL = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/;
+const TONE_ROW_SENTINEL = '\uE000';
 
 /** 去掉字母上的声调符号，得到"基础字母" */
 function stripTone(s: string): string {
@@ -75,7 +76,7 @@ export function zhSpeakNormalize(text: string): string {
     const re = new RegExp('[' + cls + '](?:[ \\t]*[' + cls + '])+', 'g');
     text = text.replace(re, (m) => {
       toneRows.push(m.split(/[ \t]+/).join('，'));
-      return `\u0000${toneRows.length - 1}\u0000`;
+      return `${TONE_ROW_SENTINEL}${toneRows.length - 1}${TONE_ROW_SENTINEL}`;
     });
   }
   // 2) 其余字母处理：拼读里孤立的带调字母读字母名，不读示范字
@@ -93,7 +94,8 @@ export function zhSpeakNormalize(text: string): string {
     return token;
   });
   // 3) 还原四声示范行（带调字母原样，引擎按纯韵母四声朗读）
-  return text.replace(/\u0000(\d+)\u0000/g, (_, index) => toneRows[Number(index)]);
+  const sentinelPattern = new RegExp(`${TONE_ROW_SENTINEL}(\\d+)${TONE_ROW_SENTINEL}`, 'g');
+  return text.replace(sentinelPattern, (_, index) => toneRows[Number(index)]);
 }
 
 /* ---------- 语音朗读（火山引擎 豆包语音合成大模型 2.0） ---------- */

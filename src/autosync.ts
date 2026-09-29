@@ -1,13 +1,13 @@
 /* =====================================================================
    自动云端同步（M1.3）：家长登录后自动备份/恢复
-   - 启动时：已登录且有孩子映射 → 自动拉取课程、积分与剧情存档
-   - 学习中：课程/积分/剧情变化 → 防抖 1.5s 后自动推送到云端
+   - 启动时：已登录且有孩子映射 → 自动拉取课程与积分存档
+   - 学习中：课程/积分变化 → 防抖 1.5s 后自动推送到云端
    - 手动按钮仍保留（立即同步）
    服务端不可用/未登录时全部静默，本地学习不受影响。
    ===================================================================== */
 import { useStore } from './store';
 import { isLoggedIn } from './api';
-import { childMap, pushAll, pullAll, pushWrongs, pushPoints, pullPoints, pullStory, pushStory } from './cloud';
+import { childMap, pushAll, pullSnapshot, pushWrongs, pushPoints } from './cloud';
 
 let pushTimer: number | null = null;
 
@@ -19,25 +19,25 @@ function schedulePush() {
   if (pushTimer !== null) return; // 已有待推送
   pushTimer = window.setTimeout(() => {
     pushTimer = null;
-    void pushAll(cloudId, localId)
-      .then(() => pushWrongs(cloudId, localId))
-      .then(() => pushPoints(cloudId, localId))
-      .then(() => pushStory(cloudId, localId));
+    void Promise.all([
+      pushAll(cloudId, localId),
+      pushWrongs(cloudId, localId),
+      pushPoints(cloudId, localId),
+    ]);
   }, 1500);
 }
 
 /** 登录完成后调用：先拉取合并云端，再立即推送本地（双向一致） */
-export async function syncAfterLogin(localChildId: string): Promise<{ pulled: number; pushed: number; wrongs: number; points: number; story: number } | null> {
+export async function syncAfterLogin(localChildId: string): Promise<{ pulled: number; pushed: number; wrongs: number; points: number } | null> {
   const cloudId = childMap()[localChildId] ?? null;
   if (cloudId === null) return null;
-  const pulled = await pullAll(cloudId, localChildId);
-  const story = await pullStory(cloudId, localChildId);
-  const pushed = await pushAll(cloudId, localChildId);
-  const wrongs = await pushWrongs(cloudId, localChildId);
-  const pulledPoints = await pullPoints(cloudId, localChildId);
-  await pushPoints(cloudId, localChildId);
-  await pushStory(cloudId, localChildId);
-  return { pulled, pushed, wrongs, points: pulledPoints, story };
+  const snapshot = await pullSnapshot(cloudId, localChildId);
+  const [pushed, wrongs] = await Promise.all([
+    pushAll(cloudId, localChildId),
+    pushWrongs(cloudId, localChildId),
+    pushPoints(cloudId, localChildId),
+  ]);
+  return { pulled: snapshot.progress, pushed, wrongs, points: snapshot.points };
 }
 
 let inited = false;
@@ -50,12 +50,10 @@ export function initAutoSync(): void {
     if (isLoggedIn() && s.activeChildId) {
       const cloudId = childMap()[s.activeChildId] ?? null;
       if (cloudId !== null) {
-        void pullAll(cloudId, s.activeChildId)
-          .then(() => pullPoints(cloudId, s.activeChildId as string))
-          .then(() => pullStory(cloudId, s.activeChildId as string));
+        void pullSnapshot(cloudId, s.activeChildId);
       }
     }
-    // 学习中数据变化（进度/星星/错题/积分/剧情） → 防抖自动推送
+    // 学习中数据变化（进度/星星/错题/积分） → 防抖自动推送
     useStore.subscribe((state, prev) => {
       if (
         state.mastery === prev.mastery &&
@@ -63,9 +61,7 @@ export function initAutoSync(): void {
         state.wrongs === prev.wrongs &&
         state.pointLog === prev.pointLog &&
         state.ownedItems === prev.ownedItems &&
-        state.storyDone === prev.storyDone &&
-        state.storyRewardClaimed === prev.storyRewardClaimed &&
-        state.storyUpdatedAt === prev.storyUpdatedAt
+        state.taskStates === prev.taskStates
       )
         return;
       if (!isLoggedIn()) return;

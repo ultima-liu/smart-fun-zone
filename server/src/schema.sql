@@ -7,8 +7,13 @@ CREATE TABLE IF NOT EXISTS users (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   phone VARCHAR(20) NOT NULL UNIQUE,
   nickname VARCHAR(64) NOT NULL DEFAULT '',
+  login_name VARCHAR(64) NULL,
+  login_hash VARCHAR(255) NULL,
+  role VARCHAR(16) NOT NULL DEFAULT 'parent',
+  disabled TINYINT NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_users_login_name (login_name)
 ) ENGINE=InnoDB;
 
 -- 家庭
@@ -17,7 +22,8 @@ CREATE TABLE IF NOT EXISTS families (
   owner_user_id BIGINT UNSIGNED NOT NULL,
   name VARCHAR(64) NOT NULL DEFAULT '我的家庭',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  KEY idx_family_owner (owner_user_id)
+  KEY idx_family_owner (owner_user_id),
+  CONSTRAINT fk_family_owner FOREIGN KEY (owner_user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- 儿童档案
@@ -27,8 +33,13 @@ CREATE TABLE IF NOT EXISTS children (
   name VARCHAR(64) NOT NULL,
   avatar VARCHAR(32) NOT NULL DEFAULT '🐯',
   grade VARCHAR(8) NOT NULL DEFAULT 'g1',
+  login_name VARCHAR(64) NULL,
+  login_hash VARCHAR(255) NULL,
+  disabled TINYINT NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  KEY idx_children_family (family_id)
+  KEY idx_children_family (family_id),
+  UNIQUE KEY uq_children_login_name (login_name),
+  CONSTRAINT fk_child_family FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- 短信验证码（开发态 mock 之外，生产接入短信平台时使用）
@@ -76,16 +87,8 @@ CREATE TABLE IF NOT EXISTS progress (
   payload JSON NULL,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   UNIQUE KEY uq_progress (child_id, lesson_id),
-  KEY idx_progress_child_updated (child_id, updated_at)
-) ENGINE=InnoDB;
-
--- 剧情存档（每个孩子一份；客户端时间戳用于跨端恢复及同步「重置剧情」）
-CREATE TABLE IF NOT EXISTS story_progress (
-  child_id BIGINT UNSIGNED NOT NULL PRIMARY KEY,
-  done JSON NOT NULL,
-  reward_claimed JSON NOT NULL,
-  updated_at BIGINT UNSIGNED NOT NULL,
-  KEY idx_story_updated (updated_at)
+  KEY idx_progress_child_updated (child_id, updated_at),
+  CONSTRAINT fk_progress_child FOREIGN KEY (child_id) REFERENCES children(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- 练习/错题记录
@@ -99,7 +102,8 @@ CREATE TABLE IF NOT EXISTS practice_records (
   wrong TINYINT NOT NULL DEFAULT 0,
   duration_ms INT NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  KEY idx_practice_child (child_id, created_at)
+  KEY idx_practice_child (child_id, created_at),
+  CONSTRAINT fk_practice_child FOREIGN KEY (child_id) REFERENCES children(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- 跟读评测记录
@@ -112,7 +116,8 @@ CREATE TABLE IF NOT EXISTS read_aloud_records (
   score DECIMAL(5,2) NOT NULL DEFAULT 0,
   accuracy DECIMAL(5,2) NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  KEY idx_read_aloud_child (child_id, created_at)
+  KEY idx_read_aloud_child (child_id, created_at),
+  CONSTRAINT fk_read_aloud_child FOREIGN KEY (child_id) REFERENCES children(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- 学习计划
@@ -125,7 +130,8 @@ CREATE TABLE IF NOT EXISTS plans (
   due_date DATE NULL,
   done TINYINT NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  KEY idx_plans_child (child_id, due_date)
+  KEY idx_plans_child (child_id, due_date),
+  CONSTRAINT fk_plans_child FOREIGN KEY (child_id) REFERENCES children(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- TTS 音频缓存索引（音频文件存本地磁盘，这里记录元信息与命中）
@@ -174,7 +180,8 @@ CREATE TABLE IF NOT EXISTS points_ledger (
   reason VARCHAR(255) NOT NULL DEFAULT '',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY uq_points_source (child_id, source_id),
-  KEY idx_points_child (child_id, created_at)
+  KEY idx_points_child (child_id, created_at),
+  CONSTRAINT fk_points_child FOREIGN KEY (child_id) REFERENCES children(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- 已兑换虚拟商品
@@ -183,7 +190,8 @@ CREATE TABLE IF NOT EXISTS child_items (
   child_id BIGINT UNSIGNED NOT NULL,
   item_id VARCHAR(64) NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE KEY uq_child_item (child_id, item_id)
+  UNIQUE KEY uq_child_item (child_id, item_id),
+  CONSTRAINT fk_item_child FOREIGN KEY (child_id) REFERENCES children(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- 积分·奖励兑换请求（孩子提交→家长审批；跨设备同步）
@@ -199,7 +207,8 @@ CREATE TABLE IF NOT EXISTS reward_requests (
   status VARCHAR(16) NOT NULL DEFAULT 'pending',
   created_at BIGINT NOT NULL DEFAULT 0,
   decided_at BIGINT NOT NULL DEFAULT 0,
-  UNIQUE KEY uq_reward (child_id, request_id)
+  UNIQUE KEY uq_reward (child_id, request_id),
+  CONSTRAINT fk_reward_child FOREIGN KEY (child_id) REFERENCES children(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- 全局「积分与商店」配置（单行：管理员编辑，客户端同步读取）

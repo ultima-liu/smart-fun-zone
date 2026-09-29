@@ -29,12 +29,12 @@ export default function StorePage() {
   // 进入补给站欢迎语
   useEffect(() => {
     if (child) speakAsNpc(t('welcomeStore'), npcMeta('铛铛'), lang);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [child?.id]);
 
   useEffect(() => {
     if (!child) nav('/');
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+
   }, [child]);
 
   if (!child) return null;
@@ -90,7 +90,11 @@ export default function StorePage() {
             <KidButton
               color={isReward ? (afford ? 'coral' : 'white') : afford ? 'mint' : 'white'}
               disabled={!afford}
-              onClick={(e) => { e.stopPropagation(); isReward ? buyRewardItem(it) : buy(it); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (isReward) buyRewardItem(it);
+                else buy(it);
+              }}
             >
               <IconBean size={16} gradient="gold" /> {it.cost}
             </KidButton>
@@ -105,7 +109,7 @@ export default function StorePage() {
 
   return (
     <div className="page store">
-      <NpcBuddy npc="铛铛" storyNodeIds={["c3-1"]} />
+      <NpcBuddy npc="铛铛" />
       <PageHero
         eyebrow={lang === 'zh' ? '补给站 · 兑换好物' : 'Supply · Rewards'}
         title={lang === 'zh' ? '补给站' : 'Supply Station'}

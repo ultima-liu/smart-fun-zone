@@ -1,0 +1,344 @@
+/* 卷星旁是一条来自聪聪的通讯，不再占据首页的主视觉区域。 */
+.home-mission-orbit {
+  position: absolute;
+  right: clamp(94px, 8vw, 120px);
+  bottom: clamp(115px, 16vh, 158px);
+  z-index: 46;
+  display: flex;
+  align-items: center;
+  width: min(354px, 32vw);
+  min-height: 78px;
+  color: #fff;
+}
+.mission-orbit-open {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 70px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.mission-orbit-disc {
+  position: relative;
+  display: grid;
+  flex: 0 0 64px;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 2px solid #b9b0ff;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 35%, #6b5bca, #23265a 67%, #15193d);
+  box-shadow: 0 0 0 5px #aaa5f324, 0 0 27px #7d74df9c, inset 0 0 15px #ffffff4f;
+}
+.mission-orbit-disc::after {
+  position: absolute;
+  inset: -9px -13px;
+  border: 1px solid #d1c4ff99;
+  border-radius: 50%;
+  content: '';
+  transform: rotate(-22deg) scaleY(.54);
+  pointer-events: none;
+}
+.mission-orbit-disc .mascot { max-width: 53px; }
+.mission-orbit-message {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  min-height: 60px;
+  padding: 8px 3px 8px 9px;
+  border-bottom: 1px solid #a99effb3;
+  background: linear-gradient(90deg, #343074b3, #211f57a8 75%, transparent);
+  clip-path: polygon(0 0, 96% 0, 100% 50%, 96% 100%, 0 100%);
+  filter: drop-shadow(0 5px 12px #06071b);
+}
+.mission-orbit-message small {
+  color: #c9c4ff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .05em;
+}
+.mission-orbit-message strong {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.mission-orbit-launch {
+  z-index: 1;
+  flex: 0 0 auto;
+  min-width: 70px;
+  min-height: 46px;
+  margin-left: -4px;
+  padding: 7px 9px;
+  border: 1px solid #ffe6a5;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #ffcd73, #ff925d);
+  box-shadow: 0 5px 0 #bd5c3b, 0 7px 22px #e6885680;
+  color: #342447;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.mission-orbit-launch span { font-size: 17px; }
+.mission-orbit-trail {
+  position: absolute;
+  right: 6px;
+  bottom: -9px;
+  left: 78px;
+  height: 1px;
+  background: linear-gradient(90deg, #a79cff8c, #a79cff24, transparent);
+  pointer-events: none;
+}
+.mission-orbit-open:hover .mission-orbit-disc,
+.mission-orbit-open:focus-visible .mission-orbit-disc { box-shadow: 0 0 0 6px #aaa5f340, 0 0 35px #9a91ff; }
+.mission-orbit-launch:hover { transform: translateY(-2px); }
+
+/* 航行舱由 portal 挂在 body，内容使用独立滚动区，不受卷星场景裁切。 */
+.mission-console-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 34%, #423778a6, #08091ce8 66%), #08091ce0;
+  backdrop-filter: blur(9px);
+}
+.mission-console {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(880px, 100%);
+  height: min(650px, calc(100dvh - 48px));
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #aca4ffad;
+  border-radius: 30px;
+  background: radial-gradient(circle at 86% 15%, #393679 0, transparent 42%), linear-gradient(155deg, #252559, #121739 70%);
+  box-shadow: 0 0 0 7px #8880d624, 0 28px 90px #050616e0, inset 0 1px 0 #ffffff4d;
+  color: #fff;
+}
+.mission-console::before {
+  position: absolute;
+  inset: 11px;
+  z-index: 0;
+  border: 1px solid #b6a9fc24;
+  border-radius: 21px;
+  content: '';
+  pointer-events: none;
+}
+.mission-console-sky {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.mission-console-sky::before {
+  position: absolute;
+  right: -95px;
+  top: -190px;
+  width: 450px;
+  height: 450px;
+  border: 1px solid #9698f74a;
+  border-radius: 50%;
+  box-shadow: 0 0 0 52px #797be70a, 0 0 0 105px #797be706;
+  content: '';
+}
+.mission-console-sky i {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff3bc;
+  box-shadow: 0 0 12px #fff3bc;
+}
+.mission-console-sky i:nth-child(1) { left: 7%; top: 15%; }
+.mission-console-sky i:nth-child(2) { right: 16%; top: 32%; }
+.mission-console-sky i:nth-child(3) { left: 72%; bottom: 12%; }
+.mission-console-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 96px;
+  padding: 20px 30px 13px;
+  border-bottom: 1px solid #bab4f52c;
+}
+.mission-console-emblem {
+  display: grid;
+  flex: 0 0 54px;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid #a8a3f7a3;
+  border-radius: 50%;
+  background: radial-gradient(circle, #8882ee, #353674 66%);
+  box-shadow: 0 0 25px #938cff7d;
+  color: #ffe09a;
+  font-size: 30px;
+}
+.mission-console-header div { flex: 1; min-width: 0; }
+.mission-console-header small,
+.mission-console-section-head small,
+.mission-console-invite > small { color: #b8c5ff; font-size: 12px; font-weight: 900; letter-spacing: .12em; }
+.mission-console-header h2 { margin: 3px 0 0; font-size: 25px; line-height: 1.1; }
+.mission-console-close {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 5px 7px 5px 15px;
+  border: 1px solid #a7a4df80;
+  border-radius: 15px;
+  background: #ffffff12;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+.mission-console-close span { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 10px; background: #ffffff1b; font-size: 21px; line-height: 1; }
+.mission-console-tabs {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 9px;
+  padding: 14px 30px 0;
+}
+.mission-console-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 46px;
+  padding: 8px 19px;
+  border: 1px solid #9e9bdf57;
+  border-bottom: 0;
+  border-radius: 15px 15px 0 0;
+  background: #ffffff0e;
+  color: #c8c9e5;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.mission-console-tabs button.active { border-color: #c7c0ffb0; background: linear-gradient(#5955a4, #3c4185); color: #fff; box-shadow: inset 0 2px 0 #ffffff4d; }
+.mission-console-tabs button > span { font-size: 20px; }
+.mission-console-tabs b { display: grid; place-items: center; min-width: 19px; height: 19px; border-radius: 50%; background: #f9af58; color: #302443; font-size: 11px; }
+.mission-console-scroll {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 24px 30px 36px;
+  border-top: 1px solid #c4bcff5e;
+  scrollbar-color: #9188d8 #21214b;
+}
+.mission-console-current { display: grid; grid-template-columns: minmax(170px, .75fr) minmax(0, 1.75fr); gap: 25px; align-items: stretch; min-height: 330px; }
+.mission-console-guide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid #acaaf65c;
+  border-radius: 25px;
+  background: radial-gradient(circle at 50% 45%, #625dba7d, #2c2d72a3 46%, #1f245172 80%);
+  text-align: center;
+}
+.mission-console-guide::after { position: absolute; bottom: 36px; width: 140px; height: 18px; border-radius: 50%; background: #0b0c30aa; filter: blur(8px); content: ''; }
+.mission-console-guide-orbit { position: absolute; width: 220px; height: 220px; border: 1px dashed #cdc0ff7d; border-radius: 50%; transform: rotate(-20deg) scaleY(.61); }
+.mission-console-guide .mascot { z-index: 1; max-width: 134px; }
+.mission-console-guide strong { z-index: 1; color: #dcd5ff; font-size: 13px; }
+.mission-console-invite {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #a6a9ee83;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #3b3a80b8, #202656d6);
+  box-shadow: inset 0 1px 0 #ffffff2c;
+}
+.mission-console-invite h3 { margin: 10px 0; color: #fff; font-size: clamp(23px, 2.5vw, 30px); line-height: 1.25; overflow-wrap: anywhere; }
+.mission-console-invite p { margin: 0 0 16px; color: #e2e5ff; font-size: 15px; line-height: 1.6; }
+.mission-console-reward { margin-top: auto; margin-bottom: 16px; padding: 8px 12px; border: 1px solid #ffdc9a78; border-radius: 12px; background: #ffca6b1a; color: #ffe3a3; font-size: 13px; font-weight: 900; }
+.mission-console-primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 54px;
+  padding: 10px 18px;
+  border: 1px solid #ffe09a;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffcc72, #ff8f5d);
+  box-shadow: 0 5px 0 #bb593b;
+  color: #39243a;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.mission-console-primary span { font-size: 21px; }
+.mission-console-secondary { display: flex; gap: 10px; width: 100%; margin-top: 15px; }
+.mission-console-secondary button { flex: 1; min-height: 42px; border: 1px solid #b7b5e266; border-radius: 13px; background: #ffffff0f; color: #e0e2ff; font-weight: 800; cursor: pointer; }
+.mission-console-subjects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
+.mission-console-subjects button { display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 57px; border: 1px solid #b6b9f296; border-radius: 15px; background: #575aab80; color: #fff; font-size: 15px; font-weight: 900; cursor: pointer; }
+.mission-console-subjects button span { font-size: 22px; }
+.mission-console-subjects button i { font-style: normal; }
+.mission-console-collection { max-width: 720px; margin: 0 auto; }
+.mission-console-section-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+.mission-console-section-head > span { display: grid; flex: 0 0 70px; place-items: center; width: 70px; height: 70px; border: 1px solid #aaa5f87a; border-radius: 22px; background: #7166c454; font-size: 36px; }
+.mission-console-section-head h3 { margin: 2px 0; font-size: 27px; }
+.mission-console-section-head p { margin: 0; color: #d0d2f2; font-size: 14px; }
+.mission-console-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 230px; padding: 24px; border: 1px dashed #b0aef578; border-radius: 22px; background: #ffffff0b; text-align: center; }
+.mission-console-empty > span { color: #ffe1a2; font-size: 64px; line-height: 1; }
+.mission-console-empty strong { margin-top: 10px; font-size: 20px; }
+.mission-console-empty p { color: #d0d2f2; }
+.mission-console-list,
+.mission-console-harvest { display: grid; gap: 11px; }
+.mission-console-list button,
+.mission-console-harvest article { display: flex; align-items: center; gap: 15px; min-width: 0; min-height: 84px; padding: 14px 16px; border: 1px solid #afaaf270; border-radius: 18px; background: linear-gradient(120deg, #4c498d99, #252a5eab); color: #fff; text-align: left; }
+.mission-console-list button { width: 100%; cursor: pointer; }
+.mission-console-list button:hover { border-color: #ffdfa2; background: #514d97c7; }
+.mission-console-list button:disabled { opacity: .65; cursor: default; }
+.mission-console-item-icon { display: grid; flex: 0 0 52px; place-items: center; width: 52px; height: 52px; border-radius: 15px; background: #a49ceb3b; font-size: 27px; }
+.mission-console-list button > span:nth-child(2),
+.mission-console-harvest article > div { flex: 1; min-width: 0; }
+.mission-console-list b,
+.mission-console-harvest b { display: block; font-size: 16px; overflow-wrap: anywhere; }
+.mission-console-list small,
+.mission-console-harvest small { display: block; margin-top: 5px; color: #c9cdef; font-size: 12px; }
+.mission-console-list em { color: #ffe0a2; font-size: 13px; font-style: normal; font-weight: 900; white-space: nowrap; }
+.mission-console-harvest { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mission-console-harvest article { min-height: 96px; }
+.mission-console button:focus-visible,
+.home-mission-orbit button:focus-visible { outline: 3px solid #fff3bb; outline-offset: 3px; }
+
+@media (max-width: 899px) {
+  .home-mission-orbit { position: relative; right: auto; bottom: auto; width: min(380px, calc(100% - 22px)); margin: -4px auto 96px; }
+  .mission-console-backdrop { padding: 16px; }
+  .mission-console { width: min(760px, 100%); height: min(760px, calc(100dvh - 32px)); }
+  .mission-console-current { grid-template-columns: 180px minmax(0, 1fr); gap: 18px; }
+  .mission-console-guide { min-height: 300px; }
+  .mission-console-invite { padding: 20px; }
+  .mission-console-subjects { grid-template-columns: 1fr; }
+}
