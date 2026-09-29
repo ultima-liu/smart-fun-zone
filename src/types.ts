@@ -73,19 +73,4 @@ export interface GameRecord {
   total: number;
   durationSec: number;
   playedAt: number;
-  /** 街机分数（乐园纯休闲游戏口径；旧教学游戏记录无此字段） */
-  score?: number;
-}
-
-/** 街机局结算：分数制，无星级无对错（2026-09-28 乐园改版起） */
-export interface GameResult {
-  score: number;
-  durationSec: number;
-}
-
-export interface GameProps {
-  child: ChildProfile;
-  /** 一局时长（秒）；e2e 可通过 ?t= 缩短 */
-  durationSec: number;
-  onFinish: (r: GameResult) => void;
 }

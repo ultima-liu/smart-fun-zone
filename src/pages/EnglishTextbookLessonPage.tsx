@@ -14,6 +14,7 @@ import { wordPictureArt, wordPictureSrc } from '../content/englishWordPictures';
 import { getEnglishG3StoryBoard } from '../content/englishG3Stories';
 import { ENGLISH_G3_READ_SPOTLIGHTS, ENGLISH_G3_REVISION_SCENES } from '../content/englishG3Interactions';
 import { completeReviewDay, scheduleReview } from '../reviewPlan';
+import { settleCourseTask } from '../taskSystem';
 import '../chinese-textbook.css';
 import '../english-textbook.css';
 
@@ -576,7 +577,7 @@ function QuizPanel({ quiz, pick, onPick, title }: { quiz: EnglishQuiz; pick: str
   useEffect(() => {
     const timer = setTimeout(() => speakMixedAfterCurrent(quiz.question, .92), 600);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
   // 🔊 听题目：题干中英分段朗读，读完逐条读选项，英文选项用英文 TTS
   const readAloud = () => speakMixedSeq(quiz.question, .92, () => {
@@ -921,7 +922,6 @@ export default function EnglishTextbookLessonPage() {
   const mastery = useStore((s) => s.mastery);
   const addSkillResult = useStore((s) => s.addSkillResult);
   const addWrong = useStore((s) => s.addWrong);
-  const applyPoints = useStore((s) => s.applyPoints);
   const voiceOn = useStore((s) => s.voiceOn);
   const sound = useStore((s) => s.sound);
   const setVoiceOn = useStore((s) => s.setVoiceOn);
@@ -987,7 +987,7 @@ export default function EnglishTextbookLessonPage() {
   }, [flowKey, items.length, restored]);
   // 断点恢复时已完成的点读不重复庆祝；集满只庆祝一次，"再学一遍"重置后再集满可再庆祝
   useEffect(() => { if (items.length > 0 && seen.size >= items.length) celebratedRef.current = true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
   useEffect(() => {
     if (items.length === 0 || seen.size < items.length || celebratedRef.current) return;
@@ -1063,7 +1063,7 @@ export default function EnglishTextbookLessonPage() {
     if (childId) {
       addSkillResult(childId, `english-g3a-${lesson.id}`, stars);
       scheduleReview(childId, { subject: 'english', lessonId: lesson.id, title: lesson.title, focus: `${extension.title}：${extension.mnemonic}`, route: `/english-course/${lesson.id}` });
-      if (mistakes === 0) applyPoints(childId, 1, '练习达标', `prac:english-g3a-${lesson.id}:${new Date().toDateString()}`);
+      settleCourseTask(childId, 'english', lesson.id, `${stars} 星`);
     }
     go(4);
   };

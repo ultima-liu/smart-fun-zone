@@ -4,8 +4,9 @@
    - pullAll：拉取云端增量并合并进本地 store
    服务端不可用时所有调用静默失败，学习不受影响。
    ===================================================================== */
-import { api } from './api';
+import { api, authScope } from './api';
 import { useStore } from './store';
+import type { ChildTaskState } from './taskTypes';
 
 export interface CloudChild {
   id: number;
@@ -15,19 +16,26 @@ export interface CloudChild {
 }
 
 /** 本地儿童档案 ↔ 云端 children 映射：保存于 localStorage */
-const MAP_KEY = 'sfz_cloud_child_map';
+const LEGACY_MAP_KEY = 'sfz_cloud_child_map';
 type MapT = Record<string, number>; // localProfileId -> cloud child id
+
+function mapKey(): string {
+  return `${LEGACY_MAP_KEY}:${authScope()}`;
+}
 
 export function childMap(): MapT {
   try {
-    return JSON.parse(localStorage.getItem(MAP_KEY) ?? '{}') as MapT;
+    const scoped = localStorage.getItem(mapKey());
+    if (scoped) return JSON.parse(scoped) as MapT;
+    // 旧版全局映射无法证明属于当前账号，不自动迁移；登录流程会按账号重新建立映射。
+    return {};
   } catch {
     return {};
   }
 }
 export function saveChildMap(m: MapT) {
   try {
-    localStorage.setItem(MAP_KEY, JSON.stringify(m));
+    localStorage.setItem(mapKey(), JSON.stringify(m));
   } catch {
     /* ignore */
   }
@@ -51,6 +59,14 @@ export async function pushAll(cloudChildId: number, localChildId: string): Promi
     });
     if (ok) n++;
   }
+  const taskState = s.taskStates[localChildId];
+  if (taskState) {
+    const ok = await api.syncProgress(cloudChildId, {
+      lessonId: '__task_state_v1__', stepIdx: 0, stars: 0, score: 0,
+      payload: { updatedAt: taskState.updatedAt, taskState },
+    });
+    if (ok) n++;
+  }
   return n;
 }
 
@@ -59,7 +75,7 @@ export async function pullAll(cloudChildId: number, localChildId: string): Promi
   const r = await api.syncPull(cloudChildId, 0);
   if (!r || !Array.isArray(r.progress)) return 0;
   const map: Record<string, { stars?: number; stepIdx?: number; updatedAt?: number }> = {};
-  for (const row of r.progress as { lesson_id?: string; stars?: number; step_idx?: number; payload?: string | { updatedAt?: number } }[]) {
+  for (const row of r.progress as { lesson_id?: string; stars?: number; step_idx?: number; payload?: string | { updatedAt?: number; taskState?: ChildTaskState } }[]) {
     if (!row.lesson_id) continue;
     let updatedAt = 0;
     try {
@@ -68,10 +84,57 @@ export async function pullAll(cloudChildId: number, localChildId: string): Promi
     } catch {
       /* ignore */
     }
+    if (row.lesson_id === '__task_state_v1__') {
+      try {
+        const payload = typeof row.payload === 'string' ? JSON.parse(row.payload || '{}') : row.payload;
+        if (payload?.taskState) useStore.getState().applyCloudTaskState(localChildId, payload.taskState);
+      } catch { /* 忽略单条损坏的任务状态 */ }
+      continue;
+    }
     map[row.lesson_id] = { stars: row.stars ?? 0, stepIdx: row.step_idx ?? 0, updatedAt };
   }
   useStore.getState().applyCloudProgress(localChildId, map);
   return Object.keys(map).length;
+}
+
+export interface PullSnapshotResult {
+  progress: number;
+  points: number;
+}
+
+/** 单次拉取同时合并课程与积分/物品，避免一次同步重复请求 /api/sync。 */
+export async function pullSnapshot(cloudChildId: number, localChildId: string): Promise<PullSnapshotResult> {
+  const r = await api.syncPull(cloudChildId, 0);
+  if (!r) return { progress: 0, points: 0 };
+
+  const progressMap: Record<string, { stars?: number; stepIdx?: number; updatedAt?: number }> = {};
+  for (const row of (r.progress ?? []) as { lesson_id?: string; stars?: number; step_idx?: number; payload?: string | { updatedAt?: number; taskState?: ChildTaskState } }[]) {
+    if (!row.lesson_id) continue;
+    let updatedAt = 0;
+    try {
+      const payload = typeof row.payload === 'string' ? JSON.parse(row.payload || '{}') : row.payload;
+      updatedAt = Number(payload?.updatedAt ?? 0);
+    } catch { /* 单条旧数据损坏不影响其余数据 */ }
+    if (row.lesson_id === '__task_state_v1__') {
+      try {
+        const payload = typeof row.payload === 'string' ? JSON.parse(row.payload || '{}') : row.payload;
+        if (payload?.taskState) useStore.getState().applyCloudTaskState(localChildId, payload.taskState);
+      } catch { /* 忽略单条损坏的任务状态 */ }
+      continue;
+    }
+    progressMap[row.lesson_id] = { stars: row.stars ?? 0, stepIdx: row.step_idx ?? 0, updatedAt };
+  }
+  useStore.getState().applyCloudProgress(localChildId, progressMap);
+
+  const pointEntries = (r.points ?? []).map((entry) => ({
+    id: entry.source_id,
+    amount: entry.amount,
+    reason: entry.reason,
+    time: entry.ts * 1000,
+  }));
+  useStore.getState().applyCloudPoints(localChildId, pointEntries, r.items ?? []);
+
+  return { progress: Object.keys(progressMap).length, points: pointEntries.length };
 }
 
 /** 把本地积分流水 + 已购商品推送到云端（幂等） */
@@ -102,52 +165,18 @@ export async function pullPoints(cloudChildId: number, localChildId: string): Pr
   return entries.length;
 }
 
-/* ---------- 剧情存档同步 ---------- */
-
-function stringList(value: unknown): string[] {
-  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === 'string');
-  if (typeof value !== 'string') return [];
-  try {
-    return stringList(JSON.parse(value));
-  } catch {
-    return [];
-  }
-}
-
-/** 保存剧情节点与已领取奖励；更新时间让「重置剧情」也可跨端覆盖旧存档。 */
-export async function pushStory(cloudChildId: number, localChildId: string): Promise<boolean> {
-  const s = useStore.getState();
-  return !!(await api.syncStory(cloudChildId, {
-    done: s.storyDone[localChildId] ?? [],
-    rewardClaimed: s.storyRewardClaimed[localChildId] ?? [],
-    updatedAt: s.storyUpdatedAt[localChildId] ?? 0,
-  }));
-}
-
-/** 从云端恢复剧情存档。仅当云端版本较新时覆盖本地，避免旧端反向覆盖新进度。 */
-export async function pullStory(cloudChildId: number, localChildId: string): Promise<number> {
-  const r = await api.syncPull(cloudChildId, 0);
-  if (!r?.story) return 0;
-  const done = stringList(r.story.done);
-  const rewardClaimed = stringList(r.story.reward_claimed);
-  const updatedAt = Number(r.story.updated_at ?? 0);
-  if (!Number.isFinite(updatedAt) || updatedAt <= 0) return 0;
-  useStore.getState().applyCloudStory(localChildId, { done, rewardClaimed, updatedAt });
-  return done.length;
-}
-
 /* ---------- 错题自动同步 ---------- */
 const PUSHED_KEY = 'sfz_pushed_wrongs';
-function pushedWrongSet(): Set<string> {
+function pushedWrongSet(cloudChildId: number): Set<string> {
   try {
-    return new Set(JSON.parse(localStorage.getItem(PUSHED_KEY) ?? '[]') as string[]);
+    return new Set(JSON.parse(localStorage.getItem(`${PUSHED_KEY}:${authScope()}:${cloudChildId}`) ?? '[]') as string[]);
   } catch {
     return new Set();
   }
 }
-function savePushedWrongSet(s: Set<string>) {
+function savePushedWrongSet(cloudChildId: number, s: Set<string>) {
   try {
-    localStorage.setItem(PUSHED_KEY, JSON.stringify([...s].slice(-500)));
+    localStorage.setItem(`${PUSHED_KEY}:${authScope()}:${cloudChildId}`, JSON.stringify([...s].slice(-500)));
   } catch {
     /* ignore */
   }
@@ -157,7 +186,7 @@ function savePushedWrongSet(s: Set<string>) {
 export async function pushWrongs(cloudChildId: number, localChildId: string): Promise<number> {
   const wrongs = useStore.getState().wrongs[localChildId] ?? [];
   if (wrongs.length === 0) return 0;
-  const done = pushedWrongSet();
+  const done = pushedWrongSet(cloudChildId);
   let n = 0;
   for (const w of wrongs) {
     if (done.has(w.uid)) continue;
@@ -173,6 +202,6 @@ export async function pushWrongs(cloudChildId: number, localChildId: string): Pr
       n += 1;
     }
   }
-  savePushedWrongSet(done);
+  savePushedWrongSet(cloudChildId, done);
   return n;
 }

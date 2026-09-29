@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { STAR_CARDS } from '../src/content/starCards';
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const TOTAL_CARDS = STAR_CARDS.length;
+const SP_CARDS = STAR_CARDS.filter((card) => card.rarity === 'SP').length;
 
 test.use({ launchOptions: { executablePath: CHROME } });
 
@@ -20,8 +23,6 @@ function buildState(theme: 'dark' | 'light') {
       mastery: {},
       lessonProgress: {},
       charBag: {},
-      storyDone: { [childId]: ['c1-1', 'c2-1', 'c3-1', 'c4-1', 'c5-1', 'c6-1'] },
-      storyPulse: null,
       wrongs: {},
       points: { [childId]: 9999 },
       pointLog: { [childId]: [] },
@@ -97,7 +98,7 @@ for (const theme of ['dark', 'light'] as const) {
 
     // 双层筛选（第一层套系 / 第二层稀有度）与图鉴墙
     await expect(page.locator('.filter-panels')).toBeVisible();
-    await expect(page.locator('.ccard')).toHaveCount(29);
+    await expect(page.locator('.ccard')).toHaveCount(TOTAL_CARDS);
 
     const setTier = page.locator('.filter-tier').first();
     const rarityTier = page.locator('.filter-tier').nth(1);
@@ -106,17 +107,17 @@ for (const theme of ['dark', 'light'] as const) {
     await setTier.getByRole('tab', { name: /卷星人/ }).click();
     await expect(setTier.locator('.filter-chip.active')).toContainText('卷星人');
     await expect(page.locator('.ccard')).toHaveCount(6);
-    // 四位 NPC 使用独立 PNG；小卷与晶晶直接复用各自的全局 NPC 组件，而非复制卡牌贴图。
+    // 四位 NPC 使用独立 WebP；小卷与晶晶直接复用各自的全局 NPC 组件，而非复制卡牌贴图。
     const portraitHrefs = await page.locator('.ccard image.ccard-npc-art').evaluateAll((images) =>
       images.map((image) => image.getAttribute('href')),
     );
     expect(new Set(portraitHrefs).size).toBe(4);
-    expect(portraitHrefs.every((href) => href?.endsWith('.png'))).toBe(true);
+    expect(portraitHrefs.every((href) => href?.endsWith('.webp'))).toBe(true);
     await expect(page.locator('.ccard .ccard-xiao-juan-robot')).toHaveCount(1);
     await expect(page.locator('.ccard .ccard-jing-jing-art')).toHaveCount(1);
     await setTier.getByRole('tab', { name: /全部/ }).click();
     await expect(setTier.locator('.filter-chip.active')).toContainText('全部');
-    await expect(page.locator('.ccard')).toHaveCount(29);
+    await expect(page.locator('.ccard')).toHaveCount(TOTAL_CARDS);
 
     // 星航协作队为四张独立高精度立绘，资源不依赖人物合图。
     await setTier.getByRole('tab', { name: /星航协作队/ }).click();
@@ -127,7 +128,7 @@ for (const theme of ['dark', 'light'] as const) {
     expect(new Set(brookHrefs).size).toBe(4);
     expect(brookHrefs.every((href) => href?.startsWith('/assets/cards/brook-team/'))).toBe(true);
     await setTier.getByRole('tab', { name: /全部/ }).click();
-    await expect(page.locator('.ccard')).toHaveCount(29);
+    await expect(page.locator('.ccard')).toHaveCount(TOTAL_CARDS);
 
     // 布鲁克战队十一张角色图：白底均已转换为独立透明立绘。
     await setTier.getByRole('tab', { name: /布鲁克战队/ }).click();
@@ -138,7 +139,7 @@ for (const theme of ['dark', 'light'] as const) {
     expect(new Set(brucoHrefs).size).toBe(11);
     expect(brucoHrefs.every((href) => href?.startsWith('/assets/cards/bruco-team/'))).toBe(true);
     await setTier.getByRole('tab', { name: /全部/ }).click();
-    await expect(page.locator('.ccard')).toHaveCount(29);
+    await expect(page.locator('.ccard')).toHaveCount(TOTAL_CARDS);
 
     // 汉字套系：三张教学卡，正面包含田字格大字、拼音、部首与笔画。
     await setTier.getByRole('tab', { name: /汉字/ }).click();
@@ -150,10 +151,10 @@ for (const theme of ['dark', 'light'] as const) {
     // 第二层：稀有度筛选 + 回全部
     await rarityTier.locator('.filter-chip.c-SP').click();
     await expect(rarityTier.locator('.filter-chip.active')).toContainText('SP');
-    await expect(page.locator('.ccard.c-SP')).toHaveCount(3);
-    await expect(page.locator('.ccard')).toHaveCount(3);
+    await expect(page.locator('.ccard.c-SP')).toHaveCount(SP_CARDS);
+    await expect(page.locator('.ccard')).toHaveCount(SP_CARDS);
     await rarityTier.getByRole('tab', { name: /全部/ }).click();
-    await expect(page.locator('.ccard')).toHaveCount(29);
+    await expect(page.locator('.ccard')).toHaveCount(TOTAL_CARDS);
 
     // 组合筛选：卷星人 + SR → 铛铛、泡泡与晶晶三张
     await setTier.getByRole('tab', { name: /卷星人/ }).click();
@@ -162,7 +163,7 @@ for (const theme of ['dark', 'light'] as const) {
     // 清理回全部
     await setTier.getByRole('tab', { name: /全部/ }).click();
     await rarityTier.getByRole('tab', { name: /全部/ }).click();
-    await expect(page.locator('.ccard')).toHaveCount(29);
+    await expect(page.locator('.ccard')).toHaveCount(TOTAL_CARDS);
 
     // 点击第一张卡放大预览
     await page.locator('.ccard').first().click();

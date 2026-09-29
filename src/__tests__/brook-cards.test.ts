@@ -14,7 +14,7 @@ describe('星航协作队图鉴卡', () => {
 
   it('每位成员都通过统一资源入口取独立立绘', () => {
     for (const card of cardsBySet('brook')) {
-      expect(characterPortrait(card.id)).toMatch(/^\/assets\/cards\/brook-team\/.+\.png$/);
+      expect(characterPortrait(card.id)).toMatch(/^\/assets\/cards\/brook-team\/.+\.webp$/);
     }
   });
 });

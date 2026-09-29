@@ -15,7 +15,7 @@ describe('布鲁克战队角色卡', () => {
 
   it('十一张卡均引用透明独立立绘资源', () => {
     for (const card of cardsBySet('bruco')) {
-      expect(characterPortrait(card.id)).toMatch(/^\/assets\/cards\/bruco-team\/.+\.png$/);
+      expect(characterPortrait(card.id)).toMatch(/^\/assets\/cards\/bruco-team\/.+\.webp$/);
     }
   });
 });

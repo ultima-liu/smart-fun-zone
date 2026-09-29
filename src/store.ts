@@ -7,6 +7,8 @@ import { drawLoot, pendingPacks, type LootDrop } from './content/expedition';
 import { shipBoost } from './content/shipyard';
 import { drawCards as drawStarCards, STAR_CARDS, type CardSetId, type DrawResult } from './content/starCards';
 import { nextDailyCheckin, type CheckinReward, type DailyCheckinState } from './dailyCheckin';
+import { migrateAppState } from './storeMigrations';
+import { emptyChildTaskState, type ChildTaskState } from './taskTypes';
 
 /** 新孩子初始积分（用于体验装扮/兑换） */
 export const INITIAL_POINTS = 200;
@@ -53,22 +55,10 @@ export interface AppState {
   dailyCheckin: Record<string, DailyCheckinState>;
   /** 字卡袋：childId → 已收集汉字 */
   charBag: Record<string, string[]>;
-  /** 剧情进度：childId → 已完成剧情节点 id（顺序解锁，见 content/story.ts） */
-  storyDone: Record<string, string[]>;
-  /** 已领取剧情奖励：childId → nodeId[] */
-  storyRewardClaimed: Record<string, string[]>;
-  /** 剧情存档最近一次变更时间；用于跨端按最新版恢复，也让「重置剧情」能同步生效。 */
-  storyUpdatedAt: Record<string, number>;
-  /** 待演示的解锁目标（完成剧情后写入；首页挂载时消费并播放卷星解封动画） */
-  storyPulse: string | null;
   /** 错题本：childId → 错题记录（自动同步到云端） */
   wrongs: Record<string, WrongItem[]>;
   /** 积分余额：childId → 当前积分 */
   points: Record<string, number>;
-  /** 乐园币余额：childId → 数量（街机游戏局内掉落，只在乐园内闭环，不混 points） */
-  gameCoins: Record<string, number>;
-  /** 乐园币变动：正数发放（负数为二期局内道具消费预留） */
-  applyGameCoins: (childId: string, delta: number) => void;
   /** 积分流水：childId → 明细（最近 600 条；id 幂等） */
   pointLog: Record<string, PointEntry[]>;
   /** 家长部署的自定义任务（全局，按 childId 归属） */
@@ -77,6 +67,8 @@ export interface AppState {
   storeOverrides: Record<string, import('./points').StoreItem>;
   /** 管理端配置：任务分值/开关 */
   taskOverrides: Record<string, { reward?: number; enabled?: boolean }>;
+  /** 新任务系统：每个孩子的完成事实、推送位置与首页偏好。 */
+  taskStates: Record<string, ChildTaskState>;
   patchStoreItem: (id: string, patch: Partial<import('./points').StoreItem>) => void;
   removeStoreItem: (id: string) => void;
   patchTask: (id: string, patch: { reward?: number; enabled?: boolean }) => void;
@@ -124,13 +116,6 @@ export interface AppState {
   completeLessonStep: (skillId: string) => void;
   /** 主动领取今日签到奖励；同一天重复领取返回 null。 */
   claimDailyCheckin: (childId: string) => (CheckinReward & { streak: number; total: number }) | null;
-  /** 标记剧情节点完成（幂等；完成奖励由调用方通过 applyPoints 发放） */
-  completeStoryNode: (childId: string, nodeId: string) => void;
-  claimStoryReward: (childId: string, nodeId: string) => void;
-  /** 重置剧情进度（回到序章起点，从第一章对话开始重玩） */
-  resetStory: (childId: string) => void;
-  /** 写入/清除待演示解锁目标 */
-  setStoryPulse: (target: string | null) => void;
   /** 把本课生字收进字卡袋（去重） */
   collectChars: (childId: string, chars: string[]) => void;
   /** 记录一条错题（去重，保留最近 200 条） */
@@ -140,8 +125,9 @@ export interface AppState {
   /** 云端同步：合并拉取到的进度（按 updatedAt 取新） */
   applyCloudProgress: (childId: string, map: Record<string, { stars?: number; stepIdx?: number; updatedAt?: number }>) => void;
   applyCloudPoints: (childId: string, entries: { id: string; amount: number; reason?: string; time?: number }[], items?: string[]) => void;
-  /** 按存档更新时间恢复云端剧情；云端更新时整体替换，确保重置剧情可跨端同步。 */
-  applyCloudStory: (childId: string, story: { done: string[]; rewardClaimed: string[]; updatedAt: number }) => void;
+  patchTaskState: (childId: string, patch: Partial<ChildTaskState>) => void;
+  completeMission: (childId: string, taskId: string, title: string, reward: number, result?: string) => boolean;
+  applyCloudTaskState: (childId: string, remote: ChildTaskState) => void;
   setParentPin: (pin: string) => void;
   setDailyLimit: (min: number) => void;
   /** 学习助手「小卷」 */
@@ -211,13 +197,8 @@ export const useStore = create<AppState>()(
       lessonProgress: {},
       dailyCheckin: {},
       charBag: {},
-      storyDone: {},
-      storyRewardClaimed: {},
-      storyUpdatedAt: {},
-      storyPulse: null,
       wrongs: {},
       points: {},
-      gameCoins: {},
       pointLog: {},
       customTasks: {},
       ownedItems: {},
@@ -226,6 +207,7 @@ export const useStore = create<AppState>()(
       avatarHair: {},
       storeOverrides: {},
       taskOverrides: {},
+      taskStates: {},
       bonusMin: {},
       parentPin: '1234',
       dailyLimitMin: 0,
@@ -455,6 +437,59 @@ export const useStore = create<AppState>()(
         }),
       patchTask: (id, patch) =>
         set((s) => ({ taskOverrides: { ...s.taskOverrides, [id]: { ...(s.taskOverrides[id] ?? {}), ...patch } } })),
+      patchTaskState: (childId, patch) =>
+        set((s) => {
+          const current = s.taskStates[childId] ?? emptyChildTaskState();
+          return {
+            taskStates: {
+              ...s.taskStates,
+              [childId]: { ...current, ...patch, updatedAt: Date.now() },
+            },
+          };
+        }),
+      completeMission: (childId, taskId, title, reward, result) => {
+        let completed = false;
+        set((s) => {
+          const current = s.taskStates[childId] ?? emptyChildTaskState();
+          if (current.completed[taskId]) return {};
+          const now = Date.now();
+          const applied = applyEntry(s.points, s.pointLog[childId] ?? [], {
+            id: `mission:${taskId}`,
+            time: now,
+            amount: reward,
+            reason: `任务·${title}`,
+            childId,
+          });
+          completed = true;
+          return {
+            points: applied.points,
+            pointLog: { ...s.pointLog, [childId]: applied.log },
+            taskStates: {
+              ...s.taskStates,
+              [childId]: {
+                ...current,
+                updatedAt: now,
+                completed: { ...current.completed, [taskId]: { completedAt: now, reward, result } },
+                pausedTaskId: current.pausedTaskId === taskId ? undefined : current.pausedTaskId,
+                lastCompletion: { taskId, title, reward, at: now },
+              },
+            },
+          };
+        });
+        return completed;
+      },
+      applyCloudTaskState: (childId, remote) =>
+        set((s) => {
+          const local = s.taskStates[childId];
+          if (!local) return { taskStates: { ...s.taskStates, [childId]: remote } };
+          const completed = { ...local.completed };
+          for (const [taskId, fact] of Object.entries(remote.completed ?? {})) {
+            const own = completed[taskId];
+            if (!own || fact.completedAt > own.completedAt) completed[taskId] = fact;
+          }
+          const newest = remote.updatedAt > local.updatedAt ? remote : local;
+          return { taskStates: { ...s.taskStates, [childId]: { ...newest, completed } } };
+        }),
       applyRemoteConfig: (storeOverrides, taskOverrides) => set({ storeOverrides, taskOverrides }),
       applyPoints: (childId, amount, reason, sourceId) =>
         set((s) => {
@@ -530,19 +565,16 @@ export const useStore = create<AppState>()(
           records: s.records.filter((r) => r.childId !== id),
           mastery: (() => { const m = { ...s.mastery }; delete m[id]; return m; })(),
           points: (() => { const p = { ...s.points }; delete p[id]; return p; })(),
-          gameCoins: (() => { const g = { ...s.gameCoins }; delete g[id]; return g; })(),
           pointLog: (() => { const p = { ...s.pointLog }; delete p[id]; return p; })(),
           dailyCheckin: (() => { const d = { ...s.dailyCheckin }; delete d[id]; return d; })(),
           charBag: (() => { const c = { ...s.charBag }; delete c[id]; return c; })(),
           wrongs: (() => { const w = { ...s.wrongs }; delete w[id]; return w; })(),
           customTasks: (() => { const t = { ...s.customTasks }; delete t[id]; return t; })(),
+          taskStates: (() => { const t = { ...s.taskStates }; delete t[id]; return t; })(),
           ownedItems: (() => { const o = { ...s.ownedItems }; delete o[id]; return o; })(),
           equipped: (() => { const e = { ...s.equipped }; delete e[id]; return e; })(),
           avatarColor: (() => { const a = { ...s.avatarColor }; delete a[id]; return a; })(),
           avatarHair: (() => { const h = { ...s.avatarHair }; delete h[id]; return h; })(),
-          storyDone: (() => { const d = { ...s.storyDone }; delete d[id]; return d; })(),
-          storyRewardClaimed: (() => { const r = { ...s.storyRewardClaimed }; delete r[id]; return r; })(),
-          storyUpdatedAt: (() => { const t = { ...s.storyUpdatedAt }; delete t[id]; return t; })(),
           expeditionLastAt: (() => { const e = { ...s.expeditionLastAt }; delete e[id]; return e; })(),
           materials: (() => { const m = { ...s.materials }; delete m[id]; return m; })(),
           shipLevel: (() => { const sh = { ...s.shipLevel }; delete sh[id]; return sh; })(),
@@ -553,8 +585,6 @@ export const useStore = create<AppState>()(
         })),
       setActiveChild: (activeChildId) => set({ activeChildId }),
       addRecord: (r) => set((s) => ({ records: [...s.records, r] })),
-      applyGameCoins: (childId, delta) =>
-        set((s) => ({ gameCoins: { ...s.gameCoins, [childId]: Math.max(0, (s.gameCoins[childId] ?? 0) + delta) } })),
       addSkillResult: (childId, skillId, resultStars) =>
         set((s) => {
           const childMap = { ...(s.mastery[childId] ?? {}) };
@@ -570,31 +600,6 @@ export const useStore = create<AppState>()(
           }
           return { mastery: { ...s.mastery, [childId]: childMap }, points: pts, pointLog: { ...s.pointLog, [childId]: log } };
         }),
-      completeStoryNode: (childId, nodeId) =>
-        set((s) => {
-          const cur = s.storyDone[childId] ?? [];
-          if (cur.includes(nodeId)) return {};
-          return {
-            storyDone: { ...s.storyDone, [childId]: [...cur, nodeId] },
-            storyUpdatedAt: { ...s.storyUpdatedAt, [childId]: Date.now() },
-          };
-        }),
-      claimStoryReward: (childId, nodeId) =>
-        set((s) => {
-          const claimed = s.storyRewardClaimed[childId] ?? [];
-          if (claimed.includes(nodeId)) return {};
-          return {
-            storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [...claimed, nodeId] },
-            storyUpdatedAt: { ...s.storyUpdatedAt, [childId]: Date.now() },
-          };
-        }),
-      resetStory: (childId) =>
-        set((s) => ({
-          storyDone: { ...s.storyDone, [childId]: [] },
-          storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [] },
-          storyUpdatedAt: { ...s.storyUpdatedAt, [childId]: Date.now() },
-        })),
-      setStoryPulse: (target) => set({ storyPulse: target }),
       completeLessonStep: (skillId) =>
         set((s) => {
           const cur = s.lessonProgress[skillId] ?? 0;
@@ -676,15 +681,6 @@ export const useStore = create<AppState>()(
           for (const it of items ?? []) if (!owned.includes(it)) owned = [...owned, it];
           return { points: { ...s.points, [childId]: Math.max(0, balance) }, pointLog: { ...s.pointLog, [childId]: log }, ownedItems: { ...s.ownedItems, [childId]: owned } };
         }),
-      applyCloudStory: (childId, story) =>
-        set((s) => {
-          if (story.updatedAt <= (s.storyUpdatedAt[childId] ?? 0)) return {};
-          return {
-            storyDone: { ...s.storyDone, [childId]: [...new Set(story.done)] },
-            storyRewardClaimed: { ...s.storyRewardClaimed, [childId]: [...new Set(story.rewardClaimed)] },
-            storyUpdatedAt: { ...s.storyUpdatedAt, [childId]: story.updatedAt },
-          };
-        }),
       addWrong: (childId, w) =>
         set((s) => {
           const list = s.wrongs[childId] ?? [];
@@ -697,53 +693,13 @@ export const useStore = create<AppState>()(
         set((s) => ({ wrongs: { ...s.wrongs, [childId]: (s.wrongs[childId] ?? []).filter((x) => x.uid !== uid) } })),
       setParentPin: (parentPin) => set({ parentPin }),
       setDailyLimit: (dailyLimitMin) => set({ dailyLimitMin }),
-      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, storyDone: {}, storyRewardClaimed: {}, storyUpdatedAt: {}, storyPulse: null, wrongs: {}, points: {}, gameCoins: {}, pointLog: {}, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
+      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, wrongs: {}, points: {}, pointLog: {}, customTasks: {}, taskStates: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
     }),
     {
       name: 'smart-fun-zone',
-      // v3：图鉴召唤改消耗卷卷豆，移除旧的抽卡材料余额。
-      version: 4,
-      migrate: (persistedState, version) => {
-        let state = persistedState as Partial<AppState>;
-        if (version < 1) {
-          const npcCardIds = new Set(STAR_CARDS.filter((card) => card.setId === 'npc').map((card) => card.id));
-          const archivedCards = Object.fromEntries(Object.entries(state.archivedCards ?? {}).map(([childId, cardIds]) => [childId, (cardIds ?? []).filter((cardId) => !npcCardIds.has(cardId))]));
-          const cardRewardClaimed = Object.fromEntries(Object.entries(state.cardRewardClaimed ?? {}).map(([childId, setIds]) => [childId, (setIds ?? []).filter((setId) => setId !== 'npc')]));
-          state = { ...state, archivedCards, cardRewardClaimed };
-        }
-        if (version < 2) {
-          const oldBadge = (id: string) => id.startsWith('b-');
-          const ownedItems = Object.fromEntries(Object.entries(state.ownedItems ?? {}).map(([childId, itemIds]) => [childId, (itemIds ?? []).filter((id) => !oldBadge(id))]));
-          const equipped = Object.fromEntries(Object.entries(state.equipped ?? {}).map(([childId, current]) => {
-            const { badge: _oldBadge, ...remaining } = current ?? {};
-            return [childId, remaining];
-          }));
-          const storeOverrides = Object.fromEntries(Object.entries(state.storeOverrides ?? {}).filter(([itemId]) => !oldBadge(itemId)));
-          state = { ...state, ownedItems, equipped, storeOverrides, showBadges: {}, badges: {} };
-        }
-        if (version < 3) {
-          const materials = Object.fromEntries(Object.entries(state.materials ?? {}).map(([childId, material]) => [
-            childId,
-            { stardust: (material as { stardust?: number }).stardust ?? 0 },
-          ]));
-          state = { ...state, materials };
-        }
-        if (version < 4) {
-          // 自定义任务 v4：周期/判定/物品奖励 + 完成记录按日存储；旧结构（done/doneAt）一次性转换
-          const customTasks = Object.fromEntries(Object.entries(state.customTasks ?? {}).map(([childId, list]) => [
-            childId,
-            ((list ?? []) as unknown as Array<Record<string, unknown>>).map((t) => ({
-              ...t,
-              repeat: (t.repeat as string) ?? 'once',
-              judge: (t.judge as string) ?? 'parent',
-              doneDays: t.done ? [localDayKey(new Date(typeof t.doneAt === 'number' ? t.doneAt : Date.now()))] : [],
-              pendingDays: [],
-            })),
-          ]));
-          state = { ...state, customTasks } as unknown as Partial<AppState>;
-        }
-        return state as AppState;
-      },
+      // v6：加入七类任务的完成事实与主动推送状态。
+      version: 6,
+      migrate: migrateAppState,
       // 面板开合状态不持久化（避免刷新后自动弹出）；其余（含唤醒偏好）照常保存
       partialize: (s) => {
         const p = { ...s } as Partial<AppState>;
@@ -756,20 +712,6 @@ export const useStore = create<AppState>()(
 
 export function childRecords(records: GameRecord[], childId: string): GameRecord[] {
   return records.filter((r) => r.childId === childId);
-}
-
-/** 某街机游戏的最高分（乐园纯休闲口径，无星级） */
-export function bestScoreForGame(records: GameRecord[], childId: string, gameId: string): number {
-  return childRecords(records, childId)
-    .filter((r) => r.gameId === gameId)
-    .reduce((best, r) => Math.max(best, r.score ?? 0), 0);
-}
-
-/** 某街机游戏的累计局数与总时长（家长报告用） */
-export function gamePlayStats(records: GameRecord[], childId: string, gameId: string): { rounds: number; totalSec: number } {
-  return childRecords(records, childId)
-    .filter((r) => r.gameId === gameId)
-    .reduce((acc, r) => ({ rounds: acc.rounds + 1, totalSec: acc.totalSec + r.durationSec }), { rounds: 0, totalSec: 0 });
 }
 
 export function todayPlaySec(records: GameRecord[], childId: string): number {

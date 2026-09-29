@@ -11,6 +11,7 @@ import { SolidShapeGlyph, solidKindByName } from '../components/SolidShapeGlyph'
 import VoiceField from '../components/VoiceField';
 import { MATH_FLOW_CONTENT_VERSION, migrateMathFlowSnapshot } from '../content/mathLearningProgress';
 import { scheduleReview } from '../reviewPlan';
+import { settleCourseTask } from '../taskSystem';
 import { FRUIT_SHOP_ABILITY_LABELS, fruitShopAbilityForLesson } from '../content/fruitShop';
 import { mathLifeSceneForLesson, mathLifeSceneRoute } from '../content/mathLifeScenes';
 import '../math-textbook-lab.css';
@@ -1999,7 +2000,6 @@ export default function MathTextbookLabPage() {
   const activeChildId = useStore((s) => s.activeChildId);
   const mastery = useStore((s) => s.mastery);
   const addSkillResult = useStore((s) => s.addSkillResult);
-  const applyPoints = useStore((s) => s.applyPoints);
   const [active, setActive] = useState<LessonId>(() => isLessonId(lessonId) ? lessonId : 'campus');
   const done = useMemo(
     () => activeChildId
@@ -2026,7 +2026,7 @@ export default function MathTextbookLabPage() {
     const lesson = LESSONS.find((item) => item.id === id);
     const detail = EXTENDED_MATH_LESSONS.find((item) => item.id === id);
     if (lesson) scheduleReview(activeChildId, { subject: 'math', lessonId: id, title: lesson.title, focus: detail?.concept ?? lesson.subtitle, route: `/math-course/${id}` });
-    applyPoints(activeChildId, 1, '练习达标', `prac:${skillId}:${new Date().toDateString()}`);
+    settleCourseTask(activeChildId, 'math', id, `${stars} 星`);
   };
   useEffect(() => {
     const h = () => { userInteracted = true; };

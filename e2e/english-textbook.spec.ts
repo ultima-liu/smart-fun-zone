@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
     localStorage.setItem('smart-fun-zone', JSON.stringify({ state: {
       lang: 'zh', theme: 'dark', sound: false, musicOn: false, voiceOn: false,
       profiles: [{ id, name: '英语体验生', avatarId: 'boy', age: 8, createdAt: Date.now() }], activeChildId: id,
-      records: [], mastery: {}, lessonProgress: {}, charBag: {}, storyDone: { [id]: ['p1'] }, storyPulse: null,
+      records: [], mastery: {}, lessonProgress: {}, charBag: {},
       wrongs: {}, points: { [id]: 0 }, pointLog: { [id]: [] }, customTasks: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, rewardRequests: {}, bonusMin: {}, parentPin: '1234', dailyLimitMin: 0, buddyOpen: false, buddyWakeOn: false, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {},
     }, version: 0 }));
     sessionStorage.setItem('english-g3a-seeded', '1');

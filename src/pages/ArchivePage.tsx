@@ -48,7 +48,7 @@ export default function ArchivePage() {
       spokenFor.current = child.id;
       speakAsNpc(t('welcomeArchive'), npcMeta('晶晶'), lang);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [child?.id]);
 
   const setCards = useMemo(() => (activeSet === 'all' ? STAR_CARDS : cardsBySet(activeSet)), [activeSet]);
@@ -242,7 +242,7 @@ export default function ArchivePage() {
         </section>
       )}
 
-      <NpcBuddy npc="晶晶" storyNodeIds={['c4-1']} />
+      <NpcBuddy npc="晶晶" />
 
       {gachaOpen && <GachaModal open={gachaOpen} onClose={() => setGachaOpen(false)} />}
 

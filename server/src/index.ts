@@ -1,11 +1,11 @@
 import { buildApp } from './app.js';
-import { config } from './config.js';
+import { assertProductionConfig, config } from './config.js';
 import { initSchema, ping, q } from './db.js';
 import { hashPassword } from './auth.js';
 
 const app = buildApp();
 
-/** 引导管理员：管理页创建家长账号；管理员账号由环境变量指定（默认 admin / admin123） */
+/** 引导管理员：生产环境必须显式配置；本地开发保留便捷默认值。 */
 async function bootstrapAdmin() {
   const loginName = process.env.ADMIN_LOGIN ?? 'admin';
   const password = process.env.ADMIN_PASSWORD ?? 'admin123';
@@ -15,12 +15,16 @@ async function bootstrapAdmin() {
       'INSERT INTO users (phone, nickname, login_name, login_hash, role) VALUES (?,?,?,?,?)',
       ['10000000000', '管理员', loginName, hashPassword(password), 'admin'],
     );
-    console.log(`[admin] 已创建引导管理员「${loginName}」（默认密码 admin123，请及时修改）`);
+    console.log(`[admin] 已创建引导管理员「${loginName}」`);
+    if (!config.production && !process.env.ADMIN_PASSWORD) {
+      console.warn('[admin] 当前使用本地开发默认密码；对外部署前必须设置 ADMIN_PASSWORD');
+    }
   }
 }
 
 async function main() {
   try {
+    assertProductionConfig();
     await initSchema();
   } catch (e) {
     console.error('[db] 初始化建表失败（请确认 MySQL 已启动、MYSQL_* 配置正确）:', (e as Error).message);

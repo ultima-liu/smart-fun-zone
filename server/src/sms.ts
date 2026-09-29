@@ -5,7 +5,6 @@
    新增提供商只需实现 sendCode 并注册到 providers。
    ===================================================================== */
 import crypto from 'node:crypto';
-import { config } from './config.js';
 
 export interface SmsProvider {
   name: string;

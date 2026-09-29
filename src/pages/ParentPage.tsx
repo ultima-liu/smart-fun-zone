@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStore, childRecords, bestScoreForGame, gamePlayStats } from '../store';
+import { useStore, childRecords } from '../store';
 import { courseTotalStars } from '../activeCourses';
 import { useI18n } from '../i18n';
 import { KidButton, TopBar, Toggle } from '../components/ui';
 import Modal from '../components/Modal';
 import VoiceQualityTip from '../components/VoiceQualityTip';
-import { listGames } from '../games';
 import { gradeLabel } from '../types';
 import { playSfx } from '../speech';
 import { effectiveCatalog, type CustomTask, type CustomTaskJudge, type CustomTaskRepeat } from '../points';
@@ -49,8 +48,6 @@ export default function ParentPage() {
   const [newPin, setNewPin] = useState('');
   const [savedTip, setSavedTip] = useState(false);
   const [confirmClear, setConfirmClear] = useState(false);
-  const [confirmStory, setConfirmStory] = useState(false);
-  const resetStory = useStore((s) => s.resetStory);
   // 云端（M0/M1）
   const [cloudPhone, setCloudPhone] = useState('');
   const [cloudCode, setCloudCode] = useState('');
@@ -138,7 +135,7 @@ export default function ParentPage() {
           }
           // 登录成功：先拉取云端合并，再推送本地（自动双向一致）
           const syn = await syncAfterLogin(activeChildId);
-          if (syn) setCloudMsg(`登录成功，已双向同步（课程拉取 ${syn.pulled} / 推送 ${syn.pushed} / 剧情 ${syn.story} / 错题 ${syn.wrongs}）`);
+          if (syn) setCloudMsg(`登录成功，已双向同步（课程拉取 ${syn.pulled} / 推送 ${syn.pushed} / 错题 ${syn.wrongs}）`);
         }
       }
     } else {
@@ -193,8 +190,6 @@ export default function ParentPage() {
     clearAll();
     nav('/');
   };
-
-  const games = listGames();
 
   return (
     <div className="page parent">
@@ -375,11 +370,6 @@ export default function ParentPage() {
               </div>
 
               <div className="setting-row danger">
-                <button className="danger-btn" onClick={() => setConfirmStory(true)}>
-                  🔁 重置剧情进度
-                </button>
-              </div>
-              <div className="setting-row danger">
                 <button className="danger-btn" onClick={() => setConfirmClear(true)}>
                   {t('clearData')}
                 </button>
@@ -404,27 +394,6 @@ export default function ParentPage() {
                       <p className="empty-tip small">{t('noData')}</p>
                     ) : (
                       <>
-                        <div className="report-rows">
-                          {games
-                            .filter((g) => g.status === 'ready')
-                            .map((g) => {
-                              const stats = gamePlayStats(records, p.id, g.id);
-                              if (stats.rounds === 0) return null;
-                              const best = bestScoreForGame(records, p.id, g.id);
-                              return (
-                                <div key={g.id} className="report-row">
-                                  <span className="report-game">
-                                    {g.icon} {g.name[lang]}
-                                  </span>
-                                  <span className="report-metric">🏆 {best}</span>
-                                  <span className="report-metric">
-                                    {t('playCount')} {stats.rounds}
-                                  </span>
-                                  <span className="report-metric">{Math.round(stats.totalSec / 60)}min</span>
-                                </div>
-                              );
-                            })}
-                        </div>
                         <div className="week-chart">
                           <div className="week-label">{t('last7days')}</div>
                           <div className="bars">
@@ -519,31 +488,6 @@ export default function ParentPage() {
           )}
 
         </>
-      )}
-
-      {confirmStory && (
-        <Modal>
-          <div className="modal-panel">
-            <div className="modal-emoji">📖</div>
-            <p className="modal-text">将把「{targetChild?.name ?? '当前孩子'}」的剧情重置回序章起点（已获得的星星与卷星币保留，只是剧情重新解锁）。确定吗？</p>
-            <div className="modal-actions">
-              <KidButton color="white" onClick={() => setConfirmStory(false)}>
-                {t('cancel')}
-              </KidButton>
-              <KidButton
-                color="coral"
-                onClick={() => {
-                  if (targetChild) resetStory(targetChild.id);
-                  setConfirmStory(false);
-                  setSavedTip(true);
-                  window.setTimeout(() => setSavedTip(false), 1500);
-                }}
-              >
-                🔁 重置剧情
-              </KidButton>
-            </div>
-          </div>
-        </Modal>
       )}
 
       {confirmClear && (

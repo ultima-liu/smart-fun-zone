@@ -2,11 +2,13 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
 import { completeReviewDay, dueReviewDays, importReviewEntry, reviewEntries, type ReviewEntry } from '../reviewPlan';
+import { completeDailyReview } from '../taskSystem';
 import { ENGLISH_G3_ALL_LESSONS } from '../content/englishGrade3Upper';
 import { EXTENDED_MATH_LESSONS } from '../content/mathUpperCurriculum';
 import { readFruitShopProgress } from '../fruitShopProgress';
 import { FRUIT_SHOP_ABILITY_LABELS, fruitShopAbilityForLesson } from '../content/fruitShop';
 import { mathLifeSceneForLesson, mathLifeSceneRoute } from '../content/mathLifeScenes';
+import { localDayKey } from '../dailyCheckin';
 import '../review-hub.css';
 
 const SUBJECT: Record<ReviewEntry['subject'], { label: string; icon: string }> = {
@@ -51,6 +53,7 @@ export default function ReviewHubPage() {
   const childId = useStore((state) => state.activeChildId);
   const [revision, setRevision] = useState(0);
   const [reviewingId, setReviewingId] = useState<string | null>(null);
+  const assignedReview = useStore((state) => childId ? state.taskStates[childId]?.dailyReview : undefined);
   // 英语课原先已保存「第几天复习」的学习反馈；首次打开总入口时无损接入，
   // 避免新入口只显示更新之后新学的课。
   useEffect(() => {
@@ -69,7 +72,18 @@ export default function ReviewHubPage() {
     }
     if (imported) setRevision((value) => value + 1);
   }, [childId]);
-  const entries = useMemo(() => childId ? reviewEntries(childId) : [], [childId, revision]);
+  const entries = useMemo<ReviewEntry[]>(() => {
+    const list = childId ? reviewEntries(childId) : [];
+    if (!assignedReview || assignedReview.day !== localDayKey() || list.some((entry) => entry.id === assignedReview.entryId)) return list;
+    const subject = assignedReview.entryId.split(':')[0];
+    if (subject !== 'math' && subject !== 'chinese' && subject !== 'english') return list;
+    return [{
+      id: assignedReview.entryId, subject, lessonId: assignedReview.entryId.slice(subject.length + 1), title: assignedReview.title,
+      focus: assignedReview.focus, route: assignedReview.route,
+      learnedAt: Date.now() - assignedReview.reviewDay * 86_400_000,
+      completedDays: [0, 2, 4].filter((day) => day < assignedReview.reviewDay),
+    }, ...list];
+  }, [assignedReview, childId, revision]);
   const fruitShopProgress = useMemo(() => childId ? readFruitShopProgress(childId) : null, [childId, revision]);
   const due = entries.map((entry) => ({ entry, days: dueReviewDays(entry) })).filter((item) => item.days.length > 0);
   const matchedLifeReview = due.find(({ entry }) => entry.subject === 'math' && mathLifeSceneForLesson(entry.lessonId));
@@ -80,6 +94,7 @@ export default function ReviewHubPage() {
   const complete = (entry: ReviewEntry, day: number) => {
     if (!childId) return;
     completeReviewDay(childId, entry.id, day);
+    completeDailyReview(childId, entry.id, day);
     setRevision((value) => value + 1);
   };
   return <main className="page review-hub">

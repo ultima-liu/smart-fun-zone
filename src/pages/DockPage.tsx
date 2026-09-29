@@ -21,7 +21,7 @@ export default function DockPage() {
 
   useEffect(() => {
     if (child) speak(t('welcomeDock'), lang);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [child?.id]);
 
   useEffect(() => () => upgradeTimers.current.forEach(window.clearTimeout), []);

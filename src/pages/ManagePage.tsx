@@ -33,8 +33,8 @@ export default function ManagePage() {
       if (lp?.ok) setParents(lp.parents);
     }
   };
-  useEffect(() => { void reload(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, []);
-  useEffect(() => { if (!isLoggedIn()) nav('/child-login'); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, []);
+  useEffect(() => { void reload();   }, []);
+  useEffect(() => { if (!isLoggedIn()) nav('/child-login');   }, []);
 
   const openAccount = async (childId: number) => {
     if (pw.length < 4) return setMsg('请设置至少 4 位密码');

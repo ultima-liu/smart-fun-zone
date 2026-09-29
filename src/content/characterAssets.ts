@@ -1,37 +1,37 @@
 /**
  * 角色美术资源的唯一入口。
  *
- * NPC 写实立绘为独立透明 PNG，不使用合图或运行时裁切。页面不要直接拼接资源路径，
+ * 角色立绘为独立 WebP，不使用合图或运行时裁切。页面不要直接拼接资源路径，
  * 统一通过这里按角色/卡牌 id 获取，便于图鉴、剧情、主页与后续换装复用。
  * 小卷例外：直接复用全局学习助手的 Mascot SVG，不在此维护副本。
  */
 export const CHARACTER_PORTRAITS = {
-  'npc-a-guang': '/assets/npc-a-guang-v3.png',
-  'npc-tie-tuo': '/assets/npc-tie-tuo-v3.png',
-  'npc-dang-dang': '/assets/npc-dang-dang-v3.png',
-  'npc-pao-pao': '/assets/npc-pao-pao-v3.png',
-  'brook-captain': '/assets/cards/brook-team/brook-captain.png',
-  'brook-xing-shan': '/assets/cards/brook-team/xing-shan-scout.png',
-  'brook-yan-dun': '/assets/cards/brook-team/yan-dun-guardian.png',
-  'brook-lu-mi': '/assets/cards/brook-team/lu-mi-medic.png',
-  'bruco-red-hero': '/assets/cards/bruco-team/bruco-red-hero.png',
-  'bruco-lulu': '/assets/cards/bruco-team/bruco-lulu.png',
-  'bruco-coco': '/assets/cards/bruco-team/bruco-coco.png',
-  'bruco-purple-flight': '/assets/cards/bruco-team/bruco-purple-flight.png',
-  'bruco-bronze-guard': '/assets/cards/bruco-team/bruco-bronze-guard.png',
-  'bruco-blue-glider': '/assets/cards/bruco-team/bruco-blue-glider.png',
-  'bruco-red-04': '/assets/cards/bruco-team/bruco-red-04.png',
-  'bruco-green-03': '/assets/cards/bruco-team/bruco-green-03.png',
-  'bruco-blue-05': '/assets/cards/bruco-team/bruco-blue-05.png',
-  'bruco-orange-sprinter': '/assets/cards/bruco-team/bruco-orange-sprinter.png',
-  'bruco-purple-skater': '/assets/cards/bruco-team/bruco-purple-skater.png',
-  'paw-ryder': '/assets/cards/paw-patrol/ryder.png?v=transparent-1',
-  'paw-chase': '/assets/cards/paw-patrol/chase.png?v=transparent-1',
-  'paw-marshall': '/assets/cards/paw-patrol/marshall.png?v=transparent-1',
-  'paw-rubble': '/assets/cards/paw-patrol/rubble.png?v=transparent-1',
-  'paw-skye': '/assets/cards/paw-patrol/skye.png?v=transparent-1',
-  'paw-rocky': '/assets/cards/paw-patrol/rocky.png?v=transparent-1',
-  'paw-zuma': '/assets/cards/paw-patrol/zuma.png?v=transparent-1',
+  'npc-a-guang': '/assets/npc-a-guang-v3.webp',
+  'npc-tie-tuo': '/assets/npc-tie-tuo-v3.webp',
+  'npc-dang-dang': '/assets/npc-dang-dang-v3.webp',
+  'npc-pao-pao': '/assets/npc-pao-pao-v3.webp',
+  'brook-captain': '/assets/cards/brook-team/brook-captain.webp',
+  'brook-xing-shan': '/assets/cards/brook-team/xing-shan-scout.webp',
+  'brook-yan-dun': '/assets/cards/brook-team/yan-dun-guardian.webp',
+  'brook-lu-mi': '/assets/cards/brook-team/lu-mi-medic.webp',
+  'bruco-red-hero': '/assets/cards/bruco-team/bruco-red-hero.webp',
+  'bruco-lulu': '/assets/cards/bruco-team/bruco-lulu.webp',
+  'bruco-coco': '/assets/cards/bruco-team/bruco-coco.webp',
+  'bruco-purple-flight': '/assets/cards/bruco-team/bruco-purple-flight.webp',
+  'bruco-bronze-guard': '/assets/cards/bruco-team/bruco-bronze-guard.webp',
+  'bruco-blue-glider': '/assets/cards/bruco-team/bruco-blue-glider.webp',
+  'bruco-red-04': '/assets/cards/bruco-team/bruco-red-04.webp',
+  'bruco-green-03': '/assets/cards/bruco-team/bruco-green-03.webp',
+  'bruco-blue-05': '/assets/cards/bruco-team/bruco-blue-05.webp',
+  'bruco-orange-sprinter': '/assets/cards/bruco-team/bruco-orange-sprinter.webp',
+  'bruco-purple-skater': '/assets/cards/bruco-team/bruco-purple-skater.webp',
+  'paw-ryder': '/assets/cards/paw-patrol/ryder.webp',
+  'paw-chase': '/assets/cards/paw-patrol/chase.webp',
+  'paw-marshall': '/assets/cards/paw-patrol/marshall.webp',
+  'paw-rubble': '/assets/cards/paw-patrol/rubble.webp',
+  'paw-skye': '/assets/cards/paw-patrol/skye.webp',
+  'paw-rocky': '/assets/cards/paw-patrol/rocky.webp',
+  'paw-zuma': '/assets/cards/paw-patrol/zuma.webp',
 } as const;
 
 /** 场景/对话使用中文 NPC 名称，集中在此映射到图鉴卡角色 id。 */

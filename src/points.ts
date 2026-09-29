@@ -64,7 +64,7 @@ export function customTaskDueToday(task: CustomTask, now: number | Date = Date.n
   }
 }
 
-/** 商品大类（商店分 3 类货架；徽章由剧情授勋，不是商品） */
+/** 商品大类（商店分 3 类货架；徽章由成长授勋，不是商品） */
 export type ItemKind = 'outfit' | 'badge' | 'item' | 'reward';
 
 /** 兑换商品 */
@@ -114,7 +114,7 @@ const outfitCatalog: StoreItem[] = PREMIUM_OUTFITS
     acqType: outfit.acqType,
   }));
 
-/* 1.5) 徽章 badge —— 与剧情徽章（content/badges.ts）同一份数据：剧情授勋获得，
+/* 1.5) 徽章 badge —— 与成长徽章（content/badges.ts）同一份数据：
    不上架出售（商店货架不含徽章），管理端可查看与维护名称/图标 */
 const badgeCatalog: StoreItem[] = BADGES.map((badge) => ({
   id: badge.id,

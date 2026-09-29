@@ -13,7 +13,6 @@ import { gradeLabel } from '../types';
 import { speak, speakAsNpc, playSfx } from '../speech';
 import { npcMeta } from '../content/npc';
 import NpcBuddy from '../components/NpcBuddy';
-import { useGates } from '../features';
 import WardrobeAvatar from '../components/WardrobeAvatar';
 import AttrRadar from '../components/AttrRadar';
 import { IconBean } from '../components/icons';
@@ -28,15 +27,6 @@ type LockerKey = 'outfit' | 'materials' | 'items';
 export default function ProfilePage() {
   const nav = useNavigate();
   const { t, lang } = useI18n();
-  const gates = useGates();
-
-  const guardStore = () => {
-    if (gates.canEnter('/store')) nav('/store');
-    else {
-      playSfx('deny');
-      speak(lang === 'zh' ? '补给站还没解锁，先去完成剧情任务吧！' : 'Locked! Finish the story quest first!', lang);
-    }
-  };
 
   const profiles = useStore((s) => s.profiles);
   const activeChildId = useStore((s) => s.activeChildId);
@@ -61,13 +51,13 @@ export default function ProfilePage() {
     const s = useStore.getState();
     const hasSession = !!s.activeChildId || !!localStorage.getItem('sfz_token');
     if (!hasSession) nav('/child-login');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [activeChildId]);
 
   // 进入总部欢迎语
   useEffect(() => {
     if (child) speakAsNpc(t('welcomeHQ'), npcMeta('铁砣'), lang);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
   const [activeLocker, setActiveLocker] = useState<LockerKey | null>('outfit');
@@ -126,7 +116,7 @@ export default function ProfilePage() {
   if (!child) {
     return (
       <div className="page hq-page">
-        <NpcBuddy npc="铁砣" storyNodeIds={['p1']} />
+        <NpcBuddy npc="铁砣" />
         <div className="hq-loading">{lang === 'zh' ? '请登录卷星账号…' : 'Please log in…'}</div>
       </div>
     );
@@ -169,7 +159,7 @@ export default function ProfilePage() {
 
   return (
     <div className="page hq-page">
-      <NpcBuddy npc="铁砣" storyNodeIds={['p1']} />
+      <NpcBuddy npc="铁砣" />
 
       {/* 星空背景 */}
       <div className="hq-stars" aria-hidden="true">
@@ -217,7 +207,7 @@ export default function ProfilePage() {
               </p>
             )}
 
-            <button className="hq-wallet-inline" onClick={guardStore}>
+            <button className="hq-wallet-inline" onClick={() => nav('/store')}>
               <span className="hq-wallet-inline-icon">
                 <IconBean size={20} gradient="gold" />
               </span>

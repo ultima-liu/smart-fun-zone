@@ -30,12 +30,6 @@ export interface WrongRecord {
   durationMs?: number;
 }
 
-export interface StoryProgressPayload {
-  done: string[];
-  rewardClaimed: string[];
-  updatedAt: number;
-}
-
 function token(): string {
   try {
     return localStorage.getItem('sfz_token') ?? '';
@@ -56,6 +50,22 @@ export function isLoggedIn(): boolean {
   return token() !== '';
 }
 
+/** 当前令牌的稳定账号作用域，仅用于隔离本地缓存键；服务端仍会独立验签。 */
+export function authScope(): string {
+  const value = token();
+  if (!value) return 'guest';
+  try {
+    const payload = JSON.parse(atob(value.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))) as {
+      k?: string; userId?: number; childId?: number;
+    };
+    if (payload.k === 'u' && payload.userId) return `user:${payload.userId}`;
+    if (payload.k === 'c' && payload.childId) return `child:${payload.childId}`;
+  } catch {
+    /* 损坏令牌由服务端拒绝；本地使用隔离的 unknown 作用域。 */
+  }
+  return 'unknown';
+}
+
 export function logout() {
   try {
     localStorage.removeItem('sfz_token');
@@ -73,6 +83,7 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T | nul
   if (t) headers.Authorization = `Bearer ${t}`;
   try {
     const res = await fetch(BASE + path, { ...init, headers });
+    if (res.status === 401) logout();
     if (!res.ok) return null;
     return (await res.json()) as T;
   } catch {
@@ -97,7 +108,7 @@ export const api = {
   health: () => request<{ ok: boolean; ttsConfigured: boolean }>('/health'),
   sendCode: (phone: string) => request<{ ok: boolean; devCode?: string }>('/auth/send-code', { method: 'POST', body: JSON.stringify({ phone }) }),
   login: (phone: string, code: string) =>
-    request<{ ok: boolean; token?: string; familyId?: number; nickname?: string }>('/auth/login', { method: 'POST', body: JSON.stringify({ phone, code }) }),
+    request<{ ok: boolean; token?: string; userId?: number; familyId?: number; nickname?: string }>('/auth/login', { method: 'POST', body: JSON.stringify({ phone, code }) }),
   childAccount: (childId: number, password: string, loginName?: string) =>
     request<{ ok: boolean; loginName?: string }>('/auth/child-account', { method: 'POST', body: JSON.stringify({ childId, password, loginName }) }),
   childLogin: (loginName: string, password: string) =>
@@ -115,13 +126,11 @@ export const api = {
   removeChild: (id: number) => request<{ ok: boolean }>(`/family/children/${id}`, { method: 'DELETE' }),
   contentPackage: (ver = 0) => request<{ ok: boolean; version: number; upToDate?: boolean; payload?: unknown }>(`/content/package?ver=${ver}`),
   syncPull: (childId: number, since = 0) =>
-    request<{ ok: boolean; progress: unknown[]; wrongs: unknown[]; readAloud: unknown[]; story?: { done?: string[] | string; reward_claimed?: string[] | string; updated_at?: number }; points?: { source_id: string; amount: number; reason: string; ts: number }[]; items?: string[]; rewards?: { request_id: string; item_id: string; name: string; icon: string; kind: string; cost: number; status: string; created_at: number; decided_at: number }[] }>(`/sync?childId=${childId}&since=${since}`),
+    request<{ ok: boolean; progress: unknown[]; wrongs: unknown[]; readAloud: unknown[]; points?: { source_id: string; amount: number; reason: string; ts: number }[]; items?: string[]; rewards?: { request_id: string; item_id: string; name: string; icon: string; kind: string; cost: number; status: string; created_at: number; decided_at: number }[] }>(`/sync?childId=${childId}&since=${since}`),
   syncPoints: (childId: number, ledger: { id: string; amount: number; reason?: string; time?: number }[], items: string[]) =>
     request<{ ok: boolean; applied: number }>('/sync/points', { method: 'POST', body: JSON.stringify({ childId, ledger, items }) }),
   syncProgress: (childId: number, p: ProgressPayload) =>
     request<{ ok: boolean }>('/sync/progress', { method: 'PUT', body: JSON.stringify({ childId, ...p }) }),
-  syncStory: (childId: number, story: StoryProgressPayload) =>
-    request<{ ok: boolean }>('/sync/story', { method: 'PUT', body: JSON.stringify({ childId, ...story }) }),
   syncPractice: (childId: number, r: WrongRecord) =>
     request<{ ok: boolean }>('/sync/practice', { method: 'POST', body: JSON.stringify({ childId, ...r }) }),
   scoreReadAloud: (childId: number | null, target: string, transcript: string) =>

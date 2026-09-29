@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
       state: {
         lang: 'zh', theme: 'dark', sound: true, voiceOn: false,
         profiles: [{ id, name: '数学复习生', avatarId: 'boy', age: 6, createdAt: Date.now() }], activeChildId: id,
-        records: [], mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, storyDone: { [id]: ['p1'] }, storyRewardClaimed: {}, storyPulse: null,
+        records: [], mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {},
         wrongs: {
           [id]: [{ uid: 'structured-math-wrong', lessonId: 'math-lab-compare', lessonName: '比大小', kind: '图式转算式', question: '3 ○ 4，填什么符号？', answer: '＞', objective: '图式转算式', diagnosis: '可能还没先看清题目里的整体和部分。', remedy: '先一个对一个配，再看哪边有剩余。', options: ['＝', '＞', '＜'], correctAnswer: '＜', time: Date.now() }],
         },

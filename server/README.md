@@ -12,19 +12,17 @@ docker compose up -d mysql
 # 2. 安装依赖
 npm install
 
-# 3. 配置（可选；默认值见 src/config.ts）
+# 3. 配置（开发可使用示例默认值；生产环境必须显式配置）
 cp .env.example .env
 
-# 4. 生成内容包种子（从现有前端课程数据导出 JSON）
-node scripts/build-content-pack.mjs
-
-# 5. 导入内容包
+# 4. 导入仓库内的内容包种子
 npm run seed
 
-# 6. 启动服务端（开发）
+# 5. 启动服务端（开发）
 npm run dev            # http://127.0.0.1:8787
 
-# 7. 接口冒烟测试（需 MySQL 已启动、内容包已 seed）
+# 6. 单元测试 / 接口冒烟测试
+npm test
 npm run smoke
 ```
 
@@ -44,7 +42,8 @@ npm run smoke
 | POST/PUT/DELETE | /api/family/children[/:id] | 儿童档案管理 |
 | GET | /api/content/package?ver= | 内容包 v1（版本化下发） |
 | POST | /api/volc-tts/api/v3/tts/unidirectional/sse | TTS 代理（服务端密钥 + 磁盘缓存） |
-| GET | /api/sync?childId=&since= | 增量拉取（课程进度/剧情存档/错题/跟读记录） |
+| GET | /api/sync?childId=&since= | 拉取课程、剧情、错题、跟读、积分和物品快照 |
+| POST | /api/sync/points | 幂等写入积分流水和物品快照 |
 | PUT | /api/sync/progress | 写进度 |
 | PUT | /api/sync/story | 写剧情节点与领奖状态（跨端恢复、重置同步） |
 | POST | /api/sync/practice | 写练习/错题 |
@@ -55,14 +54,16 @@ npm run smoke
 
 ## 数据表（src/schema.sql）
 
-users / families / children / sms_codes / content_packages / progress / story_progress /
-practice_records / read_aloud_records / plans / tts_cache
+users / families / children / sms_codes / content_packages / content_chunks / progress /
+story_progress / practice_records / read_aloud_records / plans / points_ledger / child_items /
+store_config / audit_logs
 
 ## 生产注意事项
 
-- 修改 JWT_SECRET；短信验证码接真实平台（替换 mock）。
+- 设置 `NODE_ENV=production`。启动时会拒绝默认 JWT、数据库密码、管理员密码、mock 短信和空 CORS 白名单。
+- 所有儿童数据接口使用统一所有权策略：孩子仅自己、家长仅家庭内孩子、管理员仅真实存在的孩子。
 - TTS 音频缓存在 var/tts-cache/，可挂载持久卷。
-- 建议前置 Nginx（HTTPS）+ 限流；儿童数据字段级加密见规划。
+- 应前置 HTTPS 反向代理并配置第二层限流；应用层已对登录、验证码、TTS 和学习助手限流。
 
 ## 新增（M1.2）
 - 短信可插拔：`SMS_PROVIDER=mock|aliyun`（阿里云短信配置见 .env.example）；验证码存 sms_codes（过期+一次性消费）。

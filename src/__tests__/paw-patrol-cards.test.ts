@@ -16,13 +16,13 @@ describe('汪汪队立大功角色卡', () => {
 
   it('七张卡均从统一入口引用本批角色素材', () => {
     for (const card of cardsBySet('paw-patrol')) {
-      expect(characterPortrait(card.id)).toMatch(/^\/assets\/cards\/paw-patrol\/.+\.png(?:\?.+)?$/);
+      expect(characterPortrait(card.id)).toMatch(/^\/assets\/cards\/paw-patrol\/.+\.webp$/);
     }
   });
 
-  it('以本地 PNG 立绘渲染卡面，而非回退到默认矢量人物', () => {
+  it('以本地 WebP 立绘渲染卡面，而非回退到默认矢量人物', () => {
     const card = cardsBySet('paw-patrol')[0];
     const markup = renderToStaticMarkup(createElement(CardPortrait, { card }));
-    expect(markup).toContain('/assets/cards/paw-patrol/ryder.png?v=transparent-1');
+    expect(markup).toContain('/assets/cards/paw-patrol/ryder.webp');
   });
 });

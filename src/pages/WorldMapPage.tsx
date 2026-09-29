@@ -26,7 +26,6 @@ export default function WorldMapPage() {
 
   const [stage, setStage] = useState<SchoolStage>('primary');
   const grade = (child?.ageBand ?? 'g1') as Grade;
-  const [schoolWelcomeDone, setSchoolWelcomeDone] = useState(false);
   const [openingBook, setOpeningBook] = useState<{ key: string; route: string } | null>(null);
 
   useEffect(() => {
@@ -36,8 +35,7 @@ export default function WorldMapPage() {
     }
     if (spokenFor.current !== `${child.id}:${lang}`) {
       spokenFor.current = `${child.id}:${lang}`;
-      setSchoolWelcomeDone(false);
-      speakAsNpc(t('welcomeSchool'), npcMeta('阿光'), lang, 0.92, () => setSchoolWelcomeDone(true));
+      speakAsNpc(t('welcomeSchool'), npcMeta('阿光'), lang, 0.92);
     }
   }, [child?.id, lang, nav, t]);
 
@@ -77,7 +75,7 @@ export default function WorldMapPage() {
 
   return (
     <div className="page map-page">
-      <NpcBuddy npc="阿光" storyNodeIds={['c1-1', 'c1-2']} deferAutoStory={!schoolWelcomeDone} />
+      <NpcBuddy npc="阿光" />
       <header className="academy-command-header">
         <div className="academy-crest" aria-hidden="true"><i>✦</i><span /><b /></div>
         <div className="academy-command-copy">
@@ -93,7 +91,7 @@ export default function WorldMapPage() {
       </header>
 
       <section className="school-portal" aria-label={lang === 'zh' ? '卷星学校校园前庭' : 'Juan Star School campus'}>
-        <img src="/assets/school/star-academy-hero-v1.png" alt="云海中的卷星学校星穹校园" />
+        <img src="/assets/school/star-academy-hero-v1.webp" alt="云海中的卷星学校星穹校园" decoding="async" fetchPriority="high" />
         <div className="school-portal-shade" aria-hidden="true" />
         <div className="school-portal-copy">
           <span>{lang === 'zh' ? '✦ 晨光已抵达星穹课本馆' : '✦ Morning at the Astral Library'}</span>

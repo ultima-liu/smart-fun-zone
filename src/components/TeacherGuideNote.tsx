@@ -45,7 +45,7 @@ export default function TeacherGuideNote({ text }: { text: string }) {
       narrate(text);
     }, 420);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
   return <section className="ct-teacher-note">
     <span aria-hidden="true">🤖</span>
