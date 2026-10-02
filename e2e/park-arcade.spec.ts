@@ -28,7 +28,8 @@ test('空中乐园五子棋可以落子、等待电脑回应并悔棋', async ({
   await expect(categories.getByRole('tab')).toHaveCount(5);
   await expect(categories.getByRole('tab', { name: /棋类/ })).toHaveAttribute('aria-selected', 'true');
   await categories.getByRole('tab', { name: /牌类/ }).click();
-  await expect(page.getByText('牌类游戏正在精心打磨')).toBeVisible();
+  await expect(page.getByRole('heading', { name: '星牌记忆' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '云阶接龙' })).toBeVisible();
   await categories.getByRole('tab', { name: /棋类/ }).click();
 
   await expect(page.getByRole('heading', { name: '星河五子棋' })).toBeVisible();

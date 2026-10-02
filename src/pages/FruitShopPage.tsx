@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useRef, useState } from 'react';
 import type { DragEvent } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -424,7 +425,7 @@ export default function FruitShopPage() {
     const chosen = SHOP_SIGNS.find((sign) => sign.id === selectedSign);
     const placed = reopeningBaskets[0] + reopeningBaskets[1];
     return <main className="fs-page page">
-      <header className="fs-topbar"><button className="fs-back" onClick={() => setReopeningOpen(false)} aria-label="返回水果店">←</button><div><span>兔兔的小委托</span><h1>水果店重新开张</h1></div></header>
+      <header className="fs-topbar"><BackButton className="fs-back" onClick={() => setReopeningOpen(false)} aria-label="返回水果店" /><div><span>兔兔的小委托</span><h1>水果店重新开张</h1></div></header>
       <section className="fs-reopening" aria-label="水果店重新开张">
         <div className="fs-reopening-rabbit"><span aria-hidden="true">🐰</span><p>{reopeningStep === 'sign' ? '请你挑一块喜欢的招牌。店里以后会一直挂着它！' : `请把 ${REOPENING_FRUIT_COUNT} 个苹果分进两只篮子，找出两种不同的分法。`}</p></div>
         {reopeningStep === 'sign' ? <>
@@ -447,7 +448,7 @@ export default function FruitShopPage() {
     return <main className="fs-page page">
       <Confetti show count={28} />
       <section className="fs-result" aria-live="polite">
-        <div className="fs-result-photo"><span>🐰</span><span>🐼</span><b>🫘</b><span>🦊</span><span>🐻</span></div>
+        <div className="fs-result-photo"><span>🐰</span><span>🐼</span><b>🪙</b><span>🦊</span><span>🐻</span></div>
         <small>今日水果店合照</small>
         <h1>客人们都吃上水果啦！</h1>
         <Stars count={result.stars} size={52} />
@@ -472,20 +473,20 @@ export default function FruitShopPage() {
 
   return <main className="fs-page page">
     <header className="fs-topbar">
-      <button className="fs-back" onClick={() => nav(backTarget)} aria-label="返回">←</button>
+      <BackButton className="fs-back" onClick={() => nav(backTarget)} aria-label="返回" label={`返回${backLabel}`} />
       <div><span>MATH STORY LAB</span><h1>小卷水果店</h1></div>
       <div className="fs-round-progress" aria-label={`第 ${roundIndex + 1} 张订单，共 ${rounds.length} 张`}><b>{roundIndex + 1}</b><span>/ {rounds.length} 单</span></div>
     </header>
 
     <nav className="fs-levels" aria-label="选择难度">{LEVELS.map((item) => <button key={item.id} className={level === item.id ? 'active' : ''} onClick={() => changeLevel(item.id)}><b>{item.name}</b><span>{item.note}</span></button>)}</nav>
 
-    {sourceLesson && focusAbility && <aside className="fs-course-link"><span>{params.get('from') === 'review' ? reviewDay === 2 || reviewDay === 4 ? `第 ${reviewDay} 天复习` : '当天回顾' : '本课专属'}</span><div><b>《{sourceLesson.title}》的小卷水果店</b><small>三张订单都练习：{FRUIT_SHOP_ABILITY_LABELS[focusAbility]}</small></div></aside>}
+    {sourceLesson && focusAbility && <aside className="fs-course-link"><span>{params.get('from') === 'review' ? reviewDay === 0 ? '当天回顾' : '课程表复习' : '本课专属'}</span><div><b>《{sourceLesson.title}》的小卷水果店</b><small>三张订单都练习：{FRUIT_SHOP_ABILITY_LABELS[focusAbility]}</small></div></aside>}
 
     <aside className="fs-shop-memory">{displayedSign ? <><span aria-hidden="true">🐰</span><p>欢迎回来！你做的{displayedSign.name}还挂着。上次你把 {REOPENING_FRUIT_COUNT} 个苹果分成了 {fruitSplitKey(shopMemory!.firstWay)} 和 {fruitSplitKey(shopMemory!.secondWay)}，客人都记得呢！</p></> : <><span aria-hidden="true">🐰</span><p>兔兔想重新开张水果店，邀请你做招牌，再用两种方法分苹果。</p><button onClick={startReopening}>帮兔兔重新开张 →</button></>}</aside>
 
     <section className="fs-shop-stage">
       <div className="fs-awning" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
-      <div className="fs-sign"><span>{displayedSign?.emoji ?? '🫘'}</span><div><small>{displayedSign?.name ?? '卷星生活小剧场'}</small><b>{sourceLesson ? `${sourceLesson.title} · 专属订单` : '今天请你当水果店长'}</b></div><button onClick={() => speakOnce(instructionFor(round), 'zh', .82)} aria-label="再听一次任务">🔊</button></div>
+      <div className="fs-sign"><span>{displayedSign?.emoji ?? '🪙'}</span><div><small>{displayedSign?.name ?? '卷星生活小剧场'}</small><b>{sourceLesson ? `${sourceLesson.title} · 专属订单` : '今天请你当水果店长'}</b></div><button onClick={() => speakOnce(instructionFor(round), 'zh', .82)} aria-label="再听一次任务">🔊</button></div>
 
       <div className="fs-coach" role="status"><span className={roundDone ? 'happy' : ''}>🐰</span><div><small>兔兔店长说</small><p>{feedback || instructionFor(round)}</p></div></div>
 

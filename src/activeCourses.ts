@@ -2,6 +2,7 @@ import { MATH_UPPER_UNITS } from './content/mathUpperCurriculum';
 import { CHINESE_TEXTBOOK_LESSONS } from './content/chineseTextbookCurriculum';
 import { ENGLISH_G3_ALL_LESSONS } from './content/englishGrade3Upper';
 import type { MasteryState } from './store';
+import type { Grade } from './types';
 
 /** 已开课课程注册表：学校当前只开 3 本课本（数学一年级上册 / 语文一年级上册 / 英语三年级上册）。
  *  首页、学校页的「继续学习」「课程进度」都以这里为准；新增课本时在此登记。 */
@@ -12,6 +13,7 @@ export interface ActiveLesson {
   id: string;
   title: string;
   subject: ActiveSubject;
+  grade: Grade;
   /** 进入课时学习的路由 */
   route: string;
   stars: number;
@@ -45,6 +47,7 @@ export function activeLessons(
       id: lesson.id,
       title: lesson.title,
       subject: 'math' as const,
+      grade: 'g1' as const,
       route: `/math-course/${lesson.id}`,
       stars: starsOf(mastery, childId, `math-lab-${lesson.id}`),
     }))),
@@ -52,6 +55,7 @@ export function activeLessons(
       id: lesson.id,
       title: lesson.title,
       subject: 'chinese' as const,
+      grade: 'g1' as const,
       route: `/chinese-course/${lesson.id}`,
       stars: chinese[lesson.id] ?? 0,
     })),
@@ -59,6 +63,7 @@ export function activeLessons(
       id: lesson.id,
       title: lesson.title,
       subject: 'english' as const,
+      grade: 'g3' as const,
       route: `/english-course/${lesson.id}`,
       stars: starsOf(mastery, childId, `english-g3a-${lesson.id}`),
     })),

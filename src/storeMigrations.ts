@@ -1,5 +1,6 @@
 import { localDayKey } from './dailyCheckin';
 import { STAR_CARDS } from './content/starCards';
+import type { ActiveSubject } from './activeCourses';
 import type { AppState } from './store';
 
 /** Zustand 持久化结构迁移集中维护；只做数据形状转换，不触发业务副作用。 */
@@ -55,6 +56,38 @@ export function migrateAppState(persistedState: unknown, version: number): AppSt
   }
   if (version < 6) {
     state = { ...state, taskStates: state.taskStates ?? {} };
+  }
+  if (version < 7) {
+    const taskStates = Object.fromEntries(Object.entries(state.taskStates ?? {}).map(([childId, taskState]) => [
+      childId,
+      { ...taskState, lessonCompletedAt: taskState.lessonCompletedAt ?? {}, courseMails: taskState.courseMails ?? {} },
+    ]));
+    state = { ...state, taskStates, courseSchedule: state.courseSchedule ?? [] };
+  }
+  if (version < 8) {
+    type LegacySchedule = { id?: string; date?: string; grade?: string; subject?: string; lessonId?: string; reward?: number };
+    const legacy = (state.courseSchedule ?? []) as unknown as LegacySchedule[];
+    const validSubjects = new Set<ActiveSubject>(['math', 'chinese', 'english']);
+    const weekly = new Map<string, { id: string; grade: string; weekday: 1 | 2 | 3 | 4 | 5; subjects: ActiveSubject[] }>();
+    const legacyById = new Map(legacy.filter((entry) => entry.id).map((entry) => [entry.id!, entry]));
+    for (const entry of legacy) {
+      if (!entry.date || !entry.grade || !entry.subject || !validSubjects.has(entry.subject as ActiveSubject)) continue;
+      const weekday = new Date(`${entry.date}T12:00:00`).getDay();
+      if (weekday < 1 || weekday > 5) continue;
+      const id = `${entry.grade}:weekday:${weekday}`;
+      const current = weekly.get(id) ?? { id, grade: entry.grade, weekday: weekday as 1 | 2 | 3 | 4 | 5, subjects: [] };
+      const subject = entry.subject as ActiveSubject;
+      if (!current.subjects.includes(subject)) current.subjects.push(subject);
+      weekly.set(id, current);
+    }
+    const taskStates = Object.fromEntries(Object.entries(state.taskStates ?? {}).map(([childId, taskState]) => {
+      const courseMails = Object.fromEntries(Object.entries(taskState.courseMails ?? {}).map(([mailId, progress]) => {
+        const old = legacyById.get(mailId);
+        return [mailId, old ? { ...progress, date: old.date, subject: old.subject as ActiveSubject, lessonId: old.lessonId, reward: old.reward } : progress];
+      }));
+      return [childId, { ...taskState, courseMails }];
+    }));
+    state = { ...state, taskStates, courseSchedule: [...weekly.values()] as AppState['courseSchedule'] };
   }
   return state as AppState;
 }

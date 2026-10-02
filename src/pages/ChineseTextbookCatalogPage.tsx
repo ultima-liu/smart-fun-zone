@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
@@ -57,7 +58,7 @@ export default function ChineseTextbookCatalogPage() {
   return (
     <main className="ct-page ct-catalog page">
       <header className="ct-catalog-hero">
-        <button className="ct-back" onClick={() => nav('/map')} aria-label="返回学校地图">←</button>
+        <BackButton className="ct-back" onClick={() => nav('/map')} aria-label="返回学校地图" />
         <div className="ct-hero-seal" aria-hidden="true"><span>语</span><i>文</i></div>
         <div>
           <span className="ct-eyebrow">依据 2022 年版课标教材重新设计</span>

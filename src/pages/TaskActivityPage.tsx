@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { completeActivityMission, MISSION_ACTIVITIES, pauseMission } from '../taskSystem';
@@ -56,9 +57,9 @@ export default function TaskActivityPage() {
 
   return <main className={`page mission-activity mission-activity--${task.category}`}>
     <header className="mission-activity-head">
-      <button onClick={() => nav('/')} aria-label="返回首页">←</button>
+      <BackButton onClick={() => nav('/')} aria-label="返回首页" />
       <div><span>{task.categoryLabel}</span><h1>{task.icon} {task.title}</h1><p>{task.brief}</p></div>
-      <strong>🫘 {task.reward}</strong>
+      <strong>🪙 {task.reward}</strong>
     </header>
     {!finished ? <section className="mission-question-card">
       <div className="mission-question-progress"><span>第 {index + 1} 关 / {task.questions.length}</span><i style={{ width: `${((index + 1) / task.questions.length) * 100}%` }} /></div>
@@ -74,7 +75,7 @@ export default function TaskActivityPage() {
     </section> : <section className={`mission-result ${passed ? 'passed' : 'retry'}`}>
       <div aria-hidden="true">{passed ? '🎉' : '💪'}</div>
       <h2>{passed ? '任务完成！' : '再试一次就能过关'}</h2>
-      <p>{passed ? `卷卷豆 +${task.reward}，已经放进你的收获里。` : `第一次答对 ${firstCorrect} 题，需要答对 ${task.passCount} 题。`}</p>
+      <p>{passed ? `卷星币 +${task.reward}，已经放进你的收获里。` : `第一次答对 ${firstCorrect} 题，需要答对 ${task.passCount} 题。`}</p>
       <div>{passed ? <button onClick={() => nav('/')}>回到小广场</button> : <button onClick={retry}>重新挑战</button>}</div>
     </section>}
   </main>;

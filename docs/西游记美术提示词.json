@@ -1,0 +1,59 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "date": "2026-10-01",
+  "transparent_background": false,
+  "sharedPrompt": "Create a single original premium Chinese mythological fantasy character painting for a Journey to the West collectible card. Portrait 2:3 composition. Serious elegant guofeng fantasy, hand painted detailed gongbi linework blended with ink wash, aged gold ornament and mineral pigments, cinematic volumetric mist, realistic anatomy, sophisticated restrained colors, rich tactile silk and metal. NOT cartoon, NOT chibi, NOT anime, NOT toy, no adaptation or movie likeness. One character centrally composed, nearly full length, clear face in upper middle, props within margins; painted atmospheric landscape full bleed. No text, no letters, no UI, no border, no watermark. Suitable for children: majestic and mysterious, no gore. ",
+  "characters": [
+    {
+      "id": "journey-wukong",
+      "prompt": "Sun Wukong 孙悟空, based on the novel: lean adult monkey immortal with golden brown fur, hairy cheeks and pointed monkey muzzle, alert amber eyes, a tight simple golden circlet, golden scale armor, red battle cloth, long cloud boots, holding a red-black iron staff with gold bands (ruyi jingu bang) diagonally. Defiant poised warrior rather than a human face. Jagged Flower Fruit Mountain and golden storm clouds, charcoal, cinnabar, gold.",
+      "asset": "public/assets/cards/journey/wukong.webp"
+    },
+    {
+      "id": "journey-tangseng",
+      "prompt": "Tang Sanzang 唐三藏, human monk, calm resolute slim Chinese adult, shaved head mostly beneath a five-leaf ornate Buddhist crown, saffron inner robe and jewel-sewn red brocade kasaya, holds tall nine-ring khakkhara staff, parchment pilgrimage scroll at waist. Walking through ancient desert mountains toward distant Buddhist temple, soft warm gold light, vermilion and ivory.",
+      "asset": "public/assets/cards/journey/tangseng.webp"
+    },
+    {
+      "id": "journey-bajie",
+      "prompt": "Zhu Bajie 猪八戒, adult boar-like humanoid, distinctly long pig snout and huge ears, dark rough skin, sturdy broad belly, black monk cap and indigo rough cloth traveling robe with sash, carries a formidable nine-toothed iron rake visible clearly. Weathered but lively eyes, human scale, dignified humorous personality without cute toy features. Misty old farm and mountains, bronze and indigo.",
+      "asset": "public/assets/cards/journey/bajie.webp"
+    },
+    {
+      "id": "journey-shaseng",
+      "prompt": "Sha Wujing 沙悟净, tall powerful austere pilgrim, dark indigo skin, disheveled flame-red hair and beard as described in novel, coarse earth ochre monk robe, nine small stylized ivory skull-shaped Buddhist beads (symbolic carved beads, non graphic), grips a straight monk's demon-subduing staff, NOT crescent shovel. Flowing Sand River, green-black water and mist, deep teal and bronze.",
+      "asset": "public/assets/cards/journey/shaseng.webp"
+    },
+    {
+      "id": "journey-bailong",
+      "prompt": "White Dragon Horse 白龙马, an elegant strong WHITE HORSE as the main character, long windswept silver-white mane, Chinese pilgrimage saddle and simple bronze bridle, standing by a blue-green mountain pool. A huge ethereal Chinese white dragon coils in the clouds far behind it as a visual echo of its original dragon prince identity, antler-like horns and whiskers. Horse clearly central and fully visible, dragon is background only. Jade, ivory and antique gold.",
+      "asset": "public/assets/cards/journey/bailong.webp"
+    },
+    {
+      "id": "journey-guanyin",
+      "prompt": "Guanyin 观音菩萨, compassionate dignified adult Chinese feminine bodhisattva with black dragon-coiled hair bun and delicate gold jewelry, flowing ivory silk robes, jade fastenings, holds white porcelain pure-water vase with a willow sprig, floats above lotus pedestal in mist before dark purple bamboo and distant South Sea cliffs. Soft gold circular sacred halo behind head, rich teal, pale jade and ivory.",
+      "asset": "public/assets/cards/journey/guanyin.webp"
+    },
+    {
+      "id": "journey-niumowang",
+      "prompt": "Bull Demon King 牛魔王, powerful tall WHITE bull-headed humanoid king with huge dark iron horns, broad muscular form, white fur on clearly bovine face, antique dark iron and bronze armor, green cloth and burgundy cape, holds a massive plain iron cudgel (hunyuan iron staff), dignified formidable antagonist. Jagged volcanic mountains, copper embers in black mist, gold and charcoal. No gore.",
+      "asset": "public/assets/cards/journey/niumowang.webp"
+    },
+    {
+      "id": "journey-tieshan",
+      "prompt": "Princess Iron Fan 铁扇公主, regal resolute adult Chinese female immortal with tall coiled black hair and gold hairpins, flowing jade-green and dark plum silk robes, intricate gold embroidered cloud edges, holding an oversized naturally veined banana LEAF magical fan on long handle, also a sheathed sword at waist. Strong self-possessed gaze. Emerald wind ribbons and smoky volcanic mountains, green copper and old gold.",
+      "asset": "public/assets/cards/journey/tieshan.webp"
+    },
+    {
+      "id": "journey-baigujing",
+      "prompt": "White Bone Spirit 白骨精, based on chapter 27: a mysterious elegant adult Chinese woman in pale gray ivory traveling hanfu, holding a small woven food basket, black long hair and calm deceptively gentle expression. Behind her, a faint skeletal silhouette appears in cool pale mist as an atmospheric hint of her true form, not a graphic corpse. Minimal small bone ornaments, no exposed body, no gore. Desolate White Tiger Ridge, weathered stones, moonlight, bone ivory and muted mauve.",
+      "asset": "public/assets/cards/journey/baigujing.webp"
+    },
+    {
+      "id": "journey-honghaier",
+      "prompt": "Red Boy 红孩儿, young mischievous Chinese demon prince, bright stern youthful face and small red-black hair topknots, modest red embroidered tunic with gold fire pattern, barefoot, firmly holds long fire-tipped spear. Three stylized arcs of samadhi flame surround him like a fiery aureole, controlled powerful flame magic. Mountain Fire Cloud Cave and charcoal clouds, brilliant cinnabar vermilion gold. Fully clothed, age appropriate, not cute chibi.",
+      "asset": "public/assets/cards/journey/honghaier.webp"
+    }
+  ]
+}

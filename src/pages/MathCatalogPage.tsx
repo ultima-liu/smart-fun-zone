@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { Fragment, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store';
@@ -86,7 +87,7 @@ export default function MathCatalogPage() {
   return (
     <main className="ct-page ct-catalog page math-catalog">
       <header className="ct-catalog-hero">
-        <button className="ct-back" onClick={() => nav('/map')} aria-label="返回学校书架">←</button>
+        <BackButton className="ct-back" onClick={() => nav('/map')} aria-label="返回学校书架" />
         <div className="math-hero-mark" aria-hidden="true">
           <svg viewBox="0 0 120 132" role="presentation" focusable="false">
             <defs>

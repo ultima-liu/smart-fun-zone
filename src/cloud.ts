@@ -132,7 +132,7 @@ export async function pullSnapshot(cloudChildId: number, localChildId: string): 
     reason: entry.reason,
     time: entry.ts * 1000,
   }));
-  useStore.getState().applyCloudPoints(localChildId, pointEntries, r.items ?? []);
+  useStore.getState().applyCloudPoints(localChildId, pointEntries, r.items ?? [], r.wallet);
 
   return { progress: Object.keys(progressMap).length, points: pointEntries.length };
 }
@@ -161,7 +161,7 @@ export async function pullPoints(cloudChildId: number, localChildId: string): Pr
     reason: x.reason,
     time: x.ts * 1000,
   }));
-  useStore.getState().applyCloudPoints(localChildId, entries, r.items ?? []);
+  useStore.getState().applyCloudPoints(localChildId, entries, r.items ?? [], r.wallet);
   return entries.length;
 }
 

@@ -219,25 +219,12 @@ export const IconGamepad = (p: IconProps) => (
   </svg>
 );
 
-/** 卷卷豆：积分货币（斜置豆身 + 卷卷纹理） */
-export const IconBean = (p: IconProps) => (
+/** 卷星币：圆形金币、内圈与卷星星徽。 */
+export const IconCoin = (p: IconProps) => (
   <svg {...base(p)}>
-    <ellipse
-      cx="12"
-      cy="12"
-      rx="7.4"
-      ry="5.6"
-      transform="rotate(-32 12 12)"
-      fill={gradPaint(p.gradient)}
-      stroke="none"
-    />
-    <path
-      d="M10.4 11.2 C 12 10 13.8 10.4 14.6 12.6"
-      stroke="rgba(255,255,255,0.8)"
-      strokeWidth="1.5"
-      fill="none"
-      strokeLinecap="round"
-    />
+    <circle cx="12" cy="12" r="9" fill={gradPaint(p.gradient)} stroke="none" />
+    <circle cx="12" cy="12" r="6.9" fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth="1" />
+    <path d="M12 6.8L13.6 10.1L17.2 10.6L14.6 13.2L15.2 16.8L12 15.1L8.8 16.8L9.4 13.2L6.8 10.6L10.4 10.1Z" fill="#fff4ce" stroke="none" />
   </svg>
 );
 

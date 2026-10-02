@@ -4,9 +4,10 @@ import { ENGLISH_G3_ALL_LESSONS, ENGLISH_G3_UPPER_UNITS } from './content/englis
 import { MATH_UPPER_UNITS } from './content/mathUpperCurriculum';
 import { localDayKey } from './dailyCheckin';
 import { customTaskDueToday, type CustomTask } from './points';
-import { dueReviewDays, reviewEntries } from './reviewPlan';
+import { reviewCandidates } from './reviewPlan';
 import { useStore } from './store';
-import { emptyChildTaskState, type ChildTaskState, type DailyReviewAssignment, type TaskCategory } from './taskTypes';
+import { effectiveCourseSchedule } from './weeklyStudyPlan';
+import { emptyChildTaskState, type ChildTaskState, type CourseMailProgress, type DailyReviewAssignment, type TaskCategory } from './taskTypes';
 
 export type MissionQuestion = { prompt: string; options: string[]; answer: number; explain: string };
 
@@ -25,6 +26,23 @@ export type Mission = {
   passCount?: number;
   kind?: 'core' | 'visitor';
   enabled?: boolean;
+  mailDate?: string;
+  scheduleId?: string;
+};
+
+export type CourseMailStatus = 'not-started' | 'unfinished' | 'completed';
+export type CourseMailRecord = {
+  mailId: string;
+  date: string;
+  subject: ActiveSubject;
+  lessonId: string;
+  reward: number;
+  mission: Mission;
+  status: CourseMailStatus;
+  rewardClaimed: boolean;
+  startedAt?: number;
+  completedAt?: number;
+  claimedAt?: number;
 };
 
 const CATEGORY_LABELS: Record<TaskCategory, string> = {
@@ -125,24 +143,42 @@ function isComplete(childId: string, taskId: string) { return Boolean(taskState(
 export function initializeTaskSystem(childId: string) {
   const store = useStore.getState();
   const current = store.taskStates[childId] ?? emptyChildTaskState();
-  if (current.initializedAt) return;
   const now = Date.now();
   const completed = { ...current.completed };
-  for (const lesson of activeLessons(childId, store.mastery)) if (lesson.stars > 0) completed[`course:${lesson.subject}:${lesson.id}`] = { completedAt: now, reward: 0, legacy: true };
+  const lessonCompletedAt = { ...(current.lessonCompletedAt ?? {}) };
+  for (const lesson of activeLessons(childId, store.mastery)) if (lesson.stars > 0) {
+    completed[`course:${lesson.subject}:${lesson.id}`] = { completedAt: now, reward: 0, legacy: true };
+    lessonCompletedAt[`${lesson.subject}:${lesson.id}`] ??= now;
+  }
   for (const chapter of chapters()) if (chapter.lessonIds.every((id) => completed[`course:${chapter.subject}:${id}`])) completed[`chapter:${chapter.id}`] = { completedAt: now, reward: 0, legacy: true };
-  store.patchTaskState(childId, { initializedAt: now, completed });
+  const needsRepair = !current.initializedAt
+    || Object.keys(lessonCompletedAt).length !== Object.keys(current.lessonCompletedAt ?? {}).length
+    || !current.courseMails;
+  if (needsRepair) store.patchTaskState(childId, { initializedAt: current.initializedAt || now, completed, lessonCompletedAt, courseMails: current.courseMails ?? {} });
 }
 
 export function settleCourseTask(childId: string, subject: ActiveSubject, lessonId: string, result?: string) {
   initializeTaskSystem(childId);
-  const lesson = activeLessons(childId, useStore.getState().mastery).find((item) => item.subject === subject && item.id === lessonId);
+  const store = useStore.getState();
+  const lesson = activeLessons(childId, store.mastery).find((item) => item.subject === subject && item.id === lessonId);
   if (!lesson) return false;
-  const mission = courseTask(lesson);
-  if (mission.enabled === false) return false;
-  const won = useStore.getState().completeMission(childId, mission.id, mission.title, mission.reward, result);
+  const state = taskState(childId);
+  const now = Date.now();
+  const lessonKey = `${subject}:${lessonId}`;
+  const lessonCompletedAt = { ...(state.lessonCompletedAt ?? {}), [lessonKey]: state.lessonCompletedAt?.[lessonKey] ?? now };
+  const courseMails = { ...(state.courseMails ?? {}) };
+  let won = false;
+  for (const [mailId, progress] of Object.entries(courseMails)) {
+    if (progress.subject !== subject || progress.lessonId !== lessonId) continue;
+    if (!progress.completedAt) {
+      courseMails[mailId] = { ...progress, completedAt: now, result };
+      won = true;
+    }
+  }
+  useStore.getState().patchTaskState(childId, { lessonCompletedAt, courseMails });
   const chapter = chapters().find((item) => item.subject === subject && item.lessonIds.includes(lessonId));
   if (chapter) {
-    const allDone = chapter.lessonIds.every((id) => taskState(childId).completed[`course:${subject}:${id}`]);
+    const allDone = chapter.lessonIds.every((id) => lessonCompletedAt[`${subject}:${id}`]);
     if (allDone) { const chapterTask = chapterMission(chapter); if (chapterTask.enabled !== false) useStore.getState().completeMission(childId, chapterTask.id, chapterTask.title, chapterTask.reward, `${chapter.lessonIds.length}/${chapter.lessonIds.length}`); }
   }
   return won;
@@ -151,10 +187,20 @@ export function settleCourseTask(childId: string, subject: ActiveSubject, lesson
 export function ensureDailyReview(childId: string, now = Date.now()): DailyReviewAssignment | undefined {
   const day = localDayKey(new Date(now));
   const state = taskState(childId);
-  if (state.dailyReview?.day === day) return state.dailyReview;
-  const due = reviewEntries(childId).map((entry) => ({ entry, days: dueReviewDays(entry, now) })).filter((item) => item.days.length > 0).sort((a, b) => a.entry.learnedAt - b.entry.learnedAt)[0];
-  if (!due) return undefined;
-  const reviewDay = due.days[due.days.length - 1];
+  const store = useStore.getState();
+  const profile = store.profiles.find((item) => item.id === childId);
+  if (!profile) return undefined;
+  const candidates = reviewCandidates(childId, profile.ageBand, store.courseSchedule, new Date(now));
+  if (state.dailyReview?.day === day) {
+    if (isComplete(childId, state.dailyReview.taskId)
+      || candidates.some((item) => item.entry.id === state.dailyReview?.entryId && item.reviewDay === state.dailyReview?.reviewDay)) return state.dailyReview;
+  }
+  const due = candidates[0];
+  if (!due) {
+    if (state.dailyReview?.day === day) useStore.getState().patchTaskState(childId, { dailyReview: undefined });
+    return undefined;
+  }
+  const reviewDay = due.reviewDay;
   const assignment: DailyReviewAssignment = { day, taskId: `review:${day}:${due.entry.id}:${reviewDay}`, entryId: due.entry.id, reviewDay, title: due.entry.title, focus: due.entry.focus, route: due.entry.route };
   useStore.getState().patchTaskState(childId, { dailyReview: assignment });
   return assignment;
@@ -162,10 +208,10 @@ export function ensureDailyReview(childId: string, now = Date.now()): DailyRevie
 
 export function completeDailyReview(childId: string, entryId: string, reviewDay: number) {
   const assignment = ensureDailyReview(childId);
-  const taskId = assignment?.entryId === entryId ? assignment.taskId : `review:${localDayKey()}:${entryId}:${reviewDay}`;
-  const mission = reviewMission(assignment ?? { day: localDayKey(), taskId, entryId, reviewDay, title: '今日课程', focus: '', route: '/review' });
+  if (!assignment || assignment.day !== localDayKey() || assignment.entryId !== entryId || assignment.reviewDay !== reviewDay) return false;
+  const mission = reviewMission(assignment);
   if (mission.enabled === false) return false;
-  return useStore.getState().completeMission(childId, taskId, mission.title, mission.reward, `第 ${reviewDay} 天`);
+  return useStore.getState().completeMission(childId, assignment.taskId, mission.title, mission.reward, reviewDay === 0 ? '当天巩固' : '课程表复习');
 }
 
 export function completeActivityMission(childId: string, taskId: string, correct: number, total: number) {
@@ -186,8 +232,105 @@ export function setPreferredSubject(childId: string, subject: ActiveSubject) { u
 export function quietVisitors(childId: string) { useStore.getState().patchTaskState(childId, { quietUntil: Date.now() + 30 * 60_000 }); }
 export function clearLastCompletion(childId: string) { useStore.getState().patchTaskState(childId, { lastCompletion: undefined }); }
 
+function scheduledCourseMission(childId: string, mailId: string, progress: CourseMailProgress): Mission | undefined {
+  if (!progress.date || !progress.subject || !progress.lessonId || progress.reward === undefined) return undefined;
+  const lesson = activeLessons(childId, useStore.getState().mastery).find((item) => item.subject === progress.subject && item.id === progress.lessonId);
+  if (!lesson) return undefined;
+  const meta = SUBJECT_META[progress.subject];
+  return {
+    id: `course-mail:${mailId}`, category: 'course', categoryLabel: CATEGORY_LABELS.course,
+    title: `${meta.label} · ${lesson.title}`, brief: '完成这节课的学习步骤和最后练习。',
+    actionLabel: '开始上课', icon: meta.icon, reward: progress.reward, route: lesson.route,
+    subject: progress.subject, kind: 'core', mailDate: progress.date, scheduleId: mailId,
+  };
+}
+
+export function ensureCourseMails(childId: string, now = new Date()) {
+  initializeTaskSystem(childId);
+  const store = useStore.getState();
+  const profile = store.profiles.find((item) => item.id === childId);
+  const weekday = now.getDay() || 7;
+  if (!profile) return;
+  const schedule = effectiveCourseSchedule(store.courseSchedule).find((entry) => entry.grade === profile.ageBand && entry.weekday === weekday);
+  const override = store.taskOverrides['category:course'];
+  if (!schedule || override?.enabled === false) return;
+  const state = taskState(childId);
+  const day = localDayKey(now);
+  const courseMails = { ...(state.courseMails ?? {}) };
+  const assignedLessons = new Set(Object.values(courseMails).flatMap((progress) => progress.subject && progress.lessonId ? [`${progress.subject}:${progress.lessonId}`] : []));
+  const lessons = activeLessons(childId, store.mastery);
+  const reward = override?.reward ?? 8;
+  let changed = false;
+  for (const subject of schedule.subjects) {
+    if (Object.values(courseMails).some((progress) => progress.date === day && progress.subject === subject)) continue;
+    const lesson = lessons.find((item) => item.subject === subject
+      && !state.lessonCompletedAt?.[`${subject}:${item.id}`]
+      && !assignedLessons.has(`${subject}:${item.id}`));
+    if (!lesson) continue;
+    const mailId = `${day}:${subject}:${lesson.id}`;
+    courseMails[mailId] = { date: day, subject, lessonId: lesson.id, reward };
+    assignedLessons.add(`${subject}:${lesson.id}`);
+    changed = true;
+  }
+  if (changed) useStore.getState().patchTaskState(childId, { courseMails });
+}
+
+export function courseMailRecords(childId: string, now = new Date()): CourseMailRecord[] {
+  const state = taskState(childId);
+  const day = localDayKey(now);
+  return Object.entries(state.courseMails ?? {})
+    .filter(([, progress]) => Boolean(progress.date && progress.date <= day))
+    .sort((a, b) => (a[1].date ?? '').localeCompare(b[1].date ?? '') || a[0].localeCompare(b[0]))
+    .flatMap(([mailId, progress]) => {
+      const mission = scheduledCourseMission(childId, mailId, progress);
+      if (!mission) return [];
+      const date = progress.date!;
+      const subject = progress.subject!;
+      const lessonId = progress.lessonId!;
+      const reward = progress.reward!;
+      const completedAt = progress.completedAt ?? state.lessonCompletedAt?.[`${subject}:${lessonId}`];
+      const status: CourseMailStatus = completedAt ? 'completed' : progress.startedAt || date < day ? 'unfinished' : 'not-started';
+      return [{ mailId, date, subject, lessonId, reward, mission: { ...mission, actionLabel: status === 'not-started' ? '开始上课' : status === 'unfinished' ? '继续上课' : '查看课程' }, status, rewardClaimed: Boolean(progress.claimedAt), startedAt: progress.startedAt, completedAt, claimedAt: progress.claimedAt }];
+    });
+}
+
+export function courseMailBuckets(childId: string, now = new Date()) {
+  const day = localDayKey(now);
+  const records = courseMailRecords(childId, now);
+  return {
+    current: records.filter((item) => item.date === day && !item.rewardClaimed),
+    unfinished: records.filter((item) => item.date < day && !item.rewardClaimed),
+    completed: records.filter((item) => item.rewardClaimed).sort((a, b) => (b.claimedAt ?? 0) - (a.claimedAt ?? 0)),
+  };
+}
+
+export function startCourseMail(childId: string, scheduleId: string) {
+  const state = taskState(childId);
+  const current = state.courseMails?.[scheduleId] ?? {};
+  if (current.startedAt || current.completedAt) return;
+  useStore.getState().patchTaskState(childId, { courseMails: { ...(state.courseMails ?? {}), [scheduleId]: { ...current, startedAt: Date.now() } } });
+}
+
+export function claimCourseMailReward(childId: string, scheduleId: string): boolean {
+  const record = courseMailRecords(childId).find((item) => item.mailId === scheduleId);
+  if (!record || record.status !== 'completed' || record.rewardClaimed) return false;
+  const now = Date.now();
+  useStore.getState().applyPoints(childId, record.reward, `课程邮件·${record.mission.title}`, `course-mail-reward:${scheduleId}`);
+  const state = taskState(childId);
+  const current = state.courseMails?.[scheduleId] ?? {};
+  useStore.getState().patchTaskState(childId, {
+    courseMails: { ...(state.courseMails ?? {}), [scheduleId]: { ...current, completedAt: current.completedAt ?? record.completedAt ?? now, claimedAt: now } },
+  });
+  return true;
+}
+
 export function missionById(childId: string, taskId: string): Mission | undefined {
   const store = useStore.getState();
+  if (taskId.startsWith('course-mail:')) {
+    const mailId = taskId.slice('course-mail:'.length);
+    const progress = store.taskStates[childId]?.courseMails?.[mailId];
+    if (progress) return scheduledCourseMission(childId, mailId, progress);
+  }
   const review = store.taskStates[childId]?.dailyReview;
   if (review?.taskId === taskId) return reviewMission(review);
   const lesson = activeLessons(childId, store.mastery).find((item) => `course:${item.subject}:${item.id}` === taskId);
@@ -198,30 +341,30 @@ export function missionById(childId: string, taskId: string): Mission | undefine
   return activity ? effectiveMission(activity) : undefined;
 }
 
-function reviewMission(assignment: DailyReviewAssignment): Mission { return effectiveMission({ id: assignment.taskId, category: 'review', categoryLabel: CATEGORY_LABELS.review, title: `复习 · ${assignment.title}`, brief: assignment.focus, actionLabel: '开始复习', icon: '🧠', reward: 8, route: `/review?entry=${encodeURIComponent(assignment.entryId)}&day=${assignment.reviewDay}`, kind: 'core' }); }
+function reviewMission(assignment: DailyReviewAssignment): Mission { return effectiveMission({ id: assignment.taskId, category: 'review', categoryLabel: CATEGORY_LABELS.review, title: `${assignment.reviewDay === 0 ? '短巩固' : '复习'} · ${assignment.title}`, brief: assignment.focus, actionLabel: '开始复习', icon: '🧠', reward: 8, route: `/review?entry=${encodeURIComponent(assignment.entryId)}&day=${assignment.reviewDay}`, kind: 'core' }); }
 function parentMission(task: CustomTask): Mission { return { id: `parent:${task.id}:${localDayKey()}`, category: 'parent', categoryLabel: CATEGORY_LABELS.parent, title: task.text, brief: task.judge === 'parent' ? '做完后告诉家长，确认后领取奖励。' : '完成后可以直接领取奖励。', actionLabel: '我完成了', icon: '🤝', reward: task.points, route: '/', kind: 'core' }; }
 function eventAvailable(task: Mission, now: Date) { if (task.category !== 'event') return true; const key = localDayKey(now); return key >= '2026-10-01' && key <= '2026-10-07'; }
 
 export function deliveredMission(childId: string, now = new Date()): Mission | undefined {
   initializeTaskSystem(childId);
+  ensureCourseMails(childId, now);
   const store = useStore.getState(); const state = taskState(childId); const day = localDayKey(now);
+  const scheduled = courseMailBuckets(childId, now).current[0];
+  if (scheduled) return scheduled.mission;
   if (state.pausedTaskId && state.dismissedOn[state.pausedTaskId] !== day && !isComplete(childId, state.pausedTaskId)) { const paused = missionById(childId, state.pausedTaskId); if (paused) return { ...paused, actionLabel: '继续完成' }; }
   const parent = (store.customTasks[childId] ?? []).find((task) => customTaskDueToday(task, now) && !task.doneDays.includes(day) && !task.pendingDays.includes(day) && state.dismissedOn[`parent:${task.id}:${day}`] !== day);
   if (parent) return parentMission(parent);
   const review = state.dailyReview?.day === day ? state.dailyReview : undefined;
   if (review && !isComplete(childId, review.taskId) && state.dismissedOn[review.taskId] !== day) return reviewMission(review);
-  if (!state.preferredSubject) {
-    return { id: 'choose-subject', category: 'course', categoryLabel: '从这里出发', title: '今天想先学哪门课？', brief: '点下面的数学、语文或英语，聪聪就会送来对应课程。', actionLabel: '去学校看看', icon: '🎒', reward: 0, route: '/map', kind: 'core' };
-  }
-  const completedCourses = Object.keys(state.completed).filter((id) => id.startsWith(`course:${state.preferredSubject}:`)).length;
+  const learnedLessonKeys = Object.keys(state.lessonCompletedAt ?? {});
+  const preferred = state.preferredSubject ?? learnedLessonKeys[learnedLessonKeys.length - 1]?.split(':')[0] as ActiveSubject | undefined;
+  const completedCourses = preferred ? Object.keys(state.lessonCompletedAt ?? {}).filter((id) => id.startsWith(`${preferred}:`)).length : 0;
   const shown = state.visitorDay === day ? state.visitorShown : [];
   if (completedCourses > 0 && (state.quietUntil ?? 0) < now.getTime() && shown.length < 2) {
-    const rawVisitor = MISSION_ACTIVITIES.find((task) => (task.subject === state.preferredSubject || task.category === 'event') && eventAvailable(task, now) && !isComplete(childId, task.id) && state.dismissedOn[task.id] !== day && effectiveMission(task).enabled !== false);
+    const rawVisitor = MISSION_ACTIVITIES.find((task) => (task.subject === preferred || task.category === 'event') && eventAvailable(task, now) && !isComplete(childId, task.id) && state.dismissedOn[task.id] !== day && effectiveMission(task).enabled !== false);
     if (rawVisitor) return effectiveMission(rawVisitor);
   }
-  const preferred = state.preferredSubject; const lessons = activeLessons(childId, store.mastery);
-  const next = lessons.find((lesson) => lesson.subject === preferred && !isComplete(childId, `course:${lesson.subject}:${lesson.id}`) && state.dismissedOn[`course:${lesson.subject}:${lesson.id}`] !== day) ?? lessons.find((lesson) => !isComplete(childId, `course:${lesson.subject}:${lesson.id}`) && state.dismissedOn[`course:${lesson.subject}:${lesson.id}`] !== day);
-  return next ? courseTask(next) : undefined;
+  return undefined;
 }
 
 export function acceptedMissions(childId: string): Mission[] { const state = taskState(childId); return state.pausedTaskId ? [missionById(childId, state.pausedTaskId)].filter((task): task is Mission => Boolean(task)) : []; }

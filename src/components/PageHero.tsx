@@ -26,18 +26,21 @@ export default function PageHero({
   stats = [],
   showAvatar = true,
   planet,
+  leading,
 }: {
   eyebrow: string;
   title: string;
   stats?: HeroStat[];
   showAvatar?: boolean;
   planet?: PlanetKind;
+  leading?: ReactNode;
 }) {
   const { lang } = useI18n();
   const child = useStore((s) => s.profiles.find((p) => p.id === s.activeChildId));
   const equipped = useStore((s) => (s.activeChildId ? s.equipped[s.activeChildId] : undefined));
   return (
-    <header className="page-hero">
+    <header className={`page-hero${leading ? ' ph-has-leading' : ''}`}>
+      {leading}
       <div className="ph-glow" aria-hidden="true" />
       {planet && (
         <span className="ph-planet" aria-hidden="true">

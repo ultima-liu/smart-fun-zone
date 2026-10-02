@@ -1,11 +1,11 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courseTotalStars } from '../activeCourses';
 import ArrivalFlight from '../components/ArrivalFlight';
 import { CosmicFleet } from '../components/cosmos';
 import CurrencyBar from '../components/CurrencyBar';
 import { IconLock, IconSpeakerOff, IconSpeakerOn } from '../components/icons';
-import InteractiveJuanStar from '../components/InteractiveJuanStar';
+import InteractiveJuanStar, { HomePlaceGuide } from '../components/InteractiveJuanStar';
 import LoginDialog from '../components/LoginDialog';
 import Logo from '../components/Logo';
 import Mascot from '../components/Mascot';
@@ -16,7 +16,7 @@ import { KidButton } from '../components/ui';
 import VoiceField from '../components/VoiceField';
 import { LOOT_MAX_PACKS, pendingPacks, type LootDrop } from '../content/expedition';
 import { useI18n } from '../i18n';
-import { dueReviewDays, reviewEntries } from '../reviewPlan';
+import { reviewCandidates } from '../reviewPlan';
 import { playSfx, speak } from '../speech';
 import { gardenStage, streakDays, useStore } from '../store';
 import { AVATARS, GRADES, gradeLabel, type Grade } from '../types';
@@ -44,6 +44,7 @@ export default function HomePage() {
   const profiles = useStore((state) => state.profiles);
   const records = useStore((state) => state.records);
   const mastery = useStore((state) => state.mastery);
+  const courseSchedule = useStore((state) => state.courseSchedule);
   const activeChildId = useStore((state) => state.activeChildId);
   const child = useMemo(() => profiles.find((profile) => profile.id === activeChildId) ?? null, [profiles, activeChildId]);
   const sound = useStore((state) => state.sound);
@@ -57,11 +58,13 @@ export default function HomePage() {
   const collectLoot = useStore((state) => state.collectExpedition);
   const expeditionLastAt = useStore((state) => activeChildId ? state.expeditionLastAt[activeChildId] : undefined);
   const materials = useStore((state) => activeChildId ? state.materials[activeChildId] : undefined);
-  const taskState = useStore((state) => activeChildId ? state.taskStates[activeChildId] : undefined);
   const [creating, setCreating] = useState(false);
   const [switching, setSwitching] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-  const [arrive, setArrive] = useState(false);
+  const [arrive, setArrive] = useState(() => Boolean(child));
+  const [arrivalMode, setArrivalMode] = useState<'full' | 'brief'>('full');
+  const greetedChild = useRef<string>();
+  const [reading, setReading] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [lootBurst, setLootBurst] = useState<LootDrop | null>(null);
   const [lootTick, setLootTick] = useState(0);
@@ -80,11 +83,25 @@ export default function HomePage() {
     sync();
     return () => document.removeEventListener('fullscreenchange', sync);
   }, []);
-  useEffect(() => { if (child) setArrive(true); }, [child?.id]);
+  useEffect(() => {
+    if (!child || greetedChild.current === child.id) return;
+    greetedChild.current = child.id;
+    const key = `sfz-home-welcome-v1:${child.id}`;
+    try {
+      setArrivalMode(window.sessionStorage.getItem(key) ? 'brief' : 'full');
+      window.sessionStorage.setItem(key, '1');
+    } catch { setArrivalMode('brief'); }
+    setArrive(true);
+  }, [child?.id]);
+  useEffect(() => {
+    if (reading) setArrive(false);
+    document.body.classList.toggle('home-reading', reading);
+    return () => document.body.classList.remove('home-reading');
+  }, [reading]);
   useEffect(() => {
     if (!child) return;
-    const wide = window.matchMedia('(min-width: 900px)');
-    const apply = () => document.body.classList.toggle('home-dash-lock', wide.matches);
+    const wide = window.matchMedia('(min-width: 1100px) and (min-height: 760px) and (orientation: landscape) and (pointer: fine)');
+    const apply = () => document.body.classList.toggle('home-dash-lock', wide.matches && navigator.maxTouchPoints === 0);
     apply();
     wide.addEventListener('change', apply);
     return () => { document.body.classList.remove('home-dash-lock'); wide.removeEventListener('change', apply); };
@@ -139,7 +156,7 @@ export default function HomePage() {
   const gardenFloors = [0, 6, 16, 30, 60];
   const gardenPct = garden.stage >= 5 ? 1 : Math.max(0, Math.min(1, totalStars / gardenFloors[garden.stage]));
   const explorerTitle = t(`titleTier${tierFor(totalStars)}`);
-  const reviewDueCount = reviewEntries(child.id).filter((entry) => dueReviewDays(entry).length > 0).length;
+  const reviewDueCount = reviewCandidates(child.id, child.ageBand, courseSchedule).length;
   const lootPacks = expeditionLastAt === undefined ? 1 : pendingPacks(expeditionLastAt, Date.now());
   void lootTick;
   const collectLootNow = () => {
@@ -150,24 +167,24 @@ export default function HomePage() {
 
   return (
     <div className="page home home-dash home-focus-page">
-      {arrive && <ArrivalFlight greet={t('welcomeHome', { title: explorerTitle, name: child.name })} lang={lang} onDone={() => setArrive(false)} />}
+      {arrive && <ArrivalFlight key={child.id} mode={arrivalMode} greet={t('welcomeHome', { title: explorerTitle, name: child.name })} lang={lang} onDone={() => setArrive(false)} />}
       <header className="app-header">
         <button className="home-profile-mini" onClick={() => setSwitching(true)} aria-label="切换孩子"><span>{child.avatar}</span><span><b>{child.name}</b><small>{explorerTitle}</small></span><i>⇄</i></button>
         <CurrencyBar compact />
-        <div className="app-header-right"><button className={`top-pill ${lang === 'en' ? 'on' : ''}`} onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}>{lang === 'zh' ? 'EN' : '中'}</button><KidButton color="white" className="top-pill" onClick={toggleSound} ariaLabel="sound">{sound ? <IconSpeakerOn size={20} /> : <IconSpeakerOff size={20} />}</KidButton><button className={`top-pill ${theme === 'light' ? 'light' : ''}`} onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? '🌙' : '☀️'}</button><button className="top-pill fullscreen-pill" onClick={toggleFullscreen} aria-label={isFullscreen ? '退出全屏' : '进入全屏'}>⛶</button><button className={`top-pill home-review-entry ${reviewDueCount ? 'ready' : ''}`} onClick={() => nav('/review')}>📚<span>复习</span>{reviewDueCount > 0 && <b>{reviewDueCount}</b>}</button></div>
+        <div className="app-header-right"><HomePlaceGuide lang={lang} /><button className={`top-pill ${lang === 'en' ? 'on' : ''}`} onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}>{lang === 'zh' ? 'EN' : '中'}</button><KidButton color="white" className="top-pill" onClick={toggleSound} ariaLabel="sound">{sound ? <IconSpeakerOn size={20} /> : <IconSpeakerOff size={20} />}</KidButton><button className={`top-pill ${theme === 'light' ? 'light' : ''}`} onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? '🌙' : '☀️'}</button><button className="top-pill fullscreen-pill" onClick={toggleFullscreen} aria-label={isFullscreen ? '退出全屏' : '进入全屏'}>⛶</button><button className={`top-pill home-review-entry ${reviewDueCount ? 'ready' : ''}`} onClick={() => nav('/review')}>📚<span>复习</span>{reviewDueCount > 0 && <b>{reviewDueCount}</b>}</button></div>
       </header>
 
       <main className="home-focus">
         <section className="hero-card juan-hero juan-hero-big home-focus-star">
           <div className="hero-planet-zone">
-            <InteractiveJuanStar stars={totalStars} streak={streak} gardenPct={gardenPct} gardenStage={garden.stage} pendingTasks={taskState?.lastCompletion ? 0 : 1} lang={lang} onNav={(to) => { if (to.startsWith('#')) document.querySelector(to)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); else nav(to); }} />
+            <InteractiveJuanStar stars={totalStars} streak={streak} gardenPct={gardenPct} gardenStage={garden.stage} pendingTasks={0} lang={lang} quiet={reading} onNav={(to) => { if (to.startsWith('#')) document.querySelector(to)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); else nav(to); }} />
             <CosmicFleet />
             <span className="hero-mascot-mini" aria-hidden="true"><Mascot pose="happy" size={92} /></span>
             <button className="loot-prompt" onClick={collectLootNow} aria-label="collect loot"><span className="loot-icon">🛰️</span><span className="loot-text">{lang === 'zh' ? `远征战利品 · ${lootPacks}/${LOOT_MAX_PACKS}` : `Loot · ${lootPacks}/${LOOT_MAX_PACKS}`}</span><span className="loot-sub">{lang === 'zh' ? '点击收取' : 'Tap to collect'}</span></button>
             <div className="loot-materials" aria-hidden="true"><span>✨ 星屑 {materials?.stardust ?? 0}</span></div>
           </div>
         </section>
-        <MissionHome />
+        <MissionHome key={child.id} onReadingChange={setReading} />
       </main>
       {lootBurst && <RewardBurst drop={lootBurst} onDone={() => setLootBurst(null)} />}
 

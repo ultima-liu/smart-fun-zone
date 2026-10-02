@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { SchoolBuilding, HqBuilding, SupplyStation, SkyPark, LibraryBuilding, ShipyardBuilding } from './buildings';
 import { ElementPlanet, type ElementKind } from './elementPlanets';
 import type { CSSProperties, PointerEvent, MouseEvent as ReactMouseEvent } from 'react';
+import { speak } from '../speech';
 
 /* =====================================================================
    InteractiveJuanStar · 首页大卷星（可拖拽旋转 + 点击交互 + 数据联动）
@@ -22,16 +23,27 @@ const MOONS: { phase: number; kind: ElementKind }[] = [
 ];
 
 const SPOTS = [
-  { node: <SchoolBuilding size={96} />, name: { zh: '学校', en: 'School' }, to: '/map', cls: 'school' },
-  { node: <HqBuilding size={96} />, name: { zh: '总部', en: 'HQ' }, to: '/profile', cls: 'hq' },
-  { node: <LibraryBuilding size={96} />, name: { zh: '星核档案库', en: 'Star Archive' }, to: '/archive', cls: 'archive' },
-  { node: <ShipyardBuilding size={96} />, name: { zh: '船坞', en: 'Dock' }, to: '/dock', cls: 'dock' },
+  { node: <SchoolBuilding size={96} />, name: { zh: '学校', en: 'School' }, purpose: { zh: '学习课程', en: 'Learn lessons' }, to: '/map', cls: 'school' },
+  { node: <HqBuilding size={96} />, name: { zh: '总部', en: 'HQ' }, purpose: { zh: '我的成长', en: 'My growth' }, to: '/profile', cls: 'hq' },
+  { node: <LibraryBuilding size={96} />, name: { zh: '星核档案库', en: 'Star Archive' }, purpose: { zh: '卡牌收藏', en: 'My cards' }, to: '/archive', cls: 'archive' },
+  { node: <ShipyardBuilding size={96} />, name: { zh: '船坞', en: 'Dock' }, purpose: { zh: '建造飞船', en: 'Build ships' }, to: '/dock', cls: 'dock' },
 ];
 
 const FLOATERS = [
-  { node: <SupplyStation size={128} />, name: { zh: '补给站', en: 'Supply' }, to: '/store', cls: 'fl-left' },
-  { node: <SkyPark size={140} />, name: { zh: '空中乐园', en: 'Sky Park' }, to: '/lobby', cls: 'fl-right' },
+  { node: <SupplyStation size={128} />, name: { zh: '补给站', en: 'Supply' }, purpose: { zh: '兑换好物', en: 'Get goodies' }, to: '/store', cls: 'fl-left' },
+  { node: <SkyPark size={140} />, name: { zh: '空中乐园', en: 'Sky Park' }, purpose: { zh: '玩小游戏', en: 'Play games' }, to: '/lobby', cls: 'fl-right' },
 ];
+
+/** 触屏也可主动查看和点读地点说明，不改变地点的一次点击进入行为。 */
+export function HomePlaceGuide({ lang }: { lang: 'zh' | 'en' }) {
+  return <details className="home-place-guide">
+    <summary aria-label={lang === 'zh' ? '认识卷星上的地点' : 'Meet the places on Juan Star'}>🧭 <span>{lang === 'zh' ? '认识地点' : 'Places'}</span></summary>
+    <div className="home-place-guide-panel">
+      <strong>{lang === 'zh' ? '想去哪里？点一下听介绍' : 'Where to go? Tap to hear'}</strong>
+      {[...SPOTS, ...FLOATERS].map((place) => <button type="button" key={place.to} onClick={() => speak(`${place.name[lang]}，${place.purpose[lang]}`, lang)} aria-label={`${place.name[lang]}，${place.purpose[lang]}，${lang === 'zh' ? '听介绍' : 'hear introduction'}`}><span><b>{place.name[lang]}</b><small>{place.purpose[lang]}</small></span><span aria-hidden="true">♪</span></button>)}
+    </div>
+  </details>;
+}
 
 const TREE_STAGE = ['🌱', '🌿', '🌸', '🌰', '🪐'];
 
@@ -42,6 +54,7 @@ interface Props {
   gardenStage: number; // 1~5 豆豆树阶段
   pendingTasks: number;
   lang: 'zh' | 'en';
+  quiet?: boolean;
   onNav: (to: string) => void;
 }
 
@@ -61,6 +74,7 @@ export default function InteractiveJuanStar({
   gardenStage,
   pendingTasks,
   lang,
+  quiet = false,
   onNav,
 }: Props) {
   const surfaceRef = useRef<HTMLDivElement>(null);
@@ -75,6 +89,8 @@ export default function InteractiveJuanStar({
   const orbit = useRef(0);
   const [bounce, setBounce] = useState(false);
   const reduced = useRef(false);
+  const quietRef = useRef(quiet);
+  useEffect(() => { quietRef.current = quiet; }, [quiet]);
 
   useEffect(() => {
     reduced.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -120,7 +136,7 @@ export default function InteractiveJuanStar({
     const loop = (t: number) => {
       const dt = t - last;
       last = t;
-      if (!reduced.current) {
+      if (!reduced.current && !quietRef.current) {
         if (!dragging.current) {
           angle.current += dt * 0.005; // 空闲自转（降速）
           vel.current *= 0.94; // 惯性阻尼
@@ -129,7 +145,7 @@ export default function InteractiveJuanStar({
         }
       }
       angle.current = ((angle.current % SURFACE_W) + SURFACE_W) % SURFACE_W;
-      apply();
+      if (!quietRef.current) apply();
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -319,10 +335,11 @@ export default function InteractiveJuanStar({
             key={sp.to}
             className={`js-spot ${sp.cls}`}
             onClick={() => onNav(sp.to)}
-            aria-label={sp.name[lang]}
+            aria-label={`${sp.name[lang]}，${sp.purpose[lang]}`}
+            title={`${sp.name[lang]} · ${sp.purpose[lang]}`}
           >
             <span className="js-spot-art">{sp.node}</span>
-            <span className="js-spot-label">{sp.name[lang]}</span>
+            <span className="js-spot-label">{sp.name[lang]}<small className="js-place-purpose">{sp.purpose[lang]}</small></span>
           </button>
         ))}
       </div>
@@ -333,10 +350,11 @@ export default function InteractiveJuanStar({
           key={f.to}
           className={`js-floater ${f.cls}`}
           onClick={() => onNav(f.to)}
-          aria-label={f.name[lang]}
+          aria-label={`${f.name[lang]}，${f.purpose[lang]}`}
+          title={`${f.name[lang]} · ${f.purpose[lang]}`}
         >
           <span className="js-floater-art">{f.node}</span>
-          <span className="js-floater-label">{f.name[lang]}</span>
+          <span className="js-floater-label">{f.name[lang]}<small className="js-place-purpose">{f.purpose[lang]}</small></span>
         </button>
       ))}
     </div>

@@ -105,12 +105,14 @@ export default function StudyBuddy() {
   };
 
   // 关闭时停掉朗读与识别
+  const wasOpen = useRef(buddyOpen);
   useEffect(() => {
     if (!buddyOpen) {
-      stopSpeaking();
+      if (wasOpen.current) stopSpeaking();
       setListening(false);
       recRef.current?.abort();
     }
+    wasOpen.current = buddyOpen;
   }, [buddyOpen]);
 
   const send = async (raw: string) => {

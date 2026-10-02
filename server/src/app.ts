@@ -471,10 +471,18 @@ export function buildApp(): FastifyInstance {
     const progress = await q<RowDataPacket>('SELECT lesson_id, step_idx, stars, score, payload, UNIX_TIMESTAMP(updated_at) AS ts FROM progress WHERE ' + where, [childId, since / 1000]);
     const wrongs = await q<RowDataPacket>('SELECT id, lesson_id, kind, question, answer, wrong, created_at FROM practice_records WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 500', [childId, since / 1000]);
     const readAloud = await q<RowDataPacket>('SELECT id, lesson_id, sentence, score, accuracy, created_at FROM read_aloud_records WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 200', [childId, since / 1000]);
-    const points = await q<RowDataPacket>('SELECT source_id, amount, reason, UNIX_TIMESTAMP(created_at) AS ts FROM points_ledger WHERE child_id=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 800', [childId, since / 1000]);
+    // Snapshot identity and balance cover the entire ledger, while display rows stay capped.
+    const walletRows = await q<{ id: number; source_id: string; amount: number } & RowDataPacket>(
+      'SELECT id, source_id, amount FROM points_ledger WHERE child_id=? ORDER BY id DESC', [childId],
+    );
+    const wallet = {
+      balance: walletRows.reduce((sum, entry) => sum + entry.amount, 0),
+      sourceIds: walletRows.map((entry) => entry.source_id),
+    };
+    const points = await q<RowDataPacket>('SELECT source_id, amount, reason, UNIX_TIMESTAMP(created_at) AS ts FROM points_ledger WHERE child_id=? AND id<=? AND UNIX_TIMESTAMP(created_at) > ? ORDER BY id DESC LIMIT 800', [childId, walletRows[0]?.id ?? 0, since / 1000]);
     const items = await q<RowDataPacket>('SELECT item_id FROM child_items WHERE child_id=?', [childId]);
     const rewards = await q<RowDataPacket>('SELECT request_id, item_id, name, icon, kind, cost, status, created_at, decided_at FROM reward_requests WHERE child_id=? ORDER BY created_at DESC LIMIT 200', [childId]);
-    return { ok: true, now: Date.now(), progress, wrongs, readAloud, points, items: items.map((i) => i.item_id), rewards };
+    return { ok: true, now: Date.now(), progress, wrongs, readAloud, points, wallet, items: items.map((i) => i.item_id), rewards };
   });
 
   /* ---------- 积分流水推送（幂等批量写入） ---------- */
@@ -669,23 +677,56 @@ export function buildApp(): FastifyInstance {
 
 
   /* ================= 积分与商店配置（全局，客户端同步读取） ================= */
+  const normalizeCourseSchedule = (rawSchedule: unknown[]) => {
+    const grades = new Set(['g1', 'g2', 'g3', 'g4', 'g5', 'g6']);
+    const subjects = new Set(['math', 'chinese', 'english']);
+    const days = new Map<string, { id: string; grade: string; weekday: number; subjects: string[]; reviews: string[] }>();
+    for (const value of rawSchedule.slice(0, 5000)) {
+      if (!value || typeof value !== 'object') continue;
+      const item = value as Record<string, unknown>;
+      const grade = typeof item.grade === 'string' && grades.has(item.grade) ? item.grade : '';
+      const legacySubject = typeof item.subject === 'string' && subjects.has(item.subject) ? item.subject : '';
+      const parsedWeekday = Number(item.weekday);
+      const legacyWeekday = typeof item.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(item.date)
+        ? new Date(`${item.date}T12:00:00`).getDay()
+        : 0;
+      const weekday = Number.isInteger(parsedWeekday) && parsedWeekday >= 1 && parsedWeekday <= 7 ? parsedWeekday : legacyWeekday;
+      const selectedSubjects = Array.isArray(item.subjects)
+        ? item.subjects.filter((subject): subject is string => typeof subject === 'string' && subjects.has(subject))
+        : legacySubject ? [legacySubject] : [];
+      const selectedReviews = Array.isArray(item.reviews)
+        ? item.reviews.filter((subject): subject is string => typeof subject === 'string' && subjects.has(subject))
+        : [];
+      if (!grade || weekday < 1 || weekday > 7) continue;
+      const dayKey = `${grade}:${weekday}`;
+      const current = days.get(dayKey) ?? { id: `${grade}:weekday:${weekday}`, grade, weekday, subjects: [], reviews: [] };
+      for (const subject of selectedSubjects) if (!current.subjects.includes(subject)) current.subjects.push(subject);
+      for (const subject of selectedReviews) if (!current.reviews.includes(subject)) current.reviews.push(subject);
+      days.set(dayKey, current);
+    }
+    return [...days.values()];
+  };
+
   app.get('/api/config/store', async () => {
-    const rows = await q<{ store_overrides: string | null; task_overrides: string | null } & RowDataPacket>('SELECT store_overrides, task_overrides FROM store_config WHERE id=1');
-    if (!rows[0]) return { ok: true, storeOverrides: {}, taskOverrides: {} };
+    const rows = await q<{ store_overrides: string | null; task_overrides: string | null; course_schedule: string | null } & RowDataPacket>('SELECT store_overrides, task_overrides, course_schedule FROM store_config WHERE id=1');
+    if (!rows[0]) return { ok: true, storeOverrides: {}, taskOverrides: {}, courseSchedule: [] };
     const parse = (s: unknown): Record<string, unknown> => { if (typeof s === 'string') { try { return JSON.parse(s); } catch { return {}; } } return (s as Record<string, unknown>) ?? {}; };
-    return { ok: true, storeOverrides: parse(rows[0].store_overrides), taskOverrides: parse(rows[0].task_overrides) };
+    const parseList = (s: unknown): unknown[] => { if (typeof s === 'string') { try { const value = JSON.parse(s); return Array.isArray(value) ? value : []; } catch { return []; } } return Array.isArray(s) ? s : []; };
+    return { ok: true, storeOverrides: parse(rows[0].store_overrides), taskOverrides: parse(rows[0].task_overrides), courseSchedule: normalizeCourseSchedule(parseList(rows[0].course_schedule)) };
   });
 
-  app.put<{ Body: { storeOverrides?: Record<string, unknown>; taskOverrides?: Record<string, unknown> } }>('/api/admin/config/store', authed, async (req, reply) => {
+  app.put<{ Body: { storeOverrides?: Record<string, unknown>; taskOverrides?: Record<string, unknown>; courseSchedule?: unknown[] } }>('/api/admin/config/store', authed, async (req, reply) => {
     if (!isAdmin(req)) return reply.code(403).send({ ok: false, error: '仅管理员可操作' });
     const b = req.body ?? {};
-    const prev = await q<{ store_overrides: string | null; task_overrides: string | null } & RowDataPacket>('SELECT store_overrides, task_overrides FROM store_config WHERE id=1');
+    const prev = await q<{ store_overrides: string | null; task_overrides: string | null; course_schedule: string | null } & RowDataPacket>('SELECT store_overrides, task_overrides, course_schedule FROM store_config WHERE id=1');
     const parse = (s: unknown): Record<string, unknown> => { if (typeof s === 'string') { try { return JSON.parse(s); } catch { return {}; } } return (s as Record<string, unknown>) ?? {}; };
     const mergedStore = { ...parse(prev[0]?.store_overrides ?? null), ...(b.storeOverrides ?? {}) };
     const mergedTask = { ...parse(prev[0]?.task_overrides ?? null), ...(b.taskOverrides ?? {}) };
+    const rawSchedule = Array.isArray(b.courseSchedule) ? b.courseSchedule : (() => { try { const value = JSON.parse(prev[0]?.course_schedule ?? '[]'); return Array.isArray(value) ? value : []; } catch { return []; } })();
+    const courseSchedule = normalizeCourseSchedule(rawSchedule);
     await q(
-      'INSERT INTO store_config (id, store_overrides, task_overrides) VALUES (1,?,?) ON DUPLICATE KEY UPDATE store_overrides=VALUES(store_overrides), task_overrides=VALUES(task_overrides)',
-      [JSON.stringify(mergedStore), JSON.stringify(mergedTask)],
+      'INSERT INTO store_config (id, store_overrides, task_overrides, course_schedule) VALUES (1,?,?,?) ON DUPLICATE KEY UPDATE store_overrides=VALUES(store_overrides), task_overrides=VALUES(task_overrides), course_schedule=VALUES(course_schedule)',
+      [JSON.stringify(mergedStore), JSON.stringify(mergedTask), JSON.stringify(courseSchedule)],
     );
     await q('INSERT INTO audit_logs (admin_id, action, detail) VALUES (?,?,?)', [parentId(req)!, 'store.config', 'update']);
     return { ok: true };

@@ -60,7 +60,7 @@ export default function ParentPage() {
   const [accMsg, setAccMsg] = useState('');
   const activeChildId = useStore((s) => s.activeChildId);
 
-  // 卷卷豆 · 自定义任务（周期/判定/物品奖励）
+  // 卷星币 · 自定义任务（周期/判定/物品奖励）
   const customTasks = useStore((s) => s.customTasks);
   const addCustomTask = useStore((s) => s.addCustomTask);
   const removeCustomTask = useStore((s) => s.removeCustomTask);
@@ -256,7 +256,7 @@ export default function ParentPage() {
                 </div>
               </div>
 
-              {/* 卷卷豆 · 家长自定义任务 */}
+              {/* 卷星币 · 家长自定义任务 */}
               <div className="setting-row col task-panel">
                 <span>⭐ 家长任务 · 自定义（发给 {targetChild ? `${targetChild.avatar ?? '🧒'} ${targetChild.name}` : '孩子'}）</span>
                 {targetChild && (
@@ -297,9 +297,9 @@ export default function ParentPage() {
                       </div>
                       <div className="task-form-row">
                         <span className="task-form-label">奖励</span>
-                        <input className="adm-input" style={{ width: 90 }} inputMode="numeric" value={taskPts} placeholder="卷卷豆" onChange={(e) => setTaskPts(e.target.value.replace(/\D/g, ''))} />
+                        <input className="adm-input" style={{ width: 90 }} inputMode="numeric" value={taskPts} placeholder="卷星币" onChange={(e) => setTaskPts(e.target.value.replace(/\D/g, ''))} />
                         <select className="adm-input" value={taskItem} onChange={(e) => setTaskItem(e.target.value)} aria-label="奖励物品">
-                          <option value="">无物品（仅卷卷豆）</option>
+                          <option value="">无物品（仅卷星币）</option>
                           {itemOptions.map((it) => (
                             <option key={it.id} value={it.id}>{it.icon} {it.name}{it.cost ? `（原价 ${it.cost}）` : ''}</option>
                           ))}
@@ -308,7 +308,7 @@ export default function ParentPage() {
                       <div className="task-form-row">
                         <KidButton color="mint" disabled={taskText.trim().length < 2} onClick={() => addTaskTo(targetChild.id)}>+ 添加任务</KidButton>
                         {taskMsg && <p className="saved-tip" style={{ margin: 0 }}>{taskMsg}</p>}
-                        <p className="task-tip" style={{ margin: 0 }}>当前卷卷豆 {targetPoints} · 发放物品会直接放进孩子的物品/衣柜</p>
+                        <p className="task-tip" style={{ margin: 0 }}>当前卷星币 {targetPoints} · 发放物品会直接放进孩子的物品/衣柜</p>
                       </div>
                     </div>
                     {tasks.length === 0 ? (
@@ -322,7 +322,7 @@ export default function ParentPage() {
                             <div key={task.id} className={`task-row ${task.doneDays.length > 0 && task.repeat === 'once' ? 'done' : ''}`}>
                               <span className="task-row-text">
                                 📋 {task.text}
-                                <small>{repeatText(task)} · {task.judge === 'auto' ? '系统自动判断' : '家长审核'} · 🫘 {task.points}{rewardName ? ` · 🎁 ${rewardName}` : ''}</small>
+                                <small>{repeatText(task)} · {task.judge === 'auto' ? '系统自动判断' : '家长审核'} · 🪙 {task.points}{rewardName ? ` · 🎁 ${rewardName}` : ''}</small>
                                 {pending.length > 0 && <small className="task-pending-tip">待审核：{pending.join('、')}</small>}
                               </span>
                               <span className="adm-ops">

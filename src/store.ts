@@ -2,13 +2,13 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { ChildProfile, GameRecord, Lang, Theme } from './types';
 import { localDayKey } from './dailyCheckin';
-import { applyEntry, type PointEntry, type CustomTask, customTaskDueToday } from './points';
+import { applyEntry, type PointEntry, type WalletSnapshot, type CustomTask, customTaskDueToday } from './points';
 import { drawLoot, pendingPacks, type LootDrop } from './content/expedition';
 import { shipBoost } from './content/shipyard';
 import { drawCards as drawStarCards, STAR_CARDS, type CardSetId, type DrawResult } from './content/starCards';
 import { nextDailyCheckin, type CheckinReward, type DailyCheckinState } from './dailyCheckin';
 import { migrateAppState } from './storeMigrations';
-import { emptyChildTaskState, type ChildTaskState } from './taskTypes';
+import { emptyChildTaskState, type ChildTaskState, type CourseScheduleEntry } from './taskTypes';
 
 /** 新孩子初始积分（用于体验装扮/兑换） */
 export const INITIAL_POINTS = 200;
@@ -67,13 +67,16 @@ export interface AppState {
   storeOverrides: Record<string, import('./points').StoreItem>;
   /** 管理端配置：任务分值/开关 */
   taskOverrides: Record<string, { reward?: number; enabled?: boolean }>;
+  /** 管理端课程表：按年级配置周一至周五每天的学科。 */
+  courseSchedule: CourseScheduleEntry[];
   /** 新任务系统：每个孩子的完成事实、推送位置与首页偏好。 */
   taskStates: Record<string, ChildTaskState>;
   patchStoreItem: (id: string, patch: Partial<import('./points').StoreItem>) => void;
   removeStoreItem: (id: string) => void;
   patchTask: (id: string, patch: { reward?: number; enabled?: boolean }) => void;
+  setCourseSchedule: (entries: CourseScheduleEntry[]) => void;
   /** 合并远程配置（服务端为全局唯一权威，替换本地覆盖） */
-  applyRemoteConfig: (storeOverrides: Record<string, import('./points').StoreItem>, taskOverrides: Record<string, { reward?: number; enabled?: boolean }>) => void;
+  applyRemoteConfig: (storeOverrides: Record<string, import('./points').StoreItem>, taskOverrides: Record<string, { reward?: number; enabled?: boolean }>, courseSchedule: CourseScheduleEntry[]) => void;
   /** 已兑换的虚拟商品 id：childId → StoreItem.id[] */
   ownedItems: Record<string, string[]>;
   /** 当前装配（装扮/徽章各一件）：childId → Equipped */
@@ -124,7 +127,7 @@ export interface AppState {
   removeWrong: (childId: string, uid: string) => void;
   /** 云端同步：合并拉取到的进度（按 updatedAt 取新） */
   applyCloudProgress: (childId: string, map: Record<string, { stars?: number; stepIdx?: number; updatedAt?: number }>) => void;
-  applyCloudPoints: (childId: string, entries: { id: string; amount: number; reason?: string; time?: number }[], items?: string[]) => void;
+  applyCloudPoints: (childId: string, entries: { id: string; amount: number; reason?: string; time?: number }[], items?: string[], wallet?: WalletSnapshot) => void;
   patchTaskState: (childId: string, patch: Partial<ChildTaskState>) => void;
   completeMission: (childId: string, taskId: string, title: string, reward: number, result?: string) => boolean;
   applyCloudTaskState: (childId: string, remote: ChildTaskState) => void;
@@ -150,11 +153,11 @@ export interface AppState {
   archivedCards: Record<string, string[]>;
   /** 已领取的套系集齐奖励：childId → setId[] */
   cardRewardClaimed: Record<string, string[]>;
-  /** 抽卡：消耗卷卷豆，返回本次抽卡结果 */
+  /** 抽卡：消耗卷星币，返回本次抽卡结果 */
   drawCards: (childId: string, count: number, setId?: CardSetId) => DrawResult;
   /** 领取套系集齐奖励：返回是否成功 */
   claimCardReward: (childId: string, setId: CardSetId) => boolean;
-  /** 剧情等固定来源授予一张图鉴卡（幂等，不消耗卷卷豆） */
+  /** 剧情等固定来源授予一张图鉴卡（幂等，不消耗卷星币） */
   grantArchiveCard: (childId: string, cardId: string) => void;
   /** 首页展示徽章（最多 3 枚，从已点亮的徽章中自选） */
   showBadges: Record<string, string[]>;
@@ -166,7 +169,7 @@ export interface AppState {
   clearAll: () => void;
 }
 
-/** 计算任务奖励的状态补丁：卷卷豆（幂等 sourceId）+ 可选物品。已发放过返回 null */
+/** 计算任务奖励的状态补丁：卷星币（幂等 sourceId）+ 可选物品。已发放过返回 null */
 function grantTaskRewardPatch(s: AppState, childId: string, task: CustomTask, day: string): Partial<AppState> | null {
   const sourceId = `custom-task:${task.id}:${day}`;
   const childLog = s.pointLog[childId] ?? [];
@@ -207,6 +210,7 @@ export const useStore = create<AppState>()(
       avatarHair: {},
       storeOverrides: {},
       taskOverrides: {},
+      courseSchedule: [],
       taskStates: {},
       bonusMin: {},
       parentPin: '1234',
@@ -437,6 +441,7 @@ export const useStore = create<AppState>()(
         }),
       patchTask: (id, patch) =>
         set((s) => ({ taskOverrides: { ...s.taskOverrides, [id]: { ...(s.taskOverrides[id] ?? {}), ...patch } } })),
+      setCourseSchedule: (courseSchedule) => set({ courseSchedule }),
       patchTaskState: (childId, patch) =>
         set((s) => {
           const current = s.taskStates[childId] ?? emptyChildTaskState();
@@ -487,10 +492,29 @@ export const useStore = create<AppState>()(
             const own = completed[taskId];
             if (!own || fact.completedAt > own.completedAt) completed[taskId] = fact;
           }
+          const lessonCompletedAt = { ...(local.lessonCompletedAt ?? {}) };
+          for (const [lessonKey, completedAt] of Object.entries(remote.lessonCompletedAt ?? {})) {
+            lessonCompletedAt[lessonKey] = Math.max(lessonCompletedAt[lessonKey] ?? 0, completedAt);
+          }
+          const courseMails = { ...(local.courseMails ?? {}) };
+          for (const [scheduleId, progress] of Object.entries(remote.courseMails ?? {})) {
+            const own = courseMails[scheduleId] ?? {};
+            const metadata = own.date && own.subject && own.lessonId && own.reward !== undefined ? own : progress;
+            courseMails[scheduleId] = {
+              date: metadata.date,
+              subject: metadata.subject,
+              lessonId: metadata.lessonId,
+              reward: metadata.reward,
+              startedAt: Math.max(own.startedAt ?? 0, progress.startedAt ?? 0) || undefined,
+              completedAt: Math.max(own.completedAt ?? 0, progress.completedAt ?? 0) || undefined,
+              claimedAt: Math.max(own.claimedAt ?? 0, progress.claimedAt ?? 0) || undefined,
+              result: (progress.completedAt ?? 0) > (own.completedAt ?? 0) ? progress.result : own.result,
+            };
+          }
           const newest = remote.updatedAt > local.updatedAt ? remote : local;
-          return { taskStates: { ...s.taskStates, [childId]: { ...newest, completed } } };
+          return { taskStates: { ...s.taskStates, [childId]: { ...newest, completed, lessonCompletedAt, courseMails } } };
         }),
-      applyRemoteConfig: (storeOverrides, taskOverrides) => set({ storeOverrides, taskOverrides }),
+      applyRemoteConfig: (storeOverrides, taskOverrides, courseSchedule) => set({ storeOverrides, taskOverrides, courseSchedule }),
       applyPoints: (childId, amount, reason, sourceId) =>
         set((s) => {
                     const id = sourceId && amount > 0 ? sourceId : sourceId ?? `tx-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -668,15 +692,26 @@ export const useStore = create<AppState>()(
           return { mastery: { ...s.mastery, [childId]: childMap }, lessonProgress: steps };
         }),
       /** 云端同步：合并拉取到的积分流水与已购商品（幂等） */
-      applyCloudPoints: (childId, entries, items) =>
+      applyCloudPoints: (childId, entries, items, wallet) =>
         set((s) => {
-          let log = s.pointLog[childId] ?? [];
+          const existing = s.pointLog[childId] ?? [];
+          const merged = new Map(existing.map((entry) => [entry.id, entry]));
+          let incomingAmount = 0;
           for (const e of entries ?? []) {
             const id = String(e.id);
-            if (log.some((x) => x.id === id)) continue;
-            log = [{ id, time: e.time ?? Date.now(), amount: e.amount, reason: e.reason ?? '', childId }, ...log].slice(0, 600);
+            if (merged.has(id)) continue;
+            incomingAmount += e.amount;
+            merged.set(id, { id, time: e.time ?? Date.now(), amount: e.amount, reason: e.reason ?? '', childId });
           }
-          const balance = log.reduce((sum, x) => sum + x.amount, 0);
+          // Recent ledger rows are for display; they cannot reconstruct the whole wallet.
+          const syncedIds = wallet ? new Set(wallet.sourceIds) : null;
+          const pendingAmount = syncedIds
+            ? existing.reduce((sum, entry) => sum + (syncedIds.has(entry.id) ? 0 : entry.amount), 0)
+            : 0;
+          const balance = wallet
+            ? wallet.balance + pendingAmount
+            : (s.points[childId] ?? 0) + incomingAmount;
+          const log = [...merged.values()].sort((a, b) => b.time - a.time).slice(0, 600);
           let owned = s.ownedItems[childId] ?? [];
           for (const it of items ?? []) if (!owned.includes(it)) owned = [...owned, it];
           return { points: { ...s.points, [childId]: Math.max(0, balance) }, pointLog: { ...s.pointLog, [childId]: log }, ownedItems: { ...s.ownedItems, [childId]: owned } };
@@ -693,12 +728,12 @@ export const useStore = create<AppState>()(
         set((s) => ({ wrongs: { ...s.wrongs, [childId]: (s.wrongs[childId] ?? []).filter((x) => x.uid !== uid) } })),
       setParentPin: (parentPin) => set({ parentPin }),
       setDailyLimit: (dailyLimitMin) => set({ dailyLimitMin }),
-      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, wrongs: {}, points: {}, pointLog: {}, customTasks: {}, taskStates: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
+      clearAll: () => set({ profiles: [], records: [], activeChildId: null, mastery: {}, lessonProgress: {}, dailyCheckin: {}, charBag: {}, wrongs: {}, points: {}, pointLog: {}, customTasks: {}, taskStates: {}, ownedItems: {}, equipped: {}, avatarColor: {}, avatarHair: {}, storeOverrides: {}, taskOverrides: {}, courseSchedule: [], expeditionLastAt: {}, materials: {}, shipLevel: {}, archivedCards: {}, cardRewardClaimed: {}, showBadges: {}, badges: {} }),
     }),
     {
       name: 'smart-fun-zone',
-      // v6：加入七类任务的完成事实与主动推送状态。
-      version: 6,
+      // v8：课程表改为周一至周五的学科安排，具体课时由系统按进度生成。
+      version: 8,
       migrate: migrateAppState,
       // 面板开合状态不持久化（避免刷新后自动弹出）；其余（含唤醒偏好）照常保存
       partialize: (s) => {
@@ -750,7 +785,7 @@ export interface GardenStage {
 }
 
 export function gardenStage(totalStars: number): GardenStage {
-  // 卷豆花园：种下卷卷豆 → 发芽 → 开花 → 结豆 → 长成小卷星
+  // 卷豆花园：种下卷星币 → 发芽 → 开花 → 结豆 → 长成小卷星
   if (totalStars >= 60) return { stage: 5, g: '🪐', labelKey: 'gardenPlanet' };
   if (totalStars >= 30) return { stage: 4, g: '🌰', labelKey: 'gardenBean' };
   if (totalStars >= 16) return { stage: 3, g: '🌸', labelKey: 'gardenFlower' };

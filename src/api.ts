@@ -91,14 +91,25 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T | nul
   }
 }
 
-/** 应用启动时探测服务端：可用性 + TTS 配置状态（写入测试钩子供 volcTts 使用） */
-export async function refreshServerHealth(): Promise<void> {
+let healthRequest: Promise<void> | null = null;
+
+/** 启动与首次朗读共用健康检查，运行时配置变化通知点读界面。 */
+export function refreshServerHealth(): Promise<void> {
+  if (healthRequest) return healthRequest;
+  healthRequest = probeServerHealth().finally(() => { healthRequest = null; });
+  return healthRequest;
+}
+
+async function probeServerHealth(): Promise<void> {
   try {
-    const res = await fetch(`${BASE}/health`);
+    const res = await fetch(`${BASE}/health`, { signal: AbortSignal.timeout(4000) });
     if (!res.ok) return;
     const h = (await res.json()) as { ok: boolean; ttsConfigured: boolean };
     const w = window as unknown as { __VOLC_TTS_ENABLED__?: boolean };
-    if (h.ok) w.__VOLC_TTS_ENABLED__ = h.ttsConfigured;
+    if (h.ok) {
+      w.__VOLC_TTS_ENABLED__ = h.ttsConfigured === true;
+      window.dispatchEvent(new Event('volc-tts-configured'));
+    }
   } catch {
     /* ignore */
   }
@@ -126,7 +137,7 @@ export const api = {
   removeChild: (id: number) => request<{ ok: boolean }>(`/family/children/${id}`, { method: 'DELETE' }),
   contentPackage: (ver = 0) => request<{ ok: boolean; version: number; upToDate?: boolean; payload?: unknown }>(`/content/package?ver=${ver}`),
   syncPull: (childId: number, since = 0) =>
-    request<{ ok: boolean; progress: unknown[]; wrongs: unknown[]; readAloud: unknown[]; points?: { source_id: string; amount: number; reason: string; ts: number }[]; items?: string[]; rewards?: { request_id: string; item_id: string; name: string; icon: string; kind: string; cost: number; status: string; created_at: number; decided_at: number }[] }>(`/sync?childId=${childId}&since=${since}`),
+    request<{ ok: boolean; progress: unknown[]; wrongs: unknown[]; readAloud: unknown[]; points?: { source_id: string; amount: number; reason: string; ts: number }[]; wallet?: import('./points').WalletSnapshot; items?: string[]; rewards?: { request_id: string; item_id: string; name: string; icon: string; kind: string; cost: number; status: string; created_at: number; decided_at: number }[] }>(`/sync?childId=${childId}&since=${since}`),
   syncPoints: (childId: number, ledger: { id: string; amount: number; reason?: string; time?: number }[], items: string[]) =>
     request<{ ok: boolean; applied: number }>('/sync/points', { method: 'POST', body: JSON.stringify({ childId, ledger, items }) }),
   syncProgress: (childId: number, p: ProgressPayload) =>
@@ -145,9 +156,9 @@ export const api = {
   adminDeleteParent: (id: number) => request<{ ok: boolean }>(`/admin/parents/${id}`, { method: 'DELETE' }),
   adminPatchChild: (id: number, body: { password?: string; disabled?: boolean }) => request<{ ok: boolean }>(`/admin/children/${id}`, { method: 'PATCH', body: JSON.stringify(body) }),
   adminDeleteChild: (id: number) => request<{ ok: boolean }>(`/admin/children/${id}`, { method: 'DELETE' }),
-  storeConfig: () => request<{ ok: boolean; storeOverrides: Record<string, import('./points').StoreItem>; taskOverrides: Record<string, { reward?: number; enabled?: boolean }> }>('/config/store'),
-  saveStoreConfig: (storeOverrides: Record<string, import('./points').StoreItem>, taskOverrides: Record<string, { reward?: number; enabled?: boolean }>) =>
-    request<{ ok: boolean }>('/admin/config/store', { method: 'PUT', body: JSON.stringify({ storeOverrides, taskOverrides }) }),
+  storeConfig: () => request<{ ok: boolean; storeOverrides: Record<string, import('./points').StoreItem>; taskOverrides: Record<string, { reward?: number; enabled?: boolean }>; courseSchedule: import('./taskTypes').CourseScheduleEntry[] }>('/config/store'),
+  saveStoreConfig: (storeOverrides: Record<string, import('./points').StoreItem>, taskOverrides: Record<string, { reward?: number; enabled?: boolean }>, courseSchedule: import('./taskTypes').CourseScheduleEntry[]) =>
+    request<{ ok: boolean }>('/admin/config/store', { method: 'PUT', body: JSON.stringify({ storeOverrides, taskOverrides, courseSchedule }) }),
   /** 学习助手「小卷」问答 */
   buddyChat: (messages: { role: 'user' | 'assistant'; content: string }[]) =>
     request<{ ok: boolean; reply?: string; error?: string }>('/buddy/chat', { method: 'POST', body: JSON.stringify({ messages }) }),

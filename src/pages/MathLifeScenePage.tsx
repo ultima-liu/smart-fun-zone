@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import MathLifeSceneArt from '../components/MathLifeSceneArt';
@@ -87,11 +88,11 @@ export default function MathLifeScenePage() {
 
   return <main className={`mls-page ${scene.kind}`}>
     <header className="mls-topbar">
-      <button onClick={() => nav(backTarget)} aria-label="返回">←</button>
+      <BackButton onClick={() => nav(backTarget)} aria-label="返回" label={backTarget === '/review' ? '返回今日复习' : lessonId ? '返回本课' : '返回数学目录'} />
       <div><small>MATH LIFE STORY</small><h1>{scene.title}</h1></div>
       <b>{index + 1} / {tasks.length}</b>
     </header>
-    <aside className="mls-course-link"><span>{params.get('from') === 'review' ? reviewDay === 2 || reviewDay === 4 ? `第 ${reviewDay} 天复习` : '当天回顾' : '本课专属'}</span><div><b>来自《{lesson.title}》</b><small>{scene.summary}</small></div></aside>
+    <aside className="mls-course-link"><span>{params.get('from') === 'review' ? reviewDay === 0 ? '当天回顾' : '课程表复习' : '本课专属'}</span><div><b>来自《{lesson.title}》</b><small>{scene.summary}</small></div></aside>
     <section className="mls-stage">
       <div className="mls-sky" role="img" aria-label={task.artLabel}>
         <div className="mls-artboard"><small>看图找线索</small><div className="mls-art-items"><MathLifeSceneArt kind={task.artKind} /></div></div>

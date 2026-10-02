@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore, goldSkillCount } from '../store';
@@ -77,7 +78,7 @@ export default function WorldMapPage() {
     <div className="page map-page">
       <NpcBuddy npc="阿光" />
       <header className="academy-command-header">
-        <div className="academy-crest" aria-hidden="true"><i>✦</i><span /><b /></div>
+        <BackButton onClick={() => nav('/')} label={lang === 'zh' ? '返回首页' : 'Back to home'} />
         <div className="academy-command-copy">
           <span>{lang === 'zh' ? 'JUAN STAR SCHOOL · 学习航站' : 'JUAN STAR SCHOOL · LEARNING PORT'}</span>
           <h1>{t('worldMap')}</h1>

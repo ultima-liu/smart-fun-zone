@@ -155,6 +155,15 @@
   transition: transform .18s ease, box-shadow .18s ease;
 }
 
+.lk-symbol-art {
+  display: block;
+  width: 88%;
+  aspect-ratio: 1;
+  background: url('/assets/games/shared/sky-park-symbols-v1.webp') no-repeat;
+  background-size: 600% 300%;
+  filter: drop-shadow(0 2px 2px rgba(22, 12, 58, .34));
+}
+
 .lk-face.k0 { --h: 208deg; } .lk-face.k1 { --h: 262deg; } .lk-face.k2 { --h: 318deg; }
 .lk-face.k3 { --h: 348deg; } .lk-face.k4 { --h: 20deg; } .lk-face.k5 { --h: 44deg; }
 .lk-face.k6 { --h: 68deg; } .lk-face.k7 { --h: 96deg; } .lk-face.k8 { --h: 132deg; }

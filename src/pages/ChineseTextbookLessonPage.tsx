@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store';
@@ -662,7 +663,7 @@ export default function ChineseTextbookLessonPage() {
 
   return <main className="ct-page ct-lesson-page page">
     <header className="ct-lesson-head">
-      <button className="ct-back" onClick={() => nav('/subject/chinese')} aria-label="返回语文目录">←</button>
+      <BackButton className="ct-back" onClick={() => nav('/subject/chinese')} aria-label="返回语文目录" />
       <div><span>{lesson.unit} · 教材 {lesson.page}</span><h1>{lesson.title}</h1><p>{lesson.subtitle}</p></div>
     </header>
     <nav className="ct-phase-nav" aria-label="本课学习步骤">
