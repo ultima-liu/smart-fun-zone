@@ -1,3 +1,5 @@
+import BackButton from '../components/BackButton';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useStore } from '../store';
@@ -9,7 +11,13 @@ import PageHero from '../components/PageHero';
 import NpcBuddy from '../components/NpcBuddy';
 import GachaModal from '../components/GachaModal';
 import CardPortrait from '../components/CardPortrait';
+import { cardThemeClass, cardThemeStyle } from '../components/cardThemes';
 import { sfx } from '../sfx';
+import { JourneyCollectionHero, JourneyLoreDetails } from '../components/JourneyCollection';
+import './journey-cards.css';
+import { HuluCollectionHero, HuluLoreDetails } from '../components/HuluCollection';
+import './hulu-cards.css';
+import './archive-card-state.css';
 import {
   CARD_SETS,
   STAR_CARDS,
@@ -23,6 +31,7 @@ import {
 
 /** 星核档案库：抽卡 + 可翻转/放大图鉴墙 */
 export default function ArchivePage() {
+  const nav = useNavigate();
   const { lang, t } = useI18n();
   const profiles = useStore((s) => s.profiles);
   const activeChildId = useStore((s) => s.activeChildId);
@@ -69,22 +78,20 @@ export default function ArchivePage() {
   };
 
   return (
-    <div className="page archive-page">
-      <PageHero
-        eyebrow={zh ? '星核档案库' : 'Star Archive'}
-        title={zh ? '欢迎来到档案库' : 'Welcome to the Archive'}
-        planet="academy"
-      />
+    <div className={`page archive-page${activeSet === 'journey' ? ' journey-active' : activeSet === 'hulu' ? ' hulu-active' : ' reframed-active'}`}>
+      {activeSet === 'journey' ? <JourneyCollectionHero leading={<BackButton onClick={() => nav('/')} label={zh ? '返回' : 'Back'} aria-label={zh ? '返回首页' : 'Back to home'} />} zh={zh} have={setProgress(owned, 'journey').have} /> : activeSet === 'hulu' ? <HuluCollectionHero leading={<BackButton onClick={() => nav('/')} label={zh ? '返回' : 'Back'} aria-label={zh ? '返回首页' : 'Back to home'} />} zh={zh} have={setProgress(owned, 'hulu').have} /> : (
+        <PageHero leading={<BackButton onClick={() => nav('/')} label={zh ? '返回首页' : 'Back to home'} />} eyebrow={zh ? '星核档案库' : 'Star Archive'} title={zh ? '欢迎来到档案库' : 'Welcome to the Archive'} planet="academy" />
+      )}
 
       {/* 召唤面板 */}
       <section className="summon-panel">
         <div className="summon-glow" />
         <div className="summon-info">
-          <h3>{zh ? '卷卷豆召唤' : 'Bean Summon'}</h3>
+          <h3>{zh ? '卷星币召唤' : 'Coin Summon'}</h3>
           <p>
             {zh
-              ? `消耗卷卷豆召唤图鉴卡。已收集 ${totalOwned}/${totalCards}`
-              : `Spend beans to summon cards. Collected ${totalOwned}/${totalCards}`}
+              ? `消耗卷星币召唤图鉴卡。已收集 ${totalOwned}/${totalCards}`
+              : `Spend coins to summon cards. Collected ${totalOwned}/${totalCards}`}
           </p>
         </div>
         <div className="summon-actions">
@@ -182,10 +189,18 @@ export default function ArchivePage() {
               return (
                 <div
                   key={c.id}
-                  className={`ccard${lit ? ' lit' : ' unlit'} c-${c.rarity}${!lit && c.setId === 'paw-patrol' ? ' ccard-character-preview' : ''}`}
-                  style={{ '--rc': rarityColor(c.rarity) } as React.CSSProperties}
+                  className={`ccard${lit ? ' lit' : ' unlit'} c-${c.rarity}${cardThemeClass(c.setId)}`}
+                  style={{ ...cardThemeStyle(c.setId), '--rc': rarityColor(c.rarity), '--hulu-color': c.palette[0] } as React.CSSProperties}
                   onClick={() => { sfx.click(); setPreview(c); setPreviewFlipped(false); }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault(); sfx.click(); setPreview(c); setPreviewFlipped(false);
+                    }
+                  }}
                   title={zh ? c.name.zh : c.name.en}
+                  aria-label={`${zh ? c.name.zh : c.name.en} · ${lit ? (zh ? '已解锁' : 'Unlocked') : (zh ? '未解锁' : 'Locked')}`}
                 >
                   <div className="ccard-face ccard-front">
                     <CardPortrait card={c} size={172} />
@@ -193,10 +208,10 @@ export default function ArchivePage() {
                       <span className="ccard-name">{zh ? c.name.zh : c.name.en}</span>
                       <small>{zh ? CARD_SETS.find((set) => set.id === c.setId)?.name.zh : CARD_SETS.find((set) => set.id === c.setId)?.name.en}</small>
                     </div>
-                    {!lit && <div className="ccard-veil" />}
+                    {!lit && <div className="ccard-veil" data-label={zh ? '未解锁' : 'Locked'} />}
                   </div>
                   <div className="ccard-face ccard-back">
-                    <div className="ccard-back-inner" style={{ '--rc': rarityColor(c.rarity) } as React.CSSProperties}>
+                    <div className="ccard-back-inner" style={{ ...cardThemeStyle(c.setId), '--rc': rarityColor(c.rarity), '--hulu-color': c.palette[0] } as React.CSSProperties}>
                       <b className="ccard-back-rarity">{c.rarity}</b>
                       <h5>{zh ? c.name.zh : c.name.en}</h5>
                       {c.hanzi ? <HanziLesson card={c} zh={zh} compact /> : (
@@ -242,19 +257,19 @@ export default function ArchivePage() {
         </section>
       )}
 
-      <NpcBuddy npc="晶晶" />
+      {activeSet !== 'journey' && activeSet !== 'hulu' && <NpcBuddy npc="晶晶" />}
 
       {gachaOpen && <GachaModal open={gachaOpen} onClose={() => setGachaOpen(false)} />}
 
       {preview &&
         createPortal(
-          <div className="card-preview-modal" onClick={() => { sfx.click(); setPreview(null); }} role="dialog" aria-modal="true">
+          <div className={`card-preview-modal${preview.setId === 'journey' ? ' journey-preview' : preview.setId === 'hulu' ? ' hulu-preview' : ` themed-preview card-theme-${preview.setId}`}`} onClick={() => { sfx.click(); setPreview(null); }} style={cardThemeStyle(preview.setId)} role="dialog" aria-modal="true">
             <div className="card-preview-backdrop" />
             <div className="card-preview-content" onClick={(e) => e.stopPropagation()}>
               <button className="card-preview-close" onClick={() => { sfx.click(); setPreview(null); }} aria-label={zh ? '关闭' : 'close'}>×</button>
               <div
-                className={`preview-card${previewFlipped ? ' flipped' : ''} c-${preview.rarity}${owned.includes(preview.id) ? ' lit' : ' unlit'}`}
-                style={{ '--rc': rarityColor(preview.rarity) } as React.CSSProperties}
+                className={`preview-card${previewFlipped ? ' flipped' : ''} c-${preview.rarity}${cardThemeClass(preview.setId)}${owned.includes(preview.id) ? ' lit' : ' unlit'}`}
+                style={{ ...cardThemeStyle(preview.setId), '--rc': rarityColor(preview.rarity), '--hulu-color': preview.palette[0] } as React.CSSProperties}
               >
                 <button
                   className="preview-card-flipbtn"
@@ -264,7 +279,7 @@ export default function ArchivePage() {
                 <div className="preview-card-face preview-card-front">
                   <CardPortrait card={preview} size={260} />
                 </div>
-                <div className="preview-card-face preview-card-back" style={{ '--rc': rarityColor(preview.rarity) } as React.CSSProperties}>
+                <div className="preview-card-face preview-card-back" style={{ ...cardThemeStyle(preview.setId), '--rc': rarityColor(preview.rarity), '--hulu-color': preview.palette[0] } as React.CSSProperties}>
                   <b className="pcb-rarity">{preview.rarity}</b>
                   <h4>{zh ? preview.name.zh : preview.name.en}</h4>
                   {preview.hanzi ? <HanziLesson card={preview} zh={zh} /> : (
@@ -275,7 +290,7 @@ export default function ArchivePage() {
                   )}
                 </div>
               </div>
-              <div className="card-preview-info" style={{ '--rc': rarityColor(preview.rarity) } as React.CSSProperties}>
+              <div className="card-preview-info" style={{ ...cardThemeStyle(preview.setId), '--rc': rarityColor(preview.rarity), '--hulu-color': preview.palette[0] } as React.CSSProperties}>
                 <h3>{zh ? preview.name.zh : preview.name.en}</h3>
                 <span className="cpr-rarity">{preview.rarity}</span>
                 {preview.hanzi ? <HanziLesson card={preview} zh={zh} /> : (
@@ -284,6 +299,8 @@ export default function ArchivePage() {
                     <p className="cpr-desc">{zh ? preview.desc.zh : preview.desc.en}</p>
                   </>
                 )}
+                <JourneyLoreDetails card={preview} zh={zh} />
+                <HuluLoreDetails card={preview} zh={zh} />
                 {!owned.includes(preview.id) && <span className="cpr-locked">{zh ? '尚未解锁' : 'Locked'}</span>}
               </div>
             </div>
@@ -296,13 +313,14 @@ export default function ArchivePage() {
 
 /** 未登录时也保留图鉴入口，避免新套系在空白页中不可见。 */
 function ArchiveGuestPreview({ zh }: { zh: boolean }) {
+  const nav = useNavigate();
+  const [activeSet, setActiveSet] = useState<CardSetId | 'all'>('all');
+  const cards = activeSet === 'all' ? STAR_CARDS : cardsBySet(activeSet);
   return (
-    <div className="page archive-page archive-guest-preview">
-      <PageHero
-        eyebrow={zh ? '星核档案库' : 'Star Archive'}
-        title={zh ? '图鉴预览' : 'Card Preview'}
-        planet="academy"
-      />
+    <div className={`page archive-page archive-guest-preview${activeSet === 'journey' ? ' journey-active' : activeSet === 'hulu' ? ' hulu-active' : ' reframed-active'}`}>
+      {activeSet === 'journey' ? <JourneyCollectionHero leading={<BackButton onClick={() => nav('/')} label={zh ? '返回' : 'Back'} aria-label={zh ? '返回首页' : 'Back to home'} />} zh={zh} /> : activeSet === 'hulu' ? <HuluCollectionHero leading={<BackButton onClick={() => nav('/')} label={zh ? '返回' : 'Back'} aria-label={zh ? '返回首页' : 'Back to home'} />} zh={zh} /> : (
+        <PageHero leading={<BackButton onClick={() => nav('/')} label={zh ? '返回首页' : 'Back to home'} />} eyebrow={zh ? '星核档案库' : 'Star Archive'} title={zh ? '图鉴预览' : 'Card Preview'} planet="academy" />
+      )}
       <section className="summon-panel">
         <div className="summon-glow" />
         <div className="summon-info">
@@ -314,23 +332,24 @@ function ArchiveGuestPreview({ zh }: { zh: boolean }) {
         <div className="filter-tier">
           <span className="filter-label">{zh ? '套系' : 'Series'}</span>
           <div className="filter-row">
+            <button className={`filter-chip${activeSet === 'all' ? ' active' : ''}`} onClick={() => setActiveSet('all')}>{zh ? '全部' : 'All'}</button>
             {CARD_SETS.map((set) => (
-              <span className="filter-chip" key={set.id}>
+              <button className={`filter-chip${activeSet === set.id ? ' active' : ''}`} key={set.id} onClick={() => setActiveSet(set.id)} aria-pressed={activeSet === set.id}>
                 <span className="fc-icon">{set.icon}</span>
                 <b>{zh ? set.name.zh : set.name.en}</b>
                 <small>0/{cardsBySet(set.id).length}</small>
-              </span>
+              </button>
             ))}
           </div>
         </div>
       </section>
       <section className="gallery-shelf">
         <div className="rarity-cards">
-          {STAR_CARDS.map((card) => (
+          {cards.map((card) => (
             <div
               key={card.id}
-              className={`ccard unlit c-${card.rarity}${card.setId === 'paw-patrol' ? ' ccard-character-preview' : ''}`}
-              style={{ '--rc': rarityColor(card.rarity) } as React.CSSProperties}
+              className={`ccard unlit c-${card.rarity}${cardThemeClass(card.setId)}`}
+              style={{ ...cardThemeStyle(card.setId), '--rc': rarityColor(card.rarity), '--hulu-color': card.palette[0] } as React.CSSProperties}
               title={zh ? card.name.zh : card.name.en}
             >
               <div className="ccard-face ccard-front">
@@ -339,7 +358,7 @@ function ArchiveGuestPreview({ zh }: { zh: boolean }) {
                   <span className="ccard-name">{zh ? card.name.zh : card.name.en}</span>
                   <small>{zh ? CARD_SETS.find((set) => set.id === card.setId)?.name.zh : CARD_SETS.find((set) => set.id === card.setId)?.name.en}</small>
                 </div>
-                <div className="ccard-veil" />
+                <div className="ccard-veil" data-label={zh ? '未解锁' : 'Locked'} />
               </div>
             </div>
           ))}

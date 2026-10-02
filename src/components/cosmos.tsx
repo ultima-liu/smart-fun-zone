@@ -146,7 +146,7 @@ export function JuanHorizon({ className = '' }: { className?: string }) {
   );
 }
 
-/** 卷星地表豆豆树：卷卷树干 + 星云紫树冠 + 三颗卷卷豆 */
+/** 卷星地表豆豆树：卷卷树干 + 星云紫树冠 + 三颗卷星币 */
 export function BeanTree({ size = 64, className = '' }: { size?: number; className?: string }) {
   return (
     <svg
@@ -168,7 +168,7 @@ export function BeanTree({ size = 64, className = '' }: { size?: number; classNa
         <circle cx="50" cy="32" r="17" fill="#A78BFA" opacity="0.92" />
         <path d="M36 34 q8 -8 16 0" stroke="#C4B5FD" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.7" />
       </g>
-      {/* 卷卷豆 */}
+      {/* 卷星币 */}
       <g className="bt-beans">
         <ellipse cx="34" cy="72" rx="5.5" ry="7" fill="#F6C24B" transform="rotate(-18 34 72)" />
         <ellipse cx="55" cy="76" rx="5.5" ry="7" fill="#F2A65A" transform="rotate(12 55 76)" />

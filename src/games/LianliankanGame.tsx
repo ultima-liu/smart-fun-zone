@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from '../store';
 import { sfx } from '../sfx';
@@ -19,6 +20,7 @@ export interface LianliankanOutcome {
 }
 
 interface LianliankanGameProps {
+  headerAction?: ReactNode;
   lang: 'zh' | 'en';
   playerName: string;
   onComplete: (outcome: LianliankanOutcome) => void;
@@ -331,7 +333,7 @@ function buildRoundBoard(cfg: RoundCfg, walls: Set<number>): (Tile | null)[] {
 
 const mmss = (sec: number) => `${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(Math.floor(sec % 60)).padStart(2, '0')}`;
 
-export default function LianliankanGame({ lang, playerName, onComplete }: LianliankanGameProps) {
+export default function LianliankanGame({ lang, playerName, onComplete, headerAction }: LianliankanGameProps) {
   const [mode, setMode] = useState<PlayMode>('free');
   const [difficulty, setDifficulty] = useState<Difficulty>('normal');
   const [level, setLevel] = useState(1);
@@ -647,7 +649,7 @@ export default function LianliankanGame({ lang, playerName, onComplete }: Lianli
   return (
     <section className="lk-skytrail" aria-labelledby="lk-title">
       <header className="lk-heading">
-        <div className="lk-title-seal" aria-hidden="true"><i /><b>连</b><i /></div>
+        {headerAction ?? (<div className="lk-title-seal" aria-hidden="true"><i /><b>连</b><i /></div>)}
         <div>
           <span>{isZh ? '云上配对 · 今日开放' : 'SKY PAIRS · NOW OPEN'}</span>
           <h2 id="lk-title">{isZh ? '云径连连看' : 'Cloud Path Match'}</h2>
@@ -729,7 +731,14 @@ export default function LianliankanGame({ lang, playerName, onComplete }: Lianli
                     aria-disabled={!!result}
                     onClick={() => tapTile(inner)}
                   >
-                    <span className={`lk-face k${tile.symbol}`} aria-hidden="true">{meta[0]}</span>
+                    <span className={`lk-face k${tile.symbol}`} aria-hidden="true">
+                      <i
+                        className="lk-symbol-art"
+                        style={{
+                          backgroundPosition: `${(tile.symbol % 6) * 20}% ${Math.floor(tile.symbol / 6) * 50}%`,
+                        }}
+                      />
+                    </span>
                   </button>
                 );
               })}

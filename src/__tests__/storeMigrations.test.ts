@@ -26,4 +26,15 @@ describe('本地存档迁移', () => {
     const migrated = migrateAppState({ profiles: [] }, 5);
     expect(migrated.taskStates).toEqual({});
   });
+
+  it('把旧版指定日期课时表迁移成周课程表，并保留已生成邮件快照', () => {
+    const legacyId = 'g1:2026-09-29:math:playground';
+    const migrated = migrateAppState({
+      courseSchedule: [{ id: legacyId, date: '2026-09-29', grade: 'g1', subject: 'math', lessonId: 'playground', reward: 8 }],
+      taskStates: { c1: { version: 1, updatedAt: 1, initializedAt: 1, completed: {}, lessonCompletedAt: {}, courseMails: { [legacyId]: { startedAt: 1 } }, dismissedOn: {}, visitorShown: [] } },
+    }, 7);
+    expect(migrated.courseSchedule).toEqual([{ id: 'g1:weekday:2', grade: 'g1', weekday: 2, subjects: ['math'] }]);
+    expect(migrated.taskStates.c1.courseMails[legacyId]).toMatchObject({ date: '2026-09-29', subject: 'math', lessonId: 'playground', reward: 8, startedAt: 1 });
+  });
+
 });

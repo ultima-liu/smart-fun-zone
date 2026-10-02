@@ -1,0 +1,55 @@
+/* 套系卡面使用完整舞台和各自的边框；西游与葫芦娃保持专属组件。 */
+.themed-portrait.ccard-portrait { filter: none; }
+.themed-portrait .card-art-ink :is(path, circle, ellipse, rect, polygon) { stroke: #241a45; stroke-width: 2.1; stroke-linejoin: round; stroke-linecap: round; paint-order: stroke fill; }
+.themed-portrait .card-art-ink .noink, .themed-portrait .card-art-ink .noink * { stroke: none !important; }
+.themed-portrait .ccard-npc-art { filter: none; }
+.ccard.themed-card { aspect-ratio: 200 / 280; }
+.themed-card .themed-portrait { width: 100%; height: 100%; }
+:root[data-theme] .ccard.themed-card .ccard-front { padding: 0; border: 0; background: var(--card-paper); filter: none; border-radius: 13px; box-shadow: 0 7px 18px #070b2033; }
+.ccard.themed-card .ccard-titleplate { display: none; }
+.ccard.themed-card.lit::after { display: none; }
+.ccard.themed-card .ccard-veil { background: none; backdrop-filter: none; padding: 0; pointer-events: none; }
+.ccard.themed-card .ccard-veil::after { content: attr(data-label); position: absolute; top: 37px; left: 12px; font-size: 9px; padding: 2px 5px; background: var(--card-paper); color: var(--card-ink); border: 1px solid var(--card-edge); border-radius: 3px; opacity: .95; }
+.ccard.themed-card:focus-visible { outline: 3px solid var(--card-accent); outline-offset: 4px; border-radius: 12px; }
+:root[data-theme] .ccard.themed-card:is(.card-theme-brook, .card-theme-bruco, .card-theme-ship, .card-theme-game, .card-theme-hanzi) .ccard-front { border-radius: 3px; }
+:root[data-theme] .ccard.themed-card.card-theme-monster .ccard-front { border-radius: 19px; }
+.reframed-active .gallery-shelf { max-width: 1180px; padding: 24px; }
+.reframed-active .rarity-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+.reframed-active .ccard { width: 100%; }
+
+.themed-preview .preview-card { width: 330px; aspect-ratio: 200 / 280; }
+:root[data-theme] .themed-preview .preview-card-front { padding: 0; border: 0; border-radius: 13px; background: var(--card-paper) !important; filter: none; }
+.themed-preview .preview-card-front .themed-portrait { width: 100%; height: 100%; }
+:root[data-theme] .themed-preview:is(.card-theme-brook, .card-theme-bruco, .card-theme-ship, .card-theme-game, .card-theme-hanzi) .preview-card-front { border-radius: 3px; }
+:root[data-theme] .themed-preview .preview-card-back { background: var(--card-paper); color: var(--card-ink); border: 2px solid var(--card-edge); border-radius: 13px; }
+.themed-preview .pcb-quote, .themed-preview .pcb-rarity { color: var(--card-accent); }
+.themed-preview .pcb-desc { color: var(--card-ink); }
+.themed-preview .preview-card-flipbtn { top: 39px; color: var(--card-ink); background: var(--card-paper); border: 1px solid var(--card-edge); width: 44px; height: 44px; }
+.themed-preview .card-preview-close { background: var(--card-paper); color: var(--card-ink); border: 1px solid var(--card-edge); width: 44px; height: 44px; top: -52px; }
+:root[data-theme] .themed-preview .card-preview-info { background: var(--card-paper); color: var(--card-ink); border: 1px solid var(--card-edge); border-top: 4px solid var(--card-accent); border-radius: 12px; padding: 25px; }
+:root[data-theme] .themed-preview .card-preview-info h3 { color: var(--card-ink); }
+:root[data-theme] .themed-preview .cpr-desc { color: var(--card-ink); line-height: 1.85; }
+:root[data-theme] .themed-preview .cpr-quote { color: var(--card-accent); }
+.themed-preview .cpr-rarity { color: var(--card-accent); border-color: var(--card-edge); }
+.themed-preview .cpr-locked { color: var(--card-ink); opacity: .7; }
+:root[data-theme] .themed-preview.card-theme-paw-patrol :is(.cpr-quote, .cpr-rarity, .pcb-quote, .pcb-rarity) { color: #ffb8ab; }
+.themed-preview .hanzi-card-pinyin { color: #a14a38; }
+.themed-preview .hanzi-card-facts span { border-color: #bea783; }
+.themed-preview .hanzi-card-words span, .themed-preview .hanzi-writing-tip { background: #e9dcc3; }
+.themed-preview .hanzi-writing-tip { border-color: #a14a38; }
+.themed-preview.card-theme-hanzi .pcb-rarity { color: #a14a38; }
+
+@media (max-width: 1100px) { .reframed-active .rarity-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; } }
+@media (max-width: 850px) {
+  .reframed-active .rarity-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .themed-preview { overflow-y: auto; align-items: start; padding: 65px 18px 28px; }
+  .themed-preview .card-preview-content { flex-direction: column; gap: 20px; }
+  .themed-preview .preview-card { width: min(280px, 68vw); }
+  .themed-preview .card-preview-info { flex: none; width: 100%; max-width: 440px; }
+}
+@media (max-width: 600px) {
+  .reframed-active .rarity-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .reframed-active .gallery-shelf { padding: 13px; }
+  .themed-preview .card-preview-info { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .ccard.themed-card, .themed-preview .preview-card-face { transition: none; } }

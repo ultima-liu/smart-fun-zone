@@ -1,0 +1,126 @@
+/* 葫芦娃：纸艺山景、七色葫芦；仅覆盖本套系。 */
+.page.archive-page.hulu-active {
+  --hulu-paper: #fbf3df;
+  --hulu-ink: #2d4a34;
+  --hulu-muted: #667354;
+  --hulu-line: #ced2b1;
+  background: #f0eedc;
+  border-radius: 20px;
+}
+.hulu-active::before { background: radial-gradient(ellipse at top right, #9fb18830, transparent 65%); }
+.hulu-collection-hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: center;
+  max-width: 1180px; margin: 0 auto 24px; padding: 32px 38px;
+  border: 2px solid #bec5a2; border-radius: 20px 20px 48px 20px;
+  background: #fbf3df; color: #2d4a34;
+  box-shadow: 0 8px 0 #d6dac2, 0 20px 40px #334a2710;
+}
+.hulu-collection-hero::after {
+  content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none;
+  background: radial-gradient(#947b4326 .65px, transparent .65px) 0 0 / 6px 6px;
+}
+.hulu-eyebrow { font-size: 11px; letter-spacing: .18em; color: #647353; font-weight: 700; }
+.hulu-hero-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 20px 0 14px; }
+.hulu-hero-heading h2 { margin: 0; font: 800 clamp(30px, 3.4vw, 46px)/1.2 STKaiti, KaiTi, serif; letter-spacing: .07em; color: #2d4a34; }
+:root[data-theme] .app .hulu-hero-heading .page-back { background: #5273480b; color: #53644a; border-color: #52734830; box-shadow: none; }
+:root[data-theme] .app .hulu-hero-heading .page-back:hover { background: #52734817; border-color: #5273484d; }
+:root[data-theme] .app .hulu-hero-heading .page-back:active { background: #52734824; }
+.hulu-hero-copy > p { max-width: 430px; font-size: 13px; line-height: 1.9; color: #647353; margin: 0; }
+.hulu-hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0; }
+.hulu-hero-tags span { font-size: 11px; padding: 6px 10px; border-radius: 5px; border: 1px solid #c9d0aa; color: #47623c; background: #e9edd8; }
+.hulu-hero-tags span:last-child { background: #f2e2d3; border-color: #d9b9a1; color: #885635; }
+.hulu-progress { display: flex; gap: 12px; align-items: center; font-size: 12px; color: #667354; }
+.hulu-progress b { color: #3e663e; font-size: 21px; }
+.hulu-progress progress { appearance: none; width: 120px; height: 7px; border: 0; border-radius: 5px; overflow: hidden; background: #dedfc9; }
+.hulu-progress progress::-webkit-progress-bar { background: #dedfc9; }
+.hulu-progress progress::-webkit-progress-value { background: #527348; }
+.hulu-progress progress::-moz-progress-bar { background: #527348; }
+.hulu-hero-scene { position: relative; padding: 78px 8px 8px; text-align: center; min-width: 0; }
+.hulu-vine { position: absolute; width: 100%; height: 120px; top: -20px; left: 0; }
+.hulu-hero-characters { display: flex; gap: 14px; justify-content: center; }
+.hulu-hero-characters img { width: 42%; max-width: 150px; height: 186px; object-fit: cover; border: 5px solid #fffae9; outline: 1px solid #c1c5a2; box-shadow: 0 6px 0 #a8b291; transform: rotate(-7deg); border-radius: 10px; }
+.hulu-hero-characters img:last-child { transform: rotate(7deg) translateY(10px); }
+.hulu-scene-caption { display: block; margin-top: 26px; color: #647353; font-size: 10px; letter-spacing: .18em; }
+:root[data-theme] .hulu-active .filter-panels,
+:root[data-theme] .hulu-active .gallery-shelf { background: var(--hulu-paper) !important; border: 1px solid var(--hulu-line) !important; box-shadow: 0 8px 24px #334a2710 !important; }
+.hulu-active .filter-panels { max-width: 1180px; border-radius: 14px; }
+:root[data-theme] .hulu-active .filter-tier { background: transparent !important; border-color: var(--hulu-line) !important; box-shadow: none !important; }
+:root[data-theme] .hulu-active .filter-label { background: #4e714b !important; color: #fff5da !important; border-radius: 7px; }
+:root[data-theme] .hulu-active .filter-chip { background: var(--hulu-paper) !important; color: var(--hulu-ink) !important; border: 1px solid var(--hulu-line) !important; box-shadow: none !important; border-radius: 8px; min-height: 44px; }
+:root[data-theme] .hulu-active .filter-chip b { color: inherit !important; }
+:root[data-theme] .hulu-active .filter-chip small { color: var(--hulu-muted) !important; }
+:root[data-theme] .hulu-active .filter-chip.active { background: #4e714b !important; color: #fff5da !important; border-color: #4e714b !important; }
+:root[data-theme] .hulu-active .filter-chip.active small { color: #e5e9c7 !important; }
+:root[data-theme] .hulu-active .summon-panel { max-width: 1180px; background: #39593b !important; border: 1px solid #6c8b52 !important; border-radius: 14px; box-shadow: none !important; }
+:root[data-theme] .hulu-active .summon-info h3 { color: #fff0cd !important; }
+:root[data-theme] .hulu-active .summon-info p { color: #d8e0bd !important; }
+.hulu-active .summon-glow { display: none; }
+.hulu-active .summon-actions .kid-btn { background: #eed29a; border-color: #fae3b4; color: #314c31; border-radius: 10px; }
+.hulu-active .gallery-shelf { max-width: 1180px; padding: 25px; border-radius: 16px; }
+.hulu-active .rarity-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+.ccard.hulu-card { aspect-ratio: 200 / 280; }
+.hulu-active .ccard.hulu-card { width: 100%; }
+:root[data-theme] .ccard.hulu-card .ccard-front { padding: 0; background: #faf1db; border: 0; border-radius: 13px; filter: none; box-shadow: 0 6px 0 #405b3026, 0 10px 18px #283c2518; }
+.hulu-portrait { filter: none; }
+.hulu-card .hulu-portrait { width: 100%; height: 100%; }
+.hulu-card .ccard-titleplate { display: none; }
+.ccard.hulu-card .ccard-veil { background: none; backdrop-filter: none; padding: 0; pointer-events: none; align-items: start; justify-items: center; }
+.ccard.hulu-card .ccard-veil::after { content: attr(data-label); position: absolute; top: 39px; left: 12px; padding: 2px 5px; background: #fff6e2e6; color: #4c6542; font-size: 9px; border-radius: 3px; opacity: 1; border: 1px solid #bdc8a6; }
+.ccard.hulu-card.lit::after { display: none; }
+.ccard.hulu-card:focus-visible { outline: 3px solid #628246; outline-offset: 5px; border-radius: 13px; }
+:root[data-theme] .hulu-active .sr-card { background: var(--hulu-paper) !important; border-color: var(--hulu-line) !important; color: var(--hulu-ink); border-radius: 12px; }
+:root[data-theme] .hulu-active .sr-card b { color: var(--hulu-ink) !important; }
+:root[data-theme] .hulu-active .sr-card small { color: var(--hulu-muted) !important; }
+:root[data-theme] .hulu-active .sr-card .kid-btn { background: #4e714b !important; color: #fff5da !important; border-color: #759064; box-shadow: none; }
+:root[data-theme] .hulu-active .sr-card .kid-btn:disabled { background: #dde3cc !important; color: #41573a !important; opacity: 1; }
+.hulu-preview .card-preview-backdrop { background: #142c1ae3; }
+.hulu-preview .preview-card { width: 340px; aspect-ratio: 200 / 280; }
+.hulu-preview .preview-card-face { border-radius: 14px; }
+:root[data-theme] .hulu-preview .preview-card-front { padding: 0; background: #faf1db !important; border: 0; filter: none; }
+:root[data-theme] .hulu-preview .preview-card-back { background: #faf1db; color: #2d4a34; border: 3px solid var(--hulu-color); }
+.hulu-preview .pcb-quote, .hulu-preview .pcb-rarity { color: var(--hulu-color); }
+.hulu-preview .pcb-desc { color: #4b5d42; }
+:root[data-theme] .hulu-preview .card-preview-info { background: #fbf3df; color: #2d4a34; border: 1px solid #c3caa6; border-top: 5px solid var(--hulu-color); border-radius: 15px; padding: 26px; }
+:root[data-theme] .hulu-preview .card-preview-info h3 { color: #2d4a34; font: 800 30px/1.2 STKaiti, KaiTi, serif; }
+:root[data-theme] .hulu-preview .cpr-desc { color: #4b5d42; }
+:root[data-theme] .hulu-preview .cpr-quote, .hulu-preview .cpr-rarity { color: var(--hulu-color); border-color: var(--hulu-color); }
+.hulu-preview .cpr-locked { color: #69765a; }
+.hulu-preview .card-preview-close, .hulu-preview .preview-card-flipbtn { color: #345434; background: #fff5dc; border: 1px solid #b6c096; width: 44px; height: 44px; }
+.hulu-preview .preview-card-flipbtn { top: 44px; }
+.hulu-preview .card-preview-close { top: -54px; }
+.hulu-lore { border-top: 1px dashed #bdc6a0; margin-top: 16px; padding-top: 8px; }
+.hulu-lore dl { display: grid; gap: 9px; font-size: 12px; }
+.hulu-lore dl > div { display: grid; grid-template-columns: 74px 1fr; gap: 8px; }
+.hulu-lore dt { color: #76815e; }
+.hulu-lore dd { margin: 0; color: #3d5738; font-weight: 700; }
+.hulu-lore > p { border-radius: 9px; background: #e8ecd4; padding: 12px; font-size: 12px; color: #4b5d42; line-height: 1.8; }
+.hulu-lore p b { display: block; color: #39593b; margin-bottom: 4px; }
+:root[data-theme="dark"] .page.archive-page.hulu-active { --hulu-paper: #24392a; --hulu-ink: #f3e8cb; --hulu-muted: #c1ccaa; --hulu-line: #506346; background: #1b2c20; }
+@media (max-width: 1100px) {
+  .hulu-active .rarity-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .hulu-collection-hero { padding: 26px; gap: 16px; }
+}
+@media (max-width: 850px) {
+  .hulu-active .rarity-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hulu-hero-heading h2 { font-size: 34px; }
+  .hulu-hero-characters img { height: 160px; }
+  .hulu-hero-tags { gap: 5px; }
+  .hulu-preview { overflow-y: auto; align-items: start; padding: 68px 18px 28px; }
+  .hulu-preview .card-preview-content { flex-direction: column; gap: 20px; }
+  .hulu-preview .preview-card { width: min(280px, 68vw); }
+  .hulu-preview .card-preview-info { flex: none; width: 100%; max-width: 440px; }
+}
+@media (max-width: 600px) {
+  .hulu-collection-hero { grid-template-columns: 1fr; padding: 23px; border-radius: 15px 15px 35px 15px; }
+  .hulu-hero-scene { padding-top: 58px; }
+  .hulu-vine { height: 90px; top: -12px; }
+  .hulu-hero-characters img { max-width: 125px; height: 145px; }
+  .hulu-active .rarity-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .hulu-active .gallery-shelf { padding: 14px; }
+  .hulu-active .sr-card { flex-wrap: wrap; }
+  .hulu-preview .card-preview-info { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hulu-card, .hulu-preview .preview-card-face { transition: none; }
+}

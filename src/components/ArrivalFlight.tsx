@@ -9,19 +9,30 @@ interface ArrivalFlightProps {
   /** 进入总部大楼后播放的欢迎语（已按语言生成好的文案） */
   greet?: string;
   lang?: 'zh' | 'en';
+  mode?: 'full' | 'brief';
 }
 
 /** 到达首页的入场动画：左上舱门开 → 小飞船飞出 → 飞向卷星总部大楼 → 抵达闪光消失并播欢迎语 */
-export default function ArrivalFlight({ onDone, greet, lang }: ArrivalFlightProps) {
+export default function ArrivalFlight({ onDone, greet, lang, mode = 'full' }: ArrivalFlightProps) {
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
   const [start, setStart] = useState<P | null>(null);
   const [target, setTarget] = useState<P | null>(null);
   const [flashOn, setFlashOn] = useState(false);
   const [welcomeOn, setWelcomeOn] = useState(false);
+  const [brief, setBrief] = useState(mode === 'brief');
   const timers = useRef<number[]>([]);
 
   useEffect(() => {
+    timers.current = [];
+    const shortWelcome = mode === 'brief' || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setBrief(shortWelcome);
+    if (shortWelcome) {
+      setWelcomeOn(true);
+      timers.current.push(window.setTimeout(onDone, 1800));
+      return () => timers.current.forEach((timer) => window.clearTimeout(timer));
+    }
+    setWelcomeOn(false);
     // 等页面入场动画完全稳定后再测量，避免目标偏移
     const wait = window.setTimeout(() => {
       const doorEl = document.querySelector('.af-door');
@@ -53,19 +64,19 @@ export default function ArrivalFlight({ onDone, greet, lang }: ArrivalFlightProp
       stopThrust();
     };
 
-  }, []);
+  }, [mode]);
 
   return createPortal(
-    <div className="af-layer" aria-hidden="true">
+    <div className={`af-layer${brief ? ' af-brief' : ''}`} aria-hidden="true">
       {/* 左上角舱门（初始关闭，上下开启） */}
-      <div className={`af-door${open ? ' is-open' : ''}`}>
+      {!brief && <div className={`af-door${open ? ' is-open' : ''}`}>
         <i className="af-leaf af-leaf-t" />
         <i className="af-leaf af-leaf-b" />
         <span className="af-door-glow" />
-      </div>
+      </div>}
 
       {/* 小飞船：自门心飞出，机头转向目标，沿弧线飞向卷星总部大楼 */}
-      {ready && start && target && (() => {
+      {!brief && ready && start && target && (() => {
         const dx = target.x - start.x;
         const dy = target.y - start.y;
         const ang = (Math.atan2(dx, -dy) * 180) / Math.PI; // 机头朝上的飞船需转到的角度
@@ -95,7 +106,7 @@ export default function ArrivalFlight({ onDone, greet, lang }: ArrivalFlightProp
       })()}
 
       {/* 总部大楼处抵达闪光 */}
-      {target && <span className={`af-flash${flashOn ? ' on' : ''}`} style={{ left: target.x, top: target.y }} />}
+      {!brief && target && <span className={`af-flash${flashOn ? ' on' : ''}`} style={{ left: target.x, top: target.y }} />}
 
       {/* 欢迎词：抵达闪光后出现，给视觉与语音留出完整的识别时间 */}
       <div className={`af-welcome${welcomeOn ? ' on' : ''}`}>

@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
@@ -68,9 +69,7 @@ export default function HqSettingsPage() {
     <div className="page hq-page">
       <div className="hq-inner">
         <header className="hq-settings-top">
-          <button className="hq-back" onClick={() => nav('/profile')} aria-label={t('back')}>
-            ←
-          </button>
+          <BackButton onClick={() => nav('/profile')} label={lang === 'zh' ? '返回总部' : 'Back to HQ'} />
           <h1>{t('settings')}</h1>
         </header>
 

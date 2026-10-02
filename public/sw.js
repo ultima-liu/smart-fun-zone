@@ -1,7 +1,28 @@
 /* 聪明乐园 Service Worker：离线可用（构建产物带哈希，可安全缓存） */
 const CACHE_PREFIX = 'smart-fun-zone-';
-// 课程 P51 的任务一已从“9－3＝□”改为场景关系图；升级缓存以淘汰旧页面脚本。
-const CACHE = 'smart-fun-zone-v4';
+// 淘汰可能把 SPA 的 HTML 回退误存为人物图片的旧缓存。
+const CACHE = 'smart-fun-zone-v5';
+
+function isUsableAsset(request, response) {
+  if (!response || !response.ok) return false;
+  const type = (response.headers.get('content-type') || '').toLowerCase();
+  const pathname = new URL(request.url).pathname;
+  const isImage = request.destination === 'image' || /\.(?:png|jpe?g|webp|svg|gif|avif|ico)$/i.test(pathname);
+  // HTTP 200 不代表返回了图片，开发服务器/SPA 托管可能回退到 index.html。
+  return isImage ? type.startsWith('image/') : !type.includes('text/html');
+}
+
+async function staticAsset(request) {
+  const cache = await caches.open(CACHE);
+  const hit = await cache.match(request);
+  if (isUsableAsset(request, hit)) return hit;
+  if (hit) await cache.delete(request);
+  // 损坏缓存恢复时，同时避开 HTTP 缓存里可能保存的错误页面。
+  const isImage = request.destination === 'image' || /\.(?:png|jpe?g|webp|svg|gif|avif|ico)$/i.test(new URL(request.url).pathname);
+  const response = await fetch(request, hit || isImage ? { cache: 'no-cache' } : undefined);
+  if (isUsableAsset(request, response)) await cache.put(request, response.clone());
+  return response;
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -57,15 +78,6 @@ self.addEventListener('fetch', (event) => {
             // HTML 优先使用最新版本；离线时才回退到应用外壳。
             return (await caches.match(request)) || (await caches.match('/index.html')) || Response.error();
           })
-      : isStaticAsset ? caches.match(request).then((hit) => {
-          if (hit) return hit;
-          return fetch(request).then((res) => {
-            if (res.ok) {
-              const copy = res.clone();
-              caches.open(CACHE).then((cache) => cache.put(request, copy));
-            }
-            return res;
-          });
-        }) : fetch(request),
+      : isStaticAsset ? staticAsset(request) : fetch(request),
   );
 });

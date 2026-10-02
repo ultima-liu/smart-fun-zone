@@ -82,7 +82,7 @@ export default function GachaModal({ open, onClose }: Props) {
   const castMsg = burst
     ? (zh ? '星门爆发！' : 'The gate bursts!')
     : castTick === 0
-      ? (zh ? '卷卷豆能量汇聚…' : 'Gathering bean energy…')
+      ? (zh ? '卷星币能量汇聚…' : 'Gathering coin energy…')
       : castTick === 1
         ? (zh ? '法阵震颤…' : 'The circle trembles…')
         : castTick === 2
@@ -96,23 +96,23 @@ export default function GachaModal({ open, onClose }: Props) {
       <div className="gacha-stage">
         {phase === 'idle' && (
           <div className="gacha-intro">
-            <h2>{zh ? '卷卷豆召唤' : 'Bean Summon'}</h2>
+            <h2>{zh ? '卷星币召唤' : 'Coin Summon'}</h2>
             <p className="gacha-shard-count">
-              <span className="gs-icon">🫘</span>
-              {zh ? `当前卷卷豆：${beans}` : `Beans: ${beans}`}
+              <span className="gs-icon">🪙</span>
+              {zh ? `当前卷星币：${beans}` : `Coins: ${beans}`}
             </p>
             <div className="gacha-buttons">
               <button className="gacha-btn single" onClick={() => startDraw(1)} disabled={beans < DRAW_COST.single}>
                 <b>{zh ? '召唤 ×1' : 'Summon ×1'}</b>
-                <small>🫘 {DRAW_COST.single}</small>
+                <small>🪙 {DRAW_COST.single}</small>
               </button>
               <button className="gacha-btn ten" onClick={() => startDraw(10)} disabled={beans < DRAW_COST.ten}>
                 <b>{zh ? '召唤 ×10' : 'Summon ×10'}</b>
-                <small>🫘 {DRAW_COST.ten}</small>
+                <small>🪙 {DRAW_COST.ten}</small>
               </button>
             </div>
             {beans < DRAW_COST.single && (
-              <p className="gacha-hint">{zh ? '卷卷豆不足，完成课程和任务来获取吧！' : 'Not enough beans. Complete lessons and quests!'}</p>
+              <p className="gacha-hint">{zh ? '卷星币不足，完成课程和任务来获取吧！' : 'Not enough coins. Complete lessons and quests!'}</p>
             )}
             <KidButton color="purple" onClick={() => { sfx.click(); onClose(); }}>{zh ? '关闭' : 'Close'}</KidButton>
           </div>

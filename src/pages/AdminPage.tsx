@@ -4,9 +4,13 @@ import { api, setToken, logout } from '../api';
 import { useStore as useStoreState } from '../store';
 import { effectiveCatalog, KIND_LABEL, CATALOG } from '../points';
 import { TASKS, type TaskDef } from '../tasks';
-import { IconBean } from '../components/icons';
+import { IconCoin } from '../components/icons';
+import type { ActiveSubject } from '../activeCourses';
+import type { CourseScheduleEntry } from '../taskTypes';
+import type { Grade } from '../types';
+import { effectiveCourseSchedule, weeklyStudySchedule } from '../weeklyStudyPlan';
 
-type Section = 'dashboard' | 'children' | 'parents' | 'store';
+type Section = 'dashboard' | 'children' | 'parents' | 'schedule' | 'store';
 
 interface ChildRow {
   id: number;
@@ -23,6 +27,12 @@ interface ChildRow {
 const GRADE_LABELS: Record<string, string> = {
   g1: '一年级', g2: '二年级', g3: '三年级', g4: '四年级', g5: '五年级', g6: '六年级',
 };
+const SUBJECT_LABELS: Record<ActiveSubject, string> = { math: '数学', chinese: '语文', english: '英语' };
+const COURSE_SUBJECTS = Object.keys(SUBJECT_LABELS) as ActiveSubject[];
+const WEEKDAYS: Array<{ id: CourseScheduleEntry['weekday']; label: string }> = [
+  { id: 1, label: '周一' }, { id: 2, label: '周二' }, { id: 3, label: '周三' }, { id: 4, label: '周四' },
+  { id: 5, label: '周五' }, { id: 6, label: '周六' }, { id: 7, label: '周日' },
+];
 
 /** 管理员后台：独立 /admin 路由 + 侧边栏。角色=admin 才可访问 */
 export default function AdminPage() {
@@ -34,16 +44,23 @@ export default function AdminPage() {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState('');
 
-  // 卷卷豆与补给站管理
+  // 卷星币与补给站管理
   const storeOverrides = useStoreState((s) => s.storeOverrides);
   const taskOverrides = useStoreState((s) => s.taskOverrides);
+  const courseSchedule = useStoreState((s) => s.courseSchedule);
   const patchStoreItem = useStoreState((s) => s.patchStoreItem);
   const removeStoreItem = useStoreState((s) => s.removeStoreItem);
   const patchTask = useStoreState((s) => s.patchTask);
+  const setCourseSchedule = useStoreState((s) => s.setCourseSchedule);
   const [edits, setEdits] = useState<Record<string, { name: string; cost: string; icon: string; acqType?: 'purchase' | 'event' }>>({});
   const [taskEdits, setTaskEdits] = useState<Record<string, string>>({});
   const [storeTab, setStoreTab] = useState<'outfit' | 'badge' | 'item' | 'reward' | 'tasks'>('outfit');
   const storeItems = effectiveCatalog(storeOverrides, true);
+  const [scheduleGrade, setScheduleGrade] = useState<Grade>('g1');
+  const [scheduleDraft, setScheduleDraft] = useState<CourseScheduleEntry[]>(() => effectiveCourseSchedule(courseSchedule));
+  const [scheduleReward, setScheduleReward] = useState(() => String(taskOverrides['category:course']?.reward ?? 8));
+  useEffect(() => setScheduleDraft(effectiveCourseSchedule(courseSchedule)), [courseSchedule]);
+  useEffect(() => setScheduleReward(String(taskOverrides['category:course']?.reward ?? 8)), [taskOverrides]);
   const saveItem = async (id: string) => {
     const e = edits[id];
     if (!e) return;
@@ -62,14 +79,42 @@ export default function AdminPage() {
     }
   };
   // 发布到服务端（全局唯一权威），所有端启动拉取；失败必须显式提示，避免本地与远端脱节
-  const pushRemote = async (): Promise<boolean> => {
+  const pushRemote = async (schedule = useStoreState.getState().courseSchedule): Promise<boolean> => {
     const s = useStoreState.getState();
-    const r = await api.saveStoreConfig(s.storeOverrides, s.taskOverrides);
+    const r = await api.saveStoreConfig(s.storeOverrides, s.taskOverrides, schedule);
     if (!r?.ok) {
       setMsg('⚠️ 已保存到本机，但同步到服务端失败：请确认管理员仍在登录状态，否则其他设备不会生效');
       return false;
     }
     return true;
+  };
+
+  const toggleScheduleSubject = (weekday: CourseScheduleEntry['weekday'], kind: 'subjects' | 'reviews', subject: ActiveSubject) => {
+    setScheduleDraft((current) => {
+      const id = `${scheduleGrade}:weekday:${weekday}`;
+      const existing = current.find((entry) => entry.id === id);
+      const selected = existing?.[kind] ?? [];
+      const nextSelected = selected.includes(subject) ? selected.filter((item) => item !== subject) : [...selected, subject];
+      const rest = current.filter((entry) => entry.id !== id);
+      return [...rest, { id, grade: scheduleGrade, weekday, subjects: existing?.subjects ?? [], reviews: existing?.reviews ?? [], [kind]: nextSelected }]
+        .sort((a, b) => a.grade.localeCompare(b.grade) || a.weekday - b.weekday);
+    });
+  };
+
+  const applyWeeklyStudyPlan = () => {
+    setScheduleDraft((current) => [
+      ...current.filter((entry) => entry.grade !== scheduleGrade),
+      ...weeklyStudySchedule(scheduleGrade),
+    ].sort((a, b) => a.grade.localeCompare(b.grade) || a.weekday - b.weekday));
+    setMsg('已填入每周三课节奏；点击“保存并发布课程表”后孩子端生效');
+  };
+
+  const saveCourseSchedule = async () => {
+    const reward = Number(scheduleReward);
+    if (!Number.isInteger(reward) || reward < 0) return setMsg('请填写有效的课程邮件奖励');
+    patchTask('category:course', { reward, enabled: true });
+    setCourseSchedule(scheduleDraft);
+    if (await pushRemote(scheduleDraft)) setMsg('✅ 周课程表已发布，新课和复习将按每天的勾选安排');
   };
 
   // 管理员登录（未登录/非 admin 时直接在 /admin 页登录）
@@ -249,6 +294,7 @@ export default function AdminPage() {
             ['dashboard', '📊 数据总览'],
             ['children', '🧒 孩子账号'],
             ['parents', '👩 家长账号'],
+            ['schedule', '📅 课程表'],
             ['store', '📦 物品管理'],
           ] as [Section, string][]).map(([k, label]) => (
             <button key={k} type="button" className={`adm-nav-btn ${section === k ? 'active' : ''}`} onClick={() => setSection(k)}>{label}</button>
@@ -260,7 +306,7 @@ export default function AdminPage() {
 
       <main className="adm-main">
         <header className="adm-head">
-          <div className="adm-head-title">{section === 'dashboard' ? '数据总览' : section === 'children' ? '孩子账号' : section === 'parents' ? '家长账号' : '物品管理'}</div>
+          <div className="adm-head-title">{section === 'dashboard' ? '数据总览' : section === 'children' ? '孩子账号' : section === 'parents' ? '家长账号' : section === 'schedule' ? '课程表' : '物品管理'}</div>
           {msg && <div className="adm-toast">{msg}</div>}
         </header>
 
@@ -356,6 +402,37 @@ export default function AdminPage() {
           </div>
         )}
 
+        {section === 'schedule' && (
+          <div className="adm-panel">
+            <div className="adm-info-card">
+              <b>📅 每周课程表</b>
+              <p>默认周一、周三、周五各上一节新课，周二、周四、周六各复习两科，周日休息。每天的新课与复习学科都可独立调整。</p>
+            </div>
+            <div className="adm-schedule-toolbar">
+              <label><span>查看年级</span><select className="adm-input" value={scheduleGrade} onChange={(event) => setScheduleGrade(event.target.value as Grade)}>{Object.entries(GRADE_LABELS).map(([id, label]) => <option key={id} value={id}>{label}</option>)}</select></label>
+              <label><span>每封课程邮件奖励</span><input className="adm-input" inputMode="numeric" value={scheduleReward} onChange={(event) => setScheduleReward(event.target.value.replace(/\D/g, ''))} /></label>
+              <button type="button" className="kid-btn sky" onClick={applyWeeklyStudyPlan}>填入三课复习模板</button>
+              <button type="button" className="kid-btn purple" onClick={() => void saveCourseSchedule()}>保存并发布课程表</button>
+            </div>
+            <p>每个复习学科当天从已学过的旧课中选一节；同一课以后仍可在下一次勾选的复习日回顾。模板只是起点，修改后保存才生效。</p>
+            <div className="adm-week-grid">
+              {WEEKDAYS.map((weekday) => {
+                const entry = scheduleDraft.find((item) => item.grade === scheduleGrade && item.weekday === weekday.id);
+                const courses = entry?.subjects ?? [];
+                const reviews = entry?.reviews ?? [];
+                return <section className="adm-week-day" key={weekday.id}>
+                  <div><strong>{weekday.label}</strong><small>{courses.length || reviews.length ? `新课 ${courses.length} · 复习 ${reviews.length}` : '休息日'}</small></div>
+                  <div className="adm-week-choices">
+                    {([['subjects', '新课', courses], ['reviews', '复习', reviews]] as const).map(([kind, label, selected]) => <div className="adm-week-choice" key={kind}>
+                      <b>{label}</b><div className="adm-week-subjects">{COURSE_SUBJECTS.map((subject) => <button type="button" key={subject} className={selected.includes(subject) ? 'selected' : ''} aria-pressed={selected.includes(subject)} onClick={() => toggleScheduleSubject(weekday.id, kind, subject)}>{selected.includes(subject) ? '✓ ' : '+ '}{SUBJECT_LABELS[subject]}</button>)}</div>
+                    </div>)}
+                  </div>
+                </section>;
+              })}
+            </div>
+          </div>
+        )}
+
         {section === 'store' && (
           <div className="adm-panel">
             <div className="adm-info-card">
@@ -419,7 +496,7 @@ export default function AdminPage() {
             {storeTab === 'tasks' && (
             <div className="adm-table">
               <div className="adm-tr adm-th adm-tr--tasks"><span>任务</span><span>类型</span><span>当前/默认分值</span><span>修改</span></div>
-              {TASKS.map((t: TaskDef) => {
+              {TASKS.filter((task) => task.kind !== 'course').map((t: TaskDef) => {
                 const ov = taskOverrides[t.id];
                 const cur = ov?.reward ?? t.reward;
                 const enabled = ov?.enabled ?? t.enabled ?? true;
@@ -427,7 +504,7 @@ export default function AdminPage() {
                   <div className="adm-tr adm-tr--tasks" key={t.id}>
                     <span>{t.icon} {t.title}<small style={{ display: 'block', color: 'var(--ink-faint)' }}>{t.id}</small></span>
                     <span>{({ course: '课程', chapter: '章节', review: '每日复习', challenge: '专项挑战', exploration: '探索支线', event: '主题活动', parent: '家长任务' } as Record<TaskDef['kind'], string>)[t.kind]}</span>
-                    <span><IconBean size={15} gradient="gold" /> {cur}</span>
+                    <span><IconCoin size={15} gradient="gold" /> {cur}</span>
                     <span className="adm-ops">
                       <input className="adm-input" style={{ width: 70 }} inputMode="numeric" placeholder={String(t.reward)} value={taskEdits[t.id] ?? ''} onChange={(e) => setTaskEdits({ ...taskEdits, [t.id]: e.target.value.replace(/\D/g, '') })} />
                       <button type="button" className="kid-btn purple xsmall" onClick={() => void saveTask(t.id)}>设分</button>

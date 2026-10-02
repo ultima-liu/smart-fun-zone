@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courseTotalStars } from '../activeCourses';
@@ -15,7 +16,7 @@ import { npcMeta } from '../content/npc';
 import NpcBuddy from '../components/NpcBuddy';
 import WardrobeAvatar from '../components/WardrobeAvatar';
 import AttrRadar from '../components/AttrRadar';
-import { IconBean } from '../components/icons';
+import { IconCoin } from '../components/icons';
 import { shelf } from '../points';
 import { localDayKey, localWeekdayIndex, rewardForCheckinStreak } from '../dailyCheckin';
 import { PREMIUM_OUTFITS } from '../content/outfits';
@@ -117,7 +118,7 @@ export default function ProfilePage() {
     return (
       <div className="page hq-page">
         <NpcBuddy npc="铁砣" />
-        <div className="hq-loading">{lang === 'zh' ? '请登录卷星账号…' : 'Please log in…'}</div>
+        <div className="hq-empty-heading"><BackButton onClick={() => nav('/')} label={lang === 'zh' ? '返回' : 'Back'} aria-label={lang === 'zh' ? '返回首页' : 'Back to home'} /><div className="hq-loading">{lang === 'zh' ? '请登录卷星账号…' : 'Please log in…'}</div></div>
       </div>
     );
   }
@@ -134,7 +135,7 @@ export default function ProfilePage() {
   }
   const nextCheckinReward = rewardForCheckinStreak(checkinStreak + 1);
   const rewardLabel = (reward: { beans: number; stardust: number }) =>
-    `${reward.beans} ${lang === 'zh' ? '卷卷豆' : 'beans'}${reward.stardust ? ` + ${reward.stardust} ${lang === 'zh' ? '星屑' : 'star fragments'}` : ''}`;
+    `${reward.beans} ${lang === 'zh' ? '卷星币' : 'coins'}${reward.stardust ? ` + ${reward.stardust} ${lang === 'zh' ? '星屑' : 'star fragments'}` : ''}`;
   const handleDailyCheckin = () => {
     const reward = claimDailyCheckin(child.id);
     if (!reward) {
@@ -184,10 +185,6 @@ export default function ProfilePage() {
             <div className="hq-satellite s1" aria-hidden="true">🪐</div>
             <div className="hq-satellite s2" aria-hidden="true">🚀</div>
 
-            <button className="hq-gear" onClick={() => nav('/profile/settings')} aria-label={t('settings')}>
-              ⚙️
-            </button>
-
             <div className="hq-avatar-ring">
               <WardrobeAvatar outfitId={displayedOutfitId} />
             </div>
@@ -197,7 +194,9 @@ export default function ProfilePage() {
               <span>{explorerTitle}</span>
             </div>
 
-            <h2 className="hq-name">{child.name}</h2>
+            <div className="hq-identity-heading"><BackButton onClick={() => nav('/')} label={lang === 'zh' ? '返回' : 'Back'} aria-label={lang === 'zh' ? '返回首页' : 'Back to home'} /><h2 className="hq-name">{child.name}</h2><button className="hq-gear" onClick={() => nav('/profile/settings')} aria-label={t('settings')}>
+              ⚙️
+            </button></div>
             <p className="hq-meta">
               {gradeLabel(child.ageBand, lang)} · ⭐ {totalStars}
             </p>
@@ -209,7 +208,7 @@ export default function ProfilePage() {
 
             <button className="hq-wallet-inline" onClick={() => nav('/store')}>
               <span className="hq-wallet-inline-icon">
-                <IconBean size={20} gradient="gold" />
+                <IconCoin size={20} gradient="gold" />
               </span>
               <span className="hq-wallet-inline-label">{t('beans')}</span>
               <span className="hq-wallet-inline-count">{pointsMap[child.id] ?? 0}</span>

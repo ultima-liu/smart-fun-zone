@@ -1,4 +1,7 @@
+import type { ReactNode } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useStore } from '../store';
+import { sfx } from '../sfx';
 import './gomoku.css';
 
 const BOARD_SIZE = 15;
@@ -10,6 +13,7 @@ type Difficulty = 'easy' | 'normal' | 'hard';
 type Result = 'win' | 'lose' | 'draw';
 
 interface GomokuGameProps {
+  headerAction?: ReactNode;
   lang: 'zh' | 'en';
   playerName: string;
   onComplete: (result: Result, durationSec: number, difficulty: Difficulty) => void;
@@ -114,7 +118,7 @@ export function chooseComputerMove(board: Stone[], difficulty: Difficulty): numb
   return ranked[Math.floor(Math.random() * pool)].index;
 }
 
-export default function GomokuGame({ lang, playerName, onComplete }: GomokuGameProps) {
+export default function GomokuGame({ lang, playerName, onComplete, headerAction }: GomokuGameProps) {
   const [board, setBoard] = useState<Stone[]>(() => Array(CELL_COUNT).fill(0));
   const [moves, setMoves] = useState<number[]>([]);
   const [turn, setTurn] = useState<'player' | 'computer'>('player');
@@ -123,18 +127,27 @@ export default function GomokuGame({ lang, playerName, onComplete }: GomokuGameP
   const [winningLine, setWinningLine] = useState<number[]>([]);
   const [score, setScore] = useState({ player: 0, computer: 0 });
   const startedAt = useRef(Date.now());
+  const sound = useStore((s) => s.sound);
 
   const isZh = lang === 'zh';
   const moveNumber = Math.ceil(moves.length / 2);
   const winningSet = useMemo(() => new Set(winningLine), [winningLine]);
   const latest = moves[moves.length - 1];
 
+  // 星河夜航背景音乐：随游戏挂载/卸载启停，也跟随全局声音开关
+  useEffect(() => {
+    if (!sound) return;
+    sfx.gomokuBgmStart();
+    return () => sfx.gomokuBgmStop();
+  }, [sound]);
+
   const finish = (nextResult: Result, line: number[]) => {
     setResult(nextResult);
     setWinningLine(line);
     setTurn('player');
-    if (nextResult === 'win') setScore((current) => ({ ...current, player: current.player + 1 }));
-    if (nextResult === 'lose') setScore((current) => ({ ...current, computer: current.computer + 1 }));
+    if (nextResult === 'win') { setScore((current) => ({ ...current, player: current.player + 1 })); sfx.gameWin(); }
+    if (nextResult === 'lose') { setScore((current) => ({ ...current, computer: current.computer + 1 })); sfx.gameLose(); }
+    if (nextResult === 'draw') sfx.gameDraw();
     onComplete(nextResult, Math.max(1, Math.round((Date.now() - startedAt.current) / 1000)), difficulty);
   };
 
@@ -154,6 +167,7 @@ export default function GomokuGame({ lang, playerName, onComplete }: GomokuGameP
     next[index] = 1;
     const nextMoves = [...moves, index];
     const line = findWinningLine(next, index);
+    sfx.gmkPlace();
     setBoard(next);
     setMoves(nextMoves);
     if (line.length) {
@@ -177,6 +191,7 @@ export default function GomokuGame({ lang, playerName, onComplete }: GomokuGameP
       next[index] = 2;
       const nextMoves = [...moves, index];
       const line = findWinningLine(next, index);
+      sfx.gmkPlaceAi();
       setBoard(next);
       setMoves(nextMoves);
       if (line.length) finish('lose', line);
@@ -188,6 +203,7 @@ export default function GomokuGame({ lang, playerName, onComplete }: GomokuGameP
 
   const undo = () => {
     if (turn === 'computer' || moves.length === 0) return;
+    sfx.undoSweep();
     const removeCount = result && moves.length % 2 === 1 ? 1 : Math.min(2, moves.length);
     const kept = moves.slice(0, -removeCount);
     const next: Stone[] = Array(CELL_COUNT).fill(0);
@@ -212,7 +228,7 @@ export default function GomokuGame({ lang, playerName, onComplete }: GomokuGameP
   return (
     <section className="gomoku-observatory" aria-labelledby="gomoku-title">
       <header className="gomoku-heading">
-        <div className="gomoku-title-seal" aria-hidden="true"><i /><b>五</b><i /></div>
+        {headerAction ?? (<div className="gomoku-title-seal classic-art" aria-hidden="true" />)}
         <div>
           <span>{isZh ? '云上棋局 · 今日开放' : 'CLOUD BOARD · NOW OPEN'}</span>
           <h2 id="gomoku-title">{isZh ? '星河五子棋' : 'Starlight Gomoku'}</h2>

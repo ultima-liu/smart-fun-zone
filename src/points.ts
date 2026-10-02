@@ -8,6 +8,12 @@ import { PREMIUM_OUTFITS } from './content/outfits';
 import { BADGES } from './content/badges';
 import { localDayKey } from './dailyCheckin';
 
+/** 完整云端钱包快照：余额与已同步流水 ID，明细仍可限制为最近若干条。 */
+export interface WalletSnapshot {
+  balance: number;
+  sourceIds: string[];
+}
+
 export interface PointEntry {
   /** 全局唯一：sourceId 或消费单号 */
   id: string;
@@ -41,7 +47,7 @@ export interface CustomTask {
   date?: string;
   /** 完成判定方式 */
   judge: CustomTaskJudge;
-  /** 奖励卷卷豆数量（可为 0） */
+  /** 奖励卷星币数量（可为 0） */
   points: number;
   /** 奖励物品（管理员物品目录 id，可选） */
   itemId?: string;
@@ -134,7 +140,7 @@ export const CATALOG: StoreItem[] = [
   { id: 'i-shield', kind: 'item', name: '星星护盾', desc: '答错一次不扣分', cost: 18, icon: '🛡️' },
   { id: 'i-hint', kind: 'item', name: '提示卡', desc: '卡住时给一个提示', cost: 10, icon: '💡' },
   { id: 'i-heart', kind: 'item', name: '生命之心', desc: '游戏内 +1 次机会', cost: 16, icon: '❤️' },
-  /* 3) 奖励兑换 reward —— 卷卷豆直接兑换、即时到账（时长券加当日游戏时长） */
+  /* 3) 奖励兑换 reward —— 卷星币直接兑换、即时到账（时长券加当日游戏时长） */
   { id: 'rw-game15', kind: 'reward', name: '+15 分钟游戏', desc: '今天多玩 15 分钟', cost: 30, icon: '🎮' },
   { id: 'rw-video10', kind: 'reward', name: '+10 分钟动画', desc: '动画时长券', cost: 30, icon: '🎬' },
   { id: 'rw-toy', kind: 'reward', name: '小礼物一份', desc: '家长准备的小惊喜', cost: 100, icon: '🎁' },

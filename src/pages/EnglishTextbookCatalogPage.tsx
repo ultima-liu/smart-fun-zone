@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
@@ -42,7 +43,7 @@ export default function EnglishTextbookCatalogPage() {
 
   return <main className="ct-page ct-catalog en-catalog page">
     <header className="ct-catalog-hero en-hero">
-      <button className="ct-back" onClick={() => nav('/map')} aria-label="返回学校地图">←</button>
+      <BackButton className="ct-back" onClick={() => nav('/map')} aria-label="返回学校地图" />
       <div className="ct-hero-seal en-seal" aria-hidden="true"><span>EN</span><i>三上</i></div>
       <div><span className="ct-eyebrow">PEP · 2022 年版课标修订教材</span><h1>三年级英语上册</h1><p>从真实对话、声音、阅读和项目中学会表达</p></div>
       <div className="ct-progress-orbit" role="img" aria-label={`整册进度 ${Math.round(done / all.length * 100)}%，已完成 ${done} 节，共 ${all.length} 节`}><b>{Math.round(done / all.length * 100)}%</b><span>整册</span><small>{done} / {all.length} 课 · ★ {starTotal} / {all.length * 3}</small></div>

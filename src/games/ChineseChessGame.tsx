@@ -1,4 +1,7 @@
+import type { ReactNode } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useStore } from '../store';
+import { sfx } from '../sfx';
 import './chinese-chess.css';
 
 type Side = 'red' | 'black';
@@ -20,6 +23,7 @@ interface Move {
 }
 
 interface ChineseChessGameProps {
+  headerAction?: ReactNode;
   lang: 'zh' | 'en';
   playerName: string;
   onComplete: (result: Result, durationSec: number, difficulty: Difficulty) => void;
@@ -221,7 +225,7 @@ function chooseComputerMove(board: Board, difficulty: Difficulty): Move | null {
   return ranked[Math.floor(Math.random() * pool)].move;
 }
 
-export default function ChineseChessGame({ lang, playerName, onComplete }: ChineseChessGameProps) {
+export default function ChineseChessGame({ lang, playerName, onComplete, headerAction }: ChineseChessGameProps) {
   const [board, setBoard] = useState<Board>(() => createChineseChessBoard());
   const [history, setHistory] = useState<Board[]>(() => [createChineseChessBoard()]);
   const [moves, setMoves] = useState<Move[]>([]);
@@ -231,6 +235,7 @@ export default function ChineseChessGame({ lang, playerName, onComplete }: Chine
   const [result, setResult] = useState<Result | null>(null);
   const [score, setScore] = useState({ player: 0, computer: 0 });
   const startedAt = useRef(Date.now());
+  const sound = useStore((s) => s.sound);
   const isZh = lang === 'zh';
   const lastMove = moves[moves.length - 1];
   const redInCheck = useMemo(() => isChineseChessCheck(board, 'red'), [board]);
@@ -239,12 +244,20 @@ export default function ChineseChessGame({ lang, playerName, onComplete }: Chine
   const targetMap = useMemo(() => new Map(selectedMoves.map((move) => [move.to, move])), [selectedMoves]);
   const captured = useMemo(() => moves.flatMap((move) => move.captured ? [move.captured] : []), [moves]);
 
+  // 楚河汉界背景音乐：随游戏挂载/卸载启停，也跟随全局声音开关
+  useEffect(() => {
+    if (!sound) return;
+    sfx.xiangqiBgmStart();
+    return () => sfx.xiangqiBgmStop();
+  }, [sound]);
+
   const finish = (nextResult: Result) => {
     setResult(nextResult);
     setTurn('red');
     setSelected(null);
-    if (nextResult === 'win') setScore((current) => ({ ...current, player: current.player + 1 }));
-    if (nextResult === 'lose') setScore((current) => ({ ...current, computer: current.computer + 1 }));
+    if (nextResult === 'win') { setScore((current) => ({ ...current, player: current.player + 1 })); sfx.gameWin(); }
+    if (nextResult === 'lose') { setScore((current) => ({ ...current, computer: current.computer + 1 })); sfx.gameLose(); }
+    if (nextResult === 'draw') sfx.gameDraw();
     onComplete(nextResult, Math.max(1, Math.round((Date.now() - startedAt.current) / 1000)), difficulty);
   };
 
@@ -264,13 +277,18 @@ export default function ChineseChessGame({ lang, playerName, onComplete }: Chine
     const next = applyMove(board, move.from, move.to);
     const nextMove = { ...move, captured: board[move.to] };
     const nextMoves = [...moves, nextMove];
+    if (move.captured) sfx.xqCapture();
+    else sfx.xqMove();
     setBoard(next);
     setHistory((current) => [...current, next]);
     setMoves(nextMoves);
     setSelected(null);
     if (move.captured?.kind === 'general' || legalChineseChessMoves(next, 'black').length === 0) finish('win');
     else if (nextMoves.length >= 160) finish('draw');
-    else setTurn('black');
+    else {
+      if (isChineseChessCheck(next, 'black')) sfx.xqCheck();
+      setTurn('black');
+    }
   };
 
   const handleCell = (index: number) => {
@@ -278,6 +296,7 @@ export default function ChineseChessGame({ lang, playerName, onComplete }: Chine
     const piece = board[index];
     if (piece?.side === 'red') {
       setSelected(index === selected ? null : index);
+      sfx.xqSelect();
       return;
     }
     const move = targetMap.get(index);
@@ -293,18 +312,24 @@ export default function ChineseChessGame({ lang, playerName, onComplete }: Chine
       const next = applyMove(board, move.from, move.to);
       const nextMove = { ...move, captured: board[move.to] };
       const nextMoves = [...moves, nextMove];
+      if (move.captured) sfx.xqCapture();
+      else sfx.xqMove();
       setBoard(next);
       setHistory((current) => [...current, next]);
       setMoves(nextMoves);
       if (move.captured?.kind === 'general' || legalChineseChessMoves(next, 'red').length === 0) finish('lose');
       else if (nextMoves.length >= 160) finish('draw');
-      else setTurn('red');
+      else {
+        if (isChineseChessCheck(next, 'red')) sfx.xqCheck();
+        setTurn('red');
+      }
     }, difficulty === 'hard' ? 620 : 430);
     return () => window.clearTimeout(timer);
   }, [turn, result, board, moves, difficulty]);
 
   const undo = () => {
     if (turn === 'black' || moves.length === 0) return;
+    sfx.undoSweep();
     const removeCount = moves.length % 2 === 1 ? 1 : Math.min(2, moves.length);
     const nextHistory = history.slice(0, -removeCount);
     setBoard(nextHistory[nextHistory.length - 1]);
@@ -330,7 +355,7 @@ export default function ChineseChessGame({ lang, playerName, onComplete }: Chine
   return (
     <section className="xiangqi-pavilion" aria-labelledby="xiangqi-title">
       <header className="xiangqi-heading">
-        <div className="xiangqi-title-seal" aria-hidden="true"><b>楚</b><i /><b>汉</b></div>
+        {headerAction ?? (<div className="xiangqi-title-seal classic-art" aria-hidden="true" />)}
         <div>
           <span>{isZh ? '云端对弈 · 楚河汉界' : 'CLOUD MATCH · RIVER BATTLE'}</span>
           <h2 id="xiangqi-title">{isZh ? '云台中国象棋' : 'Cloud Xiangqi'}</h2>

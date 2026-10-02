@@ -1,0 +1,548 @@
+.ff-game {
+  max-width: 1120px;
+  margin: 18px auto 34px;
+  padding: 22px;
+  color: #e9faff;
+  border: 1px solid rgba(109, 229, 230, 0.35);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 90% 0, rgba(63, 189, 204, 0.23), transparent 35%),
+    linear-gradient(145deg, #092f51, #102b50 55%, #14315a);
+  box-shadow:
+    0 25px 55px -35px #041127,
+    inset 0 1px rgba(255, 255, 255, 0.18);
+}
+.ff-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 19px;
+}
+.ff-emblem {
+  display: grid;
+  place-items: center;
+  flex: 0 0 59px;
+  width: 59px;
+  height: 59px;
+  border: 1px solid #7de6de;
+  border-radius: 19px;
+  background: linear-gradient(135deg, #1b748c, #174465);
+  box-shadow:
+    0 9px 23px rgba(5, 28, 55, 0.45),
+    inset 0 1px rgba(255, 255, 255, 0.35);
+  font-size: 30px;
+}
+.ff-emblem.arcade-art { background-image: url('/assets/games/shared/arcade-heroes-v1.webp'); background-repeat: no-repeat; background-size: 500% 100%; background-position: 100% 0; animation: ff-crest-float 3.15s ease-in-out infinite; }
+@keyframes ff-crest-float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-3px) rotate(1deg); } }
+.ff-head > div:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+.ff-head span {
+  color: #90eee5;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+.ff-head h2 {
+  margin: 2px 0 4px;
+  color: white;
+  font-family: 'Noto Serif SC', 'Songti SC', serif;
+  font-size: clamp(26px, 3.4vw, 36px);
+}
+.ff-head p {
+  margin: 0;
+  color: #c1dce9;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.ff-best {
+  display: grid;
+  gap: 3px;
+  min-width: 110px;
+  padding: 10px 13px;
+  color: #a7c8d9;
+  border: 1px solid rgba(154, 233, 238, 0.24);
+  border-radius: 15px;
+  background: rgba(5, 33, 62, 0.52);
+  font-size: 9px;
+  font-weight: 800;
+  text-align: center;
+}
+.ff-best b {
+  color: #ffe6a0;
+  font-size: 22px;
+}
+.ff-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 282px;
+  gap: 18px;
+  align-items: start;
+}
+.ff-stage {
+  min-width: 0;
+}
+.ff-board {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  border: 5px solid #328e9e;
+  border-radius: 24px;
+  background: #0a5377;
+  box-shadow:
+    0 18px 30px rgba(0, 16, 35, 0.38),
+    inset 0 0 0 2px rgba(191, 251, 255, 0.25);
+}
+.ff-board canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: crosshair;
+}
+.ff-toast {
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  padding: 8px 18px;
+  color: #16465d;
+  border: 1px solid #fff4bf;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff0b5, #9cf1e3);
+  box-shadow: 0 8px 25px rgba(3, 29, 48, 0.35);
+  font-size: 15px;
+  font-weight: 900;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+.ff-toast.hit {
+  color: #712c3e;
+  background: linear-gradient(135deg, #ffe1d7, #ffb4b8);
+}
+.ff-toast.danger {
+  color: #772d3a;
+  background: linear-gradient(135deg, #ffe3d9, #ffbbc4);
+}
+.ff-toast.gold {
+  color: #62421c;
+  background: linear-gradient(135deg, #fff5b8, #ffd58d);
+}
+.ff-toast.dodge {
+  color: #145c4c;
+  background: linear-gradient(135deg, #c9ffe5, #9ceee6);
+}
+.ff-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 28px;
+  background: linear-gradient(130deg, rgba(5, 29, 55, 0.79), rgba(5, 44, 67, 0.68));
+  text-align: center;
+  backdrop-filter: blur(3px);
+}
+.ff-overlay > span {
+  color: #9ceee7;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.19em;
+}
+.ff-overlay h3 {
+  margin: 0;
+  color: #fff5c9;
+  font-family: 'Noto Serif SC', 'Songti SC', serif;
+  font-size: clamp(24px, 3vw, 34px);
+}
+.ff-overlay p {
+  max-width: 430px;
+  margin: 0;
+  color: #e0f4f7;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.ff-overlay button {
+  min-height: 45px;
+  padding: 9px 27px;
+  color: #17465a;
+  border: 1px solid #fff3bd;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffe6a3, #87ebde);
+  box-shadow:
+    0 9px 24px rgba(1, 25, 40, 0.32),
+    inset 0 1px white;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.ff-result {
+  display: flex;
+  gap: 10px;
+}
+.ff-result span {
+  display: grid;
+  min-width: 80px;
+  gap: 2px;
+  padding: 7px 13px;
+  color: #bddee7;
+  border: 1px solid rgba(179, 239, 246, 0.24);
+  border-radius: 12px;
+  background: rgba(3, 37, 59, 0.6);
+  font-size: 10px;
+}
+.ff-result b {
+  color: #ffe8aa;
+  font-size: 21px;
+}
+.ff-pad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 13px;
+}
+.ff-pad button {
+  min-width: 52px;
+  min-height: 45px;
+  color: #d8ffff;
+  border: 1px solid rgba(145, 238, 230, 0.48);
+  border-radius: 13px;
+  background: linear-gradient(145deg, #1a6c84, #144a6b);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.23);
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+.ff-pad button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.ff-pad button.ff-boost {
+  min-width: 110px;
+  color: #21465b;
+  border-color: #ffe3aa;
+  background: linear-gradient(135deg, #ffe3a3, #ffb18d);
+  font-size: 13px;
+}
+.ff-console {
+  display: grid;
+  gap: 11px;
+}
+.ff-bottom {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 282px;
+  gap: 12px;
+  align-items: start;
+}
+.ff-bottom-controls {
+  display: grid;
+  gap: 10px;
+}
+.ff-score,
+.ff-stats,
+.ff-meter,
+.ff-legend,
+.ff-difficulty {
+  padding: 13px 15px;
+  border: 1px solid rgba(139, 219, 235, 0.2);
+  border-radius: 17px;
+  background: rgba(4, 37, 65, 0.5);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.07);
+}
+.ff-score {
+  display: grid;
+  gap: 2px;
+  text-align: center;
+}
+.ff-score small {
+  color: #90e9e1;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+.ff-score strong {
+  color: #fff2bc;
+  font-size: 33px;
+  line-height: 1.1;
+}
+.ff-score span {
+  color: #a9ccda;
+  font-size: 10px;
+}
+.ff-stats {
+  display: grid;
+  gap: 8px;
+}
+.ff-next {
+  display: flex;
+  gap: 7px;
+}
+.ff-next span {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 9px 10px;
+  color: #daf7f2;
+  border: 1px solid rgba(134, 234, 217, 0.25);
+  border-radius: 11px;
+  background: rgba(20, 89, 107, 0.65);
+  font-size: 10px;
+  font-weight: 800;
+}
+.ff-next b {
+  color: #ffe4a4;
+}
+.ff-stats > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #bcdae5;
+  font-size: 11px;
+}
+.ff-stats b {
+  color: #fff1bd;
+  font-size: 14px;
+}
+.ff-stats span:nth-child(2) b {
+  color: #ff9b9d;
+  letter-spacing: 2px;
+}
+.ff-meter > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #b9dce5;
+  font-size: 10px;
+  font-weight: 900;
+}
+.ff-meter b {
+  color: #ffe6a0;
+}
+.ff-meter > i {
+  display: block;
+  height: 11px;
+  margin: 10px 0 7px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(1, 23, 43, 0.72);
+}
+.ff-meter > i em {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #59d8c4, #ffe8a2);
+  box-shadow: 0 0 13px rgba(114, 230, 207, 0.55);
+  transition: width 0.15s linear;
+}
+.ff-meter small {
+  color: #a8c9d6;
+  font-size: 9px;
+  line-height: 1.4;
+}
+.ff-meter.energy {
+  padding-top: 10px;
+  padding-bottom: 7px;
+}
+.ff-meter.energy > i em {
+  background: linear-gradient(90deg, #f7b480, #ffeaae);
+}
+.ff-legend b,
+.ff-difficulty b {
+  color: #a4eee5;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.ff-legend p {
+  margin: 8px 0 0;
+  color: #c2dfe8;
+  font-size: 10px;
+  line-height: 1.45;
+}
+.ff-quests {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 11px;
+}
+.ff-quests span {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+  padding: 10px;
+  color: #c9e7ec;
+  border: 1px solid rgba(146, 220, 225, 0.23);
+  border-radius: 11px;
+  background: rgba(12, 70, 96, 0.53);
+  font-size: 11px;
+  font-weight: 800;
+}
+.ff-quests span.done {
+  color: #f7ffdb;
+  border-color: rgba(187, 251, 183, 0.56);
+  background: rgba(52, 144, 114, 0.38);
+}
+.ff-quests strong {
+  color: #ffe6a0;
+  font-size: 14px;
+}
+.ff-quests span.done strong {
+  color: #b7ffce;
+}
+.ff-difficulty > div {
+  display: flex;
+  gap: 5px;
+  margin-top: 9px;
+}
+.ff-difficulty button {
+  flex: 1;
+  min-height: 33px;
+  color: #c5e1e8;
+  border: 1px solid rgba(148, 227, 230, 0.27);
+  border-radius: 9px;
+  background: rgba(17, 73, 100, 0.6);
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.ff-difficulty button.selected {
+  color: #16425b;
+  border-color: #ffe7ae;
+  background: linear-gradient(135deg, #ffe8a9, #a2e9dc);
+}
+.ff-difficulty button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+.ff-actions {
+  display: flex;
+  gap: 8px;
+}
+.ff-actions button {
+  flex: 1;
+  min-height: 38px;
+  color: #e1f6f8;
+  border: 1px solid rgba(145, 238, 230, 0.34);
+  border-radius: 10px;
+  background: rgba(28, 94, 116, 0.7);
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.ff-actions button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.ff-hint {
+  color: #a8cbd9;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.ff-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+@media (max-width: 900px) {
+  .ff-game {
+    margin: 15px;
+    padding: 17px;
+  }
+  .ff-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ff-console {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ff-bottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .ff-game {
+    padding: 13px;
+    border-radius: 22px;
+  }
+  .ff-head {
+    gap: 9px;
+  }
+  .ff-emblem {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+    font-size: 23px;
+    border-radius: 13px;
+  }
+  .ff-head h2 {
+    font-size: 24px;
+  }
+  .ff-head p {
+    font-size: 10px;
+  }
+  .ff-best {
+    min-width: 76px;
+    padding: 7px;
+    font-size: 8px;
+  }
+  .ff-best b {
+    font-size: 17px;
+  }
+  .ff-board {
+    border-width: 3px;
+    border-radius: 15px;
+  }
+  .ff-overlay {
+    gap: 7px;
+    padding: 10px;
+  }
+  .ff-overlay h3 {
+    font-size: 20px;
+  }
+  .ff-overlay p {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .ff-overlay button {
+    min-height: 34px;
+    font-size: 11px;
+  }
+  .ff-result span {
+    min-width: 58px;
+    padding: 4px 6px;
+  }
+  .ff-result b {
+    font-size: 15px;
+  }
+  .ff-console {
+    gap: 8px;
+  }
+  .ff-score,
+  .ff-stats,
+  .ff-meter,
+  .ff-legend,
+  .ff-difficulty {
+    padding: 10px;
+  }
+  .ff-pad button {
+    min-width: 43px;
+    min-height: 42px;
+  }
+  .ff-quests {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ff-emblem.arcade-art { animation: none; }
+  .ff-meter > i em {
+    transition: none;
+  }
+}

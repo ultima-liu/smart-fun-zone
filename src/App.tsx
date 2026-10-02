@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -211,8 +211,8 @@ function useCardTilt() {
 function Shell() {
   const location = useLocation();
 
-  // 路由切换时停止正在朗读
-  useEffect(() => {
+  // 在新页面的欢迎语 effect 之前停止旧语音，避免父级 effect 误取消新播报。
+  useLayoutEffect(() => {
     stopSpeaking();
   }, [location.pathname]);
   const [booted, setBooted] = useState(false);
@@ -228,7 +228,7 @@ function Shell() {
     document.title = `${titleByPath[location.pathname] ?? '卷卷星球'} · Smart Fun Zone`;
   }, [location.pathname]);
   // 首页已有卷星场景入口，不重复显示列车；列车仅在主要二级页面承担全局导航。
-  const showNav = ['/map', '/lobby', '/profile', '/archive', '/dock'].includes(location.pathname);
+  const showNav = ['/map', '/profile', '/archive', '/dock'].includes(location.pathname);
   const noChrome = ['/child-login', '/parent'].includes(location.pathname);
   const hasKid = useStore((s) => !!s.activeChildId);
 
@@ -337,11 +337,22 @@ export default function App() {
     }, 900);
     return () => window.clearTimeout(t);
   }, []);
-  // 启动拉取全局「卷卷豆与杂货铺」配置（管理员发布 → 全端生效）
+  // 启动并定期拉取全局商店、任务分值和课程表配置（管理员发布 → 全端生效）。
   useEffect(() => {
-    void api.storeConfig().then((r) => {
-      if (r?.ok) useStore.getState().applyRemoteConfig(r.storeOverrides, r.taskOverrides);
+    const pullConfig = () => void api.storeConfig().then((r) => {
+      if (r?.ok) useStore.getState().applyRemoteConfig(r.storeOverrides, r.taskOverrides, r.courseSchedule ?? []);
     });
+    pullConfig();
+    const interval = window.setInterval(pullConfig, 5 * 60_000);
+    const onFocus = () => pullConfig();
+    const onVisibility = () => { if (document.visibilityState === 'visible') pullConfig(); };
+    window.addEventListener('focus', onFocus);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      window.clearInterval(interval);
+      window.removeEventListener('focus', onFocus);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
   }, []);
   return (
     <ErrorBoundary>

@@ -1,15 +1,17 @@
+import { refreshServerHealth } from './api';
+
 /* =====================================================================
    火山引擎 豆包语音合成大模型 2.0（seed-tts-2.0）——唯一语音通道，无兜底
    - 接口：POST /api/v3/tts/unidirectional/sse（SSE 流式，base64 MP3 分片）
-   - 鉴权：X-Api-Key 由 Vite dev/preview 代理在服务端注入（.env.local 的
-     VOLC_SPEECH_API_KEY），前端不持有密钥、也不存在 CORS 问题
+   - 鉴权：X-Api-Key 由 Fastify 代理注入（server/.env 的
+     VOLC_SPEECH_API_KEY），前端不持有密钥
    - 音色默认：中文 爽快思思 zh_female_shuangkuaisisi_uranus_bigtts（可用
      VITE_VOLC_SPEAKER_ZH 覆盖），英文 Dacey en_female_dacey_uranus_bigtts
      （可用 VITE_VOLC_SPEAKER_EN 覆盖）
    - 未配置密钥时静默（页面给出配置提示），失败只回调 onEnd，绝不降级
    ===================================================================== */
 
-/** 由 vite.config.ts 构建期注入：代理是否已配置服务端密钥 */
+/** 兼容构建期默认值；实际配置以 /api/health 的运行时结果为准。 */
 declare const __VOLC_TTS_KEY_PRESENT__: boolean;
 
 const ENDPOINT = '/api/volc-tts/api/v3/tts/unidirectional/sse';
@@ -43,8 +45,13 @@ export function voiceForProfile(profile: VoiceProfile, lang: 'zh' | 'en' = 'zh')
 
 export function volcConfigured(): boolean {
   const w = window as unknown as { __VOLC_TTS_ENABLED__?: boolean };
-  if (w.__VOLC_TTS_ENABLED__ === false) return false; // 测试钩子
-  return __VOLC_TTS_KEY_PRESENT__;
+  return w.__VOLC_TTS_ENABLED__ ?? __VOLC_TTS_KEY_PRESENT__;
+}
+
+async function ensureConfigured(): Promise<boolean> {
+  const w = window as unknown as { __VOLC_TTS_ENABLED__?: boolean };
+  if (w.__VOLC_TTS_ENABLED__ === undefined) await refreshServerHealth();
+  return volcConfigured();
 }
 
 /** 去除 emoji 等符号（避免 TTS 读出乱码），保留文字/数字/标点；弯引号转直引号，避免 I'm/Let's 被读散 */
@@ -189,7 +196,7 @@ async function synthesizeBlob(clean: string, lang: 'zh' | 'en', rate: number, sp
 
 /** 预热：预先合成并缓存一段音频（不播放）。之后 speak 命中缓存即秒播。 */
 export async function warmTts(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92, speaker?: string, pitch = 0): Promise<void> {
-  if (!volcConfigured()) return;
+  if (!await ensureConfigured()) return;
   const clean = stripEmoji(text);
   if (!clean) return;
   const key = cacheKey(lang, rate, clean, speaker, pitch);
@@ -212,7 +219,11 @@ export async function speakVolc(
   speaker?: string,
   pitch = 0,
 ): Promise<void> {
-  if (!volcConfigured()) {
+  // 在等待健康检查前登记请求，翻页或新朗读仍能取消这次延迟播报。
+  const myReq = ++reqSeq;
+  const configured = await ensureConfigured();
+  if (myReq !== reqSeq) return;
+  if (!configured) {
     window.setTimeout(() => onEnd?.(), 0);
     return;
   }
@@ -231,7 +242,6 @@ export async function speakVolc(
       playAudioBlob(cached, onEnd);
       return;
     }
-    const myReq = ++reqSeq;
     const body = makeBody(clean, lang, rate, speaker, pitch);
     const res = await fetch(ENDPOINT, {
       method: 'POST',

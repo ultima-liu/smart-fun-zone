@@ -1,8 +1,10 @@
+import BackButton from '../components/BackButton';
+import { useVoiceAvailability } from '../useVoiceAvailability';
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store';
-import { playSfx, speakMixedAfterCurrent, speakMixedSeq, speakOnce, speakSeq, stopSpeaking, volcConfigured } from '../speech';
+import { playSfx, speakMixedAfterCurrent, speakMixedSeq, speakOnce, speakSeq, stopSpeaking } from '../speech';
 import { readScore, useAsr } from '../speechAssess';
 import TeacherGuideNote from '../components/TeacherGuideNote';
 import { Confetti } from '../components/ui';
@@ -13,8 +15,8 @@ import { ENGLISH_G3_PHONICS_CHANTS, ENGLISH_G3_SONGS } from '../content/englishG
 import { wordPictureArt, wordPictureSrc } from '../content/englishWordPictures';
 import { getEnglishG3StoryBoard } from '../content/englishG3Stories';
 import { ENGLISH_G3_READ_SPOTLIGHTS, ENGLISH_G3_REVISION_SCENES } from '../content/englishG3Interactions';
-import { completeReviewDay, scheduleReview } from '../reviewPlan';
-import { settleCourseTask } from '../taskSystem';
+import { completeReviewDay, reviewCalendarDaysSince, scheduleReview } from '../reviewPlan';
+import { completeDailyReview, settleCourseTask } from '../taskSystem';
 import '../chinese-textbook.css';
 import '../english-textbook.css';
 
@@ -852,8 +854,8 @@ function ReviewPlan({
   onComplete: (day: number) => void;
   onRepeat: (item: SourceItem, onDone: () => void) => void;
 }) {
-  const elapsed = startedAt ? Math.max(0, Math.floor((Date.now() - startedAt) / 86_400_000)) : 0;
-  const days = [0, 2, 4];
+  const elapsed = startedAt ? reviewCalendarDaysSince(startedAt) : 0;
+  const days = [0];
   const [activeDay, setActiveDay] = useState<number | null>(null);
   const [heard, setHeard] = useState<Set<string>>(new Set());
   const [spoken, setSpoken] = useState<Set<string>>(new Set());
@@ -878,7 +880,7 @@ function ReviewPlan({
     playSfx('correct');
   };
   return <section className="en-review-plan" aria-label="词句复习计划">
-    <div><span>SPACED REVIEW</span><h3>把今天的词句再见三次</h3><p>点击已到时间的复习站，完成“听一听、遮住想、跟读”。</p></div>
+    <div><span>STUDY REVIEW</span><h3>课后词句短巩固</h3><p>今天单独做完“听一听、遮住想、跟读”；之后按课程表选择的英语复习日回顾。</p></div>
     <ol>{days.map((day, index) => {
       const due = elapsed >= day;
       const done = completedDays.includes(day);
@@ -899,7 +901,7 @@ function ReviewPlan({
       })}</div>
       <footer><button type="button" onClick={() => { stopSpeaking(); setActiveDay(null); }}>稍后再练</button><button type="button" className="ct-primary" disabled={spoken.size < targets.length} onClick={finishReview}>完成本次复习</button></footer>
     </div>}
-    <em>答错的句子或单词已自动收进错题本；每周回看一次即可，不需要抄满整页。</em>
+    <em>后续复习日由课程表决定，不需要抄满整页。</em>
   </section>;
 }
 
@@ -923,6 +925,7 @@ export default function EnglishTextbookLessonPage() {
   const addSkillResult = useStore((s) => s.addSkillResult);
   const addWrong = useStore((s) => s.addWrong);
   const voiceOn = useStore((s) => s.voiceOn);
+  const ttsConfigured = useVoiceAvailability();
   const sound = useStore((s) => s.sound);
   const setVoiceOn = useStore((s) => s.setVoiceOn);
   const toggleSound = useStore((s) => s.toggleSound);
@@ -954,7 +957,7 @@ export default function EnglishTextbookLessonPage() {
   const bestStars = childId ? mastery[childId]?.[`english-g3a-${lessonId}`]?.stars ?? 0 : 0;
   const extraRequired = lesson?.section === 'project' || lessonId === 'colours-a' || lessonId === 'numbers-read';
   const sourceDone = items.length > 0 && items.every((item) => seen.has(item.id)) && listeningDone && (!requiresInteractiveSource(lesson) || sourceActivityDone);
-  const canPlay = voiceOn && sound && volcConfigured() && items.length > 0;
+  const canPlay = voiceOn && sound && ttsConfigured && items.length > 0;
   const operationReady = !!lesson && operationPick === lesson.check.answer && (!extraRequired || operationDone);
   useEffect(() => { if (!lesson || !extension) nav('/subject/english', { replace: true }); }, [extension, lesson, nav]);
   useEffect(() => {
@@ -1071,8 +1074,8 @@ export default function EnglishTextbookLessonPage() {
   const exampleQuestion = unit?.question ?? 'How can we be a good guest?';
 
   return <main className="ct-page ct-lesson-page en-lesson-page page">
-    <header className="ct-lesson-head en-lesson-head"><button className="ct-back" onClick={() => nav('/subject/english')} aria-label="返回英语目录">←</button><div><span className="ct-eyebrow">{unit ? `Unit ${ENGLISH_G3_UPPER_UNITS_INDEX(lesson.unitId)} · ${unit.title}` : 'Revision · Being a good guest'} · 教材 {lesson.page}</span><h1>{lesson.title}</h1><p>{lesson.subtitle}</p></div><button className="ct-teacher-play" onClick={() => speakMixedSeq(`${lesson.title}。今天先看教材，再听读、动手表达和知识延伸。`, .9)}>🔊 听聪聪讲</button></header>
-    {(!voiceOn || !sound || !volcConfigured()) && <div className="en-voice-banner" role="status"><b>英文点读需要项目中的火山 TTS</b><span>{!volcConfigured() ? '语音服务尚未配置；教材文字和操作仍可学习。' : '当前声音或语音开关关闭，点读按钮不会出声。'}</span>{volcConfigured() && <button onClick={() => { if (!sound) toggleSound(); if (!voiceOn) setVoiceOn(true); }}>启用点读</button>}</div>}
+    <header className="ct-lesson-head en-lesson-head"><BackButton className="ct-back" onClick={() => nav('/subject/english')} aria-label="返回英语目录" /><div><span className="ct-eyebrow">{unit ? `Unit ${ENGLISH_G3_UPPER_UNITS_INDEX(lesson.unitId)} · ${unit.title}` : 'Revision · Being a good guest'} · 教材 {lesson.page}</span><h1>{lesson.title}</h1><p>{lesson.subtitle}</p></div><button className="ct-teacher-play" onClick={() => speakMixedSeq(`${lesson.title}。今天先看教材，再听读、动手表达和知识延伸。`, .9)}>🔊 听聪聪讲</button></header>
+    {(!voiceOn || !sound || !ttsConfigured) && <div className="en-voice-banner" role="status"><b>英文点读需要项目中的火山 TTS</b><span>{!ttsConfigured ? '语音服务尚未配置；教材文字和操作仍可学习。' : '当前声音或语音开关关闭，点读按钮不会出声。'}</span>{ttsConfigured && <button onClick={() => { if (!sound) toggleSound(); if (!voiceOn) setVoiceOn(true); }}>启用点读</button>}</div>}
     <nav className="ct-phase-nav en-phase-nav" aria-label="本课学习步骤">{PHASES.map((label, index) => <button key={label} className={`${phase === index ? 'active' : ''} ${index < unlocked ? 'done' : ''}`} disabled={index > unlocked} onClick={() => { stopSpeaking(); setPlayingIndex(null); setPhase(index); window.scrollTo({ top: 0, behavior: 'smooth' }); }}><b>{index < unlocked ? '✓' : index + 1}</b><span>{label}</span></button>)}</nav>
     <TeacherGuideNote key={`${lessonId}:${phase}`} text={guide(lesson, phase, seen.size, items.length)} />
     {phase < 4 && <div className={`en-stage-layout ${phase === 1 ? 'en-stage-layout--source' : ''}`}>{phase !== 1 && <PageReference lesson={lesson} />}<div className="en-stage-main">
@@ -1081,7 +1084,7 @@ export default function EnglishTextbookLessonPage() {
       {phase === 2 && <section className="en-operation-stage"><span>教材情境 · 真正回应或操作</span><QuizPanel quiz={lesson.check} pick={operationPick} onPick={chooseOperation} title="根据教材内容作判断" />{lesson.section === 'project' && <ProjectBuilder unitId={lesson.unitId} onDone={() => setOperationDone(true)} />}{lessonId === 'colours-a' && <ColourMixer onDone={() => setOperationDone(true)} />}{lessonId === 'numbers-read' && <PairEven onDone={() => setOperationDone(true)} />}{lesson.section === 'letters' && <p className="en-task-hint">书写实验室已在上一阶段完成：先按笔顺在四线格练写，再用这里的情境题检查自己是否会认、会用。</p>}{operationPick === lesson.check.answer && extraRequired && !operationDone && <p className="en-task-hint">判断答对了，还要完成本课的实际操作。</p>}<button className="ct-primary en-stage-next" disabled={!operationReady} onClick={() => go(3)}>把方法用到新情境 →</button></section>}
       {phase === 3 && <section className="en-extension-stage"><span>知识延伸 · {extension.from ? `从 ${getEnglishG3Lesson(extension.from)?.title ?? extension.from} 继续` : '首次建立方法'}</span><h2>{extension.title}</h2><p>{extension.insight}</p><div className="en-extension-example"><b>换个角度看</b><p>{extension.example}</p><button onClick={() => speakMixedSeq(`${extension.title}。${extension.insight}。${extension.example}`, .88)}>🔊 听讲解</button></div><strong className="en-mnemonic">记住它：{extension.mnemonic}</strong><QuizPanel quiz={extension.transfer} pick={transferPick} onPick={chooseTransfer} title="新情境迁移题" /><button className="ct-primary en-stage-next" disabled={transferPick !== extension.transfer.answer} onClick={finish}>完成这节课，查看反馈 →</button></section>}
     </div></div>}
-    {phase === 4 && <section className="en-result-stage"><span>本课学习反馈</span><h2>{bestStars > 0 ? '学会啦，再用一用！' : '学习步骤已经完成'}</h2><div className="en-result-stars" aria-label={`本次 ${awardedStars} 星，历史最高 ${bestStars} 星`}>{[1, 2, 3].map((index) => <i key={index} className={index <= Math.max(awardedStars, bestStars) ? 'on' : ''}>★</i>)}</div><p>本次获得 {awardedStars} 星，历史最高 {bestStars} 星。{needsOriginalAudio(lesson) && !englishOriginalTaskReady(audioKey(lesson)) ? '教材原版歌曲、语音辨音或只听判断还未练到，本课暂不标为完整 3 星。' : '多次学习保留最高成绩。'}</p><div className="en-result-review"><b>今天用过的方法</b><p>{extension.title}：{extension.mnemonic}</p>{unit?.project.selfCheck && <details><summary>本单元四项自评目标</summary><ol>{unit.project.selfCheck.map((text) => <li key={text}>{text}</li>)}</ol></details>}</div><ReviewPlan startedAt={reviewStartedAt} items={items} completedDays={reviewDoneDays} onComplete={(day) => { setReviewDoneDays((current) => current.includes(day) ? current : [...current, day]); if (childId) completeReviewDay(childId, `english:${lesson.id}`, day); }} onRepeat={(item, done) => { const text = item.kind === 'letter' ? (item.letterInfo?.words[0] ?? item.text) : item.text; setRepeat({ text, art: artForItem(item), onDone: done }); }} /><div><button className="ct-primary" onClick={() => { setGuess(null); setOperationPick(null); setOperationDone(false); setTransferPick(null); setMistakes(0); setSeen(new Set()); setSourceActivityDone(false); setListeningDone(false); celebratedRef.current = false; setPlayingIndex(null); go(0); }}>再学一遍，取最高成绩</button><button onClick={() => nav('/subject/english')}>返回英语目录</button></div></section>}
+    {phase === 4 && <section className="en-result-stage"><span>本课学习反馈</span><h2>{bestStars > 0 ? '学会啦，再用一用！' : '学习步骤已经完成'}</h2><div className="en-result-stars" aria-label={`本次 ${awardedStars} 星，历史最高 ${bestStars} 星`}>{[1, 2, 3].map((index) => <i key={index} className={index <= Math.max(awardedStars, bestStars) ? 'on' : ''}>★</i>)}</div><p>本次获得 {awardedStars} 星，历史最高 {bestStars} 星。{needsOriginalAudio(lesson) && !englishOriginalTaskReady(audioKey(lesson)) ? '教材原版歌曲、语音辨音或只听判断还未练到，本课暂不标为完整 3 星。' : '多次学习保留最高成绩。'}</p><div className="en-result-review"><b>今天用过的方法</b><p>{extension.title}：{extension.mnemonic}</p>{unit?.project.selfCheck && <details><summary>本单元四项自评目标</summary><ol>{unit.project.selfCheck.map((text) => <li key={text}>{text}</li>)}</ol></details>}</div><ReviewPlan startedAt={reviewStartedAt} items={items} completedDays={reviewDoneDays} onComplete={(day) => { setReviewDoneDays((current) => current.includes(day) ? current : [...current, day]); if (childId) { completeDailyReview(childId, `english:${lesson.id}`, day); completeReviewDay(childId, `english:${lesson.id}`, day); } }} onRepeat={(item, done) => { const text = item.kind === 'letter' ? (item.letterInfo?.words[0] ?? item.text) : item.text; setRepeat({ text, art: artForItem(item), onDone: done }); }} /><div><button className="ct-primary" onClick={() => { setGuess(null); setOperationPick(null); setOperationDone(false); setTransferPick(null); setMistakes(0); setSeen(new Set()); setSourceActivityDone(false); setListeningDone(false); celebratedRef.current = false; setPlayingIndex(null); go(0); }}>再学一遍，取最高成绩</button><button onClick={() => nav('/subject/english')}>返回英语目录</button></div></section>}
     {repeat && <RepeatDock target={repeat.text} art={repeat.art} onClose={() => setRepeat(null)} onDone={() => { repeat.onDone?.(); setRepeat(null); }} />}
     <footer className="ct-lesson-footer en-lesson-footer"><button disabled={currentIndex <= 0} onClick={() => nav(`/english-course/${ENGLISH_G3_ALL_LESSONS[currentIndex - 1].id}`)}>← 上一课</button><span>{bestStars > 0 ? `★ 已获 ${bestStars} 星 · ` : '完成课程即记录 · '}{currentIndex + 1} / {ENGLISH_G3_ALL_LESSONS.length}</span><button disabled={currentIndex >= ENGLISH_G3_ALL_LESSONS.length - 1} onClick={() => nav(`/english-course/${ENGLISH_G3_ALL_LESSONS[currentIndex + 1].id}`)}>下一课 →</button></footer>
   </main>;

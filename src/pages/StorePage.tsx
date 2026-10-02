@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
@@ -6,7 +7,7 @@ import PageHero from '../components/PageHero';
 import { useI18n } from '../i18n';
 import { speakAsNpc } from '../speech';
 import { npcMeta } from '../content/npc';
-import { IconBean } from '../components/icons';
+import { IconCoin } from '../components/icons';
 import { KIND_LABEL, shelf, type ItemKind, type StoreItem } from '../points';
 import WardrobeAvatar from '../components/WardrobeAvatar';
 import NpcBuddy from '../components/NpcBuddy';
@@ -42,7 +43,7 @@ export default function StorePage() {
   const buy = (it: StoreItem): boolean => {
     if (!child) return false;
     const ok = redeemItem(child.id, it.id, it.cost);
-    setMsg(ok ? `✅ 已兑换「${it.name}」` : owned.includes(it.id) ? '已拥有该商品' : '卷卷豆不足');
+    setMsg(ok ? `✅ 已兑换「${it.name}」` : owned.includes(it.id) ? '已拥有该商品' : '卷星币不足');
     return ok;
   };
 
@@ -53,7 +54,7 @@ export default function StorePage() {
       ? it.id.startsWith('rw-game') || it.id.startsWith('rw-video')
         ? `✅ 已兑换「${it.name}」，今天游戏时长已加上！`
         : `✅ 已兑换「${it.name}」，记得找家长兑现哦～`
-      : '卷卷豆不足');
+      : '卷星币不足');
   };
 
   const renderCard = (it: StoreItem) => {
@@ -96,7 +97,7 @@ export default function StorePage() {
                 else buy(it);
               }}
             >
-              <IconBean size={16} gradient="gold" /> {it.cost}
+              <IconCoin size={16} gradient="gold" /> {it.cost}
             </KidButton>
           </div>
         )}
@@ -111,11 +112,12 @@ export default function StorePage() {
     <div className="page store">
       <NpcBuddy npc="铛铛" />
       <PageHero
+        leading={<BackButton onClick={() => nav('/')} label={lang === 'zh' ? '返回首页' : 'Back to home'} />}
         eyebrow={lang === 'zh' ? '补给站 · 兑换好物' : 'Supply · Rewards'}
         title={lang === 'zh' ? '补给站' : 'Supply Station'}
         planet="grocery"
         stats={[
-          { icon: <IconBean size={16} gradient="gold" />, value: points, tone: 'gold', label: lang === 'zh' ? '卷卷豆' : 'Beans' },
+          { icon: <IconCoin size={16} gradient="gold" />, value: points, tone: 'gold', label: lang === 'zh' ? '卷星币' : 'Coins' },
         ]}
       />
 
@@ -162,7 +164,7 @@ export default function StorePage() {
               <div className="preview-actions">
                 <KidButton color="white" onClick={() => setPreview(null)}>再看看</KidButton>
                 {canBuy ? (
-                  <KidButton color="green" disabled={!afford} onClick={() => { const ok = isReward ? buyRewardItem(preview) : buy(preview); if (ok) setPreview(null); }}><IconBean size={16} gradient="gold" /> {preview.cost} 兑换</KidButton>
+                  <KidButton color="green" disabled={!afford} onClick={() => { const ok = isReward ? buyRewardItem(preview) : buy(preview); if (ok) setPreview(null); }}><IconCoin size={16} gradient="gold" /> {preview.cost} 兑换</KidButton>
                 ) : (
                   <KidButton color="white" disabled>✓ 已拥有</KidButton>
                 )}

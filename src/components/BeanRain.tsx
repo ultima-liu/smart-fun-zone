@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { IconBean } from './icons';
+import { IconCoin } from './icons';
 
-/** 卷卷豆掉落：监听任务完成/豆豆发放事件，全屏撒豆 或 从星球位置爆发 */
+/** 卷星币掉落：监听任务完成/豆豆发放事件，全屏撒豆 或 从星球位置爆发 */
 interface Drop {
   id: number;
   x: number; // 视口 %（左）
@@ -74,7 +74,7 @@ export default function BeanRainHost() {
             } as React.CSSProperties
           }
         >
-          <IconBean size={d.size} gradient="gold" />
+          <IconCoin size={d.size} gradient="gold" />
         </span>
       ))}
     </div>

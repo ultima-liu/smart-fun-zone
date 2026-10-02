@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store';
@@ -2059,7 +2060,7 @@ export default function MathTextbookLabPage() {
   return (
     <main className="ct-page ct-lesson-page math-textbook-lab school-math-course" onPointerDown={() => { userInteracted = true; }}>
       <header className="ct-lesson-head">
-        <button className="ct-back" onClick={() => navigate('/subject/math')} aria-label="返回数学目录">←</button>
+        <BackButton className="ct-back" onClick={() => navigate('/subject/math')} aria-label="返回数学目录" />
         <div>
           <span className="ct-eyebrow">{currentLesson.unitNo === '数学游戏' ? '数学游戏' : `第${currentLesson.unitNo}单元`} · 教材 {MATH_UPPER_UNITS.find((unit) => unit.no === currentLesson.unitNo)?.page ?? currentLesson.unitTitle}</span>
           <h1>{currentLesson.title}</h1>

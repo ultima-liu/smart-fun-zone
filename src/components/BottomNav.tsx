@@ -97,46 +97,89 @@ function TrainCarArt({ kind }: { kind: TabKey }) {
 
 /** 底部星际列车导航（首页 / 学校 / 乐园 / 总部），所有入口直接开放。 */
 export default function BottomNav() {
-  const { t } = useI18n();
-  const [movingTo, setMovingTo] = useState<TabKey | null>(null);
+  const { t, lang } = useI18n();
+  const [expanded, setExpanded] = useState(false);
+  const [journey, setJourney] = useState<{ destination: TabKey | null } | null>(null);
+  const movingTo = journey?.destination;
+  const navRef = useRef<HTMLElement>(null);
+  const openerRef = useRef<HTMLButtonElement>(null);
   const motionTimer = useRef<number | null>(null);
+  const motionFrame = useRef<number | null>(null);
 
   useEffect(() => () => {
     if (motionTimer.current !== null) window.clearTimeout(motionTimer.current);
+    if (motionFrame.current !== null) window.cancelAnimationFrame(motionFrame.current);
   }, []);
 
-  const startJourney = (key: TabKey) => {
+  useEffect(() => {
+    if (!expanded) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.target instanceof Node && !navRef.current?.contains(event.target)) setExpanded(false);
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setExpanded(false);
+      openerRef.current?.focus({ preventScroll: true });
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [expanded]);
+
+  const startJourney = (key: TabKey | null) => {
     if (motionTimer.current !== null) window.clearTimeout(motionTimer.current);
+    if (motionFrame.current !== null) window.cancelAnimationFrame(motionFrame.current);
     sfx.click();
-    setMovingTo(null);
-    window.requestAnimationFrame(() => setMovingTo(key));
-    motionTimer.current = window.setTimeout(() => setMovingTo(null), 720);
+    setJourney(null);
+    motionFrame.current = window.requestAnimationFrame(() => {
+      setJourney({ destination: key });
+      if (key === null) navRef.current?.querySelector<HTMLAnchorElement>('.train-stop')?.focus({ preventScroll: true });
+    });
+    motionTimer.current = window.setTimeout(() => setJourney(null), 780);
   };
 
   return (
-    <nav className={`bottom-nav train-nav ${movingTo ? 'is-moving' : ''}`} aria-label="main navigation">
-      <span className="train-nav-scenery" aria-hidden="true"><i /><i /><i /><i /><i /></span>
-      <span className="train-track" aria-hidden="true"><i className="train-track-ties" /><i className="train-track-rail rail-top" /><i className="train-track-rail rail-bottom" /></span>
-      <span className="train-signal" aria-hidden="true"><i /><b /></span>
-      {TABS.map(({ to, key, end }, index) => (
-        <NavLink
-          key={key}
-          to={to}
-          end={end}
-          onClick={() => startJourney(key)}
-          style={{ '--train-index': index } as CSSProperties}
-          className={({ isActive }) => `nav-item train-stop train-stop-${key} ${isActive ? 'active' : ''} ${movingTo === key ? 'is-destination' : ''}`}
-          aria-label={t(key)}
-        >
-          {({ isActive }) => (
-            <span className="train-vehicle">
-              <TrainCarArt kind={key} />
-              <span className="train-station-plate"><span className="nav-label">{t(key)}</span></span>
-              {isActive && <span className="train-platform" aria-hidden="true" />}
-            </span>
-          )}
-        </NavLink>
-      ))}
-    </nav>
+    <div className="train-nav-viewport">
+      <nav ref={navRef} className={`bottom-nav train-nav ${expanded ? 'is-expanded' : 'is-stowed'} ${journey ? 'is-moving' : ''}`} aria-label="main navigation">
+        <button
+          ref={openerRef}
+          type="button"
+          className="train-nav-opener"
+          aria-label={lang === 'zh' ? '展开火车菜单' : 'Open train menu'}
+          aria-expanded={expanded}
+          aria-controls="train-navigation-links"
+          tabIndex={expanded ? -1 : 0}
+          onClick={() => { setExpanded(true); startJourney(null); }}
+        />
+        <span className="train-nav-scenery" aria-hidden="true"><i /><i /><i /><i /><i /></span>
+        <span className="train-track" aria-hidden="true"><i className="train-track-ties" /><i className="train-track-rail rail-top" /><i className="train-track-rail rail-bottom" /></span>
+        <span className="train-signal" aria-hidden="true"><i /><b /></span>
+        <div id="train-navigation-links" className="train-navigation-links" aria-hidden={!expanded}>
+          {TABS.map(({ to, key, end }, index) => (
+            <NavLink
+              key={key}
+              to={to}
+              end={end}
+              tabIndex={expanded ? 0 : -1}
+              onClick={() => startJourney(key)}
+              style={{ '--train-index': index } as CSSProperties}
+              className={({ isActive }) => `nav-item train-stop train-stop-${key} ${isActive ? 'active' : ''} ${movingTo === key ? 'is-destination' : ''}`}
+              aria-label={t(key)}
+            >
+              {({ isActive }) => (
+                <span className="train-vehicle">
+                  <TrainCarArt kind={key} />
+                  <span className="train-station-plate"><span className="nav-label">{t(key)}</span></span>
+                  {isActive && <span className="train-platform" aria-hidden="true" />}
+                </span>
+              )}
+            </NavLink>
+          ))}
+        </div>
+      </nav>
+    </div>
   );
 }

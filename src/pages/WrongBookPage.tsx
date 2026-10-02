@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store';
@@ -97,7 +98,7 @@ export default function WrongBookPage() {
   return (
     <main className="page review-hub">
       <header className="review-hub-head">
-        <button onClick={() => nav(backTarget)} aria-label="返回">←</button>
+        <BackButton onClick={() => nav(backTarget)} aria-label="返回" label={subject ? '返回课程目录' : '返回首页'} />
         <div>
           <span>WRONG BOOK</span>
           <h1>{title}</h1>

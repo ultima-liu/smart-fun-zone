@@ -3,8 +3,11 @@
  * 收录卷星各套系的收藏卡
  */
 
+import { JOURNEY_CARDS, type JourneyLore } from './journeyCards';
+import { HULU_CARDS, type HuluLore } from './huluCards';
+
 export type CardRarity = 'R' | 'SR' | 'SSR' | 'SP';
-export type CardSetId = 'npc' | 'brook' | 'bruco' | 'paw-patrol' | 'monster' | 'ship' | 'mystery' | 'outfit' | 'badge' | 'game' | 'hanzi';
+export type CardSetId = 'npc' | 'brook' | 'bruco' | 'paw-patrol' | 'journey' | 'hulu' | 'monster' | 'ship' | 'mystery' | 'outfit' | 'badge' | 'game' | 'hanzi';
 
 export interface HanziTeaching {
   /** 对应的语文课；完成该课时作为学习奖励直接点亮。 */
@@ -33,6 +36,8 @@ export interface StarCard {
   palette: [string, string, string];
   /** 汉字卡专用教学信息。 */
   hanzi?: HanziTeaching;
+  journey?: JourneyLore;
+  hulu?: HuluLore;
 }
 
 export interface CardSet {
@@ -48,6 +53,8 @@ export const CARD_SETS: CardSet[] = [
   { id: 'brook', icon: '✦', name: { zh: '星航协作队', en: 'Starlight Crew' }, color: '#42a5ff', rewardBeans: 500 },
   { id: 'bruco', icon: '🤖', name: { zh: '布鲁克战队', en: 'Bruco Team' }, color: '#ed4c58', rewardBeans: 300 },
   { id: 'paw-patrol', icon: '🐾', name: { zh: '汪汪队立大功', en: 'PAW Patrol' }, color: '#ff7b45', rewardBeans: 300 },
+  { id: 'journey', icon: '卷', name: { zh: '西游记', en: 'Journey to the West' }, color: '#c7a66a', rewardBeans: 500 },
+  { id: 'hulu', icon: '葫', name: { zh: '葫芦娃', en: 'Calabash Brothers' }, color: '#44734b', rewardBeans: 500 },
   { id: 'monster', icon: '👾', name: { zh: '乌乌怪', en: 'Gloom Gremlins' }, color: '#ff73b8', rewardBeans: 500 },
   { id: 'ship', icon: '🚀', name: { zh: '舰船', en: 'Ships' }, color: '#4aa3ff', rewardBeans: 500 },
   { id: 'mystery', icon: '🔮', name: { zh: '神秘·剧情物品', en: 'Mystery' }, color: '#f6c24a', rewardBeans: 500 },
@@ -343,6 +350,8 @@ export const STAR_CARDS: StarCard[] = [
       writingTip: { zh: '左边“口”小而靠上，右边“鸟”写得稍宽、站稳。', en: 'Keep 口 small and high; make 鸟 slightly wider and balanced.' },
     },
   },
+  ...JOURNEY_CARDS,
+  ...HULU_CARDS,
 ];
 
 /** 稀有度抽卡权重 */

@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
@@ -59,9 +60,7 @@ export default function ChildLoginPage() {
   return (
     <div className="page child-login">
       <div className="lg-wrap">
-        <button type="button" className="lg-back" onClick={() => nav('/')} aria-label="back">
-          ‹ 返回
-        </button>
+        <BackButton onClick={() => nav('/')} label="返回首页" />
         <div className="lg-brand">🪐 卷卷星球</div>
         <form className="lg-card" onSubmit={submit}>
           <Field label="登录名" value={name} placeholder="例如：乐乐" autoComplete="username" onChange={(e) => setName(e.target.value)} />

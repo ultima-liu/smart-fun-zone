@@ -136,7 +136,7 @@ export function LibraryBuilding({ size = 96 }: { size?: number }) {
   );
 }
 
-/** 补给站：悬浮小岛 + 遮阳棚货摊 + 卷卷豆木箱 + 喷气悬浮 */
+/** 补给站：悬浮小岛 + 遮阳棚货摊 + 卷星币木箱 + 喷气悬浮 */
 export function SupplyStation({ size = 112 }: { size?: number }) {
   const u = useId();
   return (
@@ -165,7 +165,7 @@ export function SupplyStation({ size = 112 }: { size?: number }) {
       {/* 柜台 */}
       <rect x="38" y="74" width="72" height="18" rx="4" fill="#8A5A3B" />
       <rect x="38" y="74" width="72" height="6" rx="3" fill="#B58150" />
-      {/* 卷卷豆木箱 */}
+      {/* 卷星币木箱 */}
       <rect x="46" y="64" width="16" height="12" rx="2" fill="#C9865A" stroke="#8A5A3B" strokeWidth="1.6" />
       <circle cx="51" cy="70" r="3.4" fill="#F6C24B" />
       <circle cx="57" cy="70" r="3.4" fill="#F2A65A" />

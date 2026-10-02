@@ -1,8 +1,9 @@
+import BackButton from './BackButton';
 import { useState } from 'react';
 import type { CSSProperties, MouseEventHandler, ReactNode } from 'react';
 import { playSfx } from '../speech';
 import { useStore } from '../store';
-import { IconBack, IconSpeakerOff, IconSpeakerOn } from './icons';
+import { IconSpeakerOff, IconSpeakerOn } from './icons';
 
 interface KidButtonProps {
   children: ReactNode;
@@ -194,9 +195,7 @@ export function TopBar({
     <header className="topbar">
       <div className="topbar-main">
         {onBack ? (
-          <KidButton color="white" className="icon-btn" onClick={onBack} ariaLabel="back">
-            <IconBack size={22} />
-          </KidButton>
+          <BackButton onClick={onBack} />
         ) : (
           <span />
         )}

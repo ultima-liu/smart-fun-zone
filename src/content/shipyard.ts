@@ -54,7 +54,24 @@ export function shipConfig(level: number): ShipLevel {
   };
 }
 
-/** 飞船等级 → 远征产出加成（每级 +10%；满级 +100%） */
+/** 飞船等级 → 远征产出加成（Lv.1 无加成；每级 +10%；满级 +90%） */
 export function shipBoost(level: number): number {
   return 1 + (Math.min(Math.max(level, 1), SHIP_MAX_LEVEL) - 1) * 0.1;
 }
+
+/** 船坞充电过程时长；充满后才扣材料并提升等级。 */
+export const SHIP_UPGRADE_DURATION_MS = 6000;
+
+/** 外形进化说明，与 DockShip 的十个轮廓逐级对应。 */
+export const SHIP_FEATURES: { zh: string; en: string }[] = [
+  { zh: '轻巧舱体 · 单核引擎', en: 'Compact hull · Single core' },
+  { zh: '流线船头 · 扩展尾翼', en: 'Streamlined nose · Extended fins' },
+  { zh: '三角翼面 · 装甲船舱', en: 'Delta wings · Armored cabin' },
+  { zh: '远航双翼 · 双侧推进器', en: 'Voyager wings · Twin boosters' },
+  { zh: '宽幅星翼 · 星光徽记', en: 'Broad star wings · Gold insignia' },
+  { zh: '旗舰装甲 · 导航翼阵', en: 'Flagship armor · Navigation fins' },
+  { zh: '银河环轨 · 重型舰身', en: 'Galactic ring · Heavy hull' },
+  { zh: '光速掠翼 · 加长推进器', en: 'Swept wings · Extended boosters' },
+  { zh: '星域晶体 · 双层环轨', en: 'Realm crystals · Dual rings' },
+  { zh: '传奇星冠 · 全展开星翼', en: 'Legendary crown · Full star wings' },
+];

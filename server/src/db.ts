@@ -53,6 +53,13 @@ async function ensureColumns(): Promise<void> {
       await db().query(`ALTER TABLE ${tbl} ${adds.join(', ')}`);
     }
   }
+  const configCols = await q<{ COLUMN_NAME: string } & RowDataPacket>(
+    "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=? AND TABLE_NAME='store_config'",
+    [config.mysql.database],
+  );
+  if (!configCols.some((column) => column.COLUMN_NAME === 'course_schedule')) {
+    await db().query('ALTER TABLE store_config ADD COLUMN course_schedule JSON NULL');
+  }
 }
 
 export async function ping(): Promise<boolean> {
