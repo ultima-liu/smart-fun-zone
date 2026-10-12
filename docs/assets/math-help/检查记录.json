@@ -1,0 +1,236 @@
+{
+  "rows": [
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "normal": {
+        "teacherCards": 0,
+        "teacherButtons": 0,
+        "icon": {
+          "x": 44,
+          "width": 52,
+          "height": 52
+        },
+        "copyX": 106,
+        "document": [
+          1024,
+          768
+        ]
+      },
+      "dialog": {
+        "x": 188,
+        "y": 158,
+        "width": 648,
+        "height": 452,
+        "scrollRegions": []
+      },
+      "closed": true,
+      "restoredFocus": true
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "height": 1024,
+      "normal": {
+        "teacherCards": 0,
+        "teacherButtons": 0,
+        "icon": {
+          "x": 44,
+          "width": 52,
+          "height": 52
+        },
+        "copyX": 106,
+        "document": [
+          768,
+          1024
+        ]
+      },
+      "dialog": {
+        "x": 60,
+        "y": 286,
+        "width": 648,
+        "height": 452,
+        "scrollRegions": []
+      },
+      "closed": true,
+      "restoredFocus": true
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "height": 900,
+      "normal": {
+        "teacherCards": 0,
+        "teacherButtons": 0,
+        "icon": {
+          "x": 228,
+          "width": 52,
+          "height": 52
+        },
+        "copyX": 290,
+        "document": [
+          1440,
+          900
+        ]
+      },
+      "dialog": {
+        "x": 396,
+        "y": 224,
+        "width": 648,
+        "height": 452,
+        "scrollRegions": []
+      },
+      "closed": true,
+      "restoredFocus": true
+    },
+    {
+      "theme": "light",
+      "width": 540,
+      "height": 720,
+      "normal": {
+        "teacherCards": 0,
+        "teacherButtons": 0,
+        "icon": {
+          "x": 24,
+          "width": 44,
+          "height": 44
+        },
+        "copyX": 76,
+        "document": [
+          540,
+          720
+        ]
+      },
+      "dialog": {
+        "x": 32,
+        "y": 140,
+        "width": 476,
+        "height": 440,
+        "scrollRegions": []
+      },
+      "closed": true,
+      "restoredFocus": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "normal": {
+        "teacherCards": 0,
+        "teacherButtons": 0,
+        "icon": {
+          "x": 44,
+          "width": 52,
+          "height": 52
+        },
+        "copyX": 106,
+        "document": [
+          1024,
+          768
+        ]
+      },
+      "dialog": {
+        "x": 188,
+        "y": 158,
+        "width": 648,
+        "height": 452,
+        "scrollRegions": []
+      },
+      "closed": true,
+      "restoredFocus": true
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "height": 1024,
+      "normal": {
+        "teacherCards": 0,
+        "teacherButtons": 0,
+        "icon": {
+          "x": 44,
+          "width": 52,
+          "height": 52
+        },
+        "copyX": 106,
+        "document": [
+          768,
+          1024
+        ]
+      },
+      "dialog": {
+        "x": 60,
+        "y": 286,
+        "width": 648,
+        "height": 452,
+        "scrollRegions": []
+      },
+      "closed": true,
+      "restoredFocus": true
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "height": 900,
+      "normal": {
+        "teacherCards": 0,
+        "teacherButtons": 0,
+        "icon": {
+          "x": 228,
+          "width": 52,
+          "height": 52
+        },
+        "copyX": 290,
+        "document": [
+          1440,
+          900
+        ]
+      },
+      "dialog": {
+        "x": 396,
+        "y": 224,
+        "width": 648,
+        "height": 452,
+        "scrollRegions": []
+      },
+      "closed": true,
+      "restoredFocus": true
+    },
+    {
+      "theme": "dark",
+      "width": 540,
+      "height": 720,
+      "normal": {
+        "teacherCards": 0,
+        "teacherButtons": 0,
+        "icon": {
+          "x": 24,
+          "width": 44,
+          "height": 44
+        },
+        "copyX": 76,
+        "document": [
+          540,
+          720
+        ]
+      },
+      "dialog": {
+        "x": 32,
+        "y": 140,
+        "width": 476,
+        "height": 440,
+        "scrollRegions": []
+      },
+      "closed": true,
+      "restoredFocus": true
+    }
+  ],
+  "errors": [],
+  "scope": {
+    "date": "2026-10-08",
+    "type": "界面检查",
+    "realApi": false,
+    "realChildData": false,
+    "e2e": "UI-only，不运行 E2E 用例"
+  }
+}

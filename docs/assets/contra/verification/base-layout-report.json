@@ -1,0 +1,54 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "errors": [],
+    "doorOpen": true,
+    "advanceHeight": 44,
+    "noOverflow": true,
+    "minControl": 44,
+    "allArt": "41",
+    "floatingHidden": true
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "errors": [],
+    "doorOpen": true,
+    "advanceHeight": 44,
+    "noOverflow": true,
+    "minControl": 44,
+    "allArt": "41",
+    "floatingHidden": true
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "errors": [],
+    "doorOpen": true,
+    "advanceHeight": 44,
+    "noOverflow": true,
+    "minControl": 44,
+    "allArt": "41",
+    "floatingHidden": true
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "errors": [],
+    "doorOpen": true,
+    "advanceHeight": 44,
+    "noOverflow": true,
+    "minControl": 44,
+    "allArt": "41",
+    "floatingHidden": true
+  }
+]

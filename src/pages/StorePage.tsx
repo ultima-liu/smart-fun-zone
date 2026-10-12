@@ -1,5 +1,6 @@
 import BackButton from '../components/BackButton';
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
 import { KidButton } from '../components/ui';
@@ -11,6 +12,7 @@ import { IconCoin } from '../components/icons';
 import { KIND_LABEL, shelf, type ItemKind, type StoreItem } from '../points';
 import WardrobeAvatar from '../components/WardrobeAvatar';
 import NpcBuddy from '../components/NpcBuddy';
+import ScreenPages, { ContentPages } from '../components/ScreenPages';
 
 /** 补给站：3 类货架（装扮/游戏道具/奖励兑换）+ 试穿预览 */
 export default function StorePage() {
@@ -21,6 +23,7 @@ export default function StorePage() {
   const redeemItem = useStore((s) => s.redeemItem);
   const buyReward = useStore((s) => s.buyReward);
   const [msg, setMsg] = useState('');
+  const [selectedShelf, setSelectedShelf] = useState<ItemKind>('outfit');
   const [preview, setPreview] = useState<StoreItem | null>(null);
 
   const points = child?.id ? stateNow.points[child.id] ?? 0 : 0;
@@ -124,15 +127,16 @@ export default function StorePage() {
       {msg && <p className="saved-tip">{msg}</p>}
 
       {/* 货架 */}
-      {SHELVES.map((kind) => (
+      <nav className="activity-tabs store-shelf-tabs" aria-label="选择货架">{SHELVES.map((kind) => <button key={kind} className={selectedShelf === kind ? 'active' : ''} aria-pressed={selectedShelf === kind} onClick={() => setSelectedShelf(kind)}>{SHELF_ICON[kind]} {KIND_LABEL[kind]}</button>)}</nav>
+      {SHELVES.filter((kind) => kind === selectedShelf).map((kind) => (
         <section className="module" key={kind}>
           <h3 className="module-title">{SHELF_ICON[kind]} {KIND_LABEL[kind]}</h3>
-          <div className="store-grid">
+          <ContentPages className="store-grid" resetKey={kind}>
             {(kind === 'outfit'
               ? shelf(kind, stateNow.storeOverrides).filter((i) => i.acqType !== 'event')
               : shelf(kind, stateNow.storeOverrides)
             ).map((it) => renderCard(it))}
-          </div>
+          </ContentPages>
           {kind === 'outfit' && (
             <p className="empty-tip small">装备的装扮会显示在角色身上，快去“我的”看看效果～</p>
           )}
@@ -148,10 +152,11 @@ export default function StorePage() {
         const afford = points >= preview.cost;
         const isReward = preview.kind === 'reward';
         const canBuy = isReward || !has;
-        return (
+        return createPortal(
           <div className="preview-overlay" onClick={() => setPreview(null)}>
+            <button className="preview-close" onClick={() => setPreview(null)} aria-label="关闭商品预览">✕</button>
+            <ScreenPages panel>
             <div className="preview-card" onClick={(e) => e.stopPropagation()}>
-              <button className="preview-close" onClick={() => setPreview(null)}>✕</button>
               <div className="preview-figure">
                 {isOutfit ? (
                   <WardrobeAvatar outfitId={tmpEquipped.outfit} className="wardrobe-avatar--store-modal" />
@@ -170,7 +175,9 @@ export default function StorePage() {
                 )}
               </div>
             </div>
-          </div>
+            </ScreenPages>
+          </div>,
+          document.body,
         );
       })()}
     </div>

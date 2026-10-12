@@ -1,0 +1,7152 @@
+{
+  "width": 768,
+  "height": 1024,
+  "rows": [
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 0,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "numbers",
+      "title": "1～5 的认识",
+      "phase": 0,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717.25
+      },
+      "frame": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717.25
+      },
+      "scene": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 1,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "1\n教材任务 1",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "numbers",
+      "title": "1～5 的认识",
+      "phase": 1,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "frame": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "scene": {
+        "x": 179.49404907226562,
+        "y": 296.75,
+        "width": 529.011962890625,
+        "height": 717
+      },
+      "fit": 0.945,
+      "tab": "1\n教材任务 1",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n5 分成 0 和 5",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-corn-basket-scene",
+          "title": "把 5 根玉米依次分进两个篮子，并记录分法",
+          "naturalHeight": 737,
+          "rect": {
+            "x": 175,
+            "y": 265.625,
+            "width": 538,
+            "height": 737
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "numbers",
+      "title": "1～5 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "frame": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "scene": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-numbers-marking",
+          "title": "用手完成 1～5 的四种数量表示练习",
+          "naturalHeight": 695,
+          "rect": {
+            "x": 175,
+            "y": 307.75,
+            "width": 538,
+            "height": 695
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n5 分成 1 和 4",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-corn-basket-scene",
+          "title": "把 5 根玉米依次分进两个篮子，并记录分法",
+          "naturalHeight": 737,
+          "rect": {
+            "x": 175,
+            "y": 265.625,
+            "width": 538,
+            "height": 737
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n5 分成 2 和 3",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-corn-basket-scene",
+          "title": "把 5 根玉米依次分进两个篮子，并记录分法",
+          "naturalHeight": 737,
+          "rect": {
+            "x": 175,
+            "y": 265.625,
+            "width": 538,
+            "height": 737
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "numbers",
+      "title": "1～5 的认识",
+      "phase": 1,
+      "index": 2,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "frame": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "scene": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717
+      },
+      "fit": 1,
+      "tab": "3\n小探索",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 1,
+      "index": 2,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "3\n小探索",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 2,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n说出理由",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "numbers",
+      "title": "1～5 的认识",
+      "phase": 2,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "frame": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "scene": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717
+      },
+      "fit": 1,
+      "tab": "✓\n说出理由",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 2,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n知识延伸",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "numbers",
+      "title": "1～5 的认识",
+      "phase": 2,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "frame": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717.25
+      },
+      "scene": {
+        "x": 164,
+        "y": 296.75,
+        "width": 560,
+        "height": 717
+      },
+      "fit": 1,
+      "tab": "✓\n知识延伸",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 3,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "numbers",
+      "title": "1～5 的认识",
+      "phase": 3,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717.25
+      },
+      "frame": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717.25
+      },
+      "scene": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compose",
+      "title": "分与合",
+      "phase": 4,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "numbers",
+      "title": "1～5 的认识",
+      "phase": 4,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717.25
+      },
+      "frame": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717.25
+      },
+      "scene": {
+        "x": 44,
+        "y": 296.75,
+        "width": 680,
+        "height": 717
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 0,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 0,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 1,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "1\n教材任务 1",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 1,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "1\n教材任务 1",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n立体图形特征实验台",
+          "index": 0
+        },
+        {
+          "name": "1\n球",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-block-lab-scene",
+          "title": "先测试每件器材，观察它的运动，再记录真正的特点",
+          "naturalHeight": 623,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 623
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "“我说你拿”：请找出能滚动但不能向各个方向滚的图形。",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n6到9比较和序数操作板",
+          "index": 0
+        },
+        {
+          "name": "1\n●●●●●● ? ●●●●●●…",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "先用数量填符号；序数题先确定起点，再点出目标",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-unit2-card-lab",
+          "title": "把 8 和 9 放到数线，8 应在 9 的哪边？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n立体图形特征实验台",
+          "index": 0
+        },
+        {
+          "name": "2\n圆柱",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-block-lab-scene",
+          "title": "先测试每件器材，观察它的运动，再记录真正的特点",
+          "naturalHeight": 623,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 623
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "“我说你拿”：请找出能滚动但不能向各个方向滚的图形。",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n6到9比较和序数操作板",
+          "index": 0
+        },
+        {
+          "name": "2\n●●●●●●●●● ? ●●●…",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "先用数量填符号；序数题先确定起点，再点出目标",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-unit2-card-lab",
+          "title": "把 8 和 9 放到数线，8 应在 9 的哪边？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n立体图形特征实验台",
+          "index": 0
+        },
+        {
+          "name": "3\n正方体",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-block-lab-scene",
+          "title": "先测试每件器材，观察它的运动，再记录真正的特点",
+          "naturalHeight": 623,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 623
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "“我说你拿”：请找出能滚动但不能向各个方向滚的图形。",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n6到9比较和序数操作板",
+          "index": 0
+        },
+        {
+          "name": "3\n●●●●●●●● ? ●●●●…",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "先用数量填符号；序数题先确定起点，再点出目标",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-unit2-card-lab",
+          "title": "把 8 和 9 放到数线，8 应在 9 的哪边？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n6到9比较和序数操作板",
+          "index": 0
+        },
+        {
+          "name": "4\n从右数第 6 条鱼",
+          "index": 3
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "先用数量填符号；序数题先确定起点，再点出目标",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-unit2-card-lab",
+          "title": "把 8 和 9 放到数线，8 应在 9 的哪边？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n立体图形特征实验台",
+          "index": 0
+        },
+        {
+          "name": "4\n长方体",
+          "index": 3
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-block-lab-scene",
+          "title": "先测试每件器材，观察它的运动，再记录真正的特点",
+          "naturalHeight": 623,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 623
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "“我说你拿”：请找出能滚动但不能向各个方向滚的图形。",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n6到9比较和序数操作板",
+          "index": 0
+        },
+        {
+          "name": "5\n从左数第 7 只海马",
+          "index": 4
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "先用数量填符号；序数题先确定起点，再点出目标",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-unit2-card-lab",
+          "title": "把 8 和 9 放到数线，8 应在 9 的哪边？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n“我说你拿”",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-block-lab-scene",
+          "title": "先测试每件器材，观察它的运动，再记录真正的特点",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "“我说你拿”：请找出能滚动但不能向各个方向滚的图形。",
+          "naturalHeight": 623,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 623
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 1,
+      "index": 2,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "3\n小探索",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n比较与方向实验桌",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "先用数量填符号；序数题先确定起点，再点出目标",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-unit2-card-lab",
+          "title": "把 8 和 9 放到数线，8 应在 9 的哪边？",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 1,
+      "index": 2,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "3\n小探索",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 2,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "✓\n说出理由",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 2,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "✓\n知识延伸",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 2,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n说出理由",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 2,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n知识延伸",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 3,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 3,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-shapes",
+      "title": "认识立体图形",
+      "phase": 4,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "compare-order-nine",
+      "title": "6～9 的比大小和第几",
+      "phase": 4,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 0,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 0,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "1\n教材任务 1",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n摆出 1 筒和 5 支铅笔，也…",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-place-task mt-theme-scene mt-stationery-scene",
+          "title": "摆出 1 筒和 5 支铅笔，也就是 15",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-stationery-scene",
+          "title": "看清笔筒里的十和桌上的一，写出十几和 20",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "1 个十和 8 个一是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "1\n教材任务 1",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n11到20读写板",
+          "index": 1
+        },
+        {
+          "name": "1\n1 个十和 1 个一",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-place-task mt-theme-scene mt-stationery-scene",
+          "title": "摆出 1 筒和 5 支铅笔，也就是 15",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-stationery-scene",
+          "title": "看清笔筒里的十和桌上的一，写出十几和 20",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "1 个十和 8 个一是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n四块积木拼长方体",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-solid-task mt-theme-scene mt-block-blueprint-scene",
+          "title": "按蓝图用 4 个相同小正方体拼成长方体",
+          "naturalHeight": 558,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 558.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-solid-station ",
+          "title": "P70全部材料拼搭",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "4 个小正方体排成一行，能拼成什么？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n11到20读写板",
+          "index": 1
+        },
+        {
+          "name": "2\n1 个十和 3 个一",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-place-task mt-theme-scene mt-stationery-scene",
+          "title": "摆出 1 筒和 5 支铅笔，也就是 15",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-stationery-scene",
+          "title": "看清笔筒里的十和桌上的一，写出十几和 20",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "1 个十和 8 个一是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\nP70全部材料拼搭",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-solid-task mt-theme-scene mt-block-blueprint-scene",
+          "title": "按蓝图用 4 个相同小正方体拼成长方体",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-solid-station ",
+          "title": "P70全部材料拼搭",
+          "naturalHeight": 558,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 558.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "4 个小正方体排成一行，能拼成什么？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n11到20读写板",
+          "index": 1
+        },
+        {
+          "name": "3\n1 个十和 6 个一",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-place-task mt-theme-scene mt-stationery-scene",
+          "title": "摆出 1 筒和 5 支铅笔，也就是 15",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-stationery-scene",
+          "title": "看清笔筒里的十和桌上的一，写出十几和 20",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "1 个十和 8 个一是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\nP71做一做",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-solid-task mt-theme-scene mt-block-blueprint-scene",
+          "title": "按蓝图用 4 个相同小正方体拼成长方体",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-solid-station ",
+          "title": "P70全部材料拼搭",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "4 个小正方体排成一行，能拼成什么？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n11到20读写板",
+          "index": 1
+        },
+        {
+          "name": "4\n1 个十和 8 个一",
+          "index": 3
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-place-task mt-theme-scene mt-stationery-scene",
+          "title": "摆出 1 筒和 5 支铅笔，也就是 15",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-stationery-scene",
+          "title": "看清笔筒里的十和桌上的一，写出十几和 20",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "1 个十和 8 个一是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\nP72练一练",
+          "index": 3
+        },
+        {
+          "name": "1\n① 实物像哪个立体图形",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-solid-task mt-theme-scene mt-block-blueprint-scene",
+          "title": "按蓝图用 4 个相同小正方体拼成长方体",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-solid-station ",
+          "title": "P70全部材料拼搭",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "4 个小正方体排成一行，能拼成什么？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n11到20读写板",
+          "index": 1
+        },
+        {
+          "name": "5\n2 个十",
+          "index": 4
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-place-task mt-theme-scene mt-stationery-scene",
+          "title": "摆出 1 筒和 5 支铅笔，也就是 15",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-stationery-scene",
+          "title": "看清笔筒里的十和桌上的一，写出十几和 20",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "1 个十和 8 个一是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\nP72练一练",
+          "index": 3
+        },
+        {
+          "name": "2\n② 数一数组合图",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-solid-task mt-theme-scene mt-block-blueprint-scene",
+          "title": "按蓝图用 4 个相同小正方体拼成长方体",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-solid-station ",
+          "title": "P70全部材料拼搭",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "4 个小正方体排成一行，能拼成什么？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n11到20读写板",
+          "index": 1
+        },
+        {
+          "name": "6\n20 由什么组成",
+          "index": 5
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-place-task mt-theme-scene mt-stationery-scene",
+          "title": "摆出 1 筒和 5 支铅笔，也就是 15",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-stationery-scene",
+          "title": "看清笔筒里的十和桌上的一，写出十几和 20",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "1 个十和 8 个一是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\nP72练一练",
+          "index": 3
+        },
+        {
+          "name": "3\n③ 规律接着摆",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-solid-task mt-theme-scene mt-block-blueprint-scene",
+          "title": "按蓝图用 4 个相同小正方体拼成长方体",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-solid-station ",
+          "title": "P70全部材料拼搭",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "4 个小正方体排成一行，能拼成什么？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n1 个十和 8 个一是",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-place-task mt-theme-scene mt-stationery-scene",
+          "title": "摆出 1 筒和 5 支铅笔，也就是 15",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-stationery-scene",
+          "title": "看清笔筒里的十和桌上的一，写出十几和 20",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "1 个十和 8 个一是？",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\nP72练一练",
+          "index": 3
+        },
+        {
+          "name": "4\n我的立体图形发现",
+          "index": 3
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-solid-task mt-theme-scene mt-block-blueprint-scene",
+          "title": "按蓝图用 4 个相同小正方体拼成长方体",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-solid-station ",
+          "title": "P70全部材料拼搭",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "4 个小正方体排成一行，能拼成什么？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 1,
+      "index": 2,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "3\n小探索",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "5\n4 个小正方体排成一行，能拼成…",
+          "index": 4
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-solid-task mt-theme-scene mt-block-blueprint-scene",
+          "title": "按蓝图用 4 个相同小正方体拼成长方体",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-solid-station ",
+          "title": "P70全部材料拼搭",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "4 个小正方体排成一行，能拼成什么？",
+          "naturalHeight": 558,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 558.21875
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 1,
+      "index": 2,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "3\n小探索",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 2,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n说出理由",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 2,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "✓\n说出理由",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 2,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n知识延伸",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 2,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "✓\n知识延伸",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 3,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 3,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "solid-compose",
+      "title": "立体图形拼一拼",
+      "phase": 4,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 697
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "eleven-twenty",
+      "title": "11～20 的认识",
+      "phase": 4,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 0,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 0,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "1\n教材任务 1",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "1\n教材任务 1",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n圈出有用信息，再完成关系图和算式",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "1\n凑十自主拆分",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n数表里从 8 向右走 2 格，…",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n第五单元整理复习工作台",
+          "index": 1
+        },
+        {
+          "name": "1\n8＋5 怎样先凑十",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n数表路径",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n第五单元整理复习工作台",
+          "index": 1
+        },
+        {
+          "name": "2\n8＋5＝13 的相关减法",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "2\n第五单元整理复习工作台",
+          "index": 1
+        },
+        {
+          "name": "3\n领走 6 个，还剩 5 个，原…",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\n得数十涂色加法表",
+          "index": 3
+        },
+        {
+          "name": "1\n1＋9，得数是10吗",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\n得数十涂色加法表",
+          "index": 3
+        },
+        {
+          "name": "2\n2＋8，得数是10吗",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n第五单元教材练习单",
+          "index": 2
+        },
+        {
+          "name": "1\n① 口算",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\n得数十涂色加法表",
+          "index": 3
+        },
+        {
+          "name": "3\n3＋7，得数是10吗",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n第五单元教材练习单",
+          "index": 2
+        },
+        {
+          "name": "2\n② 比一比",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\n得数十涂色加法表",
+          "index": 3
+        },
+        {
+          "name": "4\n4＋6，得数是10吗",
+          "index": 3
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n第五单元教材练习单",
+          "index": 2
+        },
+        {
+          "name": "3\n③ 写出同得数的算式组",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\n得数十涂色加法表",
+          "index": 3
+        },
+        {
+          "name": "5\n5＋5，得数是10吗",
+          "index": 4
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n第五单元教材练习单",
+          "index": 2
+        },
+        {
+          "name": "4\n④ 积木",
+          "index": 3
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\n得数十涂色加法表",
+          "index": 3
+        },
+        {
+          "name": "6\n6＋5，得数是10吗",
+          "index": 5
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n第五单元教材练习单",
+          "index": 2
+        },
+        {
+          "name": "5\n⑤ 填 ＋ 或 －",
+          "index": 4
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n第五单元教材练习单",
+          "index": 2
+        },
+        {
+          "name": "6\n⑥ 吃了 8 个饺子，还剩 5…",
+          "index": 5
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "5\nP110综合问题工作台",
+          "index": 4
+        },
+        {
+          "name": "1\n① 猴群图",
+          "index": 0
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n第五单元教材练习单",
+          "index": 2
+        },
+        {
+          "name": "7\n⑦ 填未知加数",
+          "index": 6
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "5\nP110综合问题工作台",
+          "index": 4
+        },
+        {
+          "name": "2\n② 三盒小印章中买两盒",
+          "index": 1
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "5\nP110综合问题工作台",
+          "index": 4
+        },
+        {
+          "name": "3\n③ 在方框里填一个合适的数",
+          "index": 2
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "3\n第五单元教材练习单",
+          "index": 2
+        },
+        {
+          "name": "8\n⑧ 思考",
+          "index": 7
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "4\n7＋8，用凑十法先算",
+          "index": 3
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-make-ten-task mt-theme-scene mt-ten-storage-scene",
+          "title": "7＋8，自己决定怎样凑十",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-ten-storage-scene",
+          "title": "完成一条凑十路线、一组相关算式和一个“求原来”问题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer",
+          "title": "逐项完成原页练习，不把整页缩成几道选择题",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task ",
+          "title": "7＋8，用凑十法先算？",
+          "naturalHeight": 685,
+          "rect": {
+            "x": 175,
+            "y": 317.625,
+            "width": 538,
+            "height": 685
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "5\nP110综合问题工作台",
+          "index": 4
+        },
+        {
+          "name": "4\n④ 小明和小华读同一本书",
+          "index": 3
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 620,
+          "rect": {
+            "x": 175,
+            "y": 382.40625,
+            "width": 538,
+            "height": 620.21875
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 1,
+      "index": 2,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "3\n小探索",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 1,
+      "path": [
+        {
+          "name": "6\n全册成长档案",
+          "index": 5
+        }
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 190.39617919921875,
+        "y": 254.625,
+        "width": 507.2076416015625,
+        "height": 759.0707397460938
+      },
+      "fit": 0.906,
+      "tab": "2\n教材任务 2",
+      "boards": [
+        {
+          "class": "mt-textbook-task mt-problem-task",
+          "title": "圈出有用信息，再完成关系图和算式",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-generic-task",
+          "title": "数表里从 8 向右走 2 格，出口数字是？",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "从 8 开始，每次向右走一格",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "点击给得数正好是 10 的格子盖章",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-open-observation mt-theme-scene mt-archive-scene mt-question-composer",
+          "title": "把这一页的四类综合任务都留下自己的过程",
+          "naturalHeight": 0,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "class": "mt-textbook-task mt-card-organizer mt-theme-scene mt-archive-scene",
+          "title": "给九项学习表现各涂 0～3 朵小红花",
+          "naturalHeight": 699,
+          "rect": {
+            "x": 200.35919189453125,
+            "y": 370.36004638671875,
+            "width": 487.2816162109375,
+            "height": 633.3726806640625
+          }
+        }
+      ],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 1,
+      "index": 2,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "3\n小探索",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 2,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n说出理由",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 2,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n说出理由",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 2,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n知识延伸",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 2,
+      "index": 1,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 164,
+        "y": 254.625,
+        "width": 560,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "✓\n知识延伸",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 3,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 3,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "unit5-review",
+      "title": "第五单元整理和复习",
+      "phase": 4,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    },
+    {
+      "id": "review-application",
+      "title": "应用提升与自我评价",
+      "phase": 4,
+      "index": 0,
+      "path": [],
+      "viewport": [
+        768,
+        1024
+      ],
+      "document": [
+        768,
+        1024
+      ],
+      "main": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "frame": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759.375
+      },
+      "scene": {
+        "x": 44,
+        "y": 254.625,
+        "width": 680,
+        "height": 759
+      },
+      "fit": 1,
+      "tab": "",
+      "boards": [],
+      "clipped": [],
+      "overflow": []
+    }
+  ],
+  "errors": []
+}

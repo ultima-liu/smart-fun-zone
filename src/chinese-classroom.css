@@ -1,0 +1,412 @@
+/* Chinese uses the same full-screen classroom composition as mathematics. */
+.app .screen-pages .page.ct-classroom { max-width:none; width:100%; height:var(--screen-height,100dvh); padding:12px 20px; display:grid; grid-template-rows:82px 52px 70px minmax(0,1fr); gap:10px; }
+.app .screen-pages .ct-classroom > .ct-lesson-head { margin:0; padding:10px 18px; min-height:0; border-radius:22px; display:flex; align-items:center; gap:18px; }
+.app .screen-pages .ct-classroom .ct-lesson-head h1 { font-size:26px; line-height:1.2; margin:4px 0; }
+.app .screen-pages .ct-classroom .ct-lesson-head p { margin:0; font-size:12px; }
+.ct-reference-trigger { margin-left:auto; flex:none; min-height:44px; padding:8px 15px; border:1px solid var(--ct-line); border-radius:14px; background:var(--ct-paper-2); color:var(--ct-ink); cursor:pointer; }
+.app .screen-pages .ct-classroom .ct-phase-nav { position:static; min-height:0; margin:0; padding:5px; gap:6px; border-radius:18px; }
+.app .screen-pages .ct-classroom .ct-phase-nav button { min-height:42px; font-size:16px; gap:9px; padding:5px; }
+.ct-common-prompt { display:flex; align-items:center; gap:10px; min-width:0; }
+.ct-common-prompt > div { display:flex; align-items:center; gap:20px; flex:1; height:100%; min-width:0; padding:10px 18px; border:1px solid var(--ct-line); border-radius:18px; background:var(--ct-paper); }
+.ct-common-prompt > div > span { flex:none; font-size:18px; font-weight:800; color:var(--ct-blue); }
+.ct-common-prompt p { font-size:16px; margin:0; line-height:1.5; }
+.ct-replay { display:flex; align-items:center; justify-content:center; gap:8px; flex:none; min-height:60px; padding:8px 16px; background:#2d82bd; color:#fff; border:1px solid #65a9d5; border-radius:18px; cursor:pointer; font-size:16px; font-weight:700; }
+.ct-replay:disabled { opacity:.45; cursor:default; }
+.ct-classroom-content { height:100%; min-height:0; min-width:0; }
+.ct-classroom-content > :is(.ct-textbook-study,.ct-pinyin-lab,.ct-pinyin-garden) { height:100%; margin:0; }
+.app .screen-pages .ct-classroom-deck { display:grid; grid-template-columns:124px minmax(0,1fr); grid-template-rows:minmax(0,1fr); gap:12px; height:100%; min-height:0; padding:0; margin:0; border:0; background:none; box-shadow:none; }
+.app .screen-pages .ct-classroom-deck:not(:has(>.activity-tabs)) { grid-template-columns:minmax(0,1fr); }
+.app .screen-pages .ct-classroom-deck > .activity-tabs { display:flex; flex-direction:column; align-items:stretch; flex-wrap:nowrap; gap:8px; min-height:0; }
+.app .screen-pages .ct-classroom-deck > .activity-tabs button { display:flex; gap:7px; align-items:center; min-height:48px; padding:8px 9px; margin:0; border:1px solid var(--ct-line); border-radius:15px; background:var(--ct-paper); color:var(--ct-ink); font-size:15px; line-height:1.3; text-align:left; }
+.app .screen-pages .ct-classroom-deck > .activity-tabs button.active { background:linear-gradient(125deg,#7b61c7,#4d99c3); border-color:transparent; color:#fff; box-shadow:0 5px 12px #7861be18; }
+.app .screen-pages .ct-classroom-deck > .activity-tabs button.done:not(.active) { border-color:#45a98365; color:var(--ct-green); background:#49af8610; }
+.app .screen-pages .ct-classroom-deck .activity-number { width:25px; height:25px; font-size:13px; }
+.app .screen-pages .ct-classroom-deck > .activity-panels { width:100%; height:100%; padding:0; min-height:0; min-width:0; }
+.ct-classroom-deck > :is(.activity-tail,.activity-tail-standard):empty { display:none; }
+.app .screen-pages .ct-classroom-deck.ct-subtasks { grid-template-columns:1fr; grid-template-rows:auto minmax(0,1fr); gap:8px; flex:1; }
+.app .screen-pages .ct-classroom-deck.ct-subtasks > .activity-tabs { flex-direction:row; display:flex; }
+.app .screen-pages .ct-subtasks > .activity-tabs button { flex:1; min-height:44px; text-align:center; justify-content:center; font-size:14px; }
+.app .screen-pages .ct-subtasks:not(:has(>.activity-tabs)) { grid-template-rows:minmax(0,1fr); }
+.ct-classroom .activity-panel > .whole-stage > .whole-scene { min-width:0; }
+.ct-classroom .whole-scene:has(>.ct-pinyin-panel), .ct-classroom .whole-scene:has(>.ct-reading-workspace), .ct-classroom .whole-scene:has(>.ct-observation-workspace), .ct-classroom .whole-scene:has(>.ct-challenge), .ct-classroom .whole-scene:has(>.ct-study-section), .ct-classroom .whole-scene:has(>.ct-ktrail), .ct-classroom .whole-scene:has(>.ct-real-expression), .ct-classroom .whole-scene:has(>.ct-paper-writing), .ct-classroom .whole-scene:has(>.ct-reading-experience), .ct-classroom .whole-scene:has(>.ct-pinyin-listening), .ct-classroom .whole-scene:has(>.ct-recognition-check), .ct-classroom .whole-scene:has(>.ct-transfer-practice), .ct-classroom .whole-scene:has(>.ct-pinyin-production) { height:100%; }
+.app .screen-pages .ct-classroom :is(.ct-study-section,.ct-pinyin-panel,.ct-ktrail,.ct-real-expression,.ct-paper-writing,.ct-reading-experience,.ct-recognition-check,.ct-transfer-practice,.ct-pinyin-listening,.ct-pinyin-production) { min-height:0; height:100%; margin:0; padding:14px 18px; border-radius:22px; line-height:1.55; }
+.app .screen-pages .ct-classroom h3 { font-size:23px; line-height:1.4; margin:4px 0 10px; }
+.app .screen-pages .ct-classroom h4 { font-size:20px; margin:6px 0 10px; line-height:1.4; }
+.app .screen-pages .ct-classroom p { line-height:1.55; }
+.app .screen-pages .ct-classroom :is(.ct-primary,.ct-practice-actions button) { min-height:44px; padding:8px 14px; }
+.app .screen-pages .ct-classroom .ct-observation-workspace { display:grid; grid-template-rows:minmax(0,1fr) 38px; gap:8px; height:100%; padding:0; }
+.app .screen-pages .ct-classroom .ct-observe-scene { width:min(100%,calc((var(--stage-height) - 46px)*1.7778)); height:100%; justify-self:center; margin:0; border-width:3px; border-radius:22px; }
+.app .screen-pages .ct-classroom .ct-discovery-log { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px; padding:0; }
+.app .screen-pages .ct-classroom .ct-discovery-log span { padding:6px 12px; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-scene-hotspot { min-height:44px; padding:5px 8px; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-reading-workspace { display:flex; flex-direction:column; height:100%; gap:8px; border:1px solid var(--ct-line); background:var(--ct-paper-2); border-radius:22px; padding:14px 18px; }
+.app .screen-pages .ct-classroom .ct-reading-stage { flex:1; min-height:0; display:flex; flex-direction:column; gap:8px; }
+.app .screen-pages .ct-classroom .ct-read-guide { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:0; margin:0; background:transparent; }
+.app .screen-pages .ct-classroom .ct-read-guide > span { flex:1; font-size:13px; }
+.app .screen-pages .ct-classroom .ct-read-actions { display:flex; flex:0 0 100%; gap:12px; }
+.app .screen-pages .ct-classroom .ct-read-actions > button { display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; padding:10px 18px; margin:0; border:2px solid #b7a3ed; border-radius:14px; color:#e6dcff; background:#44336c; font:800 17px/1.3 system-ui; cursor:pointer; box-shadow:0 3px 0 #24183840; transition:background .15s,box-shadow .15s; }
+.app .screen-pages .ct-classroom .ct-read-actions > .ct-py-toggle.on { color:#fff; border-color:#8b66cf; background:#7050b0; }
+.app .screen-pages .ct-classroom .ct-read-actions > .ct-read-all { color:#fff; border-color:#397daa; background:#216b9b; box-shadow:0 3px 0 #164b7366; }
+.app .screen-pages .ct-classroom .ct-read-actions .ct-py-state { flex:none; padding:3px 7px; border-radius:7px; background:#ffffff18; font-size:12px; }
+.app .screen-pages .ct-classroom .ct-read-actions > button:hover { box-shadow:0 4px 10px #30204b33; }
+.app .screen-pages .ct-classroom .ct-read-actions > button:focus-visible { outline:3px solid var(--ct-gold); outline-offset:3px; }
+:root[data-theme="light"] .app .screen-pages .ct-classroom .ct-read-actions > .ct-py-toggle:not(.on) { color:#62409d; border-color:#9575c9; background:#f0e8ff; }
+:root[data-theme="light"] .app .screen-pages .ct-classroom .ct-py-toggle:not(.on) .ct-py-state { background:#7050b014; }
+.app .screen-pages .ct-classroom .ct-reading-stage > p { margin:0; font-size:13px; }
+.app .screen-pages .ct-classroom .ct-reading-stage > p:empty { display:none; }
+.app .screen-pages .ct-classroom .ct-reading-full-text { flex:1; min-height:0; overflow:hidden; }
+.app .screen-pages .ct-classroom .ct-reading-full-text > .whole-stage { height:100%; }
+.app .screen-pages .ct-classroom .ct-source-lines { display:grid; grid-template-columns:minmax(0,1fr); grid-auto-flow:row; grid-auto-rows:minmax(44px,auto); gap:5px; padding:3px 2px; }
+.app .screen-pages .ct-classroom .ct-reading-stage:not(.ct-reading-brief) .ct-read-guide { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 12px; }
+.app .screen-pages .ct-classroom .ct-reading-stage:not(.ct-reading-brief) .ct-read-guide > b { display:none; }
+.app .screen-pages .ct-classroom .ct-source-lines > .ct-read-line > button:not(.ct-read-follow) { padding:6px 12px; line-height:1.25; }
+.app .screen-pages .ct-classroom .ct-source-lines button { min-height:44px; padding:8px 12px; font-size:clamp(20px,2vw,28px); }
+.app .screen-pages .ct-classroom .ct-source-lines button i { font-size:15px; font-weight:800; }
+.app .screen-pages .ct-classroom .ct-read-follow { font-size:13px; }
+.app .screen-pages .ct-classroom .ct-read-progress { margin:0; padding:0; font-size:12px; }
+.app .screen-pages .ct-classroom .ct-study-section { display:flex; flex-direction:column; gap:10px; }
+.app .screen-pages .ct-classroom .ct-study-section-head { margin:0; }
+.app .screen-pages .ct-classroom .ct-study-section > p { margin:0; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-recognize-grid { flex:1; display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; align-content:center; }
+.app .screen-pages .ct-classroom .ct-recognize-grid button { min-height:115px; padding:12px; }
+.app .screen-pages .ct-classroom .ct-recognize-grid button b { font-size:44px; }
+.app .screen-pages .ct-classroom .ct-recognize-grid button span { font-size:16px; }
+.app .screen-pages .ct-classroom .ct-recognize-grid button i { font-size:12px; }
+.app .screen-pages .ct-classroom .ct-writing-grid { flex:1; display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); align-content:center; gap:16px; }
+.app .screen-pages .ct-classroom .ct-writing-grid button { padding:12px; min-height:150px; }
+.app .screen-pages .ct-classroom .ct-tian-grid { width:100px; height:100px; margin-inline:auto; }
+.app .screen-pages .ct-classroom .ct-tian-grid b { font-size:72px; }
+.app .screen-pages .ct-classroom .ct-study-content { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; flex:1; align-items:center; }
+.app .screen-pages .ct-classroom .ct-study-content button { min-height:60px; padding:14px 20px; font-size:23px; }
+.app .screen-pages .ct-classroom .ct-study-options { justify-content:center; flex-wrap:wrap; gap:12px; margin:12px 0; }
+.app .screen-pages .ct-classroom .ct-study-options button { min-height:54px; padding:10px 24px; font-size:20px; }
+.app .screen-pages .ct-classroom .ct-pict-match { flex:1; display:grid; grid-template-columns:minmax(0,1fr) 70px minmax(0,1fr); gap:12px; max-width:none; margin:0; }
+.app .screen-pages .ct-classroom .ct-pict-col { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; align-content:center; }
+.app .screen-pages .ct-classroom .ct-pict-col button { min-height:70px; font-size:38px; }
+.app .screen-pages .ct-classroom .ct-pict-link { align-self:center; justify-self:center; font-size:20px; }
+.app .screen-pages .ct-classroom .ct-pinyin-panel { display:flex; flex-direction:column; gap:10px; }
+.app .screen-pages .ct-classroom .ct-pinyin-panel-head { margin:0; flex:none; }
+.app .screen-pages .ct-classroom .ct-pinyin-panel-head h3 { margin:3px 0 6px; }
+.app .screen-pages .ct-classroom .ct-pinyin-panel-head p { font-size:14px; }
+.app .screen-pages .ct-classroom .ct-pinyin-letter-grid { display:grid; grid-template-columns:repeat(var(--ct-pinyin-letter-count,3),minmax(0,1fr)); flex:1; min-height:0; gap:12px; align-content:center; }
+.app .screen-pages .ct-classroom .ct-pinyin-letter-grid > button { padding:12px; min-height:0; gap:4px; }
+.app .screen-pages .ct-classroom .ct-pinyin-lines { height:140px; }
+.app .screen-pages .ct-classroom .ct-pinyin-letter-grid strong { font-size:30px; }
+.app .screen-pages .ct-classroom .ct-pinyin-letter-grid em { font-size:15px; }
+.app .screen-pages .ct-classroom .ct-pinyin-tip { margin:0; padding:8px 14px; }
+.app .screen-pages .ct-classroom .ct-pinyin-tones { height:100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); align-content:center; gap:12px; }
+.app .screen-pages .ct-classroom .ct-pinyin-tones > button { padding:16px; min-height:110px; }
+.app .screen-pages .ct-classroom .ct-pinyin-blend { height:100%; margin:0; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; gap:12px; padding:16px; }
+.app .screen-pages .ct-classroom .ct-pinyin-track { justify-content:center; }
+.app .screen-pages .ct-classroom .ct-pinyin-choices { justify-content:center; gap:16px; }
+.app .screen-pages .ct-classroom .ct-pinyin-choices button { padding:12px 26px; min-height:54px; font-size:28px; }
+.app .screen-pages .ct-classroom .ct-pinyin-panel:has(>.ct-pinyin-word-grid) { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto minmax(0,1fr) auto; }
+.app .screen-pages .ct-classroom .ct-pinyin-panel:has(>.ct-pinyin-word-grid) > .ct-pinyin-panel-head { grid-column:1/-1; }
+.app .screen-pages .ct-classroom .ct-pinyin-word-grid { grid-column:1; grid-row:2; align-content:center; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); margin:0; }
+.app .screen-pages .ct-classroom .ct-pinyin-word-grid button { padding:10px; min-height:100px; }
+.app .screen-pages .ct-classroom .ct-pinyin-word-grid button b { font-size:28px; }
+.app .screen-pages .ct-classroom .ct-pinyin-hanzi { grid-column:1; grid-row:3; margin:0; padding:10px; }
+.app .screen-pages .ct-classroom .ct-pinyin-reading { grid-column:2; grid-row:2/4; margin:0; padding:14px; display:flex; flex-direction:column; justify-content:center; }
+.app .screen-pages .ct-classroom .ct-pinyin-reading button { min-height:44px; padding:7px 10px; font-size:18px; }
+.app .screen-pages .ct-classroom .ct-pinyin-rule-workspace { height:100%; display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:center; }
+.app .screen-pages .ct-classroom .ct-pinyin-rule { padding:14px; margin:0; }
+.app .screen-pages .ct-classroom .ct-pinyin-check { padding:14px; margin:0; }
+.app .screen-pages .ct-classroom .ct-pinyin-check > div { gap:10px; }
+.app .screen-pages .ct-classroom .ct-pinyin-check button { min-height:48px; }
+.app .screen-pages .ct-classroom .ct-garden-card .ct-pinyin-garden-material { flex:1; display:grid; align-content:center; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin:0; }
+.app .screen-pages .ct-classroom .ct-pinyin-garden-material button { min-height:70px; padding:10px; }
+.app .screen-pages .ct-classroom .ct-pinyin-garden-material b { font-size:23px; }
+.app .screen-pages .ct-classroom .ct-pinyin-garden-question { padding:12px 16px; margin:0; text-align:center; }
+.app .screen-pages .ct-classroom .ct-pinyin-garden-question > div { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+.app .screen-pages .ct-classroom .ct-pinyin-garden-question button { min-height:48px; font-size:17px; }
+.app .screen-pages .ct-classroom :is(.ct-challenge,.ct-recognition-check,.ct-pinyin-listening,.ct-transfer-practice) { display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; gap:12px; }
+.app .screen-pages .ct-classroom .ct-challenge { height:100%; min-height:0; max-width:none; margin:0; padding:14px 22px; border-radius:22px; }
+.app .screen-pages .ct-classroom .ct-challenge-top { width:100%; padding:0 0 10px; border-bottom:1px solid var(--ct-line); flex:none; }
+.app .screen-pages .ct-classroom .ct-question-row { width:100%; flex:none; text-align:center; }
+.app .screen-pages .ct-classroom .ct-question-row h3 { display:flex; justify-content:center; align-items:center; gap:16px; margin:0; font-size:clamp(24px,2.6vw,36px); }
+.app .screen-pages .ct-classroom .ct-speak-chip { width:44px; height:44px; min-height:44px; border-radius:50%; margin:0 0 0 8px; background:#2d82bd; border-color:#2d82bd; color:#fff; flex:none; }
+.app .screen-pages .ct-classroom .ct-challenge-demo { width:100%; flex:1; min-height:90px; display:flex; align-items:center; justify-content:center; border:1px solid #bddbef; background:#dfeefa65; border-radius:18px; padding:10px; }
+.app .screen-pages .ct-classroom .ct-challenge-demo img { height:100%; max-height:calc(var(--stage-height)*.46); max-width:100%; object-fit:contain; border-radius:12px; }
+.app .screen-pages .ct-classroom .ct-challenge-options { width:100%; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; margin:0; flex:none; }
+.app .screen-pages .ct-classroom .ct-challenge-options button { min-height:58px; padding:12px 22px; min-width:110px; max-width:min(380px,32%); font-size:21px; }
+.app .screen-pages .ct-classroom .ct-options-short button { min-width:100px; min-height:60px; font-size:25px; padding:12px 26px; }
+.app .screen-pages .ct-classroom .ct-question-hints { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px; background:none; border:0; width:100%; flex:none; }
+.app .screen-pages .ct-classroom .ct-question-hints > button { min-height:44px; padding:8px 18px; border-radius:14px; border:1px solid var(--ct-line); background:var(--ct-paper-2); color:var(--ct-ink); cursor:pointer; font-size:16px; }
+.app .screen-pages .ct-classroom .ct-question-hints p { margin:0; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-practice-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:0; }
+.app .screen-pages .ct-classroom .ct-practice-actions button { margin:0; }
+.app .screen-pages .ct-classroom .ct-observed-practice { padding:12px; margin:0; border-radius:16px; line-height:1.5; }
+.app .screen-pages .ct-classroom .ct-observed-practice p { margin:0 0 8px; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-observed-practice > button { margin:0 0 8px; min-height:44px; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-observed-practice fieldset { margin:0 0 8px; padding:8px 10px; }
+.app .screen-pages .ct-classroom .ct-observed-practice fieldset label { padding:5px 0; font-size:14px; line-height:1.5; min-height:30px; }
+.app .screen-pages .ct-classroom .ct-observed-practice .ct-practice-actions { justify-content:flex-start; }
+.app .screen-pages .ct-classroom .ct-observed-practice .ct-practice-actions button { font-size:14px; padding:8px 10px; }
+.app .screen-pages .ct-classroom .ct-practice-saved { font-size:13px; margin:0; }
+.app .screen-pages .ct-classroom .ct-real-expression { display:flex; flex-direction:column; gap:18px; padding:20px 28px; }
+.app .screen-pages .ct-classroom .ct-real-expression :is(.ct-expression-question,.ct-expression-example) { flex:none; }
+.app .screen-pages .ct-classroom .ct-real-expression h3 { margin:0 0 6px; font:700 16px/1.5 system-ui; color:var(--ct-soft); }
+.app .screen-pages .ct-classroom .ct-real-expression :is(.ct-expression-question,.ct-expression-example) p { margin:0; font-size:19px; }
+.app .screen-pages .ct-classroom .ct-expression-example { padding:12px 16px; }
+.app .screen-pages .ct-classroom .ct-expression-answer { flex:1; min-height:0; }
+.app .screen-pages .ct-classroom .ct-expression-note { margin:0; font:700 16px/1.5 system-ui; }
+.app .screen-pages .ct-classroom .ct-expression-note textarea { height:140px; min-height:100px; margin:0; resize:none; }
+.app .screen-pages .ct-classroom .ct-voice-notebook { margin:0; padding:8px 10px; }
+.app .screen-pages .ct-classroom .ct-voice-notebook > button { min-height:44px; margin:0; padding:6px 10px; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-voice-notebook small { font-size:11px; }
+.app .screen-pages .ct-classroom .ct-listen-response { margin:0; padding:8px 12px; }
+.app .screen-pages .ct-classroom .ct-expression-scaffold { margin:0; padding:8px 12px; }
+.app .screen-pages .ct-classroom .ct-expression-answer > .ct-observed-practice { padding:0; }
+.app .screen-pages .ct-classroom .ct-expression-answer .automatic-course-check { padding:0; color:var(--ct-ink); }
+.app .screen-pages .ct-classroom .ct-expression-answer .course-answer-voice button { min-height:48px; padding:10px 18px; font-size:16px; }
+.app .screen-pages .ct-classroom .ct-paper-writing { display:grid; grid-template-columns:230px minmax(0,1fr); grid-template-rows:auto minmax(0,1fr); gap:14px 22px; }
+.app .screen-pages .ct-classroom .ct-paper-writing > h3 { grid-column:1/-1; margin:0; }
+.ct-writing-tools { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:8px; min-width:0; }
+.app .screen-pages .ct-classroom .ct-writing-tools > p { margin:0; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-writing-tools > button { min-height:44px; padding:8px 12px; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-writing-demo { display:flex; flex-direction:column; align-items:center; gap:8px; margin:0; padding:0; }
+.app .screen-pages .ct-classroom .ct-writing-demo button { font-size:14px; padding:8px 10px; }
+.app .screen-pages .ct-classroom .ct-paper-writing > .ct-observed-practice { align-self:center; }
+.app .screen-pages .ct-classroom .ct-ink-pad { margin:0; gap:5px; }
+.app .screen-pages .ct-classroom .ct-ink-pad canvas { width:210px; height:140px; }
+.app .screen-pages .ct-classroom .ct-ink-pad small { font-size:11px; }
+.app .screen-pages .ct-classroom .ct-ink-pad button { font-size:13px; min-height:44px; }
+.app .screen-pages .ct-classroom .ct-reading-experience { display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; gap:12px; text-align:center; }
+.app .screen-pages .ct-classroom .ct-reading-experience p { margin:0; font-size:19px; }
+.app .screen-pages .ct-classroom .ct-reading-experience .ct-practice-actions button { max-width:42%; min-height:64px; font-size:20px; }
+.app .screen-pages .ct-classroom .ct-match-grid { width:100%; flex:1; align-items:center; column-gap:clamp(40px,5vw,72px); padding-inline:clamp(20px,3vw,40px); }
+.app .screen-pages .ct-classroom .ct-match-grid button { min-height:56px; }
+.app .screen-pages .ct-classroom .ct-transfer-practice > button.ct-primary { min-height:52px; padding:10px 24px; }
+.app .screen-pages .ct-classroom .ct-transfer-match { gap:8px; }
+.app .screen-pages .ct-classroom .ct-transfer-match > :is(h3,p,button,.practice-again) { margin:0; }
+.app .screen-pages .ct-classroom .ct-match-grid .ct-match-option { margin:0; }
+.app .screen-pages .ct-classroom .ct-order-result { width:100%; padding:16px; min-height:70px; display:flex; justify-content:center; flex-wrap:wrap; gap:12px; }
+.app .screen-pages .ct-classroom .ct-ktrail { display:flex; flex-direction:column; justify-content:space-evenly; gap:12px; }
+.app .screen-pages .ct-classroom .ct-ktrail-head h3 { margin:3px 0; }
+.app .screen-pages .ct-classroom .ct-ktrail-head p { margin:0; }
+.app .screen-pages .ct-classroom .ct-ktrail-body { margin:0; gap:12px; }
+.app .screen-pages .ct-classroom .ct-ktrail-body > div { min-height:0; padding:12px; }
+.app .screen-pages .ct-classroom .ct-ktrail-body p { font-size:16px; margin:6px 0 0; }
+.app .screen-pages .ct-classroom .ct-ktrail-check { margin:0; padding:12px 16px; }
+.app .screen-pages .ct-classroom .ct-ktrail-check p { margin:8px 0 0; }
+.app .screen-pages .ct-classroom .ct-ktrail-status { display:none; }
+.app .screen-pages .ct-classroom .ct-ktrail--workshop { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); grid-template-rows:auto 44px minmax(0,1fr) auto; }
+.app .screen-pages .ct-classroom .ct-ktrail--workshop > .ct-ktrail-head { grid-column:1/-1; }
+.app .screen-pages .ct-classroom .ct-ktrail-tabs { grid-column:1/-1; display:flex; margin:0; gap:8px; }
+.app .screen-pages .ct-classroom .ct-ktrail-tabs button { flex:1; min-height:44px; padding:8px; border:1px solid var(--ct-line); background:var(--ct-paper); color:var(--ct-ink); border-radius:12px; cursor:pointer; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-ktrail-tabs button.active { background:#7961c5; color:#fff; }
+.app .screen-pages .ct-classroom .ct-ktrail-tabs button.done:not(.active) { color:var(--ct-green); }
+.app .screen-pages .ct-classroom .ct-ktian-section { grid-column:1; display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:0; align-items:center; }
+.app .screen-pages .ct-classroom .ct-ktrail--workshop > .ct-ktrail-check { grid-column:2; grid-row:3; align-self:center; }
+.app .screen-pages .ct-classroom .ct-ktian-board { width:min(190px,100%); height:190px; }
+.app .screen-pages .ct-classroom .ct-ktian-demo { padding:8px; }
+.app .screen-pages .ct-classroom .ct-ktian-demo svg { width:110px; height:110px; }
+.app .screen-pages .ct-classroom .ct-ktian-demo p { font-size:13px; margin:0; }
+.app .screen-pages .ct-classroom .ct-ktian-copy p { font-size:13px; margin:4px 0; }
+.app .screen-pages .ct-classroom .ct-ktian-callout { padding:8px; margin:8px 0; font-size:13px; }
+.app .screen-pages .ct-classroom .ct-ktian-structures { gap:6px; }
+.app .screen-pages .ct-classroom .ct-ktian-structures button { padding:8px 4px; }
+.app .screen-pages .ct-classroom .ct-ktian-structures .ct-tian-grid { width:60px; height:60px; }
+.app .screen-pages .ct-classroom .ct-ktian-structures .ct-tian-grid b { font-size:40px; }
+.app .screen-pages .ct-classroom .ct-ktian-culture { grid-column:1/-1; margin:0; padding:8px 12px; }
+.app .screen-pages .ct-classroom .ct-ktian-culture h4 { font-size:15px; margin:0 0 4px; }
+.app .screen-pages .ct-classroom .ct-ktian-culture p { font-size:12px; margin:0; }
+.app .screen-pages .page.ct-chinese-catalog { max-width:none; width:100%; height:var(--screen-height,100dvh); display:grid; grid-template-columns:1fr; grid-template-rows:132px minmax(0,1fr); gap:12px; padding:12px 20px; }
+.app .screen-pages .ct-chinese-catalog:has(>.mc-continue) { grid-template-rows:132px 48px minmax(0,1fr); }
+.app .screen-pages .ct-chinese-catalog > .ct-catalog-hero { grid-column:1; grid-row:1; min-height:132px; padding:16px 20px; display:flex; align-items:center; gap:20px; }
+.app .screen-pages .ct-chinese-catalog > .ct-catalog-hero h1 { font-size:32px; }
+.app .screen-pages .ct-chinese-catalog > .ct-catalog-hero .ct-progress-orbit { margin-left:auto; }
+.app .screen-pages .ct-chinese-catalog > .mc-continue { grid-row:2; grid-column:1; height:48px; margin:0; }
+.app .screen-pages .ct-chinese-catalog > .ct-open-lessons { grid-column:1; grid-row:auto; display:grid; grid-template-rows:44px auto minmax(0,1fr); gap:10px; min-height:0; padding:14px 18px; margin:0; }
+.app .screen-pages .ct-chinese-catalog .ct-section-title { margin:0; padding:0; }
+.app .screen-pages .ct-chinese-catalog .ct-section-title h2 { font-size:19px; margin:3px 0; }
+.app .screen-pages .ct-unit-buttons { display:grid; grid-template-columns:repeat(9,minmax(0,1fr)); gap:8px; }
+.ct-unit-buttons button { display:flex; flex-direction:column; gap:5px; align-items:center; justify-content:center; min-height:64px; padding:8px 5px; border:1px solid var(--ct-line); border-radius:14px; background:var(--ct-paper); color:var(--ct-ink); cursor:pointer; }
+.ct-unit-buttons button b { font-size:15px; }
+.ct-unit-buttons button small { font-size:11px; }
+.ct-unit-buttons button.active { background:linear-gradient(125deg,#7b61c7,#4d99c3); color:#fff; border-color:transparent; }
+.ct-lesson-swipe { height:100%; min-height:0; min-width:0; overflow:auto; overscroll-behavior:contain; scrollbar-width:none; touch-action:pan-y; -webkit-overflow-scrolling:touch; }
+.ct-lesson-swipe::-webkit-scrollbar { display:none; }
+.app .screen-pages .ct-lesson-swipe .ct-lesson-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; padding:2px 2px 20px; margin:0; }
+.app .screen-pages .ct-lesson-swipe .ct-lesson-entry { min-height:200px; height:200px; margin:0; }
+@media(max-width:1100px) {
+  .app .screen-pages .page.ct-classroom { padding:10px 14px; grid-template-rows:78px 50px 66px minmax(0,1fr); gap:8px; }
+  .ct-common-prompt > div { gap:12px; padding:8px 12px; }
+  .ct-common-prompt > div > span { font-size:16px; }
+  .ct-common-prompt p { font-size:14px; }
+  .ct-replay { min-height:54px; padding:8px 12px; font-size:14px; }
+  .ct-common-prompt .lesson-help-icon { min-height:54px; padding:8px 12px; gap:8px; }
+  .ct-common-prompt .lesson-help-label b { font-size:16px; }
+  .ct-common-prompt .lesson-help-label small { font-size:12px; }
+  .app .screen-pages .ct-classroom-deck { grid-template-columns:124px minmax(0,1fr); gap:10px; }
+  .app .screen-pages .ct-classroom-deck > .activity-tabs button { font-size:14px; padding:8px 7px; gap:5px; }
+  .app .screen-pages .ct-classroom :is(.ct-study-section,.ct-pinyin-panel,.ct-ktrail,.ct-real-expression,.ct-paper-writing,.ct-reading-experience,.ct-recognition-check,.ct-transfer-practice,.ct-pinyin-listening,.ct-pinyin-production) { padding:12px 14px; }
+  .app .screen-pages .ct-classroom .ct-real-expression { gap:10px 14px; }
+  .app .screen-pages .ct-classroom .ct-paper-writing { grid-template-columns:210px minmax(0,1fr); gap:12px; }
+  .app .screen-pages .ct-classroom .ct-challenge-options button { font-size:18px; padding:10px 18px; }
+  .app .screen-pages .ct-classroom .ct-recognize-grid { grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:8px; }
+  .app .screen-pages .ct-classroom .ct-recognize-grid button { min-height:100px; padding:10px; }
+  .app .screen-pages .ct-classroom .ct-recognize-grid button b { font-size:38px; }
+  .app .screen-pages .ct-classroom .ct-pinyin-letter-grid em { font-size:13px; }
+  .app .screen-pages .ct-classroom .ct-ktrail-body p { font-size:14px; }
+  .app .screen-pages .ct-classroom .ct-ktian-section:has(.ct-ktian-number-pick) .ct-ktian-copy { display:block; }
+  .app .screen-pages .ct-classroom .ct-ktian-section:has(.ct-ktian-number-pick) { grid-template-columns:1fr 1fr; }
+  .app .screen-pages .ct-unit-buttons { gap:5px; }
+  .ct-unit-buttons button b { font-size:13px; }
+}
+@media(max-width:700px) {
+  .app .screen-pages .page.ct-classroom { padding:8px; grid-template-rows:72px 48px 84px minmax(0,1fr); gap:8px; }
+  .app .screen-pages .ct-classroom .ct-lesson-head { padding:8px 12px; gap:10px; }
+  .app .screen-pages .ct-classroom .ct-lesson-head h1 { font-size:22px; }
+  .app .screen-pages .ct-classroom .ct-phase-nav button { font-size:12px; gap:3px; }
+  .ct-common-prompt { gap:6px; }
+  .ct-common-prompt > div { flex-direction:column; align-items:flex-start; justify-content:center; gap:4px; }
+  .ct-common-prompt .lesson-help-icon { padding:6px 9px; }
+  .ct-common-prompt .lesson-help-icon svg { width:28px; height:28px; }
+  .ct-common-prompt .lesson-help-label small { font-size:10px; }
+  .ct-common-prompt .ct-replay { padding:8px; gap:4px; font-size:12px; }
+  .app .screen-pages .ct-classroom-deck { grid-template-columns:96px minmax(0,1fr); gap:8px; }
+  .app .screen-pages .ct-classroom-deck > .activity-tabs button { font-size:12px; padding:7px; }
+  .app .screen-pages .ct-classroom-deck .activity-number { width:20px; height:20px; }
+  .app .screen-pages .ct-classroom .ct-real-expression, .app .screen-pages .ct-classroom .ct-paper-writing { grid-template-columns:1fr; grid-template-rows:auto; height:auto; }
+  .app .screen-pages .ct-classroom .ct-source-lines { grid-template-columns:1fr; grid-auto-flow:row; grid-template-rows:none; }
+  .app .screen-pages .ct-classroom .ct-pinyin-rule-workspace { grid-template-columns:1fr; height:auto; }
+  .app .screen-pages .ct-unit-buttons { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .app .screen-pages .ct-chinese-catalog > .ct-catalog-hero { gap:12px; padding:12px; }
+  .app .screen-pages .ct-chinese-catalog > .ct-catalog-hero h1 { font-size:25px; }
+  .app .screen-pages .ct-chinese-catalog > .ct-catalog-hero :is(.ct-hero-seal,.ct-progress-orbit) { display:none; }
+  .app .screen-pages .ct-lesson-swipe .ct-lesson-grid { grid-template-columns:1fr; }
+}
+.app .screen-pages .ct-classroom .ct-pinyin-production { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto minmax(0,1fr); gap:16px; }
+.app .screen-pages .ct-classroom .ct-pinyin-production > h3 { grid-column:1/-1; }
+.ct-production-compose { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+.app .screen-pages .ct-classroom .ct-production-compose p { margin:0; }
+.app .screen-pages .ct-classroom .ct-production-compose .ct-new-syllable { margin:0; }
+.app .screen-pages .ct-classroom .ct-pinyin-production > .ct-observed-practice { align-self:center; }
+.app:has(.ct-classroom) + .buddy-fab { display:none; }
+.app .screen-pages .ct-classroom-deck > .activity-tabs button > span:last-child { white-space:nowrap; }
+.app .screen-pages .ct-classroom-deck > .activity-tabs button .activity-number { width:23px; height:23px; }
+/* Textbook tasks: one question above a material panel and a generous answer panel. */
+.app .screen-pages .ct-classroom .ct-study-activity:has(>.ct-study-workspace) { display:grid; grid-template-rows:auto auto minmax(0,1fr); gap:12px; }
+.app .screen-pages .ct-classroom .ct-study-activity:has(>.ct-study-workspace) > h3 { margin:0; padding:4px 0 14px; border-bottom:1px solid var(--ct-line); }
+.ct-study-workspace { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:22px; min-width:0; min-height:0; padding:8px 0 0; }
+.ct-study-material, .ct-study-response { min-width:0; min-height:0; padding:18px; border:1px solid var(--ct-line); border-radius:18px; background:var(--ct-paper); }
+.ct-study-material { display:flex; flex-direction:column; gap:16px; }
+.app .screen-pages .ct-classroom .ct-study-material > h4 { flex:none; margin:0; color:var(--ct-soft); font:700 16px/1.4 system-ui; }
+.app .screen-pages .ct-classroom .ct-study-material > .ct-study-content { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr)); align-content:center; align-items:stretch; gap:12px; min-height:0; }
+.app .screen-pages .ct-classroom .ct-study-material .ct-study-content button { min-height:68px; padding:12px 14px; font-size:22px; line-height:1.6; background:var(--ct-paper-2); border-color:var(--ct-line); }
+.ct-study-response { display:flex; border-color:color-mix(in srgb,var(--ct-blue) 35%,var(--ct-line)); }
+.ct-study-response > .ct-observed-practice { display:flex; flex:1; min-width:0; min-height:0; }
+.ct-study-response .automatic-course-check { flex:1; min-height:0; padding:0; gap:14px; }
+.app .screen-pages .ct-classroom .ct-study-response .automatic-course-check > label { flex:1; align-items:stretch; min-height:0; gap:14px; font:700 17px/1.4 system-ui; }
+.app .screen-pages .ct-classroom .ct-study-response textarea { flex:1; min-height:112px; padding:14px 16px; border-radius:12px; font:400 20px/1.65 system-ui; }
+.ct-study-response .course-answer-voice { margin-top:auto; }
+.ct-study-response .course-answer-voice button { min-height:46px; padding:10px 18px; font:700 16px/1.4 system-ui; }
+.ct-study-response:not(:has(textarea)) { flex-direction:column; gap:16px; }
+.app .screen-pages .ct-classroom .ct-study-response > h4 { flex:none; margin:0; font:700 17px/1.4 system-ui; }
+.ct-study-response:not(:has(textarea)) .automatic-course-check { align-items:center; justify-content:center; }
+.ct-study-response:not(:has(textarea)) .course-answer-voice { margin-top:0; }
+.ct-study-workspace-solo { grid-template-columns:minmax(0,1fr); width:min(100%,720px); justify-self:center; }
+.ct-study-workspace-solo .ct-study-response:has(.automatic-course-check:not(:has(textarea))) { align-self:center; }
+.app .screen-pages .ct-classroom .ct-study-activity:has(>.ct-study-options) { justify-content:space-evenly; text-align:center; }
+.app .screen-pages .ct-classroom .ct-study-activity:has(>.ct-study-options) h3 { justify-content:center; font-size:26px; }
+.app .screen-pages .ct-classroom .ct-garden-card .ct-garden-reading { height:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; align-content:center; }
+.app .screen-pages .ct-classroom .ct-garden-reading button { min-height:44px; padding:8px 10px; text-align:left; }
+.app .screen-pages .ct-classroom .ct-garden-reading b { font-size:16px; font-weight:500; line-height:1.6; }
+.app .screen-pages .ct-classroom .ct-garden-reading small { font-size:11px; margin-top:2px; }
+.app .screen-pages .ct-classroom .ct-subtasks .ct-pinyin-garden-question { height:100%; display:flex; flex-direction:column; justify-content:space-evenly; gap:12px; }
+.app:has(.ct-classroom), .app:has(.ct-chinese-catalog) { max-width:none; width:100%; }
+.app .screen-pages .ct-classroom .ct-study-deck { min-height:44px; padding:8px 12px; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-voice-notebook > small { display:none; }
+.app .screen-pages .ct-classroom .ct-paper-writing:has(.ct-ink-pad) { grid-template-columns:minmax(350px,.95fr) minmax(0,1fr); }
+.app .screen-pages .ct-classroom .ct-writing-tools:has(.ct-ink-pad) { display:grid; grid-template-columns:160px minmax(0,1fr); grid-template-rows:auto auto auto; align-content:center; align-items:center; }
+.app .screen-pages .ct-classroom .ct-writing-tools:has(.ct-ink-pad) > .ct-writing-demo { grid-column:1; grid-row:1; }
+.app .screen-pages .ct-classroom .ct-writing-tools:has(.ct-ink-pad) > p { grid-column:1; grid-row:2; }
+.app .screen-pages .ct-classroom .ct-writing-tools:has(.ct-ink-pad) > button { grid-column:1; grid-row:3; }
+.app .screen-pages .ct-classroom .ct-writing-tools > .ct-ink-pad { grid-column:2; grid-row:1/4; }
+.app .screen-pages .ct-classroom .ct-ink-pad canvas { width:180px; max-width:100%; height:160px; }
+.ct-offline-check { width:min(850px,100%); margin:auto; padding:22px; border:1px solid var(--line); border-radius:24px; background:var(--paper); color:var(--ink); font-size:18px; }
+.ct-offline-check h3 { font-size:26px; margin:0 0 16px; }
+.ct-offline-check p { line-height:1.7; }
+.ct-offline-check .ct-observed-practice { padding:18px; }
+.ct-offline-check button { min-height:44px; padding:8px 14px; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:12px; cursor:pointer; }
+.ct-offline-check fieldset { padding:14px; }
+.ct-offline-check label { min-height:44px; display:flex; gap:12px; align-items:center; }
+.ct-offline-check .ct-practice-actions { display:flex; flex-wrap:wrap; gap:10px; }
+.app .screen-pages .ct-classroom .ct-challenge > .ct-pinyin-listening { border:0; background:none; padding:0; flex:1; width:100%; }
+.ct-classroom .whole-scene:has(>.ct-garden-reading) { height:100%; }
+.app .screen-pages .ct-classroom .ct-garden-card .ct-garden-reading { grid-template-columns:repeat(2,minmax(0,1fr)); align-content:center; }
+.app .screen-pages .ct-classroom .ct-garden-reading button { min-height:44px; padding:7px 10px; position:relative; }
+.app .screen-pages .ct-classroom .ct-garden-reading b { font-size:16px; line-height:1.5; }
+.app .screen-pages .ct-classroom .ct-garden-reading i { float:right; font-size:12px; font-style:normal; color:var(--ct-green); }
+@media(max-width:700px) {
+ .app .screen-pages .ct-classroom .ct-paper-writing:has(.ct-ink-pad) { grid-template-columns:1fr; }
+ .app .screen-pages .ct-classroom .ct-writing-tools:has(.ct-ink-pad) { grid-template-columns:1fr 1fr; }
+}
+/* 原页作为完整对照图显示，不沿用纸页的纵向滚动容器。 */
+.modal:has(.ct-reference-modal) .screen-pages > .screen-window > .whole-stage { height:100%; }
+.modal:has(.ct-reference-modal) .whole-scene:has(>.ct-reference-modal) { height:100%; }
+.ct-reference-modal { height:100%; min-height:0; display:grid; grid-template-rows:auto minmax(0,1fr); margin:0; }
+.ct-reference-modal > header { padding-right:44px; }
+.ct-reference-modal .ct-page-viewer { height:100%; min-height:0; grid-template-columns:minmax(0,1fr) 78px; padding:12px; }
+.ct-reference-modal .ct-page-canvas { height:100%; min-height:0; overflow:hidden; place-items:center; }
+.ct-reference-modal .ct-page-canvas img { width:100%; height:100%; min-height:0; object-fit:contain; box-shadow:none; }
+.ct-reference-modal .ct-page-switcher button { min-height:44px; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-ktian-midline { background:transparent; }
+.app .screen-pages .ct-classroom .ct-ktian-midline::after { background:rgba(214,107,118,.29); }
+.app .screen-pages .ct-classroom .ct-ktian-midline.seen::after { background:rgba(240,166,60,.84); }
+.app .screen-pages .ct-classroom .ct-ktian-midline--h { height:44px; top:calc(50% - 22px); }
+.app .screen-pages .ct-classroom .ct-ktian-midline--v { width:44px; left:calc(50% - 22px); }
+.app .screen-pages .ct-classroom .ct-ktian-midline--h::after { height:2px; top:21px; }
+.app .screen-pages .ct-classroom .ct-ktian-midline--v::after { width:2px; left:21px; }
+.app .screen-pages .ct-classroom .ct-ktian-number-pick button { width:44px; height:44px; }
+.app .screen-pages .ct-classroom .ct-source-lines .ct-read-follow { font-size:13px; padding:7px 12px; align-self:center; }
+.app .screen-pages .ct-classroom .ct-reading-workspace:has(>.ct-reading-art) { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); grid-template-rows:minmax(0,1fr); gap:14px 20px; }
+.ct-reading-art { width:100%; height:100%; min-height:0; object-fit:contain; border-radius:18px; }
+.app .screen-pages .ct-classroom .ct-reading-brief { height:100%; }
+.app .screen-pages .ct-classroom .ct-garden-reading button { display:block; padding:6px 28px 6px 10px; }
+.app .screen-pages .ct-classroom .ct-garden-reading b { display:block; font-size:16px; line-height:1.4; }
+.app .screen-pages .ct-classroom .ct-garden-reading i { position:absolute; top:7px; right:7px; float:none; }
+.app .screen-pages .ct-classroom .ct-garden-card:has(.ct-garden-reading) { gap:6px; padding:10px 14px; }
+.app .screen-pages .ct-classroom .ct-garden-card:has(.ct-garden-reading) .ct-pinyin-panel-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:6px 14px; align-items:center; }
+.app .screen-pages .ct-classroom .ct-garden-card:has(.ct-garden-reading) .ct-pinyin-panel-head > small { grid-column:1/-1; }
+.app .screen-pages .ct-classroom .ct-garden-card:has(.ct-garden-reading) .ct-pinyin-panel-head > h3 { margin:0; font-size:21px; }
+.app .screen-pages .ct-classroom .ct-garden-card:has(.ct-garden-reading) .ct-pinyin-panel-head > p { margin:0; font-size:13px; }
+@media(max-width:700px) {
+ .app .screen-pages .ct-classroom .ct-reading-workspace:has(>.ct-reading-art) { grid-template-columns:1fr; }
+ .ct-reading-art { display:none; }
+ .app .screen-pages .ct-classroom .ct-garden-card:has(.ct-garden-reading) .ct-pinyin-panel-head { grid-template-columns:1fr; }
+}
+.app .screen-pages .ct-classroom .ct-source-lines button:has(.ct-read-py) { font-size:18px; line-height:1.45; padding:6px 10px; }
+.app .screen-pages .ct-classroom .ct-read-py ruby { margin:0; }
+.app .screen-pages .ct-classroom .ct-read-py ruby rt { font-size:10.5px; padding:0; }
+.app .screen-pages .ct-chinese-catalog > .ct-open-lessons { grid-template-columns:minmax(0,1fr); }
+.app .screen-pages .ct-chinese-catalog .ct-open-lessons > .ct-section-title { grid-column:1; grid-row:1; }
+.app .screen-pages .ct-chinese-catalog .ct-open-lessons > .ct-unit-buttons { grid-column:1; grid-row:2; }
+.app .screen-pages .ct-chinese-catalog .ct-open-lessons > .ct-lesson-swipe { grid-column:1; grid-row:3; }
+.app:has(.ct-chinese-catalog) + .buddy-fab { display:none; }
+@media(max-width:1100px) {
+ .app .screen-pages .ct-chinese-catalog .ct-unit-buttons { grid-template-columns:repeat(5,minmax(0,1fr)); }
+}
+.app .screen-pages .page.ct-classroom.ct-lesson-complete { grid-template-rows:82px minmax(0,1fr); gap:22px; }
+.ct-lesson-result { min-height:0; min-width:0; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:clamp(32px,5vw,76px); align-items:center; padding:clamp(24px,4vw,52px); border:1px solid var(--ct-line); border-radius:28px; background:var(--ct-paper-2); }
+.ct-lesson-result-summary { display:grid; justify-items:center; gap:18px; text-align:center; }
+.ct-lesson-result-mark { display:grid; place-items:center; width:96px; height:96px; border-radius:50%; background:var(--ct-green); color:#fff; font:800 56px/1 system-ui; }
+.ct-lesson-result-summary h2 { margin:0; color:var(--ct-ink); font-size:clamp(28px,3vw,38px); }
+.ct-lesson-result-stars { color:var(--ct-gold); font-size:44px; letter-spacing:10px; }
+.ct-lesson-result-summary p { margin:0; color:var(--ct-soft); font-size:19px; line-height:1.6; }
+.ct-lesson-result-actions { display:grid; gap:20px; }
+.ct-lesson-result-actions h3 { margin:0 0 8px; color:var(--ct-ink); font-size:24px; }
+.ct-lesson-result-actions button { min-height:60px; padding:12px 24px; margin:0; color:var(--ct-ink); border:2px solid var(--ct-line); border-radius:18px; background:var(--ct-paper); font-size:21px; font-weight:800; cursor:pointer; }
+.ct-lesson-result-actions .ct-primary { color:#fff; background:#287eb3; border-color:#287eb3; box-shadow:0 5px 0 #164b7340; }
+.ct-lesson-result-actions button:focus-visible { outline:3px solid var(--ct-blue); outline-offset:4px; }
+/* Children complete key words in a supplied sentence instead of drafting a paragraph. */
+.ct-study-response:has(.ct-guided-answer) { align-self:stretch; }
+.ct-guided-answer { display:flex; flex-direction:column; flex:1; min-width:0; min-height:0; gap:14px; }
+.app .screen-pages .ct-classroom .ct-guided-answer > h4 { flex:none; margin:0; font:700 17px/1.4 system-ui; }
+.app .screen-pages .ct-classroom .ct-completion-sentence { flex:1; padding:12px 0; color:var(--ct-ink); font:400 20px/2.5 system-ui; overflow-wrap:anywhere; }
+.app .screen-pages .ct-classroom .ct-completion-sentence input { display:inline-block; box-sizing:border-box; width:145px; max-width:100%; min-height:44px; margin:2px 4px; padding:6px 8px; border:1px solid var(--ct-blue); border-radius:9px; color:var(--ct-ink); background:var(--ct-paper-2); font:400 18px/1.5 system-ui; vertical-align:baseline; }
+.app .screen-pages .ct-classroom .ct-completion-sentence input::placeholder { color:var(--ct-soft); opacity:1; font-size:14px; }
+.app .screen-pages .ct-classroom .ct-completion-sentence input:focus-visible { outline:2px solid var(--ct-blue); outline-offset:2px; }
+.ct-guided-answer > .ct-observed-practice { flex:none; padding:0!important; }
+.ct-guided-answer .automatic-course-check { align-items:stretch!important; }

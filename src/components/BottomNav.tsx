@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useI18n } from '../i18n';
 import { sfx } from '../sfx';
+import { IconGameConsole, IconMagicSchool } from './icons';
 
 const TABS = [
   { to: '/', key: 'home', end: true },
@@ -17,10 +18,10 @@ function DestinationMark({ kind }: { kind: TabKey }) {
     return <g className="train-destination-mark"><circle cx="139" cy="28" r="8" /><path d="m139 21 2 4 4 .6-3 3 .7 4.2-3.7-2-3.7 2 .7-4.2-3-3 4-.6z" /></g>;
   }
   if (kind === 'map') {
-    return <g className="train-destination-mark"><path d="M130 22c4-2 7-1 9 1v12c-2-2-5-3-9-1Zm18 0c-4-2-7-1-9 1v12c2-2 5-3 9-1Z" /><path d="M139 23v12" /></g>;
+    return <IconMagicSchool x={128} y={17} size={22} />;
   }
   if (kind === 'games') {
-    return <g className="train-destination-mark"><circle cx="139" cy="28" r="8" /><circle cx="139" cy="28" r="2" /><path d="M139 20v16m-8-8h16m-14-6 12 12m0-12-12 12" /></g>;
+    return <IconGameConsole x={128} y={17} size={22} />;
   }
   return <g className="train-destination-mark"><path d="m139 19 9 4v6c0 6-4 9-9 11-5-2-9-5-9-11v-6Z" /><circle cx="139" cy="27" r="3" /><path d="M134 35c1-4 9-4 10 0" /></g>;
 }

@@ -1,3 +1,8 @@
+.mt-stationery-tray .mt-stationery-pencils { display:grid; grid-template-columns:repeat(5, 22px); gap:2px 4px; letter-spacing:0; }
+.mt-stationery-pencils i { font-style:normal; font-size:20px; line-height:24px; }
+.mt-stationery-tray .mt-pencil-cup { flex:none; width:70px; height:56px; }
+.mt-bundled-sticks svg { display:block; width:72px; height:81px; }
+
 .math-textbook-lab {
   --mt-ink: #24324a;
   --mt-blue: #1978c8;
@@ -86,10 +91,12 @@
 .mt-action-phase > .mt-flow-next { display: block; margin-left: auto; }
 .mt-answer-row button.is-picked { color: #174f7e; border-color: #67b6e7; background: #e9f7ff; }
 .mt-lesson { animation: mtEnter .38s ease both; }
-.mt-lesson-copy { max-width: 780px; margin-bottom: 24px; }
+.mt-lesson-copy { box-sizing: border-box; width: 100%; min-width: 0; margin: 12px 0 24px; padding: 20px; }
+.mt-lesson-copy .mt-kicker { display: block; line-height: 1.6; }
 .mt-kicker { color: var(--mt-blue); font-size: 12px; font-weight: 900; letter-spacing: .08em; }
-.mt-lesson-copy h2 { margin: 8px 0; font-size: clamp(26px, 3vw, 40px); letter-spacing: -.03em; }
+.mt-lesson-copy h2 { margin: 10px 0 12px; font-size: clamp(26px, 3vw, 40px); line-height: 1.35; letter-spacing: -.03em; overflow-wrap: anywhere; }
 .mt-lesson-copy p { margin: 0; color: #657387; font-size: 15px; line-height: 1.75; }
+@media (max-width: 820px) { .mt-lesson-copy { margin: 8px 0 16px; padding: 16px; } }
 .mt-campus-scene { position: relative; height: clamp(350px, 43vw, 510px); overflow: hidden; border: 8px solid #fff; border-radius: 28px; background: linear-gradient(#67c9f4 0 48%, #c9e98c 48% 54%, #f1ddb3 54%); box-shadow: 0 14px 35px rgba(26, 99, 145, .18), inset 0 0 0 1px #cde5f2; }
 .mt-sun { position: absolute; top: 24px; right: 8%; width: 70px; height: 70px; border-radius: 50%; background: #ffe27a; box-shadow: 0 0 0 15px rgba(255,226,122,.17), 0 0 45px #fff1a2; }
 .mt-cloud { position: absolute; width: 130px; height: 35px; border-radius: 50px; background: rgba(255,255,255,.85); filter: drop-shadow(0 7px 10px rgba(60,120,160,.12)); animation: mtCloud 12s ease-in-out infinite alternate; }
@@ -193,6 +200,14 @@
 .mt-guess-compose { gap: 14px; }.mt-guess-compose-stage { display: flex; align-items: center; justify-content: center; gap: clamp(16px, 4vw, 30px); }.mt-guess-compose-pair { display: flex; }.mt-guess-compose-pair .mt-iso-block { width: 66px; height: 66px; }.mt-guess-compose-pair .mt-iso-block + .mt-iso-block { margin-left: -15px; }.mt-guess-compose-stage > i { color: #e3905d; font-size: 24px; font-style: normal; }.mt-guess-compose-stage > b { width: 58px; height: 58px; display: grid; place-items: center; border: 2.5px dashed #e0913c; border-radius: 50%; color: #a4611c; background: rgba(255, 243, 207, .85); font-size: 27px; font-weight: 950; }
 .mt-curriculum-tool { min-height: 300px; padding: clamp(18px, 3vw, 28px); display: grid; align-content: center; justify-items: center; gap: 18px; border: 1px solid #d7e8f2; border-radius: 24px; background: linear-gradient(145deg, #fbfdff, #f4f9ff); }.mt-curriculum-tool > p { margin: 0; color: #4e687e; font-weight: 900; }
 .mt-curriculum-tool .mt-model-retry-hint { color: #247357; font-size: 12px; text-align: center; }
+.mt-number-order-tool { position: relative; padding-top: 82px; }
+.mt-number-order-tool > .practice-again { position: absolute; inset: 18px 22px auto; width: auto; margin: 0; flex-wrap: nowrap; gap: 16px; }
+.mt-number-order-tool > .practice-again > span { padding: 7px 12px; border-radius: 999px; color: #33815d; background: rgba(74,166,115,.09); line-height: 1.5; }
+.mt-number-order-tool .practice-again button { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 8px 16px; border-radius: 14px; border-color: color-mix(in srgb, var(--brand-2) 30%, transparent); background: color-mix(in srgb, var(--brand-2) 9%, var(--paper)); color: var(--ink); font-weight: 800; white-space: nowrap; box-shadow: 0 2px 5px rgba(57,88,124,.06); }
+.mt-number-order-tool .practice-again button::before { content: '↻'; font-size: 21px; line-height: 1; color: var(--brand-2); }
+.mt-number-order-tool .practice-again button:hover { background: color-mix(in srgb, var(--brand-2) 16%, var(--paper)); }
+.mt-number-order-tool .practice-again button:focus-visible { outline: 3px solid var(--brand-2); outline-offset: 3px; }
+:root[data-theme="dark"] .mt-number-order-tool > .practice-again > span { color: #a6f0c8; background: rgba(79,209,165,.12); }
 .mt-tool-scene { width: 100%; display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap; gap: 12px; }.mt-tool-scene button { min-width: 64px; min-height: 72px; padding: 8px; display: grid; place-items: center; gap: 2px; color: #243e55; border: 2px solid #cfe2ec; border-radius: 17px; background: #fff; box-shadow: 0 5px 12px rgba(42,91,120,.08); font-size: 35px; transition: .18s ease; }.mt-tool-scene button small { color: #60798d; font-size: 10px; font-weight: 900; }.mt-tool-scene button.next { border-color: #f0b84d; box-shadow: 0 0 0 5px rgba(240,184,77,.15); animation: mtTokenPulse 1.05s ease-in-out infinite; }.mt-tool-scene button.done { color: #176849; border-color: #77c9aa; background: #eefbf5; }.mt-tool-scene.take button.removed { opacity: .2; transform: translateY(-20px) scale(.7); }
 .mt-join-groups { width: min(760px, 100%); display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 14px; }.mt-join-groups section { min-height: 125px; padding: 13px; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 7px; border: 2px dashed #bdd9e8; border-radius: 18px; background: rgba(255,255,255,.72); }.mt-join-groups section small { width: 100%; color: #50738b; text-align: center; font-weight: 900; }.mt-join-groups section button { width: 43px; height: 43px; padding: 0; display: grid; place-items: center; border: 1px solid #d8e7ef; border-radius: 12px; background: #fff; font-size: 25px; }.mt-join-groups section button.done { opacity: .3; transform: scale(.82); }.mt-join-groups > b { color: #e47d50; font-size: 30px; }.mt-whole-tray { min-width: 210px; padding: 12px 20px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 14px; border: 2px solid #82c6aa; border-radius: 17px; background: #eefbf5; }.mt-whole-tray span { color: #35755d; font-size: 12px; font-weight: 900; }.mt-whole-tray b { grid-row: 1 / span 2; grid-column: 2; color: #176849; font-size: 34px; }.mt-whole-tray small { color: #56766a; font-weight: 800; }
 .mt-take-equation { display: flex; align-items: center; gap: 12px; color: #5c7080; font-size: 28px; }.mt-take-equation b { color: #315f7f; }.mt-take-equation strong { min-width: 48px; padding: 7px 11px; color: #176849; border-radius: 12px; background: #e6f8ef; text-align: center; }
@@ -975,6 +990,8 @@
 .mt-knowledge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 .mt-knowledge-story, .mt-knowledge-model, .mt-knowledge-transfer { min-width: 0; padding: 16px; border: 1px solid var(--glass-border); border-radius: 16px; background: rgba(255,255,255,.04); }
 .mt-knowledge-story > b, .mt-knowledge-model > b, .mt-knowledge-transfer > b { color: var(--ink); font-size: 14px; }
+.mt-knowledge-card-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex: none; }
+.mt-knowledge-card-head > b { min-width: 0; color: var(--ink); font-size: 14px; }
 .mt-knowledge-story p, .mt-knowledge-model p, .mt-knowledge-transfer p { color: var(--ink-soft); font-size: 13px; line-height: 1.65; }
 .mt-knowledge-story .mt-knowledge-example { color: var(--ink); }
 .mt-knowledge-story > button { padding: 8px 12px; color: var(--ink); border: 1px solid var(--glass-border); border-radius: 10px; background: rgba(137, 122, 240, .16); font-weight: 800; }
@@ -1088,7 +1105,7 @@
 /* 教材任务包：每节扩展课至少有主操作与一个教材练习/专属学具任务。 */
 .mt-task-summary { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }.mt-task-summary span { padding: 5px 9px; color: #2d709c; border: 1px solid rgba(86, 159, 199, .34); border-radius: 999px; background: rgba(229, 246, 255, .78); font-size: 12px; font-weight: 800; }
 .mt-textbook-task { display: grid; gap: 14px; padding: clamp(16px, 3vw, 24px); border: 1px solid rgba(104, 171, 207, .42); border-radius: 20px; background: linear-gradient(135deg, rgba(236, 249, 255, .9), rgba(255, 252, 234, .86)); box-shadow: 0 8px 24px rgba(25, 86, 129, .08); }
-.mt-textbook-task header { display: grid; gap: 4px; }.mt-textbook-task header small { color: #2371a4; font-size: 11px; font-weight: 900; letter-spacing: .08em; }.mt-textbook-task h3 { margin: 0; color: var(--ink); font-size: clamp(17px, 2.2vw, 22px); line-height: 1.4; }
+.mt-textbook-task > header { display: grid; gap: 4px; }.mt-textbook-task > header small { color: #2371a4; font-size: 11px; font-weight: 900; letter-spacing: .08em; }.mt-textbook-task h3 { margin: 0; color: var(--ink); font-size: clamp(17px, 2.2vw, 22px); line-height: 1.4; }
 .mt-task-main { justify-self: center; padding: 10px 18px; color: #fff; border: 0; border-radius: 12px; background: linear-gradient(120deg, #3f8fca, #6477d4); font-weight: 900; cursor: pointer; }.mt-task-main:disabled { opacity: .42; cursor: not-allowed; }
 .mt-stick-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; }.mt-stick-row button { position: relative; width: 31px; height: 78px; color: #9a653d; border: 2px solid #dfaf76; border-radius: 9px; background: #ffe6b6; font-size: 47px; line-height: 1; cursor: pointer; }.mt-stick-row button.next { outline: 4px solid rgba(255, 202, 79, .5); }.mt-stick-row button.counted { color: #fff; background: #58aa8b; border-color: #3d9372; }.mt-stick-row em { position: absolute; top: 5px; left: 0; right: 0; color: #fff; font-size: 10px; font-style: normal; font-weight: 900; }
 .mt-place-board { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 2px solid #8bbbd9; border-radius: 16px; background: #fff; }.mt-place-board article { min-height: 126px; padding: 13px; display: grid; justify-items: center; align-content: center; gap: 6px; }.mt-place-board article + article { border-left: 2px solid #8bbbd9; }.mt-place-board small { color: #3278a4; font-weight: 900; }.mt-place-board b { color: #1f5278; font-size: 32px; }.mt-bundled-sticks { padding: 4px 10px; color: #8b5633; border: 2px solid #bc8a57; border-radius: 8px; background: #f7d89c; font-size: 24px; letter-spacing: -6px; }.mt-ones-row { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }.mt-ones-row button { width: 28px; height: 28px; color: #4d95bd; border: 2px solid #8fc9e5; border-radius: 50%; background: #effaff; font-weight: 900; cursor: pointer; }.mt-ones-row button.on { color: #fff; background: #4a9ccd; }
@@ -1326,3 +1343,54 @@
 :root[data-theme="light"] .school-math-course .mt-playground-grid button.is-correct { color: #217052; border-color: #86cfad; background: #ebfaef; }
 :root[data-theme="light"] .school-math-course .mt-playground-grid button.is-wrong { color: #a23d37; border-color: #df716c; background: #fff0ed; }
 :root[data-theme="light"] .school-math-course .mt-card-lab-visual { color: #3c7180; border-color: #86bfc1; background: rgba(255,255,255,.72) !important; }
+
+/* 等距车厢：编号、物体和点击区域一一对应，适配 Pad 横屏。 */
+.mt-number-train-scene { background: linear-gradient(130deg, color-mix(in srgb, var(--brand) 6%, var(--paper)), var(--paper)); }
+.school-math-course .mt-number-train-scene .mt-train-row {
+  display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 7px;
+  position: relative; width: 100%; padding: 26px 8px 20px; align-items: end;
+}
+.mt-train-row::after { content: ''; position: absolute; bottom: 8px; left: 8px; right: 8px; height: 8px; border-block: 2px solid color-mix(in srgb, var(--ink) 42%, transparent); background: repeating-linear-gradient(90deg, transparent 0 13px, color-mix(in srgb, var(--ink) 25%, transparent) 13px 16px); }
+.school-math-course .mt-number-train-scene .mt-train-row > :is(button, div).mt-train-carriage {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  position: relative; min-width: 0; min-height: 94px; margin: 0; padding: 10px 2px 8px;
+  border: 2px solid #528ca8; border-radius: 12px 12px 6px 6px;
+  background: #e0f3fc; color: #244860; opacity: 1;
+}
+.mt-train-carriage::after { content: ''; position: absolute; right: -9px; bottom: 14px; width: 9px; height: 4px; background: #528ca8; }
+.mt-train-carriage:last-child::after { display: none; }
+.school-math-course .mt-train-carriage b { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2; color: inherit; }
+.school-math-course .mt-train-carriage small { font-size: 12px; color: inherit; white-space: nowrap; }
+.mt-train-windows { display: flex; gap: 4px; margin-bottom: 3px; }
+.mt-train-windows i { width: 12px; height: 12px; border: 1px solid #8ab1c6; border-radius: 3px; background: #fff; }
+.mt-train-wheels { position: absolute; bottom: -8px; left: 8px; right: 8px; display: flex; justify-content: space-between; }
+.mt-train-wheels i { width: 13px; height: 13px; border: 3px solid #507185; background: #cddde5; border-radius: 50%; }
+.school-math-course .mt-number-train-scene .mt-train-row > :is(button, div).mt-train-carriage.visited { background: #21785a; border-color: #15523c; color: #fff; box-shadow: 0 0 0 2px #a3d9bf; }
+.school-math-course .mt-number-train-scene .mt-train-row > :is(button, div).mt-train-carriage.endpoint { border-width: 3px; }
+.school-math-course .mt-number-train-scene .mt-train-row > :is(button, div).mt-train-carriage.marked { background: #fff0bc; border-color: #bd8831; color: #785622; }
+.mt-train-checked { position: absolute; top: -12px; right: -5px; display: grid; place-items: center; width: 24px; height: 24px; color: #fff; border: 2px solid #fff; border-radius: 50%; background: #21785a; font: 900 17px/1 system-ui, sans-serif; }
+.mt-train-bear { position: absolute; top: -29px; font-size: 29px; line-height: 1; }
+.school-math-course .mt-number-train-scene .mt-train-instruction { font-size: 18px; margin: 10px 0 0; }
+.school-math-course .mt-number-train-scene [role='status'] { margin: 8px 0 0; font-size: 18px; color: var(--ink); }
+.school-math-course .mt-stick-materials > svg { width: 58px; height: 66px; flex: 0 0 auto; }
+.mt-loose-stick-group { display: flex; align-items: center; gap: 0; }
+.mt-loose-stick-group svg { width: 18px; height: 60px; }
+.school-math-course .mt-ones-row button svg { width: 20px; height: 54px; opacity: .25; }
+.school-math-course .mt-ones-row button.on svg { opacity: 1; }
+.school-math-course .mt-scene-caption { margin: 8px 0; font-size: 18px; }
+.school-math-course .mt-scene-stations { display: flex; align-items: center; justify-content: space-between; list-style: none; gap: 8px; padding: 16px 0; margin: 0; }
+.mt-scene-stations li { font-size: 17px; position: relative; padding-top: 20px; }
+.mt-scene-stations li::before { content: ''; position: absolute; top: 0; left: calc(50% - 5px); width: 10px; height: 10px; border: 2px solid var(--brand); background: var(--paper); border-radius: 50%; }
+.school-math-course .mt-card-sort-grid .mt-scene-fruit-paths { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 8px 0 20px; font-size: 18px; }
+.school-math-course .mt-card-sort-grid .mt-scene-disc-comparison { display: flex; justify-content: center; align-items: center; gap: 24px; padding: 20px 0; font-size: 26px; color: var(--brand); }
+.mt-scene-disc-comparison span { letter-spacing: 3px; }
+:root[data-theme='dark'] .school-math-course .mt-number-train-scene .practice-again > span { color: #9bdfbe; }
+.school-math-course .mt-scene-stations { position: relative; width: 100%; flex: 0 0 100%; }
+.mt-scene-stations::before { content: ''; position: absolute; top: 22px; left: 6%; right: 6%; height: 2px; background: #8faec2; }
+.mt-scene-stations li { flex: 1; text-align: center; white-space: nowrap; }
+.mt-scene-stations li::before { border-color: #528ca8; }
+.app .screen-pages .math-flow-main .math-exercise-cards > article.mt-route-count-card:has(>.mt-scene-stations) { grid-template-columns: minmax(0, 1fr); }
+.app .screen-pages .math-flow-main .mt-scene-stations li::before { width: 10px; height: 10px; border: 2px solid #528ca8; background: var(--paper); border-radius: 50%; }
+.mt-open-tool { min-height:44px; padding:9px 14px; border:1px solid var(--ct-line,#7391b0); border-radius:13px; background:var(--ct-panel,#263c58); color:var(--ct-ink,#dcefff); font:700 16px system-ui; cursor:pointer; white-space:nowrap; }
+.mt-head-tools { display:flex; align-items:center; justify-content:flex-end; gap:10px; }
+:root[data-theme="light"] .school-math-course .mt-open-tool { color:#315776; border-color:#b6d3e5; background:#edf6fb; }

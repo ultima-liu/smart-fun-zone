@@ -1,0 +1,115 @@
+{
+  "source": "https://www.zophar.net/music/nintendo-nes-nsf/contra",
+  "reference": "https://github.com/vermiceli/nes-contra-us/blob/main/docs/Sound%20Documentation.md",
+  "sourceSha256": "bb0b25c6d0e70864c5c8dfa523f83535519490e8de1750a4ea253534a7897fc6",
+  "method": "Original NTSC NSF sound driver, 44100 Hz. Init selector at $c3c5 replaced by SFX codes; original sound instructions/data unmodified. Leading/trailing silence trimmed, mono MP3 96k.",
+  "selectorOffset": 17477,
+  "effectsNsfSha256": "de70ef97ed558f35e454c2157a6cb59659047b4c9d92ee6a392985c200a4a1f1",
+  "effects": {
+    "shot": {
+      "file": "sfx-shot-fc-v1.mp3",
+      "soundCode": "0xa",
+      "duration": 0.8315192743764173,
+      "peak": 14675,
+      "sha256": "413367df3f1d0906a684851fa0cdaf66f83f6b14fa51611ed83158910ee44ef7"
+    },
+    "shotM": {
+      "file": "sfx-shotM-fc-v1.mp3",
+      "soundCode": "0xc",
+      "duration": 0.7919274376417234,
+      "peak": 12002,
+      "sha256": "483245fc205e45675ce3e608b48dc9b22e0bd93d7db7e2df5ecd2a124df02f97"
+    },
+    "shotL": {
+      "file": "sfx-shotL-fc-v1.mp3",
+      "soundCode": "0xe",
+      "duration": 0.8677777777777778,
+      "peak": 8841,
+      "sha256": "28ac2311e6b65aacd7450b0d2f00c77936b7531052323fc4e299fc9db7798d40"
+    },
+    "shotF": {
+      "file": "sfx-shotF-fc-v1.mp3",
+      "soundCode": "0x10",
+      "duration": 0.583718820861678,
+      "peak": 8863,
+      "sha256": "f9d4127a6e607aa060eef8be4290a76a8f46aab815e8d0be627274c474dbae56"
+    },
+    "shotS": {
+      "file": "sfx-shotS-fc-v1.mp3",
+      "soundCode": "0x12",
+      "duration": 0.6934920634920635,
+      "peak": 11394,
+      "sha256": "55c6e4b5ff62288c88eec612b0462eacfad433811bb5957a56296e2e699b4320"
+    },
+    "armor": {
+      "file": "sfx-armor-fc-v1.mp3",
+      "soundCode": "0x14",
+      "duration": 0.4101360544217687,
+      "peak": 6998,
+      "sha256": "bbd41281d413dee5fce2808423f6d07b7978c0c13aee47d33f26ba453fed22b1"
+    },
+    "hit": {
+      "file": "sfx-hit-fc-v1.mp3",
+      "soundCode": "0x16",
+      "duration": 0.4105668934240363,
+      "peak": 12957,
+      "sha256": "878630e307c7ff314e1464c1fdc81e3fd65819dc9c6e5c26cd161aa4dabdab2b"
+    },
+    "heart": {
+      "file": "sfx-heart-fc-v1.mp3",
+      "soundCode": "0x18",
+      "duration": 0.4359183673469388,
+      "peak": 10580,
+      "sha256": "91fe392ad0fcae4a264ffe2dce6235526df199e8c8bf91106ed44641dccc6e4b"
+    },
+    "kill": {
+      "file": "sfx-kill-fc-v1.mp3",
+      "soundCode": "0x19",
+      "duration": 0.7835147392290249,
+      "peak": 10741,
+      "sha256": "b5595d029f80e999da2f6fbaf1fee5cb0defea1d6019b5d479ff252735c9d2fc"
+    },
+    "explosion": {
+      "file": "sfx-explosion-fc-v1.mp3",
+      "soundCode": "0x24",
+      "duration": 0.9463718820861678,
+      "peak": 7028,
+      "sha256": "8142f05c0ef450f52082c721be6768c25397f94ebec6913cc414e433c28d33bc"
+    },
+    "bridge": {
+      "file": "sfx-bridge-fc-v1.mp3",
+      "soundCode": "0x25",
+      "duration": 2.3605668934240365,
+      "peak": 7028,
+      "sha256": "0d0dc7f06c9cda5754d6da303e8b2d0f6a61e4c002c2b74837fc425de34df606"
+    },
+    "death": {
+      "file": "sfx-death-fc-v1.mp3",
+      "soundCode": "0x52",
+      "duration": 1.2547165532879818,
+      "peak": 12258,
+      "sha256": "94bb5e5533e4abf01985daa13e65442da2c9949a6d7307995c3063a6cc0a6421"
+    },
+    "power": {
+      "file": "sfx-power-fc-v1.mp3",
+      "soundCode": "0x1f",
+      "duration": 1.0900907029478457,
+      "peak": 7161,
+      "sha256": "d66eff5f6247ce2417c354d6988c2fb577cdd53eb74331277d6209a611a395d0"
+    },
+    "life": {
+      "file": "sfx-life-fc-v1.mp3",
+      "soundCode": "0x20",
+      "duration": 0.9266893424036281,
+      "peak": 10733,
+      "sha256": "a8348a8a6a51a698fb00383341c9271e745503d5e10738a3848c414146ff77b4"
+    },
+    "splash": {
+      "file": "sfx-splash-fc-v1.mp3",
+      "soundCode": "0x3",
+      "duration": 0.11873015873015873,
+      "peak": 9110,
+      "sha256": "4a6362f24addd37fa5531a14757209c01bb321faad455d8ec14d45fb58e78cb4"
+    }
+  }
+}

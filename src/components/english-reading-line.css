@@ -1,0 +1,17 @@
+/* Also used by review pages outside the classroom shell. */
+.en-reading-line.en-reading-line {
+  display:flex; align-items:center; gap:10px; box-sizing:border-box;
+  width:100%; min-width:0; min-height:48px; height:auto; margin:0; padding:10px 8px;
+  border:0; border-bottom:1px solid var(--ct-line,var(--en-line,#8fa8b333));
+  border-radius:0; background:transparent; box-shadow:none; cursor:pointer;
+  color:var(--ct-ink,inherit); font:inherit; font-size:20px; text-align:left;
+}
+.en-reading-line .en-source-text { flex:1; min-width:0; }
+.en-reading-line strong { display:block; font-size:inherit; font-weight:500; line-height:1.4; }
+.en-reading-line small { display:block; color:var(--ct-soft,inherit); font-size:12px; line-height:1.45; }
+.en-reading-line .en-source-sound { display:grid; place-items:center; flex:none; width:28px; height:28px; color:var(--ct-blue,var(--en-accent,#2d82bd)); }
+.en-reading-line:hover { background:var(--ct-paper-2,var(--en-panel-2,#6aaac40c)); }
+.en-reading-line:focus-visible { outline:2px solid var(--ct-blue,#2d82bd); outline-offset:-2px; border-radius:8px; }
+.en-reading-line:disabled { cursor:default; opacity:.5; }
+.en-reading-line:last-child { border-bottom-color:transparent; }
+@media(max-width:1100px) { .en-reading-line.en-reading-line { font-size:18px; gap:8px; padding:9px 5px; } }

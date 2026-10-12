@@ -43,3 +43,5 @@
 @media (max-width: 600px) { .mc-fruit-invite { flex-wrap: wrap; }.mc-fruit-invite > span:first-child { font-size: 32px; }.mc-fruit-invite strong { width: 100%; text-align: center; } }
 :root[data-theme="light"] .mc-fruit-invite { color: #41312b; border-color: #d7ad78; background: linear-gradient(110deg, #fff0ce, #ddf4eb); box-shadow: 0 10px 26px rgba(88, 60, 26, .13); }
 :root[data-theme="light"] .mc-fruit-invite small { color: #715f55; }
+:root .mc-tools-invite { display:flex; align-items:center; gap:18px; width:100%; min-height:82px; margin:0 0 16px; padding:14px 22px; border:1px solid var(--ct-line); border-radius:21px; background:var(--ct-panel); color:var(--ct-ink); text-align:left; cursor:pointer; }
+.mc-tools-invite > span:first-child { color:#64b7ca; font-size:44px; }.mc-tools-invite > span:nth-child(2) { display:grid; flex:1; gap:5px; }.mc-tools-invite b { font-size:22px; }.mc-tools-invite small { color:var(--ct-soft); font-size:15px; }.mc-tools-invite strong { color:#3c96b6; font-size:18px; }

@@ -1,0 +1,16 @@
+{
+  "source": "docs/assets/contra/wall-turret-v1.png",
+  "alphaBounds": [
+    0,
+    17,
+    1240,
+    1254
+  ],
+  "output": "public/assets/games/contra/wall-turret-v1.webp",
+  "size": [
+    256,
+    255
+  ],
+  "sha256": "624e263fb4a548d986961edb9d5311d075ccb0ca7da0cd424c4b35ae8778b1b4",
+  "purpose": "Fixed rock-mounted cannon housing. Barrel rotation is drawn around the central socket; no tracks or legs."
+}

@@ -1,3 +1,4 @@
+import { courseSpeechRequest, currentSpeechSubject, type CourseSpeechSubject } from './courseSpeech';
 import { useStore } from './store';
 import { speakVolc, stopVolc, volcConfigured, warmTts, voiceForProfile, type VoiceProfile } from './volcTts';
 
@@ -98,6 +99,10 @@ export function zhSpeakNormalize(text: string): string {
   return text.replace(sentinelPattern, (_, index) => toneRows[Number(index)]);
 }
 
+function speechRequest(text: string, lang: 'zh' | 'en', subject = currentSpeechSubject()) {
+  return subject ? courseSpeechRequest(text, lang, subject) : { text: lang === 'zh' ? zhSpeakNormalize(text) : text, lang, options: undefined };
+}
+
 /* ---------- 语音朗读（火山引擎 豆包语音合成大模型 2.0） ---------- */
 
 /** 朗读会话令牌：每次开始新朗读或停止时 +1，用于作废旧的逐句朗读链 */
@@ -113,7 +118,7 @@ const lastSpeakAt = new Map<string, number>();
 const SPEAK_THROTTLE_MS = 12_000;
 
 /* ---------- 接续播报：当前语音没播完时，把下一条排到它播完之后（不打断刚点亮/刚答对的内容语音） ---------- */
-let currentSpeakEnd: (() => void) | null = null; // 当前朗读自然播完时的收尾（含触发接续队列）
+let currentSpeakEnd: ((played: boolean) => void) | null = null; // 当前朗读自然播完时的收尾（含触发接续队列）
 const afterCurrent: (() => void)[] = [];
 
 /* ---------- 连读令牌：逐句连读进行中等于 chainToken，结束/被打断后置 -1 ---------- */
@@ -127,6 +132,7 @@ export function isSpeaking(): boolean {
 export function stopSpeaking() {
   newChain();
   stopVolc();
+  currentSpeakEnd = null;
   afterCurrent.length = 0; // 主动停止/翻页：接续提示一并作废
 }
 
@@ -137,14 +143,15 @@ export { volcConfigured, warmTts };
 export function speak(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92) {
   const { sound, voiceOn } = useStore.getState();
   if (!sound || !voiceOn || !text) return;
-  const key = `${lang}:${text}`;
+  const key = `${currentSpeechSubject() ?? lang}:${text}`;
   const now = Date.now();
   const last = lastSpeakAt.get(key);
   if (last && now - last < SPEAK_THROTTLE_MS) return;
   lastSpeakAt.set(key, now);
   newChain();
   stopVolc();
-  void speakVolc(lang === 'zh' ? zhSpeakNormalize(text) : text, lang, rate);
+  const request = speechRequest(text, lang);
+  void speakVolc(request.text, request.lang, rate, undefined, undefined, 0, request.options);
 }
 
 /** 按 NPC 性别与年龄选择音色；若环境未配置专属音色则回退默认音色。 */
@@ -170,11 +177,11 @@ export function speakAsNpc(
     window.setTimeout(() => onEnd?.(), 0);
     return;
   }
-  const clean = lang === 'zh' ? zhSpeakNormalize(text) : text;
+  const request = speechRequest(text, lang);
   newChain();
   stopVolc();
   const pitch = Math.max(-12, Math.min(12, npc?.voicePitch ?? 0));
-  void speakVolc(clean, lang, rate, onEnd, voiceForProfile(profile, lang), pitch);
+  void speakVolc(request.text, request.lang, rate, onEnd, voiceForProfile(profile, request.lang), pitch, request.options);
 }
 
 /** 朗读一句，读完后回调 onEnd（语音被关闭/未配置/失败时也会回调，保证跟读流程不卡住） */
@@ -182,22 +189,26 @@ export function speakOnce(
   text: string,
   lang: 'zh' | 'en' = 'zh',
   rate = 0.92,
-  onEnd?: () => void,
+  onEnd?: (played: boolean) => void,
+  subject?: CourseSpeechSubject,
 ) {
   const { sound, voiceOn } = useStore.getState();
   if (!sound || !voiceOn || !text) {
-    window.setTimeout(() => onEnd?.(), 0);
+    window.setTimeout(() => onEnd?.(false), 0);
     return;
   }
   newChain();
   stopVolc();
-  const end = () => {
+  const token = chainToken;
+  const end = (played: boolean) => {
+    if (token !== chainToken) return;
     currentSpeakEnd = null;
-    onEnd?.();
+    onEnd?.(played);
     afterCurrent.shift()?.(); // 播完当前，接续的下一条才开始
   };
   currentSpeakEnd = end;
-  void speakVolc(lang === 'zh' ? zhSpeakNormalize(text) : text, lang, rate, end);
+  const request = speechRequest(text, lang, subject);
+  void speakVolc(request.text, request.lang, rate, end, undefined, 0, request.options);
 }
 
 /** 排队播报：当前有语音在播时等它播完再读（不截断正在播的内容），没有则立即读；stopSpeaking 会清空队列 */
@@ -235,7 +246,8 @@ export function speakSeq(
     const text = texts[i];
     i += 1;
     stopVolc();
-    void speakVolc(lang === 'zh' ? zhSpeakNormalize(text) : text, lang, rate, next);
+    const request = speechRequest(text, lang);
+    void speakVolc(request.text, request.lang, rate, next, undefined, 0, request.options);
   };
   next();
 }
@@ -280,10 +292,11 @@ export function speakMixedSeq(text: string, rate = 0.92, onEnd?: () => void) {
   if (!sound || !voiceOn || !text) return;
   const token = newChain();
   stopVolc();
-  void speakVolc(mixedSpeakNormalize(text), 'zh', rate, () => {
+  const request = currentSpeechSubject() ? speechRequest(text, 'zh') : { text: mixedSpeakNormalize(text), lang: 'zh' as const, options: undefined };
+  void speakVolc(request.text, request.lang, rate, () => {
     if (token !== chainToken) return; // 已被停止/新朗读打断
     onEnd?.();
-  });
+  }, undefined, 0, request.options);
 }
 
 /** 接续版中英混读：当前有语音在播时排到它播完之后（用于跟在聪聪导览后面） */

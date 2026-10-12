@@ -1,0 +1,544 @@
+/* All English classroom layouts fit complete tasks into a landscape viewport. */
+.app:has(.en-classroom,.en-catalog) { max-width:none; }
+.en-textbook-decode .en-decode-model { display:flex; align-items:center; justify-content:center; gap:32px; flex:1; font-size:50px; color:#2e87b5; }
+.en-textbook-decode .en-decode-words { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+.app:has(.en-classroom,.en-catalog) + .buddy-fab { display:none; }
+.app .screen-pages .page.en-classroom { max-width:none; width:100%; height:var(--screen-height,100dvh); padding:12px 20px; display:grid; grid-template-rows:82px 52px 70px minmax(0,1fr); gap:10px; }
+.app .screen-pages .en-classroom > .ct-lesson-head { margin:0; padding:10px 18px; min-height:0; border-radius:22px; display:flex; align-items:center; gap:18px; }
+.app .screen-pages .en-classroom .ct-lesson-head h1 { font-size:26px; line-height:1.2; margin:4px 0; }
+.app .screen-pages .en-classroom .ct-lesson-head p { margin:0; font-size:12px; }
+.en-classroom .ct-reference-trigger { margin-left:auto; flex:none; min-height:44px; padding:8px 15px; border:1px solid var(--ct-line); border-radius:14px; background:var(--ct-paper-2); color:var(--ct-ink); cursor:pointer; }
+.app .screen-pages .en-classroom .ct-phase-nav { position:static; min-height:0; margin:0; padding:5px; gap:6px; border-radius:18px; }
+.app .screen-pages .en-classroom .ct-phase-nav button { min-height:42px; font-size:16px; gap:9px; padding:5px; }
+.en-common-prompt { display:flex; gap:10px; align-items:center; min-width:0; }
+.en-common-prompt > div { display:flex; align-items:center; gap:16px; flex:1; height:100%; padding:10px 16px; border:1px solid var(--ct-line); border-radius:18px; background:var(--ct-paper); min-width:0; }
+.en-common-prompt > div > b { font-size:17px; flex:none; color:var(--ct-blue); }
+.en-common-prompt p { margin:0; font-size:15px; line-height:1.5; }
+.en-common-prompt small { font-size:11px; }
+.en-common-prompt small button { padding:3px; margin:0; font-size:12px; }
+.en-common-prompt .ct-replay { flex:none; min-height:58px; padding:8px 14px; background:#2d82bd; color:#fff; border:1px solid #65a9d5; border-radius:18px; cursor:pointer; font-size:16px; font-weight:700; }
+.en-common-prompt .ct-replay:disabled { opacity:.45; }
+.en-classroom-content { height:100%; min-height:0; min-width:0; }
+.app .screen-pages .en-classroom .ct-classroom-deck { display:grid; grid-template-columns:124px minmax(0,1fr); grid-template-rows:minmax(0,1fr); gap:12px; height:100%; min-height:0; padding:0; margin:0; border:0; background:none; box-shadow:none; }
+.app .screen-pages .en-classroom .ct-classroom-deck:not(:has(>.activity-tabs)) { grid-template-columns:minmax(0,1fr); }
+.app .screen-pages .en-classroom .ct-classroom-deck > .activity-tabs { display:flex; flex-direction:column; flex-wrap:nowrap; align-items:stretch; gap:8px; min-height:0; }
+.app .screen-pages .en-classroom .ct-classroom-deck > .activity-tabs button { display:flex; gap:7px; align-items:center; min-height:48px; padding:8px 9px; margin:0; border:1px solid var(--ct-line); border-radius:15px; background:var(--ct-paper); color:var(--ct-ink); font-size:15px; line-height:1.3; text-align:left; }
+.app .screen-pages .en-classroom .ct-classroom-deck > .activity-tabs button.active { background:linear-gradient(125deg,#7b61c7,#4d99c3); border-color:transparent; color:#fff; }
+.app .screen-pages .en-classroom .ct-classroom-deck > .activity-tabs button.done:not(.active) { border-color:#45a98365; color:var(--ct-green); background:#49af8610; }
+.app .screen-pages .en-classroom .activity-number { width:25px; height:25px; font-size:13px; }
+.app .screen-pages .en-classroom .ct-classroom-deck > .activity-panels { width:100%; height:100%; padding:0; min-height:0; min-width:0; }
+.app .screen-pages .en-classroom .ct-classroom-deck.ct-subtasks { grid-template-columns:1fr; grid-template-rows:auto minmax(0,1fr); gap:8px; }
+.app .screen-pages .en-classroom .ct-subtasks > .activity-tabs { flex-direction:row; }
+.app .screen-pages .en-classroom .ct-subtasks > .activity-tabs button { flex:1; min-height:44px; justify-content:center; text-align:center; font-size:14px; }
+.app .screen-pages .en-classroom .ct-subtasks:not(:has(>.activity-tabs)) { grid-template-rows:minmax(0,1fr); }
+.en-classroom .whole-scene:has(>.ct-classroom-deck), .en-classroom .whole-scene:has(>.en-full-panel), .en-classroom .whole-scene:has(>.en-role-play) { height:100%; }
+.app .screen-pages .en-classroom .en-full-panel { height:100%; min-height:0; max-width:none; margin:0; padding:14px 18px; border:1px solid #c9dfee; border-radius:22px; background:var(--ct-paper); display:flex; flex-direction:column; gap:12px; }
+.app .screen-pages .en-classroom h3 { font-size:24px; line-height:1.4; margin:0; }
+.app .screen-pages .en-classroom h4 { font-size:20px; line-height:1.4; margin:0; }
+.app .screen-pages .en-classroom p { line-height:1.5; }
+.app .screen-pages .en-classroom button { cursor:pointer; }
+.app .screen-pages .en-classroom :is(button,input,select) { font-family:inherit; }
+.app .screen-pages .en-classroom .en-full-panel > header { flex:none; display:flex; align-items:center; gap:16px; margin:0; }
+.app .screen-pages .en-classroom .en-full-panel > header > span { font-size:14px; line-height:1.5; }
+.app .screen-pages .en-classroom .en-full-panel > header > button { margin-left:auto; }
+.app .screen-pages .en-classroom .en-material-layout { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); gap:18px; flex:1; min-height:0; }
+.en-classroom .en-material-layout > img { width:100%; height:100%; min-height:0; object-fit:contain; border-radius:16px; }
+.app .screen-pages .en-classroom .en-block-scene { height:100%; min-height:0; padding:8px; margin:0; display:flex; flex-direction:column; width:100%; }
+.app .screen-pages .en-classroom .en-block-scene img { width:100%; height:100%; min-height:0; object-fit:contain; max-height:none; border-radius:12px; }
+.app .screen-pages .en-classroom .en-block-scene > span { flex:none; padding:6px; font-size:12px; }
+.app .screen-pages .en-classroom .en-block-scene.expanded { grid-column:1; }
+.app .screen-pages .en-classroom .en-word-art-frame { width:72px; height:72px; flex:none; margin:0; }
+.app .screen-pages .en-classroom .en-letter-glyph { font-size:46px; color:#2d82bd; margin:0 12px; }
+.app .screen-pages .en-classroom .en-letter-recognition > .en-source-lines-grid { flex:1; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); align-content:center; grid-auto-rows:minmax(120px,1fr); }
+.app .screen-pages .en-classroom .en-letter-recognition .en-source-item { flex-direction:column; text-align:center; justify-content:center; }
+.app .screen-pages .en-classroom .en-letter-recognition > header { flex-direction:column; align-items:flex-start; gap:4px; }
+.app .screen-pages .en-classroom .en-letter-recognition > header p { margin:0; font-size:14px; color:var(--ct-soft); }
+/* One letter per horizontal study row: the complete unit fits without scrolling. */
+.app .screen-pages .en-classroom .en-letter-recognition { display:grid; grid-template-rows:auto minmax(0,1fr) auto; gap:8px; padding:12px 14px; }
+.en-letter-recognition-heading { display:grid; grid-template-columns:minmax(240px,.9fr) minmax(0,1.5fr); align-items:center; gap:16px; min-width:0; }
+.app .screen-pages .en-classroom .en-letter-recognition-heading header { display:grid; gap:4px; }
+.app .screen-pages .en-classroom .en-letter-recognition-heading h3 { font-size:21px; }
+.app .screen-pages .en-classroom .en-letter-recognition-heading p { margin:0; font-size:13px; color:var(--ct-soft); }
+.app .screen-pages .en-classroom .en-letter-recognition-heading > .en-audio-player { width:100%; }
+.en-letter-study-grid { display:grid; grid-template-columns:minmax(0,1fr); grid-auto-rows:minmax(60px,1fr); gap:6px; min-height:0; overflow:visible; }
+.en-letter-study-card { display:grid; grid-template-columns:200px minmax(0,1fr) 120px; align-items:center; gap:8px; min-width:0; padding:4px 8px; border:1px solid var(--ct-line); border-radius:12px; background:var(--ct-paper-2); }
+.en-letter-study-card.seen { border-color:#74c3ad; }
+.app .screen-pages .en-classroom .en-letter-name { display:grid; grid-template-columns:max-content minmax(0,1fr); grid-template-rows:auto auto; align-items:center; column-gap:8px; row-gap:2px; min-width:0; min-height:48px; margin:0; padding:0; border:0; background:none; color:var(--ct-ink); text-align:left; }
+.en-letter-name-label { grid-column:2; grid-row:1; font-size:11px; line-height:1.3; color:var(--ct-soft); }
+.app .screen-pages .en-classroom .en-letter-name .en-letter-glyph { grid-column:1; grid-row:1/3; margin:0; font-size:32px; line-height:1.1; white-space:nowrap; }
+.en-letter-name-action { grid-column:2; grid-row:2; display:flex; align-items:center; gap:3px; font-size:12px; line-height:1.3; white-space:nowrap; color:var(--ct-blue); }
+.en-letter-name-action svg { width:16px; height:16px; flex:none; }
+.en-letter-examples { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; min-width:0; }
+.app .screen-pages .en-classroom .en-letter-example { display:flex; align-items:center; gap:8px; width:100%; min-width:0; min-height:48px; margin:0; padding:3px 8px; border:1px solid transparent; border-radius:8px; background:var(--ct-paper); text-align:left; color:var(--ct-ink); }
+.app .screen-pages .en-classroom .en-letter-example[aria-pressed=true] { border-color:#4b99c9; background:#e9f4ff; color:#24465d; }
+.app .screen-pages .en-classroom .en-letter-example .en-word-art-frame { width:40px; height:40px; margin:0; flex:none; }
+.app .screen-pages .en-classroom .en-letter-example .en-word-art { width:100%; height:100%; object-fit:contain; }
+.en-letter-example-text { display:flex; flex-direction:column; gap:2px; min-width:0; }
+.app .screen-pages .en-classroom .en-letter-example-text strong { margin:0; color:inherit; font:500 20px/1.2 'English Textbook Hand',Arial,sans-serif; white-space:nowrap; }
+.en-letter-example-text em { color:#247fb9; font-style:normal; font-weight:700; }
+.app .screen-pages .en-classroom .en-letter-example-text > span { color:inherit; font-size:12px; line-height:1.3; white-space:nowrap; }
+.app .screen-pages .en-classroom .en-letter-shadow { min-height:48px; width:100%; margin:0; padding:6px; border:1px solid var(--ct-line); border-radius:8px; background:var(--ct-paper); color:var(--ct-ink); font-size:13px; line-height:1.4; white-space:nowrap; }
+.app .screen-pages .en-classroom .en-letter-study-note { margin:0; font-size:12px; line-height:1.5; color:var(--ct-soft); }
+.app .screen-pages .en-classroom :is(.en-quiz,.en-observe-panel) { justify-content:space-evenly; align-items:center; gap:16px; }
+.app .screen-pages .en-classroom .en-quiz-head { width:100%; min-height:0; border-bottom:1px solid #c9dfee; padding:0 0 10px; flex:none; }
+.app .screen-pages .en-classroom .en-quiz-head span { font-size:14px; }
+.en-question-row { width:100%; display:flex; justify-content:center; align-items:center; gap:18px; text-align:center; }
+.app .screen-pages .en-classroom .en-question-row h3 { font-size:clamp(25px,2.5vw,35px); margin:0; min-width:0; max-width:calc(100% - 66px); white-space:nowrap; }
+.app .screen-pages .en-classroom .en-question-speaker { width:48px; height:48px; min-height:48px; flex:none; border-radius:50%; background:#2d82bd; border:0; color:white; font-size:22px; padding:6px; }
+.app .screen-pages .en-classroom .en-quiz-options { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px; width:100%; margin:0; }
+.app .screen-pages .en-classroom .en-quiz-options button { width:auto; max-width:100%; min-width:110px; min-height:58px; font-size:22px; padding:12px 22px; margin:0; border-radius:16px; flex:0 1 auto; white-space:nowrap; overflow-wrap:normal; }
+.en-question-hints { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px; width:100%; font-size:15px; background:none; border:0; }
+.app .screen-pages .en-classroom .en-question-hints p { font-size:15px; margin:0; }
+.en-observe-art { flex:1; min-height:0; width:100%; display:flex; justify-content:center; }
+.en-observe-art img { height:100%; width:100%; max-height:calc(var(--stage-height)*.52); object-fit:contain; }
+.app .screen-pages .en-classroom .en-letter-chant { gap:12px; }
+.app .screen-pages .en-classroom .en-letter-chant > header { display:grid; gap:4px; }
+.app .screen-pages .en-classroom .en-letter-chant > header p { margin:0; font-size:14px; color:var(--ct-soft); }
+.en-letter-chant-parts { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:14px; flex:1; min-height:0; }
+.en-letter-chant-part { min-width:0; padding:14px; border:1px solid #c9dfee; border-radius:16px; background:var(--ct-paper-2); display:flex; flex-direction:column; gap:12px; }
+.app .screen-pages .en-classroom .en-letter-chant-part h4 { display:flex; align-items:center; gap:8px; margin:0; font-size:17px; color:var(--ct-blue); }
+.en-letter-chant-part h4 > span { display:grid; place-items:center; width:26px; height:26px; border-radius:50%; background:#e1effb; font:700 14px system-ui; }
+.en-letter-chant-lines { display:grid; gap:8px; }
+.app .screen-pages .en-classroom .en-letter-chant-lines p { margin:0; font:400 16px/1.5 'English Textbook Hand',Arial,sans-serif; }
+.en-letter-chant-decode { display:grid; align-content:center; gap:8px; min-width:0; padding:10px 14px; border-radius:14px; background:#eef5fc; }
+.en-letter-chant-decode > b { font-size:13px; color:var(--ct-soft); }
+.en-letter-chant-decode > div { display:flex; flex-wrap:wrap; gap:8px; }
+.app .screen-pages .en-classroom .en-letter-chant-decode button { min-height:40px; padding:6px 12px; font-size:16px; }
+@media(max-width:1100px) {
+ .app .screen-pages .en-classroom .en-letter-chant { gap:10px; }
+ .en-letter-chant-part { padding:12px; gap:10px; }
+ .en-letter-chant-lines { gap:6px; }
+ .app .screen-pages .en-classroom .en-letter-chant-lines p { font-size:15px; }
+}
+.app .screen-pages .en-classroom .en-original-panel { justify-content:space-evenly; align-items:center; }
+.app .screen-pages .en-classroom .en-audio-slot { margin:0; padding:16px; width:100%; display:flex; flex-direction:column; gap:12px; }
+.app .screen-pages .en-classroom .en-audio-slot audio { max-width:100%; }
+.app .screen-pages .en-classroom .en-audio-slot p { margin:0; font-size:15px; }
+.app .screen-pages .en-classroom .en-match-activity { display:flex; flex-direction:column; min-height:0; margin:0; padding:0; }
+.app .screen-pages .en-classroom .en-match-board { flex:1; min-height:0; }
+.app .screen-pages .en-classroom .en-match-board > div { display:grid; gap:8px; grid-template-rows:repeat(3,1fr); }
+.app .screen-pages .en-classroom .en-match-option { min-height:44px; padding:9px; font-size:18px; }
+.app .screen-pages .en-classroom .en-match-activity p { margin:8px 0 0; font-size:13px; }
+.app .screen-pages .en-classroom :is(.en-colour-mixer,.en-even-task) { height:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; padding:18px; border:1px solid #c9dfee; background:var(--ct-paper); border-radius:22px; }
+.app .screen-pages .en-classroom .en-expression-practice { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:auto auto minmax(0,1fr) auto; gap:12px 22px; }
+.app .screen-pages .en-classroom .en-expression-practice > :is(header,nav) { grid-column:1/-1; margin:0; }
+.app .screen-pages .en-classroom .en-expression-practice nav { justify-content:center; display:flex; gap:8px; }
+.app .screen-pages .en-classroom .en-expression-practice nav button { min-height:44px; font-size:14px; padding:8px 14px; }
+.app .screen-pages .en-classroom .en-expression-scene { grid-column:1; grid-row:3/5; margin:0; padding:12px; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; }
+.app .screen-pages .en-classroom .en-expression-scene .en-skill-picture { width:160px; height:160px; }
+.app .screen-pages .en-classroom .en-expression-scene p { font-size:18px; margin:0; text-align:center; }
+.app .screen-pages .en-classroom .en-expression-support { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:18px; background:#edf6ff; border-radius:18px; }
+.app .screen-pages .en-classroom .en-expression-support strong { font-size:26px; line-height:1.5; text-align:center; }
+.app .screen-pages .en-classroom .en-expression-frame { font-size:23px; line-height:1.5; align-self:center; margin:0; }
+.app .screen-pages .en-classroom .en-expression-practice > :is(.en-oral-recorder,.ct-primary) { grid-column:2; }
+.app .screen-pages .en-classroom .en-oral-recorder { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; margin:0; }
+.app .screen-pages .en-classroom .en-oral-recorder audio { width:230px; height:40px; }
+.app .screen-pages .en-classroom .en-observation { padding:10px 12px; margin:0; border-radius:16px; font-size:14px; align-self:center; }
+.app .screen-pages .en-classroom .en-observation ul { margin:0 0 8px; padding-left:18px; line-height:1.5; }
+.app .screen-pages .en-classroom .en-observation button { min-height:44px; padding:7px 10px; font-size:14px; margin:0; }
+.app .screen-pages .en-classroom .en-observation summary { min-height:44px; display:flex; align-items:center; cursor:pointer; }
+.app .screen-pages .en-classroom .en-observation label { font-size:13px; line-height:1.5; min-height:30px; padding:3px; }
+.app .screen-pages .en-classroom .en-observation p { margin:0; font-size:12px; }
+.app .screen-pages .en-classroom .en-phonics-practice { display:grid; grid-template-rows:auto auto minmax(0,1fr); align-items:stretch; text-align:center; gap:12px; overflow:visible; }
+.en-phonics-heading { display:grid; grid-template-columns:minmax(200px,.8fr) minmax(0,1.8fr); align-items:center; gap:16px; min-width:0; }
+.en-phonics-heading:not(:has(>.en-audio-player)) { grid-template-columns:1fr; }
+.app .screen-pages .en-classroom .en-phonics-heading > .en-audio-player { width:100%; }
+.app .screen-pages .en-classroom .en-phonics-practice .en-phonics-heading > header { display:flex; flex-wrap:nowrap; gap:8px; margin:0; min-width:0; }
+.app .screen-pages .en-classroom .en-phonics-practice header { width:100%; justify-content:space-between; }
+.app .screen-pages .en-classroom .en-phonics-practice header > div { text-align:left; }
+.app .screen-pages .en-classroom .en-phonics-practice header h3 { margin:2px 0 0; font-size:24px; }
+.app .screen-pages .en-classroom .en-phonics-practice header > b { padding:6px 12px; border-radius:20px; background:#e5f2ff; color:#2d82bd; font-size:14px; }
+.app .screen-pages .en-classroom .en-phonics-practice p { font-size:17px; margin:0; }
+.app .screen-pages .en-classroom .en-phonics-practice button { min-height:44px; padding:8px 20px; font-size:17px; }
+.app .screen-pages .en-classroom .en-phonics-tabs { display:flex; flex-wrap:nowrap; gap:8px; width:min(660px,100%); justify-self:center; align-self:start; margin:0; }
+.app .screen-pages .en-classroom .en-phonics-tabs button { flex:1; display:flex; align-items:center; justify-content:center; gap:9px; border-radius:12px; white-space:nowrap; }
+.en-phonics-tabs i { display:grid; place-items:center; width:24px; height:24px; border-radius:50%; background:#c9dfee66; font:700 13px system-ui; }
+.app .screen-pages .en-classroom .en-phonics-tabs button.active { border-color:#2d82bd; background:#2d82bd; color:white; }
+.en-phonics-task { min-height:0; overflow:visible; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:auto minmax(0,1fr) auto; gap:16px; width:min(800px,100%); justify-self:center; }
+.app .screen-pages .en-classroom .en-phonics-question { grid-column:1/-1; padding:6px 0; font-size:22px; font-weight:700; }
+.en-phonics-listen,.en-phonics-answer { min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:18px; border:1px solid #c9dfee; border-radius:18px; background:var(--ct-paper-2); }
+.en-phonics-listen-heading > b,.en-phonics-answer > b { font-size:18px; }
+.en-phonics-listen-icon { display:grid; place-items:center; width:44px; height:44px; border-radius:50%; color:#2d82bd; background:#e5f2ff; }
+.en-phonics-listen-icon svg { width:24px; height:24px; }
+.en-phonics-listen-heading { display:flex; align-items:center; gap:10px; }
+.en-phonics-listen-controls { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; min-width:0; }
+.app .screen-pages .en-classroom .en-phonics-listen-controls .en-phonics-play { flex:1; max-width:210px; min-width:0; }
+.en-phonics-listen-controls .en-phonics-secondary { flex:none; white-space:nowrap; }
+.app .screen-pages .en-classroom .en-phonics-play { width:min(210px,100%); min-height:54px; background:#2d82bd; color:white; border-color:#2d82bd; border-radius:14px; font-weight:700; }
+.app .screen-pages .en-classroom .en-phonics-secondary { padding:4px 12px; background:transparent; border:0; color:var(--ct-soft); font-size:14px; }
+.app .screen-pages .en-classroom .en-phonics-choices { justify-content:center; gap:12px; margin:0; }
+.app .screen-pages .en-classroom .en-phonics-choices button { min-width:90px; min-height:62px; border-radius:14px; font-size:24px; font-weight:700; padding:10px 16px; }
+.en-phonics-answer small { color:var(--ct-soft); font-size:13px; }
+.app .screen-pages .en-classroom .en-phonics-feedback { grid-column:1/-1; min-height:24px; color:var(--ct-soft); font-size:14px; }
+@media(max-width:1100px) { .en-phonics-task { gap:10px; } .en-phonics-listen,.en-phonics-answer { gap:10px; padding:12px; } }
+.app .screen-pages .en-classroom .en-novel-word { font-size:42px; }
+.app .screen-pages .en-classroom .en-phonics-practice .en-observation { text-align:left; }
+.app .screen-pages .en-classroom .en-writing-task { display:grid; grid-template-columns:minmax(0,3fr) minmax(230px,1fr); gap:16px; padding:10px; }
+.app .screen-pages .en-classroom .en-letter-writing { height:100%; display:flex; flex-direction:column; gap:8px; padding:0; margin:0; background:none; border:0; }
+.app .screen-pages .en-classroom .en-letter-writing > :is(span,p,.en-writing-rules) { display:none; }
+.app .screen-pages .en-classroom .en-writing-guide { display:flex; gap:10px; margin:0; padding:8px; font-size:12px; }
+.app .screen-pages .en-classroom .en-writing-guide small { display:none; }
+.app .screen-pages .en-classroom .en-writing-workbench { display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1; min-height:0; }
+.app .screen-pages .en-classroom .en-stroke-demo { display:flex; flex-direction:column; padding:8px; margin:0; }
+.app .screen-pages .en-classroom .en-stroke-demo-head { display:flex; flex-direction:column; gap:8px; padding:0; }
+.app .screen-pages .en-classroom .en-stroke-demo-head small { font-size:11px; line-height:1.5; }
+.app .screen-pages .en-classroom .en-stroke-demo-head button { min-height:44px; padding:6px; font-size:13px; }
+.app .screen-pages .en-classroom .en-stroke-demo-body { display:grid; grid-template-columns:1fr 1fr; flex:1; gap:6px; padding:6px 0; }
+.app .screen-pages .en-classroom .en-stroke-panel { min-height:0; padding:3px; }
+.app .screen-pages .en-classroom .en-stroke-panel svg { width:100%; height:100%; max-height:130px; }
+.app .screen-pages .en-classroom .en-stroke-demo-body ol { grid-column:1/-1; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:5px; }
+.app .screen-pages .en-classroom .en-stroke-demo-body li { padding:5px; font-size:11px; line-height:1.5; }
+.app .screen-pages .en-classroom .en-writing-practice { display:flex; flex-direction:column; padding:8px; min-height:0; gap:8px; }
+.app .screen-pages .en-classroom .en-writing-practice header h4 { font-size:17px; }
+.app .screen-pages .en-classroom .en-writing-practice header p { font-size:12px; margin:0; }
+.app .screen-pages .en-classroom .en-letter-tabs { display:flex; flex-wrap:wrap; gap:5px; margin:0; }
+.app .screen-pages .en-classroom .en-letter-tabs button { min-width:44px; min-height:44px; font-size:16px; padding:5px; }
+.app .screen-pages .en-classroom .en-four-line { height:auto; min-height:100px; flex:1; width:100%; aspect-ratio:auto; }
+.app .screen-pages .en-classroom .en-clear-ink { min-height:44px; font-size:13px; padding:6px; }
+.en-classroom .whole-scene:has(>.en-four-line-focus), .en-classroom .whole-scene:has(>.en-four-line-review) { height:100%; }
+.app .screen-pages .en-classroom :is(.en-four-line-focus,.en-four-line-review) { height:100%; margin:0; padding:16px; display:flex; flex-direction:column; justify-content:space-evenly; border-radius:22px; background:var(--ct-paper); }
+.app .screen-pages .en-classroom .en-four-line-focus header p { font-size:14px; margin:4px 0; }
+.app .screen-pages .en-classroom .en-four-line-map { max-height:180px; }
+.app .screen-pages .en-classroom .en-four-line-rules { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.app .screen-pages .en-classroom .en-four-line-rules article { padding:10px; min-width:0; }
+.app .screen-pages .en-classroom .en-four-line-rules strong { font-size:20px; }
+.app .screen-pages .en-classroom .en-four-line-rules span { font-size:13px; }
+.app .screen-pages .en-classroom .en-real-project { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:auto minmax(0,1fr) auto; gap:12px 20px; }
+.app .screen-pages .en-classroom .en-real-project > header { grid-column:1/-1; }
+.en-project-form { display:flex; flex-direction:column; gap:8px; min-width:0; min-height:0; justify-content:space-evenly; }
+.app .screen-pages .en-classroom .en-real-project > header .en-paper-choice { margin:0 0 0 auto; flex-direction:row; align-items:center; gap:8px; font-size:13px; }
+.app .screen-pages .en-classroom .en-project-form .en-project-name { display:grid; grid-template-columns:120px minmax(0,1fr); align-items:center; }
+.en-project-actions { grid-column:1/-1; display:flex; align-items:center; justify-content:center; gap:16px; }
+.en-project-actions > button { flex:none; }
+.app .screen-pages .en-classroom .en-project-form label { font-size:13px; margin:0; }
+.app .screen-pages .en-classroom .en-project-form :is(input,select) { min-height:44px; height:44px; font-size:15px; padding:6px 10px; }
+.app .screen-pages .en-classroom .en-project-row { padding:6px; gap:6px; margin:0; }
+.app .screen-pages .en-classroom .en-project-row > button { min-width:44px; min-height:44px; }
+.app .screen-pages .en-classroom .en-project-editor { display:grid; gap:6px; }
+.app .screen-pages .en-classroom .en-project-canvas { height:100%; min-height:0; margin:0; padding:12px; display:flex; flex-direction:column; justify-content:center; }
+.app .screen-pages .en-classroom .en-project-canvas nav button { min-width:44px; min-height:44px; padding:8px; }
+.app .screen-pages .en-classroom .en-project-canvas .en-skill-picture { width:96px; height:96px; }
+.app .screen-pages .en-classroom .en-project-canvas p { font-size:17px; margin:4px 0; }
+.app .screen-pages .en-classroom .en-project-branches { display:flex; flex-wrap:wrap; gap:8px; }
+.app .screen-pages .en-classroom .en-project-branches > div { min-width:0; flex:1; padding:6px; }
+.app .screen-pages .en-classroom .en-project-branch { padding:6px; margin:4px 0; gap:6px; }
+.app .screen-pages .en-classroom .en-project-branch .en-skill-picture { width:44px; height:44px; }
+.app .screen-pages .en-classroom .en-project-branch span { font-size:14px; line-height:1.5; }
+.app .screen-pages .en-classroom .en-project-errors { margin:0; padding-left:18px; font-size:12px; }
+.app .screen-pages .en-classroom .en-project-presentation { justify-content:space-evenly; align-items:center; }
+.app .screen-pages .en-classroom .en-project-presentation .en-observation { width:min(600px,100%); }
+.app .screen-pages .en-classroom .en-role-play { height:100%; margin:0; padding:14px; display:flex; flex-direction:column; gap:10px; }
+.app .screen-pages .en-classroom .en-role-play header p { font-size:13px; margin:0; }
+.app .screen-pages .en-classroom .en-role-choices { display:flex; gap:8px; flex-wrap:wrap; }
+.app .screen-pages .en-classroom .en-role-choices button { min-height:44px; padding:7px 12px; font-size:14px; }
+.app .screen-pages .en-classroom .en-role-stage { flex:1; min-height:0; padding:10px; }
+.app .screen-pages .en-classroom .en-role-script { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.app .screen-pages .en-classroom .en-role-script article { min-height:44px; padding:7px; gap:8px; }
+.app .screen-pages .en-classroom .en-role-script strong { font-size:17px; }
+.app .screen-pages .en-classroom .en-role-script small { font-size:11px; }
+.app .screen-pages .en-classroom .en-challenge-done { align-items:center; justify-content:space-evenly; text-align:center; }
+.en-challenge-done > span { font-size:48px; color:#e7ad37; }
+.en-reference-modal { height:100%; display:flex; flex-direction:column; gap:10px; }
+.en-reference-modal header { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.en-reference-modal header button { min-width:44px; min-height:44px; }
+.en-reference-modal .en-page-reference { height:100%; min-height:0; width:100%; margin:0; display:flex; flex-direction:column; padding:10px; }
+.en-reference-modal .en-page-ref-head { display:none; }
+.en-reference-modal .en-page-reference img { flex:1; height:100%; min-height:0; width:100%; object-fit:contain; }
+.en-reference-modal .en-page-switch { flex:none; justify-content:center; }
+.en-reference-modal .en-page-switch button { min-width:44px; min-height:44px; }
+.modal:has(.en-reference-modal) .whole-scene { height:100%; }
+.app .screen-pages .page.en-catalog { height:var(--screen-height,100dvh); max-width:none; padding:14px 22px; display:flex; flex-direction:column; gap:12px; }
+.app .screen-pages .en-catalog .ct-catalog-hero { height:132px; min-height:132px; margin:0; padding:18px 22px; border-radius:24px; }
+.app .screen-pages .en-catalog .ct-catalog-hero h1 { font-size:30px; }
+.app .screen-pages .en-catalog .ct-catalog-hero p { font-size:14px; margin:0; }
+.app .screen-pages .en-catalog .ct-progress-orbit { width:105px; height:105px; }
+.app .screen-pages .en-catalog .ct-progress-orbit small { font-size:10px; }
+.app .screen-pages .en-catalog .mc-continue { margin:0; min-height:48px; padding:8px 16px; flex:none; }
+.app .screen-pages .en-catalog .ct-open-lessons { flex:1; min-height:0; display:grid; grid-template-columns:1fr; grid-template-rows:auto auto minmax(0,1fr); gap:10px; margin:0; padding:0; background:none; border:0; }
+.app .screen-pages .en-catalog .ct-section-title { margin:0; padding:0 6px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.app .screen-pages .en-catalog .ct-section-title h2 { font-size:20px; margin:3px 0; }
+.app .screen-pages .en-catalog .ct-section-title span { font-size:12px; }
+.app .screen-pages .en-catalog .ct-section-title p { font-size:14px; }
+.en-unit-buttons { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:9px; }
+.app .screen-pages .en-catalog .en-unit-buttons button { display:flex; flex-direction:column; justify-content:center; gap:3px; padding:8px 10px; min-height:76px; border:1px solid var(--ct-line); border-radius:15px; color:var(--ct-ink); background:var(--ct-paper); cursor:pointer; }
+.en-unit-buttons b { font-size:15px; }
+.en-unit-buttons span { font-size:12px; line-height:1.4; }
+.en-unit-buttons small { font-size:11px; }
+.app .screen-pages .en-catalog .en-unit-buttons .active { color:white; background:linear-gradient(125deg,#7b61c7,#4d99c3); }
+.en-lesson-swipe { min-height:0; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; scrollbar-width:none; touch-action:pan-y; }
+.en-lesson-swipe::-webkit-scrollbar { display:none; }
+.app .screen-pages .en-catalog .en-lesson-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0; padding:2px 2px 14px; }
+.app .screen-pages .en-catalog .en-lesson-card { min-height:152px; height:152px; display:flex; padding:14px; gap:16px; }
+.app .screen-pages .en-catalog .en-lesson-art { flex:none; width:100px; height:110px; margin:0; }
+.app .screen-pages .en-catalog .en-lesson-card h3 { font-size:23px; margin:8px 0 4px; }
+.app .screen-pages .en-catalog .en-lesson-card p { font-size:13px; margin:0 0 8px; }
+@media(max-width:1100px) {
+ .app .screen-pages .page.en-classroom { padding:10px 14px; grid-template-rows:78px 50px 66px minmax(0,1fr); gap:8px; }
+ .app .screen-pages .en-classroom .ct-lesson-head h1 { font-size:23px; }
+ .en-common-prompt > div { gap:10px; padding:8px 12px; }
+ .en-common-prompt p { font-size:13px; }
+ .en-common-prompt .ct-replay { min-height:54px; padding:8px 12px; font-size:14px; }
+ .app .screen-pages .en-classroom h3 { font-size:21px; }
+ .app .screen-pages .en-classroom .en-full-panel { padding:12px 14px; gap:10px; }
+ .app .screen-pages .en-classroom .en-source-lines-grid button strong { font-size:18px; }
+ .app .screen-pages .en-classroom .en-material-layout { gap:12px; }
+ .app .screen-pages .en-classroom .en-quiz-options button { font-size:19px; padding:10px 16px; }
+ .app .screen-pages .page.en-catalog { padding:12px 16px; }
+ .app .screen-pages .en-catalog .ct-catalog-hero h1 { font-size:26px; }
+ .en-unit-buttons { gap:6px; }
+ .app .screen-pages .en-catalog .en-unit-buttons button { padding:7px; }
+}
+/* Writing rules are reference material; the complete diagram stays inside its bounds. */
+.app .screen-pages .en-classroom .en-writing-rules-task {
+ display:grid; grid-template-columns:minmax(0,1fr); gap:0;
+}
+.app .screen-pages .en-classroom .en-writing-rules-task > .en-four-line-focus {
+ display:grid; grid-template-rows:auto minmax(130px,1fr) auto auto; gap:10px;
+ width:min(100%,1000px); height:100%; max-height:600px; min-height:0; min-width:0; padding:0; border:0; border-radius:0; background:none; align-self:center; justify-self:center;
+}
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-focus h3 { font-size:20px; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-focus header p { font-size:13px; margin:5px 0 0; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-map {
+ display:grid; grid-template-columns:130px minmax(0,1fr); gap:12px;
+ width:100%; height:100%; min-height:0; max-height:none; margin:0; padding:12px;
+ box-sizing:border-box; align-self:center; background:var(--ct-paper-2);
+}
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-grid-svg {
+ display:block; flex:none; width:100%; height:100%; min-height:0;
+}
+.en-four-line-zones { display:grid; grid-template-rows:repeat(3,minmax(0,1fr)); height:100%; padding-block:6%; box-sizing:border-box; }
+.en-four-line-zones > div { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:5px; }
+.en-four-line-zones b { padding:4px 12px; border-radius:8px; background:#337fa8; color:#fff; font:700 13px/1.3 system-ui; }
+.en-four-line-zones .mid b { background:#795bb7; }
+.en-four-line-zones .low b { background:#c2734e; }
+.en-four-line-zones span { color:var(--ct-soft); font:600 12px/1.5 system-ui; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-rules { gap:8px; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-rules article { min-height:0; padding:9px; gap:6px; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-rules b { font-size:12px; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-rules strong { font-size:18px; line-height:1.25; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-rules span { font-size:12px; line-height:1.5; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-mnemonic { margin:0; padding:8px 10px; font-size:13px; }
+.app .screen-pages .en-classroom .en-writing-rules-task > .en-four-line-review {
+ height:100%; min-height:0; min-width:0; padding:20px; justify-content:center; gap:18px;
+}
+.en-scene-modal { height:100%; min-height:0; display:flex; flex-direction:column; gap:12px; }
+.en-scene-modal header { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.en-scene-modal header button { min-height:44px; min-width:44px; }
+.en-scene-modal img { height:100%; min-height:0; width:100%; object-fit:contain; }
+.modal:has(.en-scene-modal) .whole-scene { height:100%; }
+.en-project-row-tabs { display:flex; flex-wrap:wrap; gap:6px; }
+.app .screen-pages .en-classroom .en-project-row-tabs button { font-size:13px; padding:6px 10px; min-height:44px; border:1px solid #c9dfee; border-radius:12px; }
+.app .screen-pages .en-classroom .en-project-row-tabs button.active { color:#fff; background:#2d82bd; }
+.app .screen-pages .en-classroom .en-project-row[hidden] { display:none; }
+.app .screen-pages .en-classroom .en-quiz { display:grid; grid-template-rows:auto minmax(80px,1fr) auto minmax(60px,1fr); align-items:center; justify-items:center; }
+.app .screen-pages .en-classroom .en-quiz-head { align-self:start; }
+.en-phonics-reading-task { min-height:0; width:min(900px,100%); justify-self:center; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); grid-template-rows:auto minmax(0,1fr); align-items:center; gap:12px 24px; padding:4px 0; overflow:visible; }
+.en-phonics-speaking { min-width:0; display:flex; flex-direction:column; align-items:center; gap:14px; padding:12px 0 12px 24px; border-left:1px solid var(--ct-line); }
+.app .screen-pages .en-classroom .en-phonics-reading-task > .en-phonics-question { grid-column:1/-1; width:100%; font-size:18px; padding:0; }
+.en-phonics-word-focus { display:flex; flex-direction:column; align-items:center; gap:8px; width:100%; }
+.app .screen-pages .en-classroom .en-phonics-word-focus .en-novel-word { margin:0; font-size:56px; line-height:1.1; }
+.app .screen-pages .en-classroom .en-phonics-word-focus .en-phonics-secondary { color:#2d82bd; }
+.en-phonics-hint-slot { min-height:0; display:flex; align-items:center; justify-content:center; width:100%; }
+.en-phonics-hint-slot:empty { display:none; }
+.app .screen-pages .en-classroom .en-phonics-reading-task .en-phonics-sounds { display:flex; flex-direction:column; align-items:center; gap:10px; padding:0; margin:0; }
+.en-phonics-sound-row { display:flex; align-items:center; justify-content:center; gap:8px; }
+.en-phonics-sound-step { display:flex; align-items:center; gap:8px; }
+.en-phonics-sound-step i { color:var(--ct-soft); font:400 16px system-ui; }
+.app .screen-pages .en-classroom .en-phonics-sound-step > span { display:grid; place-items:center; min-width:58px; height:42px; padding:0 10px; border-radius:12px; background:#e5f2ff; color:#28465d; font:600 24px/1.2 system-ui; }
+.app .screen-pages .en-classroom .en-phonics-sounds small { font-size:14px; color:var(--ct-soft); }
+.app .screen-pages .en-classroom .en-phonics-reading-task .speech-reading-check { width:100%; align-items:center; padding:0; gap:10px; background:transparent; color:var(--ct-ink); text-align:center; }
+.en-phonics-reading-task .speech-reading-check > div:first-child { justify-content:center; }
+.app .screen-pages .en-classroom .en-phonics-reading-task .speech-reading-check > div:first-child button { min-width:210px; min-height:54px; padding:10px 24px; border-radius:14px; background:#2d82bd; border-color:#2d82bd; color:white; font-weight:700; }
+.app .screen-pages .en-classroom .en-phonics-reading-task .speech-reading-check p { max-width:100%; font-size:15px; line-height:1.5; }
+.en-phonics-reading-task .en-word-in-sentence { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px; margin:0; }
+.en-phonics-reading-task:has(.en-word-in-sentence) { gap:8px; }
+.app .screen-pages .en-classroom .en-phonics-reading-task:has(.en-word-in-sentence) .en-novel-word { font-size:48px; }
+.app .screen-pages .en-classroom .en-blend-sounds { flex-wrap:wrap; font-size:16px; padding:8px; gap:6px; }
+.app .screen-pages .en-classroom .en-blend-sounds span { font-size:20px; }
+.app .screen-pages .en-classroom .en-word-in-sentence { padding:8px; }
+.app .screen-pages .en-classroom .en-word-in-sentence p { font-size:16px; }
+.app .screen-pages .en-classroom .en-expression-practice { grid-template-rows:auto auto minmax(0,1fr); }
+.app .screen-pages .en-classroom .en-expression-scene { grid-row:3; }
+.en-expression-compose { display:flex; flex-direction:column; gap:10px; min-width:0; min-height:0; justify-content:space-evenly; }
+.app .screen-pages .en-classroom .en-expression-compose .en-observation { width:100%; }
+.app .screen-pages .en-classroom .en-expression-compose > button { min-height:44px; padding:8px 14px; }
+.app .screen-pages .en-classroom .en-expression-compose .en-expression-support { flex:1; padding:14px; }
+.app .screen-pages .en-classroom .en-expression-compose .en-observation:has(details[open]) ul { display:none; }
+.app .screen-pages .en-classroom .en-expression-compose .en-observation details[open] { padding:0; margin:0; }
+.app .screen-pages .en-classroom .en-expression-compose .en-observation label { min-height:26px; padding:2px; }
+.app .screen-pages .en-classroom .en-expression-compose > p[role=status] { font-size:12px; margin:0; }
+
+.en-question-speaker svg { width:26px; height:26px; }
+.app .screen-pages .en-classroom .en-expression-scene :is(.en-word-art-frame,.en-teaching-picture) { width:160px; height:160px; flex:none; }
+.app .screen-pages .en-classroom .en-project-canvas :is(.en-word-art-frame,.en-teaching-picture) { width:96px; height:96px; flex:none; }
+.app .screen-pages .en-classroom .en-project-branch :is(.en-word-art-frame,.en-teaching-picture) { width:44px; height:44px; flex:none; }
+.app .screen-pages .en-classroom .en-project-canvas--families .en-project-branches > div { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px; }
+.app .screen-pages .en-classroom .en-project-canvas--families .en-project-branches > div > b { grid-column:1/-1; font-size:13px; }
+.app .screen-pages .en-classroom .en-project-canvas--families .en-project-branch { flex-direction:column; text-align:center; gap:5px; padding:3px; margin:0; }
+.app .screen-pages .en-classroom .en-project-canvas--families .en-project-branch span { font-size:12px; }
+.app .screen-pages .en-classroom .en-project-presentation:has(details[open]) .en-observation ul { display:none; }
+.app .screen-pages .en-classroom .en-project-presentation:has(details[open]) { gap:8px; }
+.app .screen-pages .en-classroom .en-project-presentation:has(details[open]) .en-observation { padding:8px 10px; }
+.app .screen-pages .en-classroom .en-project-presentation:has(details[open]) .en-observation details { padding:0; margin:0; }
+.en-phonics-example-lines { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.app .screen-pages .en-classroom .en-phonics-example-lines p { padding:10px 12px; font-size:17px; line-height:1.5; border:1px solid #c9dfee; border-radius:14px; background:#e5f2ff22; }
+.app .screen-pages .en-classroom .en-project-self-check { justify-content:space-evenly; align-items:center; }
+.en-project-self-check > div { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; width:100%; }
+.en-project-self-check label { display:flex; align-items:center; gap:12px; min-height:80px; padding:14px 18px; border:1px solid #c9dfee; border-radius:16px; font-size:18px; line-height:1.5; }
+.en-project-self-check input { width:22px; height:22px; flex:none; }
+
+/* Original audio skin: a little record sleeve, kept inside its textbook section. */
+.app .screen-pages .en-audio-player {
+ --en-audio-accent:#238b85; --en-audio-accent-soft:#7cc9b2; --en-audio-track:#d7e5df;
+ --en-audio-ink:#24433f; --en-audio-muted:#63827b; --en-audio-border:#c5ddd2;
+ --en-audio-surface:#f9fcf5; --en-audio-highlight:#fff;
+ flex:none; position:relative; isolation:isolate; width:min(100%,720px); min-width:0; box-sizing:border-box;
+ display:flex; align-items:center; gap:14px; padding:10px 14px;
+ border:1px solid var(--en-audio-border); border-radius:20px;
+ background:radial-gradient(ellipse at 0 0,#aadcc038,transparent 55%),linear-gradient(120deg,var(--en-audio-surface),#d4e8df24);
+ color:var(--en-audio-ink); box-shadow:inset 0 1px 0 var(--en-audio-highlight),0 5px 15px #183c3710;
+ font:500 13px/1.4 system-ui,sans-serif;
+}
+.en-audio-player::after { content:""; position:absolute; inset:5px; border:1px solid #74ae951c; border-radius:15px; pointer-events:none; z-index:-1; }
+.app .screen-pages .en-audio-player button {
+ flex:none; display:grid; place-items:center; width:44px; height:44px; min-height:44px;
+ margin:0; padding:0; border:0; border-radius:50%; font:inherit; transition:box-shadow .18s,background .18s,transform .18s;
+}
+.app .screen-pages .en-audio-player .en-audio-play {
+ position:relative; width:48px; height:48px; min-height:48px; color:white; border:2px solid #263f3b;
+ background:repeating-radial-gradient(circle,#213c37 0 3px,#314c46 3px 4px);
+ box-shadow:0 3px 6px #183a372b,inset 0 0 0 3px #1b302c;
+}
+.en-audio-play::before { content:""; position:absolute; width:28px; height:28px; border-radius:50%; background:linear-gradient(145deg,#6dceb5,#268d87); box-shadow:0 0 0 1px #8ee0c94d; }
+.app .screen-pages .en-audio-player .en-audio-play:hover { transform:translateY(-1px); box-shadow:0 5px 10px #183a373b,inset 0 0 0 3px #1b302c; }
+.app .screen-pages .en-audio-player .en-audio-play:active { transform:scale(.95); }
+.app .screen-pages .en-audio-player .en-audio-replay { width:38px; height:38px; min-height:38px; border:1px solid var(--en-audio-border); color:var(--en-audio-muted); background:#80bda110; }
+.app .screen-pages .en-audio-player .en-audio-replay:hover { color:var(--en-audio-accent); background:#80bda12b; }
+.en-audio-player button svg { position:relative; width:20px; height:20px; }
+.en-audio-player .en-audio-info { flex:0 1 185px; min-width:0; display:grid; gap:4px; text-align:left; }
+.en-audio-player .en-audio-kicker { display:flex; align-items:center; gap:6px; color:var(--en-audio-muted); font-size:10px; letter-spacing:.04em; }
+.en-audio-wave { display:flex; align-items:center; gap:2px; height:13px; flex:none; }
+.en-audio-wave i { width:2px; height:5px; border-radius:3px; background:var(--en-audio-accent); transform-origin:center; }
+.en-audio-wave i:nth-child(2),.en-audio-wave i:nth-child(4) { height:9px; }
+.en-audio-wave i:nth-child(3) { height:13px; }
+.en-audio-player.is-playing .en-audio-wave i { animation:en-audio-rhythm .8s ease-in-out infinite alternate; }
+.en-audio-wave i:nth-child(2) { animation-delay:-.4s; }.en-audio-wave i:nth-child(3) { animation-delay:-.2s; }.en-audio-wave i:nth-child(4) { animation-delay:-.6s; }
+@keyframes en-audio-rhythm { to { transform:scaleY(.4); opacity:.5; } }
+.en-audio-player .en-audio-info strong { font-size:14px; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.en-audio-player .en-audio-info small { font-size:10px; color:var(--en-audio-muted); }
+.app .screen-pages .en-classroom .en-audio-info select { width:100%; min-width:0; height:28px; min-height:28px; padding:0 5px; border:1px solid var(--en-audio-border); border-radius:7px; background:var(--en-audio-surface); color:inherit; font:600 12px system-ui; }
+.app .screen-pages .en-audio-player .en-audio-progress { appearance:none; flex:1; min-width:50px; width:auto; height:32px; min-height:32px; padding:0; border:0; box-shadow:none; background-color:transparent; background-size:100% 6px; background-position:center; background-repeat:no-repeat; border-radius:10px; cursor:pointer; margin:0; }
+.en-audio-player .en-audio-progress::-webkit-slider-thumb { appearance:none; width:16px; height:16px; border:4px solid var(--en-audio-surface); border-radius:50%; background:var(--en-audio-accent); box-shadow:0 0 0 1px var(--en-audio-border),0 2px 5px #1b54462b; }
+.en-audio-player .en-audio-progress::-moz-range-thumb { width:8px; height:8px; border:4px solid var(--en-audio-surface); border-radius:50%; background:var(--en-audio-accent); box-shadow:0 0 0 1px var(--en-audio-border),0 2px 5px #1b54462b; }
+.en-audio-player .en-audio-progress:disabled { cursor:default; opacity:.75; }
+.en-audio-player .en-audio-time { flex:none; padding:5px 8px; border-radius:8px; background:#80bda111; font-size:11px; font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--en-audio-muted); }
+.en-audio-player .en-audio-time i { font-style:normal; opacity:.45; }
+.en-audio-player .en-audio-error { color:#c16a45; font-size:11px; }
+.en-audio-player > audio { display:none; }
+.en-audio-player.is-playing { border-color:var(--en-audio-accent-soft); }
+.en-audio-player :is(button,input,select):focus-visible { outline:2px solid var(--en-audio-accent); outline-offset:4px; }
+.app .screen-pages .en-classroom .en-audio-slot.ready { background:transparent; border:0; padding:0; }
+.app .screen-pages .en-classroom .en-audio-slot.ready > .en-audio-player { width:100%; }
+:root:not([data-theme="light"]) .app .screen-pages .en-audio-player {
+ --en-audio-accent:#88dac2; --en-audio-accent-soft:#c7e9bd; --en-audio-track:#42645e;
+ --en-audio-ink:#edf8ef; --en-audio-muted:#accac1; --en-audio-border:#47695e;
+ --en-audio-surface:#203c38; --en-audio-highlight:#c6f8d214;
+ background:radial-gradient(ellipse at 0 0,#81d5b326,transparent 60%),linear-gradient(120deg,#203c38,#273d3b);
+ box-shadow:inset 0 1px 0 var(--en-audio-highlight),0 5px 15px #0002;
+}
+@media(prefers-reduced-motion:reduce) { .en-audio-player.is-playing .en-audio-wave i { animation:none; }.app .screen-pages .en-audio-player button { transition:none; } }
+
+/* All reading types share composition and point-reading primitives. */
+.app .screen-pages .en-classroom .en-material-layout { grid-template-columns:minmax(0,34fr) minmax(0,66fr); align-items:stretch; gap:24px; }
+.en-material-picture { min-width:0; min-height:0; height:100%; }
+.en-material-picture > img { display:block; width:100%; height:100%; object-fit:contain; object-position:center top; border-radius:12px; }
+.app .screen-pages .en-classroom .en-material-picture .en-block-scene { height:auto; max-height:100%; padding:0; }
+.app .screen-pages .en-classroom .en-material-picture .en-block-scene img { width:100%; height:auto; max-height:calc(var(--stage-height)*.88); object-position:center top; border-radius:12px; }
+.app .screen-pages .en-classroom .en-material-picture .en-block-scene > span { position:static; width:100%; box-sizing:border-box; display:flex; align-items:center; justify-content:space-between; padding:6px 10px; border:0; border-radius:0; background:var(--ct-paper-2); color:var(--ct-soft); box-shadow:none; backdrop-filter:none; }
+.app .screen-pages .en-classroom .en-material-picture .en-block-scene > span small { color:var(--ct-soft); }
+.en-material-reading { display:flex; flex-direction:column; align-items:stretch; gap:14px; min-width:0; min-height:0; }
+.app .screen-pages .en-classroom .en-material-reading > .en-audio-player { width:100%; }
+.en-material-text { min-width:0; min-height:0; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:var(--ct-line) transparent; }
+.app .screen-pages .en-classroom .en-material-text .en-source-lines-grid { display:grid; grid-template-columns:minmax(0,1fr); grid-auto-rows:auto; align-content:start; gap:0; }
+.app .screen-pages .en-classroom .en-reading-line {
+ min-height:48px; height:auto; display:flex; align-items:center; gap:10px; padding:10px 8px;
+ border:0; border-bottom:1px solid var(--ct-line); border-radius:0; background:transparent;
+ box-shadow:none; color:var(--ct-ink); text-align:left; font-size:20px; width:100%; min-width:0; margin:0;
+}
+.app .screen-pages .en-classroom .en-reading-line:last-child { border-bottom-color:transparent; }
+.app .screen-pages .en-classroom .en-reading-line:hover { background:var(--ct-paper-2); }
+.app .screen-pages .en-classroom .en-reading-line:focus-visible { outline:2px solid var(--ct-blue); outline-offset:-2px; border-radius:8px; }
+.app .screen-pages .en-classroom .en-reading-line.next { background:#57a4d610; border-radius:8px; }
+.app .screen-pages .en-classroom .en-reading-line strong { display:block; min-width:0; font-size:inherit; font-weight:500; line-height:1.4; }
+.app .screen-pages .en-classroom .en-reading-line small { color:var(--ct-soft); font-size:12px; line-height:1.45; }
+.app .screen-pages .en-classroom .en-reading-line .en-source-marker { display:grid; place-items:center; width:22px; height:22px; border-radius:50%; background:var(--ct-paper-2); color:var(--ct-soft); font:600 11px system-ui; }
+.app .screen-pages .en-classroom .en-reading-line.seen .en-source-marker { background:#45a98313; color:var(--ct-green); }
+.en-reading-line .en-source-sound { display:grid; place-items:center; width:28px; height:28px; margin-left:auto; color:var(--ct-blue); }
+.app .screen-pages .en-classroom .en-material-text .en-source-lines-grid--words { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 14px; }
+.app .screen-pages .en-classroom .en-material-text .en-source-item--word { min-height:88px; padding:8px 0; gap:8px; }
+.app .screen-pages .en-classroom .en-reading-feedback p { margin:0; padding:2px 8px; font-size:13px; color:var(--ct-soft); }
+.app .screen-pages .en-classroom :is(.en-opening-task,.en-reader-panel,.en-song-task,.en-letter-chant) > header { align-items:baseline; padding-bottom:8px; border-bottom:1px solid var(--ct-line); }
+.app .screen-pages .en-classroom :is(.en-opening-task,.en-reader-panel,.en-song-task,.en-letter-chant) > header > span { margin-left:auto; color:var(--ct-soft); text-align:right; }
+@media(max-width:1100px) {
+ .app .screen-pages .en-classroom .en-material-layout { gap:18px; }
+ .app .screen-pages .en-classroom .en-reading-line { gap:8px; padding:9px 5px; }
+ .app .screen-pages .en-classroom .en-reading-line strong { font-size:18px; }
+ .app .screen-pages .en-classroom .en-material-text .en-source-lines-grid--words { gap:6px 10px; }
+}
+
+.app .screen-pages .en-classroom .en-material-layout--text { grid-template-columns:minmax(0,1fr); width:min(100%,880px); align-self:center; }
+.app .screen-pages .en-classroom .en-reading-line .en-source-text { flex:1; min-width:0; }
+.app .screen-pages .en-classroom .en-reading-line :is(.en-source-marker,.en-source-sound) { flex:none; font-style:normal; }
+.app .screen-pages .en-classroom .en-material-reading > .en-audio-slot { flex:none; width:100%; margin:0; padding:0; border:0; background:none; box-shadow:none; display:flex; flex-direction:column; align-items:stretch; gap:6px; }
+.app .screen-pages .en-classroom .en-material-reading .en-audio-slot > b { color:var(--ct-soft); font-size:12px; }
+.app .screen-pages .en-classroom .en-material-reading .en-audio-slot > .en-audio-player { width:100%; }
+.app .screen-pages .en-classroom .en-material-reading .en-original-task-trigger { align-self:flex-end; width:auto; min-height:44px; padding:6px 10px; background:transparent; border:0; border-radius:8px; color:var(--ct-blue); font-size:13px; }
+.app .screen-pages .en-classroom .en-original-panel { align-items:stretch; justify-content:flex-start; }
+.app .screen-pages .en-classroom .en-original-panel > h3 { padding-bottom:8px; border-bottom:1px solid var(--ct-line); }
+.en-material-reading > .en-reading-feedback { flex:none; }
+.app .screen-pages .en-classroom .en-letter-chant-parts { flex:none; align-items:start; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:24px; }
+.app .screen-pages .en-classroom .en-letter-chant-part { padding:0; border:0; border-radius:0; background:transparent; gap:10px; }
+.app .screen-pages .en-classroom .en-letter-chant-lines { gap:12px; }
+.en-letter-chant-verse { display:grid; gap:2px; min-width:0; }
+.app .screen-pages .en-classroom .en-letter-chant-lines p { margin:0; font-size:16px; line-height:1.6; }
+.app .screen-pages .en-classroom .en-letter-chant-decode { padding:8px 0 0; border-top:1px solid var(--ct-line); border-radius:0; background:transparent; }
+.app .screen-pages .en-classroom .en-letter-chant-decode > div { display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:8px; }
+.app .screen-pages .en-classroom .en-letter-chant-decode .en-reading-line { min-height:44px; padding:6px 8px; font-size:16px; }
+
+/* A script keeps its turn order; only independent words use multiple columns. */
+.app .screen-pages .en-classroom .en-role-stage { display:flex; flex-direction:column; overflow:hidden; gap:10px; }
+.en-role-stage > :is(.en-role-cast,.en-role-ready,.en-role-finish) { flex:none; }
+.app .screen-pages .en-classroom .en-role-script { grid-template-columns:minmax(0,1fr); grid-auto-rows:min-content; align-content:start; flex:1; min-height:0; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; scrollbar-width:thin; gap:0; }
+.app .screen-pages .en-classroom .en-role-script article { min-height:48px; padding:8px; border:0; border-bottom:1px solid var(--ct-line); border-radius:0; background:transparent; box-shadow:none; transform:none; }
+.app .screen-pages .en-classroom .en-role-script article.active { background:#57a4d610; border-radius:8px; }
+.app .screen-pages .en-classroom .en-role-script article.said { background:transparent; }
+.app .screen-pages .en-classroom .en-role-script article.said > i { color:var(--ct-green); }
+.app .screen-pages .en-classroom .en-expression-support { gap:0; padding:10px 14px; }
+.app .screen-pages .en-classroom .en-word-in-sentence { width:min(620px,100%); flex-direction:column; gap:4px; padding:0; }
+.app .screen-pages .en-classroom .en-word-in-sentence > b { font-size:12px; color:var(--ct-soft); }
+.app .screen-pages .en-classroom .en-word-in-sentence .en-reading-line { min-height:44px; padding:6px 8px; }
+
+@media(max-width:1100px) { .app .screen-pages .en-classroom .en-letter-chant-lines { gap:8px; } .app .screen-pages .en-classroom .en-letter-chant-lines p { font-size:15px; line-height:1.5; } }
+
+.app .screen-pages .en-classroom .en-project-presentation > header { width:100%; justify-content:center; gap:12px; }
+
+/* Both recorded chant parts stay on screen together; each verse is one row. */
+.en-letter-chant-heading { display:grid; grid-template-columns:minmax(240px,1fr) minmax(0,1.5fr); align-items:center; gap:16px; }
+.app .screen-pages .en-classroom .en-letter-chant-heading header { display:grid; gap:4px; }
+.app .screen-pages .en-classroom .en-letter-chant-heading h3 { font-size:21px; }
+.app .screen-pages .en-classroom .en-letter-chant-heading p { font-size:13px; margin:0; }
+.app .screen-pages .en-classroom .en-letter-chant-heading .en-audio-slot { padding:0; border:0; background:none; gap:4px; }
+.app .screen-pages .en-classroom .en-letter-chant-heading .en-audio-slot > b { font-size:11px; }
+.app .screen-pages .en-classroom .en-letter-chant .en-material-layout { width:100%; }
+.app .screen-pages .en-classroom .en-letter-chant .en-material-text { overflow:visible; }
+.app .screen-pages .en-classroom .en-letter-chant-parts { grid-template-columns:minmax(0,.8fr) minmax(0,1.8fr); gap:18px; }
+.app .screen-pages .en-classroom .en-letter-chant-lines { gap:0; }
+.app .screen-pages .en-classroom .en-letter-chant-lines p { display:flex; align-items:center; min-height:36px; border-bottom:1px solid var(--ct-line); font-size:16px; }
+.app .screen-pages .en-classroom .en-letter-chant-lines p { min-height:32px; }
+/* The diagram and letter families sit side by side, sharing the same height. */
+.app .screen-pages .en-classroom .en-writing-rules-task > .en-four-line-focus { grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); grid-template-rows:auto minmax(0,1fr) auto; gap:10px 16px; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-focus > header { grid-column:1/-1; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-map { grid-column:1; grid-row:2; padding:8px; gap:8px; grid-template-columns:120px minmax(0,1fr); }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-rules { grid-column:2; grid-row:2; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-mnemonic { grid-column:1/-1; }
+.app .screen-pages .en-classroom .en-writing-rules-task .en-four-line-zones { padding-block:0; }

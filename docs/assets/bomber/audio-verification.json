@@ -1,0 +1,123 @@
+[
+  {
+    "track": "title",
+    "duration": 17.30439909297052,
+    "samples": 763124,
+    "peak": 0.9447901248931885,
+    "loopOK": true
+  },
+  {
+    "track": "start",
+    "duration": 2.852879818594104,
+    "samples": 125812,
+    "peak": 0.8801891207695007,
+    "loopOK": true
+  },
+  {
+    "track": "main",
+    "duration": 13.453968253968254,
+    "samples": 593320,
+    "peak": 0.2663165330886841,
+    "loopOK": true
+  },
+  {
+    "track": "upgrade",
+    "duration": 13.453287981859411,
+    "samples": 593290,
+    "peak": 0.7998285293579102,
+    "loopOK": true
+  },
+  {
+    "track": "clear",
+    "duration": 2.815873015873016,
+    "samples": 124180,
+    "peak": 0.9082234501838684,
+    "loopOK": true
+  },
+  {
+    "track": "bonus",
+    "duration": 11.325215419501134,
+    "samples": 499442,
+    "peak": 0.6646969318389893,
+    "loopOK": true
+  },
+  {
+    "track": "invincible",
+    "duration": 14.520317460317461,
+    "samples": 640346,
+    "peak": 0.6376203894615173,
+    "loopOK": true
+  },
+  {
+    "track": "ending",
+    "duration": 12.398004535147392,
+    "samples": 546752,
+    "peak": 0.9945290088653564,
+    "loopOK": true
+  },
+  {
+    "track": "miss",
+    "duration": 2.205668934240363,
+    "samples": 97270,
+    "peak": 0.731765866279602,
+    "loopOK": true
+  },
+  {
+    "track": "over",
+    "duration": 6.406848072562358,
+    "samples": 282542,
+    "peak": 0.8212054371833801,
+    "loopOK": true
+  },
+  {
+    "track": "step-horizontal",
+    "duration": 0.2329251700680272,
+    "samples": 10272,
+    "peak": 0.21189376711845398,
+    "loopOK": true
+  },
+  {
+    "track": "step-vertical",
+    "duration": 0.22793650793650794,
+    "samples": 10052,
+    "peak": 0.27477169036865234,
+    "loopOK": true
+  },
+  {
+    "track": "plant",
+    "duration": 0.33242630385487526,
+    "samples": 14660,
+    "peak": 0.3816457688808441,
+    "loopOK": true
+  },
+  {
+    "track": "blast",
+    "file": "blast-fc-v2.wav",
+    "duration": 1.3933786848072562,
+    "samples": 61448,
+    "peak": 0.8500015139579773,
+    "loopOK": true,
+    "verifiedAt": "2026-10-04"
+  },
+  {
+    "track": "power",
+    "duration": 0.5303401360544218,
+    "samples": 23388,
+    "peak": 0.2513592839241028,
+    "loopOK": true
+  },
+  {
+    "track": "hurt",
+    "duration": 0.8380498866213152,
+    "samples": 36958,
+    "peak": 0.6496549844741821,
+    "loopOK": true
+  },
+  {
+    "track": "pause",
+    "duration": 1.1272562358276643,
+    "samples": 49712,
+    "peak": 0.7774835228919983,
+    "loopOK": true
+  }
+]

@@ -34,6 +34,16 @@ export const config = {
     defaultSpeakerEn: 'en_female_dacey_uranus_bigtts',
   },
   /** 学习助手「小卷」LLM（OpenAI 兼容接口，服务端注入密钥） */
+  assessment: {
+    baseUrl: process.env.COURSE_AI_BASE_URL ?? process.env.CHAT_BASE_URL ?? '',
+    apiKey: process.env.COURSE_AI_API_KEY ?? process.env.CHAT_API_KEY ?? '',
+    model: process.env.COURSE_AI_MODEL ?? process.env.CHAT_MODEL ?? '',
+  },
+  assessmentAudio: {
+    baseUrl: process.env.COURSE_AI_AUDIO_BASE_URL ?? process.env.COURSE_AI_BASE_URL ?? process.env.CHAT_BASE_URL ?? '',
+    apiKey: process.env.COURSE_AI_AUDIO_API_KEY ?? process.env.COURSE_AI_API_KEY ?? process.env.CHAT_API_KEY ?? '',
+    model: process.env.COURSE_AI_AUDIO_MODEL ?? process.env.COURSE_AI_MODEL ?? process.env.CHAT_MODEL ?? '',
+  },
   chat: {
     baseUrl: process.env.CHAT_BASE_URL ?? '',
     apiKey: process.env.CHAT_API_KEY ?? '',

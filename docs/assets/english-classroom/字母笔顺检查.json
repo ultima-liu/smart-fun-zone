@@ -1,0 +1,198 @@
+{
+  "date": "2026-10-10",
+  "checkedLetters": 52,
+  "correctedTemplates": 25,
+  "results": [
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "lesson": "friends-letters",
+      "letter": "A",
+      "acceptedStrokes": 3,
+      "hintPaths": 3,
+      "svgs": [
+        {
+          "x": 254.5,
+          "y": 414.390625,
+          "width": 231,
+          "height": 220,
+          "border": "0px"
+        },
+        {
+          "x": 674.5,
+          "y": 414.390625,
+          "width": 231,
+          "height": 220,
+          "border": "0px"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1",
+          "x": 362.29998779296875,
+          "y": 424.2906188964844,
+          "width": 5.234375,
+          "height": 13
+        },
+        {
+          "text": "2",
+          "x": 382.1000061035156,
+          "y": 424.2906188964844,
+          "width": 6.78125,
+          "height": 13
+        },
+        {
+          "text": "3",
+          "x": 341.3999938964844,
+          "y": 494.69061279296875,
+          "width": 7.03125,
+          "height": 13
+        }
+      ],
+      "pageOverflow": false,
+      "screenshot": "docs/assets/english-classroom/字母笔顺-A-1024.png"
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "lesson": "families-letters",
+      "letter": "f",
+      "acceptedStrokes": 2,
+      "hintPaths": 2,
+      "svgs": [
+        {
+          "x": 254.5,
+          "y": 414.390625,
+          "width": 231,
+          "height": 220,
+          "border": "0px"
+        },
+        {
+          "x": 674.5,
+          "y": 414.390625,
+          "width": 231,
+          "height": 220,
+          "border": "0px"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1",
+          "x": 405.1999816894531,
+          "y": 429.7906188964844,
+          "width": 5.234405517578125,
+          "height": 13
+        },
+        {
+          "text": "2",
+          "x": 344.70001220703125,
+          "y": 481.4906311035156,
+          "width": 6.78125,
+          "height": 12.999969482421875
+        }
+      ],
+      "pageOverflow": false,
+      "screenshot": "docs/assets/english-classroom/字母笔顺-f-1024.png"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "lesson": "friends-letters",
+      "letter": "A",
+      "acceptedStrokes": 3,
+      "hintPaths": 3,
+      "svgs": [
+        {
+          "x": 341,
+          "y": 434.59375,
+          "width": 231,
+          "height": 220,
+          "border": "0px"
+        },
+        {
+          "x": 930,
+          "y": 434.59375,
+          "width": 231,
+          "height": 220,
+          "border": "0px"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1",
+          "x": 448.79998779296875,
+          "y": 444.4937438964844,
+          "width": 5.234375,
+          "height": 13
+        },
+        {
+          "text": "2",
+          "x": 468.6000061035156,
+          "y": 444.4937438964844,
+          "width": 6.78125,
+          "height": 13
+        },
+        {
+          "text": "3",
+          "x": 427.8999938964844,
+          "y": 514.8937377929688,
+          "width": 7.03125,
+          "height": 13
+        }
+      ],
+      "pageOverflow": false,
+      "screenshot": "docs/assets/english-classroom/字母笔顺-A-1366.png"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "lesson": "families-letters",
+      "letter": "f",
+      "acceptedStrokes": 2,
+      "hintPaths": 2,
+      "svgs": [
+        {
+          "x": 341,
+          "y": 434.59375,
+          "width": 231,
+          "height": 220,
+          "border": "0px"
+        },
+        {
+          "x": 930,
+          "y": 434.59375,
+          "width": 231,
+          "height": 220,
+          "border": "0px"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1",
+          "x": 491.6999816894531,
+          "y": 449.9937438964844,
+          "width": 5.234405517578125,
+          "height": 13
+        },
+        {
+          "text": "2",
+          "x": 431.20001220703125,
+          "y": 501.6937561035156,
+          "width": 6.78125,
+          "height": 12.999969482421875
+        }
+      ],
+      "pageOverflow": false,
+      "screenshot": "docs/assets/english-classroom/字母笔顺-f-1366.png"
+    }
+  ],
+  "errors": []
+}

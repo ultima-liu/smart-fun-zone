@@ -5,6 +5,7 @@ import { useI18n } from '../i18n';
 import { cardById, DRAW_COST, type DrawResult, type StarCard } from '../content/starCards';
 import CardPortrait from './CardPortrait';
 import { KidButton } from './ui';
+import ScreenPages from './ScreenPages';
 import { sfx } from '../sfx';
 
 interface Props {
@@ -93,6 +94,7 @@ export default function GachaModal({ open, onClose }: Props) {
     <div className="gacha-modal" role="dialog" aria-modal="true">
       <div className="gacha-backdrop" onClick={phase === 'idle' ? onClose : undefined} />
       <SummonScene casting={phase === 'casting'} tick={castTick} burst={burst} done={phase === 'reveal'} />
+      <ScreenPages panel>
       <div className="gacha-stage">
         {phase === 'idle' && (
           <div className="gacha-intro">
@@ -167,6 +169,7 @@ export default function GachaModal({ open, onClose }: Props) {
           </div>
         )}
       </div>
+      </ScreenPages>
     </div>,
     document.body,
   );

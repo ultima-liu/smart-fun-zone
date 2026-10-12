@@ -1,0 +1,9339 @@
+{
+  "rows": [
+    {
+      "id": "campus",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 3,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 1,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 3,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 0,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 2,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 3,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 1,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 2,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 3,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "phase": 4,
+      "index": 4,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 3,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 0,
+      "kind": "choice",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 3,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 1,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 2,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "question",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 4,
+      "kind": "number",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "hint",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "phase": 4,
+      "index": 3,
+      "kind": "expression",
+      "state": "worked",
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,20 @@
+{
+  "method": "Rendering fixtures, separate from real-input E2E",
+  "scenarios": [
+    "bridge-cannon",
+    "weapons",
+    "underwater",
+    "jump-clean",
+    "water-jump-mask",
+    "river-bank",
+    "terrain-grass",
+    "terrain-snow",
+    "terrain-energy",
+    "terrain-hangar",
+    "terrain-alien"
+  ],
+  "size": [
+    1152,
+    672
+  ]
+}

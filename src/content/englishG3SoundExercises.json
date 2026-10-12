@@ -1,0 +1,475 @@
+{
+  "friends-letters-first-sound": [
+    {
+      "word": "dog",
+      "choices": [
+        "b",
+        "d",
+        "a"
+      ],
+      "answer": "d",
+      "picture": "/assets/english-textbook/recorded-materials/friends-letters-first-sound-question-1.webp",
+      "page": 6,
+      "region": [
+        0.155,
+        0.466,
+        0.312,
+        0.581
+      ]
+    },
+    {
+      "word": "can",
+      "choices": [
+        "c",
+        "b",
+        "a"
+      ],
+      "answer": "c",
+      "picture": "/assets/english-textbook/recorded-materials/friends-letters-first-sound-question-2.webp",
+      "page": 6,
+      "region": [
+        0.408,
+        0.466,
+        0.61,
+        0.581
+      ]
+    },
+    {
+      "word": "bird",
+      "choices": [
+        "c",
+        "b",
+        "a"
+      ],
+      "answer": "b",
+      "picture": "/assets/english-textbook/recorded-materials/friends-letters-first-sound-question-3.webp",
+      "page": 6,
+      "region": [
+        0.145,
+        0.622,
+        0.312,
+        0.744
+      ]
+    },
+    {
+      "word": "ant",
+      "choices": [
+        "d",
+        "b",
+        "a"
+      ],
+      "answer": "a",
+      "picture": "/assets/english-textbook/recorded-materials/friends-letters-first-sound-question-4.webp",
+      "page": 6,
+      "region": [
+        0.408,
+        0.622,
+        0.61,
+        0.744
+      ]
+    }
+  ],
+  "families-letters-first-sound": [
+    {
+      "word": "hat",
+      "choices": [
+        "d",
+        "h",
+        "e"
+      ],
+      "answer": "h",
+      "picture": "/assets/english-textbook/recorded-materials/families-letters-first-sound-question-1.webp",
+      "page": 18,
+      "region": [
+        0.145,
+        0.466,
+        0.312,
+        0.581
+      ]
+    },
+    {
+      "word": "fish",
+      "choices": [
+        "f",
+        "h",
+        "e"
+      ],
+      "answer": "f",
+      "picture": "/assets/english-textbook/recorded-materials/families-letters-first-sound-question-2.webp",
+      "page": 18,
+      "region": [
+        0.408,
+        0.466,
+        0.61,
+        0.581
+      ]
+    },
+    {
+      "word": "good",
+      "choices": [
+        "g",
+        "b",
+        "e"
+      ],
+      "answer": "g",
+      "picture": "/assets/english-textbook/recorded-materials/families-letters-first-sound-question-3.webp",
+      "page": 18,
+      "region": [
+        0.145,
+        0.622,
+        0.312,
+        0.744
+      ]
+    },
+    {
+      "word": "elephant",
+      "choices": [
+        "f",
+        "g",
+        "e"
+      ],
+      "answer": "e",
+      "picture": "/assets/english-textbook/recorded-materials/families-letters-first-sound-question-4.webp",
+      "page": 18,
+      "region": [
+        0.408,
+        0.622,
+        0.61,
+        0.744
+      ]
+    }
+  ],
+  "animals-letters-first-sound": [
+    {
+      "word": "in",
+      "choices": [
+        "a",
+        "e",
+        "i"
+      ],
+      "answer": "i",
+      "picture": "/assets/english-textbook/recorded-materials/animals-letters-first-sound-question-1.webp",
+      "page": 30,
+      "region": [
+        0.145,
+        0.466,
+        0.312,
+        0.581
+      ]
+    },
+    {
+      "word": "leg",
+      "choices": [
+        "g",
+        "l",
+        "b"
+      ],
+      "answer": "l",
+      "picture": "/assets/english-textbook/recorded-materials/animals-letters-first-sound-question-2.webp",
+      "page": 30,
+      "region": [
+        0.408,
+        0.466,
+        0.61,
+        0.581
+      ]
+    },
+    {
+      "word": "jump",
+      "choices": [
+        "g",
+        "k",
+        "j"
+      ],
+      "answer": "j",
+      "picture": "/assets/english-textbook/recorded-materials/animals-letters-first-sound-question-3.webp",
+      "page": 30,
+      "region": [
+        0.145,
+        0.622,
+        0.312,
+        0.744
+      ]
+    },
+    {
+      "word": "kid",
+      "choices": [
+        "b",
+        "k",
+        "d"
+      ],
+      "answer": "k",
+      "picture": "/assets/english-textbook/recorded-materials/animals-letters-first-sound-question-4.webp",
+      "page": 30,
+      "region": [
+        0.408,
+        0.622,
+        0.61,
+        0.744
+      ]
+    }
+  ],
+  "plants-letters-first-sound": [
+    {
+      "word": "on",
+      "choices": [
+        "i",
+        "o",
+        "a"
+      ],
+      "answer": "o",
+      "picture": "/assets/english-textbook/recorded-materials/plants-letters-first-sound-question-1.webp",
+      "page": 42,
+      "region": [
+        0.145,
+        0.466,
+        0.312,
+        0.591
+      ]
+    },
+    {
+      "word": "man",
+      "choices": [
+        "m",
+        "n",
+        "l"
+      ],
+      "answer": "m",
+      "picture": "/assets/english-textbook/recorded-materials/plants-letters-first-sound-question-2.webp",
+      "page": 42,
+      "region": [
+        0.455,
+        0.466,
+        0.61,
+        0.591
+      ]
+    },
+    {
+      "word": "no",
+      "choices": [
+        "l",
+        "m",
+        "n"
+      ],
+      "answer": "n",
+      "picture": "/assets/english-textbook/recorded-materials/plants-letters-first-sound-question-3.webp",
+      "page": 42,
+      "region": [
+        0.145,
+        0.63,
+        0.312,
+        0.744
+      ]
+    },
+    {
+      "word": "pan",
+      "choices": [
+        "b",
+        "p",
+        "d"
+      ],
+      "answer": "p",
+      "picture": "/assets/english-textbook/recorded-materials/plants-letters-first-sound-question-4.webp",
+      "page": 42,
+      "region": [
+        0.185,
+        0.63,
+        0.61,
+        0.744
+      ]
+    }
+  ],
+  "colours-letters-first-sound": [
+    {
+      "word": "rat",
+      "choices": [
+        "m",
+        "r",
+        "l"
+      ],
+      "answer": "r",
+      "picture": "/assets/english-textbook/recorded-materials/colours-letters-first-sound-question-1.webp",
+      "page": 54,
+      "region": [
+        0.195,
+        0.475,
+        0.37,
+        0.58
+      ]
+    },
+    {
+      "word": "tall",
+      "choices": [
+        "t",
+        "d",
+        "j"
+      ],
+      "answer": "t",
+      "picture": "/assets/english-textbook/recorded-materials/colours-letters-first-sound-question-2.webp",
+      "page": 54,
+      "region": [
+        0.47,
+        0.475,
+        0.615,
+        0.58
+      ]
+    },
+    {
+      "word": "up",
+      "choices": [
+        "i",
+        "o",
+        "u"
+      ],
+      "answer": "u",
+      "picture": "/assets/english-textbook/recorded-materials/colours-letters-first-sound-question-3.webp",
+      "page": 54,
+      "region": [
+        0.105,
+        0.644,
+        0.255,
+        0.75
+      ]
+    },
+    {
+      "word": "sun",
+      "choices": [
+        "b",
+        "s",
+        "d"
+      ],
+      "answer": "s",
+      "picture": "/assets/english-textbook/recorded-materials/colours-letters-first-sound-question-4.webp",
+      "page": 54,
+      "region": [
+        0.31,
+        0.644,
+        0.44,
+        0.75
+      ]
+    },
+    {
+      "word": "question",
+      "choices": [
+        "p",
+        "qu",
+        "k"
+      ],
+      "answer": "qu",
+      "picture": "/assets/english-textbook/recorded-materials/colours-letters-first-sound-question-5.webp",
+      "page": 54,
+      "region": [
+        0.545,
+        0.644,
+        0.64,
+        0.75
+      ]
+    }
+  ],
+  "numbers-letters-first-sound": [
+    {
+      "word": "yum",
+      "choices": [
+        "i",
+        "y",
+        "g"
+      ],
+      "answer": "y",
+      "picture": "/assets/english-textbook/recorded-materials/numbers-letters-first-sound-question-1.webp",
+      "page": 66,
+      "region": [
+        0.145,
+        0.407,
+        0.31,
+        0.518
+      ]
+    },
+    {
+      "word": "zebra",
+      "choices": [
+        "z",
+        "s",
+        "x"
+      ],
+      "answer": "z",
+      "picture": "/assets/english-textbook/recorded-materials/numbers-letters-first-sound-question-2.webp",
+      "page": 66,
+      "region": [
+        0.408,
+        0.407,
+        0.61,
+        0.518
+      ]
+    },
+    {
+      "word": "water",
+      "choices": [
+        "m",
+        "v",
+        "w"
+      ],
+      "answer": "w",
+      "picture": "/assets/english-textbook/recorded-materials/numbers-letters-first-sound-question-3.webp",
+      "page": 66,
+      "region": [
+        0.145,
+        0.531,
+        0.31,
+        0.641
+      ]
+    },
+    {
+      "word": "vest",
+      "choices": [
+        "w",
+        "u",
+        "v"
+      ],
+      "answer": "v",
+      "picture": "/assets/english-textbook/recorded-materials/numbers-letters-first-sound-question-4.webp",
+      "page": 66,
+      "region": [
+        0.408,
+        0.531,
+        0.61,
+        0.641
+      ]
+    }
+  ],
+  "numbers-letters-last-sound": [
+    {
+      "word": "fox",
+      "choices": [
+        "k",
+        "x",
+        "c"
+      ],
+      "answer": "x",
+      "picture": "/assets/english-textbook/recorded-materials/numbers-letters-last-sound-question-1.webp",
+      "page": 66,
+      "region": [
+        0.145,
+        0.7,
+        0.29,
+        0.793
+      ]
+    },
+    {
+      "word": "quiz",
+      "choices": [
+        "s",
+        "z",
+        "x"
+      ],
+      "answer": "z",
+      "picture": "/assets/english-textbook/recorded-materials/numbers-letters-last-sound-question-2.webp",
+      "page": 66,
+      "region": [
+        0.52,
+        0.695,
+        0.705,
+        0.793
+      ]
+    }
+  ]
+}

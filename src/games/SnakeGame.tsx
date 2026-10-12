@@ -47,6 +47,7 @@ interface Pt { x: number; y: number }
 interface Engine {
   segs: Pt[]; // 蛇身，下标 0 为头
   dir: Pt;
+  headingAngle: number; // Unwrapped visual angle keeps every corner a 90° rotation.
   pending: Pt[]; // 转向输入缓冲（最多 2 个，一步只消费一个，防连按掉头）
   food: Pt;
   gold: { pos: Pt; id: number; bornAt: number } | null; // bornAt 用引擎 activeMs，暂停安全
@@ -61,6 +62,8 @@ interface Engine {
   grow: number; // 待生长节数
   diff: Diff;
   stepAcc: number;
+  glideMs: number;
+  turnLocked: boolean;
   activeMs: number;
   boost: boolean;
   over: boolean;
@@ -95,10 +98,11 @@ function spawnAt(e: Engine): Pt {
 
 function queueTurn(e: Engine, dx: number, dy: number) {
   const last = e.pending.length ? e.pending[e.pending.length - 1] : e.dir;
-  if (last.x === dx && last.y === dy) return; // 已是该方向
-  if (last.x === -dx && last.y === -dy) return; // 不能原地掉头
-  if (e.pending.length >= 2) return;
+  if (last.x === dx && last.y === dy) return false; // 已是该方向
+  if (last.x === -dx && last.y === -dy) return false; // 不能原地掉头
+  if (e.pending.length >= 2) return false;
   e.pending.push({ x: dx, y: dy });
+  return true;
 }
 
 function applyEat(e: Engine, base: number, gold: boolean, pos: Pt): Ev[] {
@@ -134,7 +138,10 @@ function stepEngine(e: Engine): Ev[] {
     const nd = e.pending.shift()!;
     const reverse = nd.x === -e.dir.x && nd.y === -e.dir.y;
     const same = nd.x === e.dir.x && nd.y === e.dir.y;
-    if (!reverse && !same) e.dir = nd;
+    if (!reverse && !same) {
+      e.headingAngle += e.dir.x * nd.y - e.dir.y * nd.x > 0 ? 90 : -90;
+      e.dir = nd;
+    }
   }
   const head = e.segs[0];
   const nx = head.x + e.dir.x;
@@ -162,19 +169,32 @@ function stepEngine(e: Engine): Ev[] {
   return evs.length ? evs : [{ k: 'step' }];
 }
 
+function stepTurn(e: Engine): Ev[] {
+  e.turnLocked = true;
+  e.stepAcc = 0;
+  // Start immediately, but show the whole corner at the current movement pace.
+  const base = stepMs(e.level);
+  e.glideMs = e.boost ? Math.max(BOOST_MIN, Math.round(base * BOOST_FACTOR)) : base;
+  return stepEngine(e);
+}
+
 function tick(e: Engine, dt: number): Ev[] {
   e.activeMs += dt;
+  e.turnLocked = false;
   const evs: Ev[] = [];
   if (e.gold && e.activeMs - e.gold.bornAt >= GOLD_LIFE_MS) e.gold = null;
+  if (e.pending.length) return stepTurn(e); // Rapid turns consume one cell per frame.
   const base = stepMs(e.level);
   const interval = e.boost ? Math.max(BOOST_MIN, Math.round(base * BOOST_FACTOR)) : base;
   e.stepAcc += dt;
   let steps = 0;
   while (e.stepAcc >= interval && steps < 4) {
     e.stepAcc -= interval;
+    e.glideMs = interval;
     steps += 1;
-    evs.push(...stepEngine(e));
-    if (e.over) break;
+    const stepEvents = stepEngine(e);
+    evs.push(...stepEvents);
+    if (stepEvents.some((ev) => ev.k === 'over')) break;
   }
   return evs;
 }
@@ -183,6 +203,7 @@ function freshEngine(diff: Diff): Engine {
   const e: Engine = {
     segs: [{ x: 7, y: 7 }, { x: 6, y: 7 }, { x: 5, y: 7 }],
     dir: { x: 1, y: 0 },
+    headingAngle: 0,
     pending: [],
     food: { x: -1, y: -1 },
     gold: null,
@@ -197,6 +218,8 @@ function freshEngine(diff: Diff): Engine {
     grow: 0,
     diff,
     stepAcc: 0,
+    glideMs: stepMs(DIFF_START[diff]),
+    turnLocked: false,
     activeMs: 0,
     boost: false,
     over: false,
@@ -210,6 +233,7 @@ function freshEngine(diff: Diff): Engine {
 interface Snapshot {
   segs: Pt[];
   dir: Pt;
+  headingAngle: number;
   food: Pt;
   gold: { pos: Pt; id: number } | null;
   score: number;
@@ -217,12 +241,14 @@ interface Snapshot {
   level: number;
   combo: number;
   eatSeq: number;
+  glideMs: number;
 }
 
 function buildSnapshot(e: Engine): Snapshot {
   return {
     segs: e.segs.map((s) => ({ ...s })),
     dir: { ...e.dir },
+    headingAngle: e.headingAngle,
     food: { ...e.food },
     gold: e.gold ? { pos: { ...e.gold.pos }, id: e.gold.id } : null,
     score: e.score,
@@ -230,6 +256,7 @@ function buildSnapshot(e: Engine): Snapshot {
     level: e.level,
     combo: e.combo,
     eatSeq: e.eatSeq,
+    glideMs: e.glideMs,
   };
 }
 
@@ -264,6 +291,7 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
   const phaseRef = useRef<Phase>('ready');
   const handleRef = useRef<(evs: Ev[]) => void>(() => {});
   const floatSeq = useRef(0);
+  const headRun = useRef(0);
   const floatTimers = useRef<number[]>([]);
   const swipeRef = useRef<{ x: number; y: number } | null>(null);
   phaseRef.current = phase;
@@ -337,7 +365,9 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
 
   const turn = useCallback((dx: number, dy: number) => {
     if (phaseRef.current !== 'playing') return;
-    queueTurn(engRef.current, dx, dy);
+    const e = engRef.current;
+    if (!queueTurn(e, dx, dy)) return;
+    if (!e.turnLocked) handleRef.current(stepTurn(e));
   }, []);
 
   const setBoost = useCallback((on: boolean) => {
@@ -358,6 +388,7 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
   }, []);
 
   const startGame = useCallback((diff: Diff) => {
+    headRun.current += 1;
     engRef.current = freshEngine(diff);
     floatTimers.current.forEach((id) => window.clearTimeout(id));
     floatTimers.current = [];
@@ -411,6 +442,10 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
         return;
       }
       if (ph !== 'playing') return;
+      if (ev.repeat && ['arrowleft', 'arrowright', 'arrowup', 'arrowdown', 'a', 'd', 'w', 's'].includes(ev.key.toLowerCase())) {
+        ev.preventDefault();
+        return;
+      }
       switch (ev.key) {
         case 'ArrowLeft': case 'a': case 'A': ev.preventDefault(); turn(-1, 0); break;
         case 'ArrowRight': case 'd': case 'D': ev.preventDefault(); turn(1, 0); break;
@@ -459,15 +494,17 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
 
   // 棋盘滑动手势（触屏/鼠标拖动转向）
   const onSwipeStart = (ev: React.PointerEvent) => {
+    if (phaseRef.current !== 'playing') return;
+    ev.currentTarget.setPointerCapture(ev.pointerId);
     swipeRef.current = { x: ev.clientX, y: ev.clientY };
   };
-  const onSwipeEnd = (ev: React.PointerEvent) => {
+  const onSwipeMove = (ev: React.PointerEvent) => {
     const from = swipeRef.current;
-    swipeRef.current = null;
     if (!from) return;
     const dx = ev.clientX - from.x;
     const dy = ev.clientY - from.y;
     if (Math.abs(dx) < 18 && Math.abs(dy) < 18) return;
+    swipeRef.current = null; // One direction per gesture; respond before finger release.
     if (Math.abs(dx) > Math.abs(dy)) turn(dx > 0 ? 1 : -1, 0);
     else turn(0, dy > 0 ? 1 : -1);
   };
@@ -479,7 +516,16 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
   const bestStarsView = Math.max(best.stars, snap.stars);
   const levelProgress = ((snap.stars % LEVEL_EVERY) / LEVEL_EVERY) * 100;
   const goldIn = GOLD_EVERY - (engRef.current.eaten % GOLD_EVERY);
-  const glideMs = boosting ? Math.max(BOOST_MIN, Math.round(stepMs(snap.level) * BOOST_FACTOR)) : stepMs(snap.level);
+  const glideMs = snap.glideMs;
+
+  const directionPointer = (ev: React.PointerEvent, dx: number, dy: number) => {
+    ev.preventDefault();
+    turn(dx, dy);
+  };
+  const directionClick = (ev: React.MouseEvent, dx: number, dy: number) => {
+    // Keyboard / assistive clicks still work; pointer clicks were handled on press.
+    if (ev.detail === 0) turn(dx, dy);
+  };
 
   const dirName = snap.dir.x === 1 ? 'right' : snap.dir.x === -1 ? 'left' : snap.dir.y === 1 ? 'down' : 'up';
   const phaseLabel = phase === 'playing' ? (isZh ? '进行中' : 'RUNNING') : phase === 'paused' ? (isZh ? '暂停' : 'PAUSED') : phase === 'over' ? (isZh ? '已结束' : 'ENDED') : (isZh ? '待开始' : 'READY');
@@ -517,7 +563,8 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
                 ? `追星小蛇棋盘，15 列 15 行，当前分数 ${snap.score}，已吃 ${snap.stars} 颗星星，长度 ${snap.segs.length}，速度等级 ${snap.level}`
                 : `Star Chaser board, 15 by 15, score ${snap.score}, ${snap.stars} stars eaten, length ${snap.segs.length}, level ${snap.level}`}
               onPointerDown={onSwipeStart}
-              onPointerUp={onSwipeEnd}
+              onPointerMove={onSwipeMove}
+              onPointerUp={(ev) => { onSwipeMove(ev); swipeRef.current = null; }}
               onPointerCancel={() => { swipeRef.current = null; }}
             >
               <div className="sn-field" aria-hidden="true">
@@ -531,7 +578,11 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
                       className={`sn-seg ${cls}`}
                       style={{ ...cellPos(s, i === 0 ? 1.16 : 1.05), transitionDuration: `${glideMs}ms` }}
                       {...(i === 0 ? { 'data-x': s.x, 'data-y': s.y } : {})}
-                    />
+                    >
+                      {i === 0 && (
+                        <span key={headRun.current} className="sn-head-face" style={{ transform: `rotate(${snap.headingAngle}deg)`, transitionDuration: `${glideMs}ms` }} />
+                      )}
+                    </span>
                   );
                 })}
 
@@ -600,16 +651,16 @@ export default function SnakeGame({ lang, playerName, onComplete, headerAction }
 
             <div className="sn-touchpad" aria-label={isZh ? '小蛇操作按钮' : 'Snake controls'}>
               <div className="sn-dpad">
-                <button type="button" aria-label={isZh ? '向上转' : 'Turn up'} disabled={phase !== 'playing'} onClick={() => turn(0, -1)}>
+                <button type="button" aria-label={isZh ? '向上转' : 'Turn up'} disabled={phase !== 'playing'} onPointerDown={(ev) => directionPointer(ev, 0, -1)} onClick={(ev) => directionClick(ev, 0, -1)}>
                   <span aria-hidden="true">↑</span>
                 </button>
-                <button type="button" aria-label={isZh ? '向左转' : 'Turn left'} disabled={phase !== 'playing'} onClick={() => turn(-1, 0)}>
+                <button type="button" aria-label={isZh ? '向左转' : 'Turn left'} disabled={phase !== 'playing'} onPointerDown={(ev) => directionPointer(ev, -1, 0)} onClick={(ev) => directionClick(ev, -1, 0)}>
                   <span aria-hidden="true">←</span>
                 </button>
-                <button type="button" aria-label={isZh ? '向下转' : 'Turn down'} disabled={phase !== 'playing'} onClick={() => turn(0, 1)}>
+                <button type="button" aria-label={isZh ? '向下转' : 'Turn down'} disabled={phase !== 'playing'} onPointerDown={(ev) => directionPointer(ev, 0, 1)} onClick={(ev) => directionClick(ev, 0, 1)}>
                   <span aria-hidden="true">↓</span>
                 </button>
-                <button type="button" aria-label={isZh ? '向右转' : 'Turn right'} disabled={phase !== 'playing'} onClick={() => turn(1, 0)}>
+                <button type="button" aria-label={isZh ? '向右转' : 'Turn right'} disabled={phase !== 'playing'} onPointerDown={(ev) => directionPointer(ev, 1, 0)} onClick={(ev) => directionClick(ev, 1, 0)}>
                   <span aria-hidden="true">→</span>
                 </button>
               </div>

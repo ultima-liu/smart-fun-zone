@@ -1,5 +1,6 @@
+import { ContentPages, WholeStage } from '../components/ScreenPages';
 import BackButton from '../components/BackButton';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore, todayPlaySec, streakDays } from '../store';
 import { courseTotalStars } from '../activeCourses';
@@ -24,7 +25,21 @@ import KlotskiGame, { type KlotskiOutcome } from '../games/KlotskiGame';
 import MemoryGame, { type MemoryOutcome } from '../games/MemoryGame';
 import SolitaireGame, { type SolitaireOutcome } from '../games/SolitaireGame';
 import GoldMinerGame, { type GoldMinerOutcome } from '../games/GoldMinerGame';
+import WhackAMoleGame, { type WhackAMoleOutcome } from '../games/WhackAMoleGame';
+import MoleArtwork from '../games/MoleArtwork';
+import JunqiGame, { type JunqiOutcome } from '../games/JunqiGame';
+import BomberGame, { type BomberOutcome } from '../games/BomberGame';
+import CircusGame, { type CircusOutcome } from '../games/CircusGame';
+import CircusCover from '../games/CircusCover';
+import RoadFighterGame, { type RoadFighterOutcome } from '../games/RoadFighterGame';
+import type { TankOutcome } from '../games/TankGame';
+import type { ContraOutcome } from '../games/ContraGame';
+import '../games/contra.css';
 import '../park-games.css';
+import '../games/tank-card.css';
+
+const TankGame = lazy(() => import('../games/TankGame'));
+const ContraGame = lazy(() => import('../games/ContraGame'));
 
 type ParkCategory = 'board' | 'card' | 'match' | 'puzzle' | 'reflex';
 
@@ -50,7 +65,7 @@ export default function LobbyPage() {
   const effectiveLimitMin = dailyLimitMin + (bonusMin && bonusMin.day === today ? bonusMin.min : 0);
   const [resting, setResting] = useState(false);
   const [category, setCategory] = useState<ParkCategory>('board');
-  const [activeGame, setActiveGame] = useState<'gomoku' | 'xiangqi' | 'lianliankan' | 'tetris' | 'bubbles' | 'snake' | 'breakout' | 'fish' | 'mines' | 'sokoban' | 'klotski' | 'memory' | 'solitaire' | 'gold-miner' | null>(null);
+  const [activeGame, setActiveGame] = useState<'gomoku' | 'xiangqi' | 'lianliankan' | 'tetris' | 'bubbles' | 'snake' | 'breakout' | 'fish' | 'mines' | 'sokoban' | 'klotski' | 'memory' | 'solitaire' | 'gold-miner' | 'mole' | 'junqi' | 'bomber' | 'circus' | 'road-fighter' | 'tank' | 'contra' | null>(null);
   const gameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -285,7 +300,88 @@ export default function LobbyPage() {
     });
   }, [addRecord, child]);
 
-  const openGame = (game: 'gomoku' | 'xiangqi' | 'lianliankan' | 'tetris' | 'bubbles' | 'snake' | 'breakout' | 'fish' | 'mines' | 'sokoban' | 'klotski' | 'memory' | 'solitaire' | 'gold-miner') => {
+  const handleMoleComplete = useCallback((outcome: WhackAMoleOutcome) => {
+    if (!child) return;
+    addRecord({
+      id: `mole-${child.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      childId: child.id,
+      gameId: 'sky-mole',
+      level: outcome.difficulty === 'easy' ? 1 : outcome.difficulty === 'normal' ? 2 : 3,
+      stars: 0,
+      correct: outcome.reachedTarget ? 1 : 0,
+      total: 1,
+      durationSec: outcome.durationSec,
+      playedAt: Date.now(),
+    });
+  }, [addRecord, child]);
+
+  const handleJunqiComplete = useCallback((outcome: JunqiOutcome) => {
+    if (!child) return;
+    addRecord({
+      id: `junqi-${child.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      childId: child.id,
+      gameId: 'sky-junqi',
+      level: outcome.difficulty === 'easy' ? 1 : outcome.difficulty === 'normal' ? 2 : 3,
+      stars: 0,
+      correct: outcome.result === 'win' ? 1 : 0,
+      total: 1,
+      durationSec: outcome.durationSec,
+      playedAt: Date.now(),
+    });
+  }, [addRecord, child]);
+
+  const handleBomberComplete = useCallback((outcome: BomberOutcome) => {
+    if (!child) return;
+    addRecord({
+      id: 'bomber-' + child.id + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+      childId: child.id, gameId: 'sky-bomber',
+      level: outcome.difficulty === 'easy' ? 1 : outcome.difficulty === 'normal' ? 2 : 3,
+      stars: 0, correct: outcome.result === 'win' ? 1 : 0, total: 1,
+      durationSec: outcome.durationSec, playedAt: Date.now(),
+    });
+  }, [addRecord, child]);
+
+  const handleCircusComplete = useCallback((outcome: CircusOutcome) => {
+    if (!child) return;
+    addRecord({
+      id: `circus-${child.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      childId: child.id, gameId: 'sky-circus', level: outcome.mode === 'A' ? 1 : 2,
+      stars: 0, correct: outcome.result === 'win' ? 1 : 0, total: 1,
+      durationSec: outcome.durationSec, playedAt: Date.now(),
+    });
+  }, [addRecord, child]);
+
+  const handleRoadFighterComplete = useCallback((outcome: RoadFighterOutcome) => {
+    if (!child) return;
+    addRecord({
+      id: `road-fighter-${child.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      childId: child.id, gameId: 'sky-road-fighter', level: outcome.mode === 'A' ? 1 : 2,
+      stars: 0, correct: outcome.result === 'win' ? 1 : 0, total: 1,
+      durationSec: outcome.durationSec, playedAt: Date.now(),
+    });
+  }, [addRecord, child]);
+
+  const handleContraComplete = useCallback((outcome: ContraOutcome) => {
+    if (!child) return;
+    addRecord({
+      id: `contra-${child.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      childId: child.id, gameId: 'sky-contra', level: outcome.players,
+      stars: 0, correct: outcome.result === 'win' && outcome.startingStage === 1 ? 1 : 0, total: 1,
+      durationSec: outcome.durationSec, playedAt: Date.now(),
+    });
+  }, [addRecord, child]);
+
+  const handleTankComplete = useCallback((outcome: TankOutcome) => {
+    if (!child) return;
+    addRecord({
+      id: `tank-${child.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      childId: child.id, gameId: 'sky-tank', level: outcome.players,
+      stars: 0, correct: outcome.result === 'win' ? 1 : 0, total: 1,
+      durationSec: outcome.durationSec, playedAt: Date.now(),
+    });
+  }, [addRecord, child]);
+
+  const openGame = (game: 'gomoku' | 'xiangqi' | 'lianliankan' | 'tetris' | 'bubbles' | 'snake' | 'breakout' | 'fish' | 'mines' | 'sokoban' | 'klotski' | 'memory' | 'solitaire' | 'gold-miner' | 'mole' | 'junqi' | 'bomber' | 'circus' | 'road-fighter' | 'tank' | 'contra') => {
     setActiveGame(game);
     window.requestAnimationFrame(() => gameRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   };
@@ -362,7 +458,7 @@ export default function LobbyPage() {
 
         <div className="park-game-shelf" role="tabpanel" aria-label={lang === 'zh' ? `${PARK_CATEGORIES.find((item) => item.id === category)?.zh}游戏` : `${PARK_CATEGORIES.find((item) => item.id === category)?.en} games`}>
           {category === 'board' ? (
-            <div className="park-board-game-grid">
+            <ContentPages className="park-board-game-grid" resetKey={category}>
               <article className="park-gomoku-card">
                 <div className="park-gomoku-preview" aria-hidden="true">
                   <div className="park-gomoku-mini-grid" />
@@ -398,9 +494,19 @@ export default function LobbyPage() {
                   <i aria-hidden="true">→</i>
                 </button>
               </article>
-            </div>
+              <article className="park-gomoku-card park-junqi-card">
+                <div className="park-junqi-preview" aria-hidden="true"><i>司令</i><i>工兵</i><i>师长</i><i>军旗</i></div>
+                <div className="park-game-card-copy">
+                  <span>{lang === 'zh' ? '棋类 · 云端沙盘' : 'BOARD · FIELD COMMAND'}</span>
+                  <h3>{lang === 'zh' ? '星阵军棋' : 'Starlight Army Chess'}</h3>
+                  <p>{lang === 'zh' ? '调动两支小队，在铁路上快行、到行营里休整。保护工兵排开地雷，巧用炸弹突破防线，把对方军旗带回胜利！明棋看得清，布阵、提示与悔棋伴你入门。' : 'Plan railway advances and safe camp stops. Clear mines with engineers, trade bombs wisely, and capture the enemy flag. Open pieces, deployment, hints and undo make it easy to learn.'}</p>
+                  <div className="park-game-tags"><span>{lang === 'zh' ? '明棋对战' : 'Open pieces'}</span><span>{lang === 'zh' ? '布阵与排雷' : 'Deploy & clear mines'}</span><span>{lang === 'zh' ? '三档棋力' : '3 levels'}</span></div>
+                </div>
+                <button type="button" className="park-game-launch junqi" onClick={() => openGame('junqi')}><span>{activeGame === 'junqi' ? (lang === 'zh' ? '继续指挥' : 'Continue') : (lang === 'zh' ? '进入军棋' : 'Enter command')}</span><i aria-hidden="true">→</i></button>
+              </article>
+            </ContentPages>
           ) : category === 'card' ? (
-            <div className="park-board-game-grid">
+            <ContentPages className="park-board-game-grid" resetKey={category}>
               <article className="park-gomoku-card park-memory-card">
                 <div className="park-memory-preview" aria-hidden="true">
                   <div className="park-memory-field">
@@ -453,9 +559,9 @@ export default function LobbyPage() {
                   <i aria-hidden="true">→</i>
                 </button>
               </article>
-            </div>
+            </ContentPages>
           ) : category === 'match' ? (
-            <div className="park-board-game-grid">
+            <ContentPages className="park-board-game-grid" resetKey={category}>
               <article className="park-gomoku-card park-lianliankan-card">
                 <div className="park-lianliankan-preview" aria-hidden="true">
                   <span className="mini t1">🎈</span>
@@ -529,9 +635,9 @@ export default function LobbyPage() {
                   <i aria-hidden="true">→</i>
                 </button>
               </article>
-            </div>
+            </ContentPages>
           ) : category === 'puzzle' ? (
-            <div className="park-board-game-grid">
+            <ContentPages className="park-board-game-grid" resetKey={category}>
               <article className="park-gomoku-card park-mines-card">
                 <div className="park-mines-preview" aria-hidden="true">
                   <div className="park-mines-field">
@@ -588,7 +694,7 @@ export default function LobbyPage() {
                 </button>
               </article>
 
-              <article className="park-gomoku-card park-klotski-card park-card-wide">
+              <article className="park-gomoku-card park-klotski-card">
                 <div className="park-klotski-preview" aria-hidden="true">
                   <i className="pk v l1">张</i>
                   <i className="pk cao">曹</i>
@@ -609,7 +715,7 @@ export default function LobbyPage() {
                 </button>
               </article>
 
-              <article className="park-gomoku-card park-gold-miner-card park-card-wide">
+              <article className="park-gomoku-card park-gold-miner-card">
                 <div className="park-gold-miner-preview" aria-hidden="true">
                   <span className="ridge" />
                   <img className="miner" src="/assets/games/gold-miner/miner-hero-v1.webp" alt="" draggable={false} />
@@ -631,9 +737,69 @@ export default function LobbyPage() {
                   <i aria-hidden="true">→</i>
                 </button>
               </article>
-            </div>
+            </ContentPages>
           ) : category === 'reflex' ? (
-            <div className="park-board-game-grid">
+            <ContentPages className="park-board-game-grid" resetKey={category}>
+              <article className="park-gomoku-card park-contra-card">
+                <div className="park-contra-preview" aria-hidden="true"><img src="/assets/games/contra/blue-idle-v1.webp" alt="" loading="lazy" /><img src="/assets/games/contra/red-idle-v1.webp" alt="" loading="lazy" /><span>CONTRA · OPERATION 01</span></div>
+                <div className="park-game-card-copy">
+                  <span>{lang === 'zh' ? '敏捷 · FC 横版射击冒险' : 'REFLEX · FC RUN AND GUN'}</span>
+                  <h3>{lang === 'zh' ? '魂斗罗 · 一代' : 'Contra · I'}</h3>
+                  <p>{lang === 'zh' ? '从丛林突围到异形巢穴，重返八个经典战区。翻滚跳跃、八向射击，收集散弹与激光；独自出击或双人并肩。FC 原版音乐，全新设计的战士与场景。' : 'From jungle to alien lair, revisit eight classic zones. Somersault, aim in eight directions and collect spread guns and lasers. Solo or co-op, with original FC music and newly designed characters and worlds.'}</p>
+                  <div className="park-game-tags"><span>{lang === 'zh' ? '八关远征' : '8 stages'}</span><span>{lang === 'zh' ? '单人 / 双人' : 'Solo / co-op'}</span><span>{lang === 'zh' ? 'FC 原版音乐' : 'Original FC music'}</span></div>
+                </div>
+                <button type="button" className="park-game-launch contra" onClick={() => openGame('contra')}><span>{lang === 'zh' ? '进入魂斗罗' : 'Enter Contra'}</span><i aria-hidden="true">→</i></button>
+              </article>
+              <article className="park-gomoku-card park-tank-card">
+                <div className="park-tank-preview" aria-hidden="true"><span>BATTLE CITY · 1985</span><img src="/assets/games/tank/player-v1.webp" alt="" /><b /></div>
+                <div className="park-game-card-copy">
+                  <span>{lang === 'zh' ? '敏捷 · 经典基地保卫战' : 'REFLEX · DEFEND THE EAGLE'}</span>
+                  <h3>{lang === 'zh' ? '坦克大战' : 'Battle City'}</h3>
+                  <p>{lang === 'zh' ? '熟悉的鹰徽基地，三十五关经典战场。击碎砖墙、穿过草丛、收集星星升级坦克；独自守护，或与队友并肩作战。原版音效，全新细绘场景，还能设计自己的战场。' : 'Defend the eagle through 35 classic battlefields. Break bricks, hide in forests and upgrade with stars. Play solo or co-op, with original FC sounds, new artwork and your own custom battlefield.'}</p>
+                  <div className="park-game-tags"><span>{lang === 'zh' ? '35 关 / 自定义' : '35 stages / editor'}</span><span>{lang === 'zh' ? '双人合作' : 'Co-op'}</span><span>{lang === 'zh' ? '原版音效' : 'FC sound'}</span></div>
+                </div>
+                <button type="button" className="park-game-launch tank" onClick={() => openGame('tank')}><span>{lang === 'zh' ? '进入坦克大战' : 'Enter Battle City'}</span><i aria-hidden="true">→</i></button>
+              </article>
+              <article className="park-gomoku-card park-road-fighter-card">
+                <div className="park-road-preview" aria-hidden="true"><i /><i /><i /><b>ROAD FIGHTER · 1985</b><span>400 km/h</span></div>
+                <div className="park-game-card-copy">
+                  <span>{lang === 'zh' ? '敏捷 · FC 经典公路竞速' : 'REFLEX · FC ROAD CLASSIC'}</span>
+                  <h3>{lang === 'zh' ? '火箭车' : 'Road Fighter'}</h3>
+                  <p>{lang === 'zh' ? '那辆熟悉的红色跑车又出发了！切换两档油门，穿越草原、长桥、海岸和山林；躲开追逼的车流，撞上彩色补给车续油，打滑时反打方向救回赛车。' : 'The little red car is back! Shift between two gears across country roads, ocean bridges, beaches and forests. Dodge traffic, touch rainbow cars to refuel and countersteer to recover from skids.'}</p>
+                  <div className="park-game-tags"><span>{lang === 'zh' ? '四段经典赛道' : '4 classic courses'}</span><span>{lang === 'zh' ? '双档油门' : 'Two gears'}</span><span>{lang === 'zh' ? '反打救车' : 'Countersteer'}</span></div>
+                </div>
+                <button type="button" className="park-game-launch road-fighter" onClick={() => openGame('road-fighter')}><span>{lang === 'zh' ? '驾驶火箭车' : 'Drive Road Fighter'}</span><i aria-hidden="true">→</i></button>
+              </article>
+              <article className="park-gomoku-card park-circus-card">
+                <div className="park-circus-preview" aria-hidden="true"><CircusCover /><span>THE GRAND CIRCUS</span></div>
+                <div className="park-game-card-copy">
+                  <span>{lang === 'zh' ? '敏捷 · 小霸王经典' : 'REFLEX · FAMICOM CLASSIC'}</span>
+                  <h3>{lang === 'zh' ? '马戏团' : 'Circus Charlie'}</h3>
+                  <p>{lang === 'zh' ? '骑狮钻火圈、跳过钢丝上的猴子、踩球、骑马、空中飞人——熟悉的五场表演重新登台。全新童话剧场，保留经典 A/B 模式、左右移动与双键跳跃，找回小时候的闯关节奏。' : 'Ride a lion through fire rings, dodge monkeys on a tightrope, balance on balls, ride a horse and fly between trapezes. Five classic acts in a new storybook theatre, with A/B modes and two jump buttons.'}</p>
+                  <div className="park-game-tags"><span>{lang === 'zh' ? '五关循环' : '5 looping acts'}</span><span>{lang === 'zh' ? '童话新舞台' : 'New storybook stage'}</span><span>{lang === 'zh' ? '键盘 / 触屏' : 'Keys / touch'}</span></div>
+                </div>
+                <button type="button" className="park-game-launch circus" onClick={() => openGame('circus')}><span>{lang === 'zh' ? '进入马戏团' : 'Enter the circus'}</span><i aria-hidden="true">→</i></button>
+              </article>
+              <article className="park-gomoku-card park-bomber-card">
+                <div className="park-bomber-preview" aria-hidden="true"><span /><img className="park-bomber-hero" src="/assets/games/bomber/hero-down-idle-v1.webp" alt="" /><b /></div>
+                <div className="park-game-card-copy">
+                  <span className="park-game-kicker">STAR ISLE · {lang === 'zh' ? '经典卷轴闯关' : 'BOMBER ADVENTURE'}</span>
+                  <h3>{lang === 'zh' ? '星岛炸弹人' : 'Star Isle Bomber'}</h3>
+                  <p>{lang === 'zh' ? '从一颗炸弹、一格火力开始！在横向卷轴迷宫里炸砖找门，收集遥控、穿砖和防火能力，消灭八类怪物，闯过五十关经典挑战。' : 'Start with one bomb and one tile of fire. Search a scrolling maze for hidden exits, collect remote and pass-through abilities, defeat eight creature types and clear fifty stages!'}</p>
+                  <div className="park-game-tags"><span>{lang === 'zh' ? '五十关冒险' : '50 stages'}</span><span>{lang === 'zh' ? '八种能力' : '8 upgrades'}</span><span>{lang === 'zh' ? '键盘 / 触屏' : 'Keys / touch'}</span></div>
+                </div>
+                <button type="button" className="park-game-launch bomber" onClick={() => openGame('bomber')}><span>{lang === 'zh' ? '开始炸弹冒险' : 'Explore the islands'}</span><i aria-hidden="true">→</i></button>
+              </article>
+              <article className="park-gomoku-card park-mole-card">
+                <div className="park-mole-preview" aria-hidden="true"><MoleArtwork kind="gold" happy /><span>✦</span></div>
+                <div className="park-game-card-copy">
+                  <span>{lang === 'zh' ? '敏捷 · 春日小花园' : 'REFLEX · LITTLE GARDEN'}</span>
+                  <h3>{lang === 'zh' ? '花园打地鼠' : 'Mole Meadow'}</h3>
+                  <p>{lang === 'zh' ? '小地鼠从花园地洞探出脑袋啦！眼疾手快敲中它们，连续命中让分数翻倍。别错过戴皇冠的金色地鼠，也要温柔放过路过的小兔子。' : 'Moles are peeking out of the meadow! Tap quickly and chain hits for bonus points. Catch the crowned golden moles and let the little rabbits hop away.'}</p>
+                  <div className="park-game-tags"><span>{lang === 'zh' ? '60 秒挑战' : '60 seconds'}</span><span>{lang === 'zh' ? '连击翻倍' : 'Combo bonus'}</span><span>{lang === 'zh' ? '三档难度' : '3 levels'}</span></div>
+                </div>
+                <button type="button" className="park-game-launch mole" onClick={() => openGame('mole')}><span>{activeGame === 'mole' ? (lang === 'zh' ? '继续打地鼠' : 'Continue') : (lang === 'zh' ? '去打地鼠' : 'Visit meadow')}</span><i aria-hidden="true">→</i></button>
+              </article>
               <article className="park-gomoku-card park-snake-card">
                 <div className="park-snake-preview" aria-hidden="true">
                   <i className="pc t0 p0" /><i className="pc t1 p1" /><i className="pc t2 p2" /><i className="pc t3 p3" /><i className="pc t4 p4" />
@@ -675,7 +841,7 @@ export default function LobbyPage() {
                 </button>
               </article>
 
-              <article className="park-gomoku-card park-fish-card park-card-wide">
+              <article className="park-gomoku-card park-fish-card">
                 <div className="park-fish-preview" aria-hidden="true"><i className="fish-small one">🐠</i><i className="fish-small two">🐟</i><i className="fish-hero">🐡</i><i className="fish-bubble a" /><i className="fish-bubble b" /><span>鱼</span></div>
                 <div className="park-game-card-copy">
                   <span>{lang === 'zh' ? '敏捷 · 珊瑚海奇遇' : 'REFLEX · CORAL SEA'}</span>
@@ -685,7 +851,7 @@ export default function LobbyPage() {
                 </div>
                 <button type="button" className="park-game-launch fish" onClick={() => openGame('fish')}><span>{activeGame === 'fish' ? (lang === 'zh' ? '继续潜游' : 'Continue') : (lang === 'zh' ? '开始潜游' : 'Dive in')}</span><i aria-hidden="true">→</i></button>
               </article>
-            </div>
+            </ContentPages>
           ) : (
             <div className="park-category-coming">
               <i aria-hidden="true">{PARK_CATEGORIES.find((item) => item.id === category)?.mark}</i>
@@ -695,7 +861,7 @@ export default function LobbyPage() {
         </div>
       </section>
 
-      {activeGame && <div ref={gameRef} className="park-active-game">
+      {activeGame && <div ref={gameRef} className="park-active-game"><WholeStage>
         {activeGame === 'gomoku'
           ? <GomokuGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleGomokuComplete} />
           : activeGame === 'xiangqi'
@@ -722,8 +888,22 @@ export default function LobbyPage() {
                   ? <SolitaireGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleSolitaireComplete} />
                   : activeGame === 'gold-miner'
                   ? <GoldMinerGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleGoldMinerComplete} />
+                  : activeGame === 'contra'
+                  ? <Suspense fallback={<div role="status">{lang === 'zh' ? '正在准备战区…' : 'Preparing the mission…'}</div>}><ContraGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleContraComplete} /></Suspense>
+                  : activeGame === 'circus'
+                  ? <CircusGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleCircusComplete} />
+                  : activeGame === 'road-fighter'
+                  ? <RoadFighterGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleRoadFighterComplete} />
+                  : activeGame === 'tank'
+                  ? <Suspense fallback={<div role="status" className="tank-loading">{lang === 'zh' ? '正在准备坦克战场…' : 'Preparing the battlefield…'}</div>}><TankGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleTankComplete} /></Suspense>
+                  : activeGame === 'bomber'
+                  ? <BomberGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleBomberComplete} />
+                  : activeGame === 'junqi'
+                  ? <JunqiGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleJunqiComplete} />
+                  : activeGame === 'mole'
+                  ? <WhackAMoleGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleMoleComplete} />
                   : <LianliankanGame headerAction={gameBack} lang={lang} playerName={child.name} onComplete={handleLianliankanComplete} />}
-      </div>}
+      </WholeStage></div>}
 
       {resting && (
         <Modal>

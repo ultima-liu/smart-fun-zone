@@ -35,12 +35,12 @@ describe('PEP 三年级英语上册独立课程', () => {
   it('教材原声按需接入，缺失项不伪装成 TTS且播放器不等于完成听力任务', () => {
     expect(getTextbook('english', 'g3', 1).route).toBe('/subject/english');
     expect(getTextbook('english', 'g3', 1).available).toBe(true);
-    expect(Object.keys(ENGLISH_G3_ORIGINAL_AUDIO)).toHaveLength(20);
+    expect(Object.keys(ENGLISH_G3_ORIGINAL_AUDIO)).toHaveLength(74);
     expect(englishOriginalAudio('friends-opening-song')).toBe('/assets/english-textbook/audio/friends-opening-song.mp3');
     expect(englishOriginalAudio('friends-letters-sounds')).toBe('/assets/english-textbook/audio/friends-letters-sounds.mp3');
-    expect(englishOriginalAudio('animals-opening-song')).toBeUndefined();
-    expect(englishOriginalAudio('animals-b-chant')).toBeUndefined();
-    expect(englishOriginalTaskReady('friends-opening-song')).toBe(false);
+    expect(englishOriginalAudio('animals-opening-song')).toBe('/assets/english-textbook/audio/animals-opening-song.mp3');
+    expect(englishOriginalAudio('animals-b-chant')).toBe('/assets/english-textbook/audio/animals-b-chant.mp3');
+    expect(englishOriginalTaskReady('friends-opening-song')).toBe(true);
     expect(englishOriginalTaskReady('missing-audio')).toBe(false);
   });
 

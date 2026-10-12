@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-04",
+  "tool": "Built-in image_gen.imagegen",
+  "transparent_background": true,
+  "use_case": "stylized-concept",
+  "asset": "public/assets/games/circus/lion-atlas-v1.png",
+  "size": [
+    1254,
+    1254
+  ],
+  "grid": [
+    2,
+    2
+  ],
+  "prompt": "Use case: stylized-concept\nAsset type: production 2D game sprite atlas for the lion mount in a modern redesign of Circus Charlie.\nPrimary request: draw a CLEARLY RECOGNIZABLE MALE LION, anatomically readable feline mount, replacing an overly simplistic toy-like lion. Make a high quality hand-painted storybook game sprite, warm golden tawny muscular body, large full flowing dark copper-brown mane surrounding head and chest, rounded ears peeking from mane, cream muzzle, black triangular nose, confident friendly feline eyes, FOUR strong feline legs with rounded paws, long curved tail with dark tuft. Compact realistic lion proportions, not a long sausage body. A small burgundy saddle blanket edged in gold across the center back leaves a horizontal seat for a separately drawn rider.\nComposition: ONE transparent square sprite atlas with exactly FOUR equally sized cells in a strict 2 by 2 grid, no visible grid lines. Each lion faces RIGHT in exact SIDE VIEW, head at the right, tail at the left; do not draw a front-facing face. All four cells show the SAME character, same size, same outline width, same head/body/mane proportions, and same center-back height. Each cell has clear transparent padding on all sides, and no part crosses into another cell. Fit each complete lion within 80% of the cell width and 60% of cell height; use a wide horizontal silhouette. Feet ground baseline is at 80% down within each cell, torso back/saddle at 48% down. Left-right extent and saddle center identical across all four poses.\nFour poses: TOP LEFT = idle standing on four paws. TOP RIGHT = running stride A, front legs reaching forward, rear legs pushing back. BOTTOM LEFT = running stride B, front and rear legs exchanged. BOTTOM RIGHT = midair leap, paws tucked up, tail lifted; keep head/body/saddle at the same height as other cells, only legs change.\nStyle: polished painterly 2D children's adventure game asset, readable silhouette at small size, confident thin dark brown outlines, soft shading and subtle fur tufts, clear large mane and jaw, beautiful warm ochre/amber/copper palette matching a plum velvet circus with warm golden lighting. Mild charm, not goofy, not photorealistic, not pixel art, not a plush toy, not a dog, not a teddy bear, not a human-faced cat.\nConstraints: isolated lions ONLY; genuine transparent alpha background; no performer, no human, no hoop, no scenery, no ground, no cast shadow, no labels, no letters, no text, no watermark. Exactly four right-facing lions arranged in the four cells."
+}

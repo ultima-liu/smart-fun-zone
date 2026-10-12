@@ -1,0 +1,761 @@
+{
+  "records": [
+    {
+      "unit": "friends",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 338,
+            "scrollWidth": 338,
+            "height": 340,
+            "scrollHeight": 340
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 314,
+            "scrollWidth": 314,
+            "height": 137,
+            "scrollHeight": 137
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 474,
+            "scrollWidth": 474,
+            "height": 340,
+            "scrollHeight": 340
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 450,
+            "scrollWidth": 450,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 88,
+            "scrollHeight": 88
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 272,
+            "scrollWidth": 272,
+            "height": 88,
+            "scrollHeight": 88
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nA, A, A. Show me an A!\n\nB, B, B. Show me a B!\n\nC, C, C. Show me a C!\n\nD, D, D. Show me a D!\n\nAfter me. A, B, C, D!\n\n2\n词中声音歌谣\n\nA is for /æ/. /æ/, /æ/, apple; bag. I see an apple in a bag.\n\nB is for /b/. /b/, /b/, bed; Bob. I see Bob in the bed.\n\nC is for /k/. /k/, /k/, cat; can. I see a cat and a can.\n\nD is for /d/. /d/, /d/, dog; sad. The dog is sad.\n\n教材歌谣原声\n完整词点读\nbad 🔊\ncab 🔊\ndad 🔊"
+      }
+    },
+    {
+      "unit": "friends",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 472,
+            "scrollWidth": 472,
+            "height": 563,
+            "scrollHeight": 563
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 444,
+            "scrollWidth": 444,
+            "height": 152,
+            "scrollHeight": 152
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 662,
+            "scrollWidth": 662,
+            "height": 563,
+            "scrollHeight": 563
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 634,
+            "scrollWidth": 634,
+            "height": 120,
+            "scrollHeight": 120
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 1152,
+            "scrollWidth": 1152,
+            "height": 88,
+            "scrollHeight": 88
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 379,
+            "scrollWidth": 379,
+            "height": 88,
+            "scrollHeight": 88
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nA, A, A. Show me an A!\n\nB, B, B. Show me a B!\n\nC, C, C. Show me a C!\n\nD, D, D. Show me a D!\n\nAfter me. A, B, C, D!\n\n2\n词中声音歌谣\n\nA is for /æ/. /æ/, /æ/, apple; bag. I see an apple in a bag.\n\nB is for /b/. /b/, /b/, bed; Bob. I see Bob in the bed.\n\nC is for /k/. /k/, /k/, cat; can. I see a cat and a can.\n\nD is for /d/. /d/, /d/, dog; sad. The dog is sad.\n\n教材歌谣原声\n完整词点读\nbad 🔊\ncab 🔊\ndad 🔊"
+      }
+    },
+    {
+      "unit": "families",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 338,
+            "scrollWidth": 338,
+            "height": 340,
+            "scrollHeight": 340
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 314,
+            "scrollWidth": 314,
+            "height": 137,
+            "scrollHeight": 137
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 474,
+            "scrollWidth": 474,
+            "height": 340,
+            "scrollHeight": 340
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 450,
+            "scrollWidth": 450,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 88,
+            "scrollHeight": 88
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 272,
+            "scrollWidth": 272,
+            "height": 88,
+            "scrollHeight": 88
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nE, E, E. Show me an E!\n\nF, F, F. Show me an F!\n\nG, G, G. Show me a G!\n\nH, H, H. Show me an H!\n\nSay E, F, G and H!\n\n2\n词中声音歌谣\n\nE is for /e/. /e/, /e/, egg; nest. I see an egg in the nest.\n\nF is for /f/. /f/, /f/, fish; beef. I see fish and beef.\n\nG is for /ɡ/. /ɡ/, /ɡ/, girl; pig. The girl has a pig.\n\nH is for /h/. /h/, /h/, hot; hat. He is hot in the hat.\n\n教材歌谣原声\n完整词点读\nfed 🔊\ngab 🔊\nhad 🔊"
+      }
+    },
+    {
+      "unit": "families",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 472,
+            "scrollWidth": 472,
+            "height": 563,
+            "scrollHeight": 563
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 444,
+            "scrollWidth": 444,
+            "height": 152,
+            "scrollHeight": 152
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 662,
+            "scrollWidth": 662,
+            "height": 563,
+            "scrollHeight": 563
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 634,
+            "scrollWidth": 634,
+            "height": 120,
+            "scrollHeight": 120
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 1152,
+            "scrollWidth": 1152,
+            "height": 88,
+            "scrollHeight": 88
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 379,
+            "scrollWidth": 379,
+            "height": 88,
+            "scrollHeight": 88
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nE, E, E. Show me an E!\n\nF, F, F. Show me an F!\n\nG, G, G. Show me a G!\n\nH, H, H. Show me an H!\n\nSay E, F, G and H!\n\n2\n词中声音歌谣\n\nE is for /e/. /e/, /e/, egg; nest. I see an egg in the nest.\n\nF is for /f/. /f/, /f/, fish; beef. I see fish and beef.\n\nG is for /ɡ/. /ɡ/, /ɡ/, girl; pig. The girl has a pig.\n\nH is for /h/. /h/, /h/, hot; hat. He is hot in the hat.\n\n教材歌谣原声\n完整词点读\nfed 🔊\ngab 🔊\nhad 🔊"
+      }
+    },
+    {
+      "unit": "animals",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 338,
+            "scrollWidth": 338,
+            "height": 294,
+            "scrollHeight": 294
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 314,
+            "scrollWidth": 314,
+            "height": 137,
+            "scrollHeight": 137
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 474,
+            "scrollWidth": 474,
+            "height": 294,
+            "scrollHeight": 294
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 450,
+            "scrollWidth": 450,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 134,
+            "scrollHeight": 134
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 272,
+            "scrollWidth": 272,
+            "height": 134,
+            "scrollHeight": 134
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nI, I, I. Show me an I!\n\nJ, J, J. Show me a J!\n\nK, K, K. Show me a K!\n\nL, L, L. Show me an L!\n\nSay it well. I, J, K and L!\n\n2\n词中声音歌谣\n\nI is for /ɪ/. /ɪ/, /ɪ/, ill; kid. The kid is ill.\n\nJ is for /dʒ/. /dʒ/, /dʒ/, job; jet. His job is to fly a jet.\n\nK is for /k/. /k/, /k/, Kim; kite. Kim has a kite.\n\nL is for /l/. /l/, /l/, leg; lion. The lion has four legs.\n\n教材歌谣原声\n完整词点读\nbig 🔊\ndig 🔊\nJim 🔊\nlab 🔊\nled 🔊"
+      }
+    },
+    {
+      "unit": "animals",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 472,
+            "scrollWidth": 472,
+            "height": 517,
+            "scrollHeight": 517
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 444,
+            "scrollWidth": 444,
+            "height": 152,
+            "scrollHeight": 152
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 662,
+            "scrollWidth": 662,
+            "height": 517,
+            "scrollHeight": 517
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 634,
+            "scrollWidth": 634,
+            "height": 120,
+            "scrollHeight": 120
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 1152,
+            "scrollWidth": 1152,
+            "height": 134,
+            "scrollHeight": 134
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 379,
+            "scrollWidth": 379,
+            "height": 134,
+            "scrollHeight": 134
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nI, I, I. Show me an I!\n\nJ, J, J. Show me a J!\n\nK, K, K. Show me a K!\n\nL, L, L. Show me an L!\n\nSay it well. I, J, K and L!\n\n2\n词中声音歌谣\n\nI is for /ɪ/. /ɪ/, /ɪ/, ill; kid. The kid is ill.\n\nJ is for /dʒ/. /dʒ/, /dʒ/, job; jet. His job is to fly a jet.\n\nK is for /k/. /k/, /k/, Kim; kite. Kim has a kite.\n\nL is for /l/. /l/, /l/, leg; lion. The lion has four legs.\n\n教材歌谣原声\n完整词点读\nbig 🔊\ndig 🔊\nJim 🔊\nlab 🔊\nled 🔊"
+      }
+    },
+    {
+      "unit": "plants",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 338,
+            "scrollWidth": 338,
+            "height": 294,
+            "scrollHeight": 294
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 314,
+            "scrollWidth": 314,
+            "height": 137,
+            "scrollHeight": 137
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 474,
+            "scrollWidth": 474,
+            "height": 294,
+            "scrollHeight": 294
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 450,
+            "scrollWidth": 450,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 134,
+            "scrollHeight": 134
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 272,
+            "scrollWidth": 272,
+            "height": 134,
+            "scrollHeight": 134
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nM, M, M. Show me an M!\n\nN, N, N. Show me an N!\n\nO, O, O. Show me an O!\n\nP, P, P. Show me a P!\n\nSay it with me. M, N, O, P!\n\n2\n词中声音歌谣\n\nM is for /m/. /m/, /m/, map; mum. Mum has a map.\n\nN is for /n/. /n/, /n/, new; fan. The fan is new.\n\nO is for /ɒ/. /ɒ/, /ɒ/, orange; fox. The fox is orange.\n\nP is for /p/. /p/, /p/, pen; cup. I see a pen and a cup.\n\n教材歌谣原声\n完整词点读\nnod 🔊\nhop 🔊\nmen 🔊\nnap 🔊\npig 🔊"
+      }
+    },
+    {
+      "unit": "plants",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 472,
+            "scrollWidth": 472,
+            "height": 517,
+            "scrollHeight": 517
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 444,
+            "scrollWidth": 444,
+            "height": 152,
+            "scrollHeight": 152
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 662,
+            "scrollWidth": 662,
+            "height": 517,
+            "scrollHeight": 517
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 634,
+            "scrollWidth": 634,
+            "height": 120,
+            "scrollHeight": 120
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 1152,
+            "scrollWidth": 1152,
+            "height": 134,
+            "scrollHeight": 134
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 379,
+            "scrollWidth": 379,
+            "height": 134,
+            "scrollHeight": 134
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nM, M, M. Show me an M!\n\nN, N, N. Show me an N!\n\nO, O, O. Show me an O!\n\nP, P, P. Show me a P!\n\nSay it with me. M, N, O, P!\n\n2\n词中声音歌谣\n\nM is for /m/. /m/, /m/, map; mum. Mum has a map.\n\nN is for /n/. /n/, /n/, new; fan. The fan is new.\n\nO is for /ɒ/. /ɒ/, /ɒ/, orange; fox. The fox is orange.\n\nP is for /p/. /p/, /p/, pen; cup. I see a pen and a cup.\n\n教材歌谣原声\n完整词点读\nnod 🔊\nhop 🔊\nmen 🔊\nnap 🔊\npig 🔊"
+      }
+    },
+    {
+      "unit": "colours",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 338,
+            "scrollWidth": 338,
+            "height": 294,
+            "scrollHeight": 294
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 314,
+            "scrollWidth": 314,
+            "height": 165,
+            "scrollHeight": 165
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 474,
+            "scrollWidth": 474,
+            "height": 294,
+            "scrollHeight": 294
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 450,
+            "scrollWidth": 450,
+            "height": 137,
+            "scrollHeight": 137
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 134,
+            "scrollHeight": 134
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 272,
+            "scrollWidth": 272,
+            "height": 134,
+            "scrollHeight": 134
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nQ, Q, Q. Show me a Q!\n\nR, R, R. Show me an R!\n\nS, S, S. Show me an S!\n\nT, T, T. Show me a T!\n\nU, U, U. Show me a U!\n\nThat sounds good. Q, R, S, T, U!\n\n2\n词中声音歌谣\n\nQ goes with u. /kw/, /kw/, quiet; queen. The queen is quiet.\n\nR is for /r/. /r/, /r/, red; ruler. The ruler is red.\n\nS is for /s/. /s/, /s/, see; bus. I see a bus.\n\nT is for /t/. /t/, /t/, Ted; sit. Sit down, Ted!\n\nU is for /ʌ/. /ʌ/, /ʌ/, up; run. Get up and run!\n\n教材歌谣原声\n完整词点读\ncut 🔊\nquit 🔊\nrot 🔊\nset 🔊\ntap 🔊\ntub 🔊"
+      }
+    },
+    {
+      "unit": "colours",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 472,
+            "scrollWidth": 472,
+            "height": 517,
+            "scrollHeight": 517
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 444,
+            "scrollWidth": 444,
+            "height": 184,
+            "scrollHeight": 184
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 662,
+            "scrollWidth": 662,
+            "height": 517,
+            "scrollHeight": 517
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 634,
+            "scrollWidth": 634,
+            "height": 152,
+            "scrollHeight": 152
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 1152,
+            "scrollWidth": 1152,
+            "height": 134,
+            "scrollHeight": 134
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 379,
+            "scrollWidth": 379,
+            "height": 134,
+            "scrollHeight": 134
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nQ, Q, Q. Show me a Q!\n\nR, R, R. Show me an R!\n\nS, S, S. Show me an S!\n\nT, T, T. Show me a T!\n\nU, U, U. Show me a U!\n\nThat sounds good. Q, R, S, T, U!\n\n2\n词中声音歌谣\n\nQ goes with u. /kw/, /kw/, quiet; queen. The queen is quiet.\n\nR is for /r/. /r/, /r/, red; ruler. The ruler is red.\n\nS is for /s/. /s/, /s/, see; bus. I see a bus.\n\nT is for /t/. /t/, /t/, Ted; sit. Sit down, Ted!\n\nU is for /ʌ/. /ʌ/, /ʌ/, up; run. Get up and run!\n\n教材歌谣原声\n完整词点读\ncut 🔊\nquit 🔊\nrot 🔊\nset 🔊\ntap 🔊\ntub 🔊"
+      }
+    },
+    {
+      "unit": "numbers",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 338,
+            "scrollWidth": 338,
+            "height": 294,
+            "scrollHeight": 294
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 314,
+            "scrollWidth": 314,
+            "height": 165,
+            "scrollHeight": 165
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 474,
+            "scrollWidth": 474,
+            "height": 294,
+            "scrollHeight": 294
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 450,
+            "scrollWidth": 450,
+            "height": 137,
+            "scrollHeight": 137
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 134,
+            "scrollHeight": 134
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 272,
+            "scrollWidth": 272,
+            "height": 134,
+            "scrollHeight": 134
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nV, V, V. Show me a V!\n\nW, W, W. Show me a W!\n\nX, X, X. Show me an X!\n\nY, Y, Y. Show me a Y!\n\nZ, Z, Z. Show me a Z!\n\nChant with me. V, W, X, Y, Z!\n\n2\n词中声音歌谣\n\nV is for /v/. /v/, /v/, van; vet. It’s the vet’s van.\n\nW is for /w/. /w/, /w/, we; win. We win again!\n\nX is for /ks/. /ks/, /ks/, box; six. Number six is on the box.\n\nY is for /j/. /j/, /j/, yellow; yo-yo. It’s a yellow yo-yo.\n\nZ is for /z/. /z/, /z/, Zip; quiz. Zip has a quiz.\n\n教材歌谣原声\n完整词点读\nwet 🔊\nvat 🔊\nwon 🔊\nyes 🔊\nyum 🔊\nzig 🔊"
+      }
+    },
+    {
+      "unit": "numbers",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "listeningTasks": 0,
+        "listeningTaskText": false,
+        "audio": 1,
+        "tabs": 0,
+        "parts": [
+          {
+            "class": "en-letter-chant-part",
+            "width": 472,
+            "scrollWidth": 472,
+            "height": 517,
+            "scrollHeight": 517
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 444,
+            "scrollWidth": 444,
+            "height": 184,
+            "scrollHeight": 184
+          },
+          {
+            "class": "en-letter-chant-part",
+            "width": 662,
+            "scrollWidth": 662,
+            "height": 517,
+            "scrollHeight": 517
+          },
+          {
+            "class": "en-letter-chant-lines",
+            "width": 634,
+            "scrollWidth": 634,
+            "height": 152,
+            "scrollHeight": 152
+          },
+          {
+            "class": "en-letter-chant-player",
+            "width": 1152,
+            "scrollWidth": 1152,
+            "height": 134,
+            "scrollHeight": 134
+          },
+          {
+            "class": "en-letter-chant-decode",
+            "width": 379,
+            "scrollWidth": 379,
+            "height": 134,
+            "scrollHeight": 134
+          }
+        ],
+        "text": "字母歌谣 · 选学\n\n同一段录音，包含下面两个部分。点击播放原声，边听边看。\n\n1\n字母歌谣\n\nV, V, V. Show me a V!\n\nW, W, W. Show me a W!\n\nX, X, X. Show me an X!\n\nY, Y, Y. Show me a Y!\n\nZ, Z, Z. Show me a Z!\n\nChant with me. V, W, X, Y, Z!\n\n2\n词中声音歌谣\n\nV is for /v/. /v/, /v/, van; vet. It’s the vet’s van.\n\nW is for /w/. /w/, /w/, we; win. We win again!\n\nX is for /ks/. /ks/, /ks/, box; six. Number six is on the box.\n\nY is for /j/. /j/, /j/, yellow; yo-yo. It’s a yellow yo-yo.\n\nZ is for /z/. /z/, /z/, Zip; quiz. Zip has a quiz.\n\n教材歌谣原声\n完整词点读\nwet 🔊\nvat 🔊\nwon 🔊\nyes 🔊\nyum 🔊\nzig 🔊"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,2657 @@
+{
+  "date": "2026-10-08",
+  "environment": "隔离 Chromium 触屏视口，体验档案，模拟 API；未验证实体 iPad Safari",
+  "representative": {
+    "rows": [
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "state": "fresh",
+        "kind": "reason",
+        "document": [
+          1024,
+          768
+        ],
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 495
+        },
+        "columns": "368.75px 335.25px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "state": "shared",
+        "kind": "reason",
+        "document": [
+          1024,
+          768
+        ],
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 495
+        },
+        "columns": "368.75px 335.25px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "state": "done",
+        "kind": "reason",
+        "document": [
+          1024,
+          768
+        ],
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 495
+        },
+        "columns": "368.75px 335.25px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "state": "done",
+        "kind": "knowledge",
+        "document": [
+          1024,
+          768
+        ],
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 495
+        },
+        "columns": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "state": "fresh",
+        "kind": "reason",
+        "document": [
+          768,
+          1024
+        ],
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 751
+        },
+        "columns": "484px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "state": "shared",
+        "kind": "reason",
+        "document": [
+          768,
+          1024
+        ],
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 751
+        },
+        "columns": "484px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "state": "done",
+        "kind": "reason",
+        "document": [
+          768,
+          1024
+        ],
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 751
+        },
+        "columns": "484px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "state": "done",
+        "kind": "knowledge",
+        "document": [
+          768,
+          1024
+        ],
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 751
+        },
+        "columns": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "state": "fresh",
+        "kind": "reason",
+        "document": [
+          1440,
+          900
+        ],
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 627
+        },
+        "columns": "393.891px 358.109px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "state": "shared",
+        "kind": "reason",
+        "document": [
+          1440,
+          900
+        ],
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 627
+        },
+        "columns": "393.891px 358.109px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "state": "done",
+        "kind": "reason",
+        "document": [
+          1440,
+          900
+        ],
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 627
+        },
+        "columns": "393.891px 358.109px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "state": "done",
+        "kind": "knowledge",
+        "document": [
+          1440,
+          900
+        ],
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 627
+        },
+        "columns": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "state": "fresh",
+        "kind": "reason",
+        "document": [
+          540,
+          720
+        ],
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 198.17391967773438,
+          "y": 275.171875,
+          "width": 291.65216064453125,
+          "height": 428.6158447265625
+        },
+        "columns": "318px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.848"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "state": "shared",
+        "kind": "reason",
+        "document": [
+          540,
+          720
+        ],
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 226.87619018554688,
+          "y": 275.171875,
+          "width": 234.24761962890625,
+          "height": 429.14892578125
+        },
+        "columns": "318px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.681"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "state": "done",
+        "kind": "reason",
+        "document": [
+          540,
+          720
+        ],
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 235.00738525390625,
+          "y": 275.171875,
+          "width": 217.9852294921875,
+          "height": 429.138671875
+        },
+        "columns": "318px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.634"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "state": "done",
+        "kind": "knowledge",
+        "document": [
+          540,
+          720
+        ],
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 250.71554565429688,
+          "y": 275.171875,
+          "width": 186.56890869140625,
+          "height": 428.93218994140625
+        },
+        "columns": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.542"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "state": "fresh",
+        "kind": "reason",
+        "document": [
+          1024,
+          768
+        ],
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 495
+        },
+        "columns": "368.75px 335.25px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "state": "shared",
+        "kind": "reason",
+        "document": [
+          1024,
+          768
+        ],
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 495
+        },
+        "columns": "368.75px 335.25px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "state": "done",
+        "kind": "reason",
+        "document": [
+          1024,
+          768
+        ],
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 495
+        },
+        "columns": "368.75px 335.25px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "state": "done",
+        "kind": "knowledge",
+        "document": [
+          1024,
+          768
+        ],
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 495
+        },
+        "columns": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "state": "fresh",
+        "kind": "reason",
+        "document": [
+          768,
+          1024
+        ],
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 751
+        },
+        "columns": "484px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "state": "shared",
+        "kind": "reason",
+        "document": [
+          768,
+          1024
+        ],
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 751
+        },
+        "columns": "484px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "state": "done",
+        "kind": "reason",
+        "document": [
+          768,
+          1024
+        ],
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 751
+        },
+        "columns": "484px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "state": "done",
+        "kind": "knowledge",
+        "document": [
+          768,
+          1024
+        ],
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 751
+        },
+        "columns": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "state": "fresh",
+        "kind": "reason",
+        "document": [
+          1440,
+          900
+        ],
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 627
+        },
+        "columns": "393.891px 358.109px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "state": "shared",
+        "kind": "reason",
+        "document": [
+          1440,
+          900
+        ],
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 627
+        },
+        "columns": "393.891px 358.109px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "state": "done",
+        "kind": "reason",
+        "document": [
+          1440,
+          900
+        ],
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 627
+        },
+        "columns": "393.891px 358.109px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "state": "done",
+        "kind": "knowledge",
+        "document": [
+          1440,
+          900
+        ],
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 627
+        },
+        "columns": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "state": "fresh",
+        "kind": "reason",
+        "document": [
+          540,
+          720
+        ],
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 198.17391967773438,
+          "y": 275.171875,
+          "width": 291.65216064453125,
+          "height": 428.6158447265625
+        },
+        "columns": "318px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.848"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "state": "shared",
+        "kind": "reason",
+        "document": [
+          540,
+          720
+        ],
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 226.87619018554688,
+          "y": 275.171875,
+          "width": 234.24761962890625,
+          "height": 429.14892578125
+        },
+        "columns": "318px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.681"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "state": "done",
+        "kind": "reason",
+        "document": [
+          540,
+          720
+        ],
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 235.00738525390625,
+          "y": 275.171875,
+          "width": 217.9852294921875,
+          "height": 429.138671875
+        },
+        "columns": "318px",
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.634"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "state": "done",
+        "kind": "knowledge",
+        "document": [
+          540,
+          720
+        ],
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 250.71554565429688,
+          "y": 275.171875,
+          "width": 186.56890869140625,
+          "height": 428.93218994140625
+        },
+        "columns": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.542"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "allReasonsAndKnowledge": {
+    "rows": [
+      {
+        "id": "campus",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "campus",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "playground",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "playground",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "classroom-discover",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "classroom-discover",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "classroom-games",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "classroom-games",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "learning-readiness",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "learning-readiness",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "numbers",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "numbers",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "compare",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "compare",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "ordinal",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "ordinal",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "compose",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "compose",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "add-within-5",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "add-within-5",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "subtract-within-5",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "subtract-within-5",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "zero",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "zero",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "unit1-review",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "unit1-review",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "six-to-nine",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "six-to-nine",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "compare-order-nine",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "compare-order-nine",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "compose-six-nine",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "compose-six-nine",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "addsub-six-seven",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "addsub-six-seven",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solve-total-within-7",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solve-total-within-7",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solve-remain-within-7",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solve-remain-within-7",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "addsub-eight-nine",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "addsub-eight-nine",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "select-info-eight-nine",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "select-info-eight-nine",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "ten",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "ten",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "addsub-ten",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "addsub-ten",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "continuous-add-sub",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "continuous-add-sub",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "mixed-add-sub",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "mixed-add-sub",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "unit2-review",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "unit2-review",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solid-shapes",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solid-shapes",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solid-building",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solid-building",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solid-compose",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solid-compose",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "ten-again",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "ten-again",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "eleven-twenty",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "eleven-twenty",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "order-twenty",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "order-twenty",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "simple-addsub-twenty",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "simple-addsub-twenty",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "between-positions",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "between-positions",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "unit4-review",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "unit4-review",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "plus-nine",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "plus-nine",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "plus-eight-seven-six",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "plus-eight-seven-six",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "plus-eight-nine-strategies",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "plus-eight-nine-strategies",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "plus-five-four-three-two",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "plus-five-four-three-two",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solve-total",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "solve-total",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "find-original",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "find-original",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "addition-table",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "addition-table",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "unit5-review",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "unit5-review",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "review-numbers",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "review-numbers",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "review-relations",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "review-relations",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "review-shapes",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "review-shapes",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "review-application",
+        "kind": "reason",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      },
+      {
+        "id": "review-application",
+        "kind": "knowledge",
+        "ratio": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": [
+          "1.000"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "arena": {
+    "rows": [
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "completed": false,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 495
+        },
+        "nav": "5智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "completed": true,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 495
+        },
+        "nav": "✓智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "completed": false,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 751
+        },
+        "nav": "5智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "completed": true,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 751
+        },
+        "nav": "✓智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "completed": false,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "card": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 627
+        },
+        "nav": "5智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "completed": true,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "card": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 627
+        },
+        "nav": "✓智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "completed": false,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 429
+        },
+        "nav": "5智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "completed": true,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 429
+        },
+        "nav": "✓智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "completed": false,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 495
+        },
+        "nav": "5智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "completed": true,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 495
+        },
+        "nav": "✓智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "completed": false,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 751
+        },
+        "nav": "5智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "completed": true,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 751
+        },
+        "nav": "✓智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "completed": false,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "card": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 627
+        },
+        "nav": "5智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "completed": true,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "card": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 627
+        },
+        "nav": "✓智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "completed": false,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 429
+        },
+        "nav": "5智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "completed": true,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "life": 0,
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 429
+        },
+        "nav": "✓智能闯关",
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "validation": {
+    "targetedLint": "通过",
+    "productionBuild": "通过，含 TypeScript 与包体预算",
+    "E2E": "UI 调整，按 AGENTS.md 未运行；相关用例的界面预期已更新"
+  },
+  "limitations": "540px 窄分屏的说理由与知识延伸仍按完整场景缩小；Web、Pad 横竖屏代表课时占满主区，47 课横屏理由与知识延伸均占满主区。"
+}

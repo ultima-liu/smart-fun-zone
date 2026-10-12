@@ -72,7 +72,7 @@ const EXPLICIT_TASK_BLUEPRINTS: Record<string, ExplicitTaskBlueprint> = {
   'solid-compose': { tasks: [T('compose-four-cubes', '用四块小正方体拼长方体', '让四个小方块相连，完成一个长方体拼搭。'), T('rotate-compare', '比较旋转后的拼法', '判断转动前后连接关系是否改变。')], practiceGroups: [P('compose-basic', '拼搭辨认', '基础练习', '判断哪些图由相连的小正方体拼成。'), P('compose-transfer', '空间想象', '变式练习', '说出拼 2×2×2 大正方体需要几块。')] },
   'ten-again': { tasks: [T('count-ten-sticks', '逐根数出 10 根小棒', '按顺序点数十根小棒，不重不漏。'), T('bundle-ten', '捆成一个十', '将 10 个一捆成 1 个十，说明十位含义。')], practiceGroups: [P('bundle-basic', '十和一', '基础练习', '判断 10 个一与 1 个十的关系。'), P('bundle-transfer', '按十计数', '变式练习', '在新物品中圈出 10 个并整体计数。')] },
   'eleven-twenty': { tasks: [T('make-fifteen', '摆出 1 个十和 5 个一', '先捆一十，再摆五个一并读作 15。'), T('make-twenty', '认识 2 个十', '用两捆小棒表示 20，并区分十位个位。')], practiceGroups: [P('teen-basic', '十几读写', '基础练习', '摆、读、写 11、13、16、18、20。'), P('teen-transfer', '数位解释', '开放表达', '说出 11 中两个 1 分别表示什么。')] },
-  'order-twenty': { tasks: [T('number-rail', '沿数轴走 10 到 15', '按相邻每次加 1 的规则逐格走数。'), T('near-ten', '比较 12 到整十数的距离', '在数轴上判断 12 更接近 10 还是 20。')], practiceGroups: [P('order-basic', '相邻数', '基础练习', '填写十几的前一个和后一个数。'), P('order-transfer', '数轴比较', '变式练习', '用数轴说明两个十几数的大小。')] },
+  'order-twenty': { tasks: [T('number-rail', '沿数轴走 10 到 15', '按相邻每次加 1 的规则逐格走数。'), T('near-ten', '按车厢编号比较远近', '依次点亮 10～20 号车厢，再数步数比较 12 号和 18 号离哪端更近。')], practiceGroups: [P('order-basic', '相邻数', '基础练习', '填写十几的前一个和后一个数。'), P('order-transfer', '数轴比较', '变式练习', '用数轴说明两个十几数的大小。')] },
   'simple-addsub-twenty': { tasks: [T('ten-ones-add', '合并十和一', '用 1 个十和 3 个一写出 10＋3＝13。'), T('ten-ones-subtract', '区分去一和去十', '分别配出 13－3＝10、13－10＝3。')], practiceGroups: [P('simple-calc', '十几简单加减', '基础练习', '完成十加几、十几减几和十几减十。'), P('simple-transfer', '数位解释计算', '开放表达', '说明去掉几个一后为什么还剩一个十。')] },
   'between-positions': { tasks: [T('mark-endpoints', '确定第 10 和第 15 两端', '把两端作为端点，不计入“之间”。'), T('count-between', '逐个标出中间四人', '依次标出第 11、12、13、14 人，得到 4 人。')], practiceGroups: [P('between-basic', '间隔问题', '基础练习', '完成不同位置之间人数的题目。'), P('between-transfer', '画图解释', '开放表达', '画出端点和中间位置，说明为什么要减 1。')] },
   'unit4-review': { tasks: [T('place-value-review', '摆出 18 的十位和个位', '捆一十、摆八一并写作 18。'), T('order-compare-review', '整理数序和比较', '判断 19 的后一个数并比较 17 与 19。')], practiceGroups: [P('unit4-basic', '11～20 综合练习', '基础练习', '完成读写、数序和简单加减。'), P('unit4-transfer', '十位个位表达', '开放表达', '说明比较十几数时先看什么。')] },
@@ -217,7 +217,7 @@ const CORE_LESSON_TASKS: Record<string, { tasks: MathTextbookTask[]; practiceGro
   numbers: {
     tasks: [
       { id: 'numbers-abacus', title: '1～5 拨珠', evidence: '依次拨出 1～5，并对应实物、点子和数字。', required: true },
-      { id: 'numbers-represent', title: '多表征表示', evidence: '完成点子、方块和数字的对应任务。', required: true },
+      { id: 'numbers-represent', title: '圈选、实物连线与排序', evidence: '圈出 5 个，连好数字与实物，再按从小到大的顺序排 1～5。', required: true },
     ],
     practiceGroups: [{ id: 'numbers-writing', title: '数字书写与表示', mode: '基础练习', evidence: '笔顺示范、描写和数写对应。' }],
   },
@@ -230,8 +230,7 @@ const CORE_LESSON_TASKS: Record<string, { tasks: MathTextbookTask[]; practiceGro
   },
   ordinal: {
     tasks: [
-      { id: 'ordinal-direction', title: '确定方向找位置', evidence: '选择起点并找出第 2 个人。', required: true },
-      { id: 'ordinal-distinguish', title: '区分几个和第几', evidence: '说明总数、位置和前后人数。', required: true },
+      { id: 'ordinal-direction', title: '确定方向找位置', evidence: '选择起点并找出第 2 个人，结合总数和前后人数区分几个与第几。', required: true },
     ],
     practiceGroups: [{ id: 'ordinal-basic', title: '序数练习', mode: '基础练习', evidence: '变换方向后确定第几个。' }],
   },

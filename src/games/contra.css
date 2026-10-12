@@ -1,0 +1,811 @@
+.contra-game {
+  --ct-ink: #edf5ea;
+  --ct-soft: #a6bbb0;
+  --ct-panel: #142922;
+  --ct-line: #ffffff16;
+  --ct-accent: #d6e7a9;
+  max-width: 1280px;
+  margin: 0 auto;
+  color: var(--ct-ink);
+  background: linear-gradient(135deg, #18392c, #132920 45%, #182b2c);
+  padding: 26px;
+  border: 1px solid #8cb69a33;
+  border-radius: 26px;
+  box-shadow: 0 18px 60px #04180c22;
+  font-family: system-ui, sans-serif;
+}
+.contra-game * {
+  box-sizing: border-box;
+}
+.contra-game button {
+  font: inherit;
+  cursor: pointer;
+  touch-action: none;
+  color: inherit;
+  border: 1px solid var(--ct-line);
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  background: #ffffff08;
+}
+.contra-game button:disabled {
+  cursor: default;
+}
+.contra-game button:focus-visible,
+.contra-game canvas:focus-visible {
+  outline: 3px solid #e2c875;
+  outline-offset: 3px;
+}
+.contra-game button:not(:disabled):hover {
+  background: #ffffff16;
+  border-color: #bfd2a865;
+}
+.contra-game button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.contra-header,
+.contra-heading,
+.contra-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.contra-header {
+  justify-content: space-between;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.contra-heading .back-button {
+  flex-shrink: 0;
+}
+.contra-kicker {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #b1c993;
+  font-weight: 700;
+}
+.contra-heading h2 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 5px 0 0;
+}
+.contra-toolbar {
+  gap: 7px;
+}
+.contra-toolbar button {
+  padding: 9px 12px;
+  min-height: 44px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.contra-toolbar button:disabled {
+  opacity: 0.35;
+}
+.contra-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 238px;
+  gap: 24px;
+}
+.contra-main {
+  min-width: 0;
+}
+.contra-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0c2019;
+  border: 1px solid var(--ct-line);
+  border-radius: 12px 12px 0 0;
+  min-height: 44px;
+  padding: 0 15px;
+  gap: 8px;
+  color: #a4bcb0;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+.contra-status > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contra-status strong {
+  color: #e3ebc9;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.contra-dot {
+  width: 5px;
+  height: 5px;
+  background: #ceea93;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #a7dd8755;
+}
+.contra-stage {
+  position: relative;
+  overflow: hidden;
+  background: #102729;
+  border: 1px solid var(--ct-line);
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+  isolation: isolate;
+  aspect-ratio: 12/7;
+}
+.contra-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  touch-action: none;
+  outline: 0;
+}
+.contra-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #071a2182;
+  backdrop-filter: blur(3px);
+  padding: 16px;
+}
+.contra-overlay.intro {
+  background: linear-gradient(90deg, #0b201cce, #0b201c71);
+  backdrop-filter: blur(1px);
+}
+.contra-overlay-card {
+  width: min(410px, 100%);
+  text-align: center;
+  padding: 24px 26px;
+  border: 1px solid #c8dfb038;
+  background: linear-gradient(135deg, #153729ed, #122921ed);
+  border-radius: 20px;
+  box-shadow: 0 16px 50px #071a2155;
+}
+.contra-overlay-card .contra-kicker {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+}
+.contra-overlay h3 {
+  font-size: 29px;
+  letter-spacing: 1px;
+  margin: 12px 0 10px;
+  line-height: 1.2;
+  color: #eef2d9;
+}
+.contra-overlay p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #bbcec1;
+  margin: 0 0 19px;
+}
+.contra-mode {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  justify-content: center;
+}
+.contra-mode button {
+  font-size: 12px;
+  flex: 1;
+  padding: 10px;
+  min-height: 44px;
+  border-radius: 10px;
+}
+.contra-mode button[aria-pressed='true'] {
+  border-color: #d5e4a6;
+  background: #d5e4a612;
+  color: #e4edc6;
+}
+.contra-game .contra-primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  border-radius: 12px;
+  background: #dce8b0;
+  color: #193a29;
+  border: 1px solid #eff6d2;
+  padding: 12px 19px;
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 0 5px 12px #071a2125;
+}
+.contra-game .contra-primary:hover {
+  background: #ecf4d1;
+  color: #193a29;
+}
+.contra-primary > span {
+  font-size: 20px;
+  font-weight: 400;
+}
+.contra-player-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: 14px 0;
+  gap: 10px;
+}
+.contra-player {
+  border: 1px solid var(--ct-line);
+  border-left: 3px solid #78b4cc;
+  border-radius: 11px;
+  padding: 10px 13px;
+  background: #0e251c7d;
+}
+.contra-player.p1 {
+  border-left-color: #dc876c;
+}
+.contra-player > span {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #a5c0b2;
+  gap: 4px;
+}
+.contra-player small {
+  letter-spacing: 1px;
+  color: #8bbcd1;
+}
+.contra-player.p1 small {
+  color: #e39a84;
+}
+.contra-player > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+.contra-player b {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #8ccbdd;
+  max-width: 110px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.contra-player.p1 b {
+  color: #edb199;
+}
+.contra-player strong {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+}
+.contra-player em {
+  margin-left: auto;
+  font-style: normal;
+  color: #dfdfad;
+  background: #d5e4a60d;
+  border: 1px solid #d5e4a627;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.contra-controllers {
+  display: grid;
+  gap: 12px;
+}
+.contra-controllers.coop {
+  grid-template-columns: 1fr 1fr;
+}
+.contra-controller {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0d241aaa;
+  border: 1px solid var(--ct-line);
+  padding: 12px 20px 12px 14px;
+  border-radius: 15px;
+  gap: 15px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.contra-control-label {
+  font-size: 10px;
+  color: #82afbf;
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  letter-spacing: 1px;
+}
+.contra-controller.p1 .contra-control-label {
+  color: #d98c76;
+}
+.contra-dpad {
+  display: grid;
+  grid-template-columns: 44px 44px 44px;
+  grid-template-rows: 44px 44px 44px;
+  gap: 2px;
+}
+.contra-dpad button {
+  border-radius: 11px;
+  font-size: 21px;
+  line-height: 1;
+  min-width: 44px;
+  min-height: 44px;
+  background: #9dc4ae0e;
+}
+.contra-dpad .up {
+  grid-area: 1/2;
+}
+.contra-dpad .left {
+  grid-area: 2/1;
+}
+.contra-dpad .right {
+  grid-area: 2/3;
+}
+.contra-dpad .down {
+  grid-area: 3/2;
+}
+.contra-dpad:after {
+  content: '✦';
+  grid-area: 2/2;
+  display: grid;
+  place-items: center;
+  color: #b1c9a74d;
+  font-size: 19px;
+}
+.contra-action-keys {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.contra-action-keys button {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  min-width: 52px;
+  padding: 4px;
+}
+.contra-action-keys button > b {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #a5c0b256;
+  background: linear-gradient(140deg, #355c4a, #254233);
+  box-shadow:
+    0 4px 0 #061911,
+    0 5px 12px #0003;
+  font-size: 18px;
+  font-weight: 600;
+}
+.contra-action-keys .fire > b {
+  background: linear-gradient(140deg, #bc704d, #874a35);
+  border-color: #e4a67d55;
+  color: #ffe8bd;
+}
+.contra-action-keys button > span {
+  font-size: 10px;
+  color: #acc2b7;
+}
+.contra-action-keys .jump {
+  margin-top: -17px;
+}
+.contra-game .contra-action-keys button:hover {
+  background: transparent;
+  border: 0;
+}
+.contra-key-hint {
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 12px 0 0;
+  text-align: center;
+  color: #96afa1;
+}
+.contra-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  min-width: 0;
+}
+.contra-mission-title h3 {
+  font-size: 20px;
+  color: #e4edcf;
+  letter-spacing: 1px;
+  margin: 8px 0 6px;
+}
+.contra-mission-title p {
+  font-size: 12px;
+  color: #a3bcae;
+  margin: 0;
+}
+.contra-stage-list {
+  display: grid;
+  gap: 5px;
+}
+.contra-stage-list button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 10px 11px;
+  border-radius: 10px;
+  min-height: 52px;
+}
+.contra-stage-list button:disabled {
+  opacity: 0.55;
+}
+.contra-stage-list button[aria-pressed='true'] {
+  border-color: #d7e7a658;
+  background: #d7e7a60d;
+  opacity: 1;
+}
+.contra-stage-list button > span {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: #9ebb8e;
+}
+.contra-stage-list button > div {
+  flex: 1;
+}
+.contra-stage-list strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #d8e7d9;
+}
+.contra-stage-list small {
+  display: block;
+  font-size: 9px;
+  color: #8ca79a;
+  margin-top: 3px;
+  letter-spacing: 0.5px;
+}
+.contra-stage-list i {
+  font-style: normal;
+  color: #cee5a0;
+  font-size: 9px;
+}
+.contra-field-note {
+  border-top: 1px solid var(--ct-line);
+  padding-top: 16px;
+  margin-top: auto;
+}
+.contra-field-note > span {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #d8e7b1;
+  font-weight: 600;
+}
+.contra-field-note p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #a4bbac;
+  margin: 8px 0 14px;
+}
+.contra-weapon-guide {
+  display: grid;
+  grid-template-columns: 22px 1fr 22px 1fr;
+  gap: 7px;
+  align-items: center;
+}
+.contra-weapon-guide b {
+  font-size: 11px;
+  border: 1px solid #d7e7a62a;
+  color: #d7e7a6;
+  text-align: center;
+  padding: 2px;
+  border-radius: 4px;
+}
+.contra-weapon-guide span {
+  font-size: 10px;
+  color: #a4bbac;
+}
+.park-contra-preview {
+  height: 192px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(0deg, #122e29, #254938);
+  isolation: isolate;
+}
+.park-contra-preview:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/games/contra/jungle-v1.webp') center/cover;
+  opacity: 0.86;
+}
+.park-contra-preview:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #0c282bd9, transparent 75%);
+}
+.park-contra-preview img {
+  position: absolute;
+  height: 126px;
+  bottom: 17px;
+  left: calc(50% - 64px);
+  filter: drop-shadow(0 7px 5px #00150c88);
+  z-index: 1;
+}
+.park-contra-preview img + img {
+  height: 114px;
+  left: calc(50% + 12px);
+  bottom: 15px;
+  opacity: 0.9;
+}
+.park-contra-preview > span {
+  position: absolute;
+  z-index: 2;
+  bottom: 10px;
+  left: 15px;
+  color: #ebf0d2;
+  font-size: 10px;
+  letter-spacing: 2.8px;
+}
+.park-game-launch.contra {
+  background: #d3e1aa;
+  color: #264d37;
+}
+.park-contra-card {
+  border-color: #7195824f;
+}
+@media (min-width: 1200px) {
+  .contra-controllers:not(.coop) .contra-controller {
+    padding-left: 36px;
+    padding-right: 40px;
+  }
+  .contra-controllers:not(.coop) .contra-action-keys button > b {
+    width: 57px;
+    height: 57px;
+  }
+  .contra-controllers:not(.coop) .contra-action-keys {
+    gap: 23px;
+  }
+}
+@media (max-width: 1100px) {
+  .contra-layout {
+    grid-template-columns: minmax(0, 1fr) 200px;
+    gap: 18px;
+  }
+  .contra-game {
+    padding: 20px;
+  }
+  .contra-controllers.coop {
+    grid-template-columns: 1fr;
+  }
+  .contra-controllers.coop .contra-controller {
+    padding: 10px 20px;
+  }
+  .contra-controllers.coop .contra-dpad {
+    grid-template-rows: 44px 44px 44px;
+  }
+}
+@media (max-width: 850px) {
+  .contra-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .contra-sidebar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+  }
+  .contra-mission-title {
+    grid-column: 1/-1;
+  }
+  .contra-stage-list {
+    grid-column: 1;
+  }
+  .contra-field-note {
+    grid-column: 2;
+    margin: 0;
+    border-top: 0;
+    border-left: 1px solid var(--ct-line);
+    padding: 0 0 0 14px;
+  }
+  .contra-stage-list button {
+    padding: 7px 10px;
+    min-height: 44px;
+  }
+  .contra-stage-list small {
+    display: none;
+  }
+  .contra-controllers.coop {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contra-controller {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .contra-action-keys {
+    gap: 5px;
+  }
+  .contra-header {
+    margin-bottom: 16px;
+  }
+  .contra-heading h2 {
+    font-size: 23px;
+  }
+}
+@media (max-width: 650px) {
+  .contra-game {
+    padding: 14px;
+    border-radius: 19px;
+  }
+  .contra-header {
+    gap: 12px;
+  }
+  .contra-toolbar {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .contra-heading {
+    gap: 10px;
+  }
+  .contra-toolbar button {
+    min-height: 44px;
+    padding: 8px 12px;
+    flex: 1;
+  }
+  .contra-overlay-card {
+    padding: 14px 17px;
+    border-radius: 14px;
+    width: 340px;
+  }
+  .contra-overlay h3 {
+    font-size: 24px;
+    margin: 9px 0;
+  }
+  .contra-overlay p {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  .contra-overlay .contra-kicker {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+  .contra-mode {
+    margin-bottom: 10px;
+  }
+  .contra-controllers.coop {
+    grid-template-columns: 1fr;
+  }
+  .contra-player strong {
+    font-size: 16px;
+  }
+  .contra-player-bar {
+    gap: 7px;
+  }
+  .contra-sidebar {
+    gap: 10px;
+  }
+  .contra-status {
+    padding: 0 10px;
+  }
+  .contra-field-note p {
+    font-size: 10px;
+  }
+  .contra-key-hint {
+    font-size: 10px;
+  }
+  .contra-stage-list button {
+    gap: 8px;
+  }
+}
+@media (max-width: 430px) {
+  .contra-stage {
+    aspect-ratio: 12/9;
+  }
+  .contra-stage canvas {
+    object-fit: contain;
+  }
+  .contra-overlay {
+    padding: 8px;
+  }
+  .contra-overlay-card {
+    padding: 12px 13px;
+  }
+  .contra-overlay h3 {
+    font-size: 20px;
+    margin: 7px 0;
+  }
+  .contra-overlay p {
+    font-size: 10px;
+    margin-bottom: 9px;
+  }
+  .contra-mode button {
+    padding: 6px;
+    font-size: 11px;
+  }
+  .contra-game .contra-primary {
+    padding: 8px 13px;
+    min-height: 44px;
+  }
+  .contra-controller {
+    padding: 10px 13px;
+  }
+  .contra-player-bar {
+    grid-template-columns: 1fr;
+  }
+  .contra-dpad {
+    grid-template-columns: 44px 44px 44px;
+  }
+  .contra-action-keys {
+    gap: 9px;
+  }
+  .contra-weapon-guide {
+    grid-template-columns: 22px 1fr;
+  }
+  .contra-game {
+    padding: 12px;
+  }
+  .contra-heading h2 {
+    font-size: 22px;
+  }
+  .contra-kicker {
+    font-size: 9px;
+  }
+  .contra-sidebar {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+:root[data-theme='light'] .contra-game {
+  box-shadow: 0 10px 35px #385b4b25;
+}
+@media (prefers-reduced-motion: reduce) {
+  .contra-game button {
+    transition: none;
+  }
+}
+
+body:has(.contra-game) .npc-buddy,
+body:has(.contra-game) .buddy-fab {
+  display: none;
+}
+
+.contra-base-objective {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--ct-panel);
+  border: 1px solid var(--ct-line);
+}
+.contra-base-objective strong {
+  font-size: 12px;
+  color: var(--ct-ink);
+}
+.contra-base-objective p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ct-soft);
+  margin: 4px 0 0;
+}
+.contra-base-objective button {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.contra-base-objective button:disabled {
+  opacity: 0.45;
+}
+.contra-base-objective[data-state='open'] button {
+  background: #a8d58e;
+  color: #193125;
+  border-color: #a8d58e;
+}
+@media (max-width: 600px) {
+  .contra-base-objective {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .contra-base-objective button {
+    width: 100%;
+  }
+}

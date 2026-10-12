@@ -1,0 +1,40 @@
+.screen-letter-writing,.screen-hanzi-writing{min-width:0;display:grid;gap:10px;align-content:center;color:var(--ct-ink,#23405b)}
+.screen-letter-writing{grid-template-columns:1fr 1fr}
+.screen-writing-reference,.screen-writing-input{min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.screen-letter-writing svg{width:min(100%,231px);height:220px;background:#fff;border:1px solid #aecad8;border-radius:12px}
+.screen-letter-pad{touch-action:none;cursor:crosshair}
+.writing-grid-line{stroke:#b2cddc;stroke-width:1}
+.writing-reference-stroke{fill:none;stroke:#446a90;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.writing-demo-stroke{fill:none;stroke:#ed7b48;stroke-width:5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:screen-writing-demo 1s linear forwards}
+@keyframes screen-writing-demo{to{stroke-dashoffset:0}}
+.screen-writing-reference text{font:10px system-ui;fill:#a05420}
+.writing-trace-hint{fill:none;stroke:#d8e1ee;stroke-width:5;stroke-linecap:round}
+.writing-child-ink{fill:none;stroke:#ec7b49;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.screen-writing-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.screen-writing-actions button{min-height:44px;padding:8px 12px;border:1px solid #b2c9dc;border-radius:10px;background:#fff;color:#23405b;font-size:14px}
+.screen-letter-writing>.screen-writing-actions,.screen-letter-writing>p,.screen-letter-writing>small{grid-column:1/-1;margin:0}
+.screen-hanzi-pad{width:300px;height:300px;max-width:100%;justify-self:center;touch-action:none;border:1px solid #c3b39d;background:linear-gradient(to right,transparent 49.7%,#cfbdab 49.7%,#cfbdab 50.3%,transparent 50.3%),linear-gradient(to bottom,transparent 49.7%,#cfbdab 49.7%,#cfbdab 50.3%,transparent 50.3%),#fffaf0}
+.screen-hanzi-pad svg{display:block;touch-action:none}
+.screen-hanzi-writing p{margin:0;text-align:center;font-size:14px}.screen-hanzi-writing small{text-align:center;font-size:12px}
+.app .screen-pages .en-classroom .en-writing-task:has(>.en-screen-letter-workbench){display:flex}
+.app .screen-pages .en-classroom .en-screen-letter-workbench{height:100%;min-height:0;display:flex;flex-direction:column;gap:10px;overflow:visible}
+.en-screen-letter-workbench .screen-letter-writing{flex:0 0 auto}
+.en-screen-letter-workbench .screen-letter-writing svg{border:0;border-radius:0}
+.en-screen-letter-workbench>h3,.en-screen-letter-workbench>nav{flex-shrink:0;margin:0}
+.app .screen-pages .en-classroom .en-screen-letter-workbench{width:100%}
+.en-screen-letter-tabs{display:flex;gap:8px;flex-wrap:wrap}.en-screen-letter-tabs button{min-height:44px;padding:8px 14px;border:1px solid #b2c9dc;border-radius:10px;background:#fff;color:#23405b}.en-screen-letter-tabs button.active{background:#e2efff;border-color:#337aba}
+.app .screen-pages .ct-classroom .ct-paper-writing{grid-template-rows:auto minmax(0,1fr);gap:8px 16px;overflow:auto}
+.app .screen-pages .ct-classroom .ct-paper-writing:has(>.practice-again){grid-template-rows:auto auto minmax(0,1fr)}
+.ct-paper-writing>.practice-again{grid-column:1/-1;margin:0}
+.ct-paper-writing>.screen-hanzi-writing{gap:6px;align-self:center}
+.app .screen-pages .ct-classroom .ct-paper-writing>h3{font-size:20px;line-height:1.3}
+/* Letter lessons share the same fixed landscape workspace without nested scrolling. */
+.app .screen-pages .en-classroom .en-screen-letter-workbench{display:grid;grid-template-columns:minmax(210px,.7fr) minmax(0,2fr);grid-template-rows:auto minmax(0,1fr);gap:8px 12px;overflow:visible}
+.app .screen-pages .en-classroom .en-screen-letter-workbench>h3{align-self:center;font-size:21px}
+.app .screen-pages .en-classroom .en-screen-letter-tabs{justify-content:flex-end;flex-wrap:nowrap;gap:6px}
+.app .screen-pages .en-classroom .en-screen-letter-tabs button{min-width:44px;min-height:44px;padding:6px}
+.app .screen-pages .en-classroom .en-screen-letter-workbench>.screen-letter-writing{grid-column:1/-1;min-height:0;height:100%;grid-template-rows:minmax(0,1fr) auto auto auto;gap:8px;align-content:stretch}
+.en-screen-letter-workbench .screen-letter-writing>:is(.screen-writing-reference,.screen-writing-input){min-height:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.en-screen-letter-workbench .screen-letter-writing svg{flex:1;min-height:0;max-height:220px;height:100%;width:min(100%,231px)}
+.app .screen-pages .en-classroom .en-screen-letter-workbench .screen-letter-writing>p{font-size:14px;line-height:1.5}
+.en-screen-letter-workbench .screen-letter-writing>small{font-size:12px;line-height:1.5}

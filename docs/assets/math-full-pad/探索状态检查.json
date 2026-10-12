@@ -1,0 +1,2077 @@
+{
+  "rows": [
+    {
+      "id": "campus",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "campus",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "playground",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-discover",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "classroom-games",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "learning-readiness",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "numbers",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "subtract-within-5",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "zero",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit1-review",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "six-to-nine",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compare-order-nine",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "compose-six-nine",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-six-seven",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total-within-7",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-remain-within-7",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-eight-nine",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "select-info-eight-nine",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addsub-ten",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "continuous-add-sub",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "mixed-add-sub",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit2-review",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "stage": 0,
+      "actions": 2,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-shapes",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-building",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solid-compose",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 2,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "order-twenty",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "between-positions",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit4-review",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-nine",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "solve-total",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "find-original",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "addition-table",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "unit5-review",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-relations",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-shapes",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "stage": 0,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "stage": 0,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "stage": 1,
+      "actions": 0,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    },
+    {
+      "id": "review-application",
+      "stage": 1,
+      "actions": 1,
+      "fit": 1,
+      "document": [
+        1024,
+        768
+      ],
+      "clipped": []
+    }
+  ],
+  "errors": [],
+  "notes": [
+    "全册47课，两个探索阶段分别检查操作前与操作后，共188个材料状态。",
+    "立体图形末轮按单个物体转动、横向排布的结果替换对应状态。"
+  ]
+}

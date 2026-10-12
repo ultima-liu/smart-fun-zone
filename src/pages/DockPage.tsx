@@ -1,3 +1,4 @@
+import { ActivityDeck } from '../components/ScreenPages';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '../components/BackButton';
@@ -144,6 +145,7 @@ export default function DockPage() {
         </div>
       </header>
 
+      <ActivityDeck labels={['飞船改装', '进化图谱']}>
       <section
         className={`sd-workshop${upgrading ? ' is-charging' : ''}${completedLevel ? ' is-complete' : ''}`}
         aria-label={zh ? '飞船改装工坊' : 'Ship refit workshop'}
@@ -197,9 +199,7 @@ export default function DockPage() {
               <p>{SHIP_FEATURES[displayedLevel - 1][lang]}</p>
             </div>
             {previewing && (
-              <button className="sd-return" onClick={() => setPreviewLevel(null)}>
-                {zh ? '↶ 返回我的飞船' : '↶ Back to my ship'}
-              </button>
+              <BackButton onClick={() => setPreviewLevel(null)} label={zh ? '返回我的飞船' : 'Back to my ship'} />
             )}
             <div className="sd-ship-readings">
               <span>
@@ -466,7 +466,7 @@ export default function DockPage() {
             ? '每升一级，外形焕新，远征产出增加 10 个百分点。Lv.10 获得传奇星冠与 +90% 产出加成。'
             : 'Each upgrade brings a new form and +10 percentage points to expedition output. Lv.10 grants the legendary crown and a +90% bonus.'}
         </p>
-      </section>
+      </section></ActivityDeck>
     </div>
   );
 }

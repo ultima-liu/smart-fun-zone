@@ -3,6 +3,12 @@ export type ChineseStudyCharacter = {
   pinyin: string;
 };
 
+export type ChineseStudyCompletion = {
+  frame: string;
+  blanks: { label: string; example: string }[];
+  criteria: string[];
+};
+
 export type ChineseStudyTask = {
   id: string;
   kind: 'read' | 'recite' | 'choice' | 'speak' | 'practice' | 'pronunciation';
@@ -10,6 +16,7 @@ export type ChineseStudyTask = {
   scene?: 'tian-grid' | 'pict-match';
   instruction: string;
   content?: string[];
+  completion?: ChineseStudyCompletion;
   options?: string[];
   answer?: string;
   explanation?: string;
@@ -25,11 +32,43 @@ export type ChineseTextbookStudyPack = {
 const chars = (pairs: [string, string][]): ChineseStudyCharacter[] => pairs.map(([char, pinyin]) => ({ char, pinyin }));
 
 export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = {
+  // 园地一、五至八：按本地教材原图的识字栏与田字格配置，替代词语兜底。
+  'garden-1': {
+    pageLabel: '识字与书写',
+    recognize: chars([['六', 'liù'], ['七', 'qī'], ['八', 'bā'], ['九', 'jiǔ'], ['十', 'shí']]),
+    // 用户要求补练“九”，按数字顺序观察、书写五个字。
+    writing: chars([['六', 'liù'], ['七', 'qī'], ['八', 'bā'], ['九', 'jiǔ'], ['十', 'shí']]),
+    tasks: [],
+  },
+  'garden-5': {
+    pageLabel: '识字与书写',
+    recognize: chars([['男', 'nán'], ['女', 'nǚ'], ['关', 'guān'], ['正', 'zhèng'], ['反', 'fǎn'], ['先', 'xiān'], ['后', 'hòu'], ['内', 'nèi'], ['外', 'wài']]),
+    writing: chars([['女', 'nǚ'], ['开', 'kāi'], ['关', 'guān'], ['先', 'xiān']]),
+    tasks: [],
+  },
+  'garden-6': {
+    pageLabel: '识字与书写',
+    recognize: chars([['老', 'lǎo'], ['师', 'shī'], ['工', 'gōng'], ['厂', 'chǎng'], ['医', 'yī'], ['院', 'yuàn'], ['生', 'shēng'], ['门', 'mén'], ['卫', 'wèi']]),
+    writing: chars([['工', 'gōng'], ['厂', 'chǎng'], ['门', 'mén'], ['卫', 'wèi']]),
+    tasks: [],
+  },
+  'garden-7': {
+    pageLabel: '识字与书写',
+    recognize: chars([['爷', 'yé'], ['奶', 'nǎi'], ['叔', 'shū'], ['姐', 'jiě'], ['妹', 'mèi']]),
+    writing: chars([['爸', 'bà'], ['妈', 'mā']]),
+    tasks: [],
+  },
+  'garden-8': {
+    pageLabel: '识字与书写',
+    recognize: chars([['牛', 'niú'], ['羊', 'yáng'], ['爪', 'zhuǎ'], ['元', 'yuán'], ['拼', 'pīn'], ['音', 'yīn']]),
+    writing: chars([['牛', 'niú'], ['羊', 'yáng'], ['爪', 'zhuǎ'], ['白', 'bái']]),
+    tasks: [],
+  },
   'heaven-earth-human': {
     pageLabel: 'P8 认读生字',
     recognize: chars([['天', 'tiān'], ['地', 'dì'], ['人', 'rén'], ['你', 'nǐ'], ['我', 'wǒ'], ['他', 'tā']]),
     tasks: [
-      { id: 'meaning', kind: 'speak', instruction: '联系画面，说一说“天、地、人”和“你、我、他”分别指什么。', content: ['天　地　人', '你　我　他'] },
+      { id: 'meaning', kind: 'speak', instruction: "联系画面，把介绍‘天、地、人’和‘你、我、他’的话补充完整。", content: ['天　地　人', '你　我　他'], completion: {"frame": "天是天空，地是大地，小朋友是人。“我”是____，“你”是听话的人，“他”是____。", "blanks": [{"label": "我指谁", "example": "说话的人"}, {"label": "他指谁", "example": "另外的人"}], "criteria": ["补充“我”指说话的人", "补充“他”指说话人和听话人以外的人"]} },
     ],
   },
   'metal-wood-water-fire-earth': {
@@ -46,7 +85,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     recognize: chars([['口', 'kǒu'], ['耳', 'ěr'], ['目', 'mù'], ['手', 'shǒu'], ['足', 'zú'], ['站', 'zhàn'], ['坐', 'zuò']]),
     writing: chars([['口', 'kǒu'], ['耳', 'ěr'], ['目', 'mù'], ['手', 'shǒu']]),
     tasks: [
-      { id: 'body-use', kind: 'speak', instruction: '口、耳、目、手、足能做哪些事？请联系自己的身体说一说。', content: ['口能说和吃', '耳能听', '目能看', '手能拿', '足能走'] },
+      { id: 'body-use', kind: 'speak', instruction: "联系自己的身体，补充一个部位和它能做的事。", content: ['口能说和吃', '耳能听', '目能看', '手能拿', '足能走'], completion: {"frame": "我用耳朵听声音，用眼睛看东西。我还可以用____来____。", "blanks": [{"label": "身体部位", "example": "手"}, {"label": "可以做什么", "example": "拿东西"}], "criteria": ["补充一个身体部位", "补充与这个部位相符的动作"]} },
       { id: 'posture', kind: 'read', instruction: '朗读韵句，配合动作体会站、坐、行、卧。', content: ['站如松，坐如钟。', '行如风，卧如弓。'] },
     ],
   },
@@ -56,7 +95,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     writing: chars([['日', 'rì'], ['火', 'huǒ'], ['田', 'tián'], ['禾', 'hé']]),
     tasks: [
       { id: 'connect', kind: 'practice', scene: 'pict-match', instruction: '猜一猜，连一连：根据字形给图画找到汉字。', content: ['兔', '鸟', '竹', '羊', '木', '网'] },
-      { id: 'reason', kind: 'speak', instruction: '选择一个象形字，说清它的字形哪里像实物。' },
+      { id: 'reason', kind: 'speak', instruction: "观察“山”字，把字形像什么的话补充完整。", completion: {"frame": "“山”字中间高高的一竖，像____。", "blanks": [{"label": "像什么", "example": "山峰"}], "criteria": ["补充与山字形相像的事物或特点"]} },
     ],
   },
   autumn: {
@@ -64,7 +103,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     recognize: chars([['秋', 'qiū'], ['气', 'qì'], ['了', 'le'], ['树', 'shù'], ['叶', 'yè'], ['黄', 'huáng'], ['片', 'piàn'], ['从', 'cóng'], ['来', 'lái'], ['飞', 'fēi']]),
     writing: chars([['了', 'le'], ['子', 'zǐ'], ['大', 'dà'], ['人', 'rén']]),
     tasks: [
-      { id: 'read-recite', kind: 'recite', instruction: '借助拼音朗读课文，做到正确、自然；再尝试背诵课文。', content: ['天气凉了，树叶黄了，一片片叶子从树上落下来。', '天那么蓝，那么高。一群大雁往南飞……', '啊！秋天来了！'] },
+      { id: 'read-recite', kind: 'recite', instruction: '借助拼音朗读课文，做到正确、自然；再尝试背诵课文。', content: ['天气凉了，树叶黄了，一片片叶子从树上落下来。', '天那么蓝，那么高。一群大雁往南飞，一会儿排成个“人”字，一会儿排成个“一”字。', '啊！秋天来了！'] },
       { id: 'paragraphs', kind: 'choice', instruction: '数一数，课文一共有几个自然段？注意自然段前面有两个空格。', options: ['2 个', '3 个', '4 个'], answer: '3 个', explanation: '课文共有三个自然段，每个自然段的开头都有两个空格。' },
       { id: 'yi-tone', kind: 'pronunciation', instruction: '读一读，注意“一”在不同词语中的读音变化。', content: ['一 yī', '一片片 yí piàn piàn', '一会儿 yí huìr', '一群 yì qún'] },
     ],
@@ -74,7 +113,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     recognize: chars([['江', 'jiāng'], ['南', 'nán'], ['可', 'kě'], ['采', 'cǎi'], ['莲', 'lián'], ['戏', 'xì'], ['间', 'jiān'], ['东', 'dōng'], ['北', 'běi']]),
     writing: chars([['可', 'kě'], ['叶', 'yè'], ['东', 'dōng'], ['西', 'xī']]),
     tasks: [
-      { id: 'read-recite', kind: 'recite', instruction: '朗读课文，读清东、西、南、北的节奏，并背诵课文。', content: ['江南可采莲，莲叶何田田。', '鱼戏莲叶东，鱼戏莲叶西，鱼戏莲叶南，鱼戏莲叶北。'] },
+      { id: 'read-recite', kind: 'recite', instruction: '朗读课文，读清东、西、南、北的节奏，并背诵课文。', content: ['江南可采莲，莲叶何田田。', '鱼戏莲叶间。', '鱼戏莲叶东，鱼戏莲叶西，鱼戏莲叶南，鱼戏莲叶北。'] },
     ],
   },
   'snow-painters': {
@@ -93,7 +132,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     writing: chars([['四', 'sì'], ['小', 'xiǎo'], ['鸟', 'niǎo'], ['是', 'shì'], ['天', 'tiān']]),
     tasks: [
       { id: 'read', kind: 'read', instruction: '分角色朗读课文，读出草芽、荷叶、谷穗和雪人的不同语气。' },
-      { id: 'imitate', kind: 'speak', instruction: '你喜欢哪个季节？仿照课文说一说。', content: ['我喜欢____，因为____。', '____的____，它说：“我是____。”'] },
+      { id: 'imitate', kind: 'speak', instruction: "选一个喜欢的季节，补充季节和喜欢的原因。", content: ['春天', '夏天', '秋天', '冬天'], completion: {"frame": "我喜欢____，因为____。", "blanks": [{"label": "喜欢的季节", "example": "春天"}, {"label": "喜欢的原因", "example": "花开了"}], "criteria": ["补充一个季节", "补充与这个季节有关的合理原因"]} },
     ],
   },
   'rhyme-song': {
@@ -119,8 +158,8 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     recognize: chars([['包', 'bāo'], ['尺', 'chǐ'], ['作', 'zuò'], ['业', 'yè'], ['笔', 'bǐ'], ['刀', 'dāo'], ['宝', 'bǎo'], ['贝', 'bèi'], ['少', 'shǎo'], ['课', 'kè'], ['早', 'zǎo']]),
     writing: chars([['尺', 'chǐ'], ['本', 'běn'], ['刀', 'dāo'], ['不', 'bù'], ['少', 'shǎo']]),
     tasks: [
-      { id: 'read-say', kind: 'speak', instruction: '朗读课文，说一说你的书包里有哪些学习用品。', content: ['橡皮', '尺子', '作业本', '笔袋', '铅笔', '转笔刀'] },
-      { id: 'tidy', kind: 'practice', instruction: '照教材做一做：把文具摆放整齐，再自己整理一次书包。', content: ['分类摆放', '常用物品放在容易取的位置', '整理后检查是否遗漏'] },
+      { id: 'read-say', kind: 'speak', instruction: "读过课文后，补充书包里的另一件学习用品。", content: ['橡皮', '尺子', '作业本', '笔袋', '铅笔', '转笔刀'], completion: {"frame": "我的书包里有铅笔，还有____。", "blanks": [{"label": "另一件学习用品", "example": "橡皮"}], "criteria": ["补充一种铅笔以外的学习用品"]} },
+      { id: 'tidy', kind: 'practice', instruction: "先整理一次书包，再补充物品放在哪里。", content: ['分类摆放', '常用物品放在容易取的位置', '整理后检查是否遗漏'], completion: {"frame": "我整理了书包，把____放在____。", "blanks": [{"label": "整理的物品", "example": "铅笔"}, {"label": "放在哪里", "example": "笔袋里"}], "criteria": ["补充书包里的物品", "补充合理的存放位置"]} },
     ],
   },
   'raising-flag': {
@@ -128,8 +167,8 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     recognize: chars([['升', 'shēng'], ['国', 'guó'], ['旗', 'qí'], ['中', 'zhōng'], ['们', 'men'], ['声', 'shēng'], ['起', 'qǐ'], ['多', 'duō'], ['么', 'me'], ['向', 'xiàng'], ['立', 'lì']]),
     writing: chars([['中', 'zhōng'], ['五', 'wǔ'], ['风', 'fēng'], ['立', 'lì'], ['正', 'zhèng']]),
     tasks: [
-      { id: 'read-recite', kind: 'recite', instruction: '朗读课文，读出庄重、自豪的语气，并背诵课文。', content: ['向着国旗，我们立正。', '望着国旗，我们敬礼。'] },
-      { id: 'etiquette', kind: 'practice', instruction: '模拟升旗：面向国旗立正，国歌声中保持安静并敬礼。' },
+      { id: 'read-recite', kind: 'recite', instruction: '朗读课文，读出庄重、自豪的语气，并背诵课文。', content: ['五星红旗，我们的国旗。', '国歌声中，徐徐升起。', '迎风飘扬，多么美丽。', '向着国旗，我们立正。', '望着国旗，我们敬礼。'] },
+      { id: 'etiquette', kind: 'practice', instruction: "模拟升旗后，补充应该怎样做。", completion: {"frame": "升旗时，我面向____站好，并保持____。", "blanks": [{"label": "面向什么", "example": "国旗"}, {"label": "怎样做", "example": "安静"}], "criteria": ["补充面向国旗", "补充保持安静"]} },
     ],
   },
   'little-boat': {
@@ -138,7 +177,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     writing: chars([['月', 'yuè'], ['儿', 'ér'], ['头', 'tóu'], ['里', 'lǐ'], ['见', 'jiàn']]),
     tasks: [
       { id: 'read-recite', kind: 'recite', instruction: '朗读课文，读出轻柔的想象，并背诵课文。' },
-      { id: 'phrases', kind: 'practice', instruction: '照样子说一说，用叠词把事物特点说得更形象。', content: ['小小的船', '弯弯的月儿', '闪闪的星星', '蓝蓝的天', '弯弯的小河', '蓝蓝的大海'] },
+      { id: 'phrases', kind: 'practice', instruction: "照样子补充两个词，说出月儿和天空的特点。", content: ['小小的船', '弯弯的月儿', '闪闪的星星', '蓝蓝的天', '弯弯的小河', '蓝蓝的大海'], completion: {"frame": "____的月儿，____的天。", "blanks": [{"label": "月儿的特点", "example": "弯弯"}, {"label": "天空的特点", "example": "蓝蓝"}], "criteria": ["补充合理的月儿特点", "补充合理的天空特点"]} },
     ],
   },
   shadow: {
@@ -147,7 +186,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     writing: chars([['在', 'zài'], ['我', 'wǒ'], ['左', 'zuǒ'], ['右', 'yòu']]),
     tasks: [
       { id: 'read', kind: 'read', instruction: '朗读课文，读清前、后、左、右四个方位词。' },
-      { id: 'position', kind: 'speak', instruction: '你的前、后、左、右都是谁？按照教材示例完整地说。', content: ['我的前边是____。', '我的后面是____。', '我的左边是____。', '我的右边是____。'] },
+      { id: 'position', kind: 'speak', instruction: "看看自己的前面和后面，把位置介绍补充完整。", content: ['前面', '后面'], completion: {"frame": "我的前面是____，后面是____。", "blanks": [{"label": "前面是谁", "example": "小雨"}, {"label": "后面是谁", "example": "小明"}], "criteria": ["补充前面的人", "补充后面的人；不要求真实姓名或额外解释"]} },
     ],
   },
   'two-treasures': {
@@ -157,7 +196,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     tasks: [
       { id: 'read-recite', kind: 'recite', instruction: '朗读课文，并背诵课文。' },
       { id: 'treasures', kind: 'choice', instruction: '课文中的两件宝是什么？', options: ['双手和大脑', '书包和铅笔', '眼睛和耳朵'], answer: '双手和大脑', explanation: '双手能做工，大脑会思考。' },
-      { id: 'why', kind: 'speak', instruction: '说说两件宝能做什么，为什么要“用手又用脑”。', content: ['先用大脑想办法', '再用双手去实践', '根据结果继续调整'] },
+      { id: 'why', kind: 'speak', instruction: "想想手和脑的作用，补充做事的方法。", content: ['先用大脑想办法', '再用双手去实践', '根据结果继续调整'], completion: {"frame": "做手工前，我先用脑想办法，再用____来____。", "blanks": [{"label": "用什么", "example": "双手"}, {"label": "做什么", "example": "制作"}], "criteria": ["补充用手或双手", "补充一个合理的动手操作"]} },
     ],
   },
   'compare-tails': {
@@ -166,7 +205,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     writing: chars([['比', 'bǐ'], ['巴', 'ba'], ['长', 'cháng'], ['公', 'gōng']]),
     tasks: [
       { id: 'read-recite', kind: 'recite', instruction: '分组朗读问句和答句，并背诵课文。' },
-      { id: 'qa-game', kind: 'speak', instruction: '照样子做问答游戏。先问一个特点，再用完整句回答。', content: ['谁的尾巴最好看？孔雀的尾巴最好看。', '谁的样子最可爱？兔子的样子最可爱。'] },
+      { id: 'qa-game', kind: 'speak', instruction: "照课文的样子，补充问答中的动物。", content: ['谁的尾巴最好看？孔雀的尾巴最好看。', '谁的样子最可爱？兔子的样子最可爱。'], completion: {"frame": "谁的尾巴短？____的尾巴短。", "blanks": [{"label": "哪种动物", "example": "兔子"}], "criteria": ["补充尾巴短的合理动物"]} },
     ],
   },
   'crow-drinks-water': {
@@ -175,7 +214,7 @@ export const CHINESE_TEXTBOOK_STUDY: Record<string, ChineseTextbookStudyPack> = 
     writing: chars([['只', 'zhī'], ['多', 'duō'], ['办', 'bàn'], ['石', 'shí'], ['出', 'chū']]),
     tasks: [
       { id: 'read', kind: 'read', instruction: '朗读课文，注意“一颗一颗”和“渐渐升高”表现出的过程。' },
-      { id: 'retell', kind: 'speak', instruction: '说一说乌鸦是用什么办法喝着水的。', content: ['遇到的问题：瓶口小、水不多', '发现的材料：许多小石子', '采取的办法：一颗一颗放进瓶子', '产生的结果：水渐渐升高'] },
+      { id: 'retell', kind: 'speak', instruction: "联系故事，补充乌鸦用的材料和水的变化。", content: ['遇到的问题：瓶口小、水不多', '发现的材料：许多小石子', '采取的办法：一颗一颗放进瓶子', '产生的结果：水渐渐升高'], completion: {"frame": "乌鸦把____放进瓶子里，水渐渐____，它就喝到水了。", "blanks": [{"label": "放入什么", "example": "小石子"}, {"label": "水怎样变化", "example": "升高"}], "criteria": ["补充石子或意思相近的材料", "补充水位升高或意思相近的变化"]} },
     ],
   },
   raindrops: {

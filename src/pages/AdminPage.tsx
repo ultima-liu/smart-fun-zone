@@ -1,5 +1,7 @@
+import { ContentPages } from '../components/ScreenPages';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import { api, setToken, logout } from '../api';
 import { useStore as useStoreState } from '../store';
 import { effectiveCatalog, KIND_LABEL, CATALOG } from '../points';
@@ -278,7 +280,7 @@ export default function AdminPage() {
           </label>
           {lgErr && <p className="lg-err">⚠️ {lgErr}</p>}
           <button type="submit" className="lg-submit" disabled={busy}>{busy ? '登录中…' : '进入管理后台'}</button>
-          <button type="button" className="lg-admin-link" onClick={() => nav('/child-login')}>← 返回家长/孩子登录</button>
+          <BackButton onClick={() => nav('/child-login')} label="返回家长/孩子登录" />
         </form>
       </div>
     </div>
@@ -300,7 +302,7 @@ export default function AdminPage() {
             <button key={k} type="button" className={`adm-nav-btn ${section === k ? 'active' : ''}`} onClick={() => setSection(k)}>{label}</button>
           ))}
         </nav>
-        <button type="button" className="adm-nav-btn adm-quit" onClick={() => { nav('/'); }}>🏠 返回首页</button>
+        <BackButton className="adm-quit" onClick={() => { nav('/'); }} label="返回首页" />
         <button type="button" className="adm-nav-btn adm-logout" onClick={doLogout}>🚪 退出登录</button>
       </aside>
 
@@ -337,7 +339,7 @@ export default function AdminPage() {
             <div className="adm-table">
               <div className="adm-tr adm-th adm-tr--kids"><span>孩子</span><span>年级</span><span>家长</span><span>账号</span><span>状态</span><span>操作</span></div>
               {kids.length === 0 && <p className="adm-empty">没有匹配结果</p>}
-              {kids.map((k) => (
+              <ContentPages kind="rows" resetKey={kidQ}>{kids.map((k) => (
                 <div className="adm-tr adm-tr--kids" key={k.id}>
                   <span>{k.avatar} {k.name}</span>
                   <span>{GRADE_LABELS[k.grade] ?? k.grade}</span>
@@ -354,7 +356,7 @@ export default function AdminPage() {
                     <button type="button" className="kid-btn coral small" onClick={() => void deleteChild(k)}>删除</button>
                   </span>
                 </div>
-              ))}
+              ))}</ContentPages>
             </div>
             {kidSel && (
               <div className="adm-inline">
@@ -375,7 +377,7 @@ export default function AdminPage() {
             <div className="adm-table">
               <div className="adm-tr adm-th adm-tr--parents"><span>家长</span><span>登录名</span><span>角色</span><span>状态</span><span>操作</span></div>
               {parents.length === 0 && <p className="adm-empty">暂无家长账号</p>}
-              {parents.map((p) => (
+              <ContentPages kind="rows">{parents.map((p) => (
                 <div className="adm-tr adm-tr--parents" key={p.id}>
                   <span>{p.nickname}</span>
                   <span>{p.login_name || p.nickname}</span>
@@ -391,7 +393,7 @@ export default function AdminPage() {
                     )}
                   </span>
                 </div>
-              ))}
+              ))}</ContentPages>
             </div>
             {pSel && (
               <div className="adm-inline">
@@ -416,7 +418,7 @@ export default function AdminPage() {
             </div>
             <p>每个复习学科当天从已学过的旧课中选一节；同一课以后仍可在下一次勾选的复习日回顾。模板只是起点，修改后保存才生效。</p>
             <div className="adm-week-grid">
-              {WEEKDAYS.map((weekday) => {
+              <ContentPages className="adm-week-cards" resetKey={scheduleGrade}>{WEEKDAYS.map((weekday) => {
                 const entry = scheduleDraft.find((item) => item.grade === scheduleGrade && item.weekday === weekday.id);
                 const courses = entry?.subjects ?? [];
                 const reviews = entry?.reviews ?? [];
@@ -428,7 +430,7 @@ export default function AdminPage() {
                     </div>)}
                   </div>
                 </section>;
-              })}
+              })}</ContentPages>
             </div>
           </div>
         )}
@@ -450,7 +452,7 @@ export default function AdminPage() {
             {storeTab !== 'tasks' && (
               <div className="adm-table">
                 <div className="adm-tr adm-th adm-tr--items"><span>{KIND_LABEL[storeTab]}（{storeItems.filter((i) => i.kind === storeTab).length}）</span><span>价格</span><span>上架</span><span>操作</span></div>
-                {storeItems.filter((i) => i.kind === storeTab).map((it) => {
+                <ContentPages kind="rows" resetKey={storeTab}>{storeItems.filter((i) => i.kind === storeTab).map((it) => {
                   const e = edits[it.id] ?? { name: it.name, cost: String(it.cost), icon: it.icon ?? '', acqType: it.acqType ?? 'purchase' };
                   return (
                     <div className="adm-tr adm-tr--items" key={it.id}>
@@ -488,7 +490,7 @@ export default function AdminPage() {
                       </span>
                     </div>
                   );
-                })}
+                })}</ContentPages>
               </div>
             )}
 
@@ -496,7 +498,7 @@ export default function AdminPage() {
             {storeTab === 'tasks' && (
             <div className="adm-table">
               <div className="adm-tr adm-th adm-tr--tasks"><span>任务</span><span>类型</span><span>当前/默认分值</span><span>修改</span></div>
-              {TASKS.filter((task) => task.kind !== 'course').map((t: TaskDef) => {
+              <ContentPages kind="rows">{TASKS.filter((task) => task.kind !== 'course').map((t: TaskDef) => {
                 const ov = taskOverrides[t.id];
                 const cur = ov?.reward ?? t.reward;
                 const enabled = ov?.enabled ?? t.enabled ?? true;
@@ -512,7 +514,7 @@ export default function AdminPage() {
                     </span>
                   </div>
                 );
-              })}
+              })}</ContentPages>
             </div>
             )}
             <p className="empty-tip small">默认商品目录共 {CATALOG.length} 件 · 实时生效</p>

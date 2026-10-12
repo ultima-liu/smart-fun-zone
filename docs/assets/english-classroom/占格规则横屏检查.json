@@ -1,0 +1,1101 @@
+{
+  "records": [
+    {
+      "unit": "friends",
+      "state": "plain",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 476,
+        "scrollHeight": 476,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-four-line-focus",
+            "rect": {
+              "x": 165,
+              "y": 293,
+              "width": 586.734375,
+              "height": 452,
+              "top": 293,
+              "right": 751.734375,
+              "bottom": 745,
+              "left": 165
+            },
+            "width": 587,
+            "scrollWidth": 587,
+            "height": 452,
+            "scrollHeight": 452
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 165,
+              "y": 293,
+              "width": 586.734375,
+              "height": 74.5,
+              "top": 293,
+              "right": 751.734375,
+              "bottom": 367.5,
+              "left": 165
+            },
+            "width": 587,
+            "scrollWidth": 587,
+            "height": 75,
+            "scrollHeight": 75
+          },
+          {
+            "class": "en-four-line-map",
+            "rect": {
+              "x": 165,
+              "y": 377.5,
+              "width": 586.734375,
+              "height": 182,
+              "top": 377.5,
+              "right": 751.734375,
+              "bottom": 559.5,
+              "left": 165
+            },
+            "width": 585,
+            "scrollWidth": 585,
+            "height": 180,
+            "scrollHeight": 180
+          },
+          {
+            "class": "en-four-line-grid-svg",
+            "rect": {
+              "x": 320,
+              "y": 390.5,
+              "width": 418.734375,
+              "height": 159.265625,
+              "top": 390.5,
+              "right": 738.734375,
+              "bottom": 549.765625,
+              "left": 320
+            },
+            "width": 419,
+            "scrollWidth": 419,
+            "height": 159,
+            "scrollHeight": 159
+          },
+          {
+            "class": "en-four-line-rules",
+            "rect": {
+              "x": 165,
+              "y": 569.5,
+              "width": 586.734375,
+              "height": 130,
+              "top": 569.5,
+              "right": 751.734375,
+              "bottom": 699.5,
+              "left": 165
+            },
+            "width": 587,
+            "scrollWidth": 587,
+            "height": 130,
+            "scrollHeight": 130
+          },
+          {
+            "class": "en-four-line-mnemonic",
+            "rect": {
+              "x": 165,
+              "y": 709.5,
+              "width": 586.734375,
+              "height": 35.5,
+              "top": 709.5,
+              "right": 751.734375,
+              "bottom": 745,
+              "left": 165
+            },
+            "width": 587,
+            "scrollWidth": 587,
+            "height": 36,
+            "scrollHeight": 36
+          },
+          {
+            "class": "en-writing-rules-answer",
+            "rect": {
+              "x": 769.734375,
+              "y": 345.40625,
+              "width": 225.265625,
+              "height": 347.1875,
+              "top": 345.40625,
+              "right": 995,
+              "bottom": 692.59375,
+              "left": 769.734375
+            },
+            "width": 223,
+            "scrollWidth": 223,
+            "height": 345,
+            "scrollHeight": 345
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 786.734375,
+              "y": 362.40625,
+              "width": 191.265625,
+              "height": 25.1875,
+              "top": 362.40625,
+              "right": 978,
+              "bottom": 387.59375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 25,
+            "scrollHeight": 25
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 786.734375,
+              "y": 399.59375,
+              "width": 191.265625,
+              "height": 42,
+              "top": 399.59375,
+              "right": 978,
+              "bottom": 441.59375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 42,
+            "scrollHeight": 42
+          },
+          {
+            "class": "automatic-course-check",
+            "rect": {
+              "x": 786.734375,
+              "y": 453.59375,
+              "width": 191.265625,
+              "height": 222,
+              "top": 453.59375,
+              "right": 978,
+              "bottom": 675.59375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 222,
+            "scrollHeight": 222
+          }
+        ],
+        "text": "FIRST KEY · 首次重点\n英语四线格：认识上格、中格、下格\n\n把书写区看成三层小房子。先看字母住哪一格，再观察它会不会向上伸、向下垂。\n\n上格\n高个字母会伸进来\n中格\n所有小写字母的家\n下格\n有尾巴的字母会垂下来\n大写字母\nA B C\n主要住在上格和中格，大小要整齐。\n短小写\na c e m n o r s u v w x z\n安安稳稳住在中格，不跑到上下两格。\n高个\nb d f h k l t\n从中格向上伸，顶到上格。\n有尾巴\ng j p q y\n从中格向下垂，尾巴进下格。\n\n口诀：大写住上中；短小写住中；高个向上伸，尾巴向下垂。\n\n试着说一说\n\n说明字母 A, B, C, D 的大小写分别占哪些格，举一个例子。\n\n我的想法\n🎤 我来说"
+      }
+    },
+    {
+      "unit": "friends",
+      "state": "plain",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 712,
+        "scrollHeight": 712,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-four-line-focus",
+            "rect": {
+              "x": 175,
+              "y": 355,
+              "width": 854,
+              "height": 600,
+              "top": 355,
+              "right": 1029,
+              "bottom": 955,
+              "left": 175
+            },
+            "width": 854,
+            "scrollWidth": 854,
+            "height": 600,
+            "scrollHeight": 600
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 175,
+              "y": 355,
+              "width": 854,
+              "height": 74.5,
+              "top": 355,
+              "right": 1029,
+              "bottom": 429.5,
+              "left": 175
+            },
+            "width": 854,
+            "scrollWidth": 854,
+            "height": 75,
+            "scrollHeight": 75
+          },
+          {
+            "class": "en-four-line-map",
+            "rect": {
+              "x": 175,
+              "y": 439.5,
+              "width": 854,
+              "height": 330,
+              "top": 439.5,
+              "right": 1029,
+              "bottom": 769.5,
+              "left": 175
+            },
+            "width": 852,
+            "scrollWidth": 852,
+            "height": 328,
+            "scrollHeight": 328
+          },
+          {
+            "class": "en-four-line-grid-svg",
+            "rect": {
+              "x": 330,
+              "y": 452.5,
+              "width": 686,
+              "height": 304,
+              "top": 452.5,
+              "right": 1016,
+              "bottom": 756.5,
+              "left": 330
+            },
+            "width": 686,
+            "scrollWidth": 686,
+            "height": 304,
+            "scrollHeight": 304
+          },
+          {
+            "class": "en-four-line-rules",
+            "rect": {
+              "x": 175,
+              "y": 779.5,
+              "width": 854,
+              "height": 130,
+              "top": 779.5,
+              "right": 1029,
+              "bottom": 909.5,
+              "left": 175
+            },
+            "width": 854,
+            "scrollWidth": 854,
+            "height": 130,
+            "scrollHeight": 130
+          },
+          {
+            "class": "en-four-line-mnemonic",
+            "rect": {
+              "x": 175,
+              "y": 919.5,
+              "width": 854,
+              "height": 35.5,
+              "top": 919.5,
+              "right": 1029,
+              "bottom": 955,
+              "left": 175
+            },
+            "width": 854,
+            "scrollWidth": 854,
+            "height": 36,
+            "scrollHeight": 36
+          },
+          {
+            "class": "en-writing-rules-answer",
+            "rect": {
+              "x": 1047,
+              "y": 481.40625,
+              "width": 280,
+              "height": 347.1875,
+              "top": 481.40625,
+              "right": 1327,
+              "bottom": 828.59375,
+              "left": 1047
+            },
+            "width": 278,
+            "scrollWidth": 278,
+            "height": 345,
+            "scrollHeight": 345
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 1064,
+              "y": 498.40625,
+              "width": 246,
+              "height": 25.1875,
+              "top": 498.40625,
+              "right": 1310,
+              "bottom": 523.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 25,
+            "scrollHeight": 25
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 1064,
+              "y": 535.59375,
+              "width": 246,
+              "height": 42,
+              "top": 535.59375,
+              "right": 1310,
+              "bottom": 577.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 42,
+            "scrollHeight": 42
+          },
+          {
+            "class": "automatic-course-check",
+            "rect": {
+              "x": 1064,
+              "y": 589.59375,
+              "width": 246,
+              "height": 222,
+              "top": 589.59375,
+              "right": 1310,
+              "bottom": 811.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 222,
+            "scrollHeight": 222
+          }
+        ],
+        "text": "FIRST KEY · 首次重点\n英语四线格：认识上格、中格、下格\n\n把书写区看成三层小房子。先看字母住哪一格，再观察它会不会向上伸、向下垂。\n\n上格\n高个字母会伸进来\n中格\n所有小写字母的家\n下格\n有尾巴的字母会垂下来\n大写字母\nA B C\n主要住在上格和中格，大小要整齐。\n短小写\na c e m n o r s u v w x z\n安安稳稳住在中格，不跑到上下两格。\n高个\nb d f h k l t\n从中格向上伸，顶到上格。\n有尾巴\ng j p q y\n从中格向下垂，尾巴进下格。\n\n口诀：大写住上中；短小写住中；高个向上伸，尾巴向下垂。\n\n试着说一说\n\n说明字母 A, B, C, D 的大小写分别占哪些格，举一个例子。\n\n我的想法\n🎤 我来说"
+      }
+    },
+    {
+      "unit": "friends",
+      "state": "feedback",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 476,
+        "scrollHeight": 476,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-four-line-focus",
+            "rect": {
+              "x": 165,
+              "y": 293,
+              "width": 586.734375,
+              "height": 452,
+              "top": 293,
+              "right": 751.734375,
+              "bottom": 745,
+              "left": 165
+            },
+            "width": 587,
+            "scrollWidth": 587,
+            "height": 452,
+            "scrollHeight": 452
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 165,
+              "y": 293,
+              "width": 586.734375,
+              "height": 74.5,
+              "top": 293,
+              "right": 751.734375,
+              "bottom": 367.5,
+              "left": 165
+            },
+            "width": 587,
+            "scrollWidth": 587,
+            "height": 75,
+            "scrollHeight": 75
+          },
+          {
+            "class": "en-four-line-map",
+            "rect": {
+              "x": 165,
+              "y": 377.5,
+              "width": 586.734375,
+              "height": 182,
+              "top": 377.5,
+              "right": 751.734375,
+              "bottom": 559.5,
+              "left": 165
+            },
+            "width": 585,
+            "scrollWidth": 585,
+            "height": 180,
+            "scrollHeight": 180
+          },
+          {
+            "class": "en-four-line-grid-svg",
+            "rect": {
+              "x": 320,
+              "y": 390.5,
+              "width": 418.734375,
+              "height": 159.265625,
+              "top": 390.5,
+              "right": 738.734375,
+              "bottom": 549.765625,
+              "left": 320
+            },
+            "width": 419,
+            "scrollWidth": 419,
+            "height": 159,
+            "scrollHeight": 159
+          },
+          {
+            "class": "en-four-line-rules",
+            "rect": {
+              "x": 165,
+              "y": 569.5,
+              "width": 586.734375,
+              "height": 130,
+              "top": 569.5,
+              "right": 751.734375,
+              "bottom": 699.5,
+              "left": 165
+            },
+            "width": 587,
+            "scrollWidth": 587,
+            "height": 130,
+            "scrollHeight": 130
+          },
+          {
+            "class": "en-four-line-mnemonic",
+            "rect": {
+              "x": 165,
+              "y": 709.5,
+              "width": 586.734375,
+              "height": 35.5,
+              "top": 709.5,
+              "right": 751.734375,
+              "bottom": 745,
+              "left": 165
+            },
+            "width": 587,
+            "scrollWidth": 587,
+            "height": 36,
+            "scrollHeight": 36
+          },
+          {
+            "class": "en-writing-rules-answer",
+            "rect": {
+              "x": 769.734375,
+              "y": 306.65625,
+              "width": 225.265625,
+              "height": 424.6875,
+              "top": 306.65625,
+              "right": 995,
+              "bottom": 731.34375,
+              "left": 769.734375
+            },
+            "width": 223,
+            "scrollWidth": 223,
+            "height": 423,
+            "scrollHeight": 423
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 786.734375,
+              "y": 323.65625,
+              "width": 191.265625,
+              "height": 25.1875,
+              "top": 323.65625,
+              "right": 978,
+              "bottom": 348.84375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 25,
+            "scrollHeight": 25
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 786.734375,
+              "y": 360.84375,
+              "width": 191.265625,
+              "height": 42,
+              "top": 360.84375,
+              "right": 978,
+              "bottom": 402.84375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 42,
+            "scrollHeight": 42
+          },
+          {
+            "class": "automatic-course-check",
+            "rect": {
+              "x": 786.734375,
+              "y": 414.84375,
+              "width": 191.265625,
+              "height": 299.5,
+              "top": 414.84375,
+              "right": 978,
+              "bottom": 714.34375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 300,
+            "scrollHeight": 300
+          }
+        ],
+        "text": "FIRST KEY · 首次重点\n英语四线格：认识上格、中格、下格\n\n把书写区看成三层小房子。先看字母住哪一格，再观察它会不会向上伸、向下垂。\n\n上格\n高个字母会伸进来\n中格\n所有小写字母的家\n下格\n有尾巴的字母会垂下来\n大写字母\nA B C\n主要住在上格和中格，大小要整齐。\n短小写\na c e m n o r s u v w x z\n安安稳稳住在中格，不跑到上下两格。\n高个\nb d f h k l t\n从中格向上伸，顶到上格。\n有尾巴\ng j p q y\n从中格向下垂，尾巴进下格。\n\n口诀：大写住上中；短小写住中；高个向上伸，尾巴向下垂。\n\n试着说一说\n\n说明字母 A, B, C, D 的大小写分别占哪些格，举一个例子。\n\n我的想法\n🎤 我来说\n再想一想\n\n你已经注意到大小写的区别了。再举一个短小写字母和一个有尾巴的字母，说明它们分别住在哪一格。"
+      }
+    },
+    {
+      "unit": "friends",
+      "state": "feedback",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 712,
+        "scrollHeight": 712,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-four-line-focus",
+            "rect": {
+              "x": 175,
+              "y": 355,
+              "width": 854,
+              "height": 600,
+              "top": 355,
+              "right": 1029,
+              "bottom": 955,
+              "left": 175
+            },
+            "width": 854,
+            "scrollWidth": 854,
+            "height": 600,
+            "scrollHeight": 600
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 175,
+              "y": 355,
+              "width": 854,
+              "height": 74.5,
+              "top": 355,
+              "right": 1029,
+              "bottom": 429.5,
+              "left": 175
+            },
+            "width": 854,
+            "scrollWidth": 854,
+            "height": 75,
+            "scrollHeight": 75
+          },
+          {
+            "class": "en-four-line-map",
+            "rect": {
+              "x": 175,
+              "y": 439.5,
+              "width": 854,
+              "height": 330,
+              "top": 439.5,
+              "right": 1029,
+              "bottom": 769.5,
+              "left": 175
+            },
+            "width": 852,
+            "scrollWidth": 852,
+            "height": 328,
+            "scrollHeight": 328
+          },
+          {
+            "class": "en-four-line-grid-svg",
+            "rect": {
+              "x": 330,
+              "y": 452.5,
+              "width": 686,
+              "height": 304,
+              "top": 452.5,
+              "right": 1016,
+              "bottom": 756.5,
+              "left": 330
+            },
+            "width": 686,
+            "scrollWidth": 686,
+            "height": 304,
+            "scrollHeight": 304
+          },
+          {
+            "class": "en-four-line-rules",
+            "rect": {
+              "x": 175,
+              "y": 779.5,
+              "width": 854,
+              "height": 130,
+              "top": 779.5,
+              "right": 1029,
+              "bottom": 909.5,
+              "left": 175
+            },
+            "width": 854,
+            "scrollWidth": 854,
+            "height": 130,
+            "scrollHeight": 130
+          },
+          {
+            "class": "en-four-line-mnemonic",
+            "rect": {
+              "x": 175,
+              "y": 919.5,
+              "width": 854,
+              "height": 35.5,
+              "top": 919.5,
+              "right": 1029,
+              "bottom": 955,
+              "left": 175
+            },
+            "width": 854,
+            "scrollWidth": 854,
+            "height": 36,
+            "scrollHeight": 36
+          },
+          {
+            "class": "en-writing-rules-answer",
+            "rect": {
+              "x": 1047,
+              "y": 452.40625,
+              "width": 280,
+              "height": 405.1875,
+              "top": 452.40625,
+              "right": 1327,
+              "bottom": 857.59375,
+              "left": 1047
+            },
+            "width": 278,
+            "scrollWidth": 278,
+            "height": 403,
+            "scrollHeight": 403
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 1064,
+              "y": 469.40625,
+              "width": 246,
+              "height": 25.1875,
+              "top": 469.40625,
+              "right": 1310,
+              "bottom": 494.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 25,
+            "scrollHeight": 25
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 1064,
+              "y": 506.59375,
+              "width": 246,
+              "height": 42,
+              "top": 506.59375,
+              "right": 1310,
+              "bottom": 548.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 42,
+            "scrollHeight": 42
+          },
+          {
+            "class": "automatic-course-check",
+            "rect": {
+              "x": 1064,
+              "y": 560.59375,
+              "width": 246,
+              "height": 280,
+              "top": 560.59375,
+              "right": 1310,
+              "bottom": 840.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 280,
+            "scrollHeight": 280
+          }
+        ],
+        "text": "FIRST KEY · 首次重点\n英语四线格：认识上格、中格、下格\n\n把书写区看成三层小房子。先看字母住哪一格，再观察它会不会向上伸、向下垂。\n\n上格\n高个字母会伸进来\n中格\n所有小写字母的家\n下格\n有尾巴的字母会垂下来\n大写字母\nA B C\n主要住在上格和中格，大小要整齐。\n短小写\na c e m n o r s u v w x z\n安安稳稳住在中格，不跑到上下两格。\n高个\nb d f h k l t\n从中格向上伸，顶到上格。\n有尾巴\ng j p q y\n从中格向下垂，尾巴进下格。\n\n口诀：大写住上中；短小写住中；高个向上伸，尾巴向下垂。\n\n试着说一说\n\n说明字母 A, B, C, D 的大小写分别占哪些格，举一个例子。\n\n我的想法\n🎤 我来说\n再想一想\n\n你已经注意到大小写的区别了。再举一个短小写字母和一个有尾巴的字母，说明它们分别住在哪一格。"
+      }
+    },
+    {
+      "unit": "numbers",
+      "state": "plain",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 476,
+        "scrollHeight": 476,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-writing-rules-answer",
+            "rect": {
+              "x": 769.734375,
+              "y": 334.90625,
+              "width": 225.265625,
+              "height": 368.1875,
+              "top": 334.90625,
+              "right": 995,
+              "bottom": 703.09375,
+              "left": 769.734375
+            },
+            "width": 223,
+            "scrollWidth": 223,
+            "height": 366,
+            "scrollHeight": 366
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 786.734375,
+              "y": 351.90625,
+              "width": 191.265625,
+              "height": 25.1875,
+              "top": 351.90625,
+              "right": 978,
+              "bottom": 377.09375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 25,
+            "scrollHeight": 25
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 786.734375,
+              "y": 389.09375,
+              "width": 191.265625,
+              "height": 63,
+              "top": 389.09375,
+              "right": 978,
+              "bottom": 452.09375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 63,
+            "scrollHeight": 63
+          },
+          {
+            "class": "automatic-course-check",
+            "rect": {
+              "x": 786.734375,
+              "y": 464.09375,
+              "width": 191.265625,
+              "height": 222,
+              "top": 464.09375,
+              "right": 978,
+              "bottom": 686.09375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 222,
+            "scrollHeight": 222
+          }
+        ],
+        "text": "占格复习\n上格 · 中格 · 下格\n\n大写住上、中两格；短小写住中格；高个向上伸，尾巴向下垂。\n\n试着说一说\n\n说明字母 V, W, X, Y, Z 的大小写分别占哪些格，举一个例子。\n\n我的想法\n🎤 我来说"
+      }
+    },
+    {
+      "unit": "numbers",
+      "state": "plain",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 712,
+        "scrollHeight": 712,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-writing-rules-answer",
+            "rect": {
+              "x": 1047,
+              "y": 481.40625,
+              "width": 280,
+              "height": 347.1875,
+              "top": 481.40625,
+              "right": 1327,
+              "bottom": 828.59375,
+              "left": 1047
+            },
+            "width": 278,
+            "scrollWidth": 278,
+            "height": 345,
+            "scrollHeight": 345
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 1064,
+              "y": 498.40625,
+              "width": 246,
+              "height": 25.1875,
+              "top": 498.40625,
+              "right": 1310,
+              "bottom": 523.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 25,
+            "scrollHeight": 25
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 1064,
+              "y": 535.59375,
+              "width": 246,
+              "height": 42,
+              "top": 535.59375,
+              "right": 1310,
+              "bottom": 577.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 42,
+            "scrollHeight": 42
+          },
+          {
+            "class": "automatic-course-check",
+            "rect": {
+              "x": 1064,
+              "y": 589.59375,
+              "width": 246,
+              "height": 222,
+              "top": 589.59375,
+              "right": 1310,
+              "bottom": 811.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 222,
+            "scrollHeight": 222
+          }
+        ],
+        "text": "占格复习\n上格 · 中格 · 下格\n\n大写住上、中两格；短小写住中格；高个向上伸，尾巴向下垂。\n\n试着说一说\n\n说明字母 V, W, X, Y, Z 的大小写分别占哪些格，举一个例子。\n\n我的想法\n🎤 我来说"
+      }
+    },
+    {
+      "unit": "numbers",
+      "state": "feedback",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 476,
+        "scrollHeight": 476,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-writing-rules-answer",
+            "rect": {
+              "x": 769.734375,
+              "y": 296.15625,
+              "width": 225.265625,
+              "height": 445.6875,
+              "top": 296.15625,
+              "right": 995,
+              "bottom": 741.84375,
+              "left": 769.734375
+            },
+            "width": 223,
+            "scrollWidth": 223,
+            "height": 444,
+            "scrollHeight": 444
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 786.734375,
+              "y": 313.15625,
+              "width": 191.265625,
+              "height": 25.1875,
+              "top": 313.15625,
+              "right": 978,
+              "bottom": 338.34375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 25,
+            "scrollHeight": 25
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 786.734375,
+              "y": 350.34375,
+              "width": 191.265625,
+              "height": 63,
+              "top": 350.34375,
+              "right": 978,
+              "bottom": 413.34375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 63,
+            "scrollHeight": 63
+          },
+          {
+            "class": "automatic-course-check",
+            "rect": {
+              "x": 786.734375,
+              "y": 425.34375,
+              "width": 191.265625,
+              "height": 299.5,
+              "top": 425.34375,
+              "right": 978,
+              "bottom": 724.84375,
+              "left": 786.734375
+            },
+            "width": 191,
+            "scrollWidth": 191,
+            "height": 300,
+            "scrollHeight": 300
+          }
+        ],
+        "text": "占格复习\n上格 · 中格 · 下格\n\n大写住上、中两格；短小写住中格；高个向上伸，尾巴向下垂。\n\n试着说一说\n\n说明字母 V, W, X, Y, Z 的大小写分别占哪些格，举一个例子。\n\n我的想法\n🎤 我来说\n再想一想\n\n你已经注意到大小写的区别了。再举一个短小写字母和一个有尾巴的字母，说明它们分别住在哪一格。"
+      }
+    },
+    {
+      "unit": "numbers",
+      "state": "feedback",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 712,
+        "scrollHeight": 712,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-writing-rules-answer",
+            "rect": {
+              "x": 1047,
+              "y": 452.40625,
+              "width": 280,
+              "height": 405.1875,
+              "top": 452.40625,
+              "right": 1327,
+              "bottom": 857.59375,
+              "left": 1047
+            },
+            "width": 278,
+            "scrollWidth": 278,
+            "height": 403,
+            "scrollHeight": 403
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 1064,
+              "y": 469.40625,
+              "width": 246,
+              "height": 25.1875,
+              "top": 469.40625,
+              "right": 1310,
+              "bottom": 494.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 25,
+            "scrollHeight": 25
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 1064,
+              "y": 506.59375,
+              "width": 246,
+              "height": 42,
+              "top": 506.59375,
+              "right": 1310,
+              "bottom": 548.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 42,
+            "scrollHeight": 42
+          },
+          {
+            "class": "automatic-course-check",
+            "rect": {
+              "x": 1064,
+              "y": 560.59375,
+              "width": 246,
+              "height": 280,
+              "top": 560.59375,
+              "right": 1310,
+              "bottom": 840.59375,
+              "left": 1064
+            },
+            "width": 246,
+            "scrollWidth": 246,
+            "height": 280,
+            "scrollHeight": 280
+          }
+        ],
+        "text": "占格复习\n上格 · 中格 · 下格\n\n大写住上、中两格；短小写住中格；高个向上伸，尾巴向下垂。\n\n试着说一说\n\n说明字母 V, W, X, Y, Z 的大小写分别占哪些格，举一个例子。\n\n我的想法\n🎤 我来说\n再想一想\n\n你已经注意到大小写的区别了。再举一个短小写字母和一个有尾巴的字母，说明它们分别住在哪一格。"
+      }
+    }
+  ],
+  "errors": []
+}

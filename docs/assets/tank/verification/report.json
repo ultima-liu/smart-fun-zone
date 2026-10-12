@@ -1,0 +1,1194 @@
+[
+  {
+    "label": "web",
+    "theme": "light",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "ready": {
+      "panelHeight": 402.796875,
+      "fieldHeight": 684,
+      "clipped": false
+    },
+    "metrics": {
+      "width": 1052,
+      "scrollWidth": 1050,
+      "clientWidth": 1050,
+      "controls": [
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 54,
+          "height": 54
+        },
+        {
+          "width": 54,
+          "height": 54
+        }
+      ],
+      "canvas": 684,
+      "documentOverflow": false
+    },
+    "twoCardColumns": true,
+    "images": [
+      {
+        "name": "player",
+        "width": 212,
+        "height": 320
+      },
+      {
+        "name": "ally",
+        "width": 188,
+        "height": 320
+      },
+      {
+        "name": "basic",
+        "width": 209,
+        "height": 320
+      },
+      {
+        "name": "fast",
+        "width": 152,
+        "height": 320
+      },
+      {
+        "name": "power",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "armor",
+        "width": 251,
+        "height": 320
+      },
+      {
+        "name": "star",
+        "width": 318,
+        "height": 320
+      },
+      {
+        "name": "tank",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "grenade",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "helmet",
+        "width": 320,
+        "height": 311
+      },
+      {
+        "name": "clock",
+        "width": 292,
+        "height": 320
+      },
+      {
+        "name": "shovel",
+        "width": 291,
+        "height": 320
+      },
+      {
+        "name": "brick",
+        "width": 320,
+        "height": 315
+      },
+      {
+        "name": "steel",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "water",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "forest",
+        "width": 320,
+        "height": 316
+      },
+      {
+        "name": "ice",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "floor",
+        "width": 320,
+        "height": 317
+      },
+      {
+        "name": "base",
+        "width": 320,
+        "height": 319
+      },
+      {
+        "name": "base-dead",
+        "width": 320,
+        "height": 315
+      }
+    ]
+  },
+  {
+    "label": "web",
+    "theme": "dark",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "ready": {
+      "panelHeight": 402.796875,
+      "fieldHeight": 684,
+      "clipped": false
+    },
+    "metrics": {
+      "width": 1052,
+      "scrollWidth": 1050,
+      "clientWidth": 1050,
+      "controls": [
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 54,
+          "height": 54
+        },
+        {
+          "width": 54,
+          "height": 54
+        }
+      ],
+      "canvas": 684,
+      "documentOverflow": false
+    },
+    "twoCardColumns": true,
+    "images": [
+      {
+        "name": "player",
+        "width": 212,
+        "height": 320
+      },
+      {
+        "name": "ally",
+        "width": 188,
+        "height": 320
+      },
+      {
+        "name": "basic",
+        "width": 209,
+        "height": 320
+      },
+      {
+        "name": "fast",
+        "width": 152,
+        "height": 320
+      },
+      {
+        "name": "power",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "armor",
+        "width": 251,
+        "height": 320
+      },
+      {
+        "name": "star",
+        "width": 318,
+        "height": 320
+      },
+      {
+        "name": "tank",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "grenade",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "helmet",
+        "width": 320,
+        "height": 311
+      },
+      {
+        "name": "clock",
+        "width": 292,
+        "height": 320
+      },
+      {
+        "name": "shovel",
+        "width": 291,
+        "height": 320
+      },
+      {
+        "name": "brick",
+        "width": 320,
+        "height": 315
+      },
+      {
+        "name": "steel",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "water",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "forest",
+        "width": 320,
+        "height": 316
+      },
+      {
+        "name": "ice",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "floor",
+        "width": 320,
+        "height": 317
+      },
+      {
+        "name": "base",
+        "width": 320,
+        "height": 319
+      },
+      {
+        "name": "base-dead",
+        "width": 320,
+        "height": 315
+      }
+    ]
+  },
+  {
+    "label": "pad-landscape",
+    "theme": "light",
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "ready": {
+      "panelHeight": 272,
+      "fieldHeight": 322,
+      "clipped": false
+    },
+    "metrics": {
+      "width": 956,
+      "scrollWidth": 954,
+      "clientWidth": 954,
+      "controls": [
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 54,
+          "height": 54
+        },
+        {
+          "width": 54,
+          "height": 54
+        }
+      ],
+      "canvas": 322,
+      "documentOverflow": false
+    },
+    "twoCardColumns": true,
+    "images": [
+      {
+        "name": "player",
+        "width": 212,
+        "height": 320
+      },
+      {
+        "name": "ally",
+        "width": 188,
+        "height": 320
+      },
+      {
+        "name": "basic",
+        "width": 209,
+        "height": 320
+      },
+      {
+        "name": "fast",
+        "width": 152,
+        "height": 320
+      },
+      {
+        "name": "power",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "armor",
+        "width": 251,
+        "height": 320
+      },
+      {
+        "name": "star",
+        "width": 318,
+        "height": 320
+      },
+      {
+        "name": "tank",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "grenade",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "helmet",
+        "width": 320,
+        "height": 311
+      },
+      {
+        "name": "clock",
+        "width": 292,
+        "height": 320
+      },
+      {
+        "name": "shovel",
+        "width": 291,
+        "height": 320
+      },
+      {
+        "name": "brick",
+        "width": 320,
+        "height": 315
+      },
+      {
+        "name": "steel",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "water",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "forest",
+        "width": 320,
+        "height": 316
+      },
+      {
+        "name": "ice",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "floor",
+        "width": 320,
+        "height": 317
+      },
+      {
+        "name": "base",
+        "width": 320,
+        "height": 319
+      },
+      {
+        "name": "base-dead",
+        "width": 320,
+        "height": 315
+      }
+    ]
+  },
+  {
+    "label": "pad-landscape",
+    "theme": "dark",
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "ready": {
+      "panelHeight": 272,
+      "fieldHeight": 322,
+      "clipped": false
+    },
+    "metrics": {
+      "width": 956,
+      "scrollWidth": 954,
+      "clientWidth": 954,
+      "controls": [
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 54,
+          "height": 54
+        },
+        {
+          "width": 54,
+          "height": 54
+        }
+      ],
+      "canvas": 322,
+      "documentOverflow": false
+    },
+    "twoCardColumns": true,
+    "images": [
+      {
+        "name": "player",
+        "width": 212,
+        "height": 320
+      },
+      {
+        "name": "ally",
+        "width": 188,
+        "height": 320
+      },
+      {
+        "name": "basic",
+        "width": 209,
+        "height": 320
+      },
+      {
+        "name": "fast",
+        "width": 152,
+        "height": 320
+      },
+      {
+        "name": "power",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "armor",
+        "width": 251,
+        "height": 320
+      },
+      {
+        "name": "star",
+        "width": 318,
+        "height": 320
+      },
+      {
+        "name": "tank",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "grenade",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "helmet",
+        "width": 320,
+        "height": 311
+      },
+      {
+        "name": "clock",
+        "width": 292,
+        "height": 320
+      },
+      {
+        "name": "shovel",
+        "width": 291,
+        "height": 320
+      },
+      {
+        "name": "brick",
+        "width": 320,
+        "height": 315
+      },
+      {
+        "name": "steel",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "water",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "forest",
+        "width": 320,
+        "height": 316
+      },
+      {
+        "name": "ice",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "floor",
+        "width": 320,
+        "height": 317
+      },
+      {
+        "name": "base",
+        "width": 320,
+        "height": 319
+      },
+      {
+        "name": "base-dead",
+        "width": 320,
+        "height": 315
+      }
+    ]
+  },
+  {
+    "label": "pad-portrait",
+    "theme": "light",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "ready": {
+      "panelHeight": 394.859375,
+      "fieldHeight": 443.65625,
+      "clipped": false
+    },
+    "metrics": {
+      "width": 700,
+      "scrollWidth": 698,
+      "clientWidth": 698,
+      "controls": [
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 54,
+          "height": 54
+        },
+        {
+          "width": 54,
+          "height": 54
+        }
+      ],
+      "canvas": 443.65625,
+      "documentOverflow": false
+    },
+    "twoCardColumns": true,
+    "images": [
+      {
+        "name": "player",
+        "width": 212,
+        "height": 320
+      },
+      {
+        "name": "ally",
+        "width": 188,
+        "height": 320
+      },
+      {
+        "name": "basic",
+        "width": 209,
+        "height": 320
+      },
+      {
+        "name": "fast",
+        "width": 152,
+        "height": 320
+      },
+      {
+        "name": "power",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "armor",
+        "width": 251,
+        "height": 320
+      },
+      {
+        "name": "star",
+        "width": 318,
+        "height": 320
+      },
+      {
+        "name": "tank",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "grenade",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "helmet",
+        "width": 320,
+        "height": 311
+      },
+      {
+        "name": "clock",
+        "width": 292,
+        "height": 320
+      },
+      {
+        "name": "shovel",
+        "width": 291,
+        "height": 320
+      },
+      {
+        "name": "brick",
+        "width": 320,
+        "height": 315
+      },
+      {
+        "name": "steel",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "water",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "forest",
+        "width": 320,
+        "height": 316
+      },
+      {
+        "name": "ice",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "floor",
+        "width": 320,
+        "height": 317
+      },
+      {
+        "name": "base",
+        "width": 320,
+        "height": 319
+      },
+      {
+        "name": "base-dead",
+        "width": 320,
+        "height": 315
+      }
+    ]
+  },
+  {
+    "label": "pad-portrait",
+    "theme": "dark",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "ready": {
+      "panelHeight": 394.859375,
+      "fieldHeight": 443.65625,
+      "clipped": false
+    },
+    "metrics": {
+      "width": 700,
+      "scrollWidth": 698,
+      "clientWidth": 698,
+      "controls": [
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 46,
+          "height": 44
+        },
+        {
+          "width": 54,
+          "height": 54
+        },
+        {
+          "width": 54,
+          "height": 54
+        }
+      ],
+      "canvas": 443.65625,
+      "documentOverflow": false
+    },
+    "twoCardColumns": true,
+    "images": [
+      {
+        "name": "player",
+        "width": 212,
+        "height": 320
+      },
+      {
+        "name": "ally",
+        "width": 188,
+        "height": 320
+      },
+      {
+        "name": "basic",
+        "width": 209,
+        "height": 320
+      },
+      {
+        "name": "fast",
+        "width": 152,
+        "height": 320
+      },
+      {
+        "name": "power",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "armor",
+        "width": 251,
+        "height": 320
+      },
+      {
+        "name": "star",
+        "width": 318,
+        "height": 320
+      },
+      {
+        "name": "tank",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "grenade",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "helmet",
+        "width": 320,
+        "height": 311
+      },
+      {
+        "name": "clock",
+        "width": 292,
+        "height": 320
+      },
+      {
+        "name": "shovel",
+        "width": 291,
+        "height": 320
+      },
+      {
+        "name": "brick",
+        "width": 320,
+        "height": 315
+      },
+      {
+        "name": "steel",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "water",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "forest",
+        "width": 320,
+        "height": 316
+      },
+      {
+        "name": "ice",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "floor",
+        "width": 320,
+        "height": 317
+      },
+      {
+        "name": "base",
+        "width": 320,
+        "height": 319
+      },
+      {
+        "name": "base-dead",
+        "width": 320,
+        "height": 315
+      }
+    ]
+  },
+  {
+    "label": "phone",
+    "theme": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "ready": {
+      "panelHeight": 256.1875,
+      "fieldHeight": 286,
+      "clipped": false
+    },
+    "metrics": {
+      "width": 322,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "controls": [
+        {
+          "width": 44,
+          "height": 44
+        },
+        {
+          "width": 44,
+          "height": 44
+        },
+        {
+          "width": 44,
+          "height": 44
+        },
+        {
+          "width": 44,
+          "height": 44
+        },
+        {
+          "width": 48,
+          "height": 48
+        },
+        {
+          "width": 48,
+          "height": 48
+        }
+      ],
+      "canvas": 286,
+      "documentOverflow": false
+    },
+    "twoCardColumns": true,
+    "images": [
+      {
+        "name": "player",
+        "width": 212,
+        "height": 320
+      },
+      {
+        "name": "ally",
+        "width": 188,
+        "height": 320
+      },
+      {
+        "name": "basic",
+        "width": 209,
+        "height": 320
+      },
+      {
+        "name": "fast",
+        "width": 152,
+        "height": 320
+      },
+      {
+        "name": "power",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "armor",
+        "width": 251,
+        "height": 320
+      },
+      {
+        "name": "star",
+        "width": 318,
+        "height": 320
+      },
+      {
+        "name": "tank",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "grenade",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "helmet",
+        "width": 320,
+        "height": 311
+      },
+      {
+        "name": "clock",
+        "width": 292,
+        "height": 320
+      },
+      {
+        "name": "shovel",
+        "width": 291,
+        "height": 320
+      },
+      {
+        "name": "brick",
+        "width": 320,
+        "height": 315
+      },
+      {
+        "name": "steel",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "water",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "forest",
+        "width": 320,
+        "height": 316
+      },
+      {
+        "name": "ice",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "floor",
+        "width": 320,
+        "height": 317
+      },
+      {
+        "name": "base",
+        "width": 320,
+        "height": 319
+      },
+      {
+        "name": "base-dead",
+        "width": 320,
+        "height": 315
+      }
+    ]
+  },
+  {
+    "label": "phone",
+    "theme": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "ready": {
+      "panelHeight": 256.1875,
+      "fieldHeight": 286,
+      "clipped": false
+    },
+    "metrics": {
+      "width": 322,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "controls": [
+        {
+          "width": 44,
+          "height": 44
+        },
+        {
+          "width": 44,
+          "height": 44
+        },
+        {
+          "width": 44,
+          "height": 44
+        },
+        {
+          "width": 44,
+          "height": 44
+        },
+        {
+          "width": 48,
+          "height": 48
+        },
+        {
+          "width": 48,
+          "height": 48
+        }
+      ],
+      "canvas": 286,
+      "documentOverflow": false
+    },
+    "twoCardColumns": true,
+    "images": [
+      {
+        "name": "player",
+        "width": 212,
+        "height": 320
+      },
+      {
+        "name": "ally",
+        "width": 188,
+        "height": 320
+      },
+      {
+        "name": "basic",
+        "width": 209,
+        "height": 320
+      },
+      {
+        "name": "fast",
+        "width": 152,
+        "height": 320
+      },
+      {
+        "name": "power",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "armor",
+        "width": 251,
+        "height": 320
+      },
+      {
+        "name": "star",
+        "width": 318,
+        "height": 320
+      },
+      {
+        "name": "tank",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "grenade",
+        "width": 271,
+        "height": 320
+      },
+      {
+        "name": "helmet",
+        "width": 320,
+        "height": 311
+      },
+      {
+        "name": "clock",
+        "width": 292,
+        "height": 320
+      },
+      {
+        "name": "shovel",
+        "width": 291,
+        "height": 320
+      },
+      {
+        "name": "brick",
+        "width": 320,
+        "height": 315
+      },
+      {
+        "name": "steel",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "water",
+        "width": 320,
+        "height": 320
+      },
+      {
+        "name": "forest",
+        "width": 320,
+        "height": 316
+      },
+      {
+        "name": "ice",
+        "width": 320,
+        "height": 313
+      },
+      {
+        "name": "floor",
+        "width": 320,
+        "height": 317
+      },
+      {
+        "name": "base",
+        "width": 320,
+        "height": 319
+      },
+      {
+        "name": "base-dead",
+        "width": 320,
+        "height": 315
+      }
+    ]
+  }
+]

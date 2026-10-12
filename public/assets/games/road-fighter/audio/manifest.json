@@ -1,0 +1,91 @@
+{
+  "game": "Road Fighter (FC, Konami, 1985)",
+  "sourcePage": "https://www.zophar.net/music/nintendo-nes-nsf/road-fighter",
+  "rights": "Original game audio by Konami; archive availability does not confer an open-source license.",
+  "processing": "Original recordings, mono 22050 Hz; trim silent tails. Engine captured separately from original driving triangle voice; engine and warning have 5 ms loop edge fades. No composed music.",
+  "tracks": {
+    "start": {
+      "file": "start-fc-v1.mp3",
+      "sourceFile": "1 - Track 1.mp3",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/1%20-%20Track%201.mp3",
+      "sourceSha256": "44265499994d0d6cb40d4319ed910b440d2f9762e22242f9510cfdb7fe1ad851",
+      "soundCommand": "0x17",
+      "bytes": 45560,
+      "durationSec": 3.698957
+    },
+    "checkpoint": {
+      "file": "checkpoint-fc-v1.mp3",
+      "sourceFile": "2 - Track 2.mp3",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/2%20-%20Track%202.mp3",
+      "sourceSha256": "1d0de3eba9feb27b8141f1add34eaa478877a34a7ad6d6609899fd39160e224e",
+      "soundCommand": "0x14",
+      "bytes": 71264,
+      "durationSec": 5.827619
+    },
+    "goal": {
+      "file": "goal-fc-v1.mp3",
+      "sourceFile": "3 - Track 3.mp3",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/3%20-%20Track%203.mp3",
+      "sourceSha256": "309aed1ff76850dcdfee64d654af12e3f5811cd1b90c1ea31e92d5f4bb3bc690",
+      "soundCommand": "0x1a",
+      "bytes": 117031,
+      "durationSec": 9.659819
+    },
+    "over": {
+      "file": "over-fc-v1.mp3",
+      "sourceFile": "4 - Track 4.mp3",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/4%20-%20Track%204.mp3",
+      "sourceSha256": "ea0ba1fb603e24720df89f3a858a4b5e29756b88b9b3142a4b5ac0a6c90731f8",
+      "soundCommand": "0x1d",
+      "bytes": 40858,
+      "durationSec": 3.295646
+    },
+    "engine": {
+      "file": "engine-fc-v2.wav",
+      "sourceFile": "Road Fighter (1985-07-11)(Konami).nsf",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/Road%20Fighter%20%28EMU%29.zophar.zip",
+      "sourceSha256": "abeee4be936db5a4380b6d2fb29b21736f74870c94f05f5a0f6b6fb868b423d0",
+      "soundCommand": "0x89",
+      "processing": "Original driver triangle engine, RAM speed=196/high gear; libgme 0.6.5 offline capture; 0.25 s warmup, 2 s mono PCM22050, 5 ms edge fades",
+      "bytes": 88244,
+      "durationSec": 2
+    },
+    "crash": {
+      "file": "crash-fc-v1.mp3",
+      "sourceFile": "6 - Track 6.mp3",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/6%20-%20Track%206.mp3",
+      "sourceSha256": "46471f7292f136e70d809fb4a8e7a4ce8bfc20484cb2325ec274201a48bc3295",
+      "soundCommand": "0xf",
+      "bytes": 12018,
+      "durationSec": 0.9
+    },
+    "skid": {
+      "file": "skid-fc-v1.mp3",
+      "sourceFile": "SFX 1.mp3",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/SFX%201.mp3",
+      "sourceSha256": "14dd74996935b60fbf633c1361b10c231f41f14249eaa5a8bbd47e759cd88d55",
+      "soundCommand": "0x3",
+      "bytes": 9511,
+      "durationSec": 0.699864
+    },
+    "fuel": {
+      "file": "fuel-fc-v1.mp3",
+      "sourceFile": "SFX 5.mp3",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/SFX%205.mp3",
+      "sourceSha256": "1b662f8b1a3cb2dc73a489262260bea2cefe243d01b43c65743311141768d771",
+      "soundCommand": "0x8",
+      "bytes": 5122,
+      "durationSec": 0.335147
+    },
+    "lowFuel": {
+      "file": "low-fuel-fc-v2.wav",
+      "sourceFile": "8 - Track 8.mp3",
+      "sourceUrl": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/road-fighter/8%20-%20Track%208.mp3",
+      "sourceSha256": "419f7cce13cc658171dc7d2f42228cf324751f88dab004d82c23b56f0df493c1",
+      "soundCommand": "0x1",
+      "bytes": 88332,
+      "durationSec": 2.0,
+      "processing": "Original low-fuel warning, 2 s mono PCM22050, 5 ms edge fades; pitch fixed at 1"
+    }
+  }
+}

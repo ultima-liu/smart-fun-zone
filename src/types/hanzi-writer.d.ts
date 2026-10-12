@@ -11,19 +11,26 @@ declare module 'hanzi-writer' {
         showCharacter?: boolean;
         strokeAnimationSpeed?: number;
         strokeColor?: string;
+        charDataLoader?: (char: string, onLoad: (data: { strokes: string[]; medians: number[][][] }) => void, onError: (error?: Error) => void) => void;
         highlightColor?: string;
+        leniency?: number;
+        averageDistanceThreshold?: number;
       },
     ): HanziWriter;
     showCharacter(): void;
+    showOutline(): void;
     hideCharacter(): void;
     animateCharacter(options?: { onComplete?: () => void }): void;
     setCharacter(character: string): void;
     /** 描写（描红）模式：孩子沿笔画描摹 */
     quiz(options?: {
+      showHintAfterMisses?: number | false;
       onComplete?: () => void;
       onCorrectStroke?: () => void;
       onMistake?: () => void;
     }): void;
     destroy(): void;
+    pauseAnimation(): void;
+    cancelQuiz(): void;
   }
 }

@@ -1,0 +1,205 @@
+.math-tool {
+  --tool-ink: #dfeeff;
+  --tool-muted: #aac5dd;
+  --tool-panel: #20344e;
+  --tool-line: #496581;
+  --tool-accent: #79bfe8;
+  color: var(--tool-ink);
+  font-size: 18px;
+  width: 100%;
+  min-width: 0;
+}
+:root[data-theme="light"] .math-tool {
+  --tool-ink: #29465f;
+  --tool-muted: #58758a;
+  --tool-panel: #f5faff;
+  --tool-line: #c5dce9;
+  --tool-accent: #2e86b1;
+}
+.math-tool button { font: inherit; color: var(--tool-ink); cursor: pointer; touch-action: manipulation; }
+.math-tool button:disabled { opacity: .4; cursor: default; }
+.math-tool button:focus-visible { outline: 3px solid #edb851; outline-offset: 3px; }
+.math-tool header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.math-tool header span { color: var(--tool-muted); font-size: 16px; }
+.math-tool .tool-token { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; padding: 6px; flex: 0 0 54px; background: var(--tool-panel); border: 2px solid var(--tool-line); border-radius: 15px; font-size: 32px; transition: background .16s, transform .16s, box-shadow .16s; }
+.math-tool .tool-token svg { width: 100%; height: 100%; }
+.math-tool .tool-token.selected { background: #fff0ba; border-color: #c59129; box-shadow: 0 0 0 4px #f3c55355; transform: scale(1.05); }
+.math-tool .tool-token.paired { background: #d5f6e9; border-color: #3d9678; color: #247158; }
+.tool-token i { position: absolute; right: -4px; top: -5px; border-radius: 50%; background: #288565; color: white; padding: 0 4px; font-style: normal; font-size: 16px; }
+.math-tool .tool-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.math-tool .tool-actions button { min-height: 44px; border: 1px solid var(--tool-line); border-radius: 13px; background: var(--tool-panel); padding: 9px 17px; font-size: 17px; }
+.math-tool .tool-actions button:not(:disabled):hover { border-color: var(--tool-accent); box-shadow: 0 3px 9px #1a4d6d18; }
+.tool-hint { color: var(--tool-muted); margin: 12px 0; line-height: 1.6; }
+.tool-relation, .tool-part-whole { padding: 14px 18px; background: var(--tool-panel); border-radius: 16px; line-height: 1.7; margin: 14px 0 0; }
+.tool-part-whole { display: flex; gap: 22px; flex-wrap: wrap; }
+.tool-success { color: #44af88; font-weight: 700; font-size: 24px; }
+.tool-pair-head { display: flex; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
+.tool-pair-head span { color: var(--tool-muted); }
+.tool-pair-scroll { height: clamp(180px, 32dvh, 300px); overflow: auto; overscroll-behavior:contain; scrollbar-width:thin; padding: 6px; background: var(--tool-panel); border-radius: 18px; }
+.tool-pair-stage { position: relative; display: flex; justify-content: space-between; width: min(100%, 560px); margin: 0 auto; }
+.tool-pair-column { display: flex; flex-direction: column; gap: 6px; z-index: 1; }
+.tool-pair-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.tool-pair-lines path { fill: none; stroke: #4caf91; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.tool-pool, .tool-group, .tool-ten-layout > section, .tool-value-place { padding: 16px; border-radius: 19px; border: 2px solid var(--tool-line); background: var(--tool-panel); }
+.tool-pool { margin-bottom: 14px; }
+.tool-tokens { display: flex; flex-wrap: wrap; gap: 9px; align-items: flex-start; align-content:flex-start; min-height: 54px; }
+.tool-groups { display: grid; gap: 16px; }
+.tool-group { min-height: 150px; transition: border-color .15s, background .15s; }
+.tool-group.ready { border-color: #ddaf4b; }
+.tool-group.ready { cursor: pointer; }
+.math-tool :is(.tool-group,.tool-pool).is-over { border-color:#45ab85; box-shadow:0 0 0 4px #45ab852b; }
+.tool-group header button { display: flex; align-items: center; gap: 10px; border: 0; background: transparent; padding: 5px 8px; min-height: 44px; }
+.tool-group header button span { font-size: 30px; }
+.tool-group header strong, .tool-value-place header strong { font-size: 30px; color: var(--tool-accent); }
+.partition-tool .tool-token { touch-action: none; }
+.tool-drag-ghost { position: fixed; pointer-events: none; transform: translate(-50%, -50%); width: 54px; height: 54px; font-size: 40px; z-index: 100; }
+.tool-drag-ghost svg { width: 100%; height: 100%; }
+.tool-ten-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; }
+.tool-ten-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; max-width: 420px; }
+.tool-ten-grid > div { aspect-ratio: 1; min-width: 44px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--tool-line); border-radius: 12px; background: #80bad214; }
+.math-tool .tool-counter { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 2px solid #bb6b52; border-radius: 50%; padding: 0; flex: 0 0 44px; background: radial-gradient(circle at 35% 30%, #ffb79b, #e77d60); box-shadow: inset 0 -4px 0 #9f533522; color: #774025; }
+.math-tool .tool-counter.blue { border-color: #428aaa; background: radial-gradient(circle at 35% 30%, #b2e7fa, #63b6d7); }
+.math-tool .tool-counter.moved { background: transparent; border-style: dashed; opacity: .6; box-shadow: none; }
+.tool-value-columns { display: flex; gap: 16px; }
+.tool-value-place { flex: 1 1 0; min-width: 0; }
+.tool-value-materials { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px; min-height: 110px; }
+.tool-value-piece { display: inline-flex; flex-shrink:0; width: 48px; height: 64px; animation: tool-piece-in .22s ease-out; }
+.tool-value-place.ones .tool-value-piece { width: 18px; }
+.tool-value-piece svg { width: 100%; height: 100%; }
+@keyframes tool-piece-in { from { opacity: .3; transform: translateY(-7px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .tool-value-piece { animation: none; } }
+@media (max-width: 1100px) { .math-tool { font-size: 17px; } .tool-ten-layout { gap: 12px; } .tool-ten-layout > section { padding: 12px; } }
+
+.number-line-tool .tool-line-scroll { overflow-x: auto; padding: 30px 2px 14px; }
+.tool-line-track { display: grid; gap: 6px; border-bottom: 6px double var(--tool-muted); padding-bottom: 12px; }
+.tool-line-track button { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 90px; padding: 8px 2px; border: 2px solid var(--tool-line); border-radius: 12px; color: var(--tool-ink); background: var(--tool-panel); }
+.tool-line-track button b { font-size: 25px; }
+.tool-line-track button small { font-size: 11px; }
+.tool-line-track .visited { background: var(--tool-good-bg); border-color: var(--tool-good); }
+.tool-line-track .current { background: #fff0bd; border-color: #be8838; color: #6f4d1f; box-shadow: 0 0 0 4px #f8cd7540; }
+.tool-line-track .line-marker { position: absolute; top: -28px; font-size: 22px; height: 28px; }
+.tool-line-track .line-windows { color: #6a9ab2; font-size: 20px; line-height: 20px; }
+.with-carriages .tool-line-track button::after { content: ''; position: absolute; bottom: -7px; left: 15%; width: 11px; height: 11px; border-radius: 50%; background: #5488a3; box-shadow: 30px 0 #5488a3; }
+.number-line-tool:not(.with-carriages) .tool-line-track button { min-height: 66px; border-radius: 8px; }
+.tool-jump-actions { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 12px 0; }
+.tool-jump-actions button { min-height: 44px; }
+.grouping-tool .tool-groups { grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)) !important; }
+.grouping-tool .tool-group .tool-tokens { min-height: 75px; }
+.tool-array { margin: 16px 0; display: grid; gap: 10px; }
+.tool-array > div { display: flex; align-items: center; gap: 12px; }
+.tool-array span { display: flex; flex-wrap: wrap; gap: 8px; }
+.tool-array i { font-style: normal; font-size: 24px; color: var(--tool-muted); width: 28px; text-align: center; }
+.tool-array i.filled { color: #42aabb; }
+.tool-change-timeline { display: flex; align-items: stretch; padding: 0; gap: 14px; list-style: none; margin: 14px 0; }
+.tool-change-timeline li { flex: 1; display: flex; flex-direction: column; gap: 8px; border-radius: 14px; background: var(--tool-panel); border: 2px solid var(--tool-line); padding: 12px; text-align: center; }
+.tool-change-timeline li.current { border-color: #cca043; background: #eec55c20; }
+.tool-change-timeline li.done { border-color: var(--tool-good); }
+.tool-change-timeline b { font-size: 25px; }
+.tool-change-material, .tool-change-incoming { border: 1px solid var(--tool-line); padding: 14px; border-radius: 16px; margin: 12px 0; }
+.tool-change-incoming .tool-token { position: relative; }
+.tool-change-incoming .tool-token > span { position: absolute; right: 2px; bottom: 0; }
+.tool-missing-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.tool-missing-groups > section { border: 1px solid var(--tool-line); border-radius: 18px; padding: 14px; }
+.tool-missing-groups .tool-tokens { margin-top: 12px; }
+.tool-cover-box { margin-top: 12px; min-height: 125px; border-radius: 14px; background: repeating-linear-gradient(135deg, #8775d822, #8775d822 12px, #6797d522 12px, #6797d522 24px); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.tool-cover-box > span { font-size: 42px; color: var(--tool-ink); }
+.tool-missing-answer { display: flex; align-items: center; gap: 12px; }
+.tool-missing-answer input { width: 90px; min-height: 44px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--tool-line); background: var(--tool-panel); color: var(--tool-ink); font-size: 22px; }
+.math-tool { --tool-good: #44af88; --tool-good-bg: #31997625; }
+.math-tool .tool-line-track button:disabled { opacity: 1; }
+.tool-jump-actions button { color: var(--tool-ink); border: 1px solid var(--tool-line); background: var(--tool-panel); border-radius: 12px; padding: 8px 14px; }
+.mt-tool-fieldset { border: 0; min-width: 0; padding: 0; margin: 12px 0; }
+.mt-tool-fieldset:disabled { opacity: .55; }
+.tool-line-track button.inside { border-color: #46b69c; background: #41af8f25; }
+.grouping-tool .tool-pool .tool-token { width: 44px; height: 44px; flex-basis: 44px; padding: 5px; }
+.app .screen-pages .math-flow-main .mt-problem-steps .math-task-board-pages { max-height: max(230px, calc(var(--stage-height) - 240px)); overflow-y: auto; overscroll-behavior: contain; }
+.app .screen-pages .math-flow-main .mt-problem-steps .missing-part-tool { font-size: 17px; }
+.app .screen-pages .math-flow-main .mt-problem-steps .tool-missing-groups { margin: 10px 0; gap: 12px; }
+.app .screen-pages .math-flow-main .mt-problem-steps .tool-missing-groups > section { padding: 10px; }
+.app .screen-pages .math-flow-main .mt-problem-steps .tool-hint { margin: 8px 0; }
+.app .screen-pages .math-flow-main .mt-problem-steps .tool-actions { margin-top: 10px; }
+
+/* Quantity changes stay inside material trays, without moving controls or shrinking the page. */
+.math-tool :is(.tool-pool,.tool-group,.tool-ten-layout > section,.tool-value-place,.tool-missing-groups > section) { min-width:0; }
+.math-tool .tool-tokens { height:126px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; padding:5px; }
+.math-tool .tool-pool .tool-tokens { height:126px; }
+.math-tool .tool-group .tool-tokens { height:126px; }
+.math-tool .tool-value-materials { height:144px; min-height:0; overflow-y:auto; overscroll-behavior:contain; padding:5px; }
+.math-tool .tool-value-place header { flex-wrap:wrap; min-height:44px; }
+.math-tool .tool-value-place header strong { font-variant-numeric:tabular-nums; }
+.math-tool .tool-cover-box { height:170px; min-height:0; overflow-y:auto; }
+.math-tool .tool-cover-box .tool-tokens { flex-shrink:0; width:100%; }
+.math-tool .tool-group { min-height:0; }
+.math-tool .tool-ten-layout > section { height:250px; overflow-y:auto; overscroll-behavior:contain; }
+.grouping-tool .tool-groups { max-height:400px; overflow-y:auto; overscroll-behavior:contain; padding:4px; }
+.grouping-tool .tool-array { max-height:260px; overflow:auto; overscroll-behavior:contain; padding:4px; }
+.tool-array > div > b { white-space:nowrap; flex-shrink:0; }
+.tool-array span { flex-wrap:nowrap; }
+.tool-array i { flex:0 0 28px; }
+.quantity-change-tool .tool-change-incoming { min-height:193px; }
+
+/* Textbook controls and the comparison canvas sit side by side on landscape tablets. */
+.app .screen-pages .math-flow-main .mt-action-station:has(>.pairing-tool) { display:flex; flex-direction:column; min-height:var(--stage-height); gap:10px; }
+.app .screen-pages .math-flow-main .pairing-tool:not(.tool-pair-workspace) { display:grid; grid-template-columns:minmax(0,1fr) minmax(210px,.45fr); gap:10px 16px; }
+.app .screen-pages .math-flow-main .pairing-tool:not(.tool-pair-workspace) .tool-pair-head { grid-column:1/-1; margin:0; font-size:16px; }
+.app .screen-pages .math-flow-main .pairing-tool:not(.tool-pair-workspace) .tool-pair-scroll { grid-column:1; grid-row:2/5; height:clamp(262px,30dvh,300px); }
+.app .screen-pages .math-flow-main .pairing-tool:not(.tool-pair-workspace) .tool-hint { grid-column:2; grid-row:2; margin:0; font-size:16px; }
+.app .screen-pages .math-flow-main .pairing-tool:not(.tool-pair-workspace) .tool-relation { grid-column:2; grid-row:3; margin:0; padding:10px 12px; font-size:16px; }
+.app .screen-pages .math-flow-main .pairing-tool:not(.tool-pair-workspace) .tool-actions { grid-column:2; grid-row:4; align-self:end; margin:0; justify-content:flex-start; }
+.app .screen-pages .math-flow-main .pairing-tool:not(.tool-pair-workspace) .tool-actions button { padding:8px 12px; font-size:16px; }
+/* Primary comparison task: compact heading, operations on the left, guidance on the right. */
+.app .screen-pages .math-flow-main .tool-pair-workspace { display:grid; grid-template-columns:minmax(0,1fr) minmax(240px,.55fr); gap:16px; flex:1; }
+.app .screen-pages .math-flow-main .tool-pair-operation { display:grid; grid-template-rows:auto auto auto minmax(262px,1fr); gap:10px; min-width:0; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .mt-example-switch { gap:6px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .mt-example-switch button { font-size:14px; border:1px solid var(--tool-line); border-radius:12px; background:var(--tool-panel); }
+.app .screen-pages .math-flow-main .tool-pair-workspace .mt-example-switch button[aria-pressed="true"] { border-color:var(--tool-accent); background:color-mix(in srgb,var(--tool-accent) 12%,var(--tool-panel)); color:var(--tool-accent); }
+.app .screen-pages .math-flow-main .tool-pair-workspace .mt-compare-controls { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .mt-compare-controls label { padding:6px; gap:6px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .tool-pair-head { margin:0; align-items:center; gap:8px; font-size:16px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .tool-pair-head span { font-size:14px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .tool-pair-scroll { height:100%; min-height:262px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .tool-pair-column { width:28%; align-items:center; }
+.app .screen-pages .math-flow-main .tool-pair-explanation { display:flex; flex-direction:column; min-width:0; padding:16px; border-radius:18px; background:var(--tool-panel); }
+.app .screen-pages .math-flow-main .tool-pair-instructions h3 { margin:0; color:var(--tool-ink); font-size:19px; }
+.app .screen-pages .math-flow-main .tool-pair-instructions ol { margin:10px 0; padding-left:23px; font-size:16px; line-height:1.7; }
+.app .screen-pages .math-flow-main .tool-pair-instructions p { margin:0; color:var(--tool-muted); font-size:14px; line-height:1.6; }
+.app .screen-pages .math-flow-main .tool-pair-result-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:12px; min-height:44px; font-size:16px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .tool-hint { margin:0 0 10px; font-size:15px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .tool-relation { margin:0; min-height:74px; padding:10px 12px; background:color-mix(in srgb,var(--tool-accent) 8%,var(--tool-panel)); font-size:16px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .tool-actions { margin-top:auto; padding-top:16px; justify-content:flex-start; gap:8px; }
+.app .screen-pages .math-flow-main .tool-pair-workspace .tool-actions button { padding:8px 12px; font-size:16px; }
+.app .screen-pages .math-compose-task .mt-compose-stage { height:220px; min-height:220px; flex:none; }
+
+/* Embedded tools use the tablet's width, rather than stacking every tray vertically. */
+.app .screen-pages .math-flow-main .partition-tool { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr); gap:8px 12px; }
+.app .screen-pages .math-flow-main .partition-tool > .tool-pool { grid-column:1; grid-row:1; margin:0; }
+.app .screen-pages .math-flow-main .partition-tool > .tool-groups { grid-column:2; grid-row:1; gap:10px; }
+.app .screen-pages .math-flow-main .partition-tool > :is(.tool-hint,.tool-part-whole,.tool-relation,.tool-actions) { grid-column:1/-1; margin:0; }
+.app .screen-pages .math-flow-main .partition-tool :is(.tool-pool,.tool-group) { padding:10px; }
+.app .screen-pages .math-flow-main .partition-tool header { gap:6px; margin-bottom:6px; }
+.app .screen-pages .math-flow-main .partition-tool .tool-group header button { padding:0; gap:4px; font-size:16px; }
+.app .screen-pages .math-flow-main .partition-tool .tool-group header button span { font-size:24px; }
+.app .screen-pages .math-flow-main .partition-tool .tool-group header strong { font-size:24px; }
+.app .screen-pages .math-flow-main .partition-tool .tool-token { width:44px; height:44px; flex-basis:44px; font-size:28px; }
+.app .screen-pages .math-flow-main .partition-tool .tool-tokens { height:108px; min-height:0; }
+.app .screen-pages .math-flow-main .partition-tool .tool-part-whole { padding:8px 12px; gap:12px; }
+.app .screen-pages .math-flow-main .partition-tool .tool-actions button { font-size:16px; padding:8px 12px; }
+.app .screen-pages .math-flow-main .partition-tool .tool-group header { flex-wrap:wrap; }
+.app .screen-pages .math-compose-task { grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); }
+.app .screen-pages .math-compose-task .partition-tool { grid-template-columns:minmax(0,1fr); gap:8px; }
+.app .screen-pages .math-compose-task .partition-tool > .tool-groups { grid-column:1; grid-row:2; }
+.app .screen-pages .math-compose-task .partition-tool .tool-pool .tool-tokens { height:54px; }
+.app .screen-pages .math-compose-task .partition-tool > .tool-hint { display:none; }
+.app .screen-pages .math-compose-task .partition-tool .tool-part-whole { font-size:14px; line-height:1.4; padding:6px 8px; gap:6px; }
+.app .screen-pages .math-compose-task .partition-tool .tool-actions { gap:8px; }
+.app .screen-pages .math-compose-task .partition-tool .tool-actions button { padding:6px 10px; font-size:15px; }
+.app .screen-pages .math-flow-main .ten-frame-tool .tool-ten-grid { max-width:340px; }
+.app .screen-pages .math-flow-main .ten-frame-tool header { flex-wrap:wrap; margin-bottom:8px; }
+.app .screen-pages .math-flow-main .ten-frame-tool .tool-ten-layout > section { height:230px; padding:10px; }
+.app .screen-pages .math-flow-main .ten-frame-tool .tool-relation { margin-top:8px; padding:8px 12px; font-size:16px; }
+.app .screen-pages .math-flow-main .ten-frame-tool .tool-actions { margin-top:8px; }
+.app .screen-pages .math-flow-main .ten-frame-tool .tool-hint { margin:6px 0; font-size:16px; }
+.app .screen-pages .math-flow-main .quantity-change-tool { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.app .screen-pages .math-flow-main .quantity-change-tool > :is(.tool-change-timeline,p,.tool-actions) { grid-column:1/-1; margin:0; }
+.app .screen-pages .math-flow-main .quantity-change-tool > :is(.tool-change-material,.tool-change-incoming) { margin:0; min-height:183px; }
+.app .screen-pages .math-flow-main .quantity-change-tool:not(:has(>.tool-change-incoming)) > .tool-change-material { grid-column:1/-1; }

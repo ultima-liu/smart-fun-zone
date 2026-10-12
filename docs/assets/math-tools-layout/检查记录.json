@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-10",
+  "checks": [
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "lessons": 47,
+      "frames": 436,
+      "issues": [],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 1194,
+        "height": 834
+      },
+      "lessons": 47,
+      "frames": 436,
+      "issues": [],
+      "errors": []
+    }
+  ],
+  "scope": "浏览器排版与尺寸检查；UI 修改，未运行 E2E 功能用例"
+}

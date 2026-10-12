@@ -5,10 +5,17 @@ import { useAsr } from '../speechAssess';
 export function normalizeSpokenText(text: string, mode: 'text' | 'math'): string {
   const cleaned = text.replace(/\s+/g, '').replace(/[。，,.!?？~～]+$/g, '');
   if (mode === 'text') return cleaned;
+  const digits: Record<string, number> = { 零: 0, 〇: 0, 一: 1, 二: 2, 两: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
   return cleaned
     .replace(/[０-９]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 65248))
-    .replace(/零|〇/g, '0').replace(/[一二]/g, '1').replace(/[两二]/g, '2').replace(/三/g, '3').replace(/四/g, '4')
-    .replace(/五/g, '5').replace(/六/g, '6').replace(/七/g, '7').replace(/八/g, '8').replace(/九/g, '9').replace(/十/g, '10')
+    .replace(/[零〇一二两三四五六七八九十]+/g, (word) => {
+      if (word.length === 1 && word !== '十') return String(digits[word]);
+      if (/^[一二两三四五六七八九]?十[零〇一二两三四五六七八九]?$/.test(word)) {
+        const [tens, ones] = word.split('十');
+        return String((tens ? digits[tens] : 1) * 10 + (ones ? digits[ones] : 0));
+      }
+      return word; // 不猜测模糊或超出支持形式的读数，保留给孩子核对。
+    })
     .replace(/加/g, '＋').replace(/减/g, '－').replace(/等于|得/g, '＝')
     .replace(/\+/g, '＋').replace(/-/g, '－').replace(/=/g, '＝')
     .replace(/＋{2,}/g, '＋').replace(/－{2,}/g, '－').replace(/＝{2,}/g, '＝');

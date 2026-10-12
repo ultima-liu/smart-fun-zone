@@ -34,6 +34,12 @@ export interface WrongItem {
   remedy?: string;
   options?: string[];
   correctAnswer?: string;
+  /** 数学新版错题可生成同目标的新材料，旧记录仍使用原题。 */
+  mathLessonId?: string;
+  mathVariant?: number;
+  mathQuestionIndex?: number;
+  /** 独立情景题库；未设置的历史错题继续使用基础题库。 */
+  mathQuestionBank?: 'arena-v1';
   time: number;
 }
 

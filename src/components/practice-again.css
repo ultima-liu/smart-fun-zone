@@ -1,0 +1,2 @@
+.practice-again { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin: 8px 0; font-size: 13px; color: #426149; }
+.practice-again button { min-height: 40px; padding: 6px 14px; border: 1px solid #bbccb4; border-radius: 12px; background: #f3f8ed; color: #355240; font: inherit; cursor: pointer; }

@@ -1,3 +1,4 @@
+import { CHINESE_ASSESSMENTS } from './chineseAssessment';
 import { CHINESE_REMAINING_LESSONS } from './chineseTextbookRemaining';
 
 export type ChineseLessonId = string;
@@ -9,6 +10,7 @@ export type ChineseVisualClue = { id: string; label: string; note: string; x: nu
 export type ChineseTaskStep = { clue: string; answer: string; options: string[] };
 
 export type ChineseQuestion = {
+  audio?: string;
   question: string;
   options: string[];
   answer: number;
@@ -152,13 +154,13 @@ const CHINESE_INITIAL_LESSONS: ChineseTextbookLesson[] = [
 export const CHINESE_TEXTBOOK_LESSONS: ChineseTextbookLesson[] = [
   ...CHINESE_INITIAL_LESSONS,
   ...CHINESE_REMAINING_LESSONS,
-];
+].map((lesson) => ({ ...lesson, questions: CHINESE_ASSESSMENTS[lesson.id] ?? lesson.questions }));
 
 export const CHINESE_BOOK_UNITS = [
   { title: '我上学了', page: 'P2', note: '4 个入学主题', lessonIds: ['china', 'motherland', 'schoolchild', 'love-chinese'] as ChineseLessonId[] },
   { title: '第一单元 · 识字', page: 'P8', note: '4 课识字、语文园地与快乐读书吧', lessonIds: ['heaven-earth-human', 'metal-wood-water-fire-earth', 'mouth-ear-eye-hand-foot', 'sun-moon-mountain-river', 'garden-1', 'reading-is-joy'] as ChineseLessonId[] },
   { title: '第二单元 · 汉语拼音', page: 'P20', note: '单韵母、b p m f、d t n l', lessonIds: ['pinyin-a-o-e', 'pinyin-i-u-v', 'pinyin-b-p-m-f', 'pinyin-d-t-n-l', 'garden-2'] as ChineseLessonId[] },
-  { title: '第三单元 · 汉语拼音', page: 'P32', note: 'g h 至 y w 与整体认读音节', lessonIds: ['pinyin-g-k-h', 'pinyin-j-q-x', 'pinyin-z-c-s', 'pinyin-zh-ch-sh-r', 'pinyin-y-w', 'garden-3'] as ChineseLessonId[] },
+  { title: '第三单元 · 汉语拼音', page: 'P32', note: 'g k h 至 y w 与整体认读音节', lessonIds: ['pinyin-g-k-h', 'pinyin-j-q-x', 'pinyin-z-c-s', 'pinyin-zh-ch-sh-r', 'pinyin-y-w', 'garden-3'] as ChineseLessonId[] },
   { title: '第四单元 · 汉语拼音', page: 'P45', note: '复韵母、前后鼻韵母与拼音复习', lessonIds: ['pinyin-ai-ei-ui', 'pinyin-ao-ou-iu', 'pinyin-ie-ve-er', 'pinyin-an-en-in-un-vn', 'pinyin-ang-eng-ing-ong', 'garden-4'] as ChineseLessonId[] },
   { title: '第五单元 · 阅读', page: 'P60', note: '秋天、江南、雪地里的小画家、四季', lessonIds: ['autumn', 'jiangnan', 'snow-painters', 'four-seasons', 'garden-5'] as ChineseLessonId[] },
   { title: '第六单元 · 识字', page: 'P73', note: '对韵歌、日月明、小书包、升国旗', lessonIds: ['rhyme-song', 'sun-moon-bright', 'little-schoolbag', 'raising-flag', 'garden-6'] as ChineseLessonId[] },

@@ -1,0 +1,164 @@
+{
+  "source": "https://www.zophar.net/music/nintendo-nes-nsf/battle-city",
+  "sourceSha256": "218c51183c1d7deaffa23c9d006539a472421d04b48b21a5ad8dbd2df525305b",
+  "load": "0xea51",
+  "init": "0xef76",
+  "play": "0xea7e",
+  "verification": "Original NSF init executed in 6502; active sound flags at RAM $0300\u2013$031B identify original event IDs.",
+  "tracks": [
+    {
+      "index": 0,
+      "archive": "Track 1",
+      "soundIds": [
+        "01",
+        "02",
+        "03"
+      ]
+    },
+    {
+      "index": 1,
+      "archive": "Track 2",
+      "soundIds": [
+        "15",
+        "16",
+        "17"
+      ]
+    },
+    {
+      "index": 2,
+      "archive": "Track 3",
+      "soundIds": [
+        "18",
+        "19",
+        "1A"
+      ]
+    },
+    {
+      "index": 3,
+      "archive": "Track 4",
+      "soundIds": [
+        "00"
+      ]
+    },
+    {
+      "index": 4,
+      "archive": "SFX 1",
+      "soundIds": [
+        "04",
+        "05"
+      ]
+    },
+    {
+      "index": 5,
+      "archive": "SFX 2",
+      "soundIds": [
+        "06"
+      ]
+    },
+    {
+      "index": 6,
+      "archive": "SFX 3",
+      "soundIds": [
+        "07"
+      ]
+    },
+    {
+      "index": 7,
+      "archive": "SFX 4",
+      "soundIds": [
+        "08"
+      ]
+    },
+    {
+      "index": 8,
+      "archive": "SFX 5",
+      "soundIds": [
+        "09"
+      ]
+    },
+    {
+      "index": 9,
+      "archive": "SFX 6",
+      "soundIds": [
+        "0A"
+      ]
+    },
+    {
+      "index": 10,
+      "archive": "SFX 7",
+      "soundIds": [
+        "0B"
+      ]
+    },
+    {
+      "index": 11,
+      "archive": "SFX 8",
+      "soundIds": [
+        "0C"
+      ]
+    },
+    {
+      "index": 12,
+      "archive": "SFX 9",
+      "soundIds": [
+        "0D"
+      ]
+    },
+    {
+      "index": 13,
+      "archive": "SFX 10",
+      "soundIds": [
+        "0E"
+      ]
+    },
+    {
+      "index": 14,
+      "archive": "SFX 11",
+      "soundIds": [
+        "0F"
+      ]
+    },
+    {
+      "index": 15,
+      "archive": "SFX 12",
+      "soundIds": [
+        "10"
+      ]
+    },
+    {
+      "index": 16,
+      "archive": "SFX 13",
+      "soundIds": [
+        "11"
+      ]
+    },
+    {
+      "index": 17,
+      "archive": "SFX 14",
+      "soundIds": [
+        "12"
+      ]
+    },
+    {
+      "index": 18,
+      "archive": "SFX 15",
+      "soundIds": [
+        "13"
+      ]
+    },
+    {
+      "index": 19,
+      "archive": "SFX 16",
+      "soundIds": [
+        "14"
+      ]
+    },
+    {
+      "index": 20,
+      "archive": "SFX 17",
+      "soundIds": [
+        "1B"
+      ]
+    }
+  ]
+}

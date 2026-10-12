@@ -1,9 +1,12 @@
+import CourseReplayButton from './CourseReplayButton';
 import { useEffect, useRef, useState } from 'react';
 import { useStore } from '../store';
 import { api } from '../api';
 import { speak, stopSpeaking } from '../speech';
 import RobotAssistant from './RobotAssistant';
+import { ContentPages } from './ScreenPages';
 import { IconClose, IconMic } from './icons';
+import { beginSpeechCapture, speechCaptureActive, subscribeSpeechCapture } from '../speechCapture';
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
@@ -56,13 +59,7 @@ export default function StudyBuddy() {
   const [srSupported] = useState(() => srCtor() !== undefined);
   const recRef = useRef<SR | null>(null);
   const wakeRef = useRef<SR | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  // 自动滚到底部
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
-  }, [messages, thinking]);
+  const releaseCapture = useRef<(() => void) | null>(null);
 
   // 会话记忆：恢复本地记录（超时则清空）；首次挂载不写，避免空数组覆盖
   const skipSave = useRef(true);
@@ -104,13 +101,22 @@ export default function StudyBuddy() {
     }
   };
 
+  const cancelListen = () => {
+    const rec = recRef.current; recRef.current = null;
+    if (rec) {
+      rec.onresult = null; rec.onend = null; rec.onerror = null;
+      try { rec.abort(); } catch { /* already ended */ }
+    }
+    releaseCapture.current?.(); releaseCapture.current = null;
+    setListening(false);
+  };
+
   // 关闭时停掉朗读与识别
   const wasOpen = useRef(buddyOpen);
   useEffect(() => {
     if (!buddyOpen) {
       if (wasOpen.current) stopSpeaking();
-      setListening(false);
-      recRef.current?.abort();
+      cancelListen();
     }
     wasOpen.current = buddyOpen;
   }, [buddyOpen]);
@@ -130,13 +136,13 @@ export default function StudyBuddy() {
   };
 
   /* ---------- 点按说话 ---------- */
+  useEffect(() => () => cancelListen(), []);
   const stopListen = () => {
     try {
       recRef.current?.stop();
     } catch {
       /* ignore */
     }
-    recRef.current = null;
     setListening(false);
   };
 
@@ -144,6 +150,7 @@ export default function StudyBuddy() {
     const Ctor = srCtor();
     if (!Ctor || listening) return;
     setMicErr(null);
+    cancelListen(); stopSpeaking();
     // 防御：确保唤醒监听已让出识别通道，避免冲突
     try {
       wakeRef.current?.abort();
@@ -151,12 +158,14 @@ export default function StudyBuddy() {
       /* ignore */
     }
     const rec = new Ctor();
+    releaseCapture.current = beginSpeechCapture(cancelListen);
     let finalText = '';
     rec.lang = 'zh-CN';
     rec.continuous = false;
     rec.interimResults = true;
     rec.maxAlternatives = 1;
     rec.onresult = (e: unknown) => {
+      if (recRef.current !== rec) return;
       const ev = e as TranscriptEvent;
       let interim = '';
       for (let i = ev.resultIndex; i < ev.results.length; i++) {
@@ -168,7 +177,9 @@ export default function StudyBuddy() {
       setInput((finalText || interim).trim());
     };
     rec.onend = () => {
+      if (recRef.current !== rec) return;
       recRef.current = null;
+      releaseCapture.current?.(); releaseCapture.current = null;
       setListening(false);
       const t = finalText.trim();
       if (t) {
@@ -177,7 +188,9 @@ export default function StudyBuddy() {
       }
     };
     rec.onerror = (e: unknown) => {
+      if (recRef.current !== rec) return;
       recRef.current = null;
+      releaseCapture.current?.(); releaseCapture.current = null;
       setListening(false);
       const code = (e as { error?: string })?.error;
       if (code === 'not-allowed' || code === 'service-not-allowed') {
@@ -193,7 +206,7 @@ export default function StudyBuddy() {
     try {
       rec.start();
     } catch {
-      setListening(false);
+      cancelListen();
       setMicErr('无法启动语音识别：请使用 Chrome / Edge，并确认麦克风可用');
     }
   };
@@ -205,16 +218,31 @@ export default function StudyBuddy() {
     if (!buddyWakeOn || buddyOpen || !srCtor()) return;
     let stopped = false;
     let rec: SR | null = null;
+    let timer: number | undefined;
+    const pause = () => {
+      window.clearTimeout(timer);
+      const previous = rec; rec = null;
+      if (!previous) return;
+      previous.onend = null; previous.onerror = null; previous.onresult = null;
+      try { previous.abort(); } catch { /* already ended */ }
+      if (wakeRef.current === previous) wakeRef.current = null;
+    };
+    const schedule = (delay: number) => {
+      window.clearTimeout(timer);
+      if (!stopped && !speechCaptureActive()) timer = window.setTimeout(start, delay);
+    };
     const start = () => {
-      if (stopped) return;
+      if (stopped || speechCaptureActive()) return;
+      pause();
       const Ctor = srCtor();
       if (!Ctor) return;
-      rec = new Ctor();
+      const session = new Ctor(); rec = session;
       rec.lang = 'zh-CN';
       rec.continuous = true;
       rec.interimResults = false;
       rec.maxAlternatives = 1;
       rec.onresult = (e: unknown) => {
+        if (stopped || rec !== session || speechCaptureActive()) return;
         const ev = e as TranscriptEvent;
         let text = '';
         for (let i = ev.resultIndex; i < ev.results.length; i++) {
@@ -233,26 +261,25 @@ export default function StudyBuddy() {
         }
       };
       rec.onend = () => {
-        if (!stopped) window.setTimeout(start, 400);
+        if (rec === session) { rec = null; wakeRef.current = null; schedule(400); }
       };
       rec.onerror = () => {
-        if (!stopped) window.setTimeout(start, 900);
+        if (rec === session) { pause(); schedule(900); }
       };
       wakeRef.current = rec;
       try {
         rec.start();
       } catch {
-        /* 麦克风未授权时静默 */
+        pause(); // 未授权时等用户操作，不反复尝试申请麦克风。
       }
     };
+    const unsubscribe = subscribeSpeechCapture(() => {
+      if (speechCaptureActive()) pause(); else schedule(400);
+    });
     start();
     return () => {
       stopped = true;
-      try {
-        rec?.abort();
-      } catch {
-        /* ignore */
-      }
+      unsubscribe(); pause();
       wakeRef.current = null;
     };
   }, [buddyWakeOn, buddyOpen]);
@@ -291,7 +318,7 @@ export default function StudyBuddy() {
             </button>
           </header>
 
-          <div className="buddy-body" ref={scrollRef}>
+          <ContentPages kind="messages" className="buddy-body" followEnd={messages.length + (thinking ? 1 : 0)}>
             {messages.length === 0 && !thinking && (
               <div className="buddy-empty">
                 <span className="buddy-empty-emoji">👋</span>
@@ -306,9 +333,7 @@ export default function StudyBuddy() {
                   </span>
                   <div className="buddy-col">
                     <span className="buddy-bubble">{m.content}</span>
-                    <button className="buddy-replay" onClick={() => speak(m.content, 'zh')} aria-label="语音重播">
-                      🔊 再听一遍
-                    </button>
+                    <CourseReplayButton label="语音重播" onClick={() => speak(m.content, 'zh')} />
                   </div>
                 </div>
               ) : (
@@ -329,7 +354,7 @@ export default function StudyBuddy() {
                 </span>
               </div>
             )}
-          </div>
+          </ContentPages>
 
           <div className="buddy-quick">
             {QUICK.map((q) => (

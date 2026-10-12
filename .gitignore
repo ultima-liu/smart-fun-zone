@@ -19,3 +19,6 @@ playwright-report/
 # 服务端运行时数据（TTS 缓存 / 构建产物）
 server/var/
 server/node_modules/
+
+# e2e / 本地测试产物（trace 等，勿入库）
+tmp/

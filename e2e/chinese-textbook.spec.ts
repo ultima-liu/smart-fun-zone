@@ -1,41 +1,42 @@
-import { expect, test } from '@playwright/test';
+import { dragChineseWord } from './chinese-order-helpers';
+import { expect, test, type Locator, type Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 import { CHINESE_BOOK_UNITS, CHINESE_TEXTBOOK_LESSONS } from '../src/content/chineseTextbookCurriculum';
 import { CHINESE_PINYIN_STUDY } from '../src/content/chinesePinyinStudy';
+import { CHINESE_PINYIN_TRIALS } from '../src/content/chinesePinyinTrials';
+import { getChineseTeaching } from '../src/content/chineseTeaching';
+import { CHINESE_KNOWLEDGE_EXTENSION } from '../src/content/chineseKnowledgeExtension';
+import { CHINESE_PINYIN_AUDIO } from '../src/content/chinesePinyinAudio';
 import { CHINESE_PINYIN_GARDENS } from '../src/content/chinesePinyinGardenStudy';
-import { CHINESE_KNOWLEDGE_EXTENSION, CHINESE_KNOWLEDGE_REVISIT_FROM } from '../src/content/chineseKnowledgeExtension';
 
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-test.use({ launchOptions: { executablePath: CHROME } });
+test.use({ launchOptions: { executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] } });
 
-/** 逐句点读+跟读：每行先点读（听），再跟读（弹收音层，假识别器回填句子），点完成后 AI 判定通过 */
-async function readAllLines(page: import('@playwright/test').Page) {
-  const rows = page.locator('.ct-read-line');
-  for (let i = 0; i < await rows.count(); i++) {
-    await rows.nth(i).locator('button').first().click();
-    await rows.nth(i).locator('.ct-read-follow').click();
-    await expect(page.locator('.ct-follow-scores span').first()).toBeVisible();
-    await page.getByRole('button', { name: '完成，让聪聪判一判' }).click();
-    await expect(page.locator('.ct-follow-mask')).toHaveCount(0);
-  }
+async function recordSelf(scope: Locator) {
+  await scope.getByRole('button', { name: '我已实际练习，开始检查', exact: true }).click();
+  await scope.getByRole('button', { name: '记录：我练习了', exact: true }).click();
 }
-
-/** 观察热点全部点亮：先等渲染（慢启动时 count 可能为 0，空转会卡死主按钮），再补点重试 */
-async function clickAllHotspots(page: import('@playwright/test').Page) {
-  await page.waitForSelector('.ct-scene-hotspot', { timeout: 15000 });
-  const total = await page.locator('.ct-scene-hotspot').count();
-  expect(total).toBeGreaterThan(0);
-  // 每轮重新查询并点"当前第一个未点亮"的，避免 nth 下标在集合缩小后失效
-  for (let i = 0; i < total * 3; i++) {
-    const pending = page.locator('.ct-scene-hotspot:not(.seen)');
-    if (!(await pending.count())) break;
-    await pending.first().click();
-  }
-  await expect(page.locator('.ct-scene-hotspot.seen')).toHaveCount(total);
+async function observeAndRead(page: Page) {
+  await expect(page.locator('.ct-scene-hotspot').first()).toBeVisible();
+  for (const button of await page.locator('.ct-scene-hotspot').all()) await button.click();
+  await expect(page.locator('.ct-phase-nav button').nth(1)).toHaveClass(/active/);
+  await page.getByRole('button', { name: '我已完整听读或读过' }).click();
+  await expect(page.locator('.ct-phase-nav button').nth(2)).toHaveClass(/active/);
 }
-
+async function phase(page: Page, id: string, value: number) {
+  await page.addInitScript(({ id, value }) => {
+    localStorage.setItem(`sfz-chinese-flow-v1:chinese-textbook-child:${id}`, JSON.stringify({ phase: value, unlocked: value }));
+  }, { id, value });
+  await page.goto(`/#/chinese-course/${id}`);
+  await expect(page.locator('.ct-phase-nav button').nth(value)).toHaveClass(/active/);
+}
+async function evidence(page: Page) {
+  return page.evaluate(() => JSON.parse(localStorage.getItem('sfz-chinese-evidence-v1:chinese-textbook-child') ?? '[]') as Array<{ skill: string; level: string; source: string; taskId: string; context: string }>);
+}
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
-    // 跟读用的假语音识别：开始后把弹层里的目标句作为识别结果回填，让 AI 判定可测
+    if (sessionStorage.getItem('chinese-teaching-seeded')) return;
+    sessionStorage.setItem('chinese-teaching-seeded', '1');
+    // 模拟文字识别回填，验证机器不据此评价实际发音。
     class FakeSR {
       lang = ''; continuous = false; interimResults = false;
       onresult: ((e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null = null;
@@ -67,241 +68,422 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test('新语文目录按教材页序开放整册四十五个学习页面', async ({ page }) => {
-  const errors: string[] = [];
-  page.on('pageerror', (error) => errors.push(error.message));
+test('整册45课保留教材目录', async ({ page }) => {
   await page.goto('/#/subject/chinese');
   await expect(page.getByRole('heading', { name: '一年级语文上册' })).toBeVisible();
-  expect(CHINESE_TEXTBOOK_LESSONS).toHaveLength(45);
-  expect(Object.keys(CHINESE_KNOWLEDGE_EXTENSION).sort()).toEqual(CHINESE_TEXTBOOK_LESSONS.map((lesson) => lesson.id).sort());
-  for (const card of Object.values(CHINESE_KNOWLEDGE_EXTENSION)) {
-    expect(card.options).toContain(card.answer);
-    expect(card.mnemonic.length).toBeGreaterThan(8);
-  }
-  expect(Object.keys(CHINESE_KNOWLEDGE_REVISIT_FROM).sort()).toEqual(Object.entries(CHINESE_KNOWLEDGE_EXTENSION).filter(([, card]) => card.mode === 'reuse').map(([id]) => id).sort());
-  for (const [id, from] of Object.entries(CHINESE_KNOWLEDGE_REVISIT_FROM))
-    expect(CHINESE_TEXTBOOK_LESSONS.findIndex((lesson) => lesson.id === from)).toBeLessThan(CHINESE_TEXTBOOK_LESSONS.findIndex((lesson) => lesson.id === id));
-  expect(CHINESE_TEXTBOOK_LESSONS.filter((lesson) => lesson.artworkSource === 'original')).toHaveLength(23);
-  expect(CHINESE_TEXTBOOK_LESSONS.filter((lesson) => lesson.artworkSource === 'textbook')).toHaveLength(22);
-  expect(new Set(CHINESE_TEXTBOOK_LESSONS.map((lesson) => lesson.artwork))).toHaveProperty('size', 45);
-  await expect(page.locator('.ct-unit-tabs button')).toHaveCount(9);
-  await expect(page.locator('.ct-method-strip > div')).toHaveCount(5);
-  for (const [index, tab] of (await page.locator('.ct-unit-tabs button').all()).entries()) {
+  await expect(page.locator('.ct-unit-buttons button')).toHaveCount(9);
+  for (const [index, tab] of (await page.locator('.ct-unit-buttons button').all()).entries()) {
     await tab.click();
-    const expectedCount = CHINESE_BOOK_UNITS[index].lessonIds.length;
-    await expect(page.locator('.ct-lesson-entry')).toHaveCount(expectedCount);
-    await expect(page.locator('.ct-lesson-art img')).toHaveCount(expectedCount);
-    await expect(page.locator('.ct-unit-tabs button').nth(index)).toHaveClass(/active/);
+    await expect(page.locator('.ct-lesson-entry')).toHaveCount(CHINESE_BOOK_UNITS[index].lessonIds.length);
   }
-  expect(errors).toEqual([]);
 });
 
-test('我是中国人完成观察、点读、拼句和迁移挑战后记录进度', async ({ page }) => {
+for (const scenario of [
+  { name: 'Web 目录进入课程', lessonId: 'little-boat', unit: 7, viewport: { width: 1280, height: 900 }, direct: false },
+  { name: 'Pad 直接进入课程', lessonId: 'crow-drinks-water', unit: 8, viewport: { width: 768, height: 1024 }, direct: true },
+]) test(`返回目录定位：${scenario.name}保留所属单元，刷新也保留`, async ({ page }) => {
+  await page.setViewportSize(scenario.viewport);
+  if (scenario.direct) await page.goto(`/#/chinese-course/${scenario.lessonId}`);
+  else {
+    await page.goto('/#/subject/chinese');
+    await page.locator('.ct-unit-buttons button').nth(scenario.unit).click();
+    await page.locator(`.ct-lesson-${scenario.lessonId}`).click();
+  }
+  await page.getByRole('button', { name: '返回语文目录', exact: true }).click();
+  await expect(page.locator('.ct-unit-buttons button').nth(scenario.unit)).toHaveClass(/active/);
+  await expect(page.locator(`.ct-lesson-${scenario.lessonId}`)).toBeVisible();
+  await page.reload();
+  await expect(page.locator('.ct-unit-buttons button').nth(scenario.unit)).toHaveClass(/active/);
+  await page.locator(`.ct-lesson-${scenario.lessonId}`).click();
+  await page.goBack();
+  await expect(page.locator('.ct-unit-buttons button').nth(scenario.unit)).toHaveClass(/active/);
+});
+
+test('完成课程后返回所属单元，不回到第一单元', async ({ page }) => {
+  await phase(page, 'crow-drinks-water', 4);
+  const questions = CHINESE_TEXTBOOK_LESSONS.find((lesson) => lesson.id === 'crow-drinks-water')!.questions;
+  for (const question of questions) {
+    await page.locator('.ct-challenge-options').getByText(question.options[question.answer], { exact: true }).click();
+    await expect(page.locator('.ct-challenge-options button.correct')).toHaveCount(0);
+  }
+  await expect(page).toHaveURL(/subject\/chinese/);
+  await expect(page.locator('.ct-unit-buttons button').nth(8)).toHaveClass(/active/);
+  await expect(page.locator('.ct-lesson-crow-drinks-water.done')).toBeVisible();
+});
+
+test('完整入学课：可选知识桥、真实拼句与交流、迁移取证和奖励分别记录', async ({ page }) => {
   await page.goto('/#/chinese-course/china');
-  await expect(page.getByRole('heading', { name: '我是中国人', exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: '我发现了全部线索，去点读 →' })).toBeDisabled();
-  await expect(page.locator('.ct-observe-artwork')).toHaveJSProperty('complete', true);
-  await clickAllHotspots(page);
-  await page.getByRole('button', { name: '我发现了全部线索，去点读 →' }).click();
-
-  await expect(page.getByRole('button', { name: '正文已点读并跟读，继续教材练习 →' })).toBeDisabled();
-  // 拼音注音开关：打开后每字上标带调拼音，首字"我"注音 wǒ
-  const pyToggle = page.getByRole('button', { name: '拼音注音' });
-  await pyToggle.click();
-  await expect(page.locator('.ct-read-py ruby rt').first()).toHaveText('wǒ');
-  await pyToggle.click();
-  await expect(page.locator('.ct-read-py')).toHaveCount(0);
-  await readAllLines(page);
-  await page.getByRole('button', { name: '正文已点读并跟读，继续教材练习 →' }).click();
-
-  await expect(page.locator('.ct-textbook-study')).toBeVisible();
-  for (const button of await page.locator('.ct-textbook-study .ct-study-content button').all()) await button.click();
+  await expect(page.locator('.ct-phase-nav button').nth(1)).toBeDisabled();
+  await observeAndRead(page);
   for (const button of await page.locator('.ct-word-grid button').all()) await button.click();
-  await page.getByRole('button', { name: '我说完了' }).click();
-  await expect(page.getByRole('button', { name: '学完教材与知识延伸，去动手表达 →' })).toBeDisabled();
-  await page.getByRole('button', { name: '🔊 听聪聪讲方法' }).click();
-  await page.locator('.ct-ktrail-check').getByRole('button', { name: CHINESE_KNOWLEDGE_EXTENSION.china.answer }).click();
-  await page.getByRole('button', { name: '教材与知识延伸已完成，去动手表达 →' }).click();
-
-  for (const answer of ['中华民族', '是', '一家']) {
-    await page.locator('.ct-task-options button').getByText(answer, { exact: true }).click();
-    await page.waitForTimeout(700);
+  await expect(page.getByRole('tab', { name: /知识桥/, selected: true })).toBeVisible();
+  await page.locator('.ct-phase-nav button').nth(3).click();
+  await expect(page.locator('.ct-phase-nav button').nth(3)).toHaveClass(/active/);
+  const operation = page.getByRole('region', { name: '配对与排序任务' });
+  const next = page.locator('.ct-phase-nav button').nth(4);
+  await expect(next).toBeDisabled();
+  for (const [index, item] of ['中华民族', '是', '一家'].entries()) await dragChineseWord(page, operation, item, index);
+  await operation.getByRole('button', { name: '检查这项任务' }).click();
+  await expect(next).toBeDisabled();
+  await page.getByRole('tab', { name: /口语练习/ }).click();
+  const oral = page.getByRole('region', { name: '真实表达与交流' });
+  await oral.getByRole('button', { name: '需要帮助：听示范、看句式' }).click();
+  await expect(oral.getByRole('button', { name: '家人：独立完成' })).toBeDisabled();
+  await oral.getByRole('button', { name: '收起句式，自己试试' }).click();
+  await recordSelf(oral);
+  expect((await evidence(page)).find((row) => row.taskId === 'oral-transfer')).toMatchObject({ source: 'self', level: 'practiced' });
+  await expect(next).toHaveClass(/active/);
+  const questions = CHINESE_TEXTBOOK_LESSONS.find((lesson) => lesson.id === 'china')!.questions;
+  await page.locator('.ct-challenge-options').getByText(questions[0].options.find((_, index) => index !== questions[0].answer)!, { exact: true }).click();
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('sfz-chinese-practice-v1:chinese-textbook-child:china:challengeHelped'))).toBe('true');
+  await page.reload();
+  for (const question of questions) {
+    await page.locator('.ct-challenge-options').getByText(question.options[question.answer], { exact: true }).click();
+    await expect(page.locator('.ct-challenge-options button.correct')).toHaveCount(0);
   }
-  await expect(page.getByText('中华民族是一家。', { exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '关键任务完成，进入挑战 →' }).click();
-
-  for (const answer of ['中国人', '大家团结在一起', '我是中国人，我叫小星。']) {
-    await page.locator('.ct-challenge-options button').getByText(answer, { exact: true }).click();
-    await page.waitForTimeout(900);
-  }
-  await page.getByRole('button', { name: '记录成绩，返回目录' }).click();
+  expect((await evidence(page)).find((row) => row.taskId === 'challenge:0')).toMatchObject({ level: 'supported' });
+  await expect(page.getByRole('region', { name: '语文学习完成', exact: true })).toBeVisible();
+  await page.getByRole('region', { name: '语文学习完成', exact: true }).getByRole('button', { name: '返回语文目录', exact: true }).click();
+  await expect(page).toHaveURL(/subject\/chinese/);
   await expect(page.locator('.ct-lesson-entry.done')).toContainText('我是中国人');
+  expect((await evidence(page)).filter((row) => row.source === 'self').every((row) => row.level === 'practiced')).toBe(true);
+  expect(await page.evaluate(() => Object.keys(localStorage).some((key) => key.startsWith('sfz-chinese-practice-v1:chinese-textbook-child:china:')))).toBe(false);
 });
 
-test('拼音课把教材内容重做为听音四线格声调拼读识字和规则任务', async ({ page }) => {
-  expect(Object.keys(CHINESE_PINYIN_STUDY)).toHaveLength(14);
-  for (const [id, pack] of Object.entries(CHINESE_PINYIN_STUDY)) {
-    expect(pack.letters.length).toBeGreaterThan(0);
-    expect(pack.tones.length).toBeGreaterThan(0);
-    expect(pack.words.length).toBeGreaterThan(0);
-    expect(pack.readingLines.length).toBeGreaterThan(0);
-    expect(CHINESE_TEXTBOOK_LESSONS.find((lesson) => lesson.id === id)?.sourceLines).toEqual(pack.readingLines);
-  }
-  await page.setViewportSize({ width: 768, height: 900 });
-  await page.goto('/#/chinese-course/pinyin-a-o-e');
-  await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
-  await clickAllHotspots(page);
-  await page.getByRole('button', { name: '我发现了全部线索，去点读 →' }).click();
-  await readAllLines(page);
-  await page.getByRole('button', { name: '正文已点读并跟读，继续教材练习 →' }).click();
-  await expect(page.locator('.ct-pinyin-lab')).toBeVisible();
-  await expect(page.locator('.ct-textbook-reference--expanded')).toHaveCount(0);
-  await expect(page.locator('.ct-pinyin-letter-grid button')).toHaveCount(3);
-  await expect(page.getByRole('button', { name: '完成这一步，继续 声调与拼读 →' })).toBeDisabled();
-  for (const button of await page.locator('.ct-pinyin-letter-grid button').all()) await button.click();
-  await page.getByRole('button', { name: '完成这一步，继续 声调与拼读 →' }).click();
-  for (const button of await page.locator('.ct-pinyin-tones button').all()) await button.click();
-  await page.getByRole('button', { name: '完成这一步，继续 图文识字 →' }).click();
-  for (const button of await page.locator('.ct-pinyin-word-grid button').all()) await button.click();
-  await page.getByRole('button', { name: '完成这一步，继续 规律验证 →' }).click();
-  await page.getByRole('button', { name: '听聪聪解释规则' }).click();
-  await page.locator('.ct-pinyin-check').getByRole('button', { name: '张大嘴巴' }).click();
-  await expect(page.getByRole('button', { name: '学完教材与知识延伸，去动手表达 →' })).toBeDisabled();
-  await page.getByRole('button', { name: '🔊 听聪聪讲方法' }).click();
-  await page.locator('.ct-ktrail-check').getByRole('button', { name: CHINESE_KNOWLEDGE_EXTENSION['pinyin-a-o-e'].answer }).click();
-  await expect(page.getByRole('button', { name: '教材与知识延伸已完成，去动手表达 →' })).toBeEnabled();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy();
+test('园地按教材材料学习，活动和观察断点可刷新继续', async ({ page }) => {
+  await phase(page, 'garden-2', 2);
+  const activities = CHINESE_PINYIN_GARDENS['garden-2'];
+  for (const button of await page.locator('.ct-pinyin-garden-material:visible button').all()) await button.click();
+  await expect(page.getByRole('tab', {name:/想一想/,selected:true})).toBeVisible();
+  await page.locator('.ct-pinyin-garden-question:visible').getByText(activities[0].answer, { exact: true }).click();
+  await expect(page.getByRole('tab', {name:/教材任务 2/,selected:true})).toBeVisible();
+  await page.locator('.ct-pinyin-garden-material:visible button').first().click();
+  await page.reload();
+  await expect(page.locator('.ct-pinyin-panel-head:visible')).toContainText(activities[1].title);
+  await expect(page.locator('.ct-pinyin-garden-material:visible button').first()).toHaveClass(/seen/);
+  await expect(page.locator('.ct-phase-nav button').nth(3)).toBeDisabled();
 });
 
-test('拼音园地二至四用栏目任务和共读内容替代扫描页确认', async ({ page }) => {
-  expect(Object.keys(CHINESE_PINYIN_GARDENS).sort()).toEqual(['garden-2', 'garden-3', 'garden-4']);
-  for (const activities of Object.values(CHINESE_PINYIN_GARDENS)) expect(activities).toHaveLength(5);
-  await page.goto('/#/chinese-course/garden-2');
-  await clickAllHotspots(page);
-  await page.getByRole('button', { name: '我发现了全部线索，去点读 →' }).click();
-  await readAllLines(page);
-  await page.getByRole('button', { name: '正文已点读并跟读，继续教材练习 →' }).click();
-  await expect(page.locator('.ct-pinyin-garden')).toBeVisible();
-  await expect(page.locator('.ct-textbook-reference--expanded')).toHaveCount(0);
-  await expect(page.getByRole('heading', { name: '生活识字 · 拼音本' })).toBeVisible();
-  await expect(page.getByRole('button', { name: '这项完成，继续下一项 →' })).toBeDisabled();
-  for (const button of await page.locator('.ct-pinyin-garden-material button').all()) await button.click();
-  await page.locator('.ct-pinyin-garden-question').getByRole('button', { name: '姓名' }).click();
-  await page.getByRole('button', { name: '这项完成，继续下一项 →' }).click();
-  await expect(page.getByRole('heading', { name: '声调实验 · 读准声音' })).toBeVisible();
-  for (const [index, activity] of CHINESE_PINYIN_GARDENS['garden-2'].slice(1).entries()) {
-    for (const button of await page.locator('.ct-pinyin-garden-material button').all()) await button.click();
-    await page.locator('.ct-pinyin-garden-question button').getByText(activity.answer, { exact: true }).click();
-    await page.getByRole('button', { name: index === 3 ? '完成园地学习 →' : '这项完成，继续下一项 →' }).click();
-  }
-  const review = page.getByRole('region', { name: '本园地教材任务完成回顾' });
-  await expect(review).toContainText('生活识字 · 拼音本');
-  await expect(review).toContainText('小白兔为什么后来有白菜送人？');
-  await expect(review).toContainText('我的答案：他自己种菜并照料');
-});
-
-test('金木水火土首次讲透田字格中线汉字数字占格与常见结构', async ({ page }) => {
-  await page.setViewportSize({ width: 768, height: 900 });
-  await page.goto('/#/chinese-course/metal-wood-water-fire-earth');
-  await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
-  await clickAllHotspots(page);
-  await page.getByRole('button', { name: '我发现了全部线索，去点读 →' }).click();
-  await readAllLines(page);
-  await page.getByRole('button', { name: '正文已点读并跟读，继续教材练习 →' }).click();
-
-  await expect(page.locator('[data-knowledge="tian-grid"]')).toBeVisible();
-  await expect(page.getByRole('button', { name: '继续认识 汉字数字 →' })).toBeDisabled();
-  for (const name of ['左上格', '右上格', '左下格', '右下格', '横中线', '竖中线'])
-    await page.locator('.ct-ktian-board').getByRole('button', { name }).click();
-  await page.locator('.ct-ktrail-check').getByRole('button', { name: '竖中线' }).click();
-  await page.getByRole('button', { name: '继续认识 汉字数字 →' }).click();
-  await expect(page.getByText('“一、二、三”是汉字数字')).toBeVisible();
-  for (const name of ['一', '二', '三', '上']) await page.locator('.ct-ktian-number-pick').getByRole('button', { name }).click();
-  await page.locator('.ct-ktrail-check').getByRole('button', { name: '下面的一横' }).click();
-  await page.getByRole('button', { name: '继续认识 字形三类 →' }).click();
-  for (const name of ['独体', '左右', '上下']) await page.locator('.ct-ktian-structures').getByRole('button', { name: new RegExp(name) }).click();
-  await page.locator('.ct-ktrail-check').getByRole('button', { name: '左右结构' }).click();
-  await expect(page.getByText('✓ 田字格小工坊已完成')).toBeVisible();
-  await expect(page.getByRole('button', { name: '学完教材与知识延伸，去动手表达 →' })).toBeDisabled();
-
-  for (const button of await page.locator('.ct-recognize-grid button').all()) await button.click();
-  for (const button of await page.locator('.ct-writing-grid > button').all()) await button.click();
-  // 生字卡：会认的字区入口打开，翻到下一个再关闭
-  await page.locator('.ct-study-deck').first().click();
-  await expect(page.locator('.char-card-big')).toHaveText('一');
-  await page.getByRole('button', { name: '下一个 →' }).click();
-  await expect(page.locator('.char-card-big')).toHaveText('二');
-  await expect(page.locator('.char-card-pos')).toHaveText('2 / 7');
-  await page.getByRole('button', { name: '关闭' }).click();
-  await expect(page.locator('.char-card')).toHaveCount(0);
-  await page.getByRole('button', { name: '我已朗读并尝试背诵' }).click();
-  for (const button of await page.locator('.ct-tian-list button').all()) await button.click();
-  await expect(page.getByRole('button', { name: '教材与知识延伸已完成，去动手表达 →' })).toBeEnabled();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy();
-});
-
-test('秋天完整保留P61生字田字格背诵自然段和一字变调学习', async ({ page }) => {
-  await page.setViewportSize({ width: 768, height: 900 });
-  await page.goto('/#/chinese-course/autumn');
-  await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
-  await clickAllHotspots(page);
-  await page.getByRole('button', { name: '我发现了全部线索，去点读 →' }).click();
-  await readAllLines(page);
-  await page.getByRole('button', { name: '正文已点读并跟读，继续教材练习 →' }).click();
-
-  await expect(page.getByText('P61 生字、田字格、朗读背诵与语文知识')).toBeVisible();
-  await expect(page.getByText('借助拼音朗读课文，做到正确、自然；再尝试背诵课文。')).toBeVisible();
-  await expect(page.getByText('数一数，课文一共有几个自然段？注意自然段前面有两个空格。')).toBeVisible();
-  await expect(page.getByText('读一读，注意“一”在不同词语中的读音变化。')).toBeVisible();
-  await expect(page.locator('.ct-recognize-grid button')).toHaveCount(10);
-  await expect(page.locator('.ct-writing-grid > button')).toHaveCount(4);
-
-  for (const button of await page.locator('.ct-recognize-grid button').all()) await button.click();
-  for (const button of await page.locator('.ct-writing-grid > button').all()) await button.click();
-  await page.getByRole('button', { name: '我已朗读并尝试背诵' }).click();
-  await page.getByRole('button', { name: '3 个' }).click();
-  await page.getByRole('button', { name: '我已逐组读过' }).click();
-  await page.getByRole('button', { name: '🔊 听聪聪讲方法' }).click();
-  await page.locator('.ct-ktrail-check').getByRole('button', { name: CHINESE_KNOWLEDGE_EXTENSION.autumn.answer }).click();
-  await expect(page.getByRole('button', { name: '教材与知识延伸已完成，去动手表达 →' })).toBeEnabled();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy();
-  expect(await page.locator('.ct-study-section').first().evaluate((element) => getComputedStyle(element).color)).toBe('rgb(39, 51, 74)');
-});
-
-test('入学、识字、拼音、阅读和园地页面均有独立观察场景，并适配浅色平板布局', async ({ page }) => {
-  await page.setViewportSize({ width: 768, height: 900 });
-  const samples = ['china', 'metal-wood-water-fire-earth', 'pinyin-a-o-e', 'autumn', 'garden-8']
-    .map((id) => CHINESE_TEXTBOOK_LESSONS.find((lesson) => lesson.id === id)!);
-  for (const lesson of samples) {
-    await page.goto(`/#/chinese-course/${lesson.id}`);
-    await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
-    await expect(page.getByRole('heading', { name: lesson.title, exact: true })).toBeVisible();
-    await expect(page.locator(`.scene-${lesson.id}`)).toBeVisible();
-    await expect(page.locator('.ct-observe-artwork')).toHaveAttribute('src', lesson.artwork);
-    expect(await page.locator('.ct-observe-artwork').evaluate((image: HTMLImageElement) => image.naturalWidth > 1000 && image.naturalHeight > 500)).toBeTruthy();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy();
-    const color = await page.locator('.ct-stage').evaluate((element) => getComputedStyle(element).color);
-    expect(color).toBe('rgb(39, 51, 74)');
-  }
-});
-
-test('目录显示继续上次学习：点击回到保留的阶段，无断点时不显示', async ({ page }) => {
+test('语音识别只展示识别文字，不打发音分、不强制逐句过关', async ({ page }) => {
   await page.addInitScript(() => {
-    // 与语文课时页的断点键一致：第一阶段已完成，停在第三阶段（教材练习）
-    localStorage.setItem('sfz-chinese-flow-v1:chinese-textbook-child:china', JSON.stringify({ phase: 2, unlocked: 2 }));
+    class PartialRecognition {
+      onresult: ((event: unknown) => void) | null = null; onend: (() => void) | null = null;
+      start() { setTimeout(() => { this.onresult?.({ results: [[{ transcript: '我是' }]] }); this.onend?.(); }, 50); }
+      abort() {}
+    }
+    (window as unknown as Record<string, unknown>).SpeechRecognition = PartialRecognition;
   });
-  await page.goto('/#/subject/chinese');
-  const btn = page.locator('.mc-continue');
-  await expect(btn).toContainText('继续上次学习');
-  await expect(btn).toContainText('我是中国人');
-  await expect(btn).toContainText('正在进行：教材练习');
-  await btn.click();
-  await expect(page).toHaveURL(/chinese-course\/china/);
+  await phase(page, 'china', 1);
+  await page.locator('.ct-read-follow').first().click();
+  await expect(page.locator('.ct-follow-scores')).toContainText('识别到：我是');
+  await expect(page.locator('.ct-follow-card')).not.toContainText('分');
+  await page.getByRole('button', { name: '完成，记录这次练习' }).click();
+  expect((await evidence(page))[0]).toMatchObject({ level: 'practiced', source: 'self' });
+  await page.getByRole('button', { name: '我已完整听读或读过' }).click();
   await expect(page.locator('.ct-phase-nav button').nth(2)).toHaveClass(/active/);
+  await page.addInitScript(() => {
+    const target = window as unknown as Record<string, unknown>;
+    target.SpeechRecognition = undefined; target.webkitSpeechRecognition = undefined;
+    localStorage.removeItem('sfz-chinese-evidence-v1:chinese-textbook-child');
+  });
+  await page.reload();
+  await page.locator('.ct-read-follow').first().click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  expect(await evidence(page)).toEqual([]);
+  await page.getByRole('button', { name: '我已线下读过，记录练习' }).click();
+  expect((await evidence(page))[0]).toMatchObject({ source: 'self', level: 'practiced' });
 });
 
-test('没有断点时目录不显示继续上次学习', async ({ page }) => {
+test('拼音静音时提供实际线下听辨，自己拼读与表达分别必做', async ({ page }) => {
+  await phase(page, 'pinyin-a-o-e', 2);
+  const letters = page.locator('.ct-pinyin-letter-grid button');
+  await letters.first().click();
+  await page.reload();
+  await expect(letters.first()).toHaveClass(/seen/);
+  for (const button of await letters.all()) await button.click();
+  await expect(page.getByRole('tab',{name:/声调与拼读/,selected:true})).toBeVisible();
+  for (const vowel of ['a', 'o', 'e']) {
+    await page.locator('.ct-tone-demo').getByRole('button', { name: vowel, exact: true }).click();
+    await page.locator('.ct-tone-road-grid > button').first().click();
+  }
+  await expect(page.getByRole('tab',{name:/口型示范/,selected:true})).toBeVisible();
+  for (const button of await page.locator('.ct-mouth-card').all()) {
+    await button.click();
+    await expect(button).not.toHaveClass(/is-demonstrating/);
+  }
+  await expect(page.getByRole('tab',{name:/规律验证/,selected:true})).toBeVisible();
+  await expect(page.getByRole('button', { name: '听聪聪解释规则' })).toHaveCount(0);
+  await page.locator('.ct-pinyin-check').getByText(CHINESE_PINYIN_STUDY['pinyin-a-o-e'].check.answer, { exact: true }).click();
+  await expect(page.locator('.ct-phase-nav button').nth(3)).toBeDisabled();
+  await expect(page.getByRole('tab',{name:/听辨练习/,selected:true})).toBeVisible();
+  for (let index = 0; index < 2; index++) {
+    const listening = page.getByRole('region', { name: '新音节听辨' });
+    await expect(listening.getByRole('button', { name: '听真人音节录音' })).toBeDisabled();
+    await listening.getByRole('button',{name:'请家人帮助，或线下听辨',exact:true}).click();
+    await recordSelf(page.locator('.ct-offline-check'));
+  }
+  await expect(page.getByRole('tab', { name: /知识桥/, selected: true })).toBeVisible();
+  await page.locator('.ct-phase-nav button').nth(3).click();
+  await expect(page.locator('.ct-phase-nav button').nth(3)).toHaveClass(/active/);
+  await page.getByRole('tab',{name:/拼音表达/}).click();
+  await recordSelf(page.getByRole('region', { name: '自己拼读新音节' }));
+  await expect(page.getByRole('tab',{name:/口语练习/,selected:true})).toBeVisible();
+  await expect(page.locator('.ct-phase-nav button').nth(4)).toBeDisabled();
+  await recordSelf(page.getByRole('region', { name: '真实表达与交流' }));
+  await expect(page.locator('.ct-phase-nav button').nth(4)).toHaveClass(/active/);
+});
+
+test('真人录音听完才可选择，答错后重试记录为需要提示', async ({ page }) => {
+  await page.addInitScript(() => {
+    const stored = JSON.parse(localStorage.getItem('smart-fun-zone')!); stored.state.sound = true; stored.state.voiceOn = true;
+    localStorage.setItem('smart-fun-zone', JSON.stringify(stored));
+    HTMLMediaElement.prototype.play = function () { setTimeout(() => this.dispatchEvent(new Event('ended')), 40); return Promise.resolve(); };
+  });
+  await phase(page, 'pinyin-b-p-m-f', 4);
+  const listening = page.getByRole('region', { name: '新音节听辨' });
+  const trial = CHINESE_PINYIN_TRIALS['pinyin-b-p-m-f'][2];
+  await expect(listening.getByRole('button', { name: trial.target, exact: true })).toBeDisabled();
+  await listening.getByRole('button', { name: '听真人音节录音' }).click();
+  await listening.getByRole('button', { name: trial.choices.find((choice) => choice !== trial.target)!, exact: true }).click();
+  await listening.getByRole('button', { name: trial.target, exact: true }).click();
+  expect((await evidence(page)).find((row) => row.taskId === `listen:${trial.target}`)).toMatchObject({ source: 'check', level: 'supported' });
+});
+
+async function readingAudioSetup(page: Page, configured = false) {
+  await page.route('**/api/health', (route) => route.fulfill({ json: { ok: true, ttsConfigured: configured } }));
+  await page.addInitScript(() => {
+    const stored = JSON.parse(localStorage.getItem('smart-fun-zone')!);
+    stored.state.sound = true; stored.state.voiceOn = true;
+    localStorage.setItem('smart-fun-zone', JSON.stringify(stored));
+    const events: {src: string; event: string}[] = [];
+    (window as unknown as {readingAudioEvents: typeof events}).readingAudioEvents = events;
+    const original = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function () {
+      events.push({ src: this.src, event: 'play' });
+      this.addEventListener('ended', () => events.push({src: this.src, event: 'ended'}), {once: true});
+      return original.call(this);
+    };
+  });
+}
+async function readingAudioEvents(page: Page) {
+  return page.evaluate(() => (window as unknown as {readingAudioEvents: {src: string; event: string}[]}).readingAudioEvents);
+}
+
+for (const width of [1280, 768]) test(`完整听读拼音：${width}px四声真人录音实际播放并结束`, async ({ page }) => {
+  await page.setViewportSize({width, height: 1024});
+  await readingAudioSetup(page);
+  await phase(page, 'pinyin-b-p-m-f', 1);
+  await page.evaluate(() => { (window as unknown as {readingAudioEvents: unknown[]}).readingAudioEvents.length = 0; });
+  await page.locator('.ct-read-line > button:first-child').nth(1).click();
+  await expect(page.locator('.ct-reading-stage [role=status]')).toHaveText('朗读播放完成，可以再听一遍。', { timeout: 15_000 });
+  const events = await readingAudioEvents(page);
+  expect(events.filter((event) => event.event === 'play').map((event) => event.src.split('/').pop())).toEqual(['pinyin-ba1.mp3', 'pinyin-ba2.mp3', 'pinyin-ba3.mp3', 'pinyin-ba4.mp3']);
+  expect(events.filter((event) => event.event === 'ended')).toHaveLength(4);
+});
+
+test('完整听读拼音：连起来听不会因中文服务不可用丢掉音节', async ({ page }) => {
+  await readingAudioSetup(page);
+  await phase(page, 'pinyin-b-p-m-f', 1);
+  await page.evaluate(() => { (window as unknown as {readingAudioEvents: unknown[]}).readingAudioEvents.length = 0; });
+  await page.getByRole('button', {name: '🔊 连起来听', exact: true}).click();
+  await expect(page.locator('.ct-reading-stage [role=status]')).toContainText('朗读未完整播完', { timeout: 15_000 });
+  expect((await readingAudioEvents(page)).filter((event) => event.event === 'ended').map((event) => event.src.split('/').pop())).toEqual(['pinyin-ba1.mp3', 'pinyin-ba1.mp3', 'pinyin-ba2.mp3', 'pinyin-ba3.mp3', 'pinyin-ba4.mp3']);
+});
+
+test('完整听读拼音：返回目录立即停止队列，不播放剩余四声', async ({ page }) => {
+  await readingAudioSetup(page);
+  await phase(page, 'pinyin-b-p-m-f', 1);
+  await page.evaluate(() => { (window as unknown as {readingAudioEvents: unknown[]}).readingAudioEvents.length = 0; });
+  await page.locator('.ct-read-line > button:first-child').nth(1).click();
+  await expect.poll(async () => (await readingAudioEvents(page)).filter((event) => event.event === 'play').length).toBe(1);
+  await page.getByRole('button', {name: '返回语文目录', exact: true}).click();
+  await expect(page.getByRole('heading', {name: '一年级语文上册'})).toBeVisible();
+  const stoppedAt = (await readingAudioEvents(page)).filter((event) => event.event === 'play').length;
+  await page.waitForTimeout(1600);
+  expect((await readingAudioEvents(page)).filter((event) => event.event === 'play')).toHaveLength(stoppedAt);
+});
+
+test('完整听读拼音：静音时明确提示，不启动播放', async ({ page }) => {
+  await page.addInitScript(() => { (window as unknown as {readingAudioEvents: unknown[]}).readingAudioEvents = []; });
+  await phase(page, 'pinyin-a-o-e', 1);
+  await page.evaluate(() => { (window as unknown as {readingAudioEvents: unknown[]}).readingAudioEvents.length = 0; });
+  await page.getByRole('button', {name: '🔊 连起来听', exact: true}).click();
+  await expect(page.locator('.ct-reading-stage [role=status]')).toContainText('声音或语音已关闭');
+  expect(await readingAudioEvents(page)).toEqual([]);
+});
+
+test('完整听读拼音：o单韵母直接送合成服务并播放，保留重复三次', async ({ page }) => {
+  await readingAudioSetup(page, true);
+  const texts: string[] = [];
+  const audio = readFileSync('public/assets/chinese-textbook/audio/pinyin-a1.mp3').toString('base64');
+  await page.route('**/api/volc-tts/**', (route) => {
+    texts.push(route.request().postDataJSON().req_params.text);
+    return route.fulfill({contentType: 'text/event-stream', body: `data: ${JSON.stringify({code: 0, data: audio})}\n\ndata: ${JSON.stringify({code: 20000000})}\n\n`});
+  });
+  await phase(page, 'pinyin-a-o-e', 1);
+  await page.evaluate(() => { (window as unknown as {readingAudioEvents: unknown[]}).readingAudioEvents.length = 0; });
+  await page.locator('.ct-read-line > button:first-child').nth(1).click();
+  await expect(page.locator('.ct-reading-stage [role=status]')).toHaveText('朗读播放完成，可以再听一遍。', { timeout: 15_000 });
+  expect(texts).toContain('ō');
+  expect(texts.some((text) => /喔|窝/.test(text))).toBe(false);
+  expect((await readingAudioEvents(page)).filter((event) => event.event === 'ended' && event.src.startsWith('blob:'))).toHaveLength(4);
+});
+
+test('书写观察不冒充会写，纸笔细项可刷新继续且只记录练习', async ({ page }) => {
+  await phase(page, 'autumn', 2);
+  for (const button of await page.locator('.ct-recognize-grid button').all()) await button.click();
+  await page.getByRole('tab',{name:/写字观察/}).click();
+  for (const button of await page.locator('.ct-writing-grid > button').all()) await button.click();
+  await page.getByRole('tab',{name:/实际书写/}).click();
+  expect((await evidence(page)).some((row) => row.skill === 'writing')).toBe(false);
+  const writing = page.getByRole('region', { name: '纸笔书写实践' });
+  await expect(writing.getByRole('button', { name: '家人：独立完成' })).toBeDisabled();
+  await recordSelf(writing);
+  await expect(writing).toContainText('2/4');
+  await page.reload();
+  await expect(writing).toContainText('2/4');
+  for (let index = 0; index < 3; index++) await recordSelf(writing);
+  const rows = (await evidence(page)).filter((row) => row.skill === 'writing');
+  expect(rows).toHaveLength(4);
+  expect(rows.every((row) => row.level === 'practiced')).toBe(true);
+});
+
+test('阅读保留个人感受与创作，平板录音失败可以实际线下表达', async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await page.addInitScript(() => { Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia: () => Promise.reject(new Error('denied')) } }); });
+  await phase(page, 'little-boat', 3);
+  await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
+  const reading = page.getByRole('region', { name: '阅读感受与想象' });
+  await reading.getByRole('button', { name: getChineseTeaching('little-boat').reading!.compare[0], exact: true }).click();
+  await expect(reading).toContainText('两种选择都可以');
+  await page.getByRole('tab', { name: /口语练习/ }).click();
+  const oral = page.getByRole('region', { name: '真实表达与交流' });
+  await oral.getByRole('button', { name: '录下自己的话（可选）' }).click();
+  await expect(oral).toContainText('暂时无法录音');
+  await oral.getByRole('textbox').fill('我还看见软软的白云。');
+  await recordSelf(oral);
+  await expect(page.locator('.ct-phase-nav button').nth(4)).toBeDisabled();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({ path: 'tmp/chinese-teaching-pad.png', fullPage: true });
+});
+
+test('首次田字格仍先教后写，一般知识桥不会加重必做流程', async ({ page }) => {
+  await phase(page, 'metal-wood-water-fire-earth', 2);
+  await expect(page.locator('[data-knowledge="tian-grid"]')).toBeVisible();
+  await expect(page.locator('.ct-phase-nav button').nth(3)).toBeDisabled();
+  for (const name of ['左上格', '右上格', '左下格', '右下格', '横中线', '竖中线']) await page.locator('.ct-ktian-board').getByRole('button', { name }).click();
+  await page.locator('.ct-ktrail-check').getByRole('button', { name: '竖中线' }).click();
+  await expect(page.locator('.ct-ktian-number-pick')).toBeVisible();
+  await page.reload();
+  await expect(page.locator('.ct-ktian-number-pick')).toBeVisible();
+  await page.goto('/#/chinese-course/china');
+  await observeAndRead(page);
+  for (const button of await page.locator('.ct-word-grid button').all()) await button.click();
+  await expect(page.getByRole('tab', { name: /知识桥/, selected: true })).toBeVisible();
+  await page.locator('.ct-phase-nav button').nth(3).click();
+  await expect(page.locator('.ct-phase-nav button').nth(3)).toHaveClass(/active/);
+  await page.locator('.ct-phase-nav button').nth(2).click();
+  await page.getByRole('tab',{name:/知识桥/}).click();
+  await expect(page.getByRole('button', { name: '再听方法', exact: true })).toBeVisible();
+  await page.locator('.ct-ktrail-check').getByText(CHINESE_KNOWLEDGE_EXTENSION.china.answer, { exact: true }).click();
+  await expect(page.locator('.ct-phase-nav button').nth(3)).toBeEnabled();
+});
+
+test('本地249个音节资源能被浏览器解码且不是空白录音', async ({ page }) => {
+  test.setTimeout(60_000);
   await page.goto('/#/subject/chinese');
-  await expect(page.getByRole('heading', { name: '一年级语文上册' })).toBeVisible();
-  await expect(page.locator('.mc-continue')).toHaveCount(0);
+  const paths = [...new Set(Object.values(CHINESE_PINYIN_AUDIO))];
+  const failed = await page.evaluate(async (paths) => {
+    const audio = new AudioContext();
+    const failed: string[] = [];
+    for (let index = 0; index < paths.length; index += 8) {
+      await Promise.all(paths.slice(index, index + 8).map(async (path) => {
+        try {
+          const response = await fetch(path);
+          if (!response.ok) throw new Error('missing audio');
+          const buffer = await audio.decodeAudioData(await response.arrayBuffer());
+          if (buffer.duration <= 0 || !buffer.getChannelData(0).some((value) => Math.abs(value) > .0001)) failed.push(path);
+        } catch { failed.push(path); }
+      }));
+    }
+    await audio.close();
+    return failed;
+  }, paths);
+  expect(paths).toHaveLength(249);
+  expect(failed).toEqual([]);
+});
+
+test.describe('实际录音回听', () => {
+  test.use({ permissions: ['microphone'] });
+  test('录制后生成可播放的本地录音，离开清除临时回听', async ({ page }) => {
+    await phase(page, 'garden-5', 3);
+    await page.getByRole('tab', { name: /口语练习/ }).click();
+  const oral = page.getByRole('region', { name: '真实表达与交流' });
+    await oral.getByRole('button', { name: '录下自己的话（可选）' }).click();
+    await expect(oral.getByRole('button', { name: '停止录音，回听' })).toBeVisible();
+    await page.waitForTimeout(300); // 留出实际 MediaRecorder 数据片段。
+    await oral.getByRole('button', { name: '停止录音，回听' }).click();
+    const audio = oral.locator('audio');
+    await expect(audio).toHaveAttribute('src', /^blob:/);
+    await expect.poll(() => audio.evaluate((node: HTMLAudioElement) => node.readyState)).toBeGreaterThan(0);
+    await page.goto('/#/subject/chinese');
+    await page.goto('/#/chinese-course/garden-5');
+    await expect(page.locator('.ct-voice-notebook audio')).toHaveCount(0);
+  });
+});
+
+test('复习按证据选择书写，完成后只更新复习，不冒充全课掌握', async ({ page }) => {
+  await page.addInitScript(() => {
+    const now = Date.now();
+    localStorage.setItem('sfz-review-plan-v1:chinese-textbook-child', JSON.stringify([{ id: 'chinese:crow-drinks-water', subject: 'chinese', lessonId: 'crow-drinks-water', title: '乌鸦喝水', focus: '旧题', route: '/chinese-course/crow-drinks-water', learnedAt: now, completedDays: [] }]));
+    localStorage.setItem('sfz-chinese-evidence-v1:chinese-textbook-child', JSON.stringify([
+      { skill: 'recognition', taskId: 'recognition:喝' }, { skill: 'expression', taskId: 'oral-transfer' }, { skill: 'reading', taskId: 'transfer-operation' }, { skill: 'writing', taskId: 'paper-writing:只', level: 'supported' },
+    ].map((row) => ({ lessonId: 'crow-drinks-water', level: 'independent', source: 'adult', context: 'lesson', at: row.skill === 'writing' ? now - 4 * 86400000 : now, note: '家人观察', ...row }))));
+  });
+  await page.goto('/#/review');
+  const card = page.locator('.review-hub-card.chinese');
+  await expect(card).toContainText('书写：换一个字，纸上写后对照');
+  await card.getByRole('button', { name: '开始小检验' }).click();
+  await recordSelf(card.getByRole('region', { name: '纸笔书写实践' }));
+  await expect(card).toHaveCount(0);
+  expect((await evidence(page)).find((row) => row.context === 'review')).toMatchObject({ skill: 'writing', source: 'self', level: 'practiced' });
+  expect(await page.evaluate(() => localStorage.getItem('sfz-chinese-textbook-progress:chinese-textbook-child'))).toBeNull();
+});
+
+test('下一次配对排序复习重新尝试，不继承上一次完成状态', async ({ page }) => {
+  await page.addInitScript(() => {
+    const now = Date.now();
+    localStorage.setItem('sfz-review-plan-v1:chinese-textbook-child', JSON.stringify([{ id: 'chinese:china', subject: 'chinese', lessonId: 'china', title: '我是中国人', focus: '排序', route: '/chinese-course/china', learnedAt: now, completedDays: [], reviewedOn: ['2026-10-01'] }]));
+    localStorage.setItem('sfz-chinese-evidence-v1:chinese-textbook-child', JSON.stringify(['expression', 'listening', 'reading'].map((skill) => ({ lessonId: 'china', skill, taskId: skill === 'reading' ? 'transfer-operation' : 'oral-transfer', level: skill === 'reading' ? 'supported' : 'independent', source: 'adult', context: 'lesson', at: skill === 'reading' ? now - 4 * 86400000 : now, note: '家人观察' }))));
+    localStorage.setItem('sfz-chinese-practice-v1:chinese-textbook-child:china:review:0:transferDone', 'true');
+    localStorage.setItem('sfz-chinese-practice-v1:chinese-textbook-child:china:review:0:transferPlaced', JSON.stringify(['中华民族', '是', '一家']));
+  });
+  await page.goto('/#/review');
+  const card = page.locator('.review-hub-card.chinese');
+  await expect(card).toContainText('阅读理解：收起课文，重新配对或排序');
+  await card.getByRole('button', { name: '开始小检验' }).click();
+  const operation = card.getByRole('region', { name: '配对与排序任务' });
+  const bank = operation.locator('.ct-order-bank button');
+  const first = await bank.allTextContents();
+  expect(first).not.toEqual(['中华民族', '是', '一家']);
+  await operation.getByRole('button', { name: '重新排序', exact: true }).click();
+  expect(await bank.allTextContents()).not.toEqual(first);
+  expect(await bank.allTextContents()).not.toEqual(['中华民族', '是', '一家']);
+  for (const [index, item] of ['中华民族', '是', '一家'].entries()) await dragChineseWord(page, operation, item, index);
+  await operation.getByRole('button', { name: '检查这项任务' }).click();
+  await expect(card).toHaveCount(0);
+});
+
+test('儿童切换不继承课程断点和口语证据', async ({ page }) => {
+  await phase(page, 'garden-5', 3);
+  await page.getByRole('tab',{name:/口语练习/}).click();
+  await recordSelf(page.getByRole('region', { name: '真实表达与交流' }));
+  await page.evaluate(() => {
+    const stored = JSON.parse(localStorage.getItem('smart-fun-zone')!);
+    stored.state.profiles.push({ id: 'another-child', name: '另一位儿童', avatarId: 'girl', age: 6, createdAt: Date.now() });
+    stored.state.activeChildId = 'another-child'; localStorage.setItem('smart-fun-zone', JSON.stringify(stored));
+  });
+  await page.reload();
+  await expect(page.locator('.ct-phase-nav button').nth(1)).toBeDisabled();
+  expect(await page.evaluate(() => localStorage.getItem('sfz-chinese-evidence-v1:another-child'))).toBeNull();
 });

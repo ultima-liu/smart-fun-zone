@@ -1,0 +1,331 @@
+[
+  {
+    "id": "campus",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "playground",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "classroom-discover",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "classroom-games",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "learning-readiness",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "numbers",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "compare",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "ordinal",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "compose",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "add-within-5",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "subtract-within-5",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "zero",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 1,
+    "reasonDisabled": true
+  },
+  {
+    "id": "unit1-review",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 6,
+    "reasonDisabled": true
+  },
+  {
+    "id": "six-to-nine",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "compare-order-nine",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "compose-six-nine",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "addsub-six-seven",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "solve-total-within-7",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "solve-remain-within-7",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "addsub-eight-nine",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "select-info-eight-nine",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "ten",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "addsub-ten",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "continuous-add-sub",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "mixed-add-sub",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "unit2-review",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 4,
+    "reasonDisabled": true
+  },
+  {
+    "id": "solid-shapes",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "solid-building",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "solid-compose",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 5,
+    "reasonDisabled": true
+  },
+  {
+    "id": "ten-again",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "eleven-twenty",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "order-twenty",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "simple-addsub-twenty",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "between-positions",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "unit4-review",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "plus-nine",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "plus-eight-seven-six",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "plus-eight-nine-strategies",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "plus-five-four-three-two",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "solve-total",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "find-original",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "addition-table",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "unit5-review",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 4,
+    "reasonDisabled": true
+  },
+  {
+    "id": "review-numbers",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "review-relations",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 3,
+    "reasonDisabled": true
+  },
+  {
+    "id": "review-shapes",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 2,
+    "reasonDisabled": true
+  },
+  {
+    "id": "review-application",
+    "parentDone": false,
+    "phase": "2动手试",
+    "childCards": 6,
+    "reasonDisabled": true
+  }
+]

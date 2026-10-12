@@ -5,6 +5,8 @@ import MathLifeSceneArt from '../components/MathLifeSceneArt';
 import { Confetti, Stars } from '../components/ui';
 import { ALL_MATH_LESSONS } from '../content/mathUpperCurriculum';
 import { mathLifeSceneForLesson } from '../content/mathLifeScenes';
+import { mathOptions } from '../content/mathTeaching';
+import { mathAssessmentStars, mathCheckLevel, recordMathEvidence, type MathEvidenceLevel } from '../mathLearning';
 import { localDayKey } from '../dailyCheckin';
 import { playSfx, speakOnce, stopSpeaking } from '../speech';
 import { useStore } from '../store';
@@ -29,7 +31,8 @@ export default function MathLifeScenePage() {
   const [index, setIndex] = useState(0);
   const [pick, setPick] = useState<number | null>(null);
   const [feedback, setFeedback] = useState('');
-  const [mistakes, setMistakes] = useState(0);
+  const [assisted, setAssisted] = useState(false);
+  const [levels, setLevels] = useState<MathEvidenceLevel[]>([]);
   const [done, setDone] = useState(false);
   const task = tasks[index];
   const backTarget = params.get('from') === 'review' ? '/review' : lessonId ? `/math-course/${lessonId}` : '/subject/math';
@@ -45,12 +48,15 @@ export default function MathLifeScenePage() {
   const choose = (option: number) => {
     if (pick !== null) return;
     if (option !== task.answer) {
-      setMistakes((value) => value + 1);
+      setAssisted(true);
       setFeedback('再看一看场景里的数量、位置或形状，动物朋友等你再试一次。');
       playSfx('wrong');
       return;
     }
     setPick(option);
+    const level = mathCheckLevel('life', assisted, true, false);
+    recordMathEvidence(child.id, { lessonId: lesson.id, taskId: `life-scene:${index}`, objective: lesson.subtitle, level, source: 'check', context: 'life', note: `${task.prompt}；选择：${task.options[option]}` });
+    setLevels((previous) => [...previous, level]);
     setFeedback(task.explain);
     playSfx('correct');
     speakOnce(task.explain, 'zh', .84);
@@ -61,9 +67,10 @@ export default function MathLifeScenePage() {
       setIndex((value) => value + 1);
       setPick(null);
       setFeedback('');
+      setAssisted(false);
       return;
     }
-    const stars = mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1;
+    const stars = mathAssessmentStars(levels);
     const playedAt = Date.now();
     addRecord({
       id: `math-life-${scene.kind}-${lesson.id}-${playedAt}`,
@@ -80,15 +87,15 @@ export default function MathLifeScenePage() {
     <section className="mls-result">
       <span>{scene.icon}</span><small>{lesson.title} · 生活小剧场</small>
       <h1>{scene.kind === 'picnic' ? '野餐准备好啦！' : '修理任务完成啦！'}</h1>
-      <Stars count={mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1} size={50} />
+      <Stars count={mathAssessmentStars(levels)} size={50} />
       <p>你把《{lesson.title}》学到的方法用在了新的生活场景里。</p>
-      <button onClick={() => nav(backTarget)}>返回{backTarget === '/review' ? '今日复习' : '本课'}</button>
+      <BackButton onClick={() => nav(backTarget)} label={`返回${backTarget === '/review' ? '今日复习' : '本课'}`} />
     </section>
   </main>;
 
   return <main className={`mls-page ${scene.kind}`}>
     <header className="mls-topbar">
-      <BackButton onClick={() => nav(backTarget)} aria-label="返回" label={backTarget === '/review' ? '返回今日复习' : lessonId ? '返回本课' : '返回数学目录'} />
+      <BackButton onClick={() => nav(backTarget)} label={backTarget === '/review' ? '返回今日复习' : lessonId ? '返回本课' : '返回数学目录'} />
       <div><small>MATH LIFE STORY</small><h1>{scene.title}</h1></div>
       <b>{index + 1} / {tasks.length}</b>
     </header>
@@ -99,7 +106,7 @@ export default function MathLifeScenePage() {
       </div>
       <div className="mls-task" role="region" aria-label={`${scene.title}任务`}>
         <small>动物朋友请你帮忙</small><h2>{task.prompt}</h2>
-        <div>{task.options.map((option, optionIndex) => <button key={option} className={pick === optionIndex ? 'correct' : ''} onClick={() => choose(optionIndex)}>{option}</button>)}</div>
+        <div>{mathOptions(task.options.map((option, optionIndex) => ({ option, optionIndex })), `${lesson.id}:life:${index}`).map(({ option, optionIndex }) => <button key={option} className={pick === optionIndex ? 'correct' : ''} onClick={() => choose(optionIndex)}>{option}</button>)}</div>
         {feedback && <p className={pick === null ? 'hint' : 'success'}>{feedback}</p>}
         {pick !== null && <button className="mls-next" onClick={next}>{index === tasks.length - 1 ? '完成小剧场 →' : '继续下一步 →'}</button>}
       </div>

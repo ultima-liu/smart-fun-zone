@@ -1,0 +1,2054 @@
+{
+  "records": [
+    {
+      "unit": "friends",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "cards": 4,
+        "words": 8,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 49,
+            "scrollWidth": 49,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 32,
+            "scrollWidth": 32,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 32,
+            "scrollWidth": 32,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 72,
+            "scrollWidth": 72,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 27,
+            "scrollWidth": 27,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 36,
+            "scrollWidth": 36,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 32,
+            "scrollWidth": 32,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 36,
+            "scrollWidth": 36,
+            "height": 46,
+            "scrollHeight": 46
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nA a\n听字母和例词 🔊\napple\n苹果\nbag\n书包\n🎤 跟读 apple\n字母名\nB b\n听字母和例词 🔊\nbed\n床\nBob\n鲍勃（人名）\n🎤 跟读 bed\n字母名\nC c\n听字母和例词 🔊\ncat\n猫\ncan\n会；能\n🎤 跟读 cat\n字母名\nD d\n听字母和例词 🔊\ndog\n狗\nsad\n难过的\n🎤 跟读 dog\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "friends",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "cards": 4,
+        "words": 8,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 57,
+            "scrollWidth": 57,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 38,
+            "scrollWidth": 38,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 37,
+            "scrollWidth": 37,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 78,
+            "scrollWidth": 78,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 31,
+            "scrollWidth": 31,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 39,
+            "scrollWidth": 39,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 38,
+            "scrollWidth": 38,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 39,
+            "scrollWidth": 39,
+            "height": 51,
+            "scrollHeight": 51
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nA a\n听字母和例词 🔊\napple\n苹果\nbag\n书包\n🎤 跟读 apple\n字母名\nB b\n听字母和例词 🔊\nbed\n床\nBob\n鲍勃（人名）\n🎤 跟读 bed\n字母名\nC c\n听字母和例词 🔊\ncat\n猫\ncan\n会；能\n🎤 跟读 cat\n字母名\nD d\n听字母和例词 🔊\ndog\n狗\nsad\n难过的\n🎤 跟读 dog\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "families",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "cards": 4,
+        "words": 8,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 31,
+            "scrollWidth": 31,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 36,
+            "scrollWidth": 36,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 30,
+            "scrollWidth": 30,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 37,
+            "scrollWidth": 37,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 28,
+            "scrollWidth": 28,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 26,
+            "scrollWidth": 26,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 29,
+            "scrollWidth": 29,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 29,
+            "scrollWidth": 29,
+            "height": 46,
+            "scrollHeight": 46
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nE e\n听字母和例词 🔊\negg\n鸡蛋\nnest\n鸟窝\n🎤 跟读 egg\n字母名\nF f\n听字母和例词 🔊\nfish\n鱼\nbeef\n牛肉\n🎤 跟读 fish\n字母名\nG g\n听字母和例词 🔊\ngirl\n女孩\npig\n猪\n🎤 跟读 girl\n字母名\nH h\n听字母和例词 🔊\nhot\n热的\nhat\n帽子\n🎤 跟读 hot\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "families",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "cards": 4,
+        "words": 8,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 36,
+            "scrollWidth": 36,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 42,
+            "scrollWidth": 42,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 35,
+            "scrollWidth": 35,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 43,
+            "scrollWidth": 43,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 33,
+            "scrollWidth": 33,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 30,
+            "scrollWidth": 30,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 33,
+            "scrollWidth": 33,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 34,
+            "scrollWidth": 34,
+            "height": 51,
+            "scrollHeight": 51
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nE e\n听字母和例词 🔊\negg\n鸡蛋\nnest\n鸟窝\n🎤 跟读 egg\n字母名\nF f\n听字母和例词 🔊\nfish\n鱼\nbeef\n牛肉\n🎤 跟读 fish\n字母名\nG g\n听字母和例词 🔊\ngirl\n女孩\npig\n猪\n🎤 跟读 girl\n字母名\nH h\n听字母和例词 🔊\nhot\n热的\nhat\n帽子\n🎤 跟读 hot\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "animals",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "cards": 4,
+        "words": 8,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 36,
+            "scrollWidth": 36,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 25,
+            "scrollWidth": 25,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 26,
+            "scrollWidth": 26,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 60,
+            "scrollWidth": 60,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 72,
+            "scrollWidth": 72,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 30,
+            "scrollWidth": 30,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 27,
+            "scrollWidth": 27,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 32,
+            "scrollWidth": 32,
+            "height": 46,
+            "scrollHeight": 46
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nI i\n听字母和例词 🔊\nill\n生病的\nkid\n孩子\n🎤 跟读 ill\n字母名\nJ j\n听字母和例词 🔊\njob\n工作\njet\n喷气式飞机\n🎤 跟读 job\n字母名\nK k\n听字母和例词 🔊\nKim\n金姆（人名）\nkite\n风筝\n🎤 跟读 Kim\n字母名\nL l\n听字母和例词 🔊\nleg\n腿\nlion\n狮子\n🎤 跟读 leg\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "animals",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "cards": 4,
+        "words": 8,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 39,
+            "scrollWidth": 39,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 29,
+            "scrollWidth": 29,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 31,
+            "scrollWidth": 31,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 65,
+            "scrollWidth": 65,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 78,
+            "scrollWidth": 78,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 35,
+            "scrollWidth": 35,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 31,
+            "scrollWidth": 31,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 38,
+            "scrollWidth": 38,
+            "height": 51,
+            "scrollHeight": 51
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nI i\n听字母和例词 🔊\nill\n生病的\nkid\n孩子\n🎤 跟读 ill\n字母名\nJ j\n听字母和例词 🔊\njob\n工作\njet\n喷气式飞机\n🎤 跟读 job\n字母名\nK k\n听字母和例词 🔊\nKim\n金姆（人名）\nkite\n风筝\n🎤 跟读 Kim\n字母名\nL l\n听字母和例词 🔊\nleg\n腿\nlion\n狮子\n🎤 跟读 leg\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "plants",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "cards": 4,
+        "words": 8,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 38,
+            "scrollWidth": 38,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 44,
+            "scrollWidth": 44,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 35,
+            "scrollWidth": 35,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 28,
+            "scrollWidth": 28,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 60,
+            "scrollWidth": 60,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 26,
+            "scrollWidth": 26,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 198,
+            "scrollWidth": 198,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 32,
+            "scrollWidth": 32,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 178,
+            "scrollWidth": 178,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 30,
+            "scrollWidth": 30,
+            "height": 46,
+            "scrollHeight": 46
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nM m\n听字母和例词 🔊\nmap\n地图\nmum\n妈妈\n🎤 跟读 map\n字母名\nN n\n听字母和例词 🔊\nnew\n新的\nfan\n风扇\n🎤 跟读 new\n字母名\nO o\n听字母和例词 🔊\norange\n橙子\nfox\n狐狸\n🎤 跟读 orange\n字母名\nP p\n听字母和例词 🔊\npen\n笔\ncup\n杯子\n🎤 跟读 pen\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "plants",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "cards": 4,
+        "words": 8,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 45,
+            "scrollWidth": 45,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 51,
+            "scrollWidth": 51,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 41,
+            "scrollWidth": 41,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 32,
+            "scrollWidth": 32,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 69,
+            "scrollWidth": 69,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 30,
+            "scrollWidth": 30,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 279,
+            "scrollWidth": 279,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 37,
+            "scrollWidth": 37,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 253,
+            "scrollWidth": 253,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 35,
+            "scrollWidth": 35,
+            "height": 51,
+            "scrollHeight": 51
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nM m\n听字母和例词 🔊\nmap\n地图\nmum\n妈妈\n🎤 跟读 map\n字母名\nN n\n听字母和例词 🔊\nnew\n新的\nfan\n风扇\n🎤 跟读 new\n字母名\nO o\n听字母和例词 🔊\norange\n橙子\nfox\n狐狸\n🎤 跟读 orange\n字母名\nP p\n听字母和例词 🔊\npen\n笔\ncup\n杯子\n🎤 跟读 pen\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "colours",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "cards": 5,
+        "words": 10,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 43,
+            "scrollWidth": 43,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 52,
+            "scrollWidth": 52,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 28,
+            "scrollWidth": 28,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 41,
+            "scrollWidth": 41,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 28,
+            "scrollWidth": 28,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 48,
+            "scrollWidth": 48,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 72,
+            "scrollWidth": 72,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 20,
+            "scrollWidth": 20,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 24,
+            "scrollWidth": 24,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 29,
+            "scrollWidth": 29,
+            "height": 46,
+            "scrollHeight": 46
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nQ q\n听字母和例词 🔊\nquiet\n安静的\nqueen\n女王\n🎤 跟读 quiet\n字母名\nR r\n听字母和例词 🔊\nred\n红色\nruler\n尺子\n🎤 跟读 red\n字母名\nS s\n听字母和例词 🔊\nsee\n看见\nbus\n公共汽车\n🎤 跟读 see\n字母名\nT t\n听字母和例词 🔊\nTed\n泰德（人名）\nsit\n坐\n🎤 跟读 Ted\n字母名\nU u\n听字母和例词 🔊\nup\n向上\nrun\n跑\n🎤 跟读 up\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "colours",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "cards": 5,
+        "words": 10,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 50,
+            "scrollWidth": 50,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 60,
+            "scrollWidth": 60,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 33,
+            "scrollWidth": 33,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 48,
+            "scrollWidth": 48,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 33,
+            "scrollWidth": 33,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 52,
+            "scrollWidth": 52,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 78,
+            "scrollWidth": 78,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 23,
+            "scrollWidth": 23,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 26,
+            "scrollWidth": 26,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 34,
+            "scrollWidth": 34,
+            "height": 51,
+            "scrollHeight": 51
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nQ q\n听字母和例词 🔊\nquiet\n安静的\nqueen\n女王\n🎤 跟读 quiet\n字母名\nR r\n听字母和例词 🔊\nred\n红色\nruler\n尺子\n🎤 跟读 red\n字母名\nS s\n听字母和例词 🔊\nsee\n看见\nbus\n公共汽车\n🎤 跟读 see\n字母名\nT t\n听字母和例词 🔊\nTed\n泰德（人名）\nsit\n坐\n🎤 跟读 Ted\n字母名\nU u\n听字母和例词 🔊\nup\n向上\nrun\n跑\n🎤 跟读 up\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "numbers",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 528,
+        "scrollHeight": 528,
+        "fit": "1.000",
+        "cards": 5,
+        "words": 10,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 36,
+            "scrollWidth": 36,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 27,
+            "scrollWidth": 27,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 25,
+            "scrollWidth": 25,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 30,
+            "scrollWidth": 30,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 30,
+            "scrollWidth": 30,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 22,
+            "scrollWidth": 22,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 57,
+            "scrollWidth": 57,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 51,
+            "scrollWidth": 51,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 156,
+            "scrollWidth": 156,
+            "height": 410,
+            "scrollHeight": 410
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 96,
+            "scrollWidth": 96,
+            "height": 46,
+            "scrollHeight": 46
+          },
+          {
+            "class": "en-letter-example",
+            "width": 136,
+            "scrollWidth": 136,
+            "height": 108,
+            "scrollHeight": 108
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 36,
+            "scrollWidth": 36,
+            "height": 46,
+            "scrollHeight": 46
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nV v\n听字母和例词 🔊\nvan\n厢式车\nvet\n兽医\n🎤 跟读 van\n字母名\nW w\n听字母和例词 🔊\nwe\n我们\nwin\n获胜\n🎤 跟读 we\n字母名\nX x\n听字母和例词 🔊\nbox\n盒子\nsix\n六\n🎤 跟读 box\n字母名\nY y\n听字母和例词 🔊\nyellow\n黄色\nyo-yo\n悠悠球\n🎤 跟读 yellow\n字母名\nZ z\n听字母和例词 🔊\nZip\n齐普（教材角色）\nquiz\n小测验\n🎤 跟读 Zip\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    },
+    {
+      "unit": "numbers",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 764,
+        "scrollHeight": 764,
+        "fit": "1.000",
+        "cards": 5,
+        "words": 10,
+        "parts": [
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 39,
+            "scrollWidth": 39,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 31,
+            "scrollWidth": 31,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 29,
+            "scrollWidth": 29,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 35,
+            "scrollWidth": 35,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 36,
+            "scrollWidth": 36,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 26,
+            "scrollWidth": 26,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 66,
+            "scrollWidth": 66,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 60,
+            "scrollWidth": 60,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-study-card ",
+            "width": 220,
+            "scrollWidth": 220,
+            "height": 633,
+            "scrollHeight": 633
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 104,
+            "scrollWidth": 104,
+            "height": 51,
+            "scrollHeight": 51
+          },
+          {
+            "class": "en-letter-example",
+            "width": 194,
+            "scrollWidth": 194,
+            "height": 215,
+            "scrollHeight": 215
+          },
+          {
+            "class": "en-letter-example-text",
+            "width": 40,
+            "scrollWidth": 40,
+            "height": 51,
+            "scrollHeight": 51
+          }
+        ],
+        "text": "大写、小写和例词一起认\n\n先听字母名，再听例词和中文意思。\n\n字母名\nV v\n听字母和例词 🔊\nvan\n厢式车\nvet\n兽医\n🎤 跟读 van\n字母名\nW w\n听字母和例词 🔊\nwe\n我们\nwin\n获胜\n🎤 跟读 we\n字母名\nX x\n听字母和例词 🔊\nbox\n盒子\nsix\n六\n🎤 跟读 box\n字母名\nY y\n听字母和例词 🔊\nyellow\n黄色\nyo-yo\n悠悠球\n🎤 跟读 yellow\n字母名\nZ z\n听字母和例词 🔊\nZip\n齐普（教材角色）\nquiz\n小测验\n🎤 跟读 Zip\n\n点例词可以单独听；蓝色字母也可能出现在词中或词尾。"
+      }
+    }
+  ],
+  "errors": [],
+  "failedImages": []
+}

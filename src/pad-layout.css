@@ -1,0 +1,223 @@
+/* Web / Pad 共用的适配补充。用明确的容器作用域覆盖旧样式，
+   不扩大棋盘格、算珠、拖拽学具等依赖几何尺寸的交互元素。 */
+
+/* 横屏、分屏和软键盘打开时，弹窗内容仍能滚动到最后一个操作。 */
+.modal {
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+    max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+.modal > * {
+  min-width: 0;
+  max-width: 100%;
+  max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+.modal .modal-actions { flex-wrap: wrap; }
+.card-preview-modal { display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior-y: contain; padding: max(64px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left)); }
+.card-preview-modal .card-preview-content { max-width: 100%; margin: auto; flex-shrink: 0; }
+.card-preview-modal .card-preview-close { width: 44px; height: 44px; top: -48px; }
+.card-preview-modal .preview-card-flipbtn { width: 44px; height: 44px; }
+.gacha-modal { overflow-y: auto; overscroll-behavior-y: contain; }
+.gacha-modal .gacha-stage { min-height: 0; margin: auto; padding-top: max(24px, env(safe-area-inset-top)); padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+.preview-overlay { padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom)); overflow-y: auto; }
+.preview-overlay > .preview-card { width: min(340px, 100%); aspect-ratio: auto; max-height: calc(100dvh - 32px); max-width: 100%; overflow-y: auto; color: var(--ink); background: var(--paper); }
+.preview-overlay .preview-close { width: 44px; height: 44px; }
+
+@media (max-width: 1194px), (max-width: 1400px) and (pointer: coarse) {
+  /* 页面保留底部操作空间；全屏 3D 首页使用自己的场景尺寸。 */
+  .app .page:not(.home-world-page),
+  .app .ct-page,
+  .app .review-hub {
+    padding-bottom: calc(100px + env(safe-area-inset-bottom));
+  }
+  .app:has(.train-nav) .page { padding-bottom: calc(160px + env(safe-area-inset-bottom)); }
+
+  .app :is(.topbar-main, .topbar-right, .ph-stats, .report-head,
+    .cloud-actions, .pin-change, .task-form-row, .hq-panel-tabs) { flex-wrap: wrap; }
+  .app :is(.topbar-title, .academy-command-copy, .park-command-copy,
+    .ct-lesson-head > div, .ct-lesson-copy, .review-story-practice > div,
+    .task-row-text, .cloud-card, .adm-panel) { min-width: 0; }
+  .app :is(.ct-lesson-head h1, .ct-lesson-copy h3, .review-hub-main h2,
+    .adm-head-title, .task-row-text) { overflow-wrap: anywhere; }
+
+  /* 列表区和游戏区各自占一屏，返回后保留分类与列表。 */
+  .app .lobby:has(.park-active-game) > :is(.park-command-header, .sky-park-forecourt, .park-game-hub) {
+    display: none;
+  }
+  .app .lobby .park-active-game { margin-top: 0; scroll-margin-top: max(12px, env(safe-area-inset-top)); }
+  body:has(.park-active-game) :is(.npc-buddy, .buddy-fab) { display: none; }
+
+  /* NPC 从页头移到左下角，避免压住标题、统计与返回入口。 */
+  body > .npc-buddy {
+    top: auto;
+    right: auto;
+    left: max(12px, env(safe-area-inset-left));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 40;
+    gap: 2px;
+  }
+  body > .npc-buddy .npc-buddy-name { font-size: 10px; padding: 3px 6px; }
+  body > .npc-buddy .npc-buddy-avatar { width: 50px; height: 62px; }
+  body > .npc-buddy .npc-chat { top: auto; bottom: 90px; left: 0; right: auto; max-width: calc(100vw - 24px); }
+  body > .npc-buddy .npc-buddy-bubble { display: none; }
+  #root > .buddy-fab {
+    width: 52px;
+    height: 52px;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+  #root > .buddy-fab .robot-assistant { width: 47px; height: 47px; }
+  body:has(.app .train-nav) :is(.npc-buddy, .buddy-fab) {
+    bottom: calc(126px + env(safe-area-inset-bottom));
+  }
+  body:has(.home-world-page) .buddy-fab { bottom: calc(96px + env(safe-area-inset-bottom)); }
+  #root > .buddy-panel {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: calc(82px + env(safe-area-inset-bottom));
+    width: min(420px, calc(100% - 24px));
+    height: min(620px, calc(100dvh - 106px - env(safe-area-inset-bottom) - env(safe-area-inset-top)));
+  }
+  body:has(.app .train-nav) .buddy-panel { bottom: calc(126px + env(safe-area-inset-bottom)); height: min(620px, calc(100dvh - 150px - env(safe-area-inset-bottom) - env(safe-area-inset-top))); }
+  body:has(.modal, .card-preview-modal, .gacha-modal, .preview-overlay) :is(.npc-buddy, .buddy-fab, .buddy-panel) { visibility: hidden; }
+
+  /* 普通控件至少 44px；密集棋盘与学具继续由各自组件控制尺寸。 */
+  .app :is(.filter-chip, .term-tab, .tool-btn, .adm-nav-btn, .adm-tab,
+    .adm-input, .task-del, .hq-panel-close, .hq-panel-tab, .hq-signin-btn,
+    .hq-wallet-inline, .mt-teacher-askbtn, .ct-note-replay, .pin-input),
+  .app :is(.ct-unit-tabs, .ct-page-switcher, .en-page-switch,
+    .en-voice-banner, .ct-practice-actions, .ct-match-grid,
+    .mt-learning-support, .review-hub-actions, .review-empty,
+    .review-math-check, .wrong-math-options, .cloud-actions,
+    .adm-ops, .adm-week-subjects, .time-opts, .lang-toggle) button,
+  .app :is(.gomoku-difficulty, .xiangqi-difficulty, .jq-toolbar,
+    .lk-difficulty, .lk-mode, .tb-difficulty, .bb-difficulty,
+    .sn-difficulty, .bk-difficulty, .ms-difficulty, .sk-difficulty,
+    .mm-difficulty, .sl-difficulty, .gm-difficulty, .ff-difficulty,
+    .gm-actions, .ff-actions) button,
+  .app .gm-overlay-btn,
+  body > .npc-buddy .npc-chat-actions button,
+  #root > .buddy-panel :is(.buddy-close, .buddy-wake, .buddy-replay, .buddy-quick button) {
+    min-height: 44px;
+  }
+  .app .ms-board { width: min(100%, 520px); }
+  .app .ms-board-wrap { width: min(100%, 540px); }
+  .app :is(.hq-panel-close, .task-del),
+  body > .npc-buddy .npc-chat-close,
+  #root > .buddy-panel :is(.buddy-close, .buddy-replay) { min-width: 44px; }
+  .app .toggle { min-height: 44px; }
+  .app .toggle .toggle-knob { top: calc(50% - 14px); }
+  .ld-side { max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow-y: auto; }
+  .ld-side :is(.ld-close, input, button) { min-height: 44px; }
+  .app .world-appearance fieldset { max-height: calc(100dvh - 180px - env(safe-area-inset-bottom)); overflow-y: auto; }
+  .app :is(.adm, .parent, .manage) .kid-btn,
+  .app :is(.ct-read-guide, .ct-source-lines, .ct-read-follow,
+    .en-sound-words, .en-word-compare, .mt-write-ops) button,
+  .app :is(.en-story-play, .mt-stroke-replay) { min-height: 44px; }
+  .app :is(.parent, .manage) :is(input, select, textarea) { max-width: 100%; min-width: 0; }
+  .app :is(.parent, .manage) .pin-change input { flex: 1 1 180px; }
+
+  /* 大 Pad 的横屏也改成顶部管理导航，把空间留给表格和排课。 */
+  .app .adm { flex-direction: column; min-height: calc(100dvh - 48px); }
+  .app .adm-side { width: 100%; flex: none; flex-direction: row; flex-wrap: wrap; align-items: center; border-right: 0; border-bottom: 1px solid var(--line); padding: 14px 18px; }
+  .app .adm-brand, .app .adm-user { margin: 0; }
+  .app .adm-nav { flex: 1 1 100%; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+  .app .adm-nav-btn { flex: 1 1 110px; text-align: center; }
+  .app .adm-quit { margin-top: 0; margin-left: auto; }
+  .app .adm-main { width: 100%; padding: 20px; }
+  .app .adm-table { max-width: 100%; overscroll-behavior-x: contain; }
+  :root[data-theme="light"] .app .adm-side { background: var(--paper); }
+  :root[data-theme="light"] .app .adm-brand { color: var(--ink); }
+  :root[data-theme="light"] .app :is(.adm-user, .adm-nav-btn) { color: var(--ink-soft); }
+  :root[data-theme="light"] .app .adm-nav-btn.active { color: #fff; }
+  :root[data-theme="light"] .app :is(.adm, .parent, .manage, .hq-page) :is(input, select, textarea) {
+    color: var(--ink);
+    background: var(--paper-soft);
+    border-color: var(--line);
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  /* 竖屏：学科按列，上下册按行，六本教材全部可见。 */
+  .app .academy-library .shelf { grid-template-columns: 82px minmax(0, 1fr); }
+  .app .academy-library .shelf-plank {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    justify-items: center;
+    gap: 14px 10px;
+    padding: 48px 14px 22px;
+    overflow: visible;
+    min-width: 0;
+  }
+  .app .academy-library .book-spine { width: min(120px, 100%); min-width: 0; height: 114px; }
+  .app .academy-library .book-math { grid-column: 1; }
+  .app .academy-library .book-chinese { grid-column: 2; }
+  .app .academy-library .book-english { grid-column: 3; }
+  .app .academy-library .book-spine:nth-of-type(odd) { grid-row: 1; }
+  .app .academy-library .book-spine:nth-of-type(even) { grid-row: 2; }
+  .app .academy-library .bookcase-head { flex-wrap: wrap; gap: 10px; }
+  .app .academy-library .bookcase-head > span { text-align: left; }
+  .app .academy-route-console { flex-direction: column; }
+  .app .academy-route-console .continue-card { width: 100%; flex: auto; }
+
+  /* 游戏目录用宽卡行呈现，保留预览图、说明和明确的启动入口。 */
+  .app .park-board-game-grid { grid-template-columns: minmax(0, 1fr); }
+  .app .park-board-game-grid .park-gomoku-card {
+    grid-template-columns: 156px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    align-items: center;
+    justify-items: stretch;
+    gap: 12px 22px;
+    min-height: 210px;
+    padding: 20px;
+  }
+  .app .park-board-game-grid .park-gomoku-card > :first-child { grid-row: 1 / 3; width: 156px; max-width: 100%; }
+  .app .park-board-game-grid .park-game-launch { grid-column: 2; grid-row: 2; width: 100%; }
+  .app .park-board-game-grid .park-game-card-copy h3 { font-size: 26px; }
+  .app .park-board-game-grid .park-game-card-copy p { font-size: 13px; line-height: 1.75; }
+
+  /* 教材图在上，互动内容在下，避免两边各只剩一条窄栏。 */
+  .app .ct-lesson-grid,
+  .app .ct-ktian-section,
+  .app .en-story-stage,
+  .app .en-read-stage,
+  .app .en-letters-discovery,
+  .app .en-story-clue { grid-template-columns: minmax(0, 1fr); }
+  .app .en-story-clue > p { grid-column: auto; }
+  .app .en-story-art { min-height: 340px; max-height: 480px; }
+  .app .en-read-stage figure { min-height: 280px; }
+  .app .ct-catalog-hero { grid-template-columns: auto 88px minmax(0, 1fr); gap: 18px; padding: 24px; }
+  .app .ct-catalog-hero h1 { font-size: clamp(28px, 3.8vw, 34px); }
+  .app .ct-progress-orbit { display: none; }
+  .app .ct-hero-seal { width: 80px; height: 96px; font-size: 32px; }
+  .app .en-catalog .en-seal { width: 88px; height: 88px; grid-column: auto; grid-row: auto; font-size: 26px; }
+  .app .ct-lesson-head { grid-template-columns: auto minmax(0, 1fr); }
+  .app .ct-teacher-play { grid-column: 1 / -1; }
+  .app .ct-method-strip { gap: 10px; padding: 18px; }
+
+}
+
+@media (max-width: 600px) {
+  /* Pad 分屏仍保留手机布局，但长标题、复习操作和管理表单可换行。 */
+  .app .ct-phase-nav { overflow-x: auto; grid-template-columns: repeat(5, minmax(88px, 1fr)); }
+  .app .review-hub-actions { grid-template-columns: minmax(0, 1fr); }
+  .app .adm-main { padding: 14px; }
+  .app .adm-week-day { grid-template-columns: minmax(0, 1fr); }
+  .app .task-row { flex-wrap: wrap; gap: 10px; }
+  .app .task-row > .adm-ops { width: 100%; }
+  .app .cloud-actions > input { flex: 1 1 180px; }
+  .card-preview-modal .card-preview-content { flex-direction: column; gap: 16px; }
+  .card-preview-modal .preview-card { width: min(240px, 100%); }
+  .card-preview-modal .card-preview-info { width: 100%; flex: none; }
+}
+
+@media (pointer: coarse) {
+  /* iPad Safari 输入时不自动放大页面；保留用户手动缩放能力。 */
+  .app :is(input, select, textarea), .buddy-panel textarea { font-size: 16px; }
+  .app :is(.kid-btn, .page-back, .filter-chip, .term-tab, .adm-nav-btn),
+  .modal .kid-btn { touch-action: manipulation; }
+}

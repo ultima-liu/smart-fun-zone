@@ -1,0 +1,23 @@
+.lesson-help-icon { display:flex; align-items:center; gap:10px; flex:none; min-height:60px; padding:8px 16px; border:1.5px solid #efbf51; border-radius:18px; background:#fff1bb; color:#946313; cursor:pointer; box-shadow:0 4px 10px #b78a2612; }
+.lesson-help-icon svg { width:38px; height:38px; }
+.lesson-help-label { display:grid; gap:2px; text-align:left; }
+.lesson-help-label b { font-size:19px; }
+.lesson-help-label small { font-size:13px; }
+.lesson-help-icon:hover { background:#ffeaa1; }
+.lesson-help-icon:focus-visible { outline:3px solid #377ebb; outline-offset:3px; }
+.lesson-help-dialog { display:flex; flex-direction:column; height:100%; min-height:0; color:#29465b; }
+.lesson-help-dialog > header { display:flex; align-items:center; justify-content:space-between; gap:20px; flex:none; }
+.lesson-help-dialog h2 { margin:0; }
+.lesson-help-dialog header p { margin:5px 0 12px; }
+.lesson-help-dialog button { min-height:44px; padding:8px 14px; border:1px solid #cbdfe9; border-radius:14px; background:#f1f3ff; color:inherit; cursor:pointer; }
+.lesson-help-dialog header > button { font-size:26px; width:44px; }
+.lesson-ask-panel { display:flex; flex:1; flex-direction:column; min-height:0; gap:14px; }
+.lesson-ask-quick { display:flex; flex-wrap:wrap; gap:10px; }
+.lesson-help-messages { min-height:0; flex:1; }
+.lesson-ask-msg { padding:16px; border-radius:18px; background:#f1f7fc; }
+.lesson-ask-msg.user { background:#f3effd; }
+.lesson-ask-msg p { line-height:1.8; }
+.lesson-ask-speak { float:right; }
+.lesson-ask-down { margin:0; font-size:14px; }
+.lesson-ask-form { display:flex; gap:12px; flex:none; }
+.lesson-ask-form > :first-child { flex:1; }

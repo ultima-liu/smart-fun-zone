@@ -1,0 +1,159 @@
+{
+  "game": "Battle City (Namco, 1985)",
+  "source": "https://github.com/dderevjanik/battle-city-reforged",
+  "originalArchives": [
+    "https://www.sounds-resource.com/nes/battlecity/sound/3710/",
+    "https://www.zophar.net/music/nintendo-nes-nsf/battle-city"
+  ],
+  "soundIdReference": "https://github.com/cyneprepou4uk/NES-Games-Disassembly/tree/main/Battle%20City",
+  "rights": "Original game audio belongs to Namco; archive availability is not an asset license.",
+  "tracks": {
+    "intro": {
+      "file": "intro-fc-v1.wav",
+      "originalRecording": "level-intro.mp3",
+      "originalSoundIds": "01–03",
+      "sourceSha256": "98971a769ef5d191926499c4d673e7fd2c529267679a5ca2125af52000553e9e",
+      "sha256": "8612e9698036ed24e470beefa249533366166bdd09eb0fa7d021f0c34a60f564",
+      "loop": false
+    },
+    "over": {
+      "file": "over-fc-v1.wav",
+      "originalRecording": "game-over.mp3",
+      "originalSoundIds": "18–1A",
+      "sourceSha256": "cd97d43604f4ec2616c7a9a274c251a2e63c9d1348346a5711d250318052d7b7",
+      "sha256": "e094a3440b3507d0321c306b000ac759d874cbe768eafaa83c9b8d1fa8d34cc9",
+      "loop": false
+    },
+    "fire": {
+      "file": "fire-fc-v1.wav",
+      "originalRecording": "fire.mp3",
+      "originalSoundIds": "0F",
+      "sourceSha256": "5a26ee58f0480c0bff879bf2daedb95dd055f951cec768c5f0ff42157fcc6136",
+      "sha256": "d52369071a31609ad2e0167495194d630a90c46e81f079c730f030ad255a4562",
+      "loop": false
+    },
+    "brick": {
+      "file": "brick-fc-v1.wav",
+      "originalRecording": "hit-brick.mp3",
+      "originalSoundIds": "0C",
+      "sourceSha256": "c1616214a3af95f0e8f9c23c2c7ff78a697c714e441a9900164acddcc066cb17",
+      "sha256": "e77a844eb6039c9e332600d52a943b849b98ea3593c9dad6b16045d207f55d79",
+      "loop": false
+    },
+    "steel": {
+      "file": "steel-fc-v1.wav",
+      "originalRecording": "hit-steel.mp3",
+      "originalSoundIds": "0D",
+      "sourceSha256": "6ccaac2b0979494df58755bc03aa491f0f229c22020a4e7446570515c397da8a",
+      "sha256": "f9dcbc1e4ba851c1f3191d78875aae40b102cf00e142d0cbdeae8e4ceb0f2373",
+      "loop": false
+    },
+    "armor": {
+      "file": "armor-fc-v1.wav",
+      "originalRecording": "hit-enemy.mp3",
+      "originalSoundIds": "0E",
+      "sourceSha256": "b51bc05522bbe43e280018b9c3113c0620c7be5d8861886d0107f4b8c5c27324",
+      "sha256": "a4a38e06b4325c8ae4ecfdfc2e15a5438feaae7029986a51b4af3332748f7134",
+      "loop": false
+    },
+    "enemy": {
+      "file": "enemy-fc-v1.wav",
+      "originalRecording": "enemy-explosion.mp3",
+      "originalSoundIds": "0A",
+      "sourceSha256": "edde41f52ece5cbca862d7a03856ffd26ec9b0d6cebc2fb945619199e6d8fb84",
+      "sha256": "212bac4c067e9c7837eabc858ac39db58723a97afd074cab55303030bca120b9",
+      "loop": false
+    },
+    "player": {
+      "file": "player-fc-v1.wav",
+      "originalRecording": "player-explosion.mp3",
+      "originalSoundIds": "07",
+      "sourceSha256": "658225d94dc663b22dffad35c6adf3f3a1e33ba9d19c658dadcd4cf2dde5e492",
+      "sha256": "c253a4f767b0b36e48dfc8f381638376b111f229e4a7a1d3df69ccd60070b596",
+      "loop": false
+    },
+    "hq": {
+      "file": "hq-fc-v1.wav",
+      "originalRecording": "SFX 7.mp3",
+      "originalSoundIds": "0B",
+      "sourceSha256": "48fdd0a532556ac84ba36226bc70da7ac69980e08b49ef5af80a0e49af5e4c5c",
+      "sha256": "ff3f2e353919aa42e236fb6c52b31e184beb3d3f696c7b934d03376595cc6325",
+      "loop": false,
+      "download": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/battle-city/SFX%207.mp3"
+    },
+    "bonus": {
+      "file": "bonus-fc-v1.wav",
+      "originalRecording": "SFX 17.mp3",
+      "originalSoundIds": "1B",
+      "sourceSha256": "db8eae0f98709491e8f3c876bca2d3bb783f2257a18180075124ad40b76b6fe5",
+      "sha256": "d4e7c90c4934b9d3c4fcf392f9e3d2362be54ec10b59df0e09b4fc7432cd5851",
+      "loop": false,
+      "download": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/battle-city/SFX%2017.mp3"
+    },
+    "appear": {
+      "file": "appear-fc-v1.wav",
+      "originalRecording": "powerup-appear.mp3",
+      "originalSoundIds": "09",
+      "sourceSha256": "95665eb8b85a07fcdb8b32145cfa52d648464911879005a866518238d435bd8f",
+      "sha256": "31e42a26213433dde7445bf4f124ca36ca5648fde2313758a262d6ee9fc56256",
+      "loop": false
+    },
+    "pickup": {
+      "file": "pickup-fc-v1.wav",
+      "originalRecording": "powerup-pickup.mp3",
+      "originalSoundIds": "06",
+      "sourceSha256": "4b348be1eba04269ff81b71230aba0b789603e927665b9de6df2f8db929b501c",
+      "sha256": "19a8ecdf9178e2eec8c64d8dcad713a223c6ea423f3e49b086e69170dedf5dd6",
+      "loop": false
+    },
+    "life": {
+      "file": "life-fc-v1.wav",
+      "originalRecording": "life.mp3",
+      "originalSoundIds": "04–05",
+      "sourceSha256": "20ff6a87e9a52961d5a6ae59ee8b8c4ef67b62afce1686ec8c76d3fe5871d925",
+      "sha256": "cb7ebbab99cf2b188bad2110d2b762a627fe897a0a1362d3f3feb13ea972df14",
+      "loop": false
+    },
+    "pause": {
+      "file": "pause-fc-v1.wav",
+      "originalRecording": "pause.mp3",
+      "originalSoundIds": "00",
+      "sourceSha256": "76a58341d072e4a83a3e6e61d939be5da6073d53e6a5d99e39ade2e68130ada7",
+      "sha256": "a5ff509100ae28b748a121dcdb53de811db303f04d311efcf93c773ded942094",
+      "loop": false
+    },
+    "ice": {
+      "file": "ice-fc-v1.wav",
+      "originalRecording": "ice.mp3",
+      "originalSoundIds": "10",
+      "sourceSha256": "271c94170962f5c903e12d6c042a300b10883fe054556cd21b9f5ad9e8ce29e9",
+      "sha256": "342773bbb87220fda16cd306aabc62a880115c9150eb673743417623af86828f",
+      "loop": false
+    },
+    "idle": {
+      "file": "idle-fc-v1.wav",
+      "originalRecording": "tank-idle.mp3",
+      "originalSoundIds": "12",
+      "sourceSha256": "c0e17709394c98e5df9821d0765c32a668b653e7e9ea381efac90ee05467fa0c",
+      "sha256": "161e31b593fc3719fc073c19cb429d45620a402caa10b8888dc4d34e5539086b",
+      "loop": true
+    },
+    "move": {
+      "file": "move-fc-v1.wav",
+      "originalRecording": "tank-move.mp3",
+      "originalSoundIds": "11",
+      "sourceSha256": "3b7f1eb7e4958d1074c941f3219e77134851db80eb9baed847a1ea08985b1c1e",
+      "sha256": "5eb34bfcefe4112f206aca26b43fac2fc746c9f69ce6f1f8d187abc5e5648355",
+      "loop": true
+    },
+    "score": {
+      "file": "score-fc-v1.wav",
+      "originalRecording": "score.mp3",
+      "originalSoundIds": "13–14",
+      "sourceSha256": "03df18af8a95330dd78d0393b8b06da9f58c05a99d552355b3c7a9345bdcf6bf",
+      "sha256": "01f25e8104c7ba7f8b079e042df48de841a7fc1bda1f608000217c3382812526",
+      "loop": false
+    }
+  },
+  "verification": "Original NSF init flags verified in docs/assets/tank/nsf-sound-map.json: SFX 7→0B HQ, SFX 17→1B 1000-point bonus."
+}

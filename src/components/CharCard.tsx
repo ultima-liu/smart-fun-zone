@@ -1,3 +1,4 @@
+import CourseReplayButton from './CourseReplayButton';
 import { useEffect, useMemo, useRef } from 'react';
 import { pinyin } from 'pinyin-pro';
 import HanziWriter from 'hanzi-writer';
@@ -99,9 +100,7 @@ export default function CharCard({ char, onClose, context, textWords, deck }: Ch
         <div className="char-card-head">
           <span className="char-card-big">{char}</span>
           <span className="char-card-py">{py}</span>
-          <button className="char-card-speak" onClick={() => speak(char, 'zh', 0.8)} aria-label="speak">
-            🔊
-          </button>
+          <CourseReplayButton label={`朗读汉字${char}`} onClick={() => speak(char, 'zh', 0.8)} />
         </div>
 
         <div className="char-card-stroke">

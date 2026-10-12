@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-07",
+  "browser": "Desktop Chromium, touch viewport emulation",
+  "e2eRun": false,
+  "physicalIPadChecked": false,
+  "screenshots": [
+    "学校-Pad竖屏.png",
+    "乐园目录-Pad竖屏.png",
+    "扫雷-Pad横屏.png",
+    "管理员课程表-Pad横屏.png",
+    "英语学习-Pad竖屏.png",
+    "商品预览-短横屏.png",
+    "卡牌预览-Pad分屏.png"
+  ],
+  "reports": {
+    "final": {
+      "views": 130,
+      "documentOverflow": 0,
+      "viewports": [
+        [
+          768,
+          1024
+        ],
+        [
+          834,
+          1194
+        ],
+        [
+          1024,
+          768
+        ],
+        [
+          1194,
+          834
+        ],
+        [
+          1440,
+          900
+        ]
+      ]
+    },
+    "games-after": {
+      "views": 42,
+      "documentOverflow": 0,
+      "viewports": [
+        [
+          768,
+          1024
+        ],
+        [
+          1024,
+          768
+        ]
+      ]
+    },
+    "focus": {
+      "views": 60,
+      "documentOverflow": 0,
+      "viewports": [
+        [
+          540,
+          720
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          1024,
+          500
+        ],
+        [
+          1024,
+          768
+        ]
+      ]
+    },
+    "themes-and-management": {
+      "views": 176,
+      "themes": [
+        "dark",
+        "light"
+      ],
+      "documentOverflow": 0
+    }
+  }
+}

@@ -1,0 +1,3317 @@
+{
+  "date": "2026-10-10",
+  "checks": [
+    {
+      "unit": "friends",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 462,
+        "w": 1104,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 410,
+        "w": 1104,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 530,
+        "w": 860,
+        "x": 150,
+        "y": 228
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 478,
+        "w": 860,
+        "x": 150,
+        "y": 280
+      },
+      "scroll": [],
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "friends",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "families",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "animals",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "plants",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "colours",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-recognition",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "听声音",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "认字母",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "读新词",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-phonics-practice en-full-panel",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "字母歌谣",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-full-panel en-letter-chant",
+      "rect": {
+        "h": 766,
+        "w": 1190,
+        "x": 156,
+        "y": 246
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "占格规则",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-rules-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    },
+    {
+      "unit": "numbers",
+      "state": "动手书写",
+      "document": [
+        0,
+        0
+      ],
+      "fits": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "outside": [],
+      "overflow": [],
+      "panel": "en-writing-task en-full-panel",
+      "rect": {
+        "h": 714,
+        "w": 1190,
+        "x": 156,
+        "y": 298
+      },
+      "scroll": [],
+      "size": [
+        1366,
+        1024
+      ]
+    }
+  ]
+}

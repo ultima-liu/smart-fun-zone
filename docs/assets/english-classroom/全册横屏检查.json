@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-09",
+  "devices": [
+    {
+      "type": "Pad landscape",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "type": "Web",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "lessonIds": [
+    "friends-opening",
+    "friends-a",
+    "friends-letters",
+    "friends-b",
+    "friends-read",
+    "friends-project",
+    "friends-story",
+    "families-opening",
+    "families-a",
+    "families-letters",
+    "families-b",
+    "families-read",
+    "families-project",
+    "families-story",
+    "animals-opening",
+    "animals-a",
+    "animals-letters",
+    "animals-b",
+    "animals-read",
+    "animals-project",
+    "animals-story",
+    "plants-opening",
+    "plants-a",
+    "plants-letters",
+    "plants-b",
+    "plants-read",
+    "plants-project",
+    "plants-story",
+    "colours-opening",
+    "colours-a",
+    "colours-letters",
+    "colours-b",
+    "colours-read",
+    "colours-project",
+    "colours-story",
+    "numbers-opening",
+    "numbers-a",
+    "numbers-letters",
+    "numbers-b",
+    "numbers-read",
+    "numbers-project",
+    "numbers-story",
+    "guest-observe",
+    "guest-act"
+  ],
+  "fullCurriculum": {
+    "lessons": 44,
+    "states": 1582,
+    "failures": [],
+    "errors": []
+  },
+  "finalLettersAndProjectRecheck": {
+    "lessons": 12,
+    "states": 524,
+    "failures": [],
+    "errors": []
+  },
+  "finalProjectMaxContentPaperAndValidationChecks": {
+    "states": 36,
+    "failures": []
+  },
+  "checks": [
+    "visible controls and text remain inside viewport and content panel",
+    "no document scroll overflow",
+    "complete textbook scenes and images",
+    "nested tasks and completion states",
+    "expanded hints and family observations",
+    "maximum project content and every item editor"
+  ],
+  "functionalTests": {
+    "passed": 9,
+    "scope": "e2e/english-classroom.spec.ts",
+    "note": "8 cases passed in final run; source reading case passed targeted recheck after handling automatic follow-up dialog closure"
+  },
+  "unitTests": {
+    "files": 6,
+    "passed": 30
+  },
+  "build": {
+    "typeCheck": true,
+    "scopedLint": true,
+    "productionBuild": true,
+    "bundleBudget": true
+  },
+  "dataIsolation": "Private browser contexts and test children; existing user data preserved"
+}

@@ -1,0 +1,89 @@
+{
+  "title": {
+    "file": "title-fc-v1.mp3",
+    "nsfTrack": 1,
+    "loop": null,
+    "sha256": "4a49f7b4643704fbd6ef38f4d361c97165a7273365623ab62ab849cc459ec5c4"
+  },
+  "jungle": {
+    "file": "jungle-fc-v1.mp3",
+    "nsfTrack": 2,
+    "loop": {
+      "start": 20,
+      "end": 69.52437641723355
+    },
+    "sha256": "31af61830a4d67c5c48b71dd9a92d07ad4a916c471dc01a49e844534076bedfb"
+  },
+  "base": {
+    "file": "base-fc-v1.mp3",
+    "nsfTrack": 7,
+    "loop": {
+      "start": 20,
+      "end": 64.73167800453515
+    },
+    "sha256": "807dd465810bf74d231af25c9a7d78ba784560a25fd6f42d1f63023a3e3571d6"
+  },
+  "boss": {
+    "file": "boss-fc-v1.mp3",
+    "nsfTrack": 8,
+    "loop": {
+      "start": 20,
+      "end": 54.94664399092971
+    },
+    "sha256": "897540265be1a87fd006926cbaeebd6ab534b6436fbfe378938d7a7c108281af"
+  },
+  "waterfall": {
+    "file": "waterfall-fc-v1.mp3",
+    "nsfTrack": 3,
+    "loop": {
+      "start": 20,
+      "end": 51.95120181405896
+    },
+    "sha256": "69fda8e9fdc3466a199c3c04aa64dbec444690224bdf27e312d7e61765b204a6"
+  },
+  "snow": {
+    "file": "snow-fc-v1.mp3",
+    "nsfTrack": 4,
+    "loop": {
+      "start": 20,
+      "end": 51.951179138322
+    },
+    "sha256": "a206547d0d4ea92a41e0374737e2f82bcf02946d9fe6dbce69837c5281c47bdd"
+  },
+  "energy": {
+    "file": "energy-fc-v1.mp3",
+    "nsfTrack": 5,
+    "loop": {
+      "start": 20,
+      "end": 41.56700680272109
+    },
+    "sha256": "6a75f1bfb1269ec158861ed82d24f8bce20e280668d970c6bda31fe0d4a0025a"
+  },
+  "lair": {
+    "file": "lair-fc-v1.mp3",
+    "nsfTrack": 6,
+    "loop": {
+      "start": 20,
+      "end": 43.06471655328798
+    },
+    "sha256": "68b70f00b6657c354fdb83ef91985af6a9f8470335bb0a55eecfd4768bb08ec5"
+  },
+  "clear": {
+    "file": "clear-fc-v1.mp3",
+    "nsfTrack": 9,
+    "loop": null,
+    "sha256": "997531f2896e5ba88fa2348cdd2e8d003b7871caffb8b193af3aa3ee8b6914d5"
+  },
+  "ending": {
+    "file": "ending-fc-v1.mp3",
+    "nsfTrack": 10,
+    "loop": null,
+    "sha256": "4fdd47d9c30eb469a50186cd8da9d102896cca8baf6e86a39b1a74fcdef89a2e"
+  },
+  "over": {
+    "file": "over-fc-v1.mp3",
+    "nsfTrack": 11,
+    "loop": null,
+    "sha256": "7ae788e28c0d39ade11fcc1b63ff6b782a2294c8008ce4b01b1e1609d2f02bea"
+  }
+}

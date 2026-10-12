@@ -1,0 +1,58 @@
+/* 只显示小喇叭图形；Pad 上的透明点击区域保持 44 × 44。 */
+button.course-replay-button,
+:is(.app, .math-challenge-dialog) button.course-replay-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  max-width: 44px;
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #287fbd;
+  box-shadow: none;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .15s ease;
+}
+button.course-replay-button svg,
+:is(.app, .math-challenge-dialog) button.course-replay-button svg {
+  display: block;
+  flex: none;
+  width: 24px;
+  height: 24px;
+}
+button.course-replay-button:hover:not(:disabled),
+:is(.app, .math-challenge-dialog) button.course-replay-button:hover:not(:disabled) { transform: scale(1.08); }
+button.course-replay-button:active:not(:disabled),
+:is(.app, .math-challenge-dialog) button.course-replay-button:active:not(:disabled) { transform: scale(.94); }
+button.course-replay-button:focus-visible,
+:is(.app, .math-challenge-dialog) button.course-replay-button:focus-visible { outline: 3px solid #6d69cf; outline-offset: 2px; }
+button.course-replay-button:disabled:not(.is-playing),
+:is(.app, .math-challenge-dialog) button.course-replay-button:disabled:not(.is-playing) { opacity: .4; cursor: default; }
+button.course-replay-button.is-playing { opacity: 1; cursor: default; }
+.course-replay-button.is-playing .course-speaker-wave { animation: course-speaker-wave .8s ease-in-out infinite; transform-origin: 21px 16px; }
+.course-replay-button.is-playing .course-speaker-wave-far { animation-delay: -.4s; }
+@keyframes course-speaker-wave { 0%, 100% { opacity: .25; transform: scale(.85); } 50% { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .course-replay-button.is-playing .course-speaker-wave { animation: none; opacity: 1; } }
+
+/* Keep an attached replay control in the same row as its question or explanation.
+   Long copy wraps within the text area while the 44px control keeps its space. */
+:is(.app, .math-challenge-dialog) :is(h1,h2,h3,h4,h5,h6,p):has(> .course-replay-button),
+:is(.app, .math-challenge-dialog) :is(h1,h2,h3,h4,h5,h6):has(> [data-tab-audio] > .course-replay-button) {
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+:is(.app, .math-challenge-dialog) :is(h1,h2,h3,h4,h5,h6,p):has(.course-replay-button) > :not(.course-replay-button) { min-width:0; }
+:is(.app, .math-challenge-dialog) :is(h1,h2,h3,h4,h5,h6) > [data-tab-audio]:has(> .course-replay-button) { display:inline-flex; flex:0 0 44px; }

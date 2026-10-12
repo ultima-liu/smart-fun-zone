@@ -1,0 +1,158 @@
+[
+  {
+    "track": "title",
+    "file": "title-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/1%20-%20Track%201.mp3",
+    "sourceSHA256": "ae8bb59c56ed062b3c2452c2a3690d228f5374424626842c3af084db59b9daeb",
+    "bytes": 208891,
+    "loop": null
+  },
+  {
+    "track": "start",
+    "file": "start-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/2%20-%20Track%202.mp3",
+    "sourceSHA256": "3034c5df34b7e3ef39218ef27039e51672d786ec03e0ec9cf672ce3b21582d35",
+    "bytes": 35543,
+    "loop": null
+  },
+  {
+    "track": "main",
+    "file": "main-fc-v1.wav",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/3%20-%20Track%203.mp3",
+    "sourceSHA256": "d01f2812b3e1b585e9c4e3132085fa7748dfef6cdfdcf402d9c682504257a517",
+    "bytes": 593466,
+    "loop": {
+      "start": 6,
+      "end": 13.453968253968254
+    }
+  },
+  {
+    "track": "upgrade",
+    "file": "upgrade-fc-v1.wav",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/4%20-%20Track%204.mp3",
+    "sourceSHA256": "6a47f85c1a7f4c892fea8063d1b7f1127ee63d8656e495ad6acbeab580ccd747",
+    "bytes": 593436,
+    "loop": {
+      "start": 6,
+      "end": 13.453287981859411
+    }
+  },
+  {
+    "track": "clear",
+    "file": "clear-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/5%20-%20Track%205.mp3",
+    "sourceSHA256": "5ab155d3af9ff4ae9363df483dc409095218441ee2eb256666022d235f769a1b",
+    "bytes": 34916,
+    "loop": null
+  },
+  {
+    "track": "bonus",
+    "file": "bonus-fc-v1.wav",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/6%20-%20Track%206.mp3",
+    "sourceSHA256": "d6f7a3e58b73a06fe3306829a9d8532fbc7e0432e9e4b2cd448385a686adcc4f",
+    "bytes": 499588,
+    "loop": {
+      "start": 6,
+      "end": 11.325215419501134
+    }
+  },
+  {
+    "track": "invincible",
+    "file": "invincible-fc-v1.wav",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/7%20-%20Track%207.mp3",
+    "sourceSHA256": "f8f314dd44956e1bf6375e3a3dce52ecbe3ac52e580026a61db86af7e17adf29",
+    "bytes": 640492,
+    "loop": {
+      "start": 6,
+      "end": 14.520317460317461
+    }
+  },
+  {
+    "track": "ending",
+    "file": "ending-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/8%20-%20Track%208.mp3",
+    "sourceSHA256": "6bd754e00c471afb7fa45f7c7861b3e20eacf196f33b83f9d65ff8f8904dd4c2",
+    "bytes": 149959,
+    "loop": null
+  },
+  {
+    "track": "miss",
+    "file": "miss-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/9%20-%20Track%209.mp3",
+    "sourceSHA256": "3a1dd456c96d67a428289427a59e5795d662b408e60493a99ea8df6a4c86810d",
+    "bytes": 27706,
+    "loop": null
+  },
+  {
+    "track": "over",
+    "file": "over-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/10%20-%20Track%2010.mp3",
+    "sourceSHA256": "0283dd069bf3063d661b303ccf9272e20db1f2c2278f3809d8d8488d2096e45d",
+    "bytes": 78174,
+    "loop": null
+  },
+  {
+    "track": "step-horizontal",
+    "file": "step-horizontal-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/SFX%201.mp3",
+    "sourceSHA256": "bcb9a8a4506e799fa9a656c02f4e6f4b80aaa4035ce224d3294c04251816378b",
+    "bytes": 3882,
+    "loop": null
+  },
+  {
+    "track": "step-vertical",
+    "file": "step-vertical-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/SFX%202.mp3",
+    "sourceSHA256": "ce8221e48f7733c8c622edaa60a9ebccf3fb23056680eb511ef55fd1662b6f16",
+    "bytes": 3882,
+    "loop": null
+  },
+  {
+    "track": "plant",
+    "file": "plant-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/SFX%203.mp3",
+    "sourceSHA256": "a0fcbe312e913e4e91d4c8c39acf3be7dd275be73949ad8f1848ecc62fcfeb49",
+    "bytes": 5136,
+    "loop": null
+  },
+  {
+    "track": "blast",
+    "file": "blast-fc-v2.wav",
+    "source": "https://github.com/emu-russia/bomberman-nes/blob/master/BOOM.NAS",
+    "sourceGitBlob": "f6cb1f7e1cbf768b70d0a635288451d7f69f20d0",
+    "registerSource": "https://github.com/emu-russia/bomberman-nes/blob/master/BMAN.NAS",
+    "sourceSHA256": "d65319c03f74e795e80e6c0c793d80b65cbd2f7524af728d684a40800a47452a",
+    "sourceFile": "blast-sample-v2.dmc",
+    "sampleBytes": 4081,
+    "bitRate": 24857.954545454544,
+    "sampleDuration": 1.3133824,
+    "duration": 1.3933786848072562,
+    "processing": "LSB-first 7-bit DMC, isolated TND mixer, HP90/HP440/LP14000, peak 0.85, mono PCM16 44100 Hz",
+    "bytes": 122940,
+    "loop": null
+  },
+  {
+    "track": "power",
+    "file": "power-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/SFX%205.mp3",
+    "sourceSHA256": "cdce8dfa7854b2b408e6847ed0742614af5d858bcc4f2425baba61f6bbe59ab8",
+    "bytes": 7644,
+    "loop": null
+  },
+  {
+    "track": "hurt",
+    "file": "hurt-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/SFX%206.mp3",
+    "sourceSHA256": "4eff1926bc55aa23063ac55c50589f2b2abfdd0eb6ee21de068d7e594026cf5d",
+    "bytes": 11405,
+    "loop": null
+  },
+  {
+    "track": "pause",
+    "file": "pause-fc-v1.mp3",
+    "source": "https://fi.zophar.net/soundfiles/nintendo-nes-nsf/bomberman/SFX%207.mp3",
+    "sourceSHA256": "0414c25a200bc34e16e35257bd4495f6fcdcdea38283ff623f525a2d8a29f676",
+    "bytes": 14854,
+    "loop": null
+  }
+]

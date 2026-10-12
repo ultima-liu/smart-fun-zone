@@ -1,0 +1,1526 @@
+{
+  "date": "2026-10-08",
+  "environment": "隔离 Chromium 触屏视口，体验档案，模拟 API；未在实体 iPad Safari 验证",
+  "representative": {
+    "rows": [
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "phase": 0,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 495
+        },
+        "visual": {
+          "x": 57,
+          "y": 333.125,
+          "width": 910,
+          "height": 325.8125
+        },
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "phase": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 3,
+        "sidebar": 1,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": null,
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1024,
+        "height": 768,
+        "phase": 3,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 495
+        },
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "phase": 0,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 751
+        },
+        "visual": {
+          "x": 57,
+          "y": 333.125,
+          "width": 654,
+          "height": 581.8125
+        },
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "phase": 1,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 3,
+        "sidebar": 1,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": null,
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "height": 1024,
+        "phase": 3,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 751
+        },
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "phase": 0,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "card": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 627
+        },
+        "visual": {
+          "x": 241,
+          "y": 333.125,
+          "width": 958,
+          "height": 457.8125
+        },
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "phase": 1,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 3,
+        "sidebar": 1,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": null,
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "height": 900,
+        "phase": 3,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "card": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 627
+        },
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "phase": 0,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 429
+        },
+        "visual": {
+          "x": 37,
+          "y": 346.171875,
+          "width": 466,
+          "height": 264.8125
+        },
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "phase": 1,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 3,
+        "sidebar": 1,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": null,
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.802"
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 540,
+        "height": 720,
+        "phase": 3,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 429
+        },
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "phase": 0,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 495
+        },
+        "visual": {
+          "x": 57,
+          "y": 333.125,
+          "width": 910,
+          "height": 325.8125
+        },
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "phase": 1,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 3,
+        "sidebar": 1,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 236,
+          "y": 257.125,
+          "width": 744,
+          "height": 494.875
+        },
+        "card": null,
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1024,
+        "height": 768,
+        "phase": 3,
+        "document": [
+          1024,
+          768
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 494.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 936,
+          "height": 495
+        },
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "phase": 0,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 751
+        },
+        "visual": {
+          "x": 57,
+          "y": 333.125,
+          "width": 654,
+          "height": 581.8125
+        },
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "phase": 1,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 3,
+        "sidebar": 1,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 214,
+          "y": 257.125,
+          "width": 510,
+          "height": 750.875
+        },
+        "card": null,
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "height": 1024,
+        "phase": 3,
+        "document": [
+          768,
+          1024
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "main": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 750.875
+        },
+        "card": {
+          "x": 44,
+          "y": 257.125,
+          "width": 680,
+          "height": 751
+        },
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "phase": 0,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "card": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 627
+        },
+        "visual": {
+          "x": 241,
+          "y": 333.125,
+          "width": 958,
+          "height": 457.8125
+        },
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "phase": 1,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 3,
+        "sidebar": 1,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 420,
+          "y": 257.125,
+          "width": 792,
+          "height": 626.875
+        },
+        "card": null,
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "height": 900,
+        "phase": 3,
+        "document": [
+          1440,
+          900
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "main": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 626.875
+        },
+        "card": {
+          "x": 228,
+          "y": 257.125,
+          "width": 984,
+          "height": 627
+        },
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "phase": 0,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 429
+        },
+        "visual": {
+          "x": 37,
+          "y": 346.171875,
+          "width": 466,
+          "height": 264.8125
+        },
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "phase": 1,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 3,
+        "sidebar": 1,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 172,
+          "y": 275.171875,
+          "width": 344,
+          "height": 428.828125
+        },
+        "card": null,
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000",
+          "0.802"
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 540,
+        "height": 720,
+        "phase": 3,
+        "document": [
+          540,
+          720
+        ],
+        "tabs": 0,
+        "sidebar": 0,
+        "readiness": 0,
+        "help": "不懂就问\n点我问聪聪",
+        "workspace": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "main": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 428.828125
+        },
+        "card": {
+          "x": 24,
+          "y": 275.171875,
+          "width": 492,
+          "height": 429
+        },
+        "visual": null,
+        "fits": [
+          "1.000",
+          "1.000"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "allGuesses": {
+    "rows": [
+      {
+        "id": "campus",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "playground",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "classroom-discover",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "classroom-games",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "0.916",
+        "empty": false
+      },
+      {
+        "id": "learning-readiness",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "0.920",
+        "empty": false
+      },
+      {
+        "id": "numbers",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "compare",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "ordinal",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "compose",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "add-within-5",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "subtract-within-5",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "zero",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "unit1-review",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "six-to-nine",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "compare-order-nine",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "compose-six-nine",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "addsub-six-seven",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "solve-total-within-7",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "solve-remain-within-7",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "addsub-eight-nine",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "select-info-eight-nine",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "ten",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "addsub-ten",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "continuous-add-sub",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "mixed-add-sub",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "unit2-review",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "solid-shapes",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "solid-building",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "0.899",
+        "empty": false
+      },
+      {
+        "id": "solid-compose",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "ten-again",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "eleven-twenty",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "order-twenty",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "simple-addsub-twenty",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "between-positions",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "unit4-review",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "plus-nine",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "plus-eight-seven-six",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "plus-eight-nine-strategies",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "plus-five-four-three-two",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "solve-total",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "find-original",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "addition-table",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "unit5-review",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "review-numbers",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "review-relations",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "review-shapes",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      },
+      {
+        "id": "review-application",
+        "sidebars": 0,
+        "readiness": 0,
+        "mainWidth": 936,
+        "workspaceWidth": 936,
+        "document": [
+          1024,
+          768
+        ],
+        "fit": "1.000",
+        "empty": false
+      }
+    ],
+    "errors": []
+  },
+  "validation": {
+    "relatedE2E": "math-automatic-flow.spec.ts，3 个通过；后续样式修改未重复运行",
+    "productionBuild": "通过，含 TypeScript 与包体预算",
+    "targetedLint": "通过"
+  }
+}

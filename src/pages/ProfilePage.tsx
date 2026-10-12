@@ -1,3 +1,4 @@
+import { ActivityDeck, ContentPages } from '../components/ScreenPages';
 import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -177,7 +178,7 @@ export default function ProfilePage() {
         ))}
       </div>
 
-      <div className="hq-inner">
+      <div className="hq-inner hq-screen-layout"><ActivityDeck labels={['我的成长', '荣誉墙', '收藏柜']}>
         {/* 角色成长舱 */}
         <section className="hq-hero">
           <div className="hq-capsule">
@@ -287,6 +288,7 @@ export default function ProfilePage() {
           {earnedBadges.length ? <div className="hq-badge-grid">{earnedBadges.map((badge) => badge && <div key={badge.id} className={`hq-badge-cell unlocked ${badge.rarity}`} title={badge.meaning}><span className="hq-badge-icon"><BadgeIcon badge={badge} /></span><span className="hq-badge-label">{badge.name}</span><small>{badge.meaning}</small></div>)}</div> : <p className="hq-empty">完成剧情任务后，徽章会在这里点亮。</p>}
         </section>
 
+        <div className="hq-collection-screen">
         {/* 收集柜 · 分段页签（课程页上下册样式） */}
         <nav className="hq-tabs" aria-label="收藏柜">
           {([
@@ -327,7 +329,7 @@ export default function ProfilePage() {
               </div>
               <div className="wardrobe-picker">
                 <p className="wardrobe-tip">{lang === 'zh' ? '点击任意套装自由试穿，不会立即替换当前穿戴' : 'Select any outfit to preview before equipping'}</p>
-                <div className="wardrobe-cards">
+                <ContentPages className="wardrobe-cards" kind="gallery">
                   {wardrobeOutfits.map((outfit) => {
                     const isOwned = outfit.default || owned.includes(outfit.id);
                     const isEquipped = outfit.default ? !equippedPremiumId : equippedPremiumId === outfit.id;
@@ -339,7 +341,7 @@ export default function ProfilePage() {
                       </button>
                     );
                   })}
-                </div>
+                </ContentPages>
                 {(() => {
                   const selected = wardrobeById(previewOutfitId ?? equippedPremiumId);
                   const isOwned = selected.default || owned.includes(selected.id);
@@ -408,6 +410,7 @@ export default function ProfilePage() {
             </div>
           </section>
         )}
+        </div></ActivityDeck>
       </div>
     </div>
   );

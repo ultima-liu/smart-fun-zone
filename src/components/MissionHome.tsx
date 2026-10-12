@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { localDayKey } from '../dailyCheckin';
@@ -10,6 +10,7 @@ import {
   quietVisitors, recentMissionCompletions, startCourseMail, type CourseMailRecord, type Mission,
 } from '../taskSystem';
 import './mission-home.css';
+import ScreenPages, { ContentPages } from './ScreenPages';
 
 type LetterView = 'letter' | 'saved' | 'replies' | 'drift';
 type Sender = { name: string; source: string; seal: string; destination: string; intro: string };
@@ -26,6 +27,16 @@ type InboxEntry = {
 };
 
 const EMPTY_CUSTOM_TASKS: ReturnType<typeof useStore.getState>['customTasks'][string] = [];
+
+export type MissionStation = {
+  status: string;
+  badge: string;
+  summary: string;
+  unreadIds: string[];
+  rewardCount: number;
+  open: () => void;
+  drift?: { sender: string; open: () => void };
+};
 
 function readMailIds(childId: string): Set<string> {
   try {
@@ -63,7 +74,7 @@ function parentTaskMission(task: CustomTask, day: string): Mission {
 }
 
 /** 首页任务先成为星空中的信件，孩子打开后才阅读完整内容。 */
-export default function MissionHome({ onReadingChange }: { onReadingChange: (reading: boolean) => void }) {
+export default function MissionHome({ onReadingChange, renderScene }: { onReadingChange: (reading: boolean) => void; renderScene?: (station: MissionStation) => ReactNode }) {
   const nav = useNavigate();
   const childId = useStore((state) => state.activeChildId)!;
   const taskState = useStore((state) => state.taskStates[childId]);
@@ -96,10 +107,11 @@ export default function MissionHome({ onReadingChange }: { onReadingChange: (rea
     return () => window.clearInterval(interval);
   }, []);
 
-  const mission = useMemo(
-    () => taskState?.initializedAt ? deliveredMission(childId) : undefined,
-    [childId, taskState, customTasks, courseSchedule, today],
-  );
+  const [mission, setMission] = useState<Mission>();
+  // This query can deliver scheduled mail; keep its store writes outside React render.
+  useEffect(() => {
+    setMission(taskState?.initializedAt ? deliveredMission(childId) : undefined);
+  }, [childId, taskState, customTasks, courseSchedule, today]);
   const courseMails = useMemo(() => courseMailBuckets(childId), [childId, taskState, courseSchedule, today]);
   const completed = taskState?.lastCompletion && Date.now() - taskState.lastCompletion.at < 10 * 60_000
     ? taskState.lastCompletion : undefined;
@@ -268,6 +280,7 @@ export default function MissionHome({ onReadingChange }: { onReadingChange: (rea
           <button className={view === 'saved' ? 'active' : ''} onClick={() => setView('saved')}><span>🗂️</span> 未完成{unfinishedEntries.length > 0 && <b>{unfinishedEntries.length}</b>}</button>
           <button className={view === 'replies' ? 'active' : ''} onClick={() => setView('replies')}><span>✨</span> 已完成</button>
         </nav>}
+        <ScreenPages panel key={view}>
         <div className="star-letter-scroll">
           {view === 'drift' && driftMission && <div className="letter-sheet">
             <aside className="letter-sender">
@@ -289,18 +302,24 @@ export default function MissionHome({ onReadingChange }: { onReadingChange: (rea
           {view !== 'drift' && <div className="inbox-split">
             <aside className="inbox-entry-list" aria-label={`${view === 'letter' ? '当前来信' : view === 'saved' ? '未完成' : '已完成'}任务列表`}>
               <div className="inbox-list-head"><small>{view === 'letter' ? '今天需要处理' : view === 'saved' ? '以前尚未完成' : '已经完成归档'}</small><strong>{entries.length} 项任务</strong></div>
-              {entries.length === 0 ? <div className="inbox-list-empty">暂无任务</div> : entries.map((entry) => <button type="button" key={entry.id} className={selectedEntry?.id === entry.id ? 'active' : ''} aria-pressed={selectedEntry?.id === entry.id} onClick={() => setSelectedEntryId(entry.id)}><span>{entry.icon}</span><span><b>{entry.title}</b><small>{entry.subtitle}</small></span><em>{entry.status}{unreadEntries.some((unread) => unread.id === entry.id) && <i className="inbox-unread-dot" aria-label="未读" />}</em></button>)}
+              <ContentPages kind="rows" resetKey={view ?? ''}>{entries.length === 0 ? <div className="inbox-list-empty">暂无任务</div> : entries.map((entry) => <button type="button" key={entry.id} className={selectedEntry?.id === entry.id ? 'active' : ''} aria-pressed={selectedEntry?.id === entry.id} onClick={() => setSelectedEntryId(entry.id)}><span>{entry.icon}</span><span><b>{entry.title}</b><small>{entry.subtitle}</small></span><em>{entry.status}{unreadEntries.some((unread) => unread.id === entry.id) && <i className="inbox-unread-dot" aria-label="未读" />}</em></button>)}</ContentPages>
             </aside>
             <article className="letter-message inbox-entry-detail">{renderEntryDetail(selectedEntry)}</article>
           </div>}
         </div>
+        </ScreenPages>
       </section>
     </div>,
     document.body,
   );
 
   return <>
-    <section className={`star-mail-area${isDrifting ? ' has-drift' : ''}`} id="station" aria-label="星环收件站" aria-live="polite">
+    {renderScene ? renderScene({
+      status: mailboxStatus, badge: mailboxBadge, summary: mailboxSummary,
+      unreadIds: unreadEntries.map(entry => entry.id), rewardCount: rewardEntries.length,
+      open: openMailbox,
+      drift: isDrifting ? { sender: sender.name, open: () => setView('drift') } : undefined,
+    }) : <section className={`star-mail-area${isDrifting ? ' has-drift' : ''}`} id="station" aria-label="星环收件站" aria-live="polite">
       {isDrifting && <button className="drift-letter" onClick={() => setView('drift')} aria-label={`拾取来自${sender.name}的漂流讯息`}>
         <span className="drift-orbit" aria-hidden="true" /><span className="drift-capsule" aria-hidden="true"><i>{sender.seal}</i></span><strong>漂流讯息</strong><small>轻点拾取</small>
       </button>}
@@ -312,7 +331,7 @@ export default function MissionHome({ onReadingChange }: { onReadingChange: (rea
         {mailboxBadge && <span className={`new-mail-badge${mailboxStatus === 'reward' || mailboxStatus === 'reply' ? ' is-reply' : ''}`}><i aria-hidden="true" />{mailboxBadge}</span>}
         <span className="mailbox-label"><small>星环收件站{mailboxHasLetter ? ` · ${pendingEntries.length} 项待处理` : ''}</small><strong>{mailboxSummary}</strong></span>
       </button>
-    </section>
+    </section>}
     {dialog}
   </>;
 }

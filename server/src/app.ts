@@ -3,6 +3,7 @@ import cors from '@fastify/cors';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { assessCourse, AssessmentError } from './course-assessment.js';
 import { config } from './config.js';
 import { db, q, ping, insertOne, type RowDataPacket } from './db.js';
 import { signToken, signChildToken, verifyAny, hashPassword, verifyPassword } from './auth.js';
@@ -11,6 +12,7 @@ import { synthesizeCache, sseLooksValid } from './tts.js';
 import { smsProvider } from './sms.js';
 import { writeVersion, type LessonContent } from './content-store.js';
 import { authorizeChildAccess } from './access.js';
+import { transcribeReading, ReadingAsrError, readingAsrConfigured } from './reading-asr.js';
 
 /* ---------- 家长账号 / 家庭 / 儿童 ---------- */
 async function getOrCreateFamily(userId: number): Promise<number> {
@@ -140,6 +142,7 @@ export function buildApp(): FastifyInstance {
     db: await ping(),
     ttsConfigured: config.volc.apiKey !== '',
     chatConfigured: config.chat.apiKey !== '' && config.chat.baseUrl !== '' && config.chat.model !== '',
+    readingAsrConfigured: readingAsrConfigured(),
     version: 1,
     time: Date.now(),
   }));
@@ -199,6 +202,40 @@ export function buildApp(): FastifyInstance {
       }
     },
   );
+
+  app.post('/api/course/assess', {
+    bodyLimit: 10 * 1024 * 1024,
+    preHandler: [rateLimit('course-assess', 20, 60_000), requireAuth],
+  }, async (req, reply) => {
+    try {
+      const body = req.body as { audio?: unknown };
+      const provider = body?.audio ? config.assessmentAudio : config.assessment;
+      return { ok: true, result: await assessCourse(req.body, provider) };
+    } catch (error) {
+      if (error instanceof AssessmentError) return reply.code(error.status).send({ ok: false, error: error.message });
+      return reply.code(502).send({ ok: false, error: 'AI 检查暂时不可用，请重试。' });
+    }
+  });
+
+  app.post('/api/reading-asr/transcribe', {
+    bodyLimit: 2 * 1024 * 1024,
+    preHandler: config.production ? [rateLimit('reading-asr', 30, 60_000), requireAuth] : [rateLimit('reading-asr', 30, 60_000)],
+  }, async (req, reply) => {
+    const controller = new AbortController();
+    const cancel = () => controller.abort();
+    req.raw.once('aborted', cancel);
+    const disconnected = () => { if (!reply.raw.writableEnded) controller.abort(); };
+    reply.raw.once('close', disconnected);
+    try {
+      return { ok: true, ...await transcribeReading(req.body, undefined, controller.signal) };
+    } catch (error) {
+      if (error instanceof ReadingAsrError) return reply.code(error.status).send({ ok: false, error: error.message });
+      return reply.code(502).send({ ok: false, error: '英语朗读识别没有完成，请再试一次。' });
+    } finally {
+      req.raw.removeListener('aborted', cancel);
+      reply.raw.removeListener('close', disconnected);
+    }
+  });
 
   /* ---------- 认证 ---------- */
   app.post<{ Body: { phone?: string } }>('/api/auth/send-code', { preHandler: rateLimit('send-code', 5, 10 * 60_000) }, async (req, reply) => {

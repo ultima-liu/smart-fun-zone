@@ -33,12 +33,13 @@ describe('数学一年级上册教材覆盖台账', () => {
     });
   });
 
-  it('47 节课均具备多个必做教材任务和练习组', () => {
+  it('47 节课均具备必做教材任务和练习组，第几合并重复定位任务', () => {
     expect(ALL_MATH_LESSONS).toHaveLength(47);
     ALL_MATH_LESSONS.forEach((lesson) => {
       const plan = MATH_LESSON_TASKS[lesson.id];
       expect(plan, lesson.id).toBeDefined();
-      expect(plan.tasks.filter((task) => task.required).length, lesson.id).toBeGreaterThanOrEqual(2);
+      expect(plan.tasks.filter((task) => task.required).length, lesson.id).toBeGreaterThanOrEqual(lesson.id === 'ordinal' ? 1 : 2);
+      if (lesson.id === 'ordinal') expect(plan.tasks.map(task => task.id)).toEqual(['ordinal-direction']);
       expect(plan.practiceGroups.length, lesson.id).toBeGreaterThan(0);
     });
   });

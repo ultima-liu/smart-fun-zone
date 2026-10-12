@@ -255,10 +255,6 @@
 @keyframes park-gm-miner { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-2px) rotate(1deg); } }
 .park-game-launch.gold-miner { color: #4c2d13; border-color: #ffe09a; background: linear-gradient(135deg,#ffe49a,#e7a146); box-shadow: inset 0 1px 0 #fff8d0,0 10px 18px -12px rgba(244,169,63,.8); }
 
-/* 益智分类第三张卡：横贯整行，保留预览左 + 文案中 + 按钮右的横向布局 */
-.park-board-game-grid .park-card-wide { grid-column: 1 / -1; grid-template-columns: 176px minmax(0, 1fr) auto; }
-.park-board-game-grid .park-card-wide .park-klotski-preview { width: 176px; }
-.park-board-game-grid .park-card-wide .park-game-launch { grid-column: auto; width: auto; }
 
 /* 云舟弹星卡片：迷你夜云棋盘 + 星砖阵 + 弹跳星弹与左右巡视的云舟（容器查询单位定位） */
 .park-breakout-card { border-color: rgba(255, 159, 180, .32); background: linear-gradient(110deg, rgba(64, 30, 88, .94), rgba(30, 34, 92, .92)); }
@@ -452,7 +448,7 @@
   .park-category-tabs button { min-height: 60px; display: flex; flex-direction: column; gap: 4px; justify-content: center; padding: 5px 3px; text-align: center; }
   .park-category-tabs button > i { width: 27px; height: 27px; border-radius: 9px; font-size: 13px; }
   .park-category-tabs button small { display: none; }
-  .park-board-game-grid { grid-template-columns: 1fr; }
+  .park-board-game-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .park-board-game-grid .park-gomoku-card { min-height: 182px; }
   .park-gomoku-card { grid-template-columns: 142px minmax(0, 1fr); gap: 14px; }
   .park-gomoku-preview { width: 142px; }
@@ -468,12 +464,9 @@
   .park-fish-preview { width: 142px; }
   .park-memory-preview { width: 142px; }
   .park-solitaire-preview { width: 142px; }
-  .park-board-game-grid .park-card-wide .park-fish-preview { width: 142px; }
   .park-bubbles-preview { width: 142px; }
   .park-sokoban-preview { width: 142px; }
   .park-klotski-preview { width: 142px; }
-  .park-board-game-grid .park-card-wide { grid-column: auto; grid-template-columns: 142px minmax(0, 1fr); }
-  .park-board-game-grid .park-card-wide .park-game-launch { grid-column: 1 / -1; width: 100%; }
   .park-game-launch { grid-column: 1 / -1; width: 100%; }
 }
 
@@ -497,7 +490,6 @@
   .park-fish-preview { width: 96px; border-width: 4px; border-radius: 12px; }
   .park-memory-preview { width: 96px; border-width: 4px; border-radius: 12px; }
   .park-solitaire-preview { width: 96px; border-width: 4px; border-radius: 12px; }
-  .park-board-game-grid .park-card-wide .park-fish-preview { width: 96px; }
   .park-fish-preview .fish-hero { font-size: 26px; }.park-fish-preview .fish-small.one { font-size: 14px; }.park-fish-preview .fish-small.two { font-size: 12px; }
   .park-bubbles-preview { width: 96px; border-width: 4px; border-radius: 12px; }
   .park-sokoban-preview { width: 96px; border-width: 4px; border-radius: 12px; }
@@ -541,4 +533,25 @@
   .park-klotski-preview .pk.s.g1,
   .park-klotski-preview .pk.s.g2,
   .park-klotski-preview .gate::before { animation: none; }
+}
+
+/* Every arcade card occupies one of two equal columns, including Pad portrait. */
+.park-board-game-grid > article{min-width:0;grid-column:auto}
+.park-board-game-grid .park-gomoku-card > :first-child{max-width:100%;min-width:0}
+@media(max-width:760px){
+  .park-board-game-grid .park-gomoku-card{grid-template-columns:minmax(0,1fr);align-content:start;justify-items:stretch;gap:13px;padding:14px}
+  .park-board-game-grid .park-gomoku-card > :first-child{justify-self:center;width:min(142px,100%)}
+  .park-board-game-grid .park-game-card-copy h3{font-size:20px;overflow-wrap:anywhere}
+  .park-board-game-grid .park-game-launch{min-width:0;min-height:48px;padding:10px;gap:6px;margin-top:auto}
+}
+@media(max-width:520px){
+  .park-board-game-grid{gap:9px}
+  .park-board-game-grid .park-gomoku-card{padding:11px;gap:11px;border-radius:17px}
+  .park-board-game-grid .park-gomoku-card > :first-child{width:min(96px,100%)}
+  .park-board-game-grid .park-game-card-copy h3{font-size:17px;letter-spacing:0}
+  .park-board-game-grid .park-game-card-copy > span{font-size:8px;letter-spacing:.06em;overflow-wrap:anywhere}
+  .park-board-game-grid .park-game-card-copy p{font-size:10px;line-height:1.65}
+  .park-board-game-grid .park-game-tags{gap:4px;margin-top:8px}
+  .park-board-game-grid .park-game-tags span{padding:3px 5px;font-size:8px}
+  .park-board-game-grid .park-game-launch{font-size:11px;padding:9px 7px}
 }

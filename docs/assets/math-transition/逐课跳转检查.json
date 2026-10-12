@@ -1,0 +1,574 @@
+{
+  "date": "2026-10-10",
+  "viewport": "1024×768",
+  "setup": "隔离儿童档案，模拟语音接口，预置前置作答；真实操作完成最后一步。",
+  "scope": "47课动手试最后一步到说理由，以及完成记录恢复与主动回看。",
+  "courses": [
+    {
+      "lesson": "solid-shapes",
+      "finalAction": {
+        "kind": "button",
+        "name": "正方体"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "order-twenty",
+      "finalAction": {
+        "kind": "button",
+        "name": "14"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "between-positions",
+      "finalAction": {
+        "kind": "button",
+        "name": "两个端点位置"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "solid-building",
+      "finalAction": {
+        "kind": "button",
+        "name": "轻推并观察是否稳定"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "solid-compose",
+      "finalAction": {
+        "kind": "button",
+        "name": "连接关系没有变"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "ten-again",
+      "finalAction": {
+        "kind": "button",
+        "name": "13"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "eleven-twenty",
+      "finalAction": {
+        "kind": "button",
+        "name": "2 个十"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "simple-addsub-twenty",
+      "finalAction": {
+        "kind": "button",
+        "name": "15"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "unit4-review",
+      "finalAction": {
+        "kind": "button",
+        "name": "8＋2"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "plus-nine",
+      "finalAction": {
+        "kind": "button",
+        "name": "5，15"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "plus-eight-seven-six",
+      "finalAction": {
+        "kind": "button",
+        "name": "14"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "plus-eight-nine-strategies",
+      "finalAction": {
+        "kind": "button",
+        "name": "17"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "plus-five-four-three-two",
+      "finalAction": {
+        "kind": "button",
+        "name": "13"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "addition-table",
+      "finalAction": {
+        "kind": "button",
+        "name": "加 1"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "unit5-review",
+      "finalAction": {
+        "kind": "button",
+        "name": "13"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "review-numbers",
+      "finalAction": {
+        "kind": "button",
+        "name": "1 个十和 8 个一"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "review-shapes",
+      "finalAction": {
+        "kind": "button",
+        "name": "8"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "review-application",
+      "finalAction": {
+        "kind": "button",
+        "name": "小明"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "six-to-nine",
+      "finalAction": {
+        "kind": "button",
+        "name": "8"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "compare-order-nine",
+      "finalAction": {
+        "kind": "button",
+        "name": "右边"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "compose-six-nine",
+      "finalAction": {
+        "kind": "button",
+        "name": "5"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "addsub-six-seven",
+      "finalAction": {
+        "kind": "button",
+        "name": "6－3＝3"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "addsub-eight-nine",
+      "finalAction": {
+        "kind": "button",
+        "name": "3 和 5"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "ten",
+      "finalAction": {
+        "kind": "button",
+        "name": "2"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "addsub-ten",
+      "finalAction": {
+        "kind": "button",
+        "name": "2"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "continuous-add-sub",
+      "finalAction": {
+        "kind": "button",
+        "name": "3"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "mixed-add-sub",
+      "finalAction": {
+        "kind": "button",
+        "name": "6"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "unit2-review",
+      "finalAction": {
+        "kind": "button",
+        "name": "＋2－1"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "campus",
+      "finalAction": {
+        "kind": "button",
+        "name": "从哪一层开始数"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "playground",
+      "finalAction": {
+        "kind": "selector",
+        "selector": ".mt-pairing button",
+        "index": 3
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "classroom-discover",
+      "finalAction": {
+        "kind": "button",
+        "name": "第 2 组、靠窗同学右边"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "classroom-games",
+      "finalAction": {
+        "kind": "button",
+        "name": "3＋1＝4"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "learning-readiness",
+      "finalAction": {
+        "kind": "button",
+        "name": "书本右边"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "numbers",
+      "finalAction": {
+        "kind": "button",
+        "name": "5"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "compare",
+      "finalAction": {
+        "kind": "button",
+        "name": "3＝3"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "ordinal",
+      "finalAction": {
+        "kind": "button",
+        "name": "从右位置 4"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "compose",
+      "finalAction": {
+        "kind": "button",
+        "name": "把玉米分进两篮"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "add-within-5",
+      "finalAction": {
+        "kind": "button",
+        "name": "完成加法练习"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "subtract-within-5",
+      "finalAction": {
+        "kind": "button",
+        "name": "完成减法练习"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "unit1-review",
+      "finalAction": {
+        "kind": "selector",
+        "selector": ".mt-p22-relations button",
+        "index": 3
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "solve-total-within-7",
+      "finalAction": {
+        "kind": "button",
+        "name": "3＋4＝7"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "solve-remain-within-7",
+      "finalAction": {
+        "kind": "button",
+        "name": "4＋2＝6"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "select-info-eight-nine",
+      "finalAction": {
+        "kind": "button",
+        "name": "无关信息"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "solve-total",
+      "finalAction": {
+        "kind": "button",
+        "name": "15"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "find-original",
+      "finalAction": {
+        "kind": "button",
+        "name": "13"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "review-relations",
+      "finalAction": {
+        "kind": "button",
+        "name": "7＋5＝12"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    },
+    {
+      "lesson": "zero",
+      "finalAction": {
+        "kind": "button",
+        "name": "0"
+      },
+      "restoreStaysInOperation": true,
+      "unfinishedBlocksReason": true,
+      "lastActionEntersReason": true,
+      "reviewStaysInOperation": true,
+      "result": "passed"
+    }
+  ]
+}

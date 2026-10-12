@@ -6,9 +6,9 @@ let ctx: AudioContext | null = null;
 // 抽卡音效只由 GachaModal 使用；稍高于常规交互音，确保在背景音乐和环境噪声下仍清晰可辨。
 const GACHA_MASTER_GAIN = 0.8;
 
-function getCtx(): AudioContext | null {
+function getCtx(alwaysOn = false): AudioContext | null {
   if (typeof window === 'undefined') return null;
-  if (!useStore.getState().sound) return null;
+  if (!alwaysOn && !useStore.getState().sound) return null;
 
   if (!ctx) {
     const AC = (window as any).AudioContext || (window as any).webkitAudioContext;
@@ -232,6 +232,18 @@ export const sfx = {
   /** 象棋：楚河汉界背景音乐 */
   xiangqiBgmStart() { xiangqiLoop.start(); },
   xiangqiBgmStop() { xiangqiLoop.stop(); },
+
+  /** 炸弹人：原创「薄荷探险曲」与轻柔爆破音效。 */
+  bomberBgmStart() { bomberLoop.start(); },
+  bomberBgmStop() { bomberLoop.stop(); },
+  bomberPlant() { tone(320, .1, { type: 'triangle', gain: .055, endFreq: 520 }); },
+  bomberBlast() {
+    noise(.28, { gain: .15, filter: 800 });
+    tone(160, .24, { type: 'triangle', gain: .07, endFreq: 45 });
+  },
+  /** 军棋：原创「星阵行军曲」，柔和钟琴、低音与弦乐垫底。 */
+  junqiBgmStart() { junqiLoop.start(); },
+  junqiBgmStop() { junqiLoop.stop(); },
 
   // ---------- 棋类：操作音效 ----------
   /** 五子棋：落黑子（木石轻响） */
@@ -785,6 +797,8 @@ export const sfx = {
 const midiFreq = (midi: number) => 440 * Math.pow(2, (midi - 69) / 12);
 
 interface BgmSpec {
+  /** 该曲始终播放，不受其他游戏共用的音效开关影响。 */
+  alwaysOn?: boolean;
   /** 每拍秒数 */
   beat: number;
   /** 循环小节数（每小节 4 拍） */
@@ -807,7 +821,7 @@ class MusicLoop {
   constructor(private readonly spec: BgmSpec) {}
 
   start() {
-    const c = getCtx();
+    const c = getCtx(this.spec.alwaysOn);
     if (!c || this.timer !== null) return;
     this.gainNode = c.createGain();
     this.gainNode.gain.setValueAtTime(0.0001, c.currentTime);
@@ -840,7 +854,7 @@ class MusicLoop {
   }
 
   private tick() {
-    const c = getCtx();
+    const c = getCtx(this.spec.alwaysOn);
     if (!c || !this.gainNode || c.state !== 'running') return;
     const now = c.currentTime;
     // 页面标签页被挂起等导致时间轴落后时重新对齐，避免积压的音符恢复后齐鸣
@@ -1005,6 +1019,53 @@ const xiangqiLoop = new MusicLoop({
     [8, 76, 0.06], [8.5, 78, 0.05], [9, 81, 0.06], [11.5, 74, 0.05], [12, 76, 0.05], [14, 74, 0.04],
     [16, 74, 0.06], [16.5, 78, 0.05], [17, 81, 0.06], [18, 83, 0.05], [19.5, 81, 0.05], [21.5, 76, 0.05], [22, 74, 0.05],
     [24, 76, 0.06], [24.5, 78, 0.05], [25, 81, 0.06], [26, 83, 0.05], [27.5, 86, 0.05], [28, 83, 0.05], [29, 81, 0.045], [30, 78, 0.05], [31, 76, 0.04],
+  ],
+});
+
+// 星岛炸弹人「薄荷探险曲」：108bpm，原创钟琴与跳跃低音，默认常开。
+const bomberLoop = new MusicLoop({
+  alwaysOn: true, beat: 60 / 108, bars: 8, master: .56,
+  pad: (c, dest, t, bar) => {
+    const chord = [[48, 55, 64], [45, 52, 60], [41, 48, 57], [43, 50, 59]][bar % 4];
+    bgmPad(c, dest, chord, t, 4 * (60 / 108), .016, .4, 'triangle');
+    for (let beat = 0; beat < 4; beat++) bgmBass(c, dest, chord[0] - (beat % 2 ? 5 : 12), t + beat * (60 / 108), .035);
+  },
+  pluck: bgmBell,
+  melody: [
+    [0, 76, .075], [.5, 79, .065], [1.5, 84, .075], [2.5, 79, .06], [3, 76, .06],
+    [4, 81, .075], [5, 79, .065], [5.5, 76, .07], [7, 72, .06],
+    [8, 77, .075], [9, 81, .065], [10, 79, .07], [11, 77, .06],
+    [12, 74, .075], [12.5, 76, .065], [13.5, 79, .07], [15, 74, .06],
+    [16, 76, .075], [16.5, 79, .065], [17.5, 84, .075], [18.5, 86, .06], [19, 84, .06],
+    [20, 81, .075], [21, 79, .065], [22, 76, .07], [23, 72, .06],
+    [24, 77, .075], [25, 79, .065], [26, 81, .07], [27, 77, .06],
+    [28, 79, .075], [29, 74, .065], [30, 72, .075],
+  ],
+});
+
+// 军棋「星阵行军曲」：84bpm，C → Am → F → G，八小节原创钟琴旋律与轻缓行进低音。
+const junqiLoop = new MusicLoop({
+  alwaysOn: true,
+  beat: 60 / 84,
+  bars: 8,
+  master: 0.6,
+  pad: (c, dest, t, bar) => {
+    const chords = [[48, 55, 64], [45, 52, 60], [41, 48, 57], [43, 50, 59]];
+    const chord = chords[bar % 4];
+    bgmPad(c, dest, chord, t, 4 * (60 / 84), 0.022, 0.65, 'triangle');
+    bgmBass(c, dest, chord[0] - 12, t, 0.055);
+    bgmBass(c, dest, chord[0] - 5, t + 2 * (60 / 84), 0.04);
+  },
+  pluck: bgmBell,
+  melody: [
+    [0, 72, .085], [1, 76, .07], [2, 79, .08], [3, 76, .065],
+    [4, 76, .08], [5, 72, .065], [6, 69, .075], [7.5, 72, .06],
+    [8, 77, .085], [9, 76, .065], [10, 72, .075], [11, 69, .065],
+    [12, 74, .08], [13, 79, .07], [14, 76, .075], [15, 74, .06],
+    [16, 72, .085], [17, 76, .07], [18, 79, .08], [19, 84, .065],
+    [20, 81, .08], [21, 79, .065], [22, 76, .075], [23, 72, .06],
+    [24, 77, .085], [25, 79, .065], [26, 81, .075], [27, 77, .065],
+    [28, 79, .08], [29, 74, .065], [30, 72, .08],
   ],
 });
 

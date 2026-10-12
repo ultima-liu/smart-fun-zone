@@ -1,24 +1,22 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { courseTotalStars } from '../activeCourses';
-import ArrivalFlight from '../components/ArrivalFlight';
-import { CosmicFleet } from '../components/cosmos';
 import CurrencyBar from '../components/CurrencyBar';
 import { IconLock, IconSpeakerOff, IconSpeakerOn } from '../components/icons';
-import InteractiveJuanStar, { HomePlaceGuide } from '../components/InteractiveJuanStar';
+import JuanWorld from '../components/juan-world/JuanWorld';
+import { cardById } from '../content/starCards';
 import LoginDialog from '../components/LoginDialog';
 import Logo from '../components/Logo';
-import Mascot from '../components/Mascot';
 import MissionHome from '../components/MissionHome';
 import Modal from '../components/Modal';
 import RewardBurst from '../components/RewardBurst';
 import { KidButton } from '../components/ui';
 import VoiceField from '../components/VoiceField';
-import { LOOT_MAX_PACKS, pendingPacks, type LootDrop } from '../content/expedition';
+import { pendingPacks, type LootDrop } from '../content/expedition';
 import { useI18n } from '../i18n';
 import { reviewCandidates } from '../reviewPlan';
 import { playSfx, speak } from '../speech';
-import { gardenStage, streakDays, useStore } from '../store';
+import { useStore } from '../store';
 import { AVATARS, GRADES, gradeLabel, type Grade } from '../types';
 
 const GateRocket = (
@@ -57,7 +55,9 @@ export default function HomePage() {
   const removeProfile = useStore((state) => state.removeProfile);
   const collectLoot = useStore((state) => state.collectExpedition);
   const expeditionLastAt = useStore((state) => activeChildId ? state.expeditionLastAt[activeChildId] : undefined);
-  const materials = useStore((state) => activeChildId ? state.materials[activeChildId] : undefined);
+  const archivedCards = useStore((state) => activeChildId ? state.archivedCards[activeChildId] : undefined);
+  const [archiveNotice, setArchiveNotice] = useState<string | null>(null);
+  const [collectNonce, setCollectNonce] = useState(0);
   const [creating, setCreating] = useState(false);
   const [switching, setSwitching] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -107,6 +107,20 @@ export default function HomePage() {
     return () => { document.body.classList.remove('home-dash-lock'); wide.removeEventListener('change', apply); };
   }, [child?.id]);
 
+  useEffect(() => {
+    if (!child) return;
+    setArchiveNotice(null);
+    const key = `sfz-world-archive:${child.id}`;
+    try {
+      const previous = JSON.parse(sessionStorage.getItem(key) ?? 'null') as string[] | null;
+      const added = previous ? (archivedCards ?? []).filter(id => !previous.includes(id)) : [];
+      if (added.length) setArchiveNotice(added[added.length - 1]);
+      sessionStorage.setItem(key, JSON.stringify(archivedCards ?? []));
+    } catch { /* a card notice never changes the collection */ }
+    const timer = window.setTimeout(() => setArchiveNotice(null), 8000);
+    return () => window.clearTimeout(timer);
+  }, [child?.id, archivedCards]);
+
   const toggleFullscreen = async () => {
     try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); }
     catch { /* 浏览器拒绝时保持普通页面 */ }
@@ -151,40 +165,109 @@ export default function HomePage() {
   );
 
   const totalStars = courseTotalStars(child.id, mastery, records);
-  const streak = streakDays(records, child.id);
-  const garden = gardenStage(totalStars);
-  const gardenFloors = [0, 6, 16, 30, 60];
-  const gardenPct = garden.stage >= 5 ? 1 : Math.max(0, Math.min(1, totalStars / gardenFloors[garden.stage]));
   const explorerTitle = t(`titleTier${tierFor(totalStars)}`);
   const reviewDueCount = reviewCandidates(child.id, child.ageBand, courseSchedule).length;
   const lootPacks = expeditionLastAt === undefined ? 1 : pendingPacks(expeditionLastAt, Date.now());
   void lootTick;
   const collectLootNow = () => {
     const drop = collectLoot(child.id);
-    if (drop && (drop.beans > 0 || drop.stardust > 0 || drop.outfits.length > 0)) { playSfx('collect'); setLootBurst(drop); }
+    if (drop && (drop.beans > 0 || drop.stardust > 0 || drop.outfits.length > 0)) { playSfx('collect'); setLootBurst(drop); setCollectNonce(value => value + 1); }
     else { playSfx('tap'); speak(lang === 'zh' ? '远征队还在路上，攒够补给包再来收取吧！' : 'The fleet is still on its way!', lang); }
   };
 
   return (
-    <div className="page home home-dash home-focus-page">
-      {arrive && <ArrivalFlight key={child.id} mode={arrivalMode} greet={t('welcomeHome', { title: explorerTitle, name: child.name })} lang={lang} onDone={() => setArrive(false)} />}
+    <div className="page home home-world-page">
       <header className="app-header">
-        <button className="home-profile-mini" onClick={() => setSwitching(true)} aria-label="切换孩子"><span>{child.avatar}</span><span><b>{child.name}</b><small>{explorerTitle}</small></span><i>⇄</i></button>
+        <button
+          className="home-profile-mini"
+          onClick={() => setSwitching(true)}
+          aria-label={lang === 'zh' ? '切换孩子' : 'Switch child'}
+        >
+          <span>{child.avatar}</span>
+          <span>
+            <b>{child.name}</b>
+            <small>{explorerTitle}</small>
+          </span>
+          <i>⇄</i>
+        </button>
         <CurrencyBar compact />
-        <div className="app-header-right"><HomePlaceGuide lang={lang} /><button className={`top-pill ${lang === 'en' ? 'on' : ''}`} onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}>{lang === 'zh' ? 'EN' : '中'}</button><KidButton color="white" className="top-pill" onClick={toggleSound} ariaLabel="sound">{sound ? <IconSpeakerOn size={20} /> : <IconSpeakerOff size={20} />}</KidButton><button className={`top-pill ${theme === 'light' ? 'light' : ''}`} onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? '🌙' : '☀️'}</button><button className="top-pill fullscreen-pill" onClick={toggleFullscreen} aria-label={isFullscreen ? '退出全屏' : '进入全屏'}>⛶</button><button className={`top-pill home-review-entry ${reviewDueCount ? 'ready' : ''}`} onClick={() => nav('/review')}>📚<span>复习</span>{reviewDueCount > 0 && <b>{reviewDueCount}</b>}</button></div>
+        <div className="app-header-right">
+          <button
+            className={`top-pill home-review-entry ${reviewDueCount ? 'ready' : ''}`}
+            onClick={() => nav('/review')}
+          >
+            📚<span>{lang === 'zh' ? '复习' : 'Review'}</span>
+            {reviewDueCount > 0 && <b>{reviewDueCount}</b>}
+          </button>
+          <details className="home-settings">
+            <summary aria-label={lang === 'zh' ? '首页设置' : 'Home settings'}>
+              ⚙ <span>{lang === 'zh' ? '设置' : 'Settings'}</span>
+            </summary>
+            <div className="home-settings-panel">
+              <button onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}>
+                {lang === 'zh' ? 'English' : '中文'}
+              </button>
+              <button onClick={toggleSound}>
+                {sound ? <IconSpeakerOn size={18} /> : <IconSpeakerOff size={18} />}
+                {lang === 'zh'
+                  ? sound
+                    ? '声音开启'
+                    : '声音关闭'
+                  : sound
+                    ? 'Sound on'
+                    : 'Sound off'}
+              </button>
+              <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                {theme === 'dark' ? '☀' : '☾'}{' '}
+                {lang === 'zh'
+                  ? theme === 'dark'
+                    ? '日间'
+                    : '夜间'
+                  : theme === 'dark'
+                    ? 'Day'
+                    : 'Night'}
+              </button>
+              <button onClick={toggleFullscreen}>
+                ⛶{' '}
+                {lang === 'zh'
+                  ? isFullscreen
+                    ? '退出全屏'
+                    : '全屏'
+                  : isFullscreen
+                    ? 'Exit full screen'
+                    : 'Full screen'}
+              </button>
+              <button onClick={() => nav('/parent')}>
+                <IconLock size={18} />
+                {lang === 'zh' ? '家长' : 'Parent'}
+              </button>
+            </div>
+          </details>
+        </div>
       </header>
-
-      <main className="home-focus">
-        <section className="hero-card juan-hero juan-hero-big home-focus-star">
-          <div className="hero-planet-zone">
-            <InteractiveJuanStar stars={totalStars} streak={streak} gardenPct={gardenPct} gardenStage={garden.stage} pendingTasks={0} lang={lang} quiet={reading} onNav={(to) => { if (to.startsWith('#')) document.querySelector(to)?.scrollIntoView({ behavior: 'smooth', block: 'center' }); else nav(to); }} />
-            <CosmicFleet />
-            <span className="hero-mascot-mini" aria-hidden="true"><Mascot pose="happy" size={92} /></span>
-            <button className="loot-prompt" onClick={collectLootNow} aria-label="collect loot"><span className="loot-icon">🛰️</span><span className="loot-text">{lang === 'zh' ? `远征战利品 · ${lootPacks}/${LOOT_MAX_PACKS}` : `Loot · ${lootPacks}/${LOOT_MAX_PACKS}`}</span><span className="loot-sub">{lang === 'zh' ? '点击收取' : 'Tap to collect'}</span></button>
-            <div className="loot-materials" aria-hidden="true"><span>✨ 星屑 {materials?.stardust ?? 0}</span></div>
-          </div>
-        </section>
-        <MissionHome key={child.id} onReadingChange={setReading} />
+      <main className="home-world-main">
+        <MissionHome
+          key={child.id}
+          onReadingChange={setReading}
+          renderScene={(station) => (
+            <JuanWorld
+              childId={child.id}
+              theme={theme}
+              lang={lang}
+              quiet={reading || switching}
+              station={station}
+              lootPacks={lootPacks}
+              onCollect={collectLootNow}
+              collectNonce={collectNonce}
+              welcome={arrive ? t('welcomeHome', { title: explorerTitle, name: child.name }) : null}
+              arrival={arrivalMode === 'full'}
+              onWelcomeDone={() => setArrive(false)}
+              archiveNotice={
+                archiveNotice ? (cardById(archiveNotice)?.name[lang] ?? archiveNotice) : null
+              }
+            />
+          )}
+        />
       </main>
       {lootBurst && <RewardBurst drop={lootBurst} onDone={() => setLootBurst(null)} />}
 

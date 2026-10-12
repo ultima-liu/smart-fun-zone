@@ -1,0 +1,173 @@
+.world-appearance {
+  position: absolute;
+  z-index: 9;
+  right: 30px;
+  top: 30px;
+  color: #c7dfef;
+  font: inherit;
+}
+.world-appearance > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 13px;
+  border: 1px solid #5f7c944a;
+  border-radius: 8px;
+  background: #091321e8;
+  cursor: pointer;
+  font-size: 11px;
+}
+.world-appearance > summary::-webkit-details-marker {
+  display: none;
+}
+.world-appearance summary b {
+  margin-left: 6px;
+  color: #e3eff9;
+  font-weight: 500;
+}
+.world-appearance summary i {
+  font-style: normal;
+  color: #8aa5ba;
+}
+.world-appearance fieldset {
+  position: absolute;
+  right: 0;
+  top: 58px;
+  width: 340px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid #5b77955c;
+  border-radius: 12px;
+  background: #08111ff7;
+  box-shadow: 0 20px 50px #0009;
+  backdrop-filter: blur(18px);
+}
+.world-appearance legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.appearance-choices {
+  clear: both;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.appearance-choices button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 88px;
+  padding: 12px 8px;
+  text-align: left;
+  border: 1px solid #52627e50;
+  border-radius: 8px;
+  background: #16213966;
+  color: #c8deed;
+  font: inherit;
+  cursor: pointer;
+}
+.appearance-choices button[aria-pressed='true'] {
+  border-color: #89bce7;
+  background: #1c355483;
+}
+.appearance-choices b {
+  display: block;
+  font-weight: 500;
+  font-size: 12px;
+}
+.appearance-choices small {
+  display: block;
+  max-width: 92px;
+  margin-top: 7px;
+  color: #87a1b6;
+  font-size: 9px;
+  line-height: 1.6;
+}
+.appearance-choices i {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  font-size: 11px;
+  color: #b1d8f7;
+  font-style: normal;
+}
+.appearance-mini {
+  display: inline-block;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow:
+    inset -7px -3px 10px #0009,
+    0 0 12px #455e8029;
+}
+.appearance-rock {
+  background:
+    linear-gradient(110deg, #ffffff14, transparent 45%, #0009),
+    url('/assets/juan-world/rock-surface-atlas-v1.webp') 68% 52% / cover;
+}
+.appearance-gas {
+  background:
+    linear-gradient(110deg, #ffffff14, transparent 45%, #0009),
+    url('/assets/juan-world/gas-cloud-atlas-v1.webp') 72% 52% / cover;
+}
+.appearance-ice {
+  background:
+    linear-gradient(110deg, #ffffff14, transparent 45%, #0009),
+    url('/assets/juan-world/ice-surface-atlas-v1.webp') 68% 52% / cover;
+}
+.appearance-star {
+  background:
+    linear-gradient(110deg, #ffffff14, transparent 45%, #85280866),
+    url('/assets/juan-world/star-surface-atlas-v1.webp') 68% 52% / cover;
+  box-shadow:
+    inset -4px -3px 8px #a02c2066,
+    0 0 12px #e98f3038;
+}
+.world-appearance fieldset p {
+  margin: 13px 0;
+  color: #8ba4b9;
+  font-size: 10px;
+}
+.appearance-done {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #5a809c5c;
+  border-radius: 6px;
+  background: #18304488;
+  color: #bddcef;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+.world-appearance button:focus-visible,
+.world-appearance summary:focus-visible {
+  outline: 2px solid #93c6ed;
+  outline-offset: 3px;
+}
+.world-appearance button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+@media (max-width: 1100px) {
+  .world-appearance {
+    right: 10px;
+    top: 18px;
+  }
+}
+@media (max-width: 600px) {
+  .world-appearance {
+    right: 8px;
+    top: 106px;
+  }
+  .world-appearance fieldset {
+    width: min(340px, calc(100vw - 32px));
+  }
+}

@@ -1,5 +1,15 @@
+import PairingBoard from '../components/math-tools/PairingBoard';
+import { mathToolRoute } from '../content/mathToolRecommendations';
+import PartitionBoard from '../components/math-tools/PartitionBoard';
+import { createPartition, partitionFacts, type Pair, type PartitionState } from '../mathManipulatives';
+import CourseReplayButton from '../components/CourseReplayButton';
+import MathAnswerChoices from '../components/MathAnswerChoices';
+import MathNumberOrder from '../components/MathNumberOrder';
+import Modal from '../components/Modal';
+import { ContentPages, WholeStage } from '../components/ScreenPages';
+import { MathActionRoundContext, MathLessonActivityPanels, MathLessonActivityTabs, useMathActivityAdvance, type MathLessonActivity } from '../components/MathLessonActivities';
 import BackButton from '../components/BackButton';
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Children, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { api } from '../api';
@@ -7,13 +17,17 @@ import { speakOnce, speakSeq, stopSpeaking, playSfx } from '../speech';
 import { useAsr, readScore } from '../speechAssess';
 import { ALL_MATH_LESSONS, EXTENDED_MATH_LESSONS, MATH_UPPER_UNITS, type ExtendedMathLesson, type MathActivity } from '../content/mathUpperCurriculum';
 import { MathKnowledgeBridge } from './MathKnowledgeBridge';
-import MathTextbookTaskPack, { ACTION_TASK_NUMERALS, ActionStation, IsoBlock, MathLessonTaskProgressProvider, OblComposition, textbookTaskTitle, useMathLessonTaskProgress, useMathTaskCompletion } from '../components/MathTextbookTaskPack';
+import MathTextbookTaskPack, { ActionStation, IsoBlock, MathLessonTaskProgressProvider, OblComposition, textbookTaskTitle, useMathLessonTaskProgress, useMathTaskCompletion } from '../components/MathTextbookTaskPack';
 import { SolidShapeGlyph, solidKindByName } from '../components/SolidShapeGlyph';
 import VoiceField from '../components/VoiceField';
 import { MATH_FLOW_CONTENT_VERSION, migrateMathFlowSnapshot } from '../content/mathLearningProgress';
 import { scheduleReview } from '../reviewPlan';
+import { mathOptions } from '../content/mathTeaching';
+import MathAssessmentPractice from '../components/MathAssessmentPractice';
+import MathReasonExpression from '../components/MathReasonExpression';
+import { useMathTabNarration } from '../mathTabNarration';
+import '../math-teaching.css';
 import { settleCourseTask } from '../taskSystem';
-import { FRUIT_SHOP_ABILITY_LABELS, fruitShopAbilityForLesson } from '../content/fruitShop';
 import { mathLifeSceneForLesson, mathLifeSceneRoute } from '../content/mathLifeScenes';
 import '../math-textbook-lab.css';
 import '../chinese-textbook.css';
@@ -110,31 +124,30 @@ function feedback(right: boolean) {
 
 type AskMeta = { title: string; context: string; quick: string[] };
 
-/** AI 语音老师条：聪聪讲解 + 可重听 + 「不懂就问」课内答疑（auto=false 时不自动朗读，只展示文字） */
-function TeacherBar({ text, auto = true, ask }: { text: string; auto?: boolean; ask?: AskMeta }) {
-  const said = useRef(false);
-  const [voiceDown, setVoiceDown] = useState(false);
-  // 不懂就问：面板展开 / 对话 / 输入状态
+/** 公共提示右侧的课内答疑入口，沿用原有课文上下文和问答链路。 */
+function MathLessonHelp({ ask }: { ask: AskMeta }) {
   const [askOpen, setAskOpen] = useState(false);
   const [msgs, setMsgs] = useState<{ role: 'user' | 'assistant'; content: string }[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [askDown, setAskDown] = useState(false);
-  const listRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (said.current || !auto) return;
-    said.current = true;
-    const t = setTimeout(() => teacherSay(text), 400);
-    return () => clearTimeout(t);
-  }, [text, auto]);
-  // 火山 TTS 上游合成失败（授权过期等）时给出可见提示，避免"点了没反应"
-  useEffect(() => {
-    const onDown = () => setVoiceDown(true);
-    window.addEventListener('volc-tts-degraded', onDown);
-    return () => window.removeEventListener('volc-tts-degraded', onDown);
-  }, []);
-  useEffect(() => { listRef.current?.scrollTo({ top: listRef.current.scrollHeight }); }, [msgs, loading]);
-
+    if (!askOpen) return;
+    const trigger = triggerRef.current;
+    dialogRef.current?.querySelector<HTMLButtonElement>('button')?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); setAskOpen(false); }
+      if (event.key !== 'Tab') return;
+      const controls = [...(dialogRef.current?.querySelectorAll<HTMLElement>('button:not(:disabled),input,textarea,[tabindex="0"]') ?? [])].filter(element => element.getBoundingClientRect().width > 0);
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => { window.removeEventListener('keydown', onKey); trigger?.focus(); };
+  }, [askOpen]);
   const ask_ = async (question: string) => {
     const q = question.trim();
     if (!q || loading || !ask) return;
@@ -142,7 +155,7 @@ function TeacherBar({ text, auto = true, ask }: { text: string; auto?: boolean; 
     setMsgs((m) => [...m, { role: 'user', content: q }]);
     setLoading(true);
     // 每次都带上课文上下文 preamble，保证回答围绕本课内容
-    const preamble = `现在是小学一年级数学课《${ask.title}》的"不懂就问"环节。请你扮演这节课的 AI 老师"聪聪"，只围绕这节课的内容和小朋友能理解的知识回答。课文要点：${ask.context}。回答要求：简单（2~4 句）、适合 6 岁小朋友，多用例子，遇到生字可以加拼音。和本课无关的问题，温柔地引导回数学学习。`;
+    const preamble = `现在是小学一年级数学课《${ask.title}》的"不懂就问"环节。请你扮演这节课的 AI 老师"聪聪"，只围绕这节课的内容和小朋友能理解的知识回答。课文要点：${ask.context}。回答要求：简单（2~4 句）、适合 6 岁小朋友，先问小朋友看到了哪些已知信息、怎样摆或算，再给一个具体操作提示；默认不直接给当前检测题的结果。小朋友明确请求示范时给出步骤，并请他换一组数再独立尝试。允许接着数、分合和凑十等不同正确方法；不把口述措辞或跟读分数当作数学正确性的证据。遇到生字可以加拼音。和本课无关的问题，温柔地引导回数学学习。`;
     const history = msgs.slice(-6);
     const r = await api.buddyChat([{ role: 'user', content: preamble }, ...history, { role: 'user', content: q }]);
     setLoading(false);
@@ -153,60 +166,37 @@ function TeacherBar({ text, auto = true, ask }: { text: string; auto?: boolean; 
     }
   };
 
-  return (
-    <div className="mt-teacher-wrap">
-      <div className="mt-teacher ct-teacher-note">
-        <span className="mt-teacher-avatar" aria-hidden="true">🤖</span>
-        <div className="mt-teacher-body">
-          <b>聪聪老师<small>AI 语音讲解</small></b>
-          <p>{text}</p>
-          {voiceDown && <i className="mt-teacher-down">🔇 语音服务暂不可用（火山 TTS 授权已过期），课程其他功能不受影响；续期密钥后自动恢复。</i>}
-        </div>
-        <div className="mt-teacher-btns">
-          <button className="mt-teacher-replay" onClick={() => speakOnce(text, 'zh', 0.9)}>🔊 再听一遍</button>
-          {ask && (
-            <button className="mt-teacher-askbtn" onClick={() => setAskOpen(!askOpen)} aria-expanded={askOpen}>
-              🤔 不懂就问
-            </button>
-          )}
-        </div>
-      </div>
-      {ask && askOpen && (
+  return <>
+    <button type="button" className="math-lesson-help-icon" ref={triggerRef} aria-label="不懂就问" title="不懂就问" aria-haspopup="dialog" aria-expanded={askOpen} onClick={() => setAskOpen(true)}>
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M9 10h26a6 6 0 0 1 6 6v15a6 6 0 0 1-6 6H21l-9 7v-7H9a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z" fill="#fff8da" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M18 21a5 5 0 1 1 8 4c-2 1-3 2-3 4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" /><circle cx="23" cy="33" r="1.6" fill="currentColor" />
+        <path d="m38 2 1.4 3.6L43 7l-3.6 1.4L38 12l-1.4-3.6L33 7l3.6-1.4L38 2Z" fill="#eaa936" />
+      </svg>
+      <span className="math-lesson-help-label"><b>不懂就问</b><small>点我问聪聪</small></span>
+    </button>
+    {askOpen && <Modal onClose={() => setAskOpen(false)}>
+      <div className="math-lesson-help-dialog" role="dialog" aria-modal="true" aria-label="不懂就问聪聪老师" ref={dialogRef}>
+        <header><div><h2>不懂就问</h2><p>聪聪陪你一起想 · {ask.title}</p></div><button type="button" aria-label="关闭答疑" onClick={() => setAskOpen(false)}>×</button></header>
         <div className="mt-ask-panel">
-          {msgs.length === 0 && (
-            <div className="mt-ask-empty">
-              <p>哪里不明白就问聪聪老师，她会结合课文讲给你听。</p>
-              <div className="mt-ask-quick">
-                {ask.quick.map((q) => <button key={q} onClick={() => ask_(q)}>{q}</button>)}
-              </div>
-            </div>
-          )}
-          <div className="mt-ask-list" ref={listRef}>
-            {msgs.map((m, i) => (
-              <div key={i} className={`mt-ask-msg ${m.role}`}>
-                {m.role === 'assistant' && (
-                  <>
-                    <span className="mt-ask-avatar" aria-hidden="true">🤖</span>
-                    <button className="mt-ask-speak" onClick={() => speakOnce(m.content, 'zh', 0.9)} aria-label="朗读回答">🔊 朗读</button>
-                  </>
-                )}
-                <p>{m.content}</p>
-              </div>
-            ))}
-            {loading && <div className="mt-ask-msg assistant"><span className="mt-ask-avatar" aria-hidden="true">🤖</span><p className="mt-ask-thinking">聪聪正在想…</p></div>}
-          </div>
-          {askDown && <p className="mt-ask-down">🔇 聪聪暂时回答不了（需要家长登录且 AI 服务已配置），稍后再试哦。</p>}
-          <form className="mt-ask-form" onSubmit={(e) => { e.preventDefault(); ask_(input); }}>
-            <VoiceField value={input} onChange={setInput} placeholder="说出你的问题，比如：为什么要一个对一个？" maxLength={120} />
+          {msgs.length === 0 && <div className="mt-ask-empty"><p>哪里不明白就问聪聪老师，她会结合课文讲给你听。</p><div className="mt-ask-quick">{ask.quick.map(q => <button key={q} onClick={() => ask_(q)} disabled={loading}>{q}</button>)}</div></div>}
+          {(msgs.length > 0 || loading) && <div className="math-lesson-help-messages"><ContentPages kind="messages" followEnd={msgs.length + Number(loading)}>
+            {msgs.map((m, i) => <div key={i} className={`mt-ask-msg ${m.role}`}>
+              {m.role === 'assistant' && <><span className="mt-ask-avatar" aria-hidden="true">🤖</span><CourseReplayButton label="朗读回答" onClick={() => speakOnce(m.content, 'zh', 0.9)} /></>}
+              <p>{m.content}</p>
+            </div>)}
+            {loading && <div className="mt-ask-msg assistant" role="status"><span className="mt-ask-avatar" aria-hidden="true">🤖</span><p className="mt-ask-thinking">聪聪正在想…</p></div>}
+          </ContentPages></div>}
+          {askDown && <p className="mt-ask-down" role="status">🔇 聪聪暂时回答不了（需要家长登录且 AI 服务已配置），稍后再试哦。</p>}
+          <form className="mt-ask-form" onSubmit={e => { e.preventDefault(); ask_(input); }}>
+            <VoiceField value={input} onChange={setInput} ariaLabel="向聪聪提问" placeholder="说出你的问题" maxLength={120} />
             <button type="submit" disabled={!input.trim() || loading}>发送</button>
           </form>
         </div>
-      )}
-    </div>
-  );
+      </div>
+    </Modal>}
+  </>;
 }
-
-
 
 /**
  * 智能闯关题库：不复问动手环节已经做过的原题。
@@ -226,232 +216,11 @@ type ArenaQuestion = {
   challenge?: boolean;
 };
 
-/** 把题目考查的能力翻译成孩子和家长都能用的复习动作，而不是只记一次错选。 */
-function arenaReviewMeta(question: ArenaQuestion) {
-  const objective = question.objective ?? '数学方法';
-  if (/凑十|十格|补空|等量转换|找凑十伙伴/.test(objective)) return { diagnosis: '可能只盯着算式，没有先看十格框还空几格。', remedy: '先数空格，找到“还差几”，再把剩下的数分开。' };
-  if (/图形|稳定|分类/.test(objective)) return { diagnosis: '可能只看了物品的样子，没有观察它的面和能不能滚。', remedy: '摸一摸、想一想：它有哪些平平的面？会往哪个方向滚？' };
-  if (/逆向|还原|反向/.test(objective)) return { diagnosis: '可能把“原来、拿走、还剩”三个量的位置弄混了。', remedy: '先在图上圈出已知的两部分，再想要求的是哪一部分。' };
-  if (/图式|模型|运算|关系/.test(objective)) return { diagnosis: '可能还没先看清题目里的整体和部分。', remedy: '先把“谁是一共、谁是一部分、问什么”说出来，再选方法。' };
-  if (/顺序|后继|点数|数序|变化/.test(objective)) return { diagnosis: '可能没有从确定的起点按顺序一个一个数。', remedy: '手指从起点开始，数过一个就指住一个，最后一个数词就是总数。' };
-  return { diagnosis: '这道题的方法还不够稳，换个说法再想一次。', remedy: '回到题目，先找已知信息和要解决的问题，再慢慢作答。' };
-}
-
-/** 先把方法补稳，再回到原题；避免孩子只是碰巧记住一次选项。 */
-function remedialArenaQuestion(source: ArenaQuestion): ArenaQuestion {
-  const objective = source.objective ?? '';
-  const base = { remedial: true, objective: '方法复盘', say: '先复盘一下刚才的方法，再回到原题。' };
-  if (/凑十|十格|补空|等量转换|找凑十伙伴/.test(objective)) return { ...base, q: '十格框里已经有一些圆片，算之前应该先看什么？', opts: ['还空着几格', '圆片是什么颜色', '框有多宽'], answer: '还空着几格' };
-  if (/图形|稳定|分类/.test(objective)) return { ...base, q: '给物品分图形家族时，先观察什么最可靠？', opts: ['面的形状和能不能滚', '物品颜色', '名字有几个字'], answer: '面的形状和能不能滚' };
-  if (/逆向|还原|反向/.test(objective)) return { ...base, q: '题目里有“原来、拿走、还剩”时，先做什么？', opts: ['圈出已知的两部分和所求部分', '只看最大的数', '先猜一个答案'], answer: '圈出已知的两部分和所求部分' };
-  if (/图式|模型|运算|关系/.test(objective)) return { ...base, q: '决定用加法还是减法前，先要看清什么？', opts: ['整体、部分和问题', '数字写得大不大', '题目有几行'], answer: '整体、部分和问题' };
-  if (/顺序|后继|点数|数序|变化/.test(objective)) return { ...base, q: '数一排物品时，怎样做才不容易漏？', opts: ['从一端开始，一个一个数', '从中间随便跳着数', '只看最大的物品'], answer: '从一端开始，一个一个数' };
-  return { ...base, q: '遇到新的数学题，第一步最该做什么？', opts: ['看清信息和要解决的问题', '马上猜一个答案', '只挑最大的数字'], answer: '看清信息和要解决的问题' };
-}
-
-/** 连对后换一层表征或逆向关系，避免已经掌握的孩子只重复同难度题。 */
-function progressiveArenaQuestion(source: ArenaQuestion): ArenaQuestion {
-  const objective = source.objective ?? '';
-  const base = { challenge: true, say: '你已经连对三题了，试试这一道进阶挑战。' };
-  if (/凑十|十格|补空|等量转换|找凑十伙伴/.test(objective)) return { ...base, objective: '进阶挑战 · 凑十', q: '9＋6 时，先从 6 里分出几给 9，剩下几？', opts: ['分 1，剩 5', '分 2，剩 4', '分 5，剩 1'], answer: '分 1，剩 5' };
-  if (/图形|稳定|分类/.test(objective)) return { ...base, objective: '进阶挑战 · 图形空间', q: '把圆柱和正方体搭高塔，怎样放更稳？', opts: ['正方体在下面，圆柱平面朝下', '圆柱横放在下面', '球放在最下面'], answer: '正方体在下面，圆柱平面朝下' };
-  if (/逆向|还原|图式|模型|运算|关系/.test(objective)) return { ...base, objective: '进阶挑战 · 数量关系', q: '一共有 12 个，拿走一些后还剩 5 个，拿走了几个？', opts: ['7 个', '5 个', '17 个'], answer: '7 个' };
-  if (/顺序|后继|点数|数序|变化/.test(objective)) return { ...base, objective: '进阶挑战 · 数与顺序', q: '从 8 开始接着数 4 个数，最后一个数是？', opts: ['12', '11', '4'], answer: '12' };
-  return { ...base, objective: '进阶挑战 · 方法检查', q: '做完一道题，哪种检查最可靠？', opts: ['把答案放回原来的情境检查', '只看答案写得大不大', '立刻换一个答案'], answer: '把答案放回原来的情境检查' };
-}
-
 const numberOptions = (answer: number, min = 0) => {
   const values = [answer, Math.max(min, answer - 1), answer + 1];
   while (new Set(values).size < 3) values.push(answer + values.length + 1);
   return shuffle([...new Set(values)].slice(0, 3).map(String));
 };
-
-function PracticeArena({ gen, count = 5, onPass, onWrong }: { gen: (round: number) => ArenaQuestion; count?: number; onPass: (stars: number) => void; onWrong?: (question: ArenaQuestion, answer: string) => void }) {
-  const createQueue = () => Array.from({ length: count }, (_, round) => gen(round));
-  const [queue, setQueue] = useState<ArenaQuestion[]>(createQueue);
-  const [idx, setIdx] = useState(0);
-  const [picked, setPicked] = useState<string | null>(null);
-  const [wrong, setWrong] = useState(0);
-  const [streak, setStreak] = useState(0);
-  const [challengeAdded, setChallengeAdded] = useState(false);
-  const [passed, setPassed] = useState(false);
-  const q = queue[idx];
-
-  useEffect(() => { if (q) teacherSay(q.say); }, [q]);
-
-  const choose = (o: string) => {
-    if (picked || !q) return;
-    setPicked(o);
-    const right = o === q.answer;
-    feedback(right);
-    if (right) {
-      const nextStreak = streak + 1;
-      setStreak(nextStreak);
-      const addChallenge = nextStreak === 3 && !challengeAdded;
-      if (addChallenge) setChallengeAdded(true);
-      setTimeout(() => {
-        if (idx + 1 >= queue.length && !addChallenge) {
-          const stars = wrong === 0 ? 3 : wrong <= 2 ? 2 : 1;
-          setPassed(true);
-          playSfx('win');
-          teacherSay(`闯关成功！你获得了${stars}颗星！`);
-          onPass(stars);
-        } else {
-          if (addChallenge) setQueue((qq) => [...qq.slice(0, idx + 1), progressiveArenaQuestion(q), ...qq.slice(idx + 1)]);
-          setPicked(null);
-          setIdx((i) => i + 1);
-        }
-      }, 800);
-    } else {
-      setWrong((w) => w + 1);
-      setStreak(0);
-      if (!q.remedial) onWrong?.(q, o);
-      setTimeout(() => {
-        // 原题先留到队尾，下一题立刻补方法；复盘题答错只把自身排回下一位，不会无限生成新题。
-        setQueue((qq) => q.remedial
-          ? [...qq.slice(0, idx + 1), q, ...qq.slice(idx + 1)]
-          : [...qq.slice(0, idx + 1), remedialArenaQuestion(q), ...qq.slice(idx + 1), q]);
-        setPicked(null);
-        setIdx((i) => i + 1);
-      }, 950);
-    }
-  };
-
-  const retry = () => {
-    setQueue(createQueue());
-    setIdx(0);
-    setPicked(null);
-    setWrong(0);
-    setStreak(0);
-    setChallengeAdded(false);
-    setPassed(false);
-    teacherSay('再来一次。这次慢慢看清楚每一题，冲刺三颗星！');
-  };
-
-  if (passed) {
-    const stars = wrong === 0 ? 3 : wrong <= 2 ? 2 : 1;
-    return (
-      <div className="mt-arena mt-arena-pass">
-        <b>🎉 闯关成功</b>
-        <span className="mt-stars" aria-label={`${stars} 星`}>{'⭐'.repeat(stars)}{'☆'.repeat(3 - stars)}</span>
-        <p>最多连对 {streak} 题 · 答错 {wrong} 次</p>
-        <div className={`mt-arena-result ${stars === 3 ? 'gold' : 'review'}`}>
-          {stars === 3 ? '本课已点亮，可以去学习下一课了。' : `本次成绩已保存。再练一次，答对全部题目就能点亮本课。`}
-        </div>
-        {stars < 3 && <button className="mt-arena-retry" onClick={retry}>↻ 再练一次，冲刺 3 星</button>}
-      </div>
-    );
-  }
-  if (!q) return null;
-  return (
-    <div className="mt-arena">
-      <div className="mt-arena-top">
-        <span>第 {idx + 1} / {queue.length} 题</span>
-        <span className="mt-arena-streak">{'🔥'.repeat(Math.min(streak, 5))} 连对 {streak}</span>
-      </div>
-      <div className="mt-arena-q">
-        {q.objective && <span className="mt-arena-objective">本题考查：{q.objective}</span>}
-        {q.emo && <span className="mt-arena-emo">{q.emo}</span>}
-        <b>{q.q}</b>
-        <button className="mt-teacher-replay" onClick={() => speakOnce(q.say, 'zh', 0.88)}>🔊 听题</button>
-      </div>
-      <div className="mt-answer-row mt-arena-opts">
-        {q.opts.map((o) => (
-          <button key={o} className={picked === o ? (o === q.answer ? 'is-correct' : 'is-wrong') : picked && o === q.answer ? 'is-correct' : ''} onClick={() => choose(o)}>{o}</button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function Checkpoint({ question, options, answer, onPass }: { question: string; options: string[]; answer: number; onPass: () => void }) {
-  const [picked, setPicked] = useState<number | null>(null);
-  useEffect(() => { teacherSay(question); }, [question]);
-  const correct = picked === answer;
-  return (
-    <div className="mt-checkpoint">
-      <span className="mt-check-tag">离开前想一想</span>
-      <h3>{question} <button className="mt-teacher-replay" onClick={() => speakOnce(question, 'zh', 0.9)}>🔊</button></h3>
-      <div className="mt-answer-row">
-        {options.map((option, index) => (
-          <button
-            key={option}
-            className={picked === index ? (correct ? 'is-correct' : 'is-wrong') : ''}
-            onClick={() => {
-              if (picked !== null) return;
-              setPicked(index);
-              feedback(index === answer);
-              if (index === answer) setTimeout(onPass, 900);
-              else setTimeout(() => setPicked(null), 950);
-            }}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
-      {picked !== null && <p className={correct ? 'mt-feedback good' : 'mt-feedback try'}>{correct ? '答对了！进入智能闯关，赢取星星。' : '再看一看画面，试着一个一个对应。'}</p>}
-    </div>
-  );
-}
-
-/** 把“选到正确理由”再往前推一步：用完整句式说出观察和判断。 */
-function ReasonVoicePractice({ reason }: { reason: string }) {
-  const sentence = `我这样想：${reason}。`;
-  const [said, setSaid] = useState('');
-  const [score, setScore] = useState<number | null>(null);
-  const onResult = (heard: string) => {
-    setSaid(heard);
-    const next = readScore(sentence, heard);
-    setScore(next);
-    feedback(next >= .45);
-  };
-  const asr = useAsr(onResult);
-  return <div className="mt-readaloud mt-reason-voice" aria-label="把理由说完整">
-    <small>把理由说完整 🎤</small>
-    <b className="mt-readaloud-sentence">「{sentence}」</b>
-    <p>先听示范，再用自己的话把理由讲出来；不必和示范一字不差。</p>
-    <div className="mt-readaloud-ops">
-      <button type="button" onClick={() => speakOnce(sentence, 'zh', .85)}>🔊 听示范</button>
-      {asr.supported
-        ? <button type="button" className={`mt-mic ${asr.listening ? 'listening' : ''}`} onClick={() => asr.listening ? asr.stop() : asr.start()}>{asr.listening ? '🎙️ 正在听…说完点这里' : '🎤 我来讲理由'}</button>
-        : <button type="button" onClick={() => setScore(1)}>设备不支持语音识别 · 我已说完</button>}
-    </div>
-    {said && <i className="mt-readaloud-heard">听到你说：{said}</i>}
-    {score !== null && <div className="mt-readaloud-scores"><span className={score >= .45 ? 'ok' : 'no'}>{score >= .45 ? '✓ 理由讲清楚啦' : '再试着说出“因为”和关键方法'}</span></div>}
-  </div>;
-}
-
-/** 动手试顶部的聪聪老师任务牌：逐条列出教材任务的标题与完成状态，提示随操作变化。 */
-function OperationCoach({ tasks, coach, hideHint = false }: { tasks: { title: string; done: boolean }[]; coach?: string; hideHint?: boolean }) {
-  const complete = tasks.length > 0 && tasks.every((task) => task.done);
-  const activeIndex = tasks.findIndex((task) => !task.done);
-  const hint = complete
-    ? '教材任务都完成了，可以进入下一步。'
-    : coach ?? `先完成教材任务${ACTION_TASK_NUMERALS[activeIndex] ?? ''}：${tasks[activeIndex]?.title ?? ''}。`;
-  const lastHint = useRef<string | null>(null);
-  useEffect(() => {
-    if (hideHint) return;
-    if (lastHint.current !== null && lastHint.current !== hint) teacherSay(hint);
-    lastHint.current = hint;
-  }, [hint, hideHint]);
-  return (
-    <aside className={`mt-operation-coach ${complete ? 'complete' : ''}`} aria-live="polite">
-      <div className="mt-operation-coach-tag"><span aria-hidden="true">🤖</span><b>聪聪老师</b></div>
-      <div className="mt-operation-coach-body">
-        <ul className="mt-operation-tasks">
-          {tasks.map((task, index) => (
-            <li key={index} className={task.done ? 'done' : index === activeIndex ? 'active' : ''}>
-              <i aria-hidden="true">{task.done ? '✓' : index + 1}</i>
-              <b>教材任务{ACTION_TASK_NUMERALS[index]}：</b>
-              <span>{task.title}</span>
-            </li>
-          ))}
-        </ul>
-        {!hideHint && <p>{hint}</p>}
-      </div>
-    </aside>
-  );
-}
 
 type SortMatchLine = { x1: number; y1: number; x2: number; y2: number };
 
@@ -638,8 +407,7 @@ function CurriculumManipulative({ lessonId, activity, onDone, onCoach }: { lesso
     })}</div><p>原有 {activity.filled} 个 · 已补 {added} / {activity.add} 个</p></div>;
   }
   if (activity.kind === 'order') {
-    const choices = [...activity.values].reverse();
-    return <div className="mt-curriculum-tool"><div className="mt-order-target">{activity.values.map((value, index) => <span key={value} className={index < step ? 'done' : index === step ? 'next' : ''}>{index < step ? value : '?'}</span>)}</div><div className="mt-tool-options">{choices.map((value) => <button key={value} disabled={activity.values.indexOf(value) < step} onClick={() => { if (value !== activity.values[step]) { playSfx('tap'); onCoach(`下一步应该接在 ${step ? activity.values[step - 1] : '起点'} 后面，看看哪个数符合顺序。`); return; } const next = step + 1; setStep(next); praiseStep(next === activity.values.length ? `顺序完成：${activity.values.join('、')}。` : `放对了 ${value}，接着找下一个数。`, next === activity.values.length); }}>{value}</button>)}</div></div>;
+    return <MathNumberOrder values={activity.values} progress={step} onProgress={setStep} seed={`${lessonId}:primary-order`} onCoach={onCoach} />;
   }
   if (activity.kind === 'sort') {
     const complete = Object.keys(sorted).length === activity.objects.length;
@@ -681,7 +449,7 @@ function CurriculumManipulative({ lessonId, activity, onDone, onCoach }: { lesso
   }
   const right = pickedModel === activity.answer;
   const readinessTime = lessonId === 'learning-readiness';
-  return <div className="mt-curriculum-tool"><div className="mt-model-visual">{activity.visual}</div><div className="mt-tool-options">{activity.options.map((option, index) => <button key={option} aria-pressed={pickedModel === index} className={pickedModel === index ? (right ? 'is-correct' : 'is-wrong') : ''} onClick={() => { clearModelResetTimer(); setPickedModel(index); if (index === activity.answer) praiseStep(readinessTime ? '钟面和课程表都说明：8:30 是上课开始的时间。' : '模型和画面中的数量关系完全一致。', true); else { feedback(false); onCoach(readinessTime ? '再看钟面和“上午第 1 节”：8:30 说的是上课的时间。' : '这个模型和画面关系还不一致，重新看看“整体”和“部分”。'); clearWrongModelChoice(); } }}>{option}</button>)}</div>{right && <p className="mt-model-retry-hint">答对了。还可以继续点其他选项，重新核对自己的判断。</p>}</div>;
+  return <div className="mt-curriculum-tool"><div className="mt-model-visual">{activity.visual}</div><MathAnswerChoices options={activity.options} className="mt-tool-options">{activity.options.map((option, index) => <button key={option} aria-pressed={pickedModel === index} className={pickedModel === index ? (right ? 'is-correct' : 'is-wrong') : ''} onClick={() => { clearModelResetTimer(); setPickedModel(index); if (index === activity.answer) praiseStep(readinessTime ? '钟面和课程表都说明：8:30 是上课开始的时间。' : '模型和画面中的数量关系完全一致。', true); else { feedback(false); onCoach(readinessTime ? '再看钟面和“上午第 1 节”：8:30 说的是上课的时间。' : '这个模型和画面关系还不一致，重新看看“整体”和“部分”。'); clearWrongModelChoice(); } }}>{option}</button>)}</MathAnswerChoices>{right && <p className="mt-model-retry-hint">答对了。还可以继续点其他选项，重新核对自己的判断。</p>}</div>;
 }
 
 /** 全册课时的迁移题：同一个知识点换问法、换情境，不照抄动手试和小检测。 */
@@ -753,28 +521,28 @@ export function genericArena(activity: MathActivity, round: number): ArenaQuesti
 
 function ExtendedLessonPage({ config, onPass }: { config: ExtendedMathLesson; onPass: (stars: number) => void }) {
   const [taskDone, setTaskDone] = useState(false);
-  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
+  const [textbookTaskDone, setTextbookTaskDone] = useState<boolean | null>(null);
   const [coach, setCoach] = useState(config.activity.prompt);
-  useEffect(() => { setTaskDone(false); setTextbookTaskDone(false); setCoach(config.activity.prompt); }, [config]);
+  // 课时与儿童变化已由外层 key 重建，不能在挂载后清掉子任务恢复的完成状态。
   return <section className="mt-lesson mt-extended-lesson">
-    <div className="mt-lesson-copy"><span className="mt-kicker">教材 {config.page} · 数字化探索课</span><h2>{config.title}</h2><p>{config.concept}</p><div className="mt-task-summary" aria-label="本课教材任务">{config.tasks.map((task, index) => <span key={task.id}>教材任务{ACTION_TASK_NUMERALS[index]}：{task.title}</span>)}</div></div>
-    <LearningFlow lessonId={config.id} lessonName={config.title} guess={config.guess} guessVisual={<GuessScene lessonId={config.id} activity={config.activity} ariaLabel={`${config.title}观察图`} />} reason={config.reason} checkpoint={config.checkpoint} actionReady={taskDone && textbookTaskDone} actionTasks={config.tasks.map((task, index) => ({ title: task.title, done: index === 0 ? taskDone : index === 1 ? textbookTaskDone : true }))} actionCoach={coach} ask={{ title: config.title, context: `${config.concept} 本课依据教材${config.page}的主题图、例题与练习重构。`, quick: config.quick }} narrations={[
+    <LearningFlow overview={<section className="lesson-context"><div className="mt-lesson-copy"><span className="mt-kicker">教材 {config.page} · 数字化探索课</span><h2>{config.title}</h2><p>{config.concept}</p></div></section>} lessonId={config.id} lessonName={config.title} guess={config.guess} guessVisual={<GuessScene lessonId={config.id} activity={config.activity} ariaLabel={`${config.title}观察图`} />} reason={config.reason} checkpoint={config.checkpoint} actionReady={taskDone && textbookTaskDone === true} actionTasks={config.tasks.map((task, index) => ({ title: task.title, done: index === 0 ? taskDone : index === 1 ? textbookTaskDone === true : true, verifyCompletion: index === 1, completionChecked: textbookTaskDone !== null }))} actionCoach={coach} ask={{ title: config.title, context: `${config.concept} 本课依据教材${config.page}的主题图、例题与练习重构。`, quick: config.quick }} narrations={[
       `先看观察图，想一想：${config.guess.question} 这里先记录猜想，不急着判断。`,
       `本课有两项教材任务。教材任务一：${config.tasks[0]?.title ?? ''}，${config.activity.prompt.replace(/。$/, '')}；完成后继续教材任务二：${config.tasks[1]?.title ?? ''}。聪聪会根据你做到哪一步继续提示。`,
       `把刚才的操作说成理由：${config.reason.question}`,
       '小检测只检查本课最核心的理解，仔细看清问题再选择。',
-      '进入智能闯关。答错的题会回到队尾再练，真正理解后再点亮课程。',
+      '进入智能闯关，用本课范围的新问题独立验证。需要时先看提示、摆学具，再换题试一次。',
     ]} arena={(round) => genericArena(config.activity, round)} onPass={onPass}>
       <ActionStation index={0} title={config.tasks[0]?.title ?? config.activity.prompt} brief={config.activity.prompt}>
         <CurriculumManipulative key={config.id} lessonId={config.id} activity={config.activity} onDone={() => setTaskDone(true)} onCoach={setCoach} />
         {config.id === 'six-to-nine' && <SixToNineDigitPractice />}
       </ActionStation>
-      <MathTextbookTaskPack lessonId={config.id} onDone={() => setTextbookTaskDone(true)} onCoach={setCoach} />
+      <MathTextbookTaskPack lessonId={config.id} onDone={() => setTextbookTaskDone(true)} onCompletionChange={setTextbookTaskDone} onCoach={setCoach} />
     </LearningFlow>
   </section>;
 }
 
-function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkpoint, arena, narrations, ask, onPass, actionReady, actionTasks, actionCoach, children }: {
+function LearningFlow({ overview, lessonId, guess, guessVisual, reason, ask, onPass, actionReady, actionTasks, children }: {
+  overview: React.ReactNode;
   lessonId: LessonId;
   lessonName: string;
   guess: Prompt;
@@ -782,25 +550,28 @@ function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkp
   reason: Prompt & { answer: number };
   checkpoint: Prompt & { answer: number };
   arena: (round: number) => ArenaQuestion;
-  /** 各阶段（先猜/动手试/说理由/小检测/智能闯关）的 AI 老师讲解词；小检测与闯关阶段不自动朗读（题目/题干自带语音） */
+  /** 历史阶段讲解词；自动朗读按当前最子级任务的题目、选项与填写要求触发 */
   narrations: string[];
   /** 「不懂就问」课文上下文 */
   ask: AskMeta;
   onPass: (stars: number) => void;
   /** 动手环节是否已完成关键操作；未完成前不能跳到说理由。 */
   actionReady?: boolean;
-  /** 动手试阶段的教材任务清单（标题 + 实时完成状态），由聪聪老师任务牌展示。 */
-  actionTasks: { title: string; done: boolean }[];
+  /** 动手试阶段的教材任务，用于左侧任务 tab 与实际完成状态。 */
+  actionTasks: { title: string; done: boolean; verifyCompletion?: boolean; completionChecked?: boolean }[];
   /** 根据当前操作实时变化的聪聪提示。 */
   actionCoach?: string;
   children: React.ReactNode;
 }) {
+  const navigate = useNavigate();
   const activeChildId = useStore((s) => s.activeChildId);
-  const addWrong = useStore((s) => s.addWrong);
   // v4 起流程快照带内容版本；v2/v3 旧的“单任务完成”不会绕过新增教材任务。
-  const flowKey = `sfz-math-flow-v4:${activeChildId ?? 'guest'}:${window.location.hash}`;
-  const v3FlowKey = `sfz-math-flow-v3:${activeChildId ?? 'guest'}:${window.location.hash}`;
-  const v2FlowKey = `sfz-math-flow-v2:${activeChildId ?? 'guest'}:${window.location.hash}`;
+  const lessonHash = `#/math-course/${lessonId}`;
+  // 保存键绑定渲染中的课时，切换路由的瞬间不能读取另一课的浏览器 hash。
+  const flowHash = window.location.hash.startsWith(`${lessonHash}?`) ? window.location.hash : lessonHash;
+  const flowKey = `sfz-math-flow-v4:${activeChildId ?? 'guest'}:${flowHash}`;
+  const v3FlowKey = `sfz-math-flow-v3:${activeChildId ?? 'guest'}:${flowHash}`;
+  const v2FlowKey = `sfz-math-flow-v2:${activeChildId ?? 'guest'}:${flowHash}`;
   const restored = useMemo(() => {
     try {
       return migrateMathFlowSnapshot(localStorage.getItem(flowKey), localStorage.getItem(v3FlowKey), localStorage.getItem(v2FlowKey));
@@ -810,11 +581,28 @@ function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkp
   const [unlocked, setUnlocked] = useState(restored.unlocked);
   const [savedActionDone, setSavedActionDone] = useState(restored.actionDone);
   const [knowledgeDone, setKnowledgeDone] = useState(restored.knowledgeDone);
-  const [guessPick, setGuessPick] = useState<number | null>(null);
-  const [reasonPick, setReasonPick] = useState<number | null>(null);
+  const [guessPick, setGuessPick] = useMathLessonTaskProgress<number | null>('guess-pick-v1', null);
+  const [reasonReady, setReasonReady] = useMathLessonTaskProgress('reason-ready-v1', restored.knowledgeDone);
+  const [completedActionIds, setCompletedActionIds] = useMathLessonTaskProgress<number[]>('completed-action-tasks-v1', []);
+  // A historical parent checkmark cannot replace current child-card evidence.
+  const completedActionTasks = actionTasks.map((task, index) => ({ ...task, done: task.verifyCompletion ? task.done : task.done || completedActionIds.includes(index) }));
+  const completedActionSignature = JSON.stringify(actionTasks.map((task, index) => task.done ? index : -1).filter(index => index >= 0));
+  useEffect(() => {
+    const doneIds = JSON.parse(completedActionSignature) as number[];
+    if (doneIds.some(index => !completedActionIds.includes(index))) setCompletedActionIds(current => [...new Set([...current, ...doneIds])]);
+  }, [completedActionIds, completedActionSignature, setCompletedActionIds]);
+  const [arenaDone, setArenaDone] = useMathLessonTaskProgress('lesson-arena-done-v1', false);
+  const [reviewing, setReviewing] = useState(false);
+  const [actionRoundReady, setActionRoundReady] = useState<boolean | null>(null);
+  const [selectedActivities, setSelectedActivities] = useState<Record<number, number>>({
+    1: Math.max(0, completedActionTasks.map((task) => task.done).findIndex((done) => !done)),
+    2: reasonReady && !knowledgeDone ? 1 : 0,
+  });
+  const selected = selectedActivities[phase] ?? 0;
+  const selectActivity = useCallback((index: number) => setSelectedActivities((current) => ({ ...current, [phase]: index })), [phase]);
   const flowRef = useRef<HTMLDivElement>(null);
   const phases = ['先猜', '动手试', '说理由', '小检测', '智能闯关'];
-  const actionDone = !!actionReady || savedActionDone;
+  const actionDone = !!actionReady || savedActionDone || completedActionTasks.every(task => task.done);
   useEffect(() => {
     if (actionReady) setSavedActionDone(true);
   }, [actionReady]);
@@ -822,78 +610,81 @@ function LearningFlow({ lessonId, lessonName, guess, guessVisual, reason, checkp
     try { localStorage.setItem(flowKey, JSON.stringify({ contentVersion: MATH_FLOW_CONTENT_VERSION, phase, unlocked, actionDone, knowledgeDone })); } catch { /* 私密模式下不影响上课 */ }
   }, [actionDone, flowKey, knowledgeDone, phase, unlocked]);
   const goPhase = (next: number) => {
+    setReviewing(next < unlocked);
     setPhase(next);
-    // 新阶段内容可能在视口下方（如动手试里的写字板），滚动定位让人看见
-    setTimeout(() => {
-      flowRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 80);
+
   };
   const advance = (next: number) => {
+    setReviewing(false);
     setUnlocked((value) => Math.max(value, next));
     goPhase(next);
     stopSpeaking();
   };
+  const narrationRoot = useRef<HTMLDivElement>(null);
+  const narration = useMathTabNarration(narrationRoot, `${activeChildId}:${lessonId}:${phase}`);
+  const replayControl = <CourseReplayButton className="math-narration-replay" playbackOwner={narration.playbackOwner} onClick={narration.replay} disabled={narration.disabled} label={narration.explanation ? '再听一遍讲解' : '再听一遍题目和答案选项'} title={narration.disabled ? '请先打开声音和语音' : narration.explanation ? '重新播放当前讲解' : '朗读当前任务的题目和答案选项'} />;
+  const actionContents = Children.toArray(children);
+  const activities: MathLessonActivity[] = phase === 1 ? [
+    ...completedActionTasks.map((task, index) => ({ label: `教材任务 ${index + 1}`, title: task.title, done: task.done, content: actionContents[index] })),
+  ] : phase === 2 ? [
+    { label: '说出理由', done: reasonReady, content: <MathReasonExpression key={lessonId} lessonId={lessonId} question={reason.question} options={reason.options} answer={reason.answer} onReady={() => setReasonReady(true)} /> },
+    { label: '知识延伸', done: knowledgeDone, disabled: !reasonReady, content: reasonReady && <MathKnowledgeBridge key={lessonId} lessonId={lessonId} complete={knowledgeDone} onComplete={() => setKnowledgeDone(true)} replayControl={replayControl} /> },
+  ] : [];
+  useMathActivityAdvance(`${lessonId}:${phase}`, activities.map((activity) => activity.done), selected, selectActivity);
+  const phaseReady = phase === 0 ? guessPick !== null
+    : phase === 1 ? actionDone && completedActionTasks.every((task) => task.done) && actionRoundReady !== false
+    : phase === 2 ? reasonReady && knowledgeDone : false;
+  const completionChecked = phase !== 1 || actionTasks.every(task => !task.verifyCompletion || task.completionChecked);
+  const previousReady = useRef({ phase, ready: phaseReady, checked: completionChecked });
+  useEffect(() => {
+    if (!completionChecked) {
+      previousReady.current = { phase, ready: false, checked: false };
+      return;
+    }
+    const before = previousReady.current;
+    previousReady.current = { phase, ready: phaseReady, checked: true };
+    const newlyCompleted = before.checked && before.phase === phase && !before.ready && phaseReady;
+    // Review stays put; completing new work can advance even when later stages were unlocked earlier.
+    if (!phaseReady || phase >= 3 || (reviewing || phase < unlocked) && !newlyCompleted) return;
+    const timer = window.setTimeout(() => {
+      setReviewing(false);
+      setUnlocked((current) => Math.max(current, phase + 1));
+      setPhase(phase + 1);
+      stopSpeaking();
+    }, 1000);
+    return () => window.clearTimeout(timer);
+  }, [completionChecked, phase, phaseReady, reviewing, unlocked]);
+  const activityId = `math-${lessonId}-${phase}`;
   return (
-    <div className="mt-learning-flow" ref={flowRef}>
+    <MathActionRoundContext.Provider value={setActionRoundReady}><div className="mt-learning-flow" ref={flowRef} onClickCapture={event => { if (event.target instanceof Element && event.target.closest('[data-practice-restart]')) setReviewing(true); }}>
       <nav className="ct-phase-nav mt-phase-nav-math" aria-label="本课学习步骤">
         {phases.map((label, index) => (
           <button key={label} disabled={index > unlocked} className={`${phase === index ? 'active' : ''} ${index < unlocked ? 'done' : ''}`} onClick={() => goPhase(index)}>
-            <b>{index < unlocked ? '✓' : index + 1}</b><span>{label}</span>
+            <b>{index < unlocked || index === 4 && arenaDone ? '✓' : index + 1}</b><span>{label}</span>
           </button>
         ))}
       </nav>
-      {narrations[phase] && (
-        <TeacherBar key={phase} text={narrations[phase]} auto={phase !== 3 && phase !== 4} ask={ask} />
-      )}
-      {phase === 0 && (
-        <div className="mt-phase-card mt-guess-card">
-          <span>先观察，再猜一猜</span><h3>{guess.question}</h3>
-          {guessVisual && <div className="mt-guess-visual">{guessVisual}</div>}
-          <div className="mt-answer-row">{guess.options.map((option, index) => <button key={option} className={guessPick === index ? 'is-picked' : ''} onClick={() => { setGuessPick(index); playSfx('tap'); }}>{option}</button>)}</div>
-          <p>这里记录的是猜想，不判对错。下一步用操作来验证。</p>
-          <button className="ct-primary mt-flow-next" disabled={guessPick === null} onClick={() => advance(1)}>带着猜想去验证 →</button>
+      <div className="math-common-guide" aria-label="本课公共提示"><div className="math-common-guide-copy">{overview}</div>{!(phase === 2 && selected === 1 && narration.explanation) && replayControl}<MathLessonHelp key={phase} ask={ask} /></div>
+      <div className={`math-flow-workspace${activities.length === 0 ? ' math-flow-workspace-full' : ''}`}>
+        {activities.length > 0 && <aside className="math-flow-guidance" aria-label="本课任务"><WholeStage>
+          <MathLessonActivityTabs activities={activities} selected={selected} onSelect={(index) => { selectActivity(index); setReviewing(activities[index].done); }} id={activityId} />
+          {phaseReady && phase === unlocked && phase < 3 && <p className="math-auto-progress" role="status">✓ 本阶段完成，正在进入{phases[phase + 1]}…</p>}
+        </WholeStage></aside>}
+        <div className="math-flow-main" ref={narrationRoot}>
+          {phase === 0 && <WholeStage><div className="mt-guess-workspace">
+            <div className="mt-phase-card mt-guess-card">
+              <span>先观察，再猜一猜</span><h3>{guess.question}</h3>
+              {guessVisual && <div className="mt-guess-visual">{guessVisual}</div>}
+              <MathAnswerChoices options={guess.options}>{mathOptions(guess.options.map((option, index) => ({ option, index })), `${lessonId}:guess`).map(({ option, index }) => <button key={option} className={guessPick === index ? 'is-picked' : ''} onClick={() => { setGuessPick(index); playSfx('tap'); }}>{option}</button>)}</MathAnswerChoices>
+              <p role="status">{guessPick === null ? '这里记录的是猜想，不判对错。下一步用操作来验证。' : '✓ 猜想已记录，接下来动手验证。'}</p>
+            </div>
+          </div></WholeStage>}
+          {activities.length > 0 && <MathLessonActivityPanels key={phase} activities={activities} selected={selected} id={activityId} />}
+          {phase === 4 && <WholeStage><MathAssessmentPractice autoFinish key={`${activeChildId}:${lessonId}:lesson`} lessonId={lessonId} context="lesson" onExit={() => navigate('/subject/math')} exitLabel="返回课程目录" onReturnToTools={() => goPhase(1)} onDone={({ stars }) => { setArenaDone(true); onPass(stars); }} /></WholeStage>}
+          {phase === 3 && <WholeStage><MathAssessmentPractice autoFinish key={`${activeChildId}:${lessonId}:checkpoint`} lessonId={lessonId} context="checkpoint" onReturnToTools={() => goPhase(1)} onDone={() => advance(4)} /></WholeStage>}
         </div>
-      )}
-      {phase === 1 && <div className="mt-action-phase"><OperationCoach tasks={actionTasks} coach={actionCoach} hideHint={lessonId === 'select-info-eight-nine'} />{children}<button className="ct-primary mt-flow-next" disabled={!actionDone} onClick={() => advance(2)}>我动手试过了，去说理由 →</button></div>}
-      {phase === 2 && (
-        <div className="mt-phase-card mt-reason-card">
-          <span>把发现说清楚</span><h3>{reason.question}</h3>
-          <div className="mt-answer-row">{reason.options.map((option, index) => <button key={option} className={reasonPick === index ? (index === reason.answer ? 'is-correct' : 'is-wrong') : ''} onClick={() => { if (reasonPick !== null) return; setReasonPick(index); const right = index === reason.answer; feedback(right); if (!right) setTimeout(() => setReasonPick(null), 950); }}>{option}</button>)}</div>
-          {reasonPick !== null && <p className={reasonPick === reason.answer ? 'mt-feedback good' : 'mt-feedback try'}>{reasonPick === reason.answer ? '理由说清楚了，再把方法用到新情境。' : '这个理由还不能解释刚才的操作，再试一次。'}</p>}
-          {reasonPick === reason.answer && <ReasonVoicePractice key={reason.options[reason.answer]} reason={reason.options[reason.answer]} />}
-          {reasonPick === reason.answer && <MathKnowledgeBridge key={lessonId} lessonId={lessonId} complete={knowledgeDone} onComplete={() => setKnowledgeDone(true)} />}
-          <button className="ct-primary mt-flow-next" disabled={reasonPick !== reason.answer || !knowledgeDone} onClick={() => advance(3)}>进入小检测 →</button>
-        </div>
-      )}
-      {phase === 3 && <Checkpoint question={checkpoint.question} options={checkpoint.options} answer={checkpoint.answer} onPass={() => advance(4)} />}
-      {phase === 4 && (
-        <div className="mt-arena-wrap">
-          <span className="mt-check-tag">智能闯关 · 五类迁移题，答错自动重练</span>
-          <PracticeArena
-            gen={arena}
-            onWrong={(question, answer) => {
-              if (!activeChildId) return;
-              const review = arenaReviewMeta(question);
-              addWrong(activeChildId, {
-                uid: `math:${lessonId}:${Date.now()}:${Math.random().toString(36).slice(2, 7)}`,
-                lessonId: `math-lab-${lessonId}`,
-                lessonName,
-                question: question.emo ? `${question.q} ${question.emo}` : question.q,
-                kind: question.objective ?? '智能闯关',
-                answer,
-                objective: question.objective,
-                diagnosis: review.diagnosis,
-                remedy: review.remedy,
-                options: question.opts,
-                correctAnswer: question.answer,
-                time: Date.now(),
-              });
-            }}
-            onPass={(stars) => { try { localStorage.removeItem(flowKey); } catch { /* 忽略存储不可用 */ } onPass(stars); }}
-          />
-        </div>
-      )}
-    </div>
+      </div>
+    </div></MathActionRoundContext.Provider>
   );
 }
 
@@ -1060,7 +851,7 @@ function DigitPractice({ number, replay, onReplay }: { number: number; replay: n
         <button onClick={check}>✅ 智能批改</button>
         <button onClick={() => { setInk([]); setJudge(null); }}>🧽 清除重写</button>
       </div>
-      <p className="mt-writing-safety">书写练习帮助掌握笔画，不计入本节数量任务、课程星级或“是否理解数字”的判断。</p>
+
     </div>
   );
 }
@@ -1253,7 +1044,7 @@ function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
   const { found, floorCount } = campusProgress;
   const setFound = (found: string | null) => setCampusProgress((state) => ({ ...state, found }));
   const setFloorCount = (floorCount: number) => setCampusProgress((state) => ({ ...state, floorCount }));
-  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
+  const [textbookTaskDone, setTextbookTaskDone] = useState<boolean | null>(null);
   const [countFeedback, setCountFeedback] = useState<{ right: boolean; text: string } | null>(null);
   const countFloor = (index: number) => {
     if (index < floorCount) return;
@@ -1277,22 +1068,21 @@ function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
   ];
   return (
     <section className="mt-lesson mt-campus">
-      <div className="mt-lesson-copy">
+      <LearningFlow overview={<section className="lesson-context"><div className="mt-lesson-copy">
         <span className="mt-kicker">数学游戏 · 先观察，再表达</span>
         <h2>校园里藏着哪些数学？</h2>
-        <p>点击发光标记，找出数量、形状和位置。先让孩子自己说，再打开提示。</p>
-      </div>
-      <LearningFlow
+        <p>找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。</p>
+      </div></section>}
         lessonId="campus"
         lessonName="在校园里找一找"
         guess={{ question: '中间教学楼看起来有几层？', options: ['3 层', '4 层', '我还不确定'] }}
         guessVisual={<CampusGuessPicture />}
         reason={{ question: '为什么中间教学楼是 4 层？', options: ['只数上面的三排窗户', '底层入口是第 1 层，再数上面三层', '因为有四个标记'], answer: 1 }}
         checkpoint={{ question: '从下往上数，中间教学楼共有几层？', options: ['3 层', '4 层', '5 层'], answer: 1 }}
-        actionReady={floorCount === 4 && textbookTaskDone}
+        actionReady={floorCount === 4 && textbookTaskDone === true}
         actionTasks={[
           { title: '从底层入口开始，按顺序点亮中间教学楼的 4 层', done: floorCount === 4 },
-          { title: textbookTaskTitle('campus'), done: textbookTaskDone },
+          { title: textbookTaskTitle('campus'), done: textbookTaskDone === true, verifyCompletion: true, completionChecked: textbookTaskDone !== null },
         ]}
         actionCoach={floorCount === 0 ? '先点最下面的底层入口，它就是第 1 层。' : floorCount === 4 && !textbookTaskDone ? '四层都点亮了！继续完成教材任务二。' : floorCount === 4 ? '两项教材任务都完成了。' : `已经数到第 ${floorCount} 层了，再点它上面紧挨着的一层。`}
         ask={askOf('campus')}
@@ -1301,7 +1091,7 @@ function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
           '现在来验证猜想。先看看发光的线索，再从底层入口开始，按从下到上的顺序点亮四层教学楼。每点一层，都要报出这是第几层。',
           '你刚才发现了哪些线索？想一想：要数对教学楼的层数，应该从哪里数起、怎么数才不会漏？选一个能说清楚的理由。',
           '小检测时间！听我读题，选出正确答案。',
-          '进入智能闯关！题目是随机出的，答错了会自动再练一次。连对越多，星星越多，加油！',
+          '进入智能闯关，用新问题检查本课目标。可以试错、用提示，再换新题独立验证。完成后还可以自己选择挑战。',
         ]}
         arena={(round) => {
           const questions: ArenaQuestion[] = [
@@ -1348,8 +1138,7 @@ function CampusLesson({ onPass }: { onPass: (stars: number) => void }) {
         {countFeedback && <p className={`mt-feedback ${countFeedback.right ? 'good' : 'try'}`}>{countFeedback.text}</p>}
       </div>
       </ActionStation>
-      <MathTextbookTaskPack lessonId="campus" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
-      <div className="mt-teach-note"><b>观察方法</b><span>先确认数的是中间教学楼；从底层入口开始，由下往上一层一层数。</span></div>
+      <MathTextbookTaskPack lessonId="campus" onDone={() => setTextbookTaskDone(true)} onCompletionChange={setTextbookTaskDone} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
@@ -1363,7 +1152,7 @@ function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
   const setTrace = (value: number | ((previous: number) => number)) => setNumbersProgress((state) => ({ ...state, trace: typeof value === 'function' ? value(state.trace) : value }));
   const setCompleted = (completed: Record<number, boolean>) => setNumbersProgress((state) => ({ ...state, completed }));
   const setAbacusCount = (abacusCount: number) => setNumbersProgress((state) => ({ ...state, abacusCount }));
-  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
+  const [textbookTaskDone, setTextbookTaskDone] = useState<boolean | null>(null);
   const completedCount = [1, 2, 3, 4, 5].filter((n) => completed[n]).length;
   const allDone = completedCount === 5;
   const targetNumber = [1, 2, 3, 4, 5].find((n) => !completed[n]);
@@ -1425,22 +1214,21 @@ function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
   };
   return (
     <section className="mt-lesson">
-      <div className="mt-lesson-copy">
+      <LearningFlow overview={<section className="lesson-context"><div className="mt-lesson-copy">
         <span className="mt-kicker">1～5 的认识 · 具体 → 图示 → 符号</span>
         <h2>一个数，可以有三种样子</h2>
         <p>选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。</p>
-      </div>
-      <LearningFlow
+      </div></section>}
         lessonId="numbers"
         lessonName="1～5 的认识"
         guess={{ question: '先看图，不逐个点数，你觉得桌上有几个南瓜？', options: ['3 个', '4 个', '5 个'] }}
         guessVisual={<NumberGuessPicture />}
         reason={{ question: '为什么要把实物、点子和数字放在一起看？', options: ['为了让页面更热闹', '它们表示的是同一个数量', '因为数字一定比实物大'], answer: 1 }}
         checkpoint={{ question: '4 朵花应该和哪个数字连起来？', options: ['3', '4', '5'], answer: 1 }}
-        actionReady={allDone && textbookTaskDone}
+        actionReady={allDone && textbookTaskDone === true}
         actionTasks={[
           { title: '依次认识 1～5，把对应数量的珠子拨到左边', done: allDone },
-          { title: textbookTaskTitle('numbers'), done: textbookTaskDone },
+          { title: textbookTaskTitle('numbers'), done: textbookTaskDone === true, verifyCompletion: true, completionChecked: textbookTaskDone !== null },
         ]}
         actionCoach={allDone && !textbookTaskDone ? '1～5 的珠子都拨好了。继续完成教材任务二。' : allDone ? '两项教材任务都完成了。' : targetNumber === number ? (abacusCount === 0 ? `现在认识数字 ${number}：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。` : `左边已经有 ${abacusCount} 颗珠，还差 ${number - abacusCount} 颗。`) : `下一个是数字 ${targetNumber}：点上面的 ${targetNumber}，把 ${targetNumber} 颗珠子拨到左边。`}
         ask={askOf('numbers')}
@@ -1449,7 +1237,7 @@ function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
           '一个数有三种样子：看得见的实物、可以数的点子、还有数字符号。我们从 1 开始按顺序认识到 5：每选中一个数字，就把它对应数量的珠子一颗一颗拨到左边，拨完会自动到下一个数字。最后还可以在写字板上描一描。',
           '实物、点子和数字为什么放在一起看？选出能说清楚的理由。',
           '小检测时间！听我读题，选出正确答案。',
-          '进入智能闯关！题目是随机出的，答错了会自动再练一次。连对越多，星星越多，加油！',
+          '进入智能闯关，用新问题检查本课目标。可以试错、用提示，再换新题独立验证。完成后还可以自己选择挑战。',
         ]}
         arena={(round) => {
           const questions: ArenaQuestion[] = [
@@ -1463,18 +1251,18 @@ function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
         }}
         onPass={onPass}
       >
-      <ActionStation index={0} title="依次认识 1～5，把对应数量的珠子拨到左边" brief={`按顺序认识每一个数字：选中后把它对应数量的珠子拨到左边（已完成 ${completedCount}/5），再描一描。`}>
+      <ActionStation index={0} title="依次认识 1～5，把对应数量的珠子拨到左边">
+      <div className="math-number-task"><div className="math-number-core">
       <section className="mt-number-showcase" aria-label={`数字 ${number} 的三种表示`}>
-        <div className="mt-number-selector"><span>从 1 开始，按顺序认识：每个数字都把对应数量的珠子拨到左边（已完成 {completedCount}/5）</span>{[1, 2, 3, 4, 5].map((n) => <button key={n} className={`${number === n ? 'active' : ''} ${completed[n] ? 'done' : ''}`} onClick={() => { setNumber(n); setAbacusCount(0); setDraggingBead(null); setAbacusFeedback(null); }}>{n}</button>)}</div>
-        <div className="mt-cra-heading"><span>数量 {number}</span><b>看得见 · 数得出 · 写得下</b></div>
+        <div className="mt-number-selector"><span>已认识 {completedCount}/5</span>{[1, 2, 3, 4, 5].map((n) => <button key={n} className={`${number === n ? 'active' : ''} ${completed[n] ? 'done' : ''}`} onClick={() => { setNumber(n); setAbacusCount(0); setDraggingBead(null); setAbacusFeedback(null); }}>{n}</button>)}</div>
         <div className="mt-cra-grid">
           <article><small>① 看得见的数量</small><div className="mt-object-row">{Array.from({ length: number }, (_, i) => <span key={i}>{OBJECTS[number]}</span>)}</div></article>
           <article><small>② 可以数的点子</small><div className="mt-dot-frame">{[1, 2, 3, 4, 5].map((n) => <i key={n} className={n <= number ? 'filled' : ''} />)}</div></article>
           <article className="mt-symbol-card"><small>③ 表示数量的数字</small><strong>{number}</strong></article>
         </div>
       </section>
-      <section className="mt-number-stations" aria-label="认数拓展活动">
-        <div className="mt-stations-heading"><span>动手巩固</span><b>换一种方法，再认识一次 {number}</b></div>
+      <section className="mt-number-stations" aria-label="拨珠练习">
+        <div className="mt-stations-heading"><span>拨一拨</span><b>把 {number} 颗珠子拨到左边</b></div>
         <div className="mt-textbook-stations">
         <article><small>拨一拨</small><div className="mt-abacus" ref={abacusRef} role="group" aria-label={`计数器：目标拨出 ${number} 颗珠，当前已拨出 ${abacusCount} 颗。拖动珠子越过中梁到左边`}><i /><em aria-hidden="true" /><span className="mt-abacus-zone left" aria-hidden="true" /><span className="mt-abacus-zone right" aria-hidden="true" />{[0, 1, 2, 3, 4].map((index) => {
           const active = index < abacusCount;
@@ -1484,87 +1272,27 @@ function NumbersLesson({ onPass }: { onPass: (stars: number) => void }) {
           const dragPos = draggingBead?.index === index ? draggingBead.left : pos;
           return <button key={index} type="button" style={{ left: `${dragPos}%` }} className={`${active ? 'active' : ''} ${draggingBead?.index === index ? 'dragging' : ''}`} onPointerDown={(event) => beginBeadDrag(event, index, pos)} onPointerMove={moveDraggedBead} onPointerUp={(event) => finishBeadDrag(event, index)} onPointerCancel={() => setDraggingBead(null)} onClick={(event) => { if (event.detail === 0) moveBead(index); }} aria-label={active ? `第 ${index + 1} 颗珠，已拨到左边` : `第 ${index + 1} 颗珠，拖到左边`} />;
         })}</div><b>向左拨出 {abacusCount} / {number} 颗珠</b>{abacusFeedback && <p className={`mt-station-feedback ${abacusFeedback.right ? 'good' : 'try'}`}>{abacusFeedback.text}</p>}</article>
-        <article><small>摆一摆</small><div className="mt-blocks">{Array.from({ length: number }, (_, index) => <i key={index} />)}</div><b>{number} 个方块排成一排</b></article>
-        <article><small>生活中找一找</small><div className="mt-life-number">{number === 1 ? '👃' : number === 2 ? '👟 👟' : number === 3 ? '🚦' : number === 4 ? '🚗' : '⭐ ⭐ ⭐ ⭐ ⭐'}</div><b>它也可以表示数量 {number}</b></article>
         </div>
       </section>
-      <DigitPractice number={number} replay={trace} onReplay={() => { setTrace((value) => value + 1); speakOnce(String(number), 'zh', 0.8); }} />
+      </div><DigitPractice number={number} replay={trace} onReplay={() => { setTrace((value) => value + 1); speakOnce(String(number), 'zh', 0.8); }} /></div>
       </ActionStation>
-      <MathTextbookTaskPack lessonId="numbers" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
+      <MathTextbookTaskPack lessonId="numbers" onDone={() => setTextbookTaskDone(true)} onCompletionChange={setTextbookTaskDone} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
 }
 
 function CompareLesson({ onPass }: { onPass: (stars: number) => void }) {
-  const [compareProgress, setCompareProgress] = useMathLessonTaskProgress('compare-primary', { left: 3, right: 3, fruit: { icon: '🍑', name: '桃子' }, pairedCount: 0, selectedMonkey: null as number | null });
-  const { left, right, fruit, pairedCount, selectedMonkey } = compareProgress;
-  const setLeft = (left: number) => setCompareProgress((state) => ({ ...state, left }));
-  const setRight = (right: number) => setCompareProgress((state) => ({ ...state, right }));
-  const setFruit = (fruit: { icon: string; name: string }) => setCompareProgress((state) => ({ ...state, fruit }));
-  const setPairedCount = (pairedCount: number) => setCompareProgress((state) => ({ ...state, pairedCount }));
-  const setSelectedMonkey = (selectedMonkey: number | null) => setCompareProgress((state) => ({ ...state, selectedMonkey }));
-  const [pairFeedback, setPairFeedback] = useState<{ right: boolean; text: string } | null>(null);
-  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
+  const [compareProgress, setCompareProgress] = useMathLessonTaskProgress('compare-primary', { left: 3, right: 3, fruit: { icon: '🍑', name: '桃子' }, pairedCount: 0, selectedMonkey: null as number | null, pairs: undefined as Pair[] | undefined });
+  const { left, right, fruit, selectedMonkey } = compareProgress;
+  // Migrate the former ordered-pair count without replaying completion events.
+  const pairs = compareProgress.pairs ?? Array.from({ length: compareProgress.pairedCount }, (_, index) => ({ left: index, right: index }));
+  const pairedCount = pairs.length;
+  const [textbookTaskDone, setTextbookTaskDone] = useState<boolean | null>(null);
   const relation = left === right ? '=' : left > right ? '>' : '<';
-  const max = Math.max(left, right);
-  const pairLimit = Math.min(left, right);
-  const chooseExample = (nextLeft: number, nextRight: number, nextFruit: { icon: string; name: string }) => {
-    setLeft(nextLeft);
-    setRight(nextRight);
-    setFruit(nextFruit);
-    setPairedCount(0);
-    setSelectedMonkey(null);
-    setPairFeedback(null);
-  };
-  const adjustLeft = (next: number) => { setLeft(next); setPairedCount(0); setSelectedMonkey(null); setPairFeedback(null); };
-  const adjustRight = (next: number) => { setRight(next); setPairedCount(0); setSelectedMonkey(null); setPairFeedback(null); };
-  const pair = (index: number) => {
-    if (index < pairedCount) return;
-    if (index !== pairedCount) {
-      feedback(false);
-      teacherSay('从最上面还没有连线的一对开始，一个小猴配一个水果。');
-      setPairFeedback({ right: false, text: '先配最上面还没有连线的一对。' });
-      return;
-    }
-    const next = pairedCount + 1;
-    setPairedCount(next);
-    feedback(true);
-    teacherSay(next === pairLimit ? '配完了！看看哪一边还有剩余。' : '配好一对了，再配下一对。');
-    setPairFeedback({ right: true, text: next === pairLimit ? '配完了！现在观察哪边还有剩余。' : '配好一对了，再配下一对。' });
-  };
-  const pickMonkey = (index: number) => {
-    if (index < pairedCount) return;
-    if (index >= pairLimit) {
-      feedback(false);
-      setPairFeedback({ right: false, text: `第 ${index + 1} 只小猴暂时没有${fruit.name}可配，先完成上面的一对。` });
-      return;
-    }
-    if (index !== pairedCount) {
-      feedback(false);
-      teacherSay('从最上面还没有配对的小猴开始。');
-      setPairFeedback({ right: false, text: '从最上面还没有配对的小猴开始。' });
-      return;
-    }
-    setSelectedMonkey(index);
-    playSfx('tap');
-    setPairFeedback({ right: true, text: `选中了第 ${index + 1} 只小猴，再点一个${fruit.name}。` });
-  };
-  const pickFruit = (index: number) => {
-    if (selectedMonkey === null) {
-      feedback(false);
-      teacherSay('先点一只小猴，再给它分水果。');
-      setPairFeedback({ right: false, text: '先点一只小猴，再给它分一个水果。' });
-      return;
-    }
-    if (index !== selectedMonkey) {
-      feedback(false);
-      setPairFeedback({ right: false, text: '请把选中的小猴和同一排的水果配在一起。' });
-      return;
-    }
-    setSelectedMonkey(null);
-    pair(index);
-  };
+  const chooseExample = (left: number, right: number, fruit: { icon: string; name: string }) => setCompareProgress({ left, right, fruit, pairedCount: 0, selectedMonkey: null, pairs: [] });
+  const adjustLeft = (left: number) => setCompareProgress(state => ({ ...state, left, pairedCount: 0, selectedMonkey: null, pairs: [] }));
+  const adjustRight = (right: number) => setCompareProgress(state => ({ ...state, right, pairedCount: 0, selectedMonkey: null, pairs: [] }));
   const readSentence = () => {
     const sym = relation === '=' ? '等于' : relation === '>' ? '大于' : '小于';
     const cmp = relation === '=' ? `${fruit.name}和小猴同样多` : relation === '>' ? `小猴比${fruit.name}多` : `小猴比${fruit.name}少`;
@@ -1572,31 +1300,30 @@ function CompareLesson({ onPass }: { onPass: (stars: number) => void }) {
   };
   return (
     <section className="mt-lesson">
-      <div className="mt-lesson-copy">
+      <LearningFlow overview={<section className="lesson-context"><div className="mt-lesson-copy">
         <span className="mt-kicker">比大小 · 一一对应</span>
         <h2>先配对，再写符号</h2>
         <p>每只小猴分一个水果。配完后哪边还有剩余，哪边就更多；都不剩就是同样多。</p>
-      </div>
-      <LearningFlow
+      </div></section>}
         lessonId="compare"
         lessonName="比大小"
         guess={{ question: '3 只小猴和 2 个香蕉一个对一个配，哪边会有剩余？', options: ['小猴', '香蕉', '都不剩'] }}
         guessVisual={<CompareGuessPicture />}
         reason={{ question: '怎样判断哪边更多最可靠？', options: ['看图形大小', '一个小猴配一个水果，看哪边有剩余', '凭感觉'], answer: 1 }}
         checkpoint={{ question: '3 只小猴和 4 个梨，应该用哪个符号？', options: ['3 = 4', '3 > 4', '3 < 4'], answer: 2 }}
-        actionReady={left === 3 && right === 3 && fruit.name === '桃子' && pairedCount === 3 && textbookTaskDone}
+        actionReady={left === 3 && right === 3 && fruit.name === '桃子' && pairedCount === 3 && textbookTaskDone === true}
         actionTasks={[
           { title: '给 3 只小猴各分 1 个桃子，完成一一配对', done: left === 3 && right === 3 && fruit.name === '桃子' && pairedCount === 3 },
-          { title: textbookTaskTitle('compare'), done: textbookTaskDone },
+          { title: textbookTaskTitle('compare'), done: textbookTaskDone === true, verifyCompletion: true, completionChecked: textbookTaskDone !== null },
         ]}
-        actionCoach={left !== 3 || right !== 3 || fruit.name !== '桃子' ? '先选择“3 和 3 · 同样多”，让 3 只小猴和 3 个桃子准备好。' : selectedMonkey !== null ? `第 ${selectedMonkey + 1} 只小猴在等桃子，点同一排的桃子给它。` : pairedCount === 3 && !textbookTaskDone ? '3 只小猴都有桃子了。继续完成教材任务二。' : pairedCount === 3 ? '两项教材任务都完成了。' : `已经配好 ${pairedCount} 对，还有 ${3 - pairedCount} 只小猴没有桃子。`}
+        actionCoach={left !== 3 || right !== 3 || fruit.name !== '桃子' ? '先选择“3 和 3 · 同样多”，让 3 只小猴和 3 个桃子准备好。' : selectedMonkey !== null ? `第 ${selectedMonkey + 1} 只小猴在等桃子，点一个还没配过的桃子给它。` : pairedCount === 3 && !textbookTaskDone ? '3 只小猴都有桃子了。继续完成教材任务二。' : pairedCount === 3 ? '两项教材任务都完成了。' : `已经配好 ${pairedCount} 对，还有 ${3 - pairedCount} 只小猴没有桃子。`}
         ask={askOf('compare')}
         narrations={[
           '三只小猴和两个香蕉，一个对一个配，你觉得哪边会有剩余？先猜一猜。',
-          '先完成一个明确任务：给 3 只小猴各分 1 个桃子。先点最上面的小猴，再点同一排的桃子，连成一对；三对都完成后，再自由切换其他数量，看看什么时候会有剩余。',
+          '先完成一个明确任务：给 3 只小猴各分 1 个桃子。先点一只小猴，再点一个还没配过的桃子，连成一对；三对都完成后，再自由切换其他数量，看看什么时候会有剩余。',
           '怎样判断哪边更多最可靠？选出你的理由。',
           '小检测时间！听我读题，选出正确答案。',
-          '进入智能闯关！题目是随机出的，答错了会自动再练一次。连对越多，星星越多，加油！',
+          '进入智能闯关，用新问题检查本课目标。可以试错、用提示，再换新题独立验证。完成后还可以自己选择挑战。',
         ]}
         arena={(round) => {
           const questions: ArenaQuestion[] = [
@@ -1610,32 +1337,31 @@ function CompareLesson({ onPass }: { onPass: (stars: number) => void }) {
         }}
         onPass={onPass}
       >
-      <ActionStation index={0} title="给 3 只小猴各分 1 个桃子，完成一一配对" brief="先点一只小猴，再点同一排的桃子，连成一对；三对都完成后，可以自由切换数量继续探索。">
-      <div className="mt-example-switch" aria-label="教材三组比较情境">
-        <button onClick={() => chooseExample(3, 3, { icon: '🍑', name: '桃子' })}>3 和 3 · 同样多</button>
-        <button onClick={() => chooseExample(3, 2, { icon: '🍌', name: '香蕉' })}>3 和 2 · 谁更多</button>
-        <button onClick={() => chooseExample(3, 4, { icon: '🍐', name: '梨' })}>3 和 4 · 谁更少</button>
-      </div>
-      <div className="mt-compare-controls">
-        <label>小猴 <button onClick={() => adjustLeft(Math.max(1, left - 1))}>−</button><b>{left}</b><button onClick={() => adjustLeft(Math.min(5, left + 1))}>＋</button></label>
-        <strong className="mt-live-relation">{relation}</strong>
-        <label>{fruit.name} <button onClick={() => adjustRight(Math.max(1, right - 1))}>−</button><b>{right}</b><button onClick={() => adjustRight(Math.min(5, right + 1))}>＋</button></label>
-        <button className="mt-teacher-replay" onClick={readSentence}>🔊 读一读</button>
-      </div>
-      <div className="mt-pairing-stage">
-        <p>已配对 <b>{pairedCount}</b> / {pairLimit} 对</p>
-        {Array.from({ length: max }, (_, index) => (
-          <div className="mt-pair-row" key={index}>
-            {index < left ? <button className={`mt-pair-token mt-pair-monkey ${selectedMonkey === index ? 'selected' : ''} ${index < pairedCount ? 'paired' : ''}`} onClick={() => pickMonkey(index)} aria-label={`第 ${index + 1} 只小猴${index < pairedCount ? '，已配对' : ''}`}>🐒</button> : <span className="empty">·</span>}
-            {index < pairLimit ? <span className={`mt-pair-link ${index < pairedCount ? 'linked' : ''} ${selectedMonkey === index ? 'awaiting' : ''}`} aria-label={index < pairedCount ? `第 ${index + 1} 对已连线` : undefined}>{index < pairedCount ? '✓' : selectedMonkey === index ? '→' : ''}</span> : <span className="mt-pair-link empty" aria-hidden="true" />}
-            {index < right ? <button className={`mt-pair-token mt-pair-fruit ${index < pairedCount ? 'paired' : ''}`} onClick={() => pickFruit(index)} aria-label={`第 ${index + 1} 个${fruit.name}${index < pairedCount ? '，已配对' : ''}`}>{fruit.icon}</button> : <span className="empty">·</span>}
-          </div>
-        ))}
-        {pairFeedback && <p className={`mt-feedback ${pairFeedback.right ? 'good' : 'try'}`}>{pairFeedback.text}</p>}
-      </div>
-      <div className="mt-equation"><b>{left}</b><em>{relation}</em><b>{right}</b><span>{left === right ? `小猴和${fruit.name}同样多` : left > right ? `小猴比${fruit.name}多` : `小猴比${fruit.name}少`}</span></div>
+      <ActionStation index={0} title="给 3 只小猴各分 1 个桃子">
+        <PairingBoard key={`${left}:${right}:${fruit.name}`} tokenSize={44} left={left} right={right} leftName="小猴" rightName={fruit.name} leftGlyph="🐒" rightGlyph={fruit.icon} pairs={pairs}
+          workspace={{
+            controls: <>
+              <div className="mt-example-switch" aria-label="教材三组比较情境">
+                <button aria-pressed={left === 3 && right === 3 && fruit.name === '桃子'} onClick={() => chooseExample(3, 3, { icon: '🍑', name: '桃子' })}>3 和 3 · 同样多</button>
+                <button aria-pressed={left === 3 && right === 2 && fruit.name === '香蕉'} onClick={() => chooseExample(3, 2, { icon: '🍌', name: '香蕉' })}>3 和 2 · 谁更多</button>
+                <button aria-pressed={left === 3 && right === 4 && fruit.name === '梨'} onClick={() => chooseExample(3, 4, { icon: '🍐', name: '梨' })}>3 和 4 · 谁更少</button>
+              </div>
+              <div className="mt-compare-controls">
+                <label>小猴 <button aria-label="减少一只小猴" disabled={left <= 1} onClick={() => adjustLeft(Math.max(1, left - 1))}>−</button><b>{left}</b><button aria-label="增加一只小猴" disabled={left >= 5} onClick={() => adjustLeft(Math.min(5, left + 1))}>＋</button></label>
+                <label>{fruit.name} <button aria-label={`减少一个${fruit.name}`} disabled={right <= 1} onClick={() => adjustRight(Math.max(1, right - 1))}>−</button><b>{right}</b><button aria-label={`增加一个${fruit.name}`} disabled={right >= 5} onClick={() => adjustRight(Math.min(5, right + 1))}>＋</button></label>
+              </div>
+            </>,
+            instructions: <>
+              <h3>一个对一个配</h3>
+              <ol><li>点一只小猴。</li><li>再点一个水果，连成一对。</li></ol>
+              <p>先给 3 只小猴各分 1 个桃子。配完后，可以换一组或加减数量，看看哪边还有剩余。</p>
+            </>,
+            replay: <CourseReplayButton label="读一读比较结果" disabled={pairedCount !== Math.min(left, right)} onClick={readSentence} />,
+          }}
+          onSelectionChange={selectedMonkey => setCompareProgress(state => ({ ...state, selectedMonkey }))}
+          onChange={pairs => setCompareProgress(state => ({ ...state, pairs, pairedCount: pairs.length, selectedMonkey: null }))} />
       </ActionStation>
-      <MathTextbookTaskPack lessonId="compare" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
+      <MathTextbookTaskPack lessonId="compare" onDone={() => setTextbookTaskDone(true)} onCompletionChange={setTextbookTaskDone} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
@@ -1648,7 +1374,6 @@ function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
   const setSelected = (selected: number | null) => setOrdinalProgress((state) => ({ ...state, selected }));
   const setDirectionChosen = (directionChosen: boolean) => setOrdinalProgress((state) => ({ ...state, directionChosen }));
   const [positionFeedback, setPositionFeedback] = useState<{ right: boolean; text: string } | null>(null);
-  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
   const people = ['👩🏻', '🧒🏻', '👩🏽', '👨🏻', '🧑🏻'];
   // 队伍在画面中始终按左→右保持原位；改变方向只改变起点和目标位置。
   // 不能靠翻转数据让“从右数第 2 个”再次落在视觉左边的第 2 位。
@@ -1657,31 +1382,29 @@ function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
   const correct = directionChosen && selected === targetIndex;
   return (
     <section className="mt-lesson">
-      <div className="mt-lesson-copy">
+      <LearningFlow overview={<section className="lesson-context"><div className="mt-lesson-copy">
         <span className="mt-kicker">第几 · 总数与次序</span>
         <h2>“5 个人”和“第 2 个人”一样吗？</h2>
         <p>5 表示一共有多少人；第 2 表示从规定方向数，一个人的位置。</p>
-      </div>
-      <LearningFlow
+      </div></section>}
         lessonId="ordinal"
         lessonName="第几"
         guess={{ question: '从火车方向开始数，穿绿色衣服的小朋友排第几？', options: ['第 1', '第 2', '第 3'] }}
         guessVisual={<OrdinalGuessPicture />}
         reason={{ question: '确定“第几”之前，必须先知道什么？', options: ['从哪一边开始数', '队伍里谁最高', '一共有多少种颜色'], answer: 0 }}
         checkpoint={{ question: '队伍里一共有 5 人，小朋友排第 2。“5”和“2”的意思相同吗？', options: ['相同', '不同'], answer: 1 }}
-        actionReady={correct && textbookTaskDone}
+        actionReady={correct}
         actionTasks={[
           { title: '先定方向，再点出从该方向数的第 2 个人', done: correct },
-          { title: textbookTaskTitle('ordinal'), done: textbookTaskDone },
         ]}
-        actionCoach={!directionChosen ? '先选择从左数或从右数；起点不一样，“第 2”也会不一样。' : correct && !textbookTaskDone ? '第 2 个人已经找对。继续完成教材任务二。' : correct ? '两项教材任务都完成了。' : `起点已经定在${from === 'left' ? '左' : '右'}边，现在从起点数到第 2 个人。`}
+        actionCoach={!directionChosen ? '先选择从左数或从右数；起点不一样，“第 2”也会不一样。' : correct ? '第 2 个人已经找对，接下来解释几个和第几的区别。' : `起点已经定在${from === 'left' ? '左' : '右'}边，现在从起点数到第 2 个人。`}
         ask={askOf('ordinal')}
         narrations={[
           '从火车方向开始数，穿绿色衣服的小朋友排第几？先凭观察猜一猜。',
           '5 表示一共有多少人，第 2 表示一个人站的位置，意思不一样。先选好从哪边开始数，再点出从那边数的第 2 个人，点对了他会亮起来。',
           '确定「第几」之前，必须先知道什么？选出你的理由。',
           '小检测时间！听我读题，选出正确答案。',
-          '进入智能闯关！题目是随机出的，答错了会自动再练一次。连对越多，星星越多，加油！',
+          '进入智能闯关，用新问题检查本课目标。可以试错、用提示，再换新题独立验证。完成后还可以自己选择挑战。',
         ]}
         arena={(round) => {
           const questions: ArenaQuestion[] = [
@@ -1710,7 +1433,6 @@ function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
       <div className="mt-teach-note"><b>任务</b><span>{directionChosen ? `请点出从${from === 'left' ? '左' : '右'}数的第 2 个人。` : '先选择从左数还是从右数，再点出第 2 个人。'}</span></div>
       {positionFeedback && <p className={`mt-feedback ${positionFeedback.right ? 'good' : 'try'}`}>{positionFeedback.text}</p>}
       </ActionStation>
-      <MathTextbookTaskPack lessonId="ordinal" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
@@ -1718,138 +1440,18 @@ function OrdinalLesson({ onPass }: { onPass: (stars: number) => void }) {
 
 /** 拖拽分一分：把 5 个玉米拖进两个篮子（学具操作的数字化） */
 function ComposeDragStage({ onPlaced, onProgress }: { onPlaced: (leftCount: number) => void; onProgress: (placed: number, leftCount: number, rightCount: number) => void }) {
-  type Corn = { id: number; where: 'pool' | 'A' | 'B' };
-  const [dragProgress, setDragProgress] = useMathLessonTaskProgress('compose-drag', {
-    corns: Array.from({ length: 5 }, (_, id) => ({ id, where: 'pool' as const })) as Corn[],
-    selectedCorn: null as number | null,
-    history: [] as number[],
-  });
-  const { corns, selectedCorn, history } = dragProgress;
-  const setCorns = (value: Corn[] | ((previous: Corn[]) => Corn[])) => setDragProgress((state) => ({ ...state, corns: typeof value === 'function' ? value(state.corns) : value }));
-  const setSelectedCorn = (selectedCorn: number | null) => setDragProgress((state) => ({ ...state, selectedCorn }));
-  const setHistory = (value: number[] | ((previous: number[]) => number[])) => setDragProgress((state) => ({ ...state, history: typeof value === 'function' ? value(state.history) : value }));
-  const [dragId, setDragId] = useState<number | null>(null);
-  const [transferFeedback, setTransferFeedback] = useState<string | null>(null);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [over, setOver] = useState<'A' | 'B' | null>(null);
-  const completedRef = useRef(false);
-  const basketARef = useRef<HTMLDivElement>(null);
-  const basketBRef = useRef<HTMLDivElement>(null);
-
-  const countA = corns.filter((c) => c.where === 'A').length;
-  const countB = corns.filter((c) => c.where === 'B').length;
-  const allPlaced = countA + countB === 5;
-
-  useEffect(() => {
-    if (!allPlaced || completedRef.current) return;
-    completedRef.current = true;
-    onProgress(5, countA, countB);
-    onPlaced(countA);
-  }, [allPlaced, countA, countB, onPlaced, onProgress]);
-
-  const placeCorn = (id: number, target: 'A' | 'B') => {
-    const corn = corns.find((item) => item.id === id);
-    if (!corn || corn.where !== 'pool') return;
-    const nextA = countA + (target === 'A' ? 1 : 0);
-    const nextB = countB + (target === 'B' ? 1 : 0);
-    setCorns((items) => items.map((item) => (item.id === id ? { ...item, where: target } : item)));
-    setHistory((items) => [...items, id]);
-    setSelectedCorn(null);
-    playSfx('pop');
-    setTransferFeedback(`第 ${countA + countB + 1} 个玉米放进了${target === 'A' ? '左' : '右'}篮子。`);
-    onProgress(nextA + nextB, nextA, nextB);
-    if (nextA + nextB === 5 && !completedRef.current) {
-      completedRef.current = true;
-      speakOnce(`5 可以分成 ${nextA} 和 ${nextB}。`, 'zh', 0.9);
-      onPlaced(nextA);
-    }
-  };
-
-  const hitTest = (x: number, y: number): 'A' | 'B' | null => {
-    for (const [key, ref] of [['A', basketARef], ['B', basketBRef]] as const) {
-      const r = ref.current?.getBoundingClientRect();
-      if (r && x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return key;
-    }
-    return null;
-  };
-  const onMove = (e: React.PointerEvent) => {
-    if (dragId == null) return;
-    setPos({ x: e.clientX, y: e.clientY });
-    setOver(hitTest(e.clientX, e.clientY));
-  };
-  const onUp = (e: React.PointerEvent) => {
-    if (dragId == null) return;
-    const target = hitTest(e.clientX, e.clientY);
-    if (target) placeCorn(dragId, target);
-    else setTransferFeedback('还没有放进篮子，拖到任意一个篮子里再松手。');
-    setDragId(null);
-    setOver(null);
-  };
-  const undoLast = () => {
-    const id = history[history.length - 1];
-    if (id === undefined) return;
-    setCorns((items) => items.map((item) => (item.id === id ? { ...item, where: 'pool' } : item)));
-    setHistory((items) => items.slice(0, -1));
-    setSelectedCorn(null);
-    completedRef.current = false;
-    setTransferFeedback('已拿回最后一个玉米，可以换一种分法。');
-    onProgress(Math.max(0, countA + countB - 1), countA - (corns.find((item) => item.id === id)?.where === 'A' ? 1 : 0), countB - (corns.find((item) => item.id === id)?.where === 'B' ? 1 : 0));
-    playSfx('tap');
-  };
-  const reset = () => {
-    setCorns((items) => items.map((item) => ({ ...item, where: 'pool' as const })));
-    setHistory([]);
-    setSelectedCorn(null);
-    completedRef.current = false;
-    setTransferFeedback('已经清空两个篮子，试试另一种分法。');
-    onProgress(0, 0, 0);
-  };
-
-  return (
-    <div className="mt-drag-stage" onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp}>
-      <div className="mt-drag-pool" aria-label="待分的玉米">
-        <small>拖玉米进篮子；不方便拖动时，先点玉米再点篮子</small>
-        <div>
-          {corns.filter((c) => c.where === 'pool').map((c) => (
-            <button key={c.id} className={`mt-drag-corn ${selectedCorn === c.id ? 'selected' : ''}`}
-              onPointerDown={(e) => {
-                (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
-                setDragId(c.id);
-                setSelectedCorn(c.id);
-                setPos({ x: e.clientX, y: e.clientY });
-                playSfx('tap');
-              }}
-              onClick={() => { if (dragId === null) setSelectedCorn(c.id); }}
-              aria-label={`第 ${c.id + 1} 个玉米${selectedCorn === c.id ? '，已选中' : ''}`}
-            >🌽</button>
-          ))}
-          {corns.every((c) => c.where !== 'pool') && <i>玉米都分完了</i>}
-        </div>
-      </div>
-      <div className="mt-drag-baskets">
-        <div className={`mt-drag-basket ${over === 'A' ? 'over' : ''} ${selectedCorn !== null ? 'ready' : ''}`} ref={basketARef} role="button" tabIndex={0} aria-label={`左边篮子，已有 ${countA} 个玉米`} onClick={() => { if (dragId !== null) return; if (selectedCorn === null) { setTransferFeedback('先点一个玉米，再点篮子。'); feedback(false); } else placeCorn(selectedCorn, 'A'); }} onKeyDown={(event) => { if ((event.key === 'Enter' || event.key === ' ') && selectedCorn !== null) { event.preventDefault(); placeCorn(selectedCorn, 'A'); } }}>
-          <span className="mt-drag-basket-emo" aria-hidden="true">🧺</span>
-          <div className="mt-drag-basket-corns">{corns.filter((c) => c.where === 'A').map((c) => <span key={c.id}>🌽</span>)}</div>
-          <b>{countA}</b>
-        </div>
-        <div className={`mt-drag-basket ${over === 'B' ? 'over' : ''} ${selectedCorn !== null ? 'ready' : ''}`} ref={basketBRef} role="button" tabIndex={0} aria-label={`右边篮子，已有 ${countB} 个玉米`} onClick={() => { if (dragId !== null) return; if (selectedCorn === null) { setTransferFeedback('先点一个玉米，再点篮子。'); feedback(false); } else placeCorn(selectedCorn, 'B'); }} onKeyDown={(event) => { if ((event.key === 'Enter' || event.key === ' ') && selectedCorn !== null) { event.preventDefault(); placeCorn(selectedCorn, 'B'); } }}>
-          <span className="mt-drag-basket-emo" aria-hidden="true">🧺</span>
-          <div className="mt-drag-basket-corns">{corns.filter((c) => c.where === 'B').map((c) => <span key={c.id}>🌽</span>)}</div>
-          <b>{countB}</b>
-        </div>
-      </div>
-      {dragId != null && <span className="mt-drag-ghost" style={{ left: pos.x, top: pos.y }}>🌽</span>}
-      {!allPlaced && <em className="mt-drag-hint">{selectedCorn !== null ? '玉米已选中：把它放进左边或右边的篮子' : '先全部拖完，再看看分成了几和几'}</em>}
-      {transferFeedback && <p className="mt-drag-feedback" aria-live="polite">{transferFeedback}</p>}
-      {history.length > 0 && !allPlaced && <button className="mt-drag-undo" onClick={undoLast}>↶ 拿回最后一个</button>}
-      {allPlaced && (
-        <button className="mt-drag-reset" onClick={reset}>↺ 换一种分法再拖一次</button>
-      )}
-    </div>
-  );
+  const [legacy] = useMathLessonTaskProgress('compose-drag', { corns: Array.from({ length: 5 }, (_, id) => ({ id, where: 'pool' as 'pool' | 'A' | 'B' })) });
+  const initial = { ...createPartition(5), positions: legacy.corns.map(corn => corn.where === 'A' ? 0 : corn.where === 'B' ? 1 : -1) };
+  const [state, setState] = useMathLessonTaskProgress<PartitionState>('compose-tool-v1', initial);
+  return <PartitionBoard state={state} glyph="🌽" tokenName="玉米" groupNames={['左边篮子', '右边篮子']} onChange={next => {
+    setState(next);
+    const facts = partitionFacts(next, 2);
+    onProgress(facts.total - facts.remaining, facts.counts[0], facts.counts[1]);
+    if (facts.complete) onPlaced(facts.counts[0]);
+  }} />;
 }
 
-/** 语音跟读：把分与合的句子读给聪聪听，AI 打分 */
+/** 可选朗读记录：文字接近程度不评价数学理解或发音准确度。 */
 function ComposeReadAloud({ sentence }: { sentence: string }) {
   const [scores, setScores] = useState<number[]>([]);
   const [best, setBest] = useState(false);
@@ -1857,16 +1459,16 @@ function ComposeReadAloud({ sentence }: { sentence: string }) {
     const score = readScore(sentence, said);
     setScores((ss) => [...ss, score]);
     const ok = score >= 0.5;
-    feedback(ok);
+    speakOnce(ok ? '已记录你的话，可以指着图继续解释。' : '请核对语音文字，也可以用不同的话或指图表达。', 'zh', .85);
     if (ok) setBest(true);
   };
   const asr = useAsr(onResult);
   return (
     <div className="mt-readaloud">
-      <small>读给聪聪听 🎤</small>
+      <small>读给聪聪听 🎤</small><p>识别文字只作朗读记录，不判断数学理由或发音是否正确。</p>
       <b className="mt-readaloud-sentence">「{sentence}」</b>
       <div className="mt-readaloud-ops">
-        <button onClick={() => speakOnce(sentence, 'zh', 0.85)}>🔊 听示范</button>
+        <CourseReplayButton label="听示范" onClick={() => speakOnce(sentence, 'zh', 0.85)} />
         {asr.supported ? (
           <button className={`mt-mic ${asr.listening ? 'listening' : ''}`} onClick={() => { if (!asr.listening) asr.start(); }}>
             {asr.listening ? '🎙️ 正在听…请读' : '🎤 我来读'}
@@ -1878,8 +1480,8 @@ function ComposeReadAloud({ sentence }: { sentence: string }) {
       {asr.said && <i className="mt-readaloud-heard">听到你说：{asr.said}</i>}
       {scores.length > 0 && (
         <div className="mt-readaloud-scores">
-          {scores.map((s, i) => <span key={i} className={s >= 0.5 ? 'ok' : 'no'}>{Math.round(s * 100)} 分</span>)}
-          {best && <span className="ok">✓ 读得好！</span>}
+          {scores.map((s, i) => <span key={i} className={s >= 0.5 ? 'ok' : 'no'}>识别文字接近示范 {Math.round(s * 100)}%</span>)}
+          {best && <span className="ok">✓ 文字已记录，可以指图解释</span>}
         </div>
       )}
     </div>
@@ -1893,7 +1495,7 @@ function ComposeLesson({ onPass }: { onPass: (stars: number) => void }) {
   const setSeen = (value: number[] | ((previous: number[]) => number[])) => setComposeProgress((state) => ({ ...state, seen: typeof value === 'function' ? value(state.seen) : value }));
   const setDraggedSplit = (draggedSplit: boolean) => setComposeProgress((state) => ({ ...state, draggedSplit }));
   const setDragProgress = (dragProgress: { placed: number; left: number; right: number }) => setComposeProgress((state) => ({ ...state, dragProgress }));
-  const [textbookTaskDone, setTextbookTaskDone] = useState(false);
+  const [textbookTaskDone, setTextbookTaskDone] = useState<boolean | null>(null);
   const right = 5 - left;
   const sentence = `5 可以分成 ${left} 和 ${right}`;
   const recordSplit = (n: number) => {
@@ -1904,31 +1506,30 @@ function ComposeLesson({ onPass }: { onPass: (stars: number) => void }) {
   };
   return (
     <section className="mt-lesson">
-      <div className="mt-lesson-copy">
+      <LearningFlow overview={<section className="lesson-context"><div className="mt-lesson-copy">
         <span className="mt-kicker">分与合 · 整体和部分</span>
         <h2>把 5 个玉米分成两堆</h2>
         <p>把玉米拖进两个篮子，看 5 怎样拆成两部分。交换左右位置，合起来仍然是 5。</p>
-      </div>
-      <LearningFlow
+      </div></section>}
         lessonId="compose"
         lessonName="分与合"
         guess={{ question: '把 5 个玉米分成两堆，下面哪种分法可行？', options: ['1 和 4', '2 和 3', '两种都可以'] }}
         guessVisual={<ComposeGuessPicture />}
         reason={{ question: '为什么 2 和 3 合起来是 5？', options: ['把两部分重新数在一起共有 5 个', '因为两个数字长得像 5', '左右两堆一样多'], answer: 0 }}
         checkpoint={{ question: '5 可以分成 2 和几？', options: ['1', '2', '3'], answer: 2 }}
-        actionReady={draggedSplit && textbookTaskDone}
+        actionReady={draggedSplit && textbookTaskDone === true}
         actionTasks={[
           { title: '把 5 个玉米全部拖进两个篮子，完成一种分法', done: draggedSplit },
-          { title: textbookTaskTitle('compose'), done: textbookTaskDone },
+          { title: textbookTaskTitle('compose'), done: textbookTaskDone === true, verifyCompletion: true, completionChecked: textbookTaskDone !== null },
         ]}
         actionCoach={dragProgress.placed === 0 ? '先选一个玉米，再把它放进左边或右边的篮子。' : draggedSplit && !textbookTaskDone ? `5 个玉米都分好了：左边 ${dragProgress.left} 个，右边 ${dragProgress.right} 个。继续完成教材任务二。` : draggedSplit ? '两项教材任务都完成了。' : `已经放好 ${dragProgress.placed} 个玉米，还剩 ${5 - dragProgress.placed} 个；继续把每一个都放进篮子。`}
         ask={askOf('compose')}
         narrations={[
           '把 5 个玉米分成两堆，下面的分法哪种可行？先猜一猜。',
-          '轮到你动手分一分：把 5 个玉米全部拖进两个篮子里，拖完聪聪会读出分法。下面的分法卡可以帮你回看，但不能代替拖拽操作。最后把「5 可以分成几和几」读给我听，我来给你打分。',
+          '轮到你动手分一分：把 5 个玉米全部拖进两个篮子里，拖完聪聪会读出分法。下面的分法卡可以帮你回看，但不能代替拖拽操作。你也可以指着篮子，说一说五分成了几和几。',
           '为什么 2 和 3 合起来是 5？选出能说清楚的理由。',
           '小检测时间！听我读题，选出正确答案。',
-          '进入智能闯关！题目是随机出的，答错了会自动再练一次。连对越多，星星越多，加油！',
+          '进入智能闯关，用新问题检查本课目标。可以试错、用提示，再换新题独立验证。完成后还可以自己选择挑战。',
         ]}
         arena={(round) => {
           const questions: ArenaQuestion[] = [
@@ -1943,18 +1544,20 @@ function ComposeLesson({ onPass }: { onPass: (stars: number) => void }) {
         onPass={onPass}
       >
       <ActionStation index={0} title="把 5 个玉米全部拖进两个篮子，完成一种分法" brief="下面的分法卡可以回看分法，但不能代替拖拽操作。">
-      <div className="mt-discovery-head"><div><small>探索教材中的全部分法</small><b>已发现 {seen.length}/4</b></div><span>{seen.length === 4 ? '✓ 四种位置关系都找到了' : '拖一拖或点一点，观察不同分法'}</span></div>
+      <div className="math-compose-task"><div className="math-compose-hands">
+      <div className="mt-discovery-head"><div><small>探索教材中的全部分法</small><b>已发现 {seen.filter(n => n > 0 && n < 5).length}/4</b></div><span>{[1, 2, 3, 4].every(n => seen.includes(n)) ? '✓ 四种位置关系都找到了' : '拖一拖或点一点，观察不同分法'}</span></div>
       <ComposeDragStage onPlaced={(split) => { recordSplit(split); setDraggedSplit(true); }} onProgress={(placed, leftCount, rightCount) => { setDragProgress({ placed, left: leftCount, right: rightCount }); if (placed < 5) setDraggedSplit(false); }} />
-      <div className="mt-split-picker">{[1, 2, 3, 4].map((n) => <button key={n} className={`${left === n ? 'active' : ''} ${seen.includes(n) ? 'seen' : ''}`} onClick={() => recordSplit(n)}>{seen.includes(n) ? '✓ ' : ''}{n} 和 {5 - n}</button>)}</div>
+      </div><div className="math-compose-relations">
+      <div className="mt-split-picker">{[1, 2, 3, 4].map((n) => <button key={n} className={`${left === n ? 'active' : ''} ${seen.includes(n) ? 'seen' : ''}`} onClick={() => { setLeft(n); speakOnce(`5 可以分成 ${n} 和 ${5 - n}。`, 'zh', 0.9); }}>{seen.includes(n) ? '✓ ' : ''}{n} 和 {5 - n}</button>)}</div>
       <div className="mt-compose-stage">
         <div className="mt-whole"><b>5</b><span>一共有 5 个</span></div>
         <svg viewBox="0 0 500 130" aria-hidden="true"><path d="M250 5 C250 55 130 45 130 110" /><path d="M250 5 C250 55 370 45 370 110" /></svg>
         <div className="mt-baskets"><article><div>{Array.from({ length: left }, (_, i) => <span key={i}>🌽</span>)}</div><b>{left}</b></article><article><div>{Array.from({ length: right }, (_, i) => <span key={i}>🌽</span>)}</div><b>{right}</b></article></div>
       </div>
       <div className="mt-compose-sentence"><b>5</b><span>可以分成</span><b>{left}</b><span>和</span><b>{right}</b><i>；</i><b>{left}</b><span>和</span><b>{right}</b><span>组成</span><b>5</b></div>
-      <ComposeReadAloud sentence={sentence} />
+      </div><ComposeReadAloud sentence={sentence} /></div>
       </ActionStation>
-      <MathTextbookTaskPack lessonId="compose" onDone={() => setTextbookTaskDone(true)} onCoach={() => undefined} />
+      <MathTextbookTaskPack lessonId="compose" onDone={() => setTextbookTaskDone(true)} onCompletionChange={setTextbookTaskDone} onCoach={() => undefined} />
       </LearningFlow>
     </section>
   );
@@ -1966,7 +1569,7 @@ function ComposeLesson({ onPass }: { onPass: (stars: number) => void }) {
 
 const ASK_META: Record<string, { context: string; quick: string[] }> = {
   campus: {
-    context: '人教版一年级上册「数学游戏·在校园里找一找」（教材P2–3）：在校园里找数学——数量（国旗上5颗五角星、教学楼4层、教室在第2层）、形状（窗户是长方形）、位置（前后左右）。数数方法：确定要数的对象，按顺序一个一个数，不重不漏。',
+    context: '一年级数学游戏：观察校园中的数量、形状和位置。画面中间教学楼从底层入口开始共有4层。只依据孩子当前能观察到的材料，不补充图中未给出的国旗或教室楼层。数数先确定对象、范围和起点，再按顺序逐一计数。',
     quick: ['怎样数楼层才不会数错？', '生活中还有哪些地方藏着数学？'],
   },
   numbers: {
@@ -2001,13 +1604,8 @@ export default function MathTextbookLabPage() {
   const activeChildId = useStore((s) => s.activeChildId);
   const mastery = useStore((s) => s.mastery);
   const addSkillResult = useStore((s) => s.addSkillResult);
-  const [active, setActive] = useState<LessonId>(() => isLessonId(lessonId) ? lessonId : 'campus');
-  const done = useMemo(
-    () => activeChildId
-      ? LESSONS.filter((lesson) => mastery[activeChildId]?.[`math-lab-${lesson.id}`]?.gold).map((lesson) => lesson.id)
-      : [],
-    [activeChildId, mastery],
-  );
+  // 路由就是当前课，避免切换时先把上一课的阶段写进下一课的快照。
+  const active: LessonId = isLessonId(lessonId) ? lessonId : 'campus';
   const completedLessonIds = useMemo(
     () => activeChildId
       ? LESSONS.filter((lesson) => (mastery[activeChildId]?.[`math-lab-${lesson.id}`]?.stars ?? 0) > 0).map((lesson) => lesson.id)
@@ -2016,11 +1614,10 @@ export default function MathTextbookLabPage() {
   );
   const activeIndex = LESSONS.findIndex((lesson) => lesson.id === active);
   const currentLesson = LESSONS[activeIndex];
-  const fruitShopAbility = fruitShopAbilityForLesson(active);
+  const toolRoute = mathToolRoute(active);
   const lifeScene = mathLifeSceneForLesson(active);
   const activeLessonComplete = completedLessonIds.includes(active);
   const pass = (id: LessonId, stars: number) => {
-    if (done.includes(id)) return;
     if (!activeChildId) return;
     const skillId = `math-lab-${id}`;
     addSkillResult(activeChildId, skillId, stars);
@@ -2035,18 +1632,9 @@ export default function MathTextbookLabPage() {
     return () => { window.removeEventListener('pointerdown', h); stopSpeaking(); };
   }, []);
   useEffect(() => {
-    if (isLessonId(lessonId)) setActive(lessonId);
-  }, [lessonId]);
-  useEffect(() => {
     // 记录最近学习的课文：返回数学目录时按它定位所在单元，而不是回到第一单元。
     try { localStorage.setItem(`sfz-math-last-lesson:${activeChildId ?? 'guest'}`, active); } catch { /* 存储不可用不影响 */ }
   }, [active, activeChildId]);
-  const goLesson = (id: LessonId) => {
-    stopSpeaking();
-    setActive(id);
-    navigate(`/math-course/${id}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
   const lesson = useMemo(() => {
     if (active === 'campus') return <CampusLesson onPass={(stars) => pass(active, stars)} />;
     if (active === 'numbers') return <NumbersLesson onPass={(stars) => pass(active, stars)} />;
@@ -2055,7 +1643,7 @@ export default function MathTextbookLabPage() {
     if (active === 'compose') return <ComposeLesson onPass={(stars) => pass(active, stars)} />;
     const extended = EXTENDED_MATH_LESSONS.find((item) => item.id === active);
     return extended ? <ExtendedLessonPage key={extended.id} config={extended} onPass={(stars) => pass(active, stars)} /> : null;
-  }, [active]);
+  }, [active, activeChildId]);
 
   return (
     <main className="ct-page ct-lesson-page math-textbook-lab school-math-course" onPointerDown={() => { userInteracted = true; }}>
@@ -2066,19 +1654,15 @@ export default function MathTextbookLabPage() {
           <h1>{currentLesson.title}</h1>
           <p>{currentLesson.subtitle}</p>
         </div>
-        <button className="ct-teacher-play" onClick={() => speakOnce(`${currentLesson.title}。${EXTENDED_MATH_LESSONS.find((item) => item.id === active)?.concept ?? currentLesson.subtitle}`, 'zh', 0.9)}>🔊 听聪聪讲</button>
+        <div className="mt-head-tools">{toolRoute && <button type="button" className="mt-open-tool" onClick={() => navigate(toolRoute)}>▦ 教具箱</button>}
+          <CourseReplayButton label="听聪聪讲" onClick={() => speakOnce(`${currentLesson.title}。${EXTENDED_MATH_LESSONS.find((item) => item.id === active)?.concept ?? currentLesson.subtitle}`, 'zh', 0.9)} /></div>
       </header>
-      {lifeScene && <section className={`mt-fruit-shop-transfer scene-${lifeScene.kind} ${activeLessonComplete ? '' : 'locked'}`} aria-label="本课生活小剧场">
+      <MathLessonTaskProgressProvider lessonId={active} key={`${activeChildId}:${active}`}>{lesson}</MathLessonTaskProgressProvider>
+      {lifeScene && lifeScene.kind !== 'fruit-shop' && <section className="lesson-life-entry"><section className={`mt-fruit-shop-transfer scene-${lifeScene.kind} ${activeLessonComplete ? '' : 'locked'}`} aria-label="本课生活小剧场">
         <div aria-hidden="true"><span>{lifeScene.kind === 'repair-shop' ? '🦊' : '🐰'}</span><i>{lifeScene.props[0]}</i><i>{lifeScene.props[1]}</i><b>{lifeScene.icon}</b></div>
-        <section><small>{activeLessonComplete ? '本课已完成 · 专属生活小剧场' : '本课专属生活小剧场 · 完成课程后开放'}</small><h2>《{currentLesson.title}》· {lifeScene.title}</h2><p>{fruitShopAbility ? `三张订单都练习「${FRUIT_SHOP_ABILITY_LABELS[fruitShopAbility]}」。` : lifeScene.summary}</p></section>
+        <section><small>{activeLessonComplete ? '本课已完成 · 专属生活小剧场' : '本课专属生活小剧场 · 完成课程后开放'}</small><h2>《{currentLesson.title}》· {lifeScene.title}</h2><p>{lifeScene.summary}</p></section>
         <button disabled={!activeLessonComplete} onClick={() => activeLessonComplete && navigate(mathLifeSceneRoute(active, 'course'))}>{activeLessonComplete ? lifeScene.action : '完成本课后开放'}</button>
-      </section>}
-      <MathLessonTaskProgressProvider lessonId={active} key={active}>{lesson}</MathLessonTaskProgressProvider>
-      <footer className="ct-lesson-footer">
-        <button disabled={activeIndex === 0} onClick={() => goLesson(LESSONS[activeIndex - 1].id)}>← 上一课</button>
-        <span>{done.includes(active) ? '✓ 本课已理解 · ' : '完成智能闯关即点亮 · '}{activeIndex + 1} / {LESSONS.length}</span>
-        <button disabled={activeIndex === LESSONS.length - 1} onClick={() => goLesson(LESSONS[activeIndex + 1].id)}>下一课 →</button>
-      </footer>
+      </section></section>}
     </main>
   );
 }

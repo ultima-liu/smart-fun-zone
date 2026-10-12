@@ -1,0 +1,398 @@
+[
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "light",
+    "task": 1,
+    "digit": 1,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "light",
+    "task": 1,
+    "digit": 2,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "light",
+    "task": 1,
+    "digit": 3,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "light",
+    "task": 1,
+    "digit": 4,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "light",
+    "task": 1,
+    "digit": 5,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "light",
+    "task": 2,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [
+      "① 圈出正好 5 个的一组",
+      "② 连一连：数字和同样多的物体",
+      "③ 按从小到大的顺序排数字"
+    ],
+    "stationCount": 0,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "dark",
+    "task": 1,
+    "digit": 1,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "dark",
+    "task": 1,
+    "digit": 2,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "dark",
+    "task": 1,
+    "digit": 3,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "dark",
+    "task": 1,
+    "digit": 4,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "dark",
+    "task": 1,
+    "digit": 5,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "theme": "dark",
+    "task": 2,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [
+      "① 圈出正好 5 个的一组",
+      "② 连一连：数字和同样多的物体",
+      "③ 按从小到大的顺序排数字"
+    ],
+    "stationCount": 0,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "light",
+    "task": 1,
+    "digit": 1,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "light",
+    "task": 1,
+    "digit": 2,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "light",
+    "task": 1,
+    "digit": 3,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "light",
+    "task": 1,
+    "digit": 4,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "light",
+    "task": 1,
+    "digit": 5,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "light",
+    "task": 2,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [
+      "① 圈出正好 5 个的一组",
+      "② 连一连：数字和同样多的物体",
+      "③ 按从小到大的顺序排数字"
+    ],
+    "stationCount": 0,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "dark",
+    "task": 1,
+    "digit": 1,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "dark",
+    "task": 1,
+    "digit": 2,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "dark",
+    "task": 1,
+    "digit": 3,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "dark",
+    "task": 1,
+    "digit": 4,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "dark",
+    "task": 1,
+    "digit": 5,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [],
+    "stationCount": 1,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "theme": "dark",
+    "task": 2,
+    "fit": "1.000",
+    "documentOverflow": [
+      false,
+      false
+    ],
+    "outOfFrame": [],
+    "cardTitles": [
+      "① 圈出正好 5 个的一组",
+      "② 连一连：数字和同样多的物体",
+      "③ 按从小到大的顺序排数字"
+    ],
+    "stationCount": 0,
+    "errors": []
+  }
+]

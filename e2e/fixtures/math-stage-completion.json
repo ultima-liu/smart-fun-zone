@@ -1,0 +1,1346 @@
+{
+  "base": {
+    "completed-action-tasks-v1": [
+      0
+    ],
+    "teen-writing-board": {
+      "11": "11",
+      "13": "13",
+      "16": "16",
+      "18": "18",
+      "20": "20"
+    },
+    "teen-twenty-composition": "2个十",
+    "addition-table-explorer": {
+      "5＋7": "7",
+      "4＋8": "8",
+      "3＋9": "9",
+      "6＋7": "7",
+      "5＋8": "8",
+      "4＋9": "9",
+      "6＋8": "8",
+      "5＋9": "9",
+      "6＋9": "9",
+      "7＋9": "9"
+    },
+    "addition-table-review": {
+      "selected": "9＋1",
+      "result": "10",
+      "split": "2",
+      "rest": "7",
+      "pictureEquation": "6＋5＝11",
+      "firstColumn": "依次加1",
+      "firstRow": "和都是10"
+    },
+    "addition-pattern-ai": "[\"依次加1\",\"和都是10\"]",
+    "unit2-card-organizer": {
+      "add-six": "加法",
+      "add-ten": "加法",
+      "sub-six": "减法",
+      "sub-zero": "减法"
+    },
+    "continuous-change-board": 2,
+    "continuous-subtraction-board": 2,
+    "continuous-add-done": true,
+    "continuous-sub-done": true,
+    "equation-family-board": [
+      "5＋1＝6",
+      "1＋5＝6",
+      "6－5＝1",
+      "6－1＝5"
+    ],
+    "six-seven-special-cards": {
+      "same": "6－3＝3",
+      "cover": "7－2＝5"
+    },
+    "split-compose-eight": [
+      "0 和 8",
+      "1 和 7",
+      "2 和 6",
+      "3 和 5",
+      "4 和 4"
+    ],
+    "six-to-nine-number-sequence": {
+      "3": "3",
+      "6": "6",
+      "9": "9"
+    },
+    "six-to-nine-shape-pattern": "○",
+    "six-to-nine-carriage-ordinal": 4,
+    "six-to-nine-compose-cards": {
+      "6": 1,
+      "7": 3,
+      "9": 4
+    },
+    "compose-six-nine-split-done": true,
+    "compose-six-nine-practice-done": true,
+    "six-to-nine-representations": {
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9
+    },
+    "six-to-nine-writing": {
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9"
+    },
+    "six-to-nine-comparisons": {
+      "six-eight": "＜",
+      "nine-seven": "＞",
+      "eight-eight": "＝"
+    },
+    "six-to-nine-ordinals": {
+      "from-right-sixth": {
+        "direction": "从右边开始",
+        "target": 3
+      },
+      "from-left-seventh": {
+        "direction": "从左边开始",
+        "target": 6
+      }
+    },
+    "compare-within-five-pairs": 3,
+    "compare-within-five-relations": {
+      "more": "4＞3",
+      "same": "3＝3"
+    },
+    "ordinal-within-five-board": {
+      "direction": "从左边开始",
+      "target": 3,
+      "rightTarget": 3
+    },
+    "compose-within-five-board": [
+      "0 和 5",
+      "1 和 4",
+      "2 和 3"
+    ],
+    "equation-family-eight-nine": [
+      "5＋3＝8",
+      "3＋5＝8",
+      "8－5＝3",
+      "8－3＝5"
+    ],
+    "eight-nine-special-cards": {
+      "equal": "8－4＝4",
+      "missing": "9－4＝5"
+    },
+    "information-filter-board": {
+      "total": "有用信息",
+      "left": "有用信息",
+      "mushrooms": "无关信息",
+      "swans": "无关信息"
+    },
+    "ten-partner-board": {
+      "1": 9,
+      "2": 8,
+      "3": 7,
+      "4": 6,
+      "5": 5
+    },
+    "ten-writing": "10",
+    "ten-compare-nine": "10＞9",
+    "ten-partners-done": true,
+    "ten-writing-done": true,
+    "ten-equation-workbench": [
+      "one-nine",
+      "nine-one",
+      "ten-one",
+      "ten-nine"
+    ],
+    "ten-rocket-countdown": 0,
+    "ten-equation-stories": {
+      "add": "1和9合起来是10",
+      "sub": "10拿走1剩9"
+    },
+    "ten-stories-ai": "{\"add\":\"1和9合起来是10\",\"sub\":\"10拿走1剩9\"}",
+    "mixed-change-board": 2,
+    "mixed-reverse-change-board": 2,
+    "mixed-forward-done": true,
+    "mixed-reverse-done": true,
+    "unit2-review-equations": {
+      "add": "连加",
+      "sub": "连减",
+      "mixed": "加减混合",
+      "mixed-two": "加减混合"
+    },
+    "unit2-review-question": "还剩几只鹿",
+    "unit2-review-answer": "6",
+    "unit2-question-ai": "[\"还剩几只鹿\",\"6\"]",
+    "unit2-knowledge-map": [
+      "order-compare",
+      "compose-addsub",
+      "change-check"
+    ],
+    "solid-feature-lab": {
+      "ball": "能向各个方向滚动",
+      "cylinder": "有平面也有曲面",
+      "cube": "六个面一样大",
+      "box": "适合作稳定底座"
+    },
+    "solid-feature-tests": [
+      "ball",
+      "cylinder",
+      "cube",
+      "box"
+    ],
+    "twenty-number-rail": 11,
+    "twenty-number-near": "10",
+    "twenty-number-near-eighteen": "20",
+    "ten-ones-equation-board": {
+      "add": "10＋3＝13",
+      "take-ones": "13－3＝10",
+      "take-ten": "13－10＝3"
+    },
+    "between-people-board": [
+      11,
+      12,
+      13,
+      14
+    ],
+    "unit4-review-workbench": {
+      "map": "13",
+      "17-tens": "1",
+      "17-ones": "7",
+      "15-tens": "1",
+      "15-ones": "5",
+      "18-tens": "1",
+      "18-ones": "8",
+      "20-tens": "2",
+      "20-ones": "0",
+      "stops": "6",
+      "path": "桃子",
+      "7＋□＝10": "3",
+      "10＋□＝12": "2",
+      "11＋□＝13": "2",
+      "color-0＋8": "8",
+      "color-10－2": "8",
+      "color-3＋5": "8",
+      "color-12＋1": "13",
+      "color-13＋0": "13",
+      "color-11＋2": "13",
+      "color-14－1": "13",
+      "color-15－1": "14",
+      "color-10＋4": "14",
+      "color-14＋0": "14",
+      "oddEven": "偶数",
+      "reflection": "10个一是1个十"
+    },
+    "addend-exchange-board": [
+      "five-eight",
+      "four-nine"
+    ],
+    "unit5-review-workbench": {
+      "strategy": "8＋5＝10＋3＝13",
+      "family": "13－8＝5",
+      "original": "6＋5＝11"
+    },
+    "unit5-textbook-worksheet": {
+      "3＋9": "12",
+      "6＋7": "13",
+      "5＋8": "13",
+      "2＋9": "11",
+      "3＋7": "10",
+      "7＋5": "12",
+      "10＋4": "14",
+      "8－3": "5",
+      "6＋6": "12",
+      "7＋7": "14",
+      "8＋8": "16",
+      "9＋9": "18",
+      "7＋□＝16": "9",
+      "9＋□＝12": "3",
+      "□＋3＝11": "8",
+      "6＋□＝13": "7",
+      "8＋□＝15": "7",
+      "□＋4＝14": "10",
+      "compare": "4＋9",
+      "group-6＋7": "6＋7",
+      "group-7＋6": "7＋6",
+      "group-8＋5": "8＋5",
+      "group-8＋3": "8＋3",
+      "group-9＋2": "9＋2",
+      "group-10＋1": "10＋1",
+      "blocks": "7＋9＝16",
+      "sign-0": "＋",
+      "sign-1": "－",
+      "sign-2": "＋",
+      "sign-3": "－",
+      "dumplings": "8＋5＝13",
+      "thinking": "14"
+    },
+    "whole-book-knowledge-map": [
+      "number-ranges",
+      "place-value",
+      "calculation",
+      "giraffes"
+    ],
+    "whole-book-knowledge-question": "2只猴子又来4只一共几只",
+    "whole-book-knowledge-equation": "2＋4＝6",
+    "whole-book-knowledge-answer": "6",
+    "whole-book-problem-ai": "[\"2只猴子又来4只一共几只\",\"2＋4＝6\",\"6\"]",
+    "number-path-grid": 5,
+    "ten-sum-color-grid": [
+      "one-nine",
+      "two-eight",
+      "three-seven",
+      "four-six",
+      "five-five"
+    ],
+    "question-composer": {
+      "monkeyQuestions": [
+        "一共几只猴子",
+        "还剩几只猴子"
+      ],
+      "monkeyEquations": [
+        "8＋8＝16",
+        "16－8＝8"
+      ],
+      "stampBoxes": [
+        0,
+        1
+      ],
+      "stampQuestion": "一共几个章",
+      "stampAnswer": "12",
+      "inequalities": [
+        "1",
+        "1",
+        "1"
+      ],
+      "reading": "小明"
+    },
+    "solid-review-builder": [
+      "cube-0",
+      "cube-1",
+      "cube-2",
+      "cube-3",
+      "cube-4",
+      "cube-5",
+      "cube-6",
+      "cube-7"
+    ],
+    "relation-chain-board": {
+      "remain": "12－5＝7",
+      "original": "6＋7＝13",
+      "check": "7＋5＝12"
+    },
+    "solid-compose": [
+      "0-1",
+      "1-1",
+      "2-1",
+      "3-1"
+    ],
+    "solid-building": [
+      "0-2",
+      "1-2",
+      "1-1",
+      "2-2"
+    ],
+    "solid-compose-rotation": "相同拼法",
+    "solid-building-stability": "稳稳的",
+    "solid-textbook-practice": {
+      "materials": [
+        "1 个正方体",
+        "5 个长方体",
+        "1 个球",
+        "1 个圆柱"
+      ],
+      "base": "长方体",
+      "top": "球",
+      "formChoices": [
+        "4 个排成一行",
+        "2 个一排，叠两层"
+      ],
+      "rotation": "同一种拼法",
+      "matches": {
+        "胶棒": "圆柱",
+        "魔方": "正方体",
+        "玻璃球": "球",
+        "文具盒": "长方体",
+        "茶叶盒": "长方体"
+      },
+      "counts": [
+        "5",
+        "2",
+        "2",
+        "2"
+      ],
+      "next": "圆柱、正方体、球",
+      "reflection": "平面稳稳的"
+    },
+    "playground-exploration": {
+      "group": 3,
+      "jumps": 4,
+      "fish": 4,
+      "paired": 4
+    },
+    "numbers-marking-practice": {
+      "circled": "peas",
+      "selectedObjectNumber": null,
+      "objectLinks": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5
+      },
+      "sequence": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "addition-within-five-practice": {
+      "step": 2,
+      "moved": 2
+    },
+    "subtraction-within-five-practice": {
+      "step": 3,
+      "removed": 2
+    },
+    "zero-pattern-index": 4,
+    "zero-change-remaining": 0,
+    "unit1-card-organizer": {
+      "add-1": "加法",
+      "add-2": "加法",
+      "sub-1": "减法",
+      "sub-2": "减法"
+    },
+    "unit1-marking-practice": {
+      "circled": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "colored": [
+        4
+      ],
+      "linked": true
+    },
+    "unit1-p22-worksheet": {
+      "ordinal": [
+        "3",
+        "4",
+        "2"
+      ],
+      "splits": [
+        "3",
+        "2",
+        "3",
+        "4",
+        "1"
+      ],
+      "animals": [
+        "3",
+        "2",
+        "3",
+        "4"
+      ],
+      "relations": [
+        "＞",
+        "＜"
+      ]
+    },
+    "unit1-knowledge-map": [
+      "number-compare",
+      "compose-addsub",
+      "addsub-check"
+    ],
+    "unit1-p22-worksheet-done": true,
+    "unit1-knowledge-map-done": true,
+    "make-ten-strategies-decision-v2": {
+      "route": "make-nine",
+      "routes": {
+        "make-eight": {
+          "moved": [
+            0,
+            1
+          ],
+          "answer": "17",
+          "done": true
+        },
+        "make-nine": {
+          "moved": [
+            0
+          ],
+          "answer": "17",
+          "done": true
+        }
+      }
+    },
+    "unit2-main-done:unit2-review": true,
+    "classroom-route:learning-readiness": 3,
+    "unit2-card-lab:addsub-eight-nine": 2,
+    "unit2-main-done:addsub-eight-nine": true,
+    "unit2-card-lab:addsub-six-seven": 2,
+    "unit2-card-lab:ten": 2,
+    "unit2-main-done:ten": true,
+    "unit2-card-lab:compose-six-nine": 2,
+    "equation-sequence:subtract-within-5": 3,
+    "unit2-main-done:compare-order-nine": true,
+    "unit2-card-lab:mixed-add-sub": 2,
+    "classroom-route:classroom-discover": 3,
+    "equation-sequence:add-within-5": 3,
+    "equation-sequence:unit1-review": 7,
+    "unit2-main-done:six-to-nine": true,
+    "unit2-card-lab:six-to-nine": 2,
+    "unit2-card-lab:unit2-review": 2,
+    "unit2-card-lab:compare-order-nine": 2,
+    "unit2-main-done:compose-six-nine": true,
+    "unit2-main-done:continuous-add-sub": true,
+    "unit2-main-done:addsub-ten": true,
+    "classroom-route:classroom-games": 3,
+    "unit2-card-lab:continuous-add-sub": 2,
+    "unit2-main-done:addsub-six-seven": true,
+    "unit2-main-done:mixed-add-sub": true
+  },
+  "cases": [
+    {
+      "lesson": "solid-shapes",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "球"
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "正方体"
+      }
+    },
+    {
+      "lesson": "order-twenty",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "15"
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "14"
+      }
+    },
+    {
+      "lesson": "between-positions",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "3 人"
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "两个端点位置"
+      }
+    },
+    {
+      "lesson": "solid-building",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "平平且支撑宽的积木"
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "轻推并观察是否稳定"
+      }
+    },
+    {
+      "lesson": "solid-compose",
+      "complete": {
+        "mission-index": 2
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "连接关系没有变"
+      }
+    },
+    {
+      "lesson": "ten-again",
+      "complete": {
+        "mission-index": 2,
+        "place-value": {
+          "counted": 10,
+          "bundled": true,
+          "ones": 0
+        }
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "13"
+      }
+    },
+    {
+      "lesson": "eleven-twenty",
+      "complete": {
+        "mission-index": 2,
+        "place-value": {
+          "counted": 10,
+          "bundled": true,
+          "ones": 5
+        }
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "2 个十"
+      }
+    },
+    {
+      "lesson": "simple-addsub-twenty",
+      "complete": {
+        "mission-index": 2,
+        "place-value": {
+          "counted": 10,
+          "bundled": true,
+          "ones": 3
+        }
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "15"
+      }
+    },
+    {
+      "lesson": "unit4-review",
+      "complete": {
+        "mission-index": 2,
+        "place-value": {
+          "counted": 10,
+          "bundled": true,
+          "ones": 8
+        }
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "8＋2"
+      }
+    },
+    {
+      "lesson": "plus-nine",
+      "complete": {
+        "mission-index": 2,
+        "make-ten-decision-v2": {
+          "planned": "1",
+          "moved": [
+            0
+          ],
+          "answer": "13",
+          "checked": true
+        }
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "5，15"
+      }
+    },
+    {
+      "lesson": "plus-eight-seven-six",
+      "complete": {
+        "mission-index": 2,
+        "make-ten-decision-v2": {
+          "planned": "2",
+          "moved": [
+            0,
+            1
+          ],
+          "answer": "13",
+          "checked": true
+        }
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "14"
+      }
+    },
+    {
+      "lesson": "plus-eight-nine-strategies",
+      "complete": {
+        "mission-index": 2,
+        "make-ten-decision-v2": {
+          "planned": "2",
+          "moved": [
+            0,
+            1
+          ],
+          "answer": "17",
+          "checked": true
+        }
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "17"
+      }
+    },
+    {
+      "lesson": "plus-five-four-three-two",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "8＋5"
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "13"
+      }
+    },
+    {
+      "lesson": "addition-table",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "8＋5"
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "加 1"
+      }
+    },
+    {
+      "lesson": "unit5-review",
+      "complete": {
+        "mission-index": 2,
+        "make-ten-decision-v2": {
+          "planned": "3",
+          "moved": [
+            0,
+            1,
+            2
+          ],
+          "answer": "15",
+          "checked": true
+        }
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "13"
+      }
+    },
+    {
+      "lesson": "review-numbers",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "1 个十和 8 个一"
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "1 个十和 8 个一"
+      }
+    },
+    {
+      "lesson": "review-shapes",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "不会，仍是圆柱"
+      },
+      "pending": {
+        "mission-index": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "8"
+      }
+    },
+    {
+      "lesson": "review-application",
+      "complete": {
+        "mission-index": 2,
+        "problem-solving": {
+          "selected": [
+            "吃掉 8 条鱼",
+            "还剩 5 条鱼"
+          ],
+          "operator": "+",
+          "answer": 13
+        },
+        "problem-extension:review-application": 3
+      },
+      "pending": {
+        "question-composer": {
+          "monkeyQuestions": [
+            "一共几只猴子",
+            "还剩几只猴子"
+          ],
+          "monkeyEquations": [
+            "8＋8＝16",
+            "16－8＝8"
+          ],
+          "stampBoxes": [
+            0,
+            1
+          ],
+          "stampQuestion": "一共几个章",
+          "stampAnswer": "12",
+          "inequalities": [
+            "1",
+            "1",
+            "1"
+          ],
+          "reading": ""
+        }
+      },
+      "action": {
+        "kind": "button",
+        "name": "小明"
+      }
+    },
+    {
+      "lesson": "six-to-nine",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "8"
+      },
+      "pending": {
+        "unit2-card-lab:six-to-nine": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "8"
+      }
+    },
+    {
+      "lesson": "compare-order-nine",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "位置"
+      },
+      "pending": {
+        "unit2-card-lab:compare-order-nine": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "右边"
+      }
+    },
+    {
+      "lesson": "compose-six-nine",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "3 和 5"
+      },
+      "pending": {
+        "unit2-card-lab:compose-six-nine": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "5"
+      }
+    },
+    {
+      "lesson": "addsub-six-seven",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "7－2＝5"
+      },
+      "pending": {
+        "unit2-card-lab:addsub-six-seven": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "6－3＝3"
+      }
+    },
+    {
+      "lesson": "addsub-eight-nine",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "5"
+      },
+      "pending": {
+        "unit2-card-lab:addsub-eight-nine": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "3 和 5"
+      }
+    },
+    {
+      "lesson": "ten",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "4"
+      },
+      "pending": {
+        "unit2-card-lab:ten": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "2"
+      }
+    },
+    {
+      "lesson": "addsub-ten",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "7 和 3"
+      },
+      "pending": {
+        "unit2-card-lab:ten": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "2"
+      }
+    },
+    {
+      "lesson": "continuous-add-sub",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "7"
+      },
+      "pending": {
+        "unit2-card-lab:continuous-add-sub": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "3"
+      }
+    },
+    {
+      "lesson": "mixed-add-sub",
+      "complete": {
+        "mission-index": 2,
+        "generic-check": "4＋3"
+      },
+      "pending": {
+        "unit2-card-lab:mixed-add-sub": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "6"
+      }
+    },
+    {
+      "lesson": "unit2-review",
+      "complete": {
+        "mission-index": 3,
+        "generic-check": "3＋5＝8"
+      },
+      "pending": {
+        "unit2-card-lab:unit2-review": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "＋2－1"
+      }
+    },
+    {
+      "lesson": "campus",
+      "complete": {
+        "mission-index": 3,
+        "generic-check": "确定要数的教学楼和起点"
+      },
+      "pending": {
+        "mission-index": 2
+      },
+      "action": {
+        "kind": "button",
+        "name": "从哪一层开始数"
+      }
+    },
+    {
+      "lesson": "playground",
+      "complete": {
+        "mission-index": 5,
+        "generic-check": "前一个图形和动作规则"
+      },
+      "pending": {
+        "playground-exploration": {
+          "group": 3,
+          "jumps": 4,
+          "fish": 4,
+          "paired": 3
+        }
+      },
+      "action": {
+        "kind": "selector",
+        "selector": ".mt-pairing button",
+        "index": 3
+      }
+    },
+    {
+      "lesson": "classroom-discover",
+      "complete": {
+        "mission-index": 5,
+        "generic-check": "参照物和方向"
+      },
+      "pending": {
+        "classroom-route:classroom-discover": 2
+      },
+      "action": {
+        "kind": "button",
+        "name": "第 2 组、靠窗同学右边"
+      }
+    },
+    {
+      "lesson": "classroom-games",
+      "complete": {
+        "mission-index": 5,
+        "generic-check": "动作对象和方向"
+      },
+      "pending": {
+        "classroom-route:classroom-games": 2
+      },
+      "action": {
+        "kind": "button",
+        "name": "3＋1＝4"
+      }
+    },
+    {
+      "lesson": "learning-readiness",
+      "complete": {
+        "mission-index": 4,
+        "generic-check": "时间"
+      },
+      "pending": {
+        "classroom-route:learning-readiness": 2
+      },
+      "action": {
+        "kind": "button",
+        "name": "书本右边"
+      }
+    },
+    {
+      "lesson": "numbers",
+      "complete": {
+        "mission-index": 5,
+        "generic-check": "同一个数量"
+      },
+      "pending": {
+        "numbers-marking-practice": {
+          "circled": "peas",
+          "selectedObjectNumber": null,
+          "objectLinks": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5
+          },
+          "sequence": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "action": {
+        "kind": "button",
+        "name": "5"
+      }
+    },
+    {
+      "lesson": "compare",
+      "complete": {
+        "mission-index": 6,
+        "generic-check": "同样多"
+      },
+      "pending": {
+        "compare-within-five-relations": {
+          "more": "4＞3",
+          "same": ""
+        }
+      },
+      "action": {
+        "kind": "button",
+        "name": "3＝3"
+      }
+    },
+    {
+      "lesson": "ordinal",
+      "complete": {
+        "mission-index": 5,
+        "generic-check": "从哪边开始数"
+      },
+      "pending": {
+        "ordinal-within-five-board": {
+          "direction": "从左边开始",
+          "target": 3,
+          "rightTarget": null
+        }
+      },
+      "action": {
+        "kind": "button",
+        "name": "从右位置 4"
+      }
+    },
+    {
+      "lesson": "compose",
+      "complete": {
+        "mission-index": 5,
+        "generic-check": "5"
+      },
+      "pending": {
+        "compose-within-five-board": [
+          "0 和 5",
+          "1 和 4"
+        ]
+      },
+      "action": {
+        "kind": "button",
+        "name": "把玉米分进两篮"
+      }
+    },
+    {
+      "lesson": "add-within-5",
+      "complete": {
+        "generic-check": "3＋2＝5"
+      },
+      "pending": {
+        "addition-within-five-practice": {
+          "step": 1,
+          "moved": 2
+        }
+      },
+      "action": {
+        "kind": "button",
+        "name": "完成加法练习"
+      }
+    },
+    {
+      "lesson": "subtract-within-5",
+      "complete": {
+        "generic-check": "5－2＝3"
+      },
+      "pending": {
+        "subtraction-within-five-practice": {
+          "step": 2,
+          "removed": 2
+        }
+      },
+      "action": {
+        "kind": "button",
+        "name": "完成减法练习"
+      }
+    },
+    {
+      "lesson": "unit1-review",
+      "complete": {
+        "generic-check": "5－2＝3"
+      },
+      "pending": {
+        "unit1-p22-worksheet": {
+          "ordinal": [
+            "3",
+            "4",
+            "2"
+          ],
+          "splits": [
+            "3",
+            "2",
+            "3",
+            "4",
+            "1"
+          ],
+          "animals": [
+            "3",
+            "2",
+            "3",
+            "4"
+          ],
+          "relations": [
+            "＞",
+            ""
+          ]
+        }
+      },
+      "action": {
+        "kind": "selector",
+        "selector": ".mt-p22-relations button",
+        "index": 3
+      }
+    },
+    {
+      "lesson": "solve-total-within-7",
+      "complete": {
+        "problem-solving": {
+          "selected": [
+            "左边 4 只",
+            "右边 2 只"
+          ],
+          "operator": "+",
+          "answer": 6
+        },
+        "problem-extension:solve-total-within-7": 2
+      },
+      "pending": {
+        "problem-extension:solve-total-within-7": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "3＋4＝7"
+      }
+    },
+    {
+      "lesson": "solve-remain-within-7",
+      "complete": {
+        "problem-solving": {
+          "selected": [
+            "一共 7 只",
+            "跳走 2 只"
+          ],
+          "operator": "-",
+          "answer": 5
+        },
+        "problem-extension:solve-remain-within-7": 2
+      },
+      "pending": {
+        "problem-extension:solve-remain-within-7": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "4＋2＝6"
+      }
+    },
+    {
+      "lesson": "select-info-eight-nine",
+      "complete": {
+        "problem-solving": {
+          "selected": [
+            "一共有 9 只鹿",
+            "跑走 3 只鹿"
+          ],
+          "operator": "-",
+          "answer": 6
+        },
+        "problem-extension:select-info-eight-nine": 2
+      },
+      "pending": {
+        "information-filter-board": {
+          "total": "有用信息",
+          "left": "有用信息",
+          "mushrooms": "无关信息",
+          "swans": ""
+        }
+      },
+      "action": {
+        "kind": "button",
+        "name": "无关信息"
+      }
+    },
+    {
+      "lesson": "solve-total",
+      "complete": {
+        "problem-solving": {
+          "selected": [
+            "男生 5 人",
+            "女生 10 人"
+          ],
+          "operator": "+",
+          "answer": 15
+        },
+        "problem-extension:solve-total": 2
+      },
+      "pending": {
+        "problem-extension:solve-total": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "15"
+      }
+    },
+    {
+      "lesson": "find-original",
+      "complete": {
+        "problem-solving": {
+          "selected": [
+            "领走 6 个",
+            "剩下 5 个"
+          ],
+          "operator": "+",
+          "answer": 11
+        },
+        "problem-extension:find-original": 2
+      },
+      "pending": {
+        "problem-extension:find-original": 1
+      },
+      "action": {
+        "kind": "button",
+        "name": "13"
+      }
+    },
+    {
+      "lesson": "review-relations",
+      "complete": {
+        "problem-solving": {
+          "selected": [
+            "原来 12 个",
+            "走了 5 个"
+          ],
+          "operator": "-",
+          "answer": 7
+        },
+        "problem-extension:review-relations": 2
+      },
+      "pending": {
+        "relation-chain-board": {
+          "remain": "12－5＝7",
+          "original": "6＋7＝13",
+          "check": ""
+        }
+      },
+      "action": {
+        "kind": "button",
+        "name": "7＋5＝12"
+      }
+    },
+    {
+      "lesson": "zero",
+      "complete": {
+        "generic-check": "全部拿走后一个也没有"
+      },
+      "pending": {
+        "zero-pattern-index": 3
+      },
+      "action": {
+        "kind": "button",
+        "name": "0"
+      }
+    }
+  ]
+}

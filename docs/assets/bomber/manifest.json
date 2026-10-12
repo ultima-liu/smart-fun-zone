@@ -1,0 +1,392 @@
+[
+  {
+    "name": "hero-down-idle",
+    "width": 201,
+    "height": 320,
+    "sourceRect": [
+      63,
+      51,
+      267,
+      426
+    ],
+    "file": "hero-down-idle-v1.webp",
+    "bytes": 23932
+  },
+  {
+    "name": "hero-right-idle",
+    "width": 162,
+    "height": 320,
+    "sourceRect": [
+      481,
+      50,
+      220,
+      434
+    ],
+    "file": "hero-right-idle-v1.webp",
+    "bytes": 18716
+  },
+  {
+    "name": "hero-up-idle",
+    "width": 197,
+    "height": 320,
+    "sourceRect": [
+      840,
+      52,
+      261,
+      424
+    ],
+    "file": "hero-up-idle-v1.webp",
+    "bytes": 20958
+  },
+  {
+    "name": "hero-left-idle",
+    "width": 157,
+    "height": 320,
+    "sourceRect": [
+      1222,
+      51,
+      213,
+      434
+    ],
+    "file": "hero-left-idle-v1.webp",
+    "bytes": 18170
+  },
+  {
+    "name": "hero-down-walk",
+    "width": 200,
+    "height": 320,
+    "sourceRect": [
+      61,
+      534,
+      270,
+      431
+    ],
+    "file": "hero-down-walk-v1.webp",
+    "bytes": 20756
+  },
+  {
+    "name": "hero-right-walk",
+    "width": 164,
+    "height": 320,
+    "sourceRect": [
+      483,
+      533,
+      219,
+      428
+    ],
+    "file": "hero-right-walk-v1.webp",
+    "bytes": 22856
+  },
+  {
+    "name": "hero-up-walk",
+    "width": 194,
+    "height": 320,
+    "sourceRect": [
+      836,
+      535,
+      261,
+      431
+    ],
+    "file": "hero-up-walk-v1.webp",
+    "bytes": 18306
+  },
+  {
+    "name": "hero-left-walk",
+    "width": 168,
+    "height": 320,
+    "sourceRect": [
+      1220,
+      533,
+      223,
+      424
+    ],
+    "file": "hero-left-walk-v1.webp",
+    "bytes": 23038
+  },
+  {
+    "name": "floor-mint",
+    "width": 320,
+    "height": 319,
+    "sourceRect": [
+      38,
+      37,
+      445,
+      443
+    ],
+    "file": "floor-mint-v1.webp",
+    "bytes": 52860
+  },
+  {
+    "name": "floor-sand",
+    "width": 320,
+    "height": 319,
+    "sourceRect": [
+      548,
+      40,
+      441,
+      439
+    ],
+    "file": "floor-sand-v1.webp",
+    "bytes": 39466
+  },
+  {
+    "name": "floor-star",
+    "width": 320,
+    "height": 317,
+    "sourceRect": [
+      1055,
+      39,
+      444,
+      440
+    ],
+    "file": "floor-star-v1.webp",
+    "bytes": 41990
+  },
+  {
+    "name": "wall-stone",
+    "width": 309,
+    "height": 320,
+    "sourceRect": [
+      46,
+      519,
+      432,
+      447
+    ],
+    "file": "wall-stone-v1.webp",
+    "bytes": 38384
+  },
+  {
+    "name": "wall-brick",
+    "width": 317,
+    "height": 320,
+    "sourceRect": [
+      547,
+      518,
+      444,
+      448
+    ],
+    "file": "wall-brick-v1.webp",
+    "bytes": 39228
+  },
+  {
+    "name": "exit",
+    "width": 313,
+    "height": 320,
+    "sourceRect": [
+      1061,
+      521,
+      435,
+      445
+    ],
+    "file": "exit-v1.webp",
+    "bytes": 37052
+  },
+  {
+    "name": "balloon",
+    "width": 232,
+    "height": 320,
+    "sourceRect": [
+      37,
+      96,
+      299,
+      413
+    ],
+    "file": "balloon-v1.webp",
+    "bytes": 19212
+  },
+  {
+    "name": "scout",
+    "width": 316,
+    "height": 320,
+    "sourceRect": [
+      397,
+      97,
+      371,
+      376
+    ],
+    "file": "scout-v1.webp",
+    "bytes": 22142
+  },
+  {
+    "name": "runner",
+    "width": 320,
+    "height": 237,
+    "sourceRect": [
+      768,
+      184,
+      373,
+      276
+    ],
+    "file": "runner-v1.webp",
+    "bytes": 18242
+  },
+  {
+    "name": "hunter",
+    "width": 300,
+    "height": 320,
+    "sourceRect": [
+      1188,
+      145,
+      308,
+      329
+    ],
+    "file": "hunter-v1.webp",
+    "bytes": 27596
+  },
+  {
+    "name": "wraith",
+    "width": 316,
+    "height": 320,
+    "sourceRect": [
+      22,
+      576,
+      335,
+      339
+    ],
+    "file": "wraith-v1.webp",
+    "bytes": 21892
+  },
+  {
+    "name": "ghost",
+    "width": 299,
+    "height": 320,
+    "sourceRect": [
+      389,
+      550,
+      353,
+      378
+    ],
+    "file": "ghost-v1.webp",
+    "bytes": 21980
+  },
+  {
+    "name": "tiger",
+    "width": 320,
+    "height": 314,
+    "sourceRect": [
+      790,
+      578,
+      332,
+      326
+    ],
+    "file": "tiger-v1.webp",
+    "bytes": 29952
+  },
+  {
+    "name": "spinner",
+    "width": 320,
+    "height": 320,
+    "sourceRect": [
+      1154,
+      561,
+      360,
+      360
+    ],
+    "file": "spinner-v1.webp",
+    "bytes": 26620
+  },
+  {
+    "name": "range",
+    "width": 251,
+    "height": 320,
+    "sourceRect": [
+      100,
+      58,
+      302,
+      385
+    ],
+    "file": "range-v1.webp",
+    "bytes": 21740
+  },
+  {
+    "name": "capacity",
+    "width": 249,
+    "height": 320,
+    "sourceRect": [
+      516,
+      35,
+      313,
+      402
+    ],
+    "file": "capacity-v1.webp",
+    "bytes": 24880
+  },
+  {
+    "name": "speed",
+    "width": 288,
+    "height": 320,
+    "sourceRect": [
+      949,
+      80,
+      326,
+      362
+    ],
+    "file": "speed-v1.webp",
+    "bytes": 29714
+  },
+  {
+    "name": "remote",
+    "width": 229,
+    "height": 320,
+    "sourceRect": [
+      1401,
+      40,
+      289,
+      403
+    ],
+    "file": "remote-v1.webp",
+    "bytes": 19210
+  },
+  {
+    "name": "wallPass",
+    "width": 320,
+    "height": 317,
+    "sourceRect": [
+      53,
+      443,
+      390,
+      386
+    ],
+    "file": "wallPass-v1.webp",
+    "bytes": 26540
+  },
+  {
+    "name": "bombPass",
+    "width": 320,
+    "height": 206,
+    "sourceRect": [
+      443,
+      514,
+      438,
+      282
+    ],
+    "file": "bombPass-v1.webp",
+    "bytes": 18410
+  },
+  {
+    "name": "firePass",
+    "width": 251,
+    "height": 320,
+    "sourceRect": [
+      974,
+      464,
+      288,
+      367
+    ],
+    "file": "firePass-v1.webp",
+    "bytes": 28226
+  },
+  {
+    "name": "invincible",
+    "width": 293,
+    "height": 320,
+    "sourceRect": [
+      1379,
+      443,
+      335,
+      366
+    ],
+    "file": "invincible-v1.webp",
+    "bytes": 32164
+  }
+]

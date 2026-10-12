@@ -19,7 +19,7 @@
     "test:e2e": "playwright test",
     "test:e2e:math": "playwright test e2e/math-*.spec.ts e2e/math-textbook-lab.spec.ts e2e/fruit-shop.spec.ts",
     "test:e2e:chinese": "playwright test e2e/chinese-textbook.spec.ts",
-    "test:e2e:english": "playwright test e2e/english-textbook.spec.ts",
+    "test:e2e:english": "playwright test --config playwright.english.config.ts",
     "test:e2e:park": "playwright test e2e/park-arcade.spec.ts",
     "test:e2e:story": "playwright test e2e/home-story-strip.spec.ts e2e/story-npc-card-reward.spec.ts e2e/archive-npc-reset.spec.ts",
     "check:bundle": "node scripts/check-bundle.mjs",
@@ -32,6 +32,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.18.4",
+    "three": "^0.186.1",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -39,6 +40,7 @@
     "@playwright/test": "^1.62.1",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "@types/three": "^0.186.0",
     "@vitejs/plugin-react": "^4.7.0",
     "cmu-pronouncing-dictionary": "^3.0.0",
     "eslint": "^10.8.1",

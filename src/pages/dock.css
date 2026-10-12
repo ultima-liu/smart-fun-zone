@@ -243,17 +243,6 @@
   color: var(--sd-muted);
   font-size: 12px;
 }
-.sd-return {
-  align-self: center;
-  border: 1px solid var(--sd-line);
-  background: transparent;
-  color: var(--sd-accent);
-  padding: 8px 12px;
-  border-radius: 9px;
-  cursor: pointer;
-  margin: -3px 0 12px;
-  min-height: 40px;
-}
 .sd-ship-readings {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -1,0 +1,636 @@
+.app:has(.home-world-page) {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+  overflow: visible;
+}
+body:has(.home-world-page) .cosmos-sky,
+body:has(.home-world-page) .grain,
+body:has(.home-world-page) .bean-rain {
+  display: none;
+}
+.app .page.home.home-world-page,
+html[data-theme='light'] .app .page.home.home-world-page {
+  padding: 18px 28px 0 !important;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: #d9eafa;
+  background:
+    radial-gradient(ellipse at 65% 28%, #10274480, transparent 52%),
+    radial-gradient(ellipse at 22% 63%, #1f19482e, transparent 50%), #030711;
+  font-family: 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
+}
+.home-world-page .app-header {
+  position: relative;
+  z-index: 20;
+  width: min(1600px, 100%);
+  margin: 0 auto;
+  min-height: 58px;
+  gap: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #5096c41c;
+}
+.home-world-page .home-profile-mini {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #d9eafa;
+}
+.home-world-page .home-profile-mini small {
+  color: #7896ae;
+}
+.home-world-page .home-profile-mini i {
+  color: #548fb9;
+}
+.home-world-page .app-header-right {
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+.home-world-page .top-pill,
+.home-world-page .home-settings > summary {
+  min-width: 48px;
+  min-height: 46px;
+  border: 1px solid #468cba3a;
+  border-radius: 7px;
+  background: #0d1c2ecc;
+  box-shadow: none;
+  color: #aacfe8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 15px;
+  cursor: pointer;
+}
+.home-world-page .home-review-entry {
+  font-size: 12px;
+}
+.home-world-page .home-review-entry b {
+  background: #3eafd330;
+  color: #7ce5ff;
+  border: 1px solid #3ba3bd66;
+  border-radius: 4px;
+  min-width: 20px;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+.home-world-page .currency-bar {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.home-settings {
+  position: relative;
+}
+.home-settings > summary {
+  list-style: none;
+}
+.home-settings > summary::-webkit-details-marker {
+  display: none;
+}
+.home-settings-panel {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 245px;
+  padding: 15px;
+  border: 1px solid #347ba488;
+  border-radius: 10px;
+  background: #091525f2;
+  box-shadow: 0 18px 45px #0009;
+}
+.home-settings-panel button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  min-height: 48px;
+  background: #12334b55;
+  border: 1px solid #498da638;
+  border-radius: 5px;
+  color: #afcbe1;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+.home-world-main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1800px;
+}
+.juan-world {
+  position: relative;
+  height: calc(100dvh - 98px);
+  min-height: 630px;
+  isolation: isolate;
+}
+.world-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 45%, #055f9530, transparent 48%);
+}
+.world-intro {
+  position: absolute;
+  z-index: 3;
+  left: 30px;
+  top: 30px;
+  pointer-events: none;
+}
+.world-intro > span {
+  font:
+    500 10px/1.5 ui-monospace,
+    monospace;
+  letter-spacing: 3px;
+  color: #438db4;
+}
+.world-intro h1 {
+  font-size: clamp(22px, 2vw, 30px);
+  letter-spacing: 4px;
+  margin: 10px 0;
+  color: #d0ebff;
+  font-weight: 500;
+}
+.world-intro p {
+  font-size: 11px;
+  color: #6e94b0;
+  letter-spacing: 2px;
+  margin: 0;
+}
+.world-stage {
+  position: absolute;
+  inset: 0 0 78px;
+}
+.world-canvas,
+.world-poster,
+.world-labels {
+  position: absolute;
+  inset: 0;
+}
+.world-canvas canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+.world-canvas canvas:active {
+  cursor: grabbing;
+}
+.world-poster {
+  background: center/contain no-repeat url('/assets/juan-world/scene-poster.png');
+  pointer-events: none;
+}
+.world-ready .world-poster {
+  display: none;
+}
+.world-fallback .world-canvas {
+  display: none;
+}
+.world-labels {
+  pointer-events: none;
+}
+.juan-world:not(.world-ready):not(.world-fallback) .world-labels {
+  visibility: hidden;
+}
+.world-place {
+  position: absolute;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+  min-width: 90px;
+  min-height: 48px;
+  padding: 8px 13px;
+  border: 1px solid #4287a850;
+  border-left: 2px solid #4ab6e3;
+  border-radius: 2px;
+  background: linear-gradient(100deg, #061322ee, #081529aa);
+  color: #c2e7ff;
+  box-shadow: 0 5px 18px #0005;
+  backdrop-filter: blur(9px);
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  font: inherit;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.world-place::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  height: 14px;
+  width: 1px;
+  background: linear-gradient(transparent, #58abd399);
+}
+.world-place > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.world-place small {
+  display: block;
+  color: #698ea8;
+  font-size: 9px;
+  margin-top: 4px;
+  letter-spacing: 0.8px;
+}
+.world-place:hover,
+.world-place.is-hovered {
+  background: #0a2941ed;
+  border-color: #6bc9ed;
+}
+.world-place:focus-visible,
+.world-reward:focus-visible,
+.home-world-page button:focus-visible,
+.home-settings summary:focus-visible {
+  outline: 2px solid #83e1ff;
+  outline-offset: 4px;
+}
+.world-service {
+  border-left-color: #edb762;
+}
+.world-service > span {
+  font-size: 11px;
+}
+.world-service small {
+  font-size: 10px;
+}
+.world-service i {
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0;
+  background: #42b6c921;
+  color: #8de5f5;
+  border: 1px solid #489cb144;
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+.world-point-mail.status-reward i {
+  background: #aa751528;
+  color: #edcd87;
+}
+.world-point-mail.status-empty i {
+  background: #203f5730;
+  color: #8aa2b8;
+}
+.world-drift {
+  min-width: 90px;
+  max-width: 145px;
+}
+.world-drift > span {
+  font-size: 11px;
+}
+.world-reward {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  min-width: 48px;
+  height: 48px;
+  border: 1px solid #efcf5b44;
+  background: #a77e2920;
+  color: #ffe5a2;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 0 25px #f9d47740;
+}
+.world-reward b {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 10px;
+  min-width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  background: #f4dba1;
+  color: #5e4938;
+  border-radius: 50%;
+}
+.world-welcome {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  max-width: 70%;
+  border: 1px solid #438aac55;
+  background: #071624df;
+  padding: 11px 20px;
+  font-size: 12px;
+  color: #a4d7f2;
+  pointer-events: none;
+  animation: world-notice 0.5s ease both;
+}
+.world-welcome > span {
+  color: #78d8ff;
+}
+.world-loading {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #6fc3ed;
+  background: #081728;
+  padding: 12px 20px;
+  border: 1px solid #34769844;
+}
+.world-new-card {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  border: 1px solid #a397f266;
+  background: #10172beb;
+  animation: world-notice 0.4s ease both;
+}
+.world-new-card > span {
+  font-size: 26px;
+  color: #b6a1fa;
+}
+.world-new-card small {
+  display: block;
+  color: #7996b1;
+  font-size: 10px;
+}
+.world-new-card b {
+  display: block;
+  color: #cfdefb;
+  font-size: 13px;
+  margin-top: 5px;
+}
+.world-new-card button {
+  width: 44px;
+  height: 44px;
+  color: #bcbbf6;
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+  cursor: pointer;
+}
+.world-destinations {
+  position: absolute;
+  z-index: 5;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1px;
+  padding: 5px;
+  border: 1px solid #33729142;
+  background: #07111ee8;
+  backdrop-filter: blur(15px);
+  max-width: calc(100% - 20px);
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+.world-destinations button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 0 13px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #7e9eb8;
+  font: inherit;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.world-destinations button svg {
+  flex: none;
+}
+.world-destinations button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.world-destinations button small {
+  color: #3b7a9b;
+  font-size: 11px;
+}
+.world-destinations button.active,
+.world-destinations button:hover {
+  background: #17354e66;
+  color: #a0e1ff;
+  border-color: #448ca755;
+}
+.world-traveling .world-labels {
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+@keyframes world-notice {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (min-width: 1700px) {
+  .world-intro {
+    left: 65px;
+    top: 40px;
+  }
+}
+@media (max-width: 1100px) {
+  .app .page.home.home-world-page,
+  html[data-theme='light'] .app .page.home.home-world-page {
+    padding: 12px 16px 0 !important;
+  }
+  .juan-world {
+    height: calc(100dvh - 94px);
+    min-height: 590px;
+  }
+  .world-intro {
+    left: 10px;
+    top: 18px;
+  }
+  .world-intro h1 {
+    font-size: 22px;
+  }
+  .world-intro p {
+    font-size: 10px;
+  }
+  .world-place {
+    padding: 7px 10px;
+    min-width: 84px;
+  }
+  .world-place > span {
+    font-size: 11px;
+  }
+  .home-world-page .app-header {
+    gap: 10px;
+  }
+  .world-destinations button {
+    padding: 0 9px;
+    gap: 7px;
+  }
+}
+@media (orientation: portrait) {
+  .juan-world {
+    min-height: 820px;
+    height: calc(100dvh - 96px);
+  }
+  .world-stage {
+    inset: 35px 0 88px;
+  }
+  .world-intro {
+    top: 20px;
+    left: 15px;
+  }
+  .world-welcome {
+    top: 60px;
+    max-width: 90%;
+    width: max-content;
+    font-size: 11px;
+  }
+  .world-service {
+    padding: 8px 9px;
+  }
+  .world-service > span {
+    display: block;
+  }
+  .world-service i {
+    display: inline-block;
+    margin-left: 7px;
+  }
+  .world-new-card {
+    bottom: 35px;
+  }
+  .world-place small {
+    font-size: 9px;
+  }
+  .world-destinations {
+    bottom: 18px;
+  }
+}
+@media (max-width: 600px) {
+  .app .page.home.home-world-page,
+  html[data-theme='light'] .app .page.home.home-world-page {
+    padding: 10px 8px 0 !important;
+  }
+  .home-world-page .app-header {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .home-world-page .home-profile-mini {
+    min-width: 110px;
+  }
+  .home-world-page .app-header-right {
+    margin-left: auto;
+  }
+  .home-world-page .currency-bar {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin: 0 !important;
+  }
+  .home-world-page .top-pill,
+  .home-world-page .home-settings > summary {
+    padding: 0 9px;
+  }
+  .juan-world {
+    min-height: 710px;
+    height: calc(100dvh - 145px);
+  }
+  .world-intro {
+    left: 12px;
+    top: 22px;
+  }
+  .world-intro h1 {
+    font-size: 19px;
+  }
+  .world-stage {
+    inset: 60px -4px 155px;
+  }
+  .world-place {
+    min-width: 70px;
+    padding: 7px 8px;
+  }
+  .world-place > span {
+    font-size: 10px;
+  }
+  .world-place small {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+  .world-service {
+    max-width: 145px;
+    white-space: normal;
+  }
+  .world-service > span {
+    font-size: 10px;
+  }
+  .world-service i {
+    font-size: 8px;
+    margin: 3px 0 0 5px;
+    padding: 2px 4px;
+  }
+  .world-destinations {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 95%;
+    bottom: 18px;
+  }
+  .world-destinations button {
+    justify-content: center;
+    font-size: 10px;
+    min-height: 48px;
+    gap: 5px;
+  }
+  .world-welcome {
+    max-width: 95%;
+    font-size: 10px;
+    padding: 10px 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-welcome,
+  .world-new-card {
+    animation: none;
+  }
+  .world-place,
+  .world-traveling .world-labels {
+    transition: none;
+  }
+}
+/* Keep the assistant clear of the orbit controls in both Pad orientations. */
+body:has(.home-world-page) .buddy-fab {
+  bottom: 130px !important;
+  right: 20px !important;
+  width: 56px !important;
+  height: 56px !important;
+}
+body:has(.home-world-page) .buddy-fab-mascot {
+  width: 44px !important;
+  height: 44px !important;
+}
+@media (pointer: coarse) {
+  .world-destinations button {
+    min-height: 48px;
+  }
+}
+
+.app .page.home.home-world-page,
+html[data-theme='light'] .app .page.home.home-world-page {
+  background: #000;
+}

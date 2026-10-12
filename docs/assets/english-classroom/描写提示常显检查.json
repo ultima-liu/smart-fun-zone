@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "initialHints": 3,
+      "hintsAfterStroke": 3,
+      "hintsAfterClear": 3,
+      "lowercaseHints": 2,
+      "traceButtons": 0,
+      "evidenceLevel": "supported"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "initialHints": 3,
+      "hintsAfterStroke": 3,
+      "hintsAfterClear": 3,
+      "lowercaseHints": 2,
+      "traceButtons": 0,
+      "evidenceLevel": "supported"
+    }
+  ],
+  "errors": []
+}

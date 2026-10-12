@@ -1,0 +1,3971 @@
+{
+  "courseCount": 47,
+  "viewport": {
+    "width": 1024,
+    "height": 768
+  },
+  "count": 495,
+  "errors": [],
+  "records": [
+    {
+      "lessonId": "campus",
+      "phase": 0,
+      "text": "中间教学楼看起来有几层？。答案选项：选项1，我还不确定；选项2，4 层；选项3，3 层。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "campus",
+      "phase": 1,
+      "text": "1教材任务一：从底层入口开始，按顺序点亮中间教学楼的 4 层",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "campus",
+      "phase": 1,
+      "text": "校园里除了楼层，还可以用什么数学信息描述国旗？。答案选项：选项1，5 颗五角星；选项2，旗杆很高；选项3，颜色很好看。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "campus",
+      "phase": 1,
+      "text": "开放数学观察记录。再找一处校园里的数学：可以写数量、形状或位置。填写要求：我的发现，说出来，例如：花坛里有 6 朵花。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "campus",
+      "phase": 2,
+      "text": "为什么中间教学楼是 4 层？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，底层入口是第 1 层，再数上面三层；选项2，因为有四个标记；选项3，只数上面的三排窗户。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "campus",
+      "phase": 2,
+      "text": "数之前先决定数什么。一栋楼底层没有窗，数楼层最稳妥看什么？。答案选项：选项1，只数窗户排数；选项2，只看楼的颜色；选项3，入口与实际楼层。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "campus",
+      "phase": 3,
+      "text": "校园角落这些花盆有几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "campus",
+      "phase": 4,
+      "text": "校园角落这些花盆有几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "playground",
+      "phase": 0,
+      "text": "“桃花朵朵开，开 3 朵”需要几个人抱在一起？。答案选项：选项1，2 人；选项2，3 人；选项3，4 人。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "playground",
+      "phase": 1,
+      "text": "1教材任务一：按规则点数游戏人数和鱼。按顺序点亮参加游戏的 3 个小朋友。已经按顺序数了 0 / 3 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "playground",
+      "phase": 1,
+      "text": "操场数学探索板。按规则抱团、跳格、数鱼，再把同学和椅子配对",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "playground",
+      "phase": 2,
+      "text": "怎样保证正好是 3 人？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，站得越近越好；选项2，一个一个数，不重复也不漏；选项3，看谁最高。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "playground",
+      "phase": 2,
+      "text": "“正好几个”要检查没有多也没有少。四个孩子要按每组三人分组，哪种说法对？。答案选项：选项1，人数不用核对；选项2，一组正好三人，还剩一人；选项3，四人都算一组。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "playground",
+      "phase": 3,
+      "text": "每组3人，已经站好2人，还要几人？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "playground",
+      "phase": 4,
+      "text": "每组3人，已经站好2人，还要几人？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-discover",
+      "phase": 0,
+      "text": "面向黑板时，窗户可能在你的哪一边？。答案选项：选项1，左边；选项2，右边；选项3，要根据教室观察。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-discover",
+      "phase": 1,
+      "text": "1教材任务一：以参照物描述位置。选择能完整描述位置的话。答案选项：选项1，只说“在那里”；选项2，说清参照物和前后左右；选项3，只说物品颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-discover",
+      "phase": 1,
+      "text": "教室定位指挥台。从一（1）班开始依次点亮班牌，最后要到一（6）班。答案选项：选项1，一（4）班；选项2，一（5）班；选项3，一（6）班。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-discover",
+      "phase": 1,
+      "text": "我的数学自我介绍。用数量、来源和喜好介绍自己。填写要求：我家有几口人，例如：4。填写要求：我原来在哪所幼儿园，说出来，例如：阳光幼儿园。填写要求：我喜欢什么，说出来，例如：画画。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-discover",
+      "phase": 2,
+      "text": "为什么描述位置要说参照物？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，为了让句子更长；选项2，不说也一样；选项3，参照物不同，左右和前后可能不同。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-discover",
+      "phase": 2,
+      "text": "位置需要参照物与朝向。两人面对面说“我的左边”，方向一定一样吗？。答案选项：选项1，都没有左边；选项2，不一定；选项3，一定一样。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-discover",
+      "phase": 3,
+      "text": "面向桌面，笔袋放在书本右边。以书本为参照，笔袋在哪？。答案选项：选项1，右边；选项2，后面；选项3，左边。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-discover",
+      "phase": 4,
+      "text": "面向桌面，笔袋放在书本右边。以书本为参照，笔袋在哪？。答案选项：选项1，右边；选项2，左边；选项3，后面。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-games",
+      "phase": 0,
+      "text": "“摸你的左耳”应该用哪只手都可以吗？。答案选项：选项1，可以，关键是左耳；选项2，只能右手；选项3，只能左手。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-games",
+      "phase": 1,
+      "text": "1教材任务一：听指令辨左右。听清对象和方向，选择正确动作。答案选项：选项1，摸左耳；选项2，摸右耳；选项3，跺右脚。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-games",
+      "phase": 1,
+      "text": "课堂游戏指挥台。听到“摸左耳”，把动作牌放到正确位置。答案选项：选项1，摸左耳；选项2，摸右耳；选项3，拍两下手。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-games",
+      "phase": 2,
+      "text": "做位置动作前先听清什么？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，声音大小；选项2，对象和方向；选项3，动作快慢。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-games",
+      "phase": 2,
+      "text": "听清“谁”和“哪边”再行动。“用右手摸左耳”包含几个不同方向信息？。答案选项：选项1，只有右手；选项2，右手和左耳两个；选项3，只有左耳。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-games",
+      "phase": 3,
+      "text": "用右手摸左耳，要摸哪只耳朵？。答案选项：选项1，右耳；选项2，左耳；选项3，右脚。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "classroom-games",
+      "phase": 4,
+      "text": "用右手摸左耳，要摸哪只耳朵？。答案选项：选项1，右脚；选项2，左耳；选项3，右耳。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "learning-readiness",
+      "phase": 0,
+      "text": "每天 8:30 开始上课，8:30 表示什么？。答案选项：选项1，页数；选项2，人数；选项3，时间。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "learning-readiness",
+      "phase": 1,
+      "text": "1教材任务一：辨认 8:30 的上课时间。观察钟面和课程表，选出“8:30”表示的上课信息。答案选项：选项1，8:30 表示上课开始的时间；选项2，8:30 表示 8 个同学和 30 本书；选项3，8:30 表示课本第 8 页第 30 题。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "learning-readiness",
+      "phase": 1,
+      "text": "课前准备指挥台。把“8:30”送到正确的信息牌上。答案选项：选项1，上课时间；选项2，班级人数；选项3，课本页码。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "learning-readiness",
+      "phase": 1,
+      "text": "开放数学观察记录。写下你喜欢的校园地方，以及你发现的一个数学信息。填写要求：我的发现，说出来，例如：花坛里有 6 朵花。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "learning-readiness",
+      "phase": 2,
+      "text": "为什么物品要放在固定位置？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，可以少带东西；选项2，更快找到，也不容易遗漏；选项3，桌面看起来更满。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "learning-readiness",
+      "phase": 2,
+      "text": "时间、顺序、数量是不同信息。教室门口写“8:30 开门”，这串数字表示？。答案选项：选项1，人数；选项2，时间；选项3，楼层。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "learning-readiness",
+      "phase": 3,
+      "text": "门口写“8:30开门”，8:30表示什么？。答案选项：选项1，人数；选项2，页数；选项3，时间。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "learning-readiness",
+      "phase": 4,
+      "text": "门口写“8:30开门”，8:30表示什么？。答案选项：选项1，页数；选项2，人数；选项3，时间。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "numbers",
+      "phase": 0,
+      "text": "先看图，不逐个点数，你觉得桌上有几个南瓜？。答案选项：选项1，4 个；选项2，5 个；选项3，3 个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "numbers",
+      "phase": 1,
+      "text": "1教材任务一：依次认识 1～5，把对应数量的珠子拨到左边",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "numbers",
+      "phase": 1,
+      "text": "1到5圈和连线练习。用手完成 1～5 的四种数量表示练习。① 圈出正好 5 个的一组。④ 按从小到大的顺序排数字。② 连一连：数字和同样多的物体。③ 连一连：点子和同样大的数字。答案选项：选项1，豌豆，5 个；选项2，茄子，3 个；选项3，番茄，2 个；选项4，青椒，4 个。答案选项：选项1，3；选项2，5；选项3，1；选项4，4；选项5，2。答案选项：选项1，数字 1；选项2，数字 2；选项3，数字 3；选项4，数字 4；选项5，数字 5。答案选项：选项1，3 个小鸟；选项2，1 个小羊；选项3，5 个公鸡；选项4，2 个蜜蜂；选项5，4 个熊猫。答案选项：选项1，4 个点子；选项2，1 个点子；选项3，5 个点子；选项4，2 个点子；选项5，3 个点子。答案选项：选项1，数字 2；选项2，数字 5；选项3，数字 1；选项4，数字 4；选项5，数字 3。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "numbers",
+      "phase": 2,
+      "text": "为什么要把实物、点子和数字放在一起看？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，因为数字一定比实物大；选项2，它们表示的是同一个数量；选项3，为了让页面更热闹。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "numbers",
+      "phase": 2,
+      "text": "实物、点子、拨珠与数字指同一个量。画出四个大点和四个小点，哪组数量更多？。答案选项：选项1，一样多；选项2，小点更多；选项3，大点更多。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "numbers",
+      "phase": 3,
+      "text": "点数图中的杯子，最后一个数词是多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "numbers",
+      "phase": 4,
+      "text": "点数图中的圆片，最后一个数词是多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 0,
+      "text": "3 只小猴和 2 个香蕉一个对一个配，哪边会有剩余？。答案选项：选项1，小猴；选项2，都不剩；选项3，香蕉。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 1,
+      "text": "1教材任务一：给 3 只小猴各分 1 个桃子，完成一一配对。先点一只小猴，再点同一排的桃子，连成一对；三对都完成后，可以自由切换数量继续探索。已配对 0 / 3 对",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 1,
+      "text": "小猴分桃，一一配对。教材 P17-P18 · 小猴分桃给每只小猴分 1 个桃子，观察谁有剩余",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 1,
+      "text": "4 个桃子和 3 只小猴。答案选项：选项1，4＞3；选项2，3＜4；选项3，3＝3；选项4，3＞3。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 1,
+      "text": "3 个圆片和 3 个方块。答案选项：选项1，4＞3；选项2，3＜4；选项3，3＝3；选项4，3＞3。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 2,
+      "text": "怎样判断哪边更多最可靠？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，凭感觉；选项2，看图形大小；选项3，一个小猴配一个水果，看哪边有剩余。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 2,
+      "text": "比较先配对，剩余才说明多少。两个孩子各玩两次，只有一个孩子多玩一次，机会公平吗？。答案选项：选项1，完全公平；选项2，不公平；选项3，与机会无关。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 3,
+      "text": "5 个杯子和 4 个盖子，哪组更多？。答案选项：选项1，盖子；选项2，同样多；选项3，杯子。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare",
+      "phase": 4,
+      "text": "3 个杯子和 2 个盖子，哪组更多？。答案选项：选项1，同样多；选项2，杯子；选项3，盖子。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ordinal",
+      "phase": 0,
+      "text": "从火车方向开始数，穿绿色衣服的小朋友排第几？。答案选项：选项1，第 3；选项2，第 2；选项3，第 1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ordinal",
+      "phase": 1,
+      "text": "1教材任务一：先定方向，再点出从该方向数的第 2 个人",
+      "overflow": false,
+      "fit": 0.991,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ordinal",
+      "phase": 1,
+      "text": "🚆 从左数第 4 个。答案选项：选项1，从左边开始；选项2，从右边开始。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ordinal",
+      "phase": 1,
+      "text": "🚆 从右数第 2 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ordinal",
+      "phase": 2,
+      "text": "确定“第几”之前，必须先知道什么？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，队伍里谁最高；选项2，从哪一边开始数；选项3，一共有多少种颜色。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ordinal",
+      "phase": 2,
+      "text": "第几要说从哪边开始。六人排队，从左数第 2 位，换成从右数他的序号会？。答案选项：选项1，一定还是第 2；选项2，队伍会多一人；选项3，可能改变。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ordinal",
+      "phase": 3,
+      "text": "从左开始数，编号 1 的人是第几人？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ordinal",
+      "phase": 4,
+      "text": "从左开始数，编号 4 的人是第几人？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 0,
+      "text": "把 5 个玉米分成两堆，下面哪种分法可行？。答案选项：选项1，2 和 3；选项2，1 和 4；选项3，两种都可以。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 1,
+      "text": "1教材任务一：把 5 个玉米全部拖进两个篮子，完成一种分法。下面的分法卡可以回看分法，但不能代替拖拽操作。识别文字只作朗读记录，不判断数学理由或发音是否正确。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 1,
+      "text": "5 分成 0 和 5。5 = 0 和 5",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 1,
+      "text": "5 分成 1 和 4。5 = 1 和 4",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 1,
+      "text": "5 分成 2 和 3。5 = 2 和 3",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 2,
+      "text": "为什么 2 和 3 合起来是 5？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，把两部分重新数在一起共有 5 个；选项2，左右两堆一样多；选项3，因为两个数字长得像 5。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 2,
+      "text": "分法按顺序记，才不会漏。把 6 分两堆，已经记下 1 和 5、2 和 4，下一步可试？。答案选项：选项1，3 和 3；选项2，1 和 5 再记一次；选项3，7 和 0。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 3,
+      "text": "3 个小花分两组，一组 2 个，另一组几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose",
+      "phase": 4,
+      "text": "5 个积木分两组，一组 3 个，另一组几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "add-within-5",
+      "phase": 0,
+      "text": "原来 3 只，又来 1 只，一共会变多还是变少？。答案选项：选项1，变多；选项2，不变；选项3，变少。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "add-within-5",
+      "phase": 1,
+      "text": "1教材任务一：逐个合并两部分。把 3 只和 1 只小动物逐个送进“合起来”的圈。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "add-within-5",
+      "phase": 1,
+      "text": "5以内加法合并练习。把新来的 1 个气球逐个合进原来的 3 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "add-within-5",
+      "phase": 2,
+      "text": "为什么这里用加法？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，只看一部分；选项2，把两部分合起来求总数；选项3，从总数里去掉一部分。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "add-within-5",
+      "phase": 2,
+      "text": "合起来不一定要从 1 重数。盒里已有 4 支笔，又放 1 支，最快怎样数？。答案选项：选项1，把 4 忘掉从头猜；选项2，用减法；选项3，从 4 接着数 5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "add-within-5",
+      "phase": 3,
+      "text": "一组 3 个积木，另一组 1 个，合起来多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "add-within-5",
+      "phase": 4,
+      "text": "一组 3 个小花，另一组 1 个，合起来多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "subtract-within-5",
+      "phase": 0,
+      "text": "4 只小鸟飞走 1 只，剩下的会变多还是变少？。答案选项：选项1，变少；选项2，不变；选项3，变多。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "subtract-within-5",
+      "phase": 1,
+      "text": "1教材任务一：从整体中点走部分。从 4 只小鸟中点走 1 只，再数剩下的。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "subtract-within-5",
+      "phase": 1,
+      "text": "5以内减法操作练习。从 4 个里逐个拿走 1 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "subtract-within-5",
+      "phase": 2,
+      "text": "为什么这里用减法？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，把两部分合起来；选项2，比较形状；选项3，从总数里去掉一部分。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "subtract-within-5",
+      "phase": 2,
+      "text": "“去掉”与“差多少”都能用减法。5 双鞋只有 4 个鞋盒，每鞋一个盒，还缺几个盒？。答案选项：选项1，9 个；选项2，4 个；选项3，1 个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "subtract-within-5",
+      "phase": 3,
+      "text": "原来 3 个小花，拿走 2 个，还剩多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "subtract-within-5",
+      "phase": 4,
+      "text": "原来 3 个圆片，拿走 1 个，还剩多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "zero",
+      "phase": 0,
+      "text": "盘子里的苹果全部拿走后，用哪个数表示？。答案选项：选项1，5；选项2，0；选项3，1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "zero",
+      "phase": 1,
+      "text": "1教材任务一：全部拿走认识 0。把 3 个苹果全部拿走，观察“一个也没有”。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "zero",
+      "phase": 1,
+      "text": "0的动态变化练习。把 2 个圆片一个一个拿走。答案选项：选项1，●；选项2，●。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "zero",
+      "phase": 2,
+      "text": "3−3 为什么等于 0？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，全部拿走后一个也没有；选项2，因为 3 很小；选项3，因为没有做加法。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "zero",
+      "phase": 2,
+      "text": "0 不只表示空。跑步从 0 米线出发，0 表示？。答案选项：选项1，起点位置；选项2，没有赛道；选项3，跑了 10 米。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "zero",
+      "phase": 3,
+      "text": "3 个都拿走，还剩几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "zero",
+      "phase": 4,
+      "text": "5 个都拿走，还剩几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 0,
+      "text": "分与合能帮助计算加减法吗？。答案选项：选项1，不能；选项2，只帮助写数字；选项3，能。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "1教材任务一：圈涂连留下证据。把 1～5 按顺序点亮，完成知识线的起点。答案选项：选项1，5；选项2，4；选项3，3；选项4，2；选项5，1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "数一数 → 比一比。想一想它们怎样互相帮助。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "分与合 → 加减法。想一想它们怎样互相帮助。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "加减法 → 检查答案。想一想它们怎样互相帮助。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "遮住了排队中的一个位置：从左数第 4 个前面有几人？。答案选项：选项1，3 人；选项2，4 人；选项3，5 人。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "第一单元圈选涂色连线练习。动手留下数量和位置的证据。① 圈出 4 个点子。② 从左边给第 4 个涂色。③ 连一连：2 个点子和数字 2",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "第一单元P22练一练。把看见的数量和位置亲手写下来。① 雪人遮住了第几个到第几个？一共遮住几个？。② 填一填：5 分成 2 和□；4 分成□和 2；□ 分成 1 和 2；5 分成 1 和□；4 分成 3 和□。③ 数一数：🐘 和 🦒；🦓 和 🦘。④ 在数量中间填＞或＜。填写要求：第。填写要求：和第。填写要求：遮住个。填写要求：分合填空第 1 格。填写要求：分合填空第 2 格。填写要求：分合填空第 3 格。填写要求：分合填空第 4 格。填写要求：分合填空第 5 格。填写要求：🐘🐘🐘。填写要求：🦒🦒。填写要求：🦓🦓🦓。填写要求：🦘🦘🦘🦘。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "1＋4＝5。答案选项：选项1，加法；选项2，减法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "2＋3＝5。答案选项：选项1，加法；选项2，减法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "5－2＝3。答案选项：选项1，加法；选项2，减法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "5－5＝0。答案选项：选项1，加法；选项2，减法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "我会用 0～5 表示数量",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "我会比较同样多、多和少",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "我会说分与合",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 1,
+      "text": "我会用加减法讲数量故事",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 2,
+      "text": "2 和 3 组成 5，可以帮助算什么？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，2+3 和 5−2；选项2，只比较形状；选项3，只算 2−3。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 2,
+      "text": "分合是加减的共同模型。盒里原有 5 颗、拿出 2 颗，哪幅关系图最合适？。答案选项：选项1，5 与 2 无关；选项2，只有拿走的 2；选项3，整体 5 分成拿走 2 与剩下 3。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 3,
+      "text": "一组 2 个杯子，另一组 1 个，合起来多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit1-review",
+      "phase": 4,
+      "text": "一组 3 个杯子，另一组 1 个，合起来多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 0,
+      "text": "5 再添上 1 是几？。答案选项：选项1，5；选项2，7；选项3，6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 1,
+      "text": "1教材任务一：逐个点数并对应数字。逐个点数 6 只天鹅，建立“5 添 1 是 6”。已经按顺序数了 0 / 6 个。选一个数字，先看笔顺，再在田字格里跟着写",
+      "overflow": false,
+      "fit": 0.996,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 1,
+      "text": "●●●●●● 共计？个。答案选项：选项1，6；选项2，7；选项3，8；选项4，9。填写要求：描红后写数字 6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 1,
+      "text": "●●●●●●● 共计？个。答案选项：选项1，6；选项2，7；选项3，8；选项4，9。填写要求：描红后写数字 7。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 1,
+      "text": "●●●●●●●● 共计？个。答案选项：选项1，6；选项2，7；选项3，8；选项4，9。填写要求：描红后写数字 8。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 1,
+      "text": "●●●●●●●●● 共计？个。答案选项：选项1，6；选项2，7；选项3，8；选项4，9。填写要求：描红后写数字 9。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 1,
+      "text": "6～9 数卡实验桌。点子卡 ●●●●●●● 写作几？。答案选项：选项1，6；选项2，7；选项3，8。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 2,
+      "text": "怎样数 6～9 不容易漏？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，从中间随便数；选项2，按顺序一个一个数；选项3，只看颜色。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 2,
+      "text": "5 不是终点，后面的数每次添 1。已有 5 颗珠，再添 2 颗，应该看到？。答案选项：选项1，5 颗；选项2，9 颗；选项3，7 颗。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 3,
+      "text": "点数图中的小花，最后一个数词是多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "six-to-nine",
+      "phase": 4,
+      "text": "点数图中的积木，最后一个数词是多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 0,
+      "text": "6 和 7 谁更大？。答案选项：选项1，6；选项2，7；选项3，一样大。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 1,
+      "text": "1教材任务一：一一对应比较 6～9。选出能正确表示 7 比 6 多 1 的式子。答案选项：选项1，7＞6；选项2，7＝6；选项3，7＜6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 1,
+      "text": "●●●●●● ? ●●●●●●●●。答案选项：选项1，＞；选项2，＜；选项3，＝。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 1,
+      "text": "●●●●●●●●● ? ●●●●●●●。答案选项：选项1，＞；选项2，＜；选项3，＝。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 1,
+      "text": "●●●●●●●● ? ●●●●●●●●。答案选项：选项1，＞；选项2，＜；选项3，＝。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 1,
+      "text": "从右数第 6 条鱼。答案选项：选项1，从左边开始；选项2，从右边开始。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 1,
+      "text": "从左数第 7 只海马。答案选项：选项1，从左边开始；选项2，从右边开始。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 1,
+      "text": "比较与方向实验桌。把 8 和 9 放到数线，8 应在 9 的哪边？。答案选项：选项1，左边，所以 8＜9；选项2，右边，所以 8＞9；选项3，同一格。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 2,
+      "text": "判断第几之前为什么要先定方向？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，人数会改变；选项2，起点不同，位置序号可能不同；选项3，数字会消失。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 2,
+      "text": "大一不是“写得更大”。两张卡分别写 8 和 9，9 写得很小，谁表示更多？。答案选项：选项1，看字写得大不大；选项2，9；选项3，8。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 3,
+      "text": "6 个杯子和 5 个盖子，哪组更多？。答案选项：选项1，盖子；选项2，杯子；选项3，同样多。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compare-order-nine",
+      "phase": 4,
+      "text": "4 个杯子和 3 个盖子，哪组更多？。答案选项：选项1，盖子；选项2，杯子；选项3，同样多。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 0,
+      "text": "8 可以分成 3 和几？。答案选项：选项1，5；选项2，6；选项3，4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "1教材任务一：有序记录 8 的分法。把 3 个和 5 个圆片合进整体圈，验证组成 8。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "8 = 0 和 8",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "8 = 1 和 7",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "8 = 2 和 6",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "8 = 3 和 5",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "8 = 4 和 4",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "0 1 2 □ 4 5 □ 7 8 □。填写要求：第 4 格。填写要求：第 7 格。填写要求：第 10 格。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "△ ○ △ ○ △ ？。答案选项：选项1，△；选项2，○；选项3，□。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "从左数第 5 节车厢",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "5 和 ？组成 6。答案选项：选项1，0；选项2，1；选项3，2。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "4 和 ？组成 7。答案选项：选项1，2；选项2，3；选项3，4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "5 和 ？组成 9。答案选项：选项1，3；选项2，4；选项3，5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 1,
+      "text": "分合数卡实验桌。把 6 的数卡拆成 1 和几？。答案选项：选项1，4；选项2，5；选项3，6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 2,
+      "text": "为什么分法常常成对出现？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，交换左右部分，总数不变；选项2，每次总数都会变；选项3，只是为了好看。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 2,
+      "text": "互换之后要判断是否新分法。9 分成 4 和 5，换两边后总数是？。答案选项：选项1，9；选项2，10；选项3，1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 3,
+      "text": "7 个小花分两组，一组 2 个，另一组几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "compose-six-nine",
+      "phase": 4,
+      "text": "7 个圆片分两组，一组 3 个，另一组几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 0,
+      "text": "5 和 1 组成 6，可以写出几道相关算式？。答案选项：选项1，2 道；选项2，4 道；选项3，1 道。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 1,
+      "text": "1教材任务一：由部分整体写一图四式。把 5 个和 1 个学具合起来，观察整体 6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 1,
+      "text": "部分：5、1；整体：6",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 1,
+      "text": "部分：5、1；整体：6",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 1,
+      "text": "一图四式实验桌。整体卡 6，部分卡 4 和 2，翻出减法卡。答案选项：选项1，6－4＝2；选项2，4－2＝6；选项3，6＋4＝2。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 2,
+      "text": "为什么同一幅图能写加法也能写减法？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，答案都必须相同；选项2，符号可以随便换；选项3，它同时包含整体和两个部分。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 2,
+      "text": "四个算式讲同一幅图的不同问题。7 颗果里有 2 颗红，求黄果数，应列？。答案选项：选项1，7－2；选项2，7＋2；选项3，2－7。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 3,
+      "text": "4－3＝？可想 3 和几组成 4。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-six-seven",
+      "phase": 4,
+      "text": "3－1＝？可想 1 和几组成 3。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total-within-7",
+      "phase": 0,
+      "text": "左边有 4 只、右边有 2 只，问题问“一共”，应该先想什么？。答案选项：选项1，从整体去掉一部分；选项2，两部分合成整体；选项3，只数左边。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total-within-7",
+      "phase": 1,
+      "text": "1教材任务一：圈出两个部分。先把左边 4 只、右边 2 只按顺序放进整体框，再说出算式。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total-within-7",
+      "phase": 1,
+      "text": "圈出有用信息，再完成关系图和算式。答案选项：选项1，左边 4 只；选项2，右边 2 只；选项3，树上 5 只。答案选项：选项1，4 □ 2 ＝ 5；选项2，4 □ 2 ＝ 6；选项3，4 □ 2 ＝ 7。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total-within-7",
+      "phase": 1,
+      "text": "花坛左边有 3 朵、右边有 4 朵。问题“共有几朵”要圈哪两条信息？。答案选项：选项1，左边 3 朵和右边 4 朵；选项2，树上 5 只鸟和右边 4 朵；选项3，只圈左边 3 朵。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total-within-7",
+      "phase": 2,
+      "text": "为什么列 4＋2？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，要求两部分合起来的总数；选项2，要求右边有几只；选项3，因为 4 比 2 大。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total-within-7",
+      "phase": 2,
+      "text": "先找两个部分，再问是不是求整体。一边有 3 个，另一边有 4 个，问一共，应列？。答案选项：选项1，3－4；选项2，4－3；选项3，3＋4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total-within-7",
+      "phase": 3,
+      "text": "一组 4 个，另一组 1 个。求一共，应合并哪两个部分？。答案选项：选项1，5 和 4；选项2，4 和 1；选项3，5 和 1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total-within-7",
+      "phase": 4,
+      "text": "一组 2 个，另一组 1 个。求一共，应合并哪两个部分？。答案选项：选项1，3 和 1；选项2，2 和 1；选项3，3 和 2。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-remain-within-7",
+      "phase": 0,
+      "text": "一共有 7 只，跳走 2 只，数量发生什么变化？。答案选项：选项1，不变；选项2，变少；选项3，变多。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-remain-within-7",
+      "phase": 1,
+      "text": "1教材任务一：找整体和去掉部分。从 7 只小鱼中点走 2 只，数清还剩多少。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-remain-within-7",
+      "phase": 1,
+      "text": "圈出有用信息，再完成关系图和算式。答案选项：选项1，一共 7 只；选项2，跳走 2 只；选项3，树旁 4 朵花。答案选项：选项1，7 □ 2 ＝ 4；选项2，7 □ 2 ＝ 5；选项3，7 □ 2 ＝ 6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-remain-within-7",
+      "phase": 1,
+      "text": "树上原有 6 只鸟，飞走 2 只。“还剩”要用哪两条信息？。答案选项：选项1，原有 6 只和飞走 2 只；选项2，树旁 4 朵花和飞走 2 只；选项3，只看树旁花。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-remain-within-7",
+      "phase": 2,
+      "text": "为什么列 7−2？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，从整体去掉跳走的一部分；选项2，因为 7 写在前面；选项3，把两部分合起来。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-remain-within-7",
+      "phase": 2,
+      "text": "求剩余要保留整体，去掉变化的部分。6 只鸟飞走 1 只，检查 6－1＝5 可以用？。答案选项：选项1，5－1＝6；选项2，6＋1＝5；选项3，1＋5＝6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-remain-within-7",
+      "phase": 3,
+      "text": "原来 3 个，拿走 2 个。这个故事的整体是几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-remain-within-7",
+      "phase": 4,
+      "text": "原来 5 个，拿走 1 个。这个故事的整体是几个？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 0,
+      "text": "5 和 4 组成几？。答案选项：选项1，10；选项2，8；选项3，9。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 1,
+      "text": "1教材任务一：找全 8 的一图四式。合并 5 朵红花和 4 朵黄花，验证 5＋4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 1,
+      "text": "部分：5、3；整体：8",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 1,
+      "text": "部分：5、3；整体：8",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 1,
+      "text": "8、9 关系实验桌。整体卡 9 去掉部分卡 4，留下哪张卡？。答案选项：选项1，4；选项2，5；选项3，9。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 2,
+      "text": "算 9−4 时可以想什么？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，4 和 5 组成 9；选项2，9 比 4 写得大；选项3，从 1 开始乱猜。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 2,
+      "text": "知道整体与一部分就能找另一部分。9 块拼图已拼好 6 块，未拼的有？。答案选项：选项1，15 块；选项2，6 块；选项3，3 块。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 3,
+      "text": "8－7＝？可想 7 和几组成 8。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-eight-nine",
+      "phase": 4,
+      "text": "6－3＝？可想 3 和几组成 6。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 0,
+      "text": "图里有鹿、蘑菇和天鹅，题目问“还剩几只鹿”，先找哪两条信息？。答案选项：选项1，蘑菇和天鹅的数量；选项2，一共有的鹿和跑走的鹿；选项3，所有动物的颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 1,
+      "text": "1教材任务一：筛选有用信息。选择能表示“整体 9 只鹿，跑走 3 只，求还剩”的关系图。答案选项：选项1，9 只鹿中跑走 3 只，还剩 6 只；选项2，3 只鹿和 9 只鹿合起来；选项3，只画跑走的 3 只鹿。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 1,
+      "text": "圈出有用信息，再完成关系图和算式。答案选项：选项1，一共有 9 只鹿；选项2，跑走 3 只鹿；选项3，树根处有 6 朵蘑菇。答案选项：选项1，9 □ 3 ＝ 5；选项2，9 □ 3 ＝ 6；选项3，9 □ 3 ＝ 7。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 1,
+      "text": "图中有 9 只鹿、跑走 3 只、树根处有 6 朵蘑菇。求还剩几只鹿，哪条信息不用选？。答案选项：选项1，6 朵蘑菇；选项2，9 只鹿；选项3，跑走 3 只鹿。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 1,
+      "text": "一共有 9 只鹿。答案选项：选项1，有用信息；选项2，无关信息。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 1,
+      "text": "跑走 3 只鹿。答案选项：选项1，有用信息；选项2，无关信息。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 1,
+      "text": "树根处有 6 朵蘑菇。答案选项：选项1，有用信息；选项2，无关信息。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 1,
+      "text": "有 8 只天鹅。答案选项：选项1，有用信息；选项2，无关信息。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 2,
+      "text": "为什么不能把图里所有数字都拿来计算？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，要先看问题需要什么信息；选项2，数字越多答案越准；选项3，颜色相同才能计算。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 2,
+      "text": "图里的数字不一定都要用。图里有花、鱼和鸟，题目只问鱼跑走后还剩多少，先找什么？。答案选项：选项1，鱼的总数和跑走数；选项2，鸟的位置；选项3，花的颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 3,
+      "text": "还剩几只鹿？原有 6 只鹿，走了 3 只，旁边有 3 朵花。该用哪两条信息？。答案选项：选项1，走掉的鹿和花；选项2，原有的鹿和花；选项3，原有的鹿和走掉的鹿。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "select-info-eight-nine",
+      "phase": 4,
+      "text": "还剩几只鹿？原有 9 只鹿，走了 6 只，旁边有 3 朵花。该用哪两条信息？。答案选项：选项1，原有的鹿和花；选项2，原有的鹿和走掉的鹿；选项3，走掉的鹿和花。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 0,
+      "text": "9 再添上 1 是几？。答案选项：选项1，9；选项2，11；选项3，10。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "1教材任务一：填满十格框。把最后 1 个圆片放进十格框，正好填满 10 格。原有 9 个 · 已补 0 / 1 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "1 ＋ ？＝ 10",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "2 ＋ ？＝ 10",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "3 ＋ ？＝ 10",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "4 ＋ ？＝ 10",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "5 ＋ ？＝ 10",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "先写 1，再写 0。填写要求：独立写 10。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "9 的后一个数是 10。答案选项：选项1，10＞9；选项2，10＜9；选项3，10＝9。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 1,
+      "text": "十格伙伴实验桌。十格已有 7 个圆片，还需几颗填满？。答案选项：选项1，2；选项2，3；选项3，4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 2,
+      "text": "为什么把 10 个排成两行五个更容易看？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，可以少一个；选项2，结构整齐，能整体看出 10；选项3，圆片会变大。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 2,
+      "text": "10 可以直接看成“满一组”。十格框还有 2 个空格，要凑满需添？。答案选项：选项1，8 个；选项2，10 个；选项3，2 个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 3,
+      "text": "已有 4 个圆片，十格板还空几格？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten",
+      "phase": 4,
+      "text": "已有 2 个圆片，十格板还空几格？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 0,
+      "text": "6 和几组成 10？。答案选项：选项1，5；选项2，4；选项3，3。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 1,
+      "text": "1教材任务一：整理 10 的相关算式。十格框已有 6 个，再补 4 个凑成 10。原有 6 个 · 已补 0 / 4 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 1,
+      "text": "一组相关算式",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 1,
+      "text": "一组相关算式",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 1,
+      "text": "火箭倒数：10",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 1,
+      "text": "火箭倒数：10",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 1,
+      "text": "十格伙伴实验桌。十格已有 7 个圆片，还需几颗填满？。答案选项：选项1，2；选项2，3；选项3，4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 2,
+      "text": "算 10−6 时可以怎样想？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，10 后面是 11；选项2，6 和 4 组成 10；选项3，只看减号。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 2,
+      "text": "“还差几凑十”能反向检查。十格里有 4 格已满，还差？。答案选项：选项1，4 格；选项2，14 格；选项3，6 格。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 3,
+      "text": "已有 2 个圆片，十格板还空几格？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addsub-ten",
+      "phase": 4,
+      "text": "已有 8 个圆片，十格板还空几格？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 0,
+      "text": "原来 5 只，先来 2 只，又来 1 只，要计算几次？。答案选项：选项1，2 次；选项2，1 次；选项3，不用计算。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 1,
+      "text": "1教材任务一：摆出连加中间结果。按“原来—第一次变化—第二次变化”的顺序点亮。答案选项：选项1，8；选项2，7；选项3，5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 1,
+      "text": "原来",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 1,
+      "text": "第一次：来 2 只",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 1,
+      "text": "第二次：再来 1 只",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 1,
+      "text": "原来",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 1,
+      "text": "第一次飞走 2 只",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 1,
+      "text": "第二次飞走 3 只",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 1,
+      "text": "连续变化实验桌。先摆 5，再来 2，第一张中间结果卡是？。答案选项：选项1，6；选项2，7；选项3，8。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 2,
+      "text": "连加为什么从左往右算？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，加号在左边；选项2，答案会更大；选项3，和事情发生顺序一致。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 2,
+      "text": "每一步的答案成为下一步起点。7 人先离开 2 人、又离开 1 人，中间先剩？。答案选项：选项1，8 人；选项2，4 人；选项3，5 人。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 3,
+      "text": "原来 4 人，先来 2 人，这一步后几人？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "continuous-add-sub",
+      "phase": 4,
+      "text": "原来 3 人，先来 1 人，这一步后几人？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 0,
+      "text": "车上原有 4 人，先上来 3 人，又下去 2 人，人数经历了什么变化？。答案选项：选项1，只减少；选项2，只增加；选项3，先增加再减少。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 1,
+      "text": "1教材任务一：摆出先加后减过程。按 4→7→5 点亮人数变化过程。答案选项：选项1，5；选项2，7；选项3，4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 1,
+      "text": "原来",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 1,
+      "text": "先上来 3 人",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 1,
+      "text": "又下去 2 人",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 1,
+      "text": "原来",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 1,
+      "text": "先下去 2 人",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 1,
+      "text": "又上来 3 人",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 1,
+      "text": "加减混合实验桌。上来 3 人、下去 2 人，应先翻哪张变化卡？。答案选项：选项1，4＋3；选项2，3－2；选项3，4－2。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 2,
+      "text": "为什么加减混合也从左往右算？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，按事情发生先后；选项2，先算数字大的；选项3，先算减法。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 2,
+      "text": "符号跟着真实变化走。池里有 6 条鱼，又游来 2 条、游走 1 条，第一步得？。答案选项：选项1，7 条；选项2，5 条；选项3，8 条。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 3,
+      "text": "原来 3 人，先来 2 人，这一步后几人？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "mixed-add-sub",
+      "phase": 4,
+      "text": "原来 4 人，先来 2 人，这一步后几人？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 0,
+      "text": "10 以内加减法可以借助分与合吗？。答案选项：选项1，可以；选项2，不可以；选项3，只能借助颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "1教材任务一：制作并整理加减法卡。从 6 开始按顺序点亮到 10。答案选项：选项1，10；选项2，9；选项3，8；选项4，7；选项5，6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "4＋2＝6。答案选项：选项1，加法；选项2，减法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "7＋3＝10。答案选项：选项1，加法；选项2，减法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "9－3＝6。答案选项：选项1，加法；选项2，减法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "8－8＝0。答案选项：选项1，加法；选项2，减法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "数序 → 比大小。想一想这两个知识怎样互相帮助。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "分与合 → 加减法。想一想这两个知识怎样互相帮助。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "数量变化 → 检查算式。想一想这两个知识怎样互相帮助。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "5＋2＋1＝8。答案选项：选项1，连加；选项2，连减；选项3，加减混合。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "8－2－3＝3。答案选项：选项1，连加；选项2，连减；选项3，加减混合。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "4＋3－2＝5。答案选项：选项1，连加；选项2，连减；选项3，加减混合。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "7－5＋2＝4。答案选项：选项1，连加；选项2，连减；选项3，加减混合。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 1,
+      "text": "第二单元整理实验桌。数卡 6、7、8、9 后面应接哪张？。答案选项：选项1，8；选项2，10；选项3，11。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 2,
+      "text": "把算式按规律整理有什么用？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，让算式更长；选项2，看见联系、减少遗漏；选项3，改变答案。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 2,
+      "text": "10 以内的比较、分合、加减能互相帮助。做完 8－3，哪种检查最有根据？。答案选项：选项1，只看答案颜色；选项2，看 3＋5 是否为 8；选项3，猜一个新数。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 3,
+      "text": "一组 6 个杯子，另一组 1 个，合起来多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit2-review",
+      "phase": 4,
+      "text": "一组 8 个小花，另一组 1 个，合起来多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 0,
+      "text": "哪种物体最容易向各个方向滚动？。答案选项：选项1，球；选项2，正方体；选项3，长方体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 1,
+      "text": "1教材任务一：按形状分类生活物品。把生活物品分别放入正确的形状家族。答案选项：选项1，正方体；选项2，长方体；选项3，球；选项4，圆柱。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 1,
+      "text": "球。先做一次器材测试，再看观察到什么。答案选项：选项1，能向各个方向滚动；选项2，有平面也有曲面；选项3，六个面一样大；选项4，适合作稳定底座。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 1,
+      "text": "圆柱。先做一次器材测试，再看观察到什么。答案选项：选项1，能向各个方向滚动；选项2，有平面也有曲面；选项3，六个面一样大；选项4，适合作稳定底座。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 1,
+      "text": "正方体。先做一次器材测试，再看观察到什么。答案选项：选项1，能向各个方向滚动；选项2，有平面也有曲面；选项3，六个面一样大；选项4，适合作稳定底座。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 1,
+      "text": "长方体。先做一次器材测试，再看观察到什么。答案选项：选项1，能向各个方向滚动；选项2，有平面也有曲面；选项3，六个面一样大；选项4，适合作稳定底座。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 1,
+      "text": "“我说你拿”：请找出能滚动但不能向各个方向滚的图形。答案选项：选项1，圆柱；选项2，球；选项3，正方体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 2,
+      "text": "球为什么容易滚动？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，颜色很亮；选项2，有很多平平的面；选项3，表面是弯曲的。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 2,
+      "text": "滚得动不等于都是球。一个圆柱罐怎样放更稳？。答案选项：选项1，两种一样稳；选项2，曲面朝下横放；选项3，平面朝下竖放。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 3,
+      "text": "有两个平平的圆面和一个曲面，这是什么？。答案选项：选项1，正方体；选项2，圆柱；选项3，球。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-shapes",
+      "phase": 4,
+      "text": "有两个平平的圆面和一个曲面，这是什么？。答案选项：选项1，圆柱；选项2，正方体；选项3，球。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-building",
+      "phase": 0,
+      "text": "搭高塔时，哪种图形更适合放在最下面？。答案选项：选项1，都一样；选项2，平面稳定的长方体；选项3，容易滚的球。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-building",
+      "phase": 1,
+      "text": "1教材任务一：选择稳定底座。选择更稳的搭法。对照三张搭法图，选出又稳又高的一种。答案选项：选项1，球放最下，盒子放上面；选项2，长方体放最下，圆柱竖放；选项3，所有物体横着滚。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-building",
+      "phase": 1,
+      "text": "积木稳定高塔。所有积木都用上，搭出能通过轻推测试的稳定高塔。答案选项：选项1，稳稳的；选项2，会倒下。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-building",
+      "phase": 1,
+      "text": "搭高塔前，哪种积木更适合做稳定底座？。答案选项：选项1，平放的长方体；选项2，球；选项3，竖着滚动的圆柱。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-building",
+      "phase": 2,
+      "text": "怎样判断搭得稳不稳？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，最上面一定放球；选项2，颜色相同；选项3，底面平、支撑范围大。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-building",
+      "phase": 2,
+      "text": "底座宽，支撑才更容易稳。搭塔有点晃，最先检查什么？。答案选项：选项1，底座与桌面的接触；选项2，塔的名字；选项3，积木颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-building",
+      "phase": 3,
+      "text": "要搭稳高塔，哪种底座比较合适？。答案选项：选项1，平面朝下的长方体；选项2，横放易滚的圆柱；选项3，球。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-building",
+      "phase": 4,
+      "text": "要搭稳高塔，哪种底座比较合适？。答案选项：选项1，横放易滚的圆柱；选项2，球；选项3，平面朝下的长方体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 0,
+      "text": "两个相同正方体并排放，可以拼成什么？。答案选项：选项1，圆柱；选项2，长方体；选项3，球。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "1教材任务一：用四块小正方体拼长方体。选择由 4 个相同正方体拼成的长方体。对照三幅拼法图，选出由 4 个小正方体排成一行拼成的长方体。答案选项：选项1，2×2 的平面方块；选项2，4 个排成一行的方块；选项3，4 个散开的方块。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "四块积木拼长方体。按蓝图用 4 个相同小正方体拼成长方体。答案选项：选项1，相同拼法；选项2，不同拼法。",
+      "overflow": false,
+      "fit": 0.989,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "P70全部材料拼搭。把材料全带上，搭一座又稳又高的塔。答案选项：选项1，底座选长方体；选项2，底座选球；选项3，底座选圆柱。答案选项：选项1，顶端选球；选项2，顶端选长方体；选项3，顶端选圆柱。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "P71做一做。用 4 个相同小正方体，找出两种长方体拼法",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "① 实物像哪个立体图形？。答案选项：选项1，胶棒是长方体；选项2，胶棒是正方体；选项3，胶棒是球；选项4，胶棒是圆柱。答案选项：选项1，魔方是长方体；选项2，魔方是正方体；选项3，魔方是球；选项4，魔方是圆柱。答案选项：选项1，玻璃球是长方体；选项2，玻璃球是正方体；选项3，玻璃球是球；选项4，玻璃球是圆柱。答案选项：选项1，文具盒是长方体；选项2，文具盒是正方体；选项3，文具盒是球；选项4，文具盒是圆柱。答案选项：选项1，茶叶盒是长方体；选项2，茶叶盒是正方体；选项3，茶叶盒是球；选项4，茶叶盒是圆柱。",
+      "overflow": false,
+      "fit": 0.993,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "② 数一数组合图。填写要求：长方体。填写要求：正方体。填写要求：球。填写要求：圆柱。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "③ 规律接着摆。下一组应该是：。答案选项：选项1，圆柱、正方体、球；选项2，球、圆柱、正方体；选项3，正方体、球、圆柱。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "我的立体图形发现。④ 我的发现。填写要求：我发现，说出你的发现，如：我会用小正方体拼出不同的长方体……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 1,
+      "text": "4 个小正方体排成一行，能拼成什么？。答案选项：选项1，长方体；选项2，球；选项3，圆柱。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 2,
+      "text": "为什么把拼好的图形转一转，还是同一种拼法？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，转动会增加方块；选项2，颜色变了一点；选项3，小方块的连接没有改变。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 2,
+      "text": "转动不改变小方块的连接方式。两个拼法只差把整体转了一个方向，它们是？。答案选项：选项1，不能判断；选项2，两种不同拼法；选项3，同一种拼法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 3,
+      "text": "两个相同小正方体面贴面上下叠放，形成什么？。答案选项：选项1，圆柱；选项2，正方体；选项3，长方体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solid-compose",
+      "phase": 4,
+      "text": "两个相同小正方体面贴面并排摆放，形成什么？。答案选项：选项1，圆柱；选项2，正方体；选项3，长方体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten-again",
+      "phase": 0,
+      "text": "数很多小棒时，怎样更清楚？。答案选项：选项1，全部散开放；选项2，10 根捆成一捆；选项3，只数颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten-again",
+      "phase": 1,
+      "text": "1教材任务一：逐根数出 10 根小棒。逐根点数 10 根小棒，把它们看成 1 个十。已经按顺序数了 0 / 10 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten-again",
+      "phase": 1,
+      "text": "把 10 支铅笔收进 1 个笔筒",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten-again",
+      "phase": 1,
+      "text": "10 里面的 1 和 0 分别表示什么？。答案选项：选项1，1 个十和 0 个一；选项2，1 个一和 0 个十；选项3，10 个十。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten-again",
+      "phase": 2,
+      "text": "为什么 10 根要捆成一捆？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，便于按十计数；选项2，可以少数几根；选项3，小棒会变短。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten-again",
+      "phase": 2,
+      "text": "10 个一重新看作 1 个十。十根小棒捆起来后，实际棒的数量怎样？。答案选项：选项1，仍是 10 根；选项2，变成 11 根；选项3，变成 1 根。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten-again",
+      "phase": 3,
+      "text": "10根小棒捆在一起，变成几个十？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "ten-again",
+      "phase": 4,
+      "text": "10根小棒捆在一起，变成几个十？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 0,
+      "text": "1 个十和 5 个一组成几？。答案选项：选项1，10；选项2，15；选项3，51。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "1教材任务一：摆出 1 个十和 5 个一。把“1 个十”和“5 个一”合到数位框中。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "摆出 1 筒和 5 支铅笔，也就是 15",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "1 个十和 1 个一。填写要求：写作。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "1 个十和 3 个一。填写要求：写作。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "1 个十和 6 个一。填写要求：写作。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "1 个十和 8 个一。填写要求：写作。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "2 个十。填写要求：写作。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "20 由什么组成？。答案选项：选项1，2个十；选项2，2个一；选项3，1个十和10个一。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 1,
+      "text": "1 个十和 8 个一是？。答案选项：选项1，18；选项2，81；选项3，108。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 2,
+      "text": "15 中的 1 和 5 分别表示什么？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，只是两个数字；选项2，1 个十和 5 个一；选项3，1 个一和 5 个十。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 2,
+      "text": "同样的数字在不同位置意思不同。11 里左边的“1”表示？。答案选项：选项1，1 个一；选项2，1 个十；选项3，11 个十。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 3,
+      "text": "10根小棒捆在一起，变成几个十？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "eleven-twenty",
+      "phase": 4,
+      "text": "10根小棒捆在一起，变成几个十？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 0,
+      "text": "12 更接近 10 还是 20？。答案选项：选项1，20；选项2，一样近；选项3，10。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 1,
+      "text": "1教材任务一：沿数轴走 10 到 15。按顺序点亮 10、11、12、13、14、15。答案选项：选项1，15；选项2，14；选项3，13；选项4，12；选项5，11；选项6，10。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 1,
+      "text": "数轴轨道",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 1,
+      "text": "12 距离谁更近？。答案选项：选项1，10；选项2，20。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 1,
+      "text": "18 距离谁更近？。答案选项：选项1，10；选项2，20。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 1,
+      "text": "14 的前一个和后一个数是？。答案选项：选项1，13 和 15；选项2，12 和 16；选项3，14 和 15。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 2,
+      "text": "数轴上右边的数通常怎样？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，更大；选项2，更小；选项3，没有规律。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 2,
+      "text": "相邻数相差 1，接近看距离。18 到 20 和到 10，哪个更近？。答案选项：选项1，20；选项2，10；选项3，一样近。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 3,
+      "text": "13 前面的数是多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "order-twenty",
+      "phase": 4,
+      "text": "14 前面的数是多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 0,
+      "text": "10 加 3 是多少？。答案选项：选项1，30；选项2，7；选项3，13。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 1,
+      "text": "1教材任务一：合并十和一。把 1 个十和 3 个一合起来。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 1,
+      "text": "1 个十和 3 个一合起来。答案选项：选项1，10＋3＝13；选项2，13－3＝10；选项3，13－10＝3；选项4，10＋3＝10。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 1,
+      "text": "13 去掉 3 个一。答案选项：选项1，10＋3＝13；选项2，13－3＝10；选项3，13－10＝3；选项4，10＋3＝10。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 1,
+      "text": "13 去掉 1 个十。答案选项：选项1，10＋3＝13；选项2，13－3＝10；选项3，13－10＝3；选项4，10＋3＝10。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 1,
+      "text": "13－10＝？。答案选项：选项1，3；选项2，10；选项3，13。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 2,
+      "text": "13−3 为什么等于 10？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，去掉 3 个一，还剩 1 个十；选项2，去掉十位；选项3，13 比 3 大。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 2,
+      "text": "十位不动，先看几个一。17－5 后，十位上的一捆怎样？。答案选项：选项1，仍留一捆；选项2，变成五捆；选项3，变成零捆。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 3,
+      "text": "10＋7＝？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "simple-addsub-twenty",
+      "phase": 4,
+      "text": "10＋7＝？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "between-positions",
+      "phase": 0,
+      "text": "第 10 人和第 15 人之间包含两端吗？。答案选项：选项1，包含；选项2，不包含；选项3，只包含第10人。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "between-positions",
+      "phase": 1,
+      "text": "1教材任务一：确定第 10 和第 15 两端。只点数第 10 与第 15 之间的 4 个人。已经按顺序数了 0 / 4 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "between-positions",
+      "phase": 1,
+      "text": "教材 P82 · 阅读队列中的间隔第 10 位和第 15 位在读书，只标出两人之间的读者。答案选项：选项1，📖 端点 10；选项2，🧒 第 11 人；选项3，🧒 第 12 人；选项4，🧒 第 13 人；选项5，🧒 第 14 人；选项6，📖 端点 15。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "between-positions",
+      "phase": 1,
+      "text": "第 6 人和第 10 人之间有几人？。答案选项：选项1，3 人；选项2，4 人；选项3，5 人。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "between-positions",
+      "phase": 2,
+      "text": "为什么不是 15−10＝5 人？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，因为 5 太大；选项2，还要去掉一个端点间隔；选项3，序号不能相减。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "between-positions",
+      "phase": 2,
+      "text": "“之间”先把两端划掉。第 3 人和第 7 人之间，哪位不算进去？。答案选项：选项1，第 4 人；选项2，第 5 人；选项3，第 3 与第 7 人。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "between-positions",
+      "phase": 3,
+      "text": "从第 7 人到第 11 人，两个位置相差几？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "between-positions",
+      "phase": 4,
+      "text": "从第 5 人到第 11 人，两个位置相差几？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 0,
+      "text": "18 由几个十和几个一组成？。答案选项：选项1，18 个十；选项2，8 个十和 1 个一；选项3，1 个十和 8 个一。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "1教材任务一：摆出 18 的十位和个位。按 16、17、18、19、20 的顺序点亮。答案选项：选项1，20；选项2，19；选项3，18；选项4，17；选项5，16。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "摆出 18：1 筒和 8 支铅笔",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "① P85 知识图：1 个十和 3 个一是多少？。填写要求：P85知识图数。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "② P86 画一画：填写十位和个位。填写要求：17：十位 个位。填写要求：17的个位。填写要求：15：十位 个位。填写要求：15的个位。填写要求：18：十位 个位。填写要求：18的个位。填写要求：20：十位 个位。填写要求：20的个位。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "③ 数序：云台路到动物园中间停几站？按得数每次加 1 走到什么水果？。填写要求：中间站数。填写要求：水果，说出水果的名字。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "④ 填未知数。填写要求：7＋□＝10。填写要求：10＋□＝12。填写要求：11＋□＝13。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "⑤ P87 涂色游戏：给得数 8、13、14 的算式标出得数。填写要求：0＋8＝。填写要求：10－2＝。填写要求：3＋5＝。填写要求：12＋1＝。填写要求：13＋0＝。填写要求：11＋2＝。填写要求：14－1＝。填写要求：15－1＝。填写要求：10＋4＝。填写要求：14＋0＝。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "⑥ 玉米横截面上的颗粒一般是什么数？写下本单元收获。填写要求：P87单双数，说出来：奇数还是偶数。填写要求：第四单元成长档案，说出本单元的收获。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 1,
+      "text": "先估后数：一捆十根和 6 根散棒一共有？。答案选项：选项1，6；选项2，10；选项3，16。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 2,
+      "text": "比较 17 和 19 先看什么？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，颜色；选项2，数字写得大小；选项3，十位，再看个位。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 2,
+      "text": "比较十几先看十位，再看个位。19 与 20 谁大，先比较什么？。答案选项：选项1，数字颜色；选项2，个位是否为 9；选项3，十位上的十的个数。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 3,
+      "text": "10根小棒捆在一起，变成几个十？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit4-review",
+      "phase": 4,
+      "text": "10根小棒捆在一起，变成几个十？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-nine",
+      "phase": 0,
+      "text": "算 9＋4 时，先从 4 里分出几给 9？。答案选项：选项1，1；选项2，3；选项3，2。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-nine",
+      "phase": 1,
+      "text": "1教材任务一：从第二个加数拆 1 凑十。九格已满 9 个，先补 1 个凑成 10，再看剩余。原有 9 个 · 已补 0 / 1 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-nine",
+      "phase": 1,
+      "text": "凑十自主拆分。9＋4，自己决定怎样凑十。填写要求：我准备从第二组移几个。填写要求：两组总共几个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-nine",
+      "phase": 1,
+      "text": "9＋6：从 6 里先拿几给 9 凑十？。答案选项：选项1，1；选项2，2；选项3，3。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-nine",
+      "phase": 2,
+      "text": "为什么先凑成 10？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，9 不能相加；选项2，10 加几容易计算；选项3，必须改变题目。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-nine",
+      "phase": 2,
+      "text": "9＋4 先把 4 分成 1 和 3。9＋6 凑十后，还剩第二部分的几个？。答案选项：选项1，1 个；选项2，5 个；选项3，6 个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-nine",
+      "phase": 3,
+      "text": "9＋5＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-nine",
+      "phase": 4,
+      "text": "9＋8＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-seven-six",
+      "phase": 0,
+      "text": "8 还差几凑成 10？。答案选项：选项1，3；选项2，2；选项3，1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-seven-six",
+      "phase": 1,
+      "text": "1教材任务一：给 8 补 2 凑十。十格框已有 8 个，补 2 个先凑十。原有 8 个 · 已补 0 / 2 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-seven-six",
+      "phase": 1,
+      "text": "凑十自主拆分。8＋5，自己决定怎样凑十。填写要求：我准备从第二组移几个。填写要求：两组总共几个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-seven-six",
+      "phase": 1,
+      "text": "7＋6：先从 6 里分几给 7？。答案选项：选项1，2；选项2，3；选项3，4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-seven-six",
+      "phase": 2,
+      "text": "算 7＋5 时先给 7 几个？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，3；选项2，2；选项3，4。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-seven-six",
+      "phase": 2,
+      "text": "缺多少，就从另一部分借多少。7＋6 先给 7 多少凑十？。答案选项：选项1，2 个；选项2，3 个；选项3，6 个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-seven-six",
+      "phase": 3,
+      "text": "8＋9＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-seven-six",
+      "phase": 4,
+      "text": "8＋7＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-nine-strategies",
+      "phase": 0,
+      "text": "8＋9 中，想先给 8 凑成 10，要从 9 里拿几个？。答案选项：选项1，1 个；选项2，2 个；选项3，3 个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-nine-strategies",
+      "phase": 1,
+      "text": "1教材任务一：给 8 凑十。先给 8 补 2 个凑成 10，再看 9 里还剩多少个。原有 8 个 · 已补 0 / 2 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-nine-strategies",
+      "phase": 1,
+      "text": "8加9两种凑十方法。先选给谁凑十，再自己拆分和检查。每条路线都需实际移动圆片并计算完整结果。填写要求：凑十后，总共多少。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-nine-strategies",
+      "phase": 1,
+      "text": "8＋9 选择“给 9 凑十”时，从 8 里拿？。答案选项：选项1，1；选项2，2；选项3，3。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-nine-strategies",
+      "phase": 2,
+      "text": "为什么给 8 凑十和给 9 凑十都能算对？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，因为 8 和 9 一样大；选项2，只是把同一总数分成了不同部分；选项3，两个数会自动变小。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-nine-strategies",
+      "phase": 2,
+      "text": "可以选 8 或 9 先凑十，但拆分后的总数不变。给 9 凑十时，应从 8 里拿几个？。答案选项：选项1，2 个；选项2，1 个；选项3，7 个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-nine-strategies",
+      "phase": 3,
+      "text": "9＋8＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-eight-nine-strategies",
+      "phase": 4,
+      "text": "9＋8＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 0,
+      "text": "5＋8 可以转化成哪个更熟悉的算式？。答案选项：选项1，8−5；选项2，5＋5；选项3，8＋5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 1,
+      "text": "1教材任务一：交换两个加数的位置。把 5 个和 8 个学具合起来，再交换两组位置观察总数。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 1,
+      "text": "5＋8＝13",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 1,
+      "text": "4＋9＝13",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 1,
+      "text": "5＋8 交换后变成？。答案选项：选项1，8＋5；选项2，8－5；选项3，5＋5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 2,
+      "text": "交换两个加数位置后为什么和不变？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，大数会消失；选项2，加号变成减号；选项3，两部分数量没有改变。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 2,
+      "text": "交换加数只改顺序不改数量。3＋8 可以先看成什么再算？。答案选项：选项1，3＋3；选项2，8－3；选项3，8＋3。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 3,
+      "text": "4＋8＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "plus-five-four-three-two",
+      "phase": 4,
+      "text": "3＋9＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total",
+      "phase": 0,
+      "text": "求男生和女生一共有多少人，用什么法？。答案选项：选项1，减法；选项2，加法；选项3，比较法。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total",
+      "phase": 1,
+      "text": "1教材任务一：圈出两种分组的信息。选择与画面数量关系一致的线段模型。答案选项：选项1，两部分合成一个整体；选项2，从整体去掉一部分；选项3，只画一个部分。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total",
+      "phase": 1,
+      "text": "圈出有用信息，再完成关系图和算式。答案选项：选项1，男生 5 人；选项2，女生 10 人；选项3，前排 7 人。答案选项：选项1，5 □ 10 ＝ 14；选项2，5 □ 10 ＝ 15；选项3，5 □ 10 ＝ 16。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total",
+      "phase": 1,
+      "text": "同一队列的前排有 7 人、后排有 8 人，求一共有多少人要选哪两部分？。答案选项：选项1，前排 7 人和后排 8 人；选项2，只选前排 7 人；选项3，只数举红花的人。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total",
+      "phase": 2,
+      "text": "为什么用加法？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，求谁更高；选项2，求剩余；选项3，求两个部分合起来的总数。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total",
+      "phase": 2,
+      "text": "求一共先找两个部分是否都算进来。统计参加两项活动的人数前，最需要检查？。答案选项：选项1，是否有人参加两项；选项2，谁名字更长；选项3，活动海报颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total",
+      "phase": 3,
+      "text": "一组 2 个，另一组 1 个。求一共，应合并哪两个部分？。答案选项：选项1，3 和 2；选项2，2 和 1；选项3，3 和 1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "solve-total",
+      "phase": 4,
+      "text": "一组 4 个，另一组 8 个。求一共，应合并哪两个部分？。答案选项：选项1，4 和 8；选项2，12 和 8；选项3，12 和 4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "find-original",
+      "phase": 0,
+      "text": "领走 6 个，还剩 5 个，原来的数量比 5 大还是小？。答案选项：选项1，相同；选项2，更小；选项3，更大。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "find-original",
+      "phase": 1,
+      "text": "1教材任务一：找领走和剩下两部分。把“领走的 6 个”和“剩下的 5 个”重新合起来。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "find-original",
+      "phase": 1,
+      "text": "圈出有用信息，再完成关系图和算式。答案选项：选项1，领走 6 个；选项2，剩下 5 个；选项3，旁边有 3 个篮子。答案选项：选项1，6 □ 5 ＝ 10；选项2，6 □ 5 ＝ 11；选项3，6 □ 5 ＝ 12。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "find-original",
+      "phase": 1,
+      "text": "草莓吃了 8 个，还剩 5 个，求原来有多少，选哪两个部分？。答案选项：选项1，吃了 8 和剩 5；选项2，只看剩 5；选项3，篮子 2 个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "find-original",
+      "phase": 2,
+      "text": "题目有“领走”，为什么仍用加法？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，看到领走都用减法；选项2，因为答案超过 10；选项3，求原来的整体，要合并两个部分。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "find-original",
+      "phase": 2,
+      "text": "“领走”不自动等于用减法。借走 4 本、还在架上 8 本，原来有？。答案选项：选项1，4 本；选项2，8 本；选项3，12 本。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "find-original",
+      "phase": 3,
+      "text": "领走 3 个，还剩 17 个，问原来多少，要求的是？。答案选项：选项1，剩下的一部分；选项2，领走的一部分；选项3，原来的整体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "find-original",
+      "phase": 4,
+      "text": "领走 6 个，还剩 7 个，问原来多少，要求的是？。答案选项：选项1，剩下的一部分；选项2，原来的整体；选项3，领走的一部分。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 0,
+      "text": "把和相同的算式放一起，容易发现规律吗？。答案选项：选项1，容易；选项2，不容易；选项3，会改变答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 1,
+      "text": "1教材任务一：补全进位加法三角表。按得数 11、12、13、14、15 点亮算式组。答案选项：选项1，15；选项2，14；选项3，13；选项4，12；选项5，11。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 1,
+      "text": "进位加法表。按原页三角排列，把余下的 10 道进位加法填进白格。填写要求：5＋。填写要求：4＋。填写要求：3＋。填写要求：6＋。填写要求：7＋。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 1,
+      "text": "① 回顾 8＋9 的凑十法。填写要求：8加9拆出的数。填写要求：8加9剩余的数。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 1,
+      "text": "② 看图列式：领走 6 个，剩下 5 个。领走：●●●●●● 剩下：●●●●●。填写要求：原来一共有多少个？，6＋5＝11。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 1,
+      "text": "③ 任意指一个算式，快速说出得数",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 1,
+      "text": "④ 计算第一列和第一行，说说发现。填写要求：第一列（9＋1、9＋2……），例如：第二个加数每次加 1，得数也每次加 1。填写要求：第一行（9＋1、8＋2……），例如：第一个加数每次减 1，第二个加数每次加 1，和不变。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 1,
+      "text": "加法表中和是 14 的算式是？。答案选项：选项1，8＋6；选项2，8＋5；选项3，9＋4。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 2,
+      "text": "整理加法表有什么用？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，让算式答案变大；选项2，只为了装饰；选项3，发现规律、帮助熟练计算。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 2,
+      "text": "找同一个和，不等于只背一串答案。7＋6＝13，另一道和也是 13 的是？。答案选项：选项1，8＋6；选项2，7＋5；选项3，8＋5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 3,
+      "text": "6＋5＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "addition-table",
+      "phase": 4,
+      "text": "8＋5＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 0,
+      "text": "进位加法的关键中间数通常是？。答案选项：选项1，10；选项2，5；选项3，20。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "1教材任务一：复习凑十路线。十格框已有 7 个，补 3 个完成一次凑十。原有 7 个 · 已补 0 / 3 个",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "凑十自主拆分。7＋8，自己决定怎样凑十。填写要求：我准备从第二组移几个。填写要求：两组总共几个。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "8＋5 怎样先凑十？。答案选项：选项1，8＋5＝10＋3＝13；选项2，8＋5＝10＋5＝15；选项3，8＋5＝8＋3＝11。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "8＋5＝13 的相关减法。答案选项：选项1，13－8＝5；选项2，8－5＝13；选项3，13＋8＝5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "领走 6 个，还剩 5 个，原来有多少？。答案选项：选项1，6＋5＝11；选项2，6－5＝1；选项3，11－6＝5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "① 口算。填写要求：3＋9＝。填写要求：6＋7＝。填写要求：5＋8＝。填写要求：2＋9＝。填写要求：3＋7＝。填写要求：7＋5＝。填写要求：10＋4＝。填写要求：8－3＝。填写要求：6＋6＝。填写要求：7＋7＝。填写要求：8＋8＝。填写要求：9＋9＝。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "② 比一比：4＋9 和 6＋5，谁的得数大？。填写要求：P101比较得数大，说算式，如 4＋9。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "③ 写出同得数的算式组。填写要求：填写同和算式 6＋7，说算式。填写要求：填写同和算式 7＋6，说算式。填写要求：填写同和算式 8＋5，说算式。填写要求：填写同和算式 8＋3，说算式。填写要求：填写同和算式 9＋2，说算式。填写要求：填写同和算式 10＋1，说算式。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "④ 积木：7 块和 9 块一共多少？。填写要求：P101积木列式，说算式，如 7＋9＝16。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "⑤ 填 ＋ 或 －。填写要求：8○5＝13。填写要求：10○5＝5。填写要求：9○6＝15。填写要求：16○10＝6。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "⑥ 吃了 8 个饺子，还剩 5 个，原来多少？。填写要求：P102饺子列式，说算式，如 8＋5＝13。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "⑦ 填未知加数。填写要求：7＋□＝16。填写要求：9＋□＝12。填写要求：□＋3＝11。填写要求：6＋□＝13。填写要求：8＋□＝15。填写要求：□＋4＝14。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "⑧ 思考：前面 9 人、后面 5 人，一共有多少人？。填写要求：P102排队答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 1,
+      "text": "7＋8，用凑十法先算？。答案选项：选项1，7＋3＝10；选项2，7＋1＝8；选项3，8＋8＝16。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 2,
+      "text": "选择算法时最重要的是什么？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，只能用一种方法；选项2，步骤越多越好；选项3，能说清数量关系且算得正确。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 2,
+      "text": "会解释的方法比“只能一种”更重要。算 8＋9，哪种想法可靠？。答案选项：选项1，选一边凑十并说明分法；选项2，只看哪个数字写得大；选项3，随意减去一个数。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 3,
+      "text": "8＋9＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "unit5-review",
+      "phase": 4,
+      "text": "6＋5＝？请算完整结果。。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 0,
+      "text": "“10 个一是 1 个十”属于哪部分知识？。答案选项：选项1，数位；选项2，图形；选项3，位置。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 1,
+      "text": "1教材任务一：连接数与运算知识图。依次点亮 5、10、15、20，观察每次增加 5。答案选项：选项1，20；选项2，15；选项3，10；选项4，5。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 1,
+      "text": "20 以内的数 → 0～9 和 10～20",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 1,
+      "text": "十位和个位 → 12 是 1 个十和 2 个一",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 1,
+      "text": "20 以内的加、减法 → 不进位和进位",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 1,
+      "text": "2 只和 4 只长颈鹿 → 2＋4＝6",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 1,
+      "text": "数表路径：从 8 向右走 2 格到？。答案选项：选项1，9；选项2，10；选项3，11。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 2,
+      "text": "为什么要把知识连接起来？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，让页数更多；选项2，只记一个答案；选项3，遇到新问题能调用相关方法。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 2,
+      "text": "数序、数位、组成各解决一种问题。想知道 18 比 15 大多少，最先可用什么？。答案选项：选项1，猜一个数字；选项2，数线或数位比较；选项3，只看图形颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 3,
+      "text": "1 个十和 2 个一组成多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-numbers",
+      "phase": 4,
+      "text": "1 个十和 7 个一组成多少？。填写要求：写出你的答案，填写后点击检查我的答案。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 0,
+      "text": "求一共通常关注什么关系？。答案选项：选项1，整体去掉部分；选项2，前后位置；选项3，部分合成整体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 1,
+      "text": "1教材任务一：完成数量关系算式链。选择“已知整体和一部分，求另一部分”的模型。答案选项：选项1，整体－已知部分＝未知部分；选项2，部分＋部分＝已知部分；选项3，只比较两个数字。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 1,
+      "text": "圈出有用信息，再完成关系图和算式。答案选项：选项1，原来 12 个；选项2，走了 5 个；选项3，桌上有 3 支笔。答案选项：选项1，12 □ 5 ＝ 6；选项2，12 □ 5 ＝ 7；选项3，12 □ 5 ＝ 8。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 1,
+      "text": "12 本书借走 5 本，还剩多少本？。答案选项：选项1，12－5＝7；选项2，12＋5＝17；选项3，7－5＝2。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 1,
+      "text": "原有 12 本，借走 5 本，还剩？。答案选项：选项1，12－5＝7；选项2，12＋5＝17。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 1,
+      "text": "吃掉 6 个，还剩 7 个，原来？。答案选项：选项1，6＋7＝13；选项2，7－6＝1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 1,
+      "text": "怎样检查 12－5＝7？。答案选项：选项1，7＋5＝12；选项2，12＋5＝7。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 2,
+      "text": "为什么不能只看关键词选运算？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，要看信息之间的数量关系；选项2，关键词都没有用；选项3，加减法答案一样。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 2,
+      "text": "关键词只是提醒，模型才决定运算。同样有“走了 5”，问“原来”时通常需要？。答案选项：选项1，不看剩余；选项2，一律减 5；选项3，把走的和剩的合起来。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 3,
+      "text": "一共 10 个，一组 9 个，另一组未知。这里的整体是？。答案选项：选项1，9；选项2，10；选项3，1。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-relations",
+      "phase": 4,
+      "text": "一共 15 个，一组 4 个，另一组未知。这里的整体是？。答案选项：选项1，15；选项2，4；选项3，11。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-shapes",
+      "phase": 0,
+      "text": "搭建时要先考虑图形的什么？。答案选项：选项1，形状和稳定性；选项2，名称长短；选项3，颜色深浅。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-shapes",
+      "phase": 1,
+      "text": "1教材任务一：综合辨认立体图形。再次把四种生活物品送回正确形状家族。答案选项：选项1，圆柱；选项2，长方体；选项3，球；选项4，正方体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-shapes",
+      "phase": 1,
+      "text": "二乘二乘二正方体拼搭。先拼满第一层，再拼满第二层",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-shapes",
+      "phase": 1,
+      "text": "4 个小正方体拼成长方体，必须满足什么？。答案选项：选项1，方块彼此贴紧；选项2，散开放着；选项3，只看颜色。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-shapes",
+      "phase": 2,
+      "text": "圆柱怎样放更稳定？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，曲面朝下；选项2，平面朝下；选项3，怎样都一样。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-shapes",
+      "phase": 2,
+      "text": "同一种立体图形可换朝向。圆柱竖放与横放，类别怎样？。答案选项：选项1，竖放变球；选项2，仍是圆柱；选项3，横放变正方体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-shapes",
+      "phase": 3,
+      "text": "有两个平平的圆面和一个曲面，这是什么？。答案选项：选项1，圆柱；选项2，球；选项3，正方体。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-shapes",
+      "phase": 4,
+      "text": "有两个平平的圆面和一个曲面，这是什么？。答案选项：选项1，圆柱；选项2，正方体；选项3，球。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 0,
+      "text": "遇到综合问题时第一步做什么？。答案选项：选项1，只看数字最大的；选项2，马上猜答案；选项3，看清信息和问题。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "1教材任务一：完成数表和加法表操作。选择完整的解决问题流程。答案选项：选项1，读题→操作或画图→列式→检查；选项2，猜答案→结束；选项3，只列式不看问题。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "圈出有用信息，再完成关系图和算式。答案选项：选项1，吃掉 8 条鱼；选项2，还剩 5 条鱼；选项3，水里有 2 片叶子。答案选项：选项1，8 □ 5 ＝ 12；选项2，8 □ 5 ＝ 13；选项3，8 □ 5 ＝ 14。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "数表里从 8 向右走 2 格，出口数字是？。答案选项：选项1，9；选项2，10；选项3，11。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "入口 8 → 出口 12。答案选项：选项1，8；选项2，9；选项3，10；选项4，11；选项5，12。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "1＋9，得数是10吗？。教材 P107 · 凑十印章墙点击给得数正好是 10 的格子盖章",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "2＋8，得数是10吗？。教材 P107 · 凑十印章墙点击给得数正好是 10 的格子盖章",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "3＋7，得数是10吗？。教材 P107 · 凑十印章墙点击给得数正好是 10 的格子盖章",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "4＋6，得数是10吗？。教材 P107 · 凑十印章墙点击给得数正好是 10 的格子盖章",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "5＋5，得数是10吗？。教材 P107 · 凑十印章墙点击给得数正好是 10 的格子盖章",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "6＋5，得数是10吗？。教材 P107 · 凑十印章墙点击给得数正好是 10 的格子盖章",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "① 猴群图：提出两道不同的数学问题并列式。🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒。填写要求：第 1 题，说出来，例如：左边和右边一共有几只猴子？。填写要求：猴群算式第 1 题，说算式，如 8＋8＝16。填写要求：第 2 题，说出来，例如：左边和右边一共有几只猴子？。填写要求：猴群算式第 2 题，说算式，如 8＋8＝16。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "② 三盒小印章中买两盒：可能买多少枚？。答案选项：选项1，第 1 盒：4 枚；选项2，第 2 盒：8 枚；选项3，第 3 盒：4 枚。填写要求：我提出的问题，说出你的问题。填写要求：可能买了多少枚。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "③ 在方框里填一个合适的数。填写要求：9＋＜15。填写要求：18－＞10。填写要求：13＋＜19。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "④ 小明和小华读同一本书：小明读 8 页，小华读 9 页，谁剩下的多？。答案选项：选项1，小明；选项2，小华。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 1,
+      "text": "全册成长档案。给九项学习表现各涂 0～3 朵小红花。填写要求：我觉得自己还应在哪些方面更努力些？，说出你的打算。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 2,
+      "text": "自我评价最重要的作用是什么？。先说、指、摆或画出自己的想法，再检查它是否能解释刚才的操作。再核对：哪条关系能解释操作？。答案选项：选项1，和别人比速度；选项2，知道会什么、还要练什么；选项3，只给自己满分。填写要求：我的想法，我看到了……我这样做是因为……。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 2,
+      "text": "检查要回到原问题，不只看得数。算出 12 后，哪一步能发现把人数写成“12 支”的错误？。答案选项：选项1，只看答案数字；选项2，把算式抄一遍；选项3，回到问题检查单位。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 3,
+      "text": "图里只有 9 个杯子和 1 个盘子，哪一个问题能由这些信息回答？。答案选项：选项1，明天会来几人；选项2，杯子多少钱；选项3，杯子和盘子共有几件。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    },
+    {
+      "lessonId": "review-application",
+      "phase": 4,
+      "text": "图里只有 9 个杯子和 1 个盘子，哪一个问题能由这些信息回答？。答案选项：选项1，杯子和盘子共有几件；选项2，杯子多少钱；选项3，明天会来几人。",
+      "overflow": false,
+      "fit": 1,
+      "replayVisible": true
+    }
+  ]
+}

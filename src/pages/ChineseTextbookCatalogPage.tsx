@@ -1,13 +1,16 @@
 import BackButton from '../components/BackButton';
-import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useRef } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { stopSpeaking } from '../speech';
 import { CHINESE_BOOK_UNITS, CHINESE_TEXTBOOK_LESSONS } from '../content/chineseTextbookCurriculum';
+import { getChineseTeaching } from '../content/chineseTeaching';
+import { readChineseEvidence, EVIDENCE_LABELS, latestSkillEvidence } from '../chineseLearning';
 import '../chinese-textbook.css';
+import '../chinese-classroom.css';
 
 /** 与语文课时页的阶段条一致，用于"继续上次学习"显示进行中的阶段名 */
-const CHINESE_PHASE_LABELS = ['看图发现', '逐句点读', '教材练习', '动手表达', '迁移挑战'];
+const CHINESE_PHASE_LABELS = ['看图发现', '完整听读', '教材练习', '真实表达', '迁移挑战'];
 
 /** 读取每课星级：新格式 { [id]: 星数 }；旧格式（纯完成的 id 数组）视为 3 星 */
 function readStars(childId: string | null) {
@@ -24,9 +27,13 @@ export default function ChineseTextbookCatalogPage() {
   const nav = useNavigate();
   const activeChildId = useStore((state) => state.activeChildId);
   const stars = useMemo(() => readStars(activeChildId), [activeChildId]);
-  const [unitIndex, setUnitIndex] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const unitIndex = Math.max(0, CHINESE_BOOK_UNITS.findIndex((unit) => unit.lessonIds.includes(searchParams.get('unit') ?? '')));
   const activeUnit = CHINESE_BOOK_UNITS[unitIndex];
   const visibleLessons = CHINESE_TEXTBOOK_LESSONS.filter((lesson) => activeUnit.lessonIds.includes(lesson.id));
+
+  const listRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { listRef.current?.scrollTo({ top: 0 }); }, [unitIndex]);
 
   // 三级完成度：整册 / 单元 / 课（含星级汇总）
   const starsOf = (id: string) => stars[id] ?? 0;
@@ -56,7 +63,7 @@ export default function ChineseTextbookCatalogPage() {
   useEffect(() => () => stopSpeaking(), []);
 
   return (
-    <main className="ct-page ct-catalog page">
+    <main className="ct-page ct-catalog ct-chinese-catalog page">
       <header className="ct-catalog-hero">
         <BackButton className="ct-back" onClick={() => nav('/map')} aria-label="返回学校地图" />
         <div className="ct-hero-seal" aria-hidden="true"><span>语</span><i>文</i></div>
@@ -70,18 +77,6 @@ export default function ChineseTextbookCatalogPage() {
         </div>
       </header>
 
-      <section className="ct-method-strip" aria-label="数字化学习方式">
-        <div><span>①</span><b>看图发现</b><small>先观察，不急着认字</small></div>
-        <i>→</i>
-        <div><span>②</span><b>逐句点读</b><small>文字与声音同步</small></div>
-        <i>→</i>
-        <div><span>③</span><b>教材与知识</b><small>学原课，再延伸</small></div>
-        <i>→</i>
-        <div><span>④</span><b>动手表达</b><small>配对、排序、拼句</small></div>
-        <i>→</i>
-        <div><span>⑤</span><b>迁移挑战</b><small>换情境真正会用</small></div>
-      </section>
-
       {resumable && (
         <button className="mc-continue" onClick={() => nav(`/chinese-course/${resumable.lesson.id}`)}>
           <span>继续上次学习</span><b>{resumable.lesson.title}</b><small>正在进行：{CHINESE_PHASE_LABELS[resumable.phase]}</small><em>继续 →</em>
@@ -93,23 +88,13 @@ export default function ChineseTextbookCatalogPage() {
           <div><span>{activeUnit.title}</span><h2>{curUnitDone >= curUnitTotal && curUnitTotal > 0 ? '✓ 本单元已全部完成' : `本单元进度 ${curUnitDone} / ${curUnitTotal} 课`}</h2></div>
           <p>按单元切换课程 · 本单元已获得 ★ {unitStars(activeUnit.lessonIds)} / {curUnitTotal * 3} 星</p>
         </div>
-        <nav className="ct-unit-tabs" aria-label="选择语文单元">
-          {CHINESE_BOOK_UNITS.map((unit, index) => {
-            const done = unitDone(unit.lessonIds);
-            const total = unit.lessonIds.length;
-            const all = total > 0 && done >= total;
-            return (
-              <button key={unit.title} className={`${unitIndex === index ? 'active' : ''} ${all ? 'unit-done' : ''} ${done > 0 && !all ? 'unit-part' : ''}`} onClick={() => setUnitIndex(index)} aria-label={`${unit.title}，已完成 ${done}/${total} 课${all ? '，全部完成' : ''}`}>
-                <small>{all ? '✓' : String(index + 1).padStart(2, '0')}</small><span>{unit.title}</span><b>{all ? '全部完成' : `${done}/${total} 课`}</b>
-                <i className="ct-unit-bar" aria-hidden="true"><em style={{ width: total ? `${(done / total) * 100}%` : '0%' }} /></i>
-              </button>
-            );
-          })}
-        </nav>
-        <div className="ct-lesson-grid">
+        <nav className="ct-unit-buttons" aria-label="选择语文单元">{CHINESE_BOOK_UNITS.map((unit, index) => <button key={unit.title} aria-pressed={index === unitIndex} className={index === unitIndex ? 'active' : ''} onClick={() => setSearchParams({ unit: unit.lessonIds[0] }, { replace: true })}><b>{unit.title}</b><small>{unitDone(unit.lessonIds)} / {unit.lessonIds.length} 课</small></button>)}</nav>
+        <div className="ct-lesson-swipe" ref={listRef} aria-label="滑动浏览本单元课文"><div className="ct-lesson-grid">
           {visibleLessons.map((lesson) => {
             const starCount = starsOf(lesson.id);
             const done = starCount > 0;
+            const teaching = getChineseTeaching(lesson.id);
+            const expression = latestSkillEvidence(readChineseEvidence(activeChildId, lesson.id), 'expression');
             const lessonIndex = CHINESE_TEXTBOOK_LESSONS.findIndex((item) => item.id === lesson.id);
             return (
               <button className={`ct-lesson-entry ct-lesson-${lesson.id} ${done ? 'done' : ''}`} key={lesson.id} onClick={() => nav(`/chinese-course/${lesson.id}`)} aria-label={`${lesson.title}，${done ? `已获得 ${starCount} 星` : '未学习'}`}>
@@ -119,11 +104,10 @@ export default function ChineseTextbookCatalogPage() {
                   <img src={lesson.artwork} alt="" loading={lessonIndex < 2 ? 'eager' : 'lazy'} draggable="false" />
                   {lesson.artworkSource === 'textbook' && <span className="ct-art-source">教材主题画面</span>}
                 </div>
-                <div className="ct-lesson-copy"><small>{lesson.unit} · {lesson.page}</small><h3>{lesson.title}</h3><p>{lesson.subtitle}</p><span>{done ? (starCount >= 3 ? '★ 已满星 · 再读一遍' : `已获 ${starCount} 星 · 再读冲刺满星`) : '开始学习'} →</span></div>
+                <div className="ct-lesson-copy"><small>{lesson.unit} · {lesson.page}</small><h3>{lesson.title}</h3><p>{lesson.subtitle}</p><small>重点：{teaching.goals[teaching.goals.length - 1].text}</small>{expression && <small>表达：{EVIDENCE_LABELS[expression.level]} · {expression.source === 'ai' ? 'AI 确认' : expression.source === 'self' ? '孩子自记' : '家人观察'}</small>}<span>{done ? `已完成练习 · 再练一次` : '开始学习'} →</span></div>
               </button>
             );
-          })}
-        </div>
+          })}</div></div>
       </section>
     </main>
   );

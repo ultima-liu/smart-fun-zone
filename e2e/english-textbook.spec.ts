@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { ENGLISH_PHONICS_TASKS } from '../src/content/englishTeaching';
 
 test.use({ launchOptions: { executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' } });
 
@@ -17,7 +18,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 async function readAllSource(page: import('@playwright/test').Page) {
-  await completeListeningRoutine(page);
+  await completePhonicsPractice(page);
   const count = await page.locator('.en-source-item').count();
   for (let i = 0; i < count; i++) await page.locator('.en-source-item').nth(i).click();
   if (await page.locator('.en-read-explorer').count()) {
@@ -30,14 +31,24 @@ async function readAllSource(page: import('@playwright/test').Page) {
   if (await page.locator('.en-project-roadmap').count()) await page.locator('.en-project-start button').first().click();
   await expect(page.getByRole('button', { name: '教材内容看完了，去实际表达 →' })).toBeEnabled();
   await page.getByRole('button', { name: '教材内容看完了，去实际表达 →' }).click();
+  const expression = page.getByLabel('分层表达练习');
+  await expression.getByRole('button', { name: '我试过了，继续' }).click();
+  await expression.getByRole('button', { name: '我试过了，继续' }).click();
+  await expression.getByRole('button', { name: '我已经试着表达' }).click();
 }
 
-async function completeListeningRoutine(page: import('@playwright/test').Page) {
-  await page.getByRole('button', { name: '▶ 慢速示范' }).click();
-  await page.getByRole('button', { name: '▶ 只听声音' }).click();
-  await page.locator('.en-blind-pick button').first().click();
-  await page.getByRole('button', { name: '🎙 跟着音频读' }).click();
-  await expect(page.locator('.en-listening-routine.complete')).toBeVisible();
+async function completePhonicsPractice(page: import('@playwright/test').Page) {
+  const lessonId = page.url().split('/').at(-1)!;
+  if (await page.getByLabel('声音到拼读练习').count()) {
+    const phonics = page.getByLabel('声音到拼读练习');
+    const task = ENGLISH_PHONICS_TASKS[lessonId.split('-')[0]];
+    for (const answer of [task.same ? '相同' : '不同', task.letter]) {
+      await phonics.getByRole('button', { name: '先看词练习' }).click();
+      await phonics.getByRole('button', { name: answer, exact: true }).click();
+      await phonics.getByRole('button', { name: '下一步' }).click();
+    }
+    await phonics.getByRole('button', { name: '我已经试着表达' }).click();
+  }
 }
 
 test('教材目录到单课、原声播放、知识延伸和未完成听力任务时的诚实反馈', async ({ page }) => {
@@ -58,8 +69,8 @@ test('教材目录到单课、原声播放、知识延伸和未完成听力任�
   await page.getByRole('button', { name: '把方法用到新情境 →' }).click();
   await page.getByRole('button', { name: '看着她，等她说完' }).click();
   await page.getByRole('button', { name: '完成这节课，查看反馈 →' }).click();
-  await expect(page.getByText('本次获得 2 星，历史最高 2 星。', { exact: false })).toBeVisible();
-  await expect(page.getByText('教材原版歌曲、语音辨音或只听判断还未练到', { exact: false })).toBeVisible();
+  await expect(page.getByText('本次学习奖励 3 星，历史最高奖励 3 星。', { exact: false })).toBeVisible();
+  await expect(page.locator('.en-ability-summary')).toContainText('尚未检查');
   await page.goto('/#/subject/english');
   await expect(page.locator('.en-lesson-card').first()).toHaveClass(/done/);
 });
@@ -79,21 +90,16 @@ test('学习反馈的到期复习站可进入、可完成并保存状态', async
   await expect(page.getByText('本课学习反馈')).toBeVisible();
   const today = page.getByRole('button', { name: '今天复习，现在开始' });
   await expect(today).toBeEnabled();
-  await expect(page.getByRole('button', { name: /第 2 天复习，2 天后开放/ })).toBeDisabled();
   await today.click();
-  const session = page.getByLabel('今天词句复习任务');
-  await expect(session).toBeVisible();
-  await expect(session.locator('.en-review-cards article')).toHaveCount(7);
-  const cards = session.locator('.en-review-cards article');
-  for (let index = 0; index < await cards.count(); index++) {
-    await cards.nth(index).getByRole('button', { name: '听一听' }).click();
-    await cards.nth(index).getByRole('button', { name: '跟读' }).click();
-    await expect(page.getByRole('dialog', { name: /跟读：/ })).toBeVisible();
-    await expect(page.locator('.en-player')).toHaveCSS('background-image', /linear-gradient/);
-    await page.getByRole('button', { name: '我已跟读' }).click();
-    await expect(page.getByRole('dialog', { name: /跟读：/ })).toBeHidden();
+  const session = page.getByLabel('英语主动回忆复习');
+  for (let index = 0; index < 3; index++) {
+    await expect(session.getByRole('button', { name: '核对示范' })).toBeDisabled();
+    await session.getByRole('button', { name: '我试着说出来了' }).click();
+    await session.getByRole('button', { name: '核对示范' }).click();
+    await session.getByRole('button', { name: '我已经试着表达' }).click();
+    await session.getByRole('button', { name: index === 2 ? '换情境用一用' : '回想下一项' }).click();
   }
-  await expect(session.getByText('7 / 7')).toBeVisible();
+  await session.getByLabel('分层表达练习').getByRole('button', { name: '我已经试着表达' }).click();
   await session.getByRole('button', { name: '完成本次复习' }).click();
   await expect(page.getByRole('button', { name: '今天复习，已完成，可再次复习' })).toBeVisible();
   await page.reload();
@@ -107,7 +113,7 @@ test('角色扮演由系统接话，孩子只在自己的轮次进入跟读', as
   const stage = page.getByLabel('课本对话角色扮演');
   await expect(stage).toBeVisible();
   await stage.getByRole('button', { name: '我来演 Mike' }).click();
-  await expect(stage.getByText('系统演 Wu Binbin / Sarah / John')).toBeVisible();
+  await expect(stage.locator('.en-role-cast > span').first()).toHaveText(/系统演 Wu Binbin$/);
   await stage.getByRole('button', { name: '开始演出 →' }).click();
   await expect(stage.getByRole('button', { name: '🎙 我来说' })).toBeVisible();
   await stage.getByRole('button', { name: '🎙 我来说' }).click();
@@ -153,14 +159,14 @@ test('听读原课：Part A 按教材四个栏目分区，对话、词汇和活�
   await expect(page.locator('.en-word-card')).toHaveCount(5);
   await page.locator('.en-word-card').first().click();
   await expect(page.locator('.en-word-card.seen').first()).toBeVisible();
-  await expect(page.getByRole('img', { name: '点读进度 6%，已点读或查看 1 / 18 项' })).toBeVisible();
+  await expect(page.getByRole('img', { name: '点读进度 11%，核心材料已查看 1 / 9 项' })).toBeVisible();
   // 全部点读完成后进度环点亮并撒花庆祝
   const sourceCount = await page.locator('.en-source-item').count();
   for (let i = 0; i < sourceCount; i++) await page.locator('.en-source-item').nth(i).click();
   await expect(page.locator('.en-source-progress.complete')).toBeVisible();
   await expect(page.locator('.confetti')).toBeVisible();
-  await expect(page.getByText('教材内容已逐项看过，可以动手表达了。')).toBeVisible();
-  await completeListeningRoutine(page);
+  await expect(page.getByText('核心材料已查看，其余内容可继续选学。')).toBeVisible();
+  await completePhonicsPractice(page);
 
   // 字母课：字母卡展示大小写与例词
   await page.goto('/#/english-course/friends-letters');
@@ -208,7 +214,7 @@ test('听读原课：Part A 按教材四个栏目分区，对话、词汇和活�
   await expect.poll(() => page.locator('.en-stroke-panel--upper svg g.shown').count()).toBeGreaterThan(1);
   await page.locator('.en-letter-card').first().click();
   await expect(page.locator('.en-letter-card.seen').first()).toBeVisible();
-  await completeListeningRoutine(page);
+  await completePhonicsPractice(page);
   const letterSourceCount = await page.locator('.en-letter-card').count();
   for (let i = 0; i < letterSourceCount; i++) await page.locator('.en-letter-card').nth(i).click();
   await expect(page.getByRole('button', { name: '教材内容看完了，去实际表达 →' })).toBeEnabled();
@@ -298,11 +304,11 @@ test('单元导入、Start to read、项目与 Revision 全部使用各自的互
 
   await enterSource('friends-opening');
   await expect(page.locator('.en-opening-reader')).toBeVisible();
-  await expect(page.locator('.en-listening-routine')).toBeVisible();
+  await expect(page.getByLabel('听力理解练习')).toHaveCount(0);
   await expect(page.locator('.en-source-list')).toHaveCount(0);
   const rhythm = page.locator('.en-rhythm-lines button');
   for (let index = 0; index < await rhythm.count(); index++) await rhythm.nth(index).click();
-  await completeListeningRoutine(page);
+  await completePhonicsPractice(page);
   await expect(page.getByRole('button', { name: '教材内容看完了，去实际表达 →' })).toBeEnabled();
 
   await enterSource('friends-read');
@@ -311,7 +317,7 @@ test('单元导入、Start to read、项目与 Revision 全部使用各自的互
   const evidence = page.locator('.en-evidence-card');
   for (let index = 0; index < await evidence.count(); index++) await evidence.nth(index).click();
   await page.locator('.en-evidence-check').getByRole('button', { name: 'I listen.', exact: true }).click();
-  await completeListeningRoutine(page);
+  await completePhonicsPractice(page);
   await expect(page.getByRole('button', { name: '教材内容看完了，去实际表达 →' })).toBeEnabled();
 
   await enterSource('friends-project');
@@ -320,7 +326,7 @@ test('单元导入、Start to read、项目与 Revision 全部使用各自的互
   const projectSteps = page.locator('.en-project-path button');
   for (let index = 0; index < await projectSteps.count(); index++) await projectSteps.nth(index).click();
   await page.locator('.en-project-start button').first().click();
-  await completeListeningRoutine(page);
+  await completePhonicsPractice(page);
   await expect(page.getByRole('button', { name: '教材内容看完了，去实际表达 →' })).toBeEnabled();
 
   for (const unit of ['families', 'animals', 'plants', 'colours', 'numbers']) {
@@ -381,7 +387,7 @@ test('颜色混合和奇偶配对是实际操作，不能仅答题跳过', async
     await page.getByRole('button', { name: '把方法用到新情境 →' }).click();
     await page.getByRole('button', { name: transferAnswer, exact: true }).click();
     await page.getByRole('button', { name: '完成这节课，查看反馈 →' }).click();
-    await expect(page.getByText('本次获得 3 星，历史最高 3 星。', { exact: false })).toBeVisible();
+    await expect(page.getByText('本次学习奖励 3 星，历史最高奖励 3 星。', { exact: false })).toBeVisible();
   }
 });
 

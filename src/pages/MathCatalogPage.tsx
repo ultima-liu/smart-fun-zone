@@ -1,5 +1,5 @@
 import BackButton from '../components/BackButton';
-import { Fragment, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store';
 import { GRADES, SUBJECTS } from '../types';
@@ -11,17 +11,10 @@ import { readFruitShopProgress } from '../fruitShopProgress';
 import MathLessonArtwork, { mathLessonCoverLabel } from '../components/MathLessonArtwork';
 import '../chinese-textbook.css';
 import '../math-catalog.css';
+import '../math-teaching.css';
+import { mathEvidenceSummary } from '../mathLearning';
 
 const FLOW_LABELS = ['先猜', '动手试', '说理由', '小检测', '智能闯关'];
-
-/** 数学课与语文目录页同款的五步学习方式条 */
-const FLOW_STEPS = [
-  { label: '先猜', note: '先猜一猜，不怕猜错' },
-  { label: '动手试', note: '摆一摆、拨一拨' },
-  { label: '说理由', note: '讲清道理，再学延伸' },
-  { label: '小检测', note: '马上试两道题' },
-  { label: '智能闯关', note: '随机组卷冲三星' },
-];
 
 /** 每节数学课在课卡插画位展示各自的主题 SVG 封面。 */
 
@@ -32,6 +25,8 @@ export default function MathCatalogPage() {
   const book = useMemo(() => getTextbook(subject, grade as 'g1', (Number(vol) || 1) as 1), [subject, grade, vol]);
   const activeChildId = useStore((s) => s.activeChildId);
   const mastery = useStore((s) => s.mastery);
+  const [, updateEvidence] = useState(0);
+  useEffect(() => { const refresh = () => updateEvidence((n) => n + 1); window.addEventListener('math-evidence-change', refresh); return () => window.removeEventListener('math-evidence-change', refresh); }, []);
   const [unitIndex, setUnitIndex] = useState(() => {
     // 初始定位到最近学习课文所在的单元；没有记录时停留第一单元。
     let lastLesson: string | null = null;
@@ -105,7 +100,7 @@ export default function MathCatalogPage() {
           </svg>
         </div>
         <div>
-          <span className="ct-eyebrow">{book.edition} · 五步数字化课堂</span>
+          <span className="ct-eyebrow">{book.edition}</span>
           <h1>{bookTitle}</h1>
           <p>在游戏和动手操作中发现数学，再说出自己的道理</p>
         </div>
@@ -116,15 +111,11 @@ export default function MathCatalogPage() {
 
       {book.available && activeUnit ? (
         <>
+          <button className="mc-tools-invite" onClick={() => nav('/math-tools')}><span aria-hidden="true">▦</span><span><b>数学教具箱</b><small>配一配、分一分、凑成十、捆十拆十、走数线、分组排列</small></span><strong>去摆一摆 →</strong></button>
           <button className="mc-fruit-invite" onClick={() => nav('/math-practice/fruit-shop?from=catalog&reopen=1')}>
-            <span aria-hidden="true">🐰🍎</span><span><b>{shopReopened ? '回兔兔水果店' : '兔兔水果店重新开张'}</b><small>{shopReopened ? '看看你做的招牌，招待新客人' : '做一块招牌，再试两种分苹果的方法'}</small></span><strong>{shopReopened ? '去看看 →' : '去体验 →'}</strong>
+            <span aria-hidden="true">🐰🍎</span><span><b>{shopReopened ? '回兔兔水果店' : '兔兔水果店'}</b></span><strong>进入 →</strong>
           </button>
-          <section className="ct-method-strip" aria-label="数学课五步学习方式">
-            {FLOW_STEPS.map((step, index) => <Fragment key={step.label}>
-              {index > 0 && <i>→</i>}
-              <div><span>{'①②③④⑤'[index]}</span><b>{step.label}</b><small>{step.note}</small></div>
-            </Fragment>)}
-          </section>
+
 
           {resumable && (
             <button className="mc-continue" onClick={() => nav(`/math-course/${resumable.lesson.id}`)}>
@@ -137,25 +128,16 @@ export default function MathCatalogPage() {
               <div><span>{activeUnit.title}</span><h2>{curUnitAll ? '✓ 本单元已全部完成' : `本单元进度 ${curUnitDone} / ${curUnitTotal} 课`}</h2></div>
               <p>按单元切换课程 · 本单元已获得 ★ {unitStars(activeUnit.lessons)} / {curUnitTotal * 3} 星</p>
             </div>
+            <section className="catalog-guide"><h3>教材页进度 · 已学习 {learnedPages.length} / {activePages.length} 页</h3>
             <section className="mc-page-progress" aria-label={`${activeUnit.title}教材页进度`}>
               <div><b>教材页进度</b><span>已学习 {learnedPages.length} / {activePages.length} 页</span>{nextLesson && <em>下一站：{nextLesson.title}</em>}</div>
               <div className="mc-page-rail" aria-hidden="true">{activePages.map((page) => <i key={page} className={learnedPages.includes(page) ? 'done' : ''} title={`P${page}${learnedPages.includes(page) ? ' 已学习' : ' 待学习'}`} />)}</div>
               <p>{activePages.length ? `P${activePages[0]}–P${activePages[activePages.length - 1]} · 深色格表示对应课程已获得星星，浅色格可继续学习。` : '本单元教材页正在整理。'}</p>
             </section>
-            <nav className="ct-unit-tabs" aria-label="选择数学单元">
-              {units.map((unit, index) => {
-                const done = unitDone(unit.lessons);
-                const total = unit.lessons.length;
-                const all = total > 0 && done >= total;
-                return (
-                  <button key={unit.no} className={`${unitIndex === index ? 'active' : ''} ${all ? 'unit-done' : ''} ${done > 0 && !all ? 'unit-part' : ''}`} onClick={() => setUnitIndex(index)} aria-label={`${unit.title}，已完成 ${done}/${total} 课${all ? '，全部完成' : ''}`}>
-                    <small>{all ? '✓' : String(index + 1).padStart(2, '0')}</small><span>{unit.title}</span><b>{all ? '全部完成' : `${done}/${total} 课`}</b>
-                    <i className="ct-unit-bar" aria-hidden="true"><em style={{ width: total ? `${(done / total) * 100}%` : '0%' }} /></i>
-                  </button>
-                );
-              })}
-            </nav>
-            <div className="ct-lesson-grid">
+            </section>
+            <nav className="math-catalog-units" aria-label="选择数学单元">{units.map((unit, index) => <button key={unit.no} type="button" aria-pressed={unitIndex === index} className={unitIndex === index ? 'active' : ''} onClick={() => setUnitIndex(index)}><b>{unit.title}</b><small>{unitDone(unit.lessons)} / {unit.lessons.length} 课</small></button>)}</nav>
+            <div className="math-catalog-swipe-hint" aria-hidden="true">上下滑动，看看本单元的课文 <span>↓</span></div>
+            <div className="math-catalog-lesson-scroll" key={unitIndex} tabIndex={0} role="region" aria-label={`${activeUnit.title}课文列表，可上下滑动`}><div className="ct-lesson-grid">
               {activeUnit.lessons.map((lesson) => {
                 const starCount = starsOf(lesson.id);
                 const done = starCount > 0;
@@ -173,12 +155,11 @@ export default function MathCatalogPage() {
                       <small>{activeUnit.no === '数学游戏' ? '数学游戏' : `第${activeUnit.no}单元`} · {lesson.page ?? activeUnit.page}</small>
                       <h3>{lesson.title}</h3><p>{lesson.subtitle}</p>
                       {lifeScene && <em className={`mc-life-scene-tag ${done ? 'ready' : ''}`}><b>{lifeScene.icon} 生活小剧场 · {lifeScene.title}</b><i>{done ? '已开放' : '完成本课后开放'}</i></em>}
-                      <span>{done ? (starCount >= 3 ? '★ 已满星 · 再练一遍' : `已获 ${starCount} 星 · 再练冲刺满星`) : '开始学习'} →</span>
+                      <small className="math-evidence-note">{mathEvidenceSummary(activeChildId, lesson.id).label}</small><span>{done ? `✓ 学习已完成 · ${starCount} 星 · 再试新题` : '开始学习'} →</span>
                     </div>
                   </button>
                 );
-              })}
-            </div>
+              })}</div></div>
           </section>
         </>
       ) : (

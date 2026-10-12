@@ -1,0 +1,632 @@
+[
+  {
+    "name": "jungle",
+    "rect": [
+      0,
+      0,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "jungle-v1.webp",
+    "source": "environments-atlas-v1.png",
+    "bytes": 93300
+  },
+  {
+    "name": "base1",
+    "rect": [
+      768,
+      0,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "base1-v1.webp",
+    "source": "environments-atlas-v1.png",
+    "bytes": 56996
+  },
+  {
+    "name": "waterfall",
+    "rect": [
+      0,
+      256,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "waterfall-v1.webp",
+    "source": "environments-atlas-v1.png",
+    "bytes": 89454
+  },
+  {
+    "name": "base2",
+    "rect": [
+      768,
+      256,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "base2-v1.webp",
+    "source": "environments-atlas-v1.png",
+    "bytes": 67020
+  },
+  {
+    "name": "snow",
+    "rect": [
+      0,
+      512,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "snow-v1.webp",
+    "source": "environments-atlas-v1.png",
+    "bytes": 84348
+  },
+  {
+    "name": "energy",
+    "rect": [
+      768,
+      512,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "energy-v1.webp",
+    "source": "environments-atlas-v1.png",
+    "bytes": 70066
+  },
+  {
+    "name": "hangar",
+    "rect": [
+      0,
+      768,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "hangar-v1.webp",
+    "source": "environments-atlas-v1.png",
+    "bytes": 79822
+  },
+  {
+    "name": "lair",
+    "rect": [
+      768,
+      768,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "lair-v1.webp",
+    "source": "environments-atlas-v1.png",
+    "bytes": 70606
+  },
+  {
+    "name": "base1",
+    "rect": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "width": 768,
+    "height": 512,
+    "cornerAlpha": 255,
+    "file": "base1-v2.webp",
+    "source": "base-room-v2.png",
+    "bytes": 99174
+  },
+  {
+    "name": "blue-base-idle",
+    "rect": [
+      285,
+      16,
+      253,
+      473
+    ],
+    "width": 193,
+    "height": 360,
+    "cornerAlpha": 0,
+    "file": "blue-base-idle-v1.webp",
+    "source": "base-characters-atlas-v1.png",
+    "bytes": 35228
+  },
+  {
+    "name": "blue-base-prone",
+    "rect": [
+      959,
+      156,
+      322,
+      340
+    ],
+    "width": 322,
+    "height": 340,
+    "cornerAlpha": 0,
+    "file": "blue-base-prone-v1.webp",
+    "source": "base-characters-atlas-v1.png",
+    "bytes": 48090
+  },
+  {
+    "name": "red-base-idle",
+    "rect": [
+      282,
+      523,
+      258,
+      476
+    ],
+    "width": 195,
+    "height": 360,
+    "cornerAlpha": 0,
+    "file": "red-base-idle-v1.webp",
+    "source": "base-characters-atlas-v1.png",
+    "bytes": 34824
+  },
+  {
+    "name": "red-base-prone",
+    "rect": [
+      963,
+      663,
+      319,
+      341
+    ],
+    "width": 319,
+    "height": 341,
+    "cornerAlpha": 0,
+    "file": "red-base-prone-v1.webp",
+    "source": "base-characters-atlas-v1.png",
+    "bytes": 48144
+  },
+  {
+    "name": "terrain-grass",
+    "rect": [
+      0,
+      0,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "terrain-grass-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 101066
+  },
+  {
+    "name": "terrain-granite",
+    "rect": [
+      768,
+      0,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "terrain-granite-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 94582
+  },
+  {
+    "name": "terrain-riverbank",
+    "rect": [
+      0,
+      256,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "terrain-riverbank-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 96838
+  },
+  {
+    "name": "terrain-waterfall",
+    "rect": [
+      768,
+      256,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "terrain-waterfall-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 98656
+  },
+  {
+    "name": "terrain-snow",
+    "rect": [
+      0,
+      512,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "terrain-snow-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 87508
+  },
+  {
+    "name": "terrain-energy",
+    "rect": [
+      768,
+      512,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "terrain-energy-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 58074
+  },
+  {
+    "name": "terrain-hangar",
+    "rect": [
+      0,
+      768,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "terrain-hangar-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 70340
+  },
+  {
+    "name": "terrain-alien",
+    "rect": [
+      768,
+      768,
+      768,
+      256
+    ],
+    "width": 768,
+    "height": 256,
+    "cornerAlpha": 255,
+    "file": "terrain-alien-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 90790
+  },
+  {
+    "name": "blue-idle",
+    "rect": [
+      30,
+      45,
+      302,
+      296
+    ],
+    "width": 302,
+    "height": 296,
+    "cornerAlpha": 0,
+    "file": "blue-idle-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 37764
+  },
+  {
+    "name": "blue-run",
+    "rect": [
+      402,
+      52,
+      339,
+      289
+    ],
+    "width": 339,
+    "height": 289,
+    "cornerAlpha": 0,
+    "file": "blue-run-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 38764
+  },
+  {
+    "name": "blue-jump",
+    "rect": [
+      815,
+      75,
+      227,
+      224
+    ],
+    "width": 227,
+    "height": 224,
+    "cornerAlpha": 0,
+    "file": "blue-jump-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 30384
+  },
+  {
+    "name": "blue-prone",
+    "rect": [
+      1071,
+      204,
+      458,
+      119
+    ],
+    "width": 360,
+    "height": 94,
+    "cornerAlpha": 0,
+    "file": "blue-prone-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 19300
+  },
+  {
+    "name": "red-idle",
+    "rect": [
+      25,
+      341,
+      306,
+      338
+    ],
+    "width": 306,
+    "height": 338,
+    "cornerAlpha": 0,
+    "file": "red-idle-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 38446
+  },
+  {
+    "name": "red-run",
+    "rect": [
+      400,
+      341,
+      333,
+      338
+    ],
+    "width": 333,
+    "height": 338,
+    "cornerAlpha": 0,
+    "file": "red-run-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 37686
+  },
+  {
+    "name": "red-jump",
+    "rect": [
+      804,
+      379,
+      218,
+      222
+    ],
+    "width": 218,
+    "height": 222,
+    "cornerAlpha": 0,
+    "file": "red-jump-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 27420
+  },
+  {
+    "name": "red-prone",
+    "rect": [
+      1071,
+      520,
+      458,
+      134
+    ],
+    "width": 360,
+    "height": 105,
+    "cornerAlpha": 0,
+    "file": "red-prone-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 19390
+  },
+  {
+    "name": "soldier",
+    "rect": [
+      13,
+      696,
+      310,
+      288
+    ],
+    "width": 310,
+    "height": 288,
+    "cornerAlpha": 0,
+    "file": "soldier-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 33800
+  },
+  {
+    "name": "turret",
+    "rect": [
+      344,
+      699,
+      320,
+      284
+    ],
+    "width": 320,
+    "height": 284,
+    "cornerAlpha": 0,
+    "file": "turret-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 38516
+  },
+  {
+    "name": "tank",
+    "rect": [
+      682,
+      707,
+      465,
+      269
+    ],
+    "width": 360,
+    "height": 208,
+    "cornerAlpha": 0,
+    "file": "tank-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 31590
+  },
+  {
+    "name": "alien",
+    "rect": [
+      1170,
+      701,
+      350,
+      278
+    ],
+    "width": 350,
+    "height": 278,
+    "cornerAlpha": 0,
+    "file": "alien-v2.webp",
+    "source": "characters-atlas-v1.png",
+    "bytes": 55368
+  },
+  {
+    "name": "boss1",
+    "rect": [
+      9,
+      105,
+      375,
+      359
+    ],
+    "width": 360,
+    "height": 345,
+    "cornerAlpha": 0,
+    "file": "boss1-v1.webp",
+    "source": "bosses-atlas-v1.png",
+    "bytes": 80682
+  },
+  {
+    "name": "boss2",
+    "rect": [
+      384,
+      18,
+      384,
+      450
+    ],
+    "width": 307,
+    "height": 360,
+    "cornerAlpha": 0,
+    "file": "boss2-v1.webp",
+    "source": "bosses-atlas-v1.png",
+    "bytes": 63648
+  },
+  {
+    "name": "boss3",
+    "rect": [
+      768,
+      82,
+      384,
+      430
+    ],
+    "width": 321,
+    "height": 360,
+    "cornerAlpha": 0,
+    "file": "boss3-v1.webp",
+    "source": "bosses-atlas-v1.png",
+    "bytes": 46132
+  },
+  {
+    "name": "boss4",
+    "rect": [
+      1152,
+      24,
+      373,
+      488
+    ],
+    "width": 275,
+    "height": 360,
+    "cornerAlpha": 0,
+    "file": "boss4-v1.webp",
+    "source": "bosses-atlas-v1.png",
+    "bytes": 56084
+  },
+  {
+    "name": "boss5",
+    "rect": [
+      21,
+      663,
+      363,
+      248
+    ],
+    "width": 360,
+    "height": 246,
+    "cornerAlpha": 0,
+    "file": "boss5-v1.webp",
+    "source": "bosses-atlas-v1.png",
+    "bytes": 53342
+  },
+  {
+    "name": "boss6",
+    "rect": [
+      384,
+      537,
+      384,
+      445
+    ],
+    "width": 311,
+    "height": 360,
+    "cornerAlpha": 0,
+    "file": "boss6-v1.webp",
+    "source": "bosses-atlas-v1.png",
+    "bytes": 66132
+  },
+  {
+    "name": "boss7",
+    "rect": [
+      768,
+      512,
+      384,
+      463
+    ],
+    "width": 299,
+    "height": 360,
+    "cornerAlpha": 0,
+    "file": "boss7-v1.webp",
+    "source": "bosses-atlas-v1.png",
+    "bytes": 67364
+  },
+  {
+    "name": "boss8",
+    "rect": [
+      1152,
+      512,
+      344,
+      477
+    ],
+    "width": 260,
+    "height": 360,
+    "cornerAlpha": 0,
+    "file": "boss8-v1.webp",
+    "source": "bosses-atlas-v1.png",
+    "bytes": 59362
+  },
+  {
+    "name": "boss2",
+    "rect": [
+      42,
+      144,
+      1319,
+      799
+    ],
+    "width": 360,
+    "height": 218,
+    "cornerAlpha": 0,
+    "file": "boss2-v2.webp",
+    "source": "base-boss-v2.png",
+    "bytes": 46414
+  }
+]

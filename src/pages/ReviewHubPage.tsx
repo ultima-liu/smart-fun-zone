@@ -1,3 +1,4 @@
+import { ContentPages } from '../components/ScreenPages';
 import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -5,13 +6,19 @@ import { useStore } from '../store';
 import { completeReviewDay, importReviewEntry, reviewCandidates, reviewEntries, type ReviewEntry } from '../reviewPlan';
 import { completeDailyReview, ensureDailyReview } from '../taskSystem';
 import { ENGLISH_G3_ALL_LESSONS } from '../content/englishGrade3Upper';
-import { CHINESE_TEXTBOOK_LESSONS } from '../content/chineseTextbookCurriculum';
-import { EXTENDED_MATH_LESSONS } from '../content/mathUpperCurriculum';
+import { selectChineseReview, chineseReviewFocus } from '../chineseReview';
+import ChineseReviewPractice from './ChineseReviewPractice';
+import EnglishReviewPractice from './EnglishReviewPractice';
+import { ALL_MATH_LESSONS } from '../content/mathUpperCurriculum';
+import MathAssessmentPractice from '../components/MathAssessmentPractice';
+import { mathSeed } from '../content/mathTeaching';
 import { readFruitShopProgress } from '../fruitShopProgress';
 import { FRUIT_SHOP_ABILITY_LABELS, fruitShopAbilityForLesson } from '../content/fruitShop';
 import { mathLifeSceneForLesson, mathLifeSceneRoute } from '../content/mathLifeScenes';
 import { localDayKey } from '../dailyCheckin';
 import '../review-hub.css';
+import '../english-textbook.css';
+import '../english-teaching.css';
 
 const SUBJECT: Record<ReviewEntry['subject'], { label: string; icon: string }> = {
   chinese: { label: '语文', icon: '文' }, math: { label: '数学', icon: '数' }, english: { label: '英语', icon: 'A' },
@@ -19,23 +26,10 @@ const SUBJECT: Record<ReviewEntry['subject'], { label: string; icon: string }> =
 
 type MathReviewCheck = { question: string; options: string[]; answer: number };
 
-/** 前五节专属课不在通用课程数据内，其余课直接复用每课的小检测。 */
-const FOUNDATION_MATH_REVIEW: Record<string, MathReviewCheck> = {
-  campus: { question: '从下往上数，中间教学楼共有几层？', options: ['3 层', '4 层', '5 层'], answer: 1 },
-  numbers: { question: '4 朵花应该和哪个数字连起来？', options: ['3', '4', '5'], answer: 1 },
-  compare: { question: '3 只小猴和 4 个梨，应该用哪个符号？', options: ['3 = 4', '3 > 4', '3 < 4'], answer: 2 },
-  ordinal: { question: '队伍里一共有 5 人，小朋友排第 2。“5”和“2”的意思相同吗？', options: ['相同', '不同'], answer: 1 },
-  compose: { question: '5 可以分成哪两个部分？', options: ['1 和 4', '1 和 5', '2 和 4'], answer: 0 },
-};
-
 function reviewCheck(entry: ReviewEntry): MathReviewCheck | undefined {
-  if (entry.subject === 'math') return FOUNDATION_MATH_REVIEW[entry.lessonId] ?? EXTENDED_MATH_LESSONS.find((lesson) => lesson.id === entry.lessonId)?.checkpoint;
-  if (entry.subject === 'chinese') {
-    const question = CHINESE_TEXTBOOK_LESSONS.find((lesson) => lesson.id === entry.lessonId)?.questions[0];
-    return question ? { question: question.question, options: question.options, answer: question.answer } : undefined;
-  }
-  const question = ENGLISH_G3_ALL_LESSONS.find((lesson) => lesson.id === entry.lessonId)?.check;
-  return question ? { question: question.question, options: question.options, answer: question.options.indexOf(question.answer) } : undefined;
+  if (entry.subject === 'math') return undefined;
+  if (entry.subject === 'chinese') return undefined;
+  return undefined;
 }
 
 function ReviewMiniCheck({ check, onPass }: { check: MathReviewCheck; onPass: () => void }) {
@@ -61,6 +55,7 @@ export default function ReviewHubPage() {
   const childId = useStore((state) => state.activeChildId);
   const grade = useStore((state) => state.profiles.find((profile) => profile.id === childId)?.ageBand);
   const courseSchedule = useStore((state) => state.courseSchedule);
+  const mastery = useStore((state) => state.mastery);
   const [revision, setRevision] = useState(0);
   const [reviewingId, setReviewingId] = useState<string | null>(null);
   const assignedReview = useStore((state) => childId ? state.taskStates[childId]?.dailyReview : undefined);
@@ -71,6 +66,11 @@ export default function ReviewHubPage() {
   useEffect(() => {
     if (!childId) return;
     let imported = false;
+    for (const lesson of ALL_MATH_LESSONS) {
+      const previous = mastery[childId]?.[`math-lab-${lesson.id}`];
+      if (!previous?.stars) continue;
+      imported = importReviewEntry(childId, { id: `math:${lesson.id}`, subject: 'math', lessonId: lesson.id, title: lesson.title, focus: lesson.subtitle, route: `/math-course/${lesson.id}`, learnedAt: previous.updatedAt || Date.now(), completedDays: [], reviewedOn: [] }) || imported;
+    }
     for (const lesson of ENGLISH_G3_ALL_LESSONS) {
       try {
         const saved = JSON.parse(localStorage.getItem(`sfz-english-g3a-flow-v5:${childId}:${lesson.id}`) ?? 'null') as { reviewStartedAt?: number; reviewDoneDays?: number[] } | null;
@@ -83,7 +83,7 @@ export default function ReviewHubPage() {
       } catch { /* 单个旧记录损坏时不影响其余课程 */ }
     }
     if (imported) setRevision((value) => value + 1);
-  }, [childId]);
+  }, [childId, mastery]);
   const entries = useMemo<ReviewEntry[]>(() => {
     const list = childId ? reviewEntries(childId) : [];
     if (!assignedReview || assignedReview.day !== localDayKey() || list.some((entry) => entry.id === assignedReview.entryId)) return list;
@@ -118,11 +118,14 @@ export default function ReviewHubPage() {
       <div><small>今日情境实践 · 数学</small><h2>《{matchedLifeReview.entry.title}》· {matchedLifeScene.title}</h2><p>{matchedFruitAbility ? `三张订单继续练习「${FRUIT_SHOP_ABILITY_LABELS[matchedFruitAbility]}」。` : matchedLifeScene.summary}</p><span>{matchedLifeScene.kind === 'fruit-shop' && fruitShopProgress?.sessions.length ? `已经开店 ${fruitShopProgress.sessions.length} 次 · 收藏 ${fruitShopProgress.stickers.length} 张贴纸` : '把本课方法用到新的生活任务里'}</span></div>
       <button onClick={() => nav(mathLifeSceneRoute(matchedLifeReview.entry.lessonId, 'review', matchedLifeDay))}>开始实践 →</button>
     </section>}
-    {due.length > 0 ? <section className="review-hub-list" aria-label="今日待复习课程">{due.map(({ entry, day }) => {
+    {due.length > 0 ? <section className="review-hub-list" aria-label="今日待复习课程"><ContentPages kind="activities">{due.map(({ entry, day }) => {
       const subject = SUBJECT[entry.subject];
       const check = reviewCheck(entry);
+      const mathTask = entry.subject === 'math' && ALL_MATH_LESSONS.some((lesson) => lesson.id === entry.lessonId);
+      const chineseTask = entry.subject === 'chinese' && childId ? selectChineseReview(childId, entry.lessonId, (entry.reviewedOn?.length ?? 0) + (entry.completedDays.includes(0) ? 1 : 0)) : undefined;
+      const englishTask = entry.subject === 'english' && ENGLISH_G3_ALL_LESSONS.some((lesson) => lesson.id === entry.lessonId);
       const reviewing = reviewingId === entry.id;
-      return <article key={entry.id} className={`review-hub-card ${entry.subject}`}><span className="review-subject-icon">{subject.icon}</span><div className="review-hub-main"><small>{subject.label} · {day === 0 ? '当天短巩固' : '课程表复习'}</small><h2>{entry.title}</h2><p><b>这次回顾：</b>{entry.focus}</p>{reviewing && check && <ReviewMiniCheck check={check} onPass={() => complete(entry, day)} />}</div><div className="review-hub-actions"><button className="review-go" onClick={() => nav(entry.route)}>去课程复习 →</button>{check && <button className="review-done" onClick={() => setReviewingId(reviewing ? null : entry.id)}>{reviewing ? '收起小检验' : '开始小检验'}</button>}</div></article>;
-    })}</section> : <section className="review-empty"><i>✓</i><h2>今天没有待复习的课程</h2><p>新课当天会有短巩固；之后按课程表勾选的学科安排复习。</p><button onClick={() => nav('/subject/english')}>去学习新课程</button></section>}
+      return <article key={entry.id} className={`review-hub-card ${entry.subject}`}><span className="review-subject-icon">{subject.icon}</span><div className="review-hub-main"><small>{subject.label} · {day === 0 ? '当天短巩固' : '课程表复习'}</small><h2>{entry.title}</h2><p><b>这次回顾：</b>{chineseTask ? chineseReviewFocus(chineseTask) : entry.focus}</p>{reviewing && chineseTask && <ChineseReviewPractice key={`${childId}:${entry.id}:${chineseTask.skill}:${chineseTask.variant}`} lessonId={entry.lessonId} task={chineseTask} onDone={() => complete(entry, day)} />}{reviewing && mathTask && <MathAssessmentPractice key={`${childId}:${entry.id}:${day}`} lessonId={entry.lessonId} context="review" variant={mathSeed(`${entry.id}:${localDayKey()}:${entry.reviewedOn?.length ?? 0}`) % 100000} delayed={day === -1 && localDayKey(new Date(entry.learnedAt)) < localDayKey()} onDone={() => complete(entry, day)} />}{reviewing && englishTask && <EnglishReviewPractice key={`${childId}:${entry.id}:${entry.reviewedOn?.length ?? 0}:${entry.completedDays.length}`} lessonId={entry.lessonId} round={(entry.reviewedOn?.length ?? 0) + (entry.completedDays.includes(0) ? 1 : 0)} onDone={() => complete(entry, day)} />}{reviewing && check && <ReviewMiniCheck check={check} onPass={() => complete(entry, day)} />}</div><div className="review-hub-actions"><button className="review-go" onClick={() => nav(entry.route)}>去课程复习 →</button>{(check || chineseTask || mathTask || englishTask) && <button className="review-done" onClick={() => setReviewingId(reviewing ? null : entry.id)}>{reviewing ? '收起小检验' : '开始小检验'}</button>}</div></article>;
+    })}</ContentPages></section> : <section className="review-empty"><i>✓</i><h2>今天没有待复习的课程</h2><p>新课当天会有短巩固；之后按课程表勾选的学科安排复习。</p><button onClick={() => nav('/subject/english')}>去学习新课程</button></section>}
   </main>;
 }

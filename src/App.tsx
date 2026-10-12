@@ -5,6 +5,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { IconGradientDefs } from './components/icons';
 import BottomNav from './components/BottomNav';
 import StudyBuddy from './components/StudyBuddy';
+import ScreenPages from './components/ScreenPages';
 import { CosmosSky } from './components/cosmos';
 import BeanRainHost from './components/BeanRain';
 import { stopSpeaking } from './speech';
@@ -27,10 +28,12 @@ const StorePage = lazy(() => import('./pages/StorePage'));
 const WorldMapPage = lazy(() => import('./pages/WorldMapPage'));
 const MathCatalogPage = lazy(() => import('./pages/MathCatalogPage'));
 const MathTextbookLabPage = lazy(() => import('./pages/MathTextbookLabPage'));
+const MathToolsPage = lazy(() => import('./pages/MathToolsPage'));
 const ChineseTextbookCatalogPage = lazy(() => import('./pages/ChineseTextbookCatalogPage'));
 const ChineseTextbookLessonPage = lazy(() => import('./pages/ChineseTextbookLessonPage'));
 const EnglishTextbookCatalogPage = lazy(() => import('./pages/EnglishTextbookCatalogPage'));
 const EnglishTextbookLessonPage = lazy(() => import('./pages/EnglishTextbookLessonPage'));
+const EnglishTextbookAppendixPage = lazy(() => import('./pages/EnglishTextbookAppendixPage'));
 const ReviewHubPage = lazy(() => import('./pages/ReviewHubPage'));
 const FruitShopPage = lazy(() => import('./pages/FruitShopPage'));
 const MathLifeScenePage = lazy(() => import('./pages/MathLifeScenePage'));
@@ -41,7 +44,7 @@ const TaskActivityPage = lazy(() => import('./pages/TaskActivityPage'));
 /** 按页面类型区分骨架屏：列表页 / 学习页 / 游戏页 */
 function RouteSkeleton() {
   const { pathname } = useLocation();
-  const kind = pathname.startsWith('/math-course') || pathname.startsWith('/math-practice') || pathname.startsWith('/chinese-course') || pathname.startsWith('/english-course')
+  const kind = pathname.startsWith('/math-course') || pathname.startsWith('/math-practice') || pathname.startsWith('/math-tools') || pathname.startsWith('/chinese-course') || pathname.startsWith('/english-course')
     ? 'learn'
     : pathname.startsWith('/subject') || pathname.startsWith('/map') || pathname.startsWith('/lobby')
       ? 'list'
@@ -223,7 +226,7 @@ function Shell() {
     const titleByPath: Record<string, string> = {
       '/': '卷卷星球', '/map': '星卷学校', '/lobby': '空中乐园', '/profile': '卷星总部',
       '/archive': '图鉴档案', '/dock': '星际船坞', '/store': '补给站', '/review': '今日复习',
-      '/parent': '家长中心', '/admin': '管理员后台',
+      '/parent': '家长中心', '/admin': '管理员后台', '/math-tools': '数学教具箱',
     };
     document.title = `${titleByPath[location.pathname] ?? '卷卷星球'} · Smart Fun Zone`;
   }, [location.pathname]);
@@ -267,6 +270,7 @@ function Shell() {
       <CosmosSky />
       <BeanRainHost />
       <div className="app">
+        <ScreenPages key={location.pathname + location.search} navigation={showNav && hasKid && !noChrome} sizing={/^\/math-(course|practice)\//.test(location.pathname) || location.pathname === '/math-tools' ? 'stable' : 'fit'}>
         <Suspense fallback={routeFallback}>
           <div key={location.pathname} id="main-content" className="route-view" tabIndex={-1}>
             <Routes>
@@ -275,6 +279,7 @@ function Shell() {
               <Route path="/subject/math" element={<MathCatalogPage />} />
               <Route path="/textbook/:subject/:grade/:vol" element={<MathCatalogPage />} />
               <Route path="/math-course/:lessonId" element={<MathTextbookLabPage />} />
+              <Route path="/math-tools" element={<MathToolsPage />} />
               <Route path="/math-practice/fruit-shop" element={<FruitShopPage />} />
               <Route path="/math-practice/life-scene" element={<MathLifeScenePage />} />
               <Route path="/subject/chinese" element={<ChineseTextbookCatalogPage />} />
@@ -282,6 +287,7 @@ function Shell() {
               <Route path="/subject/english" element={<EnglishTextbookCatalogPage />} />
               <Route path="/textbook/english/g3/1" element={<EnglishTextbookCatalogPage />} />
               <Route path="/english-course/:lessonId" element={<EnglishTextbookLessonPage />} />
+              <Route path="/english-course/appendix" element={<EnglishTextbookAppendixPage />} />
               <Route path="/review" element={<ReviewHubPage />} />
               <Route path="/task/:taskId" element={<TaskActivityPage />} />
               <Route path="/math-textbook" element={<Navigate to="/subject/math" replace />} />
@@ -302,6 +308,7 @@ function Shell() {
             </Routes>
           </div>
         </Suspense>
+        </ScreenPages>
         {showNav && hasKid && booted && !noChrome && <BottomNav />}
       </div>
       {hasKid && !noChrome && <StudyBuddy />}

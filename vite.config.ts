@@ -20,6 +20,7 @@ export default defineConfig(() => {
       port: 5173,
       strictPort: true,
       proxy: apiProxy,
+      watch: { ignored: ['**/tmp/**', '**/test-results/**', '**/playwright-report/**'] },
     },
     preview: {
       host: true,
@@ -37,6 +38,8 @@ export default defineConfig(() => {
           // 稳定拆分：第三方库与业务代码分离，利于浏览器长期缓存
           manualChunks: {
             vendor: ['react', 'react-dom', 'react-router-dom', 'zustand'],
+            'screen-pages': ['./src/components/ScreenPages.tsx'],
+            'world-three': ['three'],
             'lesson-tools': ['hanzi-writer', 'pinyin-pro'],
           },
         },

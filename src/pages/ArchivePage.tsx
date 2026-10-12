@@ -9,6 +9,7 @@ import { npcMeta } from '../content/npc';
 import { KidButton } from '../components/ui';
 import PageHero from '../components/PageHero';
 import NpcBuddy from '../components/NpcBuddy';
+import ScreenPages, { ContentPages } from '../components/ScreenPages';
 import GachaModal from '../components/GachaModal';
 import CardPortrait from '../components/CardPortrait';
 import { cardThemeClass, cardThemeStyle } from '../components/cardThemes';
@@ -102,78 +103,9 @@ export default function ArchivePage() {
       </section>
 
       {/* 双层筛选：第一层套系 / 第二层稀有度 */}
-      <section className="filter-panels" role="tablist" aria-label={zh ? '卡牌筛选' : 'Card filters'}>
-        <div className="filter-tier">
-          <span className="filter-label">{zh ? '套系' : 'Series'}</span>
-          <div className="filter-row">
-            <button
-              className={`filter-chip${activeSet === 'all' ? ' active' : ''}`}
-              onClick={() => { setActiveSet('all'); setActiveRarity('all'); }}
-              role="tab"
-              aria-selected={activeSet === 'all'}
-            >
-              <span className="fc-icon">📚</span>
-              <b>{zh ? '全部' : 'All'}</b>
-              <small>{totalOwned}/{totalCards}</small>
-            </button>
-            {CARD_SETS.map((set) => {
-              const p = setProgress(owned, set.id);
-              const active = activeSet === set.id;
-              return (
-                <button
-                  key={set.id}
-                  className={`filter-chip${active ? ' active' : ''}`}
-                  onClick={() => { setActiveSet(set.id); setActiveRarity('all'); }}
-                  role="tab"
-                  aria-selected={active}
-                  style={active ? ({ '--set-color': set.color } as React.CSSProperties) : undefined}
-                >
-                  <span className="fc-icon">{set.icon}</span>
-                  <b>{zh ? set.name.zh : set.name.en}</b>
-                  <small>{p.have}/{p.total}</small>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="filter-tier">
-          <span className="filter-label">{zh ? '稀有度' : 'Rarity'}</span>
-          <div className="filter-row">
-            <button
-              className={`filter-chip rarity-chip${activeRarity === 'all' ? ' active' : ''}`}
-              onClick={() => setActiveRarity('all')}
-              role="tab"
-              aria-selected={activeRarity === 'all'}
-            >
-              <span className="fc-dot all-dot" />
-              <b>{zh ? '全部' : 'All'}</b>
-              <small>
-                {setCards.filter((c) => owned.includes(c.id)).length}/{setCards.length}
-              </small>
-            </button>
-            {RARITY_ORDER.map((rarity) => {
-              const have = setCards.filter((c) => c.rarity === rarity && owned.includes(c.id)).length;
-              const total = setCards.filter((c) => c.rarity === rarity).length;
-              if (total === 0) return null;
-              const active = activeRarity === rarity;
-              return (
-                <button
-                  key={rarity}
-                  className={`filter-chip rarity-chip c-${rarity}${active ? ' active' : ''}`}
-                  onClick={() => setActiveRarity(rarity)}
-                  role="tab"
-                  aria-selected={active}
-                  style={{ '--rc': rarityColor(rarity) } as React.CSSProperties}
-                >
-                  <span className="fc-dot" />
-                  <b>{rarity}</b>
-                  <small>{have}/{total}</small>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+      <section className="archive-filter-toolbar" aria-label={zh ? '卡牌筛选' : 'Card filters'}>
+        <label>{zh ? '套系' : 'Series'}<select value={activeSet} onChange={(event) => { setActiveSet(event.target.value as CardSetId | 'all'); setActiveRarity('all'); }}><option value="all">{zh ? `全部套系 · ${totalOwned}/${totalCards}` : 'All series'}</option>{CARD_SETS.map((set) => { const progress = setProgress(owned, set.id); return <option key={set.id} value={set.id}>{set.icon} {zh ? set.name.zh : set.name.en} · {progress.have}/{progress.total}</option>; })}</select></label>
+        <label>{zh ? '稀有度' : 'Rarity'}<select value={activeRarity} onChange={(event) => setActiveRarity(event.target.value as CardRarity | 'all')}><option value="all">{zh ? '全部稀有度' : 'All rarities'}</option>{RARITY_ORDER.map((rarity) => <option key={rarity} value={rarity}>{rarity} · {setCards.filter((card) => card.rarity === rarity).length} {zh ? '张' : 'cards'}</option>)}</select></label>
       </section>
 
       {/* 图鉴展示柜 */}
@@ -183,7 +115,7 @@ export default function ArchivePage() {
             <p>{zh ? '没有符合条件的卡牌' : 'No cards match these filters.'}</p>
           </div>
         ) : (
-          <div className="rarity-cards">
+          <ContentPages kind="gallery" className="rarity-cards" resetKey={`${activeSet}:${activeRarity}`}>
             {displayCards.map((c) => {
               const lit = owned.includes(c.id);
               return (
@@ -225,7 +157,7 @@ export default function ArchivePage() {
                 </div>
               );
             })}
-          </div>
+          </ContentPages>
         )}
       </section>
 
@@ -265,8 +197,9 @@ export default function ArchivePage() {
         createPortal(
           <div className={`card-preview-modal${preview.setId === 'journey' ? ' journey-preview' : preview.setId === 'hulu' ? ' hulu-preview' : ` themed-preview card-theme-${preview.setId}`}`} onClick={() => { sfx.click(); setPreview(null); }} style={cardThemeStyle(preview.setId)} role="dialog" aria-modal="true">
             <div className="card-preview-backdrop" />
+            <button className="card-preview-close" onClick={() => { sfx.click(); setPreview(null); }} aria-label={zh ? '关闭' : 'close'}>×</button>
+            <ScreenPages panel>
             <div className="card-preview-content" onClick={(e) => e.stopPropagation()}>
-              <button className="card-preview-close" onClick={() => { sfx.click(); setPreview(null); }} aria-label={zh ? '关闭' : 'close'}>×</button>
               <div
                 className={`preview-card${previewFlipped ? ' flipped' : ''} c-${preview.rarity}${cardThemeClass(preview.setId)}${owned.includes(preview.id) ? ' lit' : ' unlit'}`}
                 style={{ ...cardThemeStyle(preview.setId), '--rc': rarityColor(preview.rarity), '--hulu-color': preview.palette[0] } as React.CSSProperties}
@@ -299,11 +232,11 @@ export default function ArchivePage() {
                     <p className="cpr-desc">{zh ? preview.desc.zh : preview.desc.en}</p>
                   </>
                 )}
-                <JourneyLoreDetails card={preview} zh={zh} />
-                <HuluLoreDetails card={preview} zh={zh} />
+                {(preview.setId === 'journey' || preview.setId === 'hulu') && <details className="preview-lore"><summary>角色故事与资料</summary><JourneyLoreDetails card={preview} zh={zh} /><HuluLoreDetails card={preview} zh={zh} /></details>}
                 {!owned.includes(preview.id) && <span className="cpr-locked">{zh ? '尚未解锁' : 'Locked'}</span>}
               </div>
             </div>
+            </ScreenPages>
           </div>,
           document.body,
         )}
@@ -328,23 +261,9 @@ function ArchiveGuestPreview({ zh }: { zh: boolean }) {
           <p>{zh ? `档案库共有 ${STAR_CARDS.length} 张卡牌。登录孩子档案后即可召唤、点亮和领取套系奖励。` : `The Archive has ${STAR_CARDS.length} cards. Sign in to summon, unlock and claim set rewards.`}</p>
         </div>
       </section>
-      <section className="filter-panels" aria-label={zh ? '套系预览' : 'Set preview'}>
-        <div className="filter-tier">
-          <span className="filter-label">{zh ? '套系' : 'Series'}</span>
-          <div className="filter-row">
-            <button className={`filter-chip${activeSet === 'all' ? ' active' : ''}`} onClick={() => setActiveSet('all')}>{zh ? '全部' : 'All'}</button>
-            {CARD_SETS.map((set) => (
-              <button className={`filter-chip${activeSet === set.id ? ' active' : ''}`} key={set.id} onClick={() => setActiveSet(set.id)} aria-pressed={activeSet === set.id}>
-                <span className="fc-icon">{set.icon}</span>
-                <b>{zh ? set.name.zh : set.name.en}</b>
-                <small>0/{cardsBySet(set.id).length}</small>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+      <section className="archive-filter-toolbar"><label>{zh ? '套系预览' : 'Series'}<select value={activeSet} onChange={(event) => setActiveSet(event.target.value as CardSetId | 'all')}><option value="all">{zh ? '全部套系' : 'All series'}</option>{CARD_SETS.map((set) => <option key={set.id} value={set.id}>{set.icon} {zh ? set.name.zh : set.name.en}</option>)}</select></label></section>
       <section className="gallery-shelf">
-        <div className="rarity-cards">
+        <ContentPages kind="gallery" className="rarity-cards" resetKey={activeSet}>
           {cards.map((card) => (
             <div
               key={card.id}
@@ -362,7 +281,7 @@ function ArchiveGuestPreview({ zh }: { zh: boolean }) {
               </div>
             </div>
           ))}
-        </div>
+        </ContentPages>
       </section>
     </div>
   );

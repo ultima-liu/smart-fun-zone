@@ -1,0 +1,302 @@
+[
+  {
+    "name": "player",
+    "sourceRect": [
+      143,
+      16,
+      292,
+      441
+    ],
+    "width": 212,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "player-v1.webp",
+    "source": "tanks-atlas-v1.png",
+    "bytes": 33556
+  },
+  {
+    "name": "ally",
+    "sourceRect": [
+      622,
+      16,
+      292,
+      496
+    ],
+    "width": 188,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "ally-v1.webp",
+    "source": "tanks-atlas-v1.png",
+    "bytes": 28428
+  },
+  {
+    "name": "basic",
+    "sourceRect": [
+      1104,
+      70,
+      288,
+      442
+    ],
+    "width": 209,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "basic-v1.webp",
+    "source": "tanks-atlas-v1.png",
+    "bytes": 27238
+  },
+  {
+    "name": "fast",
+    "sourceRect": [
+      185,
+      534,
+      207,
+      436
+    ],
+    "width": 152,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "fast-v1.webp",
+    "source": "tanks-atlas-v1.png",
+    "bytes": 25392
+  },
+  {
+    "name": "power",
+    "sourceRect": [
+      568,
+      512,
+      399,
+      471
+    ],
+    "width": 271,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "power-v1.webp",
+    "source": "tanks-atlas-v1.png",
+    "bytes": 41062
+  },
+  {
+    "name": "armor",
+    "sourceRect": [
+      1066,
+      512,
+      369,
+      471
+    ],
+    "width": 251,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "armor-v1.webp",
+    "source": "tanks-atlas-v1.png",
+    "bytes": 39352
+  },
+  {
+    "name": "star",
+    "sourceRect": [
+      49,
+      38,
+      409,
+      412
+    ],
+    "width": 318,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "star-v1.webp",
+    "source": "powers-atlas-v1.png",
+    "bytes": 34714
+  },
+  {
+    "name": "tank",
+    "sourceRect": [
+      568,
+      61,
+      400,
+      391
+    ],
+    "width": 320,
+    "height": 313,
+    "cornerAlpha": 0,
+    "file": "tank-v1.webp",
+    "source": "powers-atlas-v1.png",
+    "bytes": 38090
+  },
+  {
+    "name": "grenade",
+    "sourceRect": [
+      1090,
+      55,
+      387,
+      457
+    ],
+    "width": 271,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "grenade-v1.webp",
+    "source": "powers-atlas-v1.png",
+    "bytes": 33300
+  },
+  {
+    "name": "helmet",
+    "sourceRect": [
+      54,
+      559,
+      405,
+      393
+    ],
+    "width": 320,
+    "height": 311,
+    "cornerAlpha": 0,
+    "file": "helmet-v1.webp",
+    "source": "powers-atlas-v1.png",
+    "bytes": 38324
+  },
+  {
+    "name": "clock",
+    "sourceRect": [
+      571,
+      524,
+      392,
+      430
+    ],
+    "width": 292,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "clock-v1.webp",
+    "source": "powers-atlas-v1.png",
+    "bytes": 37124
+  },
+  {
+    "name": "shovel",
+    "sourceRect": [
+      1088,
+      512,
+      395,
+      435
+    ],
+    "width": 291,
+    "height": 320,
+    "cornerAlpha": 0,
+    "file": "shovel-v1.webp",
+    "source": "powers-atlas-v1.png",
+    "bytes": 34906
+  },
+  {
+    "name": "brick",
+    "sourceRect": [
+      28,
+      102,
+      334,
+      329
+    ],
+    "width": 320,
+    "height": 315,
+    "cornerAlpha": 255,
+    "file": "brick-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 35692
+  },
+  {
+    "name": "steel",
+    "sourceRect": [
+      413,
+      102,
+      329,
+      329
+    ],
+    "width": 320,
+    "height": 320,
+    "cornerAlpha": 255,
+    "file": "steel-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 29734
+  },
+  {
+    "name": "water",
+    "sourceRect": [
+      795,
+      102,
+      330,
+      330
+    ],
+    "width": 320,
+    "height": 320,
+    "cornerAlpha": 255,
+    "file": "water-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 22916
+  },
+  {
+    "name": "forest",
+    "sourceRect": [
+      1175,
+      102,
+      333,
+      329
+    ],
+    "width": 320,
+    "height": 316,
+    "cornerAlpha": 255,
+    "file": "forest-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 42946
+  },
+  {
+    "name": "ice",
+    "sourceRect": [
+      29,
+      528,
+      334,
+      327
+    ],
+    "width": 320,
+    "height": 313,
+    "cornerAlpha": 255,
+    "file": "ice-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 32934
+  },
+  {
+    "name": "floor",
+    "sourceRect": [
+      412,
+      528,
+      330,
+      327
+    ],
+    "width": 320,
+    "height": 317,
+    "cornerAlpha": 255,
+    "file": "floor-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 30092
+  },
+  {
+    "name": "base",
+    "sourceRect": [
+      795,
+      528,
+      330,
+      329
+    ],
+    "width": 320,
+    "height": 319,
+    "cornerAlpha": 255,
+    "file": "base-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 32936
+  },
+  {
+    "name": "base-dead",
+    "sourceRect": [
+      1175,
+      528,
+      334,
+      329
+    ],
+    "width": 320,
+    "height": 315,
+    "cornerAlpha": 255,
+    "file": "base-dead-v1.webp",
+    "source": "terrain-atlas-v1.png",
+    "bytes": 39928
+  }
+]

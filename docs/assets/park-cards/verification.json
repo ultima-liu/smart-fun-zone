@@ -1,0 +1,2194 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "light",
+    "category": "棋类",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星河五子棋",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云台中国象棋",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 245, 233), rgb(248, 237, 242))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星阵军棋",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "light",
+    "category": "牌类",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星牌记忆",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(248, 246, 255), rgb(240, 242, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云阶接龙",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(240, 249, 248), rgb(238, 244, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "light",
+    "category": "消除",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "云径连连看",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 249, 255), rgb(245, 239, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星落方块",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(246, 244, 255), rgb(248, 240, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云海泡泡龙",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(240, 249, 255), rgb(238, 246, 244))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "light",
+    "category": "益智",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星屿扫雷",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 251, 246), rgb(240, 246, 242))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星仓推箱",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(253, 246, 236), rgb(246, 240, 228))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星门华容",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(244, 248, 250), rgb(242, 240, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云端黄金矿工",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "light",
+    "category": "敏捷",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "火箭车",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(48, 85, 75)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "马戏团",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星岛炸弹人",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(49, 90, 83)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "花园打地鼠",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "追星小蛇",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 251, 250), rgb(244, 246, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云舟弹星",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(253, 244, 248), rgb(244, 241, 252))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "大鱼吃小鱼",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(228, 249, 246), rgb(229, 243, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "category": "棋类",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星河五子棋",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云台中国象棋",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(92, 43, 56, 0.94), rgba(50, 37, 76, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星阵军棋",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "category": "牌类",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星牌记忆",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(34, 26, 78, 0.94), rgba(35, 42, 88, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云阶接龙",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(12, 48, 60, 0.94), rgba(18, 42, 74, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "category": "消除",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "云径连连看",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(18, 57, 108, 0.94), rgba(53, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星落方块",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(24, 22, 74, 0.94), rgba(76, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云海泡泡龙",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(13, 52, 96, 0.94), rgba(18, 66, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "category": "益智",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星屿扫雷",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(12, 48, 44, 0.94), rgba(20, 62, 56, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星仓推箱",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(44, 32, 54, 0.94), rgba(48, 36, 26, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星门华容",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(26, 34, 62, 0.94), rgba(38, 37, 74, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云端黄金矿工",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(76, 44, 49, 0.96), rgba(42, 36, 76, 0.93))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "category": "敏捷",
+    "columns": "499px 499px",
+    "width": 1010,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "火箭车",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(130deg, rgb(44, 68, 70), rgb(36, 53, 62))",
+        "color": "rgb(242, 234, 212)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "马戏团",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星岛炸弹人",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(120deg, rgb(37, 74, 81), rgb(68, 57, 87))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "花园打地鼠",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "追星小蛇",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(10, 44, 84, 0.94), rgba(20, 62, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云舟弹星",
+        "width": 499,
+        "left": 726,
+        "right": 1225,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(64, 30, 88, 0.94), rgba(30, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "大鱼吃小鱼",
+        "width": 499,
+        "left": 215,
+        "right": 714,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(9, 70, 96, 0.96), rgba(17, 54, 91, 0.94))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "light",
+    "category": "棋类",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星河五子棋",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云台中国象棋",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 245, 233), rgb(248, 237, 242))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星阵军棋",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "light",
+    "category": "牌类",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星牌记忆",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(248, 246, 255), rgb(240, 242, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云阶接龙",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(240, 249, 248), rgb(238, 244, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "light",
+    "category": "消除",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "云径连连看",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 249, 255), rgb(245, 239, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星落方块",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(246, 244, 255), rgb(248, 240, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云海泡泡龙",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(240, 249, 255), rgb(238, 246, 244))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "light",
+    "category": "益智",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星屿扫雷",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 251, 246), rgb(240, 246, 242))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星仓推箱",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(253, 246, 236), rgb(246, 240, 228))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星门华容",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(244, 248, 250), rgb(242, 240, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云端黄金矿工",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "light",
+    "category": "敏捷",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "火箭车",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(48, 85, 75)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "马戏团",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星岛炸弹人",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(49, 90, 83)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "花园打地鼠",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "追星小蛇",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 251, 250), rgb(244, 246, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云舟弹星",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(253, 244, 248), rgb(244, 241, 252))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "大鱼吃小鱼",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(228, 249, 246), rgb(229, 243, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "dark",
+    "category": "棋类",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星河五子棋",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云台中国象棋",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(92, 43, 56, 0.94), rgba(50, 37, 76, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星阵军棋",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "dark",
+    "category": "牌类",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星牌记忆",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(34, 26, 78, 0.94), rgba(35, 42, 88, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云阶接龙",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(12, 48, 60, 0.94), rgba(18, 42, 74, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "dark",
+    "category": "消除",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "云径连连看",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(18, 57, 108, 0.94), rgba(53, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星落方块",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(24, 22, 74, 0.94), rgba(76, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云海泡泡龙",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(13, 52, 96, 0.94), rgba(18, 66, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "dark",
+    "category": "益智",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星屿扫雷",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(12, 48, 44, 0.94), rgba(20, 62, 56, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星仓推箱",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(44, 32, 54, 0.94), rgba(48, 36, 26, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星门华容",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(26, 34, 62, 0.94), rgba(38, 37, 74, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云端黄金矿工",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(76, 44, 49, 0.96), rgba(42, 36, 76, 0.93))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "theme": "dark",
+    "category": "敏捷",
+    "columns": "451px 451px",
+    "width": 914,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "火箭车",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(130deg, rgb(44, 68, 70), rgb(36, 53, 62))",
+        "color": "rgb(242, 234, 212)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "马戏团",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星岛炸弹人",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(120deg, rgb(37, 74, 81), rgb(68, 57, 87))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "花园打地鼠",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "追星小蛇",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(10, 44, 84, 0.94), rgba(20, 62, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云舟弹星",
+        "width": 451,
+        "left": 518,
+        "right": 969,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(64, 30, 88, 0.94), rgba(30, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "大鱼吃小鱼",
+        "width": 451,
+        "left": 55,
+        "right": 506,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(9, 70, 96, 0.96), rgba(17, 54, 91, 0.94))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "light",
+    "category": "棋类",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星河五子棋",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云台中国象棋",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 245, 233), rgb(248, 237, 242))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星阵军棋",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "light",
+    "category": "牌类",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星牌记忆",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(248, 246, 255), rgb(240, 242, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云阶接龙",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(240, 249, 248), rgb(238, 244, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "light",
+    "category": "消除",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "云径连连看",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 249, 255), rgb(245, 239, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星落方块",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(246, 244, 255), rgb(248, 240, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云海泡泡龙",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(240, 249, 255), rgb(238, 246, 244))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "light",
+    "category": "益智",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星屿扫雷",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 251, 246), rgb(240, 246, 242))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星仓推箱",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(253, 246, 236), rgb(246, 240, 228))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星门华容",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(244, 248, 250), rgb(242, 240, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云端黄金矿工",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "light",
+    "category": "敏捷",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "火箭车",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(48, 85, 75)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "马戏团",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星岛炸弹人",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(49, 90, 83)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "花园打地鼠",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "追星小蛇",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 251, 250), rgb(244, 246, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云舟弹星",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(253, 244, 248), rgb(244, 241, 252))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "大鱼吃小鱼",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(228, 249, 246), rgb(229, 243, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "dark",
+    "category": "棋类",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星河五子棋",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云台中国象棋",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(92, 43, 56, 0.94), rgba(50, 37, 76, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星阵军棋",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "dark",
+    "category": "牌类",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星牌记忆",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(34, 26, 78, 0.94), rgba(35, 42, 88, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云阶接龙",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(12, 48, 60, 0.94), rgba(18, 42, 74, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "dark",
+    "category": "消除",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "云径连连看",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(18, 57, 108, 0.94), rgba(53, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星落方块",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(24, 22, 74, 0.94), rgba(76, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云海泡泡龙",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(13, 52, 96, 0.94), rgba(18, 66, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "dark",
+    "category": "益智",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星屿扫雷",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(12, 48, 44, 0.94), rgba(20, 62, 56, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星仓推箱",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(44, 32, 54, 0.94), rgba(48, 36, 26, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星门华容",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(26, 34, 62, 0.94), rgba(38, 37, 74, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云端黄金矿工",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(76, 44, 49, 0.96), rgba(42, 36, 76, 0.93))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "theme": "dark",
+    "category": "敏捷",
+    "columns": "314px 314px",
+    "width": 640,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "火箭车",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(130deg, rgb(44, 68, 70), rgb(36, 53, 62))",
+        "color": "rgb(242, 234, 212)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "马戏团",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星岛炸弹人",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(120deg, rgb(37, 74, 81), rgb(68, 57, 87))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "花园打地鼠",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "追星小蛇",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(10, 44, 84, 0.94), rgba(20, 62, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云舟弹星",
+        "width": 314,
+        "left": 390,
+        "right": 704,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(64, 30, 88, 0.94), rgba(30, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "大鱼吃小鱼",
+        "width": 314,
+        "left": 64,
+        "right": 378,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(9, 70, 96, 0.96), rgba(17, 54, 91, 0.94))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "category": "棋类",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星河五子棋",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云台中国象棋",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 245, 233), rgb(248, 237, 242))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星阵军棋",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "category": "牌类",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星牌记忆",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(248, 246, 255), rgb(240, 242, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云阶接龙",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(240, 249, 248), rgb(238, 244, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "category": "消除",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "云径连连看",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 249, 255), rgb(245, 239, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星落方块",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(246, 244, 255), rgb(248, 240, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云海泡泡龙",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(240, 249, 255), rgb(238, 246, 244))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "category": "益智",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星屿扫雷",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 251, 246), rgb(240, 246, 242))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星仓推箱",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(253, 246, 236), rgb(246, 240, 228))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星门华容",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(244, 248, 250), rgb(242, 240, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云端黄金矿工",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "category": "敏捷",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "火箭车",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(48, 85, 75)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "马戏团",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星岛炸弹人",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(49, 90, 83)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "花园打地鼠",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(255, 248, 237), rgb(237, 247, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "追星小蛇",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(242, 251, 250), rgb(244, 246, 255))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云舟弹星",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(253, 244, 248), rgb(244, 241, 252))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "大鱼吃小鱼",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgb(228, 249, 246), rgb(229, 243, 250))",
+        "color": "rgb(60, 65, 105)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "dark",
+    "category": "棋类",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星河五子棋",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云台中国象棋",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(92, 43, 56, 0.94), rgba(50, 37, 76, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星阵军棋",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "dark",
+    "category": "牌类",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星牌记忆",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(34, 26, 78, 0.94), rgba(35, 42, 88, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云阶接龙",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(12, 48, 60, 0.94), rgba(18, 42, 74, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "dark",
+    "category": "消除",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "云径连连看",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(18, 57, 108, 0.94), rgba(53, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星落方块",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(24, 22, 74, 0.94), rgba(76, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云海泡泡龙",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(13, 52, 96, 0.94), rgba(18, 66, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "dark",
+    "category": "益智",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "星屿扫雷",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(12, 48, 44, 0.94), rgba(20, 62, 56, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星仓推箱",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(44, 32, 54, 0.94), rgba(48, 36, 26, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星门华容",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(26, 34, 62, 0.94), rgba(38, 37, 74, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云端黄金矿工",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(76, 44, 49, 0.96), rgba(42, 36, 76, 0.93))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "dark",
+    "category": "敏捷",
+    "columns": "126.5px 126.5px",
+    "width": 262,
+    "overflow": false,
+    "cards": [
+      {
+        "title": "火箭车",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(130deg, rgb(44, 68, 70), rgb(36, 53, 62))",
+        "color": "rgb(242, 234, 212)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "马戏团",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "星岛炸弹人",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(120deg, rgb(37, 74, 81), rgb(68, 57, 87))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "花园打地鼠",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(54, 43, 92, 0.92), rgba(25, 45, 88, 0.9))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "追星小蛇",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(10, 44, 84, 0.94), rgba(20, 62, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "云舟弹星",
+        "width": 126.5,
+        "left": 199.5,
+        "right": 326,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(64, 30, 88, 0.94), rgba(30, 34, 92, 0.92))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      },
+      {
+        "title": "大鱼吃小鱼",
+        "width": 126.5,
+        "left": 64,
+        "right": 190.5,
+        "column": "auto",
+        "bg": "linear-gradient(110deg, rgba(9, 70, 96, 0.96), rgba(17, 54, 91, 0.94))",
+        "color": "rgb(255, 255, 255)",
+        "overflow": false,
+        "button": 48
+      }
+    ]
+  }
+]

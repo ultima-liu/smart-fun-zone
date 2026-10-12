@@ -27,6 +27,9 @@ async function startApp() {
       console.warn('Development cache cleanup failed:', error);
     }
   }
+  // 独立加载适配样式，避免继续膨胀主样式包；首屏渲染前完成加载。
+  await import('./pad-layout.css');
+  await import('./screen-pages.css');
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <App />

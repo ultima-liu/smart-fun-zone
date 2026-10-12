@@ -1,3 +1,4 @@
+import { WholeStage } from '../components/ScreenPages';
 import BackButton from '../components/BackButton';
 import { useEffect, useRef, useState } from 'react';
 import type { DragEvent } from 'react';
@@ -457,7 +458,7 @@ export default function FruitShopPage() {
         {displayedSign && <p className="fs-reopening-result">🐰 兔兔说：你选的{displayedSign.name}还挂在店门口呢！</p>}
         {teacherRounds > 0 && <p className="fs-adapt-note">你还当了 {teacherRounds} 次小老师，把方法教会了兔兔店长。</p>}
         {result.nextLevel !== level && <p className="fs-adapt-note">下一轮为你准备了「{LEVELS.find((item) => item.id === result.nextLevel)?.name}」难度。</p>}
-        <div className="fs-result-actions"><button onClick={() => restart()}>再招待一组</button><button onClick={() => nav(backTarget)}>返回{backLabel}</button></div>
+        <div className="fs-result-actions"><button onClick={() => restart()}>再招待一组</button><BackButton onClick={() => nav(backTarget)} label={`返回${backLabel}`} /></div>
       </section>
     </main>;
   }
@@ -473,7 +474,7 @@ export default function FruitShopPage() {
 
   return <main className="fs-page page">
     <header className="fs-topbar">
-      <BackButton className="fs-back" onClick={() => nav(backTarget)} aria-label="返回" label={`返回${backLabel}`} />
+      <BackButton className="fs-back" onClick={() => nav(backTarget)} label={`返回${backLabel}`} />
       <div><span>MATH STORY LAB</span><h1>小卷水果店</h1></div>
       <div className="fs-round-progress" aria-label={`第 ${roundIndex + 1} 张订单，共 ${rounds.length} 张`}><b>{roundIndex + 1}</b><span>/ {rounds.length} 单</span></div>
     </header>
@@ -492,7 +493,7 @@ export default function FruitShopPage() {
 
       {teacherMode && <section className={`fs-teacher-mode ${teacherReady ? 'ready' : ''}`} aria-label="小老师模式"><span>🐰</span><div><small>连续需要帮助 · 换一种方法</small><h2>{teacherReady ? '兔兔店长学会第一步啦！' : '请你当小老师'}</h2><p>{teacherReady ? '现在带着兔兔店长完成下面的订单。' : teacherPrompt.prompt}</p>{!teacherReady && <div>{teacherPrompt.options.map((option, index) => <button key={option} className={teacherPick === index ? 'picked' : ''} onClick={() => teachJuan(index)}>{option}</button>)}</div>}</div></section>}
 
-      <div className={taskBlocked ? 'fs-task-blocked' : ''} aria-disabled={taskBlocked}>
+      <div className="fs-task-workspace"><WholeStage><div className={taskBlocked ? 'fs-task-blocked' : ''} aria-disabled={taskBlocked}>
       {round.kind === 'addition' || round.kind === 'subtraction' || round.kind === 'make-ten' ? <section className="fs-calculation" aria-label={`${FRUIT_SHOP_ABILITY_LABELS[round.ability]}订单`}>
         <div className="fs-calc-guest"><span className="fs-guest">{round.guests[0].emoji}</span><b>{round.guests[0].name}的订单</b></div>
         {round.kind === 'make-ten' ? <div className="fs-ten-frame" aria-label={`十格盒已有 ${round.first} 个${fruit.name}`}>
@@ -527,7 +528,7 @@ export default function FruitShopPage() {
           <small>也可以拖进篮子里</small>
         </section>
       </>}
-      </div>
+      </div></WholeStage></div>
 
       <footer className="fs-actions">
         {!roundDone && !taskBlocked && <button className="fs-help" onClick={askForHint}>💡 给我一点提示</button>}

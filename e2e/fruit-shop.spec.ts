@@ -5,10 +5,13 @@ test.use({ launchOptions: { executablePath: CHROME } });
 
 test.beforeEach(async ({ page }) => {
   const childId = 'fruit-shop-child';
+  await page.route('**/config/store', (route) => route.abort());
   await page.addInitScript((id) => {
     const completedAddition = location.hash.includes('/math-course/add-within-5') || location.hash.includes('/review');
     const completedLessons = ['campus', 'playground', 'classroom-discover', 'numbers', 'compare', 'ordinal'];
     if (completedAddition) completedLessons.push('compose', 'add-within-5');
+    // 本场景只安排这节加法复习，其他旧满星课由专门的迁移用例覆盖。
+    if (location.hash.includes('/review')) completedLessons.splice(0, completedLessons.length, 'add-within-5');
     if (location.hash.includes('/math-course/solid-shapes')) completedLessons.push('solid-shapes');
     const seededMastery = Object.fromEntries(completedLessons.map((lessonId) => [`math-lab-${lessonId}`, { stars: 3, gold: true, updatedAt: Date.now() }]));
     localStorage.setItem('smart-fun-zone', JSON.stringify({
@@ -193,8 +196,8 @@ test('立体图形课程使用形状修理铺，不再套用水果店', async ({
   await expect(practice).toContainText('小卷形状修理铺');
   await practice.getByRole('button', { name: '去修理铺试一试 →' }).click();
   await expect(page.getByRole('heading', { name: '小卷形状修理铺' })).toBeVisible();
-  for (let task = 0; task < 3; task += 1) {
-    await page.getByRole('region', { name: '小卷形状修理铺任务' }).locator('div').getByRole('button').first().click();
+  for (const [task, answer] of ['球', '正方体', '圆柱'].entries()) {
+    await page.getByRole('region', { name: '小卷形状修理铺任务' }).getByRole('button', { name: answer, exact: true }).click();
     await page.getByRole('button', { name: task === 2 ? '完成小剧场 →' : '继续下一步 →' }).click();
   }
   await expect(page.getByRole('heading', { name: '修理任务完成啦！' })).toBeVisible();

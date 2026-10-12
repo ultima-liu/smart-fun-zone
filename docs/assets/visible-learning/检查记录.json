@@ -1,0 +1,2975 @@
+{
+  "date": "2026-10-07",
+  "method": "隔离 Chromium 触屏视口、模拟体验档案、屏蔽真实 API；只检查呈现和活动入口切换，不提交答题，不运行 E2E 功能用例。",
+  "limits": [
+    "代表课时与目录布局检查，未逐题检查全部课时",
+    "实体 iPad Safari、系统键盘和浏览器工具栏待设备验证",
+    "窄分屏与短窗口整体适配，文字和学具较小"
+  ],
+  "layout": {
+    "errors": [],
+    "rows": [
+      {
+        "route": "/math-course/campus",
+        "phase": 0,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先看图，猜一猜。猜错没",
+            "rect": {
+              "x": 700,
+              "y": 185,
+              "width": 280,
+              "height": 446.40625
+            },
+            "fit": "0.866"
+          },
+          {
+            "class": "whole-stage",
+            "text": "先观察，再猜一猜\n中间教学楼看起来有几层？\n🌳\n🧒🏻　👧🏻　🧒🏽\n我还不确定\n4 层\n3 层\n\n这里记录的是猜想，不判对错。下一步用操作来验证。\n",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 640,
+              "height": 446.40625
+            },
+            "fit": "0.923"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先看图，猜一猜。猜错没关系，下一步动手验证。",
+            "rect": {
+              "x": 730.0155029296875,
+              "y": 307.21697998046875,
+              "width": 219.968994140625,
+              "height": 54.559234619140625
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 718.7572631835938,
+              "y": 185,
+              "width": 242.4854736328125,
+              "height": 102.29855346679688
+            }
+          }
+        ],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 1,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先点最下面的底层入口，",
+            "rect": {
+              "x": 700,
+              "y": 185,
+              "width": 280,
+              "height": 446.40625
+            },
+            "fit": "0.957"
+          },
+          {
+            "class": "whole-stage",
+            "text": "●\n🌳\n🧒🏻　👧🏻　🧒🏽\n👩🏻‍🏫\n1\n2\n3\n4\n直接在中间教学楼上，从底层入口开始点数\n已经点亮 0 / 4 层",
+            "rect": {
+              "x": 44,
+              "y": 245,
+              "width": 640,
+              "height": 334.40625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先点最下面的底层入口，它就是第 1 层。",
+            "rect": {
+              "x": 718.4506225585938,
+              "y": 320.068115234375,
+              "width": 243.09869384765625,
+              "height": 40.19744873046875
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 706.008544921875,
+              "y": 185,
+              "width": 267.98291015625,
+              "height": 113.05526733398438
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数教学楼\n2\n教材练习\n3\n小探索",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 640,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/numbers",
+        "phase": 1,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 教材 P12\n1～5 的认识\n\n实物、点子、数字与书写\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n1～5 的认",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。\n\n聪聪老师\n\n现在认识数字",
+            "rect": {
+              "x": 700,
+              "y": 185,
+              "width": 280,
+              "height": 446.40625
+            },
+            "fit": "0.883"
+          },
+          {
+            "class": "whole-stage",
+            "text": "从 1 开始，按顺序认识：每个数字都把对应数量的珠子拨到左边（已完成 0/5）\n1\n2\n3\n4\n5\n数量 1\n看得见 · 数得出 · 写得下\n① 看得见的数量\n",
+            "rect": {
+              "x": 44,
+              "y": 248.78125,
+              "width": 640,
+              "height": 330.625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n现在认识数字 1：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。",
+            "rect": {
+              "x": 727.837646484375,
+              "y": 309.63714599609375,
+              "width": 224.32470703125,
+              "height": 55.63958740234375
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。",
+            "rect": {
+              "x": 716.3564453125,
+              "y": 185,
+              "width": 247.287109375,
+              "height": 104.32424926757812
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数量与数字\n2\n拨珠与学具\n3\n数字书写\n4\n教材练习\n5\n小探索",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 640,
+              "height": 55.78125
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/chinese-course/heaven-earth-human",
+        "phase": 0,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 识字 · 教材 P8\n天地人\n\n从天地万物和交往关系中认识六个字\n\n1\n看图发现\n2\n完整听读\n3\n教材练习\n4\n真实表达\n5\n迁移挑战\n🤖\n聪",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1\n天\n🔊\n2\n地\n🔊\n3\n人\n🔊\n○ 天\n○ 地\n○ 人",
+            "rect": {
+              "x": 63,
+              "y": 422.390625,
+              "width": 898,
+              "height": 206.609375
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n先看天空、大地和人，再认识“天、地、人”；接着在交往情境中分清“你、我、他”。 把图上带数字的地方都点一遍，全部点亮，就点下面亮起来的按钮去点读。",
+            "rect": {
+              "x": 99,
+              "y": 196,
+              "width": 762,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n看图找线索\n2\n教材完整页",
+            "rect": {
+              "x": 63,
+              "y": 360.390625,
+              "width": 898,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/english-course/friends-story",
+        "phase": 1,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "Unit 1 · Making friends · 教材 P12–13\nMaking friends · Reading time\n\n完整故事与意义讨论\n\n🔊",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "SCENE 1\nP12 · 第一次见面\nMEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi!",
+            "rect": {
+              "x": 57,
+              "y": 391.375,
+              "width": 654,
+              "height": 187.625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "MEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi! My name is Zoom.\n🔊",
+            "rect": {
+              "x": 318.796875,
+              "y": 392.375,
+              "width": 391.203125,
+              "height": 186
+            },
+            "fit": "0.729"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n点一句，听一句；也可以连续听读。听完后，去下个活动找线索。",
+            "rect": {
+              "x": 753,
+              "y": 565,
+              "width": 108,
+              "height": 126
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n听读这一幕\n2\n找这一幕的线索",
+            "rect": {
+              "x": 388,
+              "y": 327.59375,
+              "width": 323,
+              "height": 55.78125
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/math",
+        "phase": 0,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "人民教育出版社 · 义务教育教科书 · 五步数字化课堂\n一年级数学上册\n\n在游戏和动手操作中发现数学，再说出自己的道理\n\n0%\n整册\n0 / 47 课 · ★ ",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/chinese",
+        "phase": 0,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "语\n文\n依据 2022 年版课标教材重新设计\n一年级语文上册\n\n从图画、声音和真实表达开始学语文\n\n0%\n整册\n0 / 45 课 · ★ 0 / 135\n本册学",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/english",
+        "phase": 0,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "EN\n三上\nPEP · 2022 年版课标修订教材\n三年级英语上册\n\n从真实对话、声音、阅读和项目中学会表达\n\n0%\n整册\n0 / 44 课 · ★ 0 / 1",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 0,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先看图，猜一猜。猜错没",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 702.40625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "先观察，再猜一猜\n中间教学楼看起来有几层？\n🌳\n🧒🏻　👧🏻　🧒🏽\n我还不确定\n4 层\n3 层\n\n这里记录的是猜想，不判对错。下一步用操作来验证。\n",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 450,
+              "height": 702.40625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先看图，猜一猜。猜错没关系，下一步动手验证。",
+            "rect": {
+              "x": 517,
+              "y": 347.125,
+              "width": 194,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 139.125
+            }
+          }
+        ],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 1,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先点最下面的底层入口，",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 702.40625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "●\n🌳\n🧒🏻　👧🏻　🧒🏽\n👩🏻‍🏫\n1\n2\n3\n4\n直接在中间教学楼上，从底层入口开始点数\n已经点亮 0 / 4 层",
+            "rect": {
+              "x": 44,
+              "y": 245,
+              "width": 450,
+              "height": 538.40625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先点最下面的底层入口，它就是第 1 层。",
+            "rect": {
+              "x": 517,
+              "y": 347.125,
+              "width": 194,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 139.125
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数教学楼\n2\n教材练习\n3\n小探索",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 450,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/numbers",
+        "phase": 1,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 教材 P12\n1～5 的认识\n\n实物、点子、数字与书写\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n1～5 的认",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。\n\n聪聪老师\n\n现在认识数字",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 702.40625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "从 1 开始，按顺序认识：每个数字都把对应数量的珠子拨到左边（已完成 0/5）\n1\n2\n3\n4\n5\n数量 1\n看得见 · 数得出 · 写得下\n① 看得见的数量\n",
+            "rect": {
+              "x": 44,
+              "y": 305,
+              "width": 450,
+              "height": 478.40625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n现在认识数字 1：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。",
+            "rect": {
+              "x": 517,
+              "y": 366.3125,
+              "width": 194,
+              "height": 84
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 158.3125
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数量与数字\n2\n拨珠与学具\n3\n数字书写\n4\n教材练习\n5\n小探索",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 450,
+              "height": 112
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/chinese-course/heaven-earth-human",
+        "phase": 0,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 识字 · 教材 P8\n天地人\n\n从天地万物和交往关系中认识六个字\n\n1\n看图发现\n2\n完整听读\n3\n教材练习\n4\n真实表达\n5\n迁移挑战\n🤖\n聪",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1\n天\n🔊\n2\n地\n🔊\n3\n人\n🔊\n○ 天\n○ 地\n○ 人",
+            "rect": {
+              "x": 63,
+              "y": 422.390625,
+              "width": 642,
+              "height": 462.609375
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n先看天空、大地和人，再认识“天、地、人”；接着在交往情境中分清“你、我、他”。 把图上带数字的地方都点一遍，全部点亮，就点下面亮起来的按钮去点读。",
+            "rect": {
+              "x": 99,
+              "y": 196,
+              "width": 506,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n看图找线索\n2\n教材完整页",
+            "rect": {
+              "x": 63,
+              "y": 360.390625,
+              "width": 642,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/english-course/friends-story",
+        "phase": 1,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "Unit 1 · Making friends · 教材 P12–13\nMaking friends · Reading time\n\n完整故事与意义讨论\n\n🔊",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "SCENE 1\nP12 · 第一次见面\nMEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi!",
+            "rect": {
+              "x": 57,
+              "y": 512.5625,
+              "width": 654,
+              "height": 320.4375
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "MEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi! My name is Zoom.\n🔊",
+            "rect": {
+              "x": 318.796875,
+              "y": 513.5625,
+              "width": 391.203125,
+              "height": 318
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n点一句，听一句；也可以连续听读。听完后，去下个活动找线索。",
+            "rect": {
+              "x": 99,
+              "y": 282.1875,
+              "width": 506,
+              "height": 42
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n听读这一幕\n2\n找这一幕的线索",
+            "rect": {
+              "x": 388,
+              "y": 448.78125,
+              "width": 323,
+              "height": 55.78125
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/math",
+        "phase": 0,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "人民教育出版社 · 义务教育教科书 · 五步数字化课堂\n一年级数学上册\n\n在游戏和动手操作中发现数学，再说出自己的道理\n\n🐰🍎\n兔兔水果店\n进入 →\n本册学",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/chinese",
+        "phase": 0,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "语\n文\n依据 2022 年版课标教材重新设计\n一年级语文上册\n\n从图画、声音和真实表达开始学语文\n\n本册学习方法 · 五步课堂\n①\n看图发现\n②\n完整听读\n③\n",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/english",
+        "phase": 0,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "EN\n三上\nPEP · 2022 年版课标修订教材\n三年级英语上册\n\n从真实对话、声音、阅读和项目中学会表达\n\n本册学习方法 · 五步课堂\n①\n看图与预测\n②\n",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 0,
+        "width": 1440,
+        "height": 900,
+        "doc": [
+          1440,
+          900
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 160,
+              "y": 0,
+              "width": 1120,
+              "height": 900
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先看图，猜一猜。猜错没",
+            "rect": {
+              "x": 932,
+              "y": 185,
+              "width": 280,
+              "height": 578.40625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "先观察，再猜一猜\n中间教学楼看起来有几层？\n🌳\n🧒🏻　👧🏻　🧒🏽\n我还不确定\n4 层\n3 层\n\n这里记录的是猜想，不判对错。下一步用操作来验证。\n",
+            "rect": {
+              "x": 228,
+              "y": 185,
+              "width": 688,
+              "height": 578.40625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先看图，猜一猜。猜错没关系，下一步动手验证。",
+            "rect": {
+              "x": 945,
+              "y": 326.125,
+              "width": 254,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 932,
+              "y": 185,
+              "width": 280,
+              "height": 118.125
+            }
+          }
+        ],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 1,
+        "width": 1440,
+        "height": 900,
+        "doc": [
+          1440,
+          900
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 160,
+              "y": 0,
+              "width": 1120,
+              "height": 900
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先点最下面的底层入口，",
+            "rect": {
+              "x": 932,
+              "y": 185,
+              "width": 280,
+              "height": 578.40625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "●\n🌳\n🧒🏻　👧🏻　🧒🏽\n👩🏻‍🏫\n1\n2\n3\n4\n直接在中间教学楼上，从底层入口开始点数\n已经点亮 0 / 4 层",
+            "rect": {
+              "x": 228,
+              "y": 245,
+              "width": 688,
+              "height": 466.40625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先点最下面的底层入口，它就是第 1 层。",
+            "rect": {
+              "x": 945,
+              "y": 326.125,
+              "width": 254,
+              "height": 42
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 932,
+              "y": 185,
+              "width": 280,
+              "height": 118.125
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数教学楼\n2\n教材练习\n3\n小探索",
+            "rect": {
+              "x": 228,
+              "y": 185,
+              "width": 688,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/numbers",
+        "phase": 1,
+        "width": 1440,
+        "height": 900,
+        "doc": [
+          1440,
+          900
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 教材 P12\n1～5 的认识\n\n实物、点子、数字与书写\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n1～5 的认",
+            "rect": {
+              "x": 160,
+              "y": 0,
+              "width": 1120,
+              "height": 900
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。\n\n聪聪老师\n\n现在认识数字",
+            "rect": {
+              "x": 932,
+              "y": 185,
+              "width": 280,
+              "height": 578.40625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "从 1 开始，按顺序认识：每个数字都把对应数量的珠子拨到左边（已完成 0/5）\n1\n2\n3\n4\n5\n数量 1\n看得见 · 数得出 · 写得下\n① 看得见的数量\n",
+            "rect": {
+              "x": 228,
+              "y": 245,
+              "width": 688,
+              "height": 466.40625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n现在认识数字 1：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。",
+            "rect": {
+              "x": 945,
+              "y": 326.125,
+              "width": 254,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。",
+            "rect": {
+              "x": 932,
+              "y": 185,
+              "width": 280,
+              "height": 118.125
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数量与数字\n2\n拨珠与学具\n3\n数字书写\n4\n教材练习\n5\n小探索",
+            "rect": {
+              "x": 228,
+              "y": 185,
+              "width": 688,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/chinese-course/heaven-earth-human",
+        "phase": 0,
+        "width": 1440,
+        "height": 900,
+        "doc": [
+          1440,
+          900
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 识字 · 教材 P8\n天地人\n\n从天地万物和交往关系中认识六个字\n\n1\n看图发现\n2\n完整听读\n3\n教材练习\n4\n真实表达\n5\n迁移挑战\n🤖\n聪",
+            "rect": {
+              "x": 160,
+              "y": 0,
+              "width": 1120,
+              "height": 900
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1\n天\n🔊\n2\n地\n🔊\n3\n人\n🔊\n○ 天\n○ 地\n○ 人",
+            "rect": {
+              "x": 247,
+              "y": 422.390625,
+              "width": 946,
+              "height": 338.609375
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n先看天空、大地和人，再认识“天、地、人”；接着在交往情境中分清“你、我、他”。 把图上带数字的地方都点一遍，全部点亮，就点下面亮起来的按钮去点读。",
+            "rect": {
+              "x": 283,
+              "y": 196,
+              "width": 810,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n看图找线索\n2\n教材完整页",
+            "rect": {
+              "x": 247,
+              "y": 360.390625,
+              "width": 946,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/english-course/friends-story",
+        "phase": 1,
+        "width": 1440,
+        "height": 900,
+        "doc": [
+          1440,
+          900
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "Unit 1 · Making friends · 教材 P12–13\nMaking friends · Reading time\n\n完整故事与意义讨论\n\n🔊",
+            "rect": {
+              "x": 160,
+              "y": 0,
+              "width": 1120,
+              "height": 900
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "SCENE 1\nP12 · 第一次见面\nMEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi!",
+            "rect": {
+              "x": 241,
+              "y": 391.375,
+              "width": 702,
+              "height": 319.625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "MEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi! My name is Zoom.\n🔊",
+            "rect": {
+              "x": 522,
+              "y": 392.375,
+              "width": 420,
+              "height": 318
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n点一句，听一句；也可以连续听读。听完后，去下个活动找线索。",
+            "rect": {
+              "x": 985,
+              "y": 697,
+              "width": 108,
+              "height": 126
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n听读这一幕\n2\n找这一幕的线索",
+            "rect": {
+              "x": 596,
+              "y": 331.375,
+              "width": 347,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/math",
+        "phase": 0,
+        "width": 1440,
+        "height": 900,
+        "doc": [
+          1440,
+          900
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "人民教育出版社 · 义务教育教科书 · 五步数字化课堂\n一年级数学上册\n\n在游戏和动手操作中发现数学，再说出自己的道理\n\n0%\n整册\n0 / 47 课 · ★ ",
+            "rect": {
+              "x": 160,
+              "y": 0,
+              "width": 1120,
+              "height": 900
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/chinese",
+        "phase": 0,
+        "width": 1440,
+        "height": 900,
+        "doc": [
+          1440,
+          900
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "语\n文\n依据 2022 年版课标教材重新设计\n一年级语文上册\n\n从图画、声音和真实表达开始学语文\n\n0%\n整册\n0 / 45 课 · ★ 0 / 135\n本册学",
+            "rect": {
+              "x": 160,
+              "y": 0,
+              "width": 1120,
+              "height": 900
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/english",
+        "phase": 0,
+        "width": 1440,
+        "height": 900,
+        "doc": [
+          1440,
+          900
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "EN\n三上\nPEP · 2022 年版课标修订教材\n三年级英语上册\n\n从真实对话、声音、阅读和项目中学会表达\n\n0%\n整册\n0 / 44 课 · ★ 0 / 1",
+            "rect": {
+              "x": 160,
+              "y": 0,
+              "width": 1120,
+              "height": 900
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 0,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先看图，猜一猜。猜错没",
+            "rect": {
+              "x": 296,
+              "y": 195,
+              "width": 220,
+              "height": 351.8125
+            },
+            "fit": "0.669"
+          },
+          {
+            "class": "whole-stage",
+            "text": "先观察，再猜一猜\n中间教学楼看起来有几层？\n🌳\n🧒🏻　👧🏻　🧒🏽\n我还不确定\n4 层\n3 层\n\n这里记录的是猜想，不判对错。下一步用操作来验证。\n",
+            "rect": {
+              "x": 24,
+              "y": 195,
+              "width": 264,
+              "height": 351.8125
+            },
+            "fit": "0.846"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先看图，猜一猜。猜错没关系，下一步动手验证。",
+            "rect": {
+              "x": 341.08746337890625,
+              "y": 301.69580078125,
+              "width": 129.8250732421875,
+              "height": 37.53802490234375
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 332.3878173828125,
+              "y": 195,
+              "width": 147.224365234375,
+              "height": 91.30416870117188
+            }
+          }
+        ],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 1,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先点最下面的底层入口，",
+            "rect": {
+              "x": 296,
+              "y": 195,
+              "width": 220,
+              "height": 351.8125
+            },
+            "fit": "0.681"
+          },
+          {
+            "class": "whole-stage",
+            "text": "●\n🌳\n🧒🏻　👧🏻　🧒🏽\n👩🏻‍🏫\n1\n2\n3\n4\n直接在中间教学楼上，从底层入口开始点数\n已经点亮 0 / 4 层",
+            "rect": {
+              "x": 24,
+              "y": 315,
+              "width": 264,
+              "height": 123.8125
+            },
+            "fit": "0.464"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先点最下面的底层入口，它就是第 1 层。",
+            "rect": {
+              "x": 339.95745849609375,
+              "y": 303.5531921386719,
+              "width": 132.0850830078125,
+              "height": 38.191497802734375
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 331.10638427734375,
+              "y": 195,
+              "width": 149.7872314453125,
+              "height": 92.89361572265625
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数教学楼\n2\n教材练习\n3\n小探索",
+            "rect": {
+              "x": 24,
+              "y": 195,
+              "width": 264,
+              "height": 112
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/numbers",
+        "phase": 1,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 教材 P12\n1～5 的认识\n\n实物、点子、数字与书写\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n1～5 的认",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。\n\n聪聪老师\n\n现在认识数字",
+            "rect": {
+              "x": 296,
+              "y": 195,
+              "width": 220,
+              "height": 351.8125
+            },
+            "fit": "0.616"
+          },
+          {
+            "class": "whole-stage",
+            "text": "从 1 开始，按顺序认识：每个数字都把对应数量的珠子拨到左边（已完成 0/5）\n1\n2\n3\n4\n5\n数量 1\n看得见 · 数得出 · 写得下\n① 看得见的数量\n",
+            "rect": {
+              "x": 24,
+              "y": 375,
+              "width": 264,
+              "height": 63.8125
+            },
+            "fit": "0.144"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n现在认识数字 1：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。",
+            "rect": {
+              "x": 346.2031555175781,
+              "y": 305.1156005859375,
+              "width": 119.59368896484375,
+              "height": 45.39666748046875
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。",
+            "rect": {
+              "x": 338.18914794921875,
+              "y": 195,
+              "width": 135.6217041015625,
+              "height": 95.93695068359375
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数量与数字\n2\n拨珠与学具\n3\n数字书写\n4\n教材练习\n5\n小探索",
+            "rect": {
+              "x": 24,
+              "y": 195,
+              "width": 264,
+              "height": 172
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/chinese-course/heaven-earth-human",
+        "phase": 0,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 识字 · 教材 P8\n天地人\n\n从天地万物和交往关系中认识六个字\n\n1\n看图发现\n2\n完整听读\n3\n教材练习\n4\n真实表达\n5\n迁移挑战\n聪聪老师",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1\n🔊\n2\n🔊\n3\n🔊\n○ 天\n○ 地\n○ 人",
+            "rect": {
+              "x": 43,
+              "y": 453.390625,
+              "width": 454,
+              "height": 75.609375
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n先看天空、大地和人，再认识“天、地、人”；接着在交往情境中分清“你、我、他”。 把图上带数字的地方都点一遍，全部点亮，就点下面亮起来的按钮去点读。",
+            "rect": {
+              "x": 37,
+              "y": 206,
+              "width": 360,
+              "height": 84
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n看图找线索\n2\n教材完整页",
+            "rect": {
+              "x": 43,
+              "y": 391.390625,
+              "width": 454,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/english-course/friends-story",
+        "phase": 1,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "Unit 1 · Making friends · 教材 P12–13\nMaking friends · Reading time\n\n完整故事与意义讨论\n\n🔊",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "0.667"
+          },
+          {
+            "class": "whole-stage",
+            "text": "SCENE 1\nP12 · 第一次见面\nMEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi!",
+            "rect": {
+              "x": 114.66667175292969,
+              "y": 380.7083435058594,
+              "width": 310.66668701171875,
+              "height": 177.29165649414062
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "MEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi! My name is Zoom.\n🔊",
+            "rect": {
+              "x": 239.0625,
+              "y": 381.375,
+              "width": 185.60418701171875,
+              "height": 176
+            },
+            "fit": "0.779"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n点一句，听一句；也可以连续听读。听完后，去下个活动找线索。",
+            "rect": {
+              "x": 114.66667175292969,
+              "y": 205.45834350585938,
+              "width": 240.00001525878906,
+              "height": 42
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n听读这一幕\n2\n找这一幕的线索",
+            "rect": {
+              "x": 272.66668701171875,
+              "y": 340.7083435058594,
+              "width": 152.66665649414062,
+              "height": 34.666656494140625
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/math",
+        "phase": 0,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "人民教育出版社 · 义务教育教科书 · 五步数字化课堂\n一年级数学上册\n\n在游戏和动手操作中发现数学，再说出自己的道理\n\n🐰🍎\n兔兔水果店\n进入 →\n本册学",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/chinese",
+        "phase": 0,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "依据 2022 年版课标教材重新设计\n一年级语文上册\n\n从图画、声音和真实表达开始学语文\n\n本册学习方法 · 五步课堂\n①\n看图发现\n②\n完整听读\n③\n教材与知",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/english",
+        "phase": 0,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "PEP · 2022 年版课标修订教材\n三年级英语上册\n\n从真实对话、声音、阅读和项目中学会表达\n\n本册学习方法 · 五步课堂\n①\n看图与预测\n②\n听读原课\n③",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 0,
+        "width": 1024,
+        "height": 500,
+        "doc": [
+          1024,
+          500
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察，再表达\n校园里藏着哪",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 500
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先看图，猜一猜。猜错没",
+            "rect": {
+              "x": 714,
+              "y": 157,
+              "width": 280,
+              "height": 214.40625
+            },
+            "fit": "0.416"
+          },
+          {
+            "class": "whole-stage",
+            "text": "先观察，再猜一猜\n中间教学楼看起来有几层？\n🌳\n🧒🏻　👧🏻　🧒🏽\n我还不确定\n4 层\n3 层\n\n这里记录的是猜想，不判对错。下一步用操作来验证。\n",
+            "rect": {
+              "x": 30,
+              "y": 157,
+              "width": 668,
+              "height": 214.40625
+            },
+            "fit": "0.568"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先看图，猜一猜。猜错没关系，下一步动手验证。",
+            "rect": {
+              "x": 801.2271728515625,
+              "y": 215.64224243164062,
+              "width": 105.545654296875,
+              "height": 26.178634643554688
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 795.8252563476562,
+              "y": 157,
+              "width": 116.3494873046875,
+              "height": 49.0849609375
+            }
+          }
+        ],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 1,
+        "width": 1024,
+        "height": 500,
+        "doc": [
+          1024,
+          500
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察，再表达\n校园里藏着哪",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 500
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先点最下面的底层入口，",
+            "rect": {
+              "x": 714,
+              "y": 157,
+              "width": 280,
+              "height": 214.40625
+            },
+            "fit": "0.459"
+          },
+          {
+            "class": "whole-stage",
+            "text": "●\n🌳\n🧒🏻　👧🏻　🧒🏽\n👩🏻‍🏫\n1\n2\n3\n4\n直接在中间教学楼上，从底层入口开始点数\n已经点亮 0 / 4 层",
+            "rect": {
+              "x": 30,
+              "y": 201,
+              "width": 668,
+              "height": 118.40625
+            },
+            "fit": "0.476"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先点最下面的底层入口，它就是第 1 层。",
+            "rect": {
+              "x": 795.6781005859375,
+              "y": 221.8084716796875,
+              "width": 116.643798828125,
+              "height": 19.287567138671875
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 789.7081298828125,
+              "y": 157,
+              "width": 128.583740234375,
+              "height": 54.246246337890625
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数教学楼\n2\n教材练习\n3\n小探索",
+            "rect": {
+              "x": 30,
+              "y": 157,
+              "width": 668,
+              "height": 36
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/numbers",
+        "phase": 1,
+        "width": 1024,
+        "height": 500,
+        "doc": [
+          1024,
+          500
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 教材 P12\n1～5 的认识\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n1～5 的认识 · 具体 → 图示 → ",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 500
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。\n\n聪聪老师\n\n现在认识数字",
+            "rect": {
+              "x": 714,
+              "y": 157,
+              "width": 280,
+              "height": 214.40625
+            },
+            "fit": "0.424"
+          },
+          {
+            "class": "whole-stage",
+            "text": "从 1 开始，按顺序认识：每个数字都把对应数量的珠子拨到左边（已完成 0/5）\n1\n2\n3\n4\n5\n数量 1\n看得见 · 数得出 · 写得下\n① 看得见的数量\n",
+            "rect": {
+              "x": 30,
+              "y": 201,
+              "width": 668,
+              "height": 118.40625
+            },
+            "fit": "0.383"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n现在认识数字 1：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。",
+            "rect": {
+              "x": 800.1821899414062,
+              "y": 216.803466796875,
+              "width": 107.6356201171875,
+              "height": 26.697021484375
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。",
+            "rect": {
+              "x": 794.6732788085938,
+              "y": 157,
+              "width": 118.6534423828125,
+              "height": 50.05693054199219
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数量与数字\n2\n拨珠与学具\n3\n数字书写\n4\n教材练习\n5\n小探索",
+            "rect": {
+              "x": 30,
+              "y": 157,
+              "width": 668,
+              "height": 36
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/chinese-course/heaven-earth-human",
+        "phase": 0,
+        "width": 1024,
+        "height": 500,
+        "doc": [
+          1024,
+          500
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 识字 · 教材 P8\n天地人\n1\n看图发现\n2\n完整听读\n3\n教材练习\n4\n真实表达\n5\n迁移挑战\n🤖\n聪聪老师\n\n先看天空、大地和人，再认识“",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 500
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1\n天\n🔊\n2\n地\n🔊\n3\n人\n🔊\n○ 天\n○ 地\n○ 人",
+            "rect": {
+              "x": 43,
+              "y": 338.1875,
+              "width": 938,
+              "height": 40.8125
+            },
+            "fit": "0.854"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n先看天空、大地和人，再认识“天、地、人”；接着在交往情境中分清“你、我、他”。 把图上带数字的地方都点一遍，全部点亮，就点下面亮起来的按钮去点读。",
+            "rect": {
+              "x": 85,
+              "y": 168,
+              "width": 790,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n看图找线索\n2\n教材完整页",
+            "rect": {
+              "x": 43,
+              "y": 296.1875,
+              "width": 938,
+              "height": 36
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/english-course/friends-story",
+        "phase": 1,
+        "width": 1024,
+        "height": 500,
+        "doc": [
+          1024,
+          500
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "Unit 1 · Making friends · 教材 P12–13\nMaking friends · Reading time\n🔊 听聪聪讲\n英文点读需要",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 500
+            },
+            "fit": "0.694"
+          },
+          {
+            "class": "whole-stage",
+            "text": "SCENE 1\nP12 · 第一次见面\nMEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi!",
+            "rect": {
+              "x": 186.30557250976562,
+              "y": 252.34373474121094,
+              "width": 473.6110534667969,
+              "height": 121.96180725097656
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "MEET\n第一次见面\n\n校门口来了一个新同学。\n\n▶ 连续听这一幕\n🐿️\nHi! I’m Zip.\n🔊\n🐻\nHi! My name is Zoom.\n🔊",
+            "rect": {
+              "x": 375.888916015625,
+              "y": 253.03817749023438,
+              "width": 283.33331298828125,
+              "height": 120.83334350585938
+            },
+            "fit": "0.682"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n点一句，听一句；也可以连续听读。听完后，去下个活动找线索。",
+            "rect": {
+              "x": 689.0833129882812,
+              "y": 364.58331298828125,
+              "width": 75,
+              "height": 87.5
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n听读这一幕\n2\n找这一幕的线索",
+            "rect": {
+              "x": 425.8888854980469,
+              "y": 221.78819274902344,
+              "width": 234.02774047851562,
+              "height": 24.999984741210938
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/math",
+        "phase": 0,
+        "width": 1024,
+        "height": 500,
+        "doc": [
+          1024,
+          500
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "人民教育出版社 · 义务教育教科书 · 五步数字化课堂\n一年级数学上册\n\n在游戏和动手操作中发现数学，再说出自己的道理\n\n0%\n整册\n0 / 47 课 · ★ ",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 500
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/chinese",
+        "phase": 0,
+        "width": 1024,
+        "height": 500,
+        "doc": [
+          1024,
+          500
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "语\n文\n依据 2022 年版课标教材重新设计\n一年级语文上册\n\n从图画、声音和真实表达开始学语文\n\n0%\n整册\n0 / 45 课 · ★ 0 / 135\n本册学",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 500
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/subject/english",
+        "phase": 0,
+        "width": 1024,
+        "height": 500,
+        "doc": [
+          1024,
+          500
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "EN\n三上\nPEP · 2022 年版课标修订教材\n三年级英语上册\n\n从真实对话、声音、阅读和项目中学会表达\n\n0%\n整册\n0 / 44 课 · ★ 0 / 1",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 500
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [],
+        "goals": [],
+        "activities": [],
+        "foldedGuidance": 0,
+        "inner": []
+      }
+    ]
+  },
+  "navigation": {
+    "errors": [],
+    "rows": [
+      {
+        "route": "/math-course/campus",
+        "phase": 1,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先点最下面的底层入口，",
+            "rect": {
+              "x": 700,
+              "y": 185,
+              "width": 280,
+              "height": 446.40625
+            },
+            "fit": "0.957"
+          },
+          {
+            "class": "whole-stage",
+            "text": "教材 P2-P3 · 校园数学探索卡\n校园里除了楼层，还可以用什么数学信息描述国旗？\n🏫\n→ 国旗数量\n○ 窗户形状\n○ 楼层位置\n5 颗五角星\n旗杆很高\n颜",
+            "rect": {
+              "x": 44,
+              "y": 245,
+              "width": 640,
+              "height": 334.40625
+            },
+            "fit": "0.630"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先点最下面的底层入口，它就是第 1 层。",
+            "rect": {
+              "x": 718.4506225585938,
+              "y": 320.068115234375,
+              "width": 243.09869384765625,
+              "height": 40.19744873046875
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 706.008544921875,
+              "y": 185,
+              "width": 267.98291015625,
+              "height": 113.05526733398438
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数教学楼\n2\n教材练习\n3\n小探索",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 640,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/numbers",
+        "phase": 1,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 教材 P12\n1～5 的认识\n\n实物、点子、数字与书写\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n1～5 的认",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。\n\n聪聪老师\n\n现在认识数字",
+            "rect": {
+              "x": 700,
+              "y": 185,
+              "width": 280,
+              "height": 446.40625
+            },
+            "fit": "0.883"
+          },
+          {
+            "class": "whole-stage",
+            "text": "动手巩固\n换一种方法，再认识一次 1\n拨一拨\n向左拨出 0 / 1 颗珠\n摆一摆\n1 个方块排成一排\n生活中找一找\n👃\n它也可以表示数量 1",
+            "rect": {
+              "x": 44,
+              "y": 248.78125,
+              "width": 640,
+              "height": 330.625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n现在认识数字 1：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。",
+            "rect": {
+              "x": 727.837646484375,
+              "y": 309.63714599609375,
+              "width": 224.32470703125,
+              "height": 55.63958740234375
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。",
+            "rect": {
+              "x": 716.3564453125,
+              "y": 185,
+              "width": 247.287109375,
+              "height": 104.32424926757812
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数量与数字\n2\n拨珠与学具\n3\n数字书写\n4\n教材练习\n5\n小探索",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 640,
+              "height": 55.78125
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/english-course/friends-story",
+        "phase": 1,
+        "width": 1024,
+        "height": 768,
+        "doc": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "Unit 1 · Making friends · 教材 P12–13\nMaking friends · Reading time\n\n完整故事与意义讨论\n\n🔊",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1024,
+              "height": 768
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "本幕线索\n他们用什么打开了第一次交流？\n只是安静地看着对方，不说话\n互相介绍并友好问候\n\n先听读画面里的句子，再回答本幕线索。",
+            "rect": {
+              "x": 57,
+              "y": 391.375,
+              "width": 654,
+              "height": 187.625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n点一句，听一句；也可以连续听读。听完后，去下个活动找线索。",
+            "rect": {
+              "x": 753,
+              "y": 565,
+              "width": 108,
+              "height": 126
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n听读这一幕\n2\n找这一幕的线索",
+            "rect": {
+              "x": 388,
+              "y": 327.59375,
+              "width": 323,
+              "height": 55.78125
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 1,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先点最下面的底层入口，",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 702.40625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "教材 P2-P3 · 校园数学探索卡\n校园里除了楼层，还可以用什么数学信息描述国旗？\n🏫\n→ 国旗数量\n○ 窗户形状\n○ 楼层位置\n5 颗五角星\n旗杆很高\n颜",
+            "rect": {
+              "x": 44,
+              "y": 245,
+              "width": 450,
+              "height": 538.40625
+            },
+            "fit": "0.962"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先点最下面的底层入口，它就是第 1 层。",
+            "rect": {
+              "x": 517,
+              "y": 347.125,
+              "width": 194,
+              "height": 63
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 139.125
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数教学楼\n2\n教材练习\n3\n小探索",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 450,
+              "height": 52
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/numbers",
+        "phase": 1,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 教材 P12\n1～5 的认识\n\n实物、点子、数字与书写\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n1～5 的认",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。\n\n聪聪老师\n\n现在认识数字",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 702.40625
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "动手巩固\n换一种方法，再认识一次 1\n拨一拨\n向左拨出 0 / 1 颗珠\n摆一摆\n1 个方块排成一排\n生活中找一找\n👃\n它也可以表示数量 1",
+            "rect": {
+              "x": 44,
+              "y": 305,
+              "width": 450,
+              "height": 478.40625
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n现在认识数字 1：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。",
+            "rect": {
+              "x": 517,
+              "y": 366.3125,
+              "width": 194,
+              "height": 84
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。",
+            "rect": {
+              "x": 504,
+              "y": 185,
+              "width": 220,
+              "height": 158.3125
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数量与数字\n2\n拨珠与学具\n3\n数字书写\n4\n教材练习\n5\n小探索",
+            "rect": {
+              "x": 44,
+              "y": 185,
+              "width": 450,
+              "height": 112
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/english-course/friends-story",
+        "phase": 1,
+        "width": 768,
+        "height": 1024,
+        "doc": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "Unit 1 · Making friends · 教材 P12–13\nMaking friends · Reading time\n\n完整故事与意义讨论\n\n🔊",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1024
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "本幕线索\n他们用什么打开了第一次交流？\n只是安静地看着对方，不说话\n互相介绍并友好问候\n\n先听读画面里的句子，再回答本幕线索。",
+            "rect": {
+              "x": 57,
+              "y": 512.5625,
+              "width": 654,
+              "height": 320.4375
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n点一句，听一句；也可以连续听读。听完后，去下个活动找线索。",
+            "rect": {
+              "x": 99,
+              "y": 282.1875,
+              "width": 506,
+              "height": 42
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n听读这一幕\n2\n找这一幕的线索",
+            "rect": {
+              "x": 388,
+              "y": 448.78125,
+              "width": 323,
+              "height": 55.78125
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/campus",
+        "phase": 1,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 教材 P1\n在校园里找一找\n\n数量、形状和位置\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n数学游戏 · 先观察",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。\n\n聪聪老师\n\n先点最下面的底层入口，",
+            "rect": {
+              "x": 296,
+              "y": 195,
+              "width": 220,
+              "height": 351.8125
+            },
+            "fit": "0.681"
+          },
+          {
+            "class": "whole-stage",
+            "text": "教材 P2-P3 · 校园数学探索卡\n校园里除了楼层，还可以用什么数学信息描述国旗？\n🏫\n→ 国旗数量\n○ 窗户形状\n○ 楼层位置\n5 颗五角星\n旗杆很高\n颜",
+            "rect": {
+              "x": 24,
+              "y": 315,
+              "width": 264,
+              "height": 123.8125
+            },
+            "fit": "0.168"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n先点最下面的底层入口，它就是第 1 层。",
+            "rect": {
+              "x": 339.95745849609375,
+              "y": 303.5531921386719,
+              "width": 132.0850830078125,
+              "height": 38.191497802734375
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "数学游戏 · 先观察，再表达\n校园里藏着哪些数学？\n\n找数量、形状和位置。数中间教学楼时，从底层入口开始，一层一层往上数。",
+            "rect": {
+              "x": 331.10638427734375,
+              "y": 195,
+              "width": 149.7872314453125,
+              "height": 92.89361572265625
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数教学楼\n2\n教材练习\n3\n小探索",
+            "rect": {
+              "x": 24,
+              "y": 195,
+              "width": 264,
+              "height": 112
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/math-course/numbers",
+        "phase": 1,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "第一单元 · 教材 P12\n1～5 的认识\n\n实物、点子、数字与书写\n\n🔊 听聪聪讲\n✓\n先猜\n✓\n动手试\n✓\n说理由\n✓\n小检测\n5\n智能闯关\n1～5 的认",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "1.000"
+          },
+          {
+            "class": "whole-stage",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。\n\n聪聪老师\n\n现在认识数字",
+            "rect": {
+              "x": 296,
+              "y": 195,
+              "width": 220,
+              "height": 351.8125
+            },
+            "fit": "0.616"
+          },
+          {
+            "class": "whole-stage",
+            "text": "动手巩固\n换一种方法，再认识一次 1\n拨一拨\n向左拨出 0 / 1 颗珠\n摆一摆\n1 个方块排成一排\n生活中找一找\n👃\n它也可以表示数量 1",
+            "rect": {
+              "x": 24,
+              "y": 375,
+              "width": 264,
+              "height": 63.8125
+            },
+            "fit": "0.242"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "mt-teacher-body teacher-guide-copy",
+            "text": "聪聪老师\n\n现在认识数字 1：从最靠近中梁、还在右边的第 1 颗珠开始，一颗一颗拨。",
+            "rect": {
+              "x": 346.2031555175781,
+              "y": 305.1156005859375,
+              "width": 119.59368896484375,
+              "height": 45.39666748046875
+            }
+          }
+        ],
+        "goals": [
+          {
+            "class": "lesson-context",
+            "text": "1～5 的认识 · 具体 → 图示 → 符号\n一个数，可以有三种样子\n\n选择数字，观察实物数量和点子同时变化，再沿着笔画方向描一遍。",
+            "rect": {
+              "x": 338.18914794921875,
+              "y": 195,
+              "width": 135.6217041015625,
+              "height": 95.93695068359375
+            }
+          }
+        ],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n数量与数字\n2\n拨珠与学具\n3\n数字书写\n4\n教材练习\n5\n小探索",
+            "rect": {
+              "x": 24,
+              "y": 195,
+              "width": 264,
+              "height": 172
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      },
+      {
+        "route": "/english-course/friends-story",
+        "phase": 1,
+        "width": 540,
+        "height": 720,
+        "doc": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "class": "whole-stage",
+            "text": "Unit 1 · Making friends · 教材 P12–13\nMaking friends · Reading time\n\n完整故事与意义讨论\n\n🔊",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 540,
+              "height": 720
+            },
+            "fit": "0.667"
+          },
+          {
+            "class": "whole-stage",
+            "text": "本幕线索\n他们用什么打开了第一次交流？\n只是安静地看着对方，不说话\n互相介绍并友好问候\n\n先听读画面里的句子，再回答本幕线索。",
+            "rect": {
+              "x": 114.66667175292969,
+              "y": 380.7083435058594,
+              "width": 310.66668701171875,
+              "height": 177.29165649414062
+            },
+            "fit": "1.000"
+          }
+        ],
+        "teacher": [
+          {
+            "class": "teacher-guide-copy",
+            "text": "聪聪老师\n\n点一句，听一句；也可以连续听读。听完后，去下个活动找线索。",
+            "rect": {
+              "x": 114.66667175292969,
+              "y": 205.45834350585938,
+              "width": 240.00001525878906,
+              "height": 42
+            }
+          }
+        ],
+        "goals": [],
+        "activities": [
+          {
+            "class": "activity-tabs",
+            "text": "1\n听读这一幕\n2\n找这一幕的线索",
+            "rect": {
+              "x": 272.66668701171875,
+              "y": 340.7083435058594,
+              "width": 152.66665649414062,
+              "height": 34.666656494140625
+            }
+          }
+        ],
+        "foldedGuidance": 0,
+        "inner": []
+      }
+    ]
+  }
+}

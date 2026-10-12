@@ -1,0 +1,2001 @@
+{
+  "errors": [],
+  "rows": [
+    {
+      "id": "compare",
+      "phase": 1,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 494.875
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 494.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "numbers",
+      "phase": 1,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 494.875
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 494.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "campus",
+      "phase": 1,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 426.28125
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 426.28125
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.930"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compose",
+      "phase": 1,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 494.875
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 494.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.946"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 1,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 494.875
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 494.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 0,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 494.875
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 494.875
+      },
+      "taskCount": 0,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 2,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 494.875
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 494.875
+      },
+      "taskCount": 2,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 494.875
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 494.875
+      },
+      "taskCount": 0,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.932"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "width": 1024,
+      "height": 768,
+      "document": [
+        1024,
+        768
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 936,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 936,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 180,
+        "height": 494.875
+      },
+      "main": {
+        "x": 236,
+        "y": 257.125,
+        "width": 744,
+        "height": 494.875
+      },
+      "taskCount": 2,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.932"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 1,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 160,
+        "height": 750.875
+      },
+      "main": {
+        "x": 214,
+        "y": 257.125,
+        "width": 510,
+        "height": 750.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "numbers",
+      "phase": 1,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 81.3125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 276.3125,
+        "width": 160,
+        "height": 731.6875
+      },
+      "main": {
+        "x": 214,
+        "y": 276.3125,
+        "width": 510,
+        "height": 731.6875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.900"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "campus",
+      "phase": 1,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 160,
+        "height": 682.28125
+      },
+      "main": {
+        "x": 214,
+        "y": 257.125,
+        "width": 510,
+        "height": 682.28125
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compose",
+      "phase": 1,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 160,
+        "height": 750.875
+      },
+      "main": {
+        "x": 214,
+        "y": 257.125,
+        "width": 510,
+        "height": 750.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 1,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 160,
+        "height": 750.875
+      },
+      "main": {
+        "x": 214,
+        "y": 257.125,
+        "width": 510,
+        "height": 750.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 0,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 160,
+        "height": 750.875
+      },
+      "main": {
+        "x": 214,
+        "y": 257.125,
+        "width": 510,
+        "height": 750.875
+      },
+      "taskCount": 0,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 2,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 160,
+        "height": 750.875
+      },
+      "main": {
+        "x": 214,
+        "y": 257.125,
+        "width": 510,
+        "height": 750.875
+      },
+      "taskCount": 2,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 160,
+        "height": 750.875
+      },
+      "main": {
+        "x": 214,
+        "y": 257.125,
+        "width": 510,
+        "height": 750.875
+      },
+      "taskCount": 0,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "width": 768,
+      "height": 1024,
+      "document": [
+        768,
+        1024
+      ],
+      "header": {
+        "x": 44,
+        "y": 121,
+        "width": 680,
+        "height": 54
+      },
+      "guide": {
+        "x": 44,
+        "y": 185,
+        "width": 680,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 44,
+        "y": 257.125,
+        "width": 160,
+        "height": 750.875
+      },
+      "main": {
+        "x": 214,
+        "y": 257.125,
+        "width": 510,
+        "height": 750.875
+      },
+      "taskCount": 2,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 1,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 626.875
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 626.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "numbers",
+      "phase": 1,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 626.875
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 626.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "campus",
+      "phase": 1,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 558.28125
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 558.28125
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compose",
+      "phase": 1,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 626.875
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 626.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 1,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 626.875
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 626.875
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 0,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 626.875
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 626.875
+      },
+      "taskCount": 0,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 2,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 626.875
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 626.875
+      },
+      "taskCount": 2,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 626.875
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 626.875
+      },
+      "taskCount": 0,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "width": 1440,
+      "height": 900,
+      "document": [
+        1440,
+        900
+      ],
+      "header": {
+        "x": 228,
+        "y": 121,
+        "width": 984,
+        "height": 54
+      },
+      "guide": {
+        "x": 228,
+        "y": 185,
+        "width": 984,
+        "height": 62.125
+      },
+      "teacher": {
+        "x": 228,
+        "y": 257.125,
+        "width": 180,
+        "height": 626.875
+      },
+      "main": {
+        "x": 420,
+        "y": 257.125,
+        "width": 792,
+        "height": 626.875
+      },
+      "taskCount": 2,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 1,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 55.375
+      },
+      "teacher": {
+        "x": 24,
+        "y": 260.375,
+        "width": 140,
+        "height": 443.625
+      },
+      "main": {
+        "x": 172,
+        "y": 260.375,
+        "width": 344,
+        "height": 443.625
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.830"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "numbers",
+      "phase": 1,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 74.5625
+      },
+      "teacher": {
+        "x": 24,
+        "y": 279.5625,
+        "width": 140,
+        "height": 424.4375
+      },
+      "main": {
+        "x": 172,
+        "y": 279.5625,
+        "width": 344,
+        "height": 424.4375
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.448"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "campus",
+      "phase": 1,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 74.5625
+      },
+      "teacher": {
+        "x": 24,
+        "y": 279.5625,
+        "width": 140,
+        "height": 319.25
+      },
+      "main": {
+        "x": 172,
+        "y": 279.5625,
+        "width": 344,
+        "height": 319.25
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "0.831",
+        "0.810"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compose",
+      "phase": 1,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 55.375
+      },
+      "teacher": {
+        "x": 24,
+        "y": 260.375,
+        "width": 140,
+        "height": 443.625
+      },
+      "main": {
+        "x": 172,
+        "y": 260.375,
+        "width": 344,
+        "height": 443.625
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.467"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "plus-nine",
+      "phase": 1,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 55.375
+      },
+      "teacher": {
+        "x": 24,
+        "y": 260.375,
+        "width": 140,
+        "height": 443.625
+      },
+      "main": {
+        "x": 172,
+        "y": 260.375,
+        "width": 344,
+        "height": 443.625
+      },
+      "taskCount": 3,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 0,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 55.375
+      },
+      "teacher": {
+        "x": 24,
+        "y": 260.375,
+        "width": 140,
+        "height": 443.625
+      },
+      "main": {
+        "x": 172,
+        "y": 260.375,
+        "width": 344,
+        "height": 443.625
+      },
+      "taskCount": 0,
+      "fit": [
+        "1.000",
+        "1.000",
+        "1.000"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 2,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 55.375
+      },
+      "teacher": {
+        "x": 24,
+        "y": 260.375,
+        "width": 140,
+        "height": 443.625
+      },
+      "main": {
+        "x": 172,
+        "y": 260.375,
+        "width": 344,
+        "height": 443.625
+      },
+      "taskCount": 2,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.784"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 55.375
+      },
+      "teacher": {
+        "x": 24,
+        "y": 260.375,
+        "width": 140,
+        "height": 443.625
+      },
+      "main": {
+        "x": 172,
+        "y": 260.375,
+        "width": 344,
+        "height": 443.625
+      },
+      "taskCount": 0,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.741"
+      ],
+      "visibleButtons": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "width": 540,
+      "height": 720,
+      "document": [
+        540,
+        720
+      ],
+      "header": {
+        "x": 24,
+        "y": 121,
+        "width": 492,
+        "height": 64
+      },
+      "guide": {
+        "x": 24,
+        "y": 195,
+        "width": 492,
+        "height": 55.375
+      },
+      "teacher": {
+        "x": 24,
+        "y": 260.375,
+        "width": 140,
+        "height": 443.625
+      },
+      "main": {
+        "x": 172,
+        "y": 260.375,
+        "width": 344,
+        "height": 443.625
+      },
+      "taskCount": 2,
+      "fit": [
+        "1.000",
+        "1.000",
+        "0.741"
+      ],
+      "visibleButtons": []
+    }
+  ],
+  "allLessons": [
+    {
+      "id": "campus",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "playground",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "classroom-discover",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "classroom-games",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "learning-readiness",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "numbers",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "compare",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "ordinal",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "compose",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "add-within-5",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "subtract-within-5",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "zero",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "unit1-review",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "six-to-nine",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "compare-order-nine",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "compose-six-nine",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "addsub-six-seven",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "solve-total-within-7",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "solve-remain-within-7",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "addsub-eight-nine",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "select-info-eight-nine",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "ten",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "addsub-ten",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "continuous-add-sub",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "mixed-add-sub",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "unit2-review",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "solid-shapes",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "solid-building",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "solid-compose",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "ten-again",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "eleven-twenty",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "order-twenty",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "simple-addsub-twenty",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "between-positions",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "unit4-review",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "plus-nine",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "plus-eight-seven-six",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "solve-total",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "find-original",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "addition-table",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "unit5-review",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "review-numbers",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "review-relations",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "review-shapes",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    },
+    {
+      "id": "review-application",
+      "tabs": [
+        "1教材任务 1",
+        "2教材任务 2",
+        "3小探索"
+      ],
+      "panels": 3,
+      "empty": false
+    }
+  ],
+  "supplement": [
+    {
+      "viewport": [
+        1024,
+        768
+      ],
+      "fit": "0.941",
+      "lastBottom": 741.5821533203125,
+      "frameBottom": 752,
+      "completed": true
+    },
+    {
+      "viewport": [
+        768,
+        1024
+      ],
+      "fit": "1.000",
+      "lastBottom": 997.125,
+      "frameBottom": 1008,
+      "completed": true
+    }
+  ],
+  "scope": {
+    "date": "2026-10-08",
+    "browser": "桌面 Chromium，触屏视口",
+    "realChildData": false,
+    "api": "屏蔽真实 API",
+    "layoutCases": 36,
+    "courseTaskPanels": 47,
+    "notes": "全册检查任务入口和面板，不代表完成全册题目；另补查分与合最新排版、5组配对和完成标记。"
+  },
+  "validation": {
+    "relatedE2E": {
+      "file": "e2e/math-automatic-flow.spec.ts",
+      "passed": 3,
+      "failed": 0,
+      "seconds": 36.3,
+      "coverage": [
+        "真实任务自动推进与回看",
+        "旧完成标记不能跳过任务",
+        "已解锁课程新完成任务推进",
+        "刷新后保留闯关完成勾选"
+      ]
+    },
+    "targetedLint": "passed",
+    "productionBuild": "passed",
+    "bundleBudget": "passed"
+  }
+}

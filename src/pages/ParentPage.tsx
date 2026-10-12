@@ -1,3 +1,5 @@
+import { ActivityDeck, ContentPages } from '../components/ScreenPages';
+import MathParentEvidence from '../components/MathParentEvidence';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore, childRecords } from '../store';
@@ -230,7 +232,7 @@ export default function ParentPage() {
           </div>
 
           {tab === 'settings' && (
-            <div className="parent-settings">
+            <ActivityDeck className="parent-settings" labels={['声音', '语音', '语音服务', '游戏时长', '家长任务', '家长密码', '数据管理']}>
               <div className="setting-row">
                 <span>{t('sound')}</span>
                 <Toggle on={sound} onClick={toggleSound} label={t('sound')} />
@@ -314,7 +316,7 @@ export default function ParentPage() {
                     {tasks.length === 0 ? (
                       <p className="task-empty">还没有任务，添加一个试试～</p>
                     ) : (
-                      <div className="task-list">
+                      <ContentPages kind="rows" className="task-list">
                         {tasks.map((task) => {
                           const pending = task.pendingDays;
                           const rewardName = task.itemId ? itemOptions.find((it) => it.id === task.itemId)?.name ?? task.itemId : null;
@@ -334,7 +336,7 @@ export default function ParentPage() {
                             </div>
                           );
                         })}
-                      </div>
+                      </ContentPages>
                     )}
                   </>
                 )}
@@ -374,7 +376,7 @@ export default function ParentPage() {
                   {t('clearData')}
                 </button>
               </div>
-            </div>
+            </ActivityDeck>
           )}
 
           {tab === 'report' && (
@@ -390,6 +392,7 @@ export default function ParentPage() {
                       <span className="report-age">{gradeLabel(p.ageBand, lang)}</span>
                       <span className="report-stars">⭐ {courseTotalStars(p.id, mastery, records)}</span>
                     </div>
+                    <MathParentEvidence childId={p.id} />
                     {mine.length === 0 ? (
                       <p className="empty-tip small">{t('noData')}</p>
                     ) : (

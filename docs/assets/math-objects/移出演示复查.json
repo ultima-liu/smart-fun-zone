@@ -1,0 +1,437 @@
+{
+  "questions": 5,
+  "records": [
+    {
+      "id": "plus-eight-nine-strategies",
+      "index": 1,
+      "phase": 3,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "initial",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 2,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 2,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "index": 2,
+      "phase": 4,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "initial",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 2,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 2,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "index": 1,
+      "phase": 3,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "initial",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 8,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 8,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "index": 1,
+      "phase": 3,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "hint",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 2,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 2,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-eight-nine-strategies",
+      "index": 2,
+      "phase": 4,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "hint",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 2,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 2,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "index": 1,
+      "phase": 3,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "hint",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 8,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 8,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "index": 2,
+      "phase": 4,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "initial",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 8,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 8,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "index": 2,
+      "phase": 4,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "initial",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 8,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 8,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "index": 2,
+      "phase": 4,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "hint",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 8,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 8,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "index": 2,
+      "phase": 4,
+      "variant": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "state": "hint",
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 8,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      },
+      "fit": 1,
+      "objects": [
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc",
+        "disc"
+      ],
+      "bundles": [],
+      "removed": 8,
+      "labels": [
+        "圆片"
+      ],
+      "overflow": false,
+      "clipped": []
+    }
+  ],
+  "errors": [],
+  "wrongObjects": []
+}

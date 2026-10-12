@@ -1,0 +1,298 @@
+[
+  {
+    "name": "web",
+    "theme": "dark",
+    "board": {
+      "width": 600,
+      "height": 600
+    },
+    "controls": [
+      {
+        "label": "向上转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向左转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向下转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向右转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "按住冲刺加速",
+        "width": 176,
+        "height": 44
+      }
+    ],
+    "documentWidth": 1440,
+    "viewportWidth": 1440
+  },
+  {
+    "name": "web",
+    "theme": "light",
+    "board": {
+      "width": 600,
+      "height": 600
+    },
+    "controls": [
+      {
+        "label": "向上转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向左转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向下转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向右转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "按住冲刺加速",
+        "width": 176,
+        "height": 44
+      }
+    ],
+    "documentWidth": 1440,
+    "viewportWidth": 1440
+  },
+  {
+    "name": "pad-landscape",
+    "theme": "dark",
+    "board": {
+      "width": 460.796875,
+      "height": 460.796875
+    },
+    "controls": [
+      {
+        "label": "向上转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向左转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向下转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向右转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "按住冲刺加速",
+        "width": 176,
+        "height": 44
+      }
+    ],
+    "documentWidth": 1024,
+    "viewportWidth": 1024
+  },
+  {
+    "name": "pad-landscape",
+    "theme": "light",
+    "board": {
+      "width": 460.796875,
+      "height": 460.796875
+    },
+    "controls": [
+      {
+        "label": "向上转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向左转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向下转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向右转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "按住冲刺加速",
+        "width": 176,
+        "height": 44
+      }
+    ],
+    "documentWidth": 1024,
+    "viewportWidth": 1024
+  },
+  {
+    "name": "pad-portrait",
+    "theme": "dark",
+    "board": {
+      "width": 600,
+      "height": 600
+    },
+    "controls": [
+      {
+        "label": "向上转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向左转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向下转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向右转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "按住冲刺加速",
+        "width": 176,
+        "height": 44
+      }
+    ],
+    "documentWidth": 768,
+    "viewportWidth": 768
+  },
+  {
+    "name": "pad-portrait",
+    "theme": "light",
+    "board": {
+      "width": 600,
+      "height": 600
+    },
+    "controls": [
+      {
+        "label": "向上转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向左转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向下转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "向右转",
+        "width": 54,
+        "height": 48
+      },
+      {
+        "label": "按住冲刺加速",
+        "width": 176,
+        "height": 44
+      }
+    ],
+    "documentWidth": 768,
+    "viewportWidth": 768
+  },
+  {
+    "name": "phone",
+    "theme": "dark",
+    "board": {
+      "width": 292,
+      "height": 292
+    },
+    "controls": [
+      {
+        "label": "向上转",
+        "width": 48,
+        "height": 44
+      },
+      {
+        "label": "向左转",
+        "width": 48,
+        "height": 44
+      },
+      {
+        "label": "向下转",
+        "width": 48,
+        "height": 44
+      },
+      {
+        "label": "向右转",
+        "width": 48,
+        "height": 44
+      },
+      {
+        "label": "按住冲刺加速",
+        "width": 176,
+        "height": 44
+      }
+    ],
+    "documentWidth": 390,
+    "viewportWidth": 390
+  },
+  {
+    "name": "phone",
+    "theme": "light",
+    "board": {
+      "width": 292,
+      "height": 292
+    },
+    "controls": [
+      {
+        "label": "向上转",
+        "width": 48,
+        "height": 44
+      },
+      {
+        "label": "向左转",
+        "width": 48,
+        "height": 44
+      },
+      {
+        "label": "向下转",
+        "width": 48,
+        "height": 44
+      },
+      {
+        "label": "向右转",
+        "width": 48,
+        "height": 44
+      },
+      {
+        "label": "按住冲刺加速",
+        "width": 176,
+        "height": 44
+      }
+    ],
+    "documentWidth": 390,
+    "viewportWidth": 390
+  }
+]

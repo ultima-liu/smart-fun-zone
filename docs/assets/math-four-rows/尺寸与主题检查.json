@@ -1,0 +1,7891 @@
+{
+  "lessons": 4,
+  "questions": 8,
+  "records": [
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 360.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 104.96875,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 91.09375,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 268.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 322.984375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 390.1875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 376.5625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 402.796875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 552.1875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 407.65625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 402.796875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 552.1875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "worked",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 464.046875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 402.796875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 490.28125,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 639.671875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 412.0625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 434.171875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 360.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 104.96875,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 91.09375,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 268.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 322.984375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 390.1875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 376.5625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 402.796875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 552.1875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 407.65625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 402.796875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 552.1875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "worked",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 464.046875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 402.796875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 490.28125,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 639.671875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 412.0625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 434.171875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 906
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 360.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 104.96875,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 91.09375,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 268.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 322.984375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 390.1875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 367,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 393.234375,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 542.625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 398.09375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 393.234375,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 542.625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "worked",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 454.484375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 393.234375,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 480.71875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 630.109375,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 412.0625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 434.171875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 360.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 104.96875,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 820
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 91.09375,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 268.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 322.984375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 474.75,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 568.140625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 390.1875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 367,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 393.234375,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 542.625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 398.09375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 393.234375,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 542.625,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "worked",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 454.484375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 393.234375,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 480.71875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 630.109375,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 412.0625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 434.171875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 720
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 902
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 820
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 360.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 646
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 646
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 646
+        }
+      ],
+      "options": [
+        {
+          "width": 104.96875,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 646
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 91.09375,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 268.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 322.984375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 390.1875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 359.78125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 386.015625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 535.40625,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 390.875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 386.015625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 535.40625,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "worked",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 447.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 386.015625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 473.5,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 622.890625,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 412.0625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 434.171875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "light",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 360.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 646
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 646
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 646
+        }
+      ],
+      "options": [
+        {
+          "width": 104.96875,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 391.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 536.421875,
+          "width": 646
+        }
+      ],
+      "options": [
+        {
+          "width": 91,
+          "height": 52
+        },
+        {
+          "width": 91.09375,
+          "height": 52
+        },
+        {
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 268.796875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 322.984375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "compare",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "choice",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 299.890625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 372.421875,
+          "width": 606
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 444.421875,
+          "width": 606
+        }
+      ],
+      "options": [
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        },
+        {
+          "width": 76,
+          "height": 60
+        }
+      ],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 392.515625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ordinal",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 423.609375,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 335.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 395.359375,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 497.6875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 591.078125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 390.1875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 421.28125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 472.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 565.8125,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 359.78125,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 386.015625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 535.40625,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 390.875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 386.015625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 535.40625,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "state": "worked",
+      "kind": "expression",
+      "hasVisual": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 447.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 386.015625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 473.5,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 622.890625,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 412.0625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 0,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 443.15625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 494.296875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 587.6875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "initial",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 434.171875,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "hint",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "wrong",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "phase": 4,
+      "index": 1,
+      "state": "correct",
+      "kind": "number",
+      "hasVisual": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "theme": "dark",
+      "fit": 1,
+      "height": 465.265625,
+      "rows": [
+        {
+          "class": "math-assessment-prompt",
+          "y": 312.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-demo",
+          "y": 372.421875,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-answer",
+          "y": 516.40625,
+          "width": 646
+        },
+        {
+          "class": "math-assessment-hints",
+          "y": 609.796875,
+          "width": 646
+        }
+      ],
+      "options": [],
+      "overflow": false,
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

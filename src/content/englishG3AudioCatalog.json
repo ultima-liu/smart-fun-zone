@@ -1,0 +1,2352 @@
+[
+  {
+    "key": "friends-opening-chant",
+    "src": "/assets/english-textbook/audio/friends-opening-chant.mp3",
+    "title": "Unit 1 Listen and chant",
+    "lessonIds": [
+      "friends-opening"
+    ],
+    "slot": "chant",
+    "pages": [
+      3
+    ],
+    "seconds": 40.542,
+    "sourceId": "470a31db-efc0-d455-759a-0e0afd6fef23",
+    "sourceMd5": "44fe9d4c7ac9dd64b1ece956cf2990ea",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 3,
+        "label": "Listen and chant",
+        "region": [
+          0.4723127035830619,
+          0.48846153846153845,
+          0.9446254071661238,
+          0.6707692307692308
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-opening-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-opening-song",
+    "src": "/assets/english-textbook/audio/friends-opening-song.mp3",
+    "title": "Unit 1 Listen and sing",
+    "lessonIds": [
+      "friends-opening"
+    ],
+    "slot": "song",
+    "pages": [
+      3,
+      78
+    ],
+    "seconds": 59.611,
+    "sourceId": "9f0c8f90-d31a-2eb6-e859-0e7fa5f26f1f",
+    "sourceMd5": "872b6c34ce07491588f5a3ed72077f7a",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 78,
+        "label": "歌曲歌词",
+        "region": [
+          0.07600434310532031,
+          0.18846153846153846,
+          0.4723127035830619,
+          0.46923076923076923
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-opening-song-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-a-talk",
+    "src": "/assets/english-textbook/audio/friends-a-talk.mp3",
+    "title": "Unit 1 A Let’s talk",
+    "lessonIds": [
+      "friends-a"
+    ],
+    "slot": "talk",
+    "pages": [
+      4
+    ],
+    "seconds": 21.054,
+    "sourceId": "17fc5e1e-a4ce-7c6c-b289-efcc074c80ad",
+    "sourceMd5": "5a5f8c344e2d19b4dbc770ba7a287c77",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 4,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.525
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-a-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-a-activity",
+    "src": "/assets/english-textbook/audio/friends-a-activity.mp3",
+    "title": "Unit 1 A Listen and do",
+    "lessonIds": [
+      "friends-a"
+    ],
+    "slot": "activity",
+    "pages": [
+      5
+    ],
+    "seconds": 41.848,
+    "sourceId": "30bb6c3a-698d-7c9b-be3a-fe88aed05f2b",
+    "sourceMd5": "c2f6144c9efc52b5cc72f47478e328f3",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 5,
+        "label": "Listen and do",
+        "region": [
+          0.05,
+          0.53,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-a-activity-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-letters-sounds",
+    "src": "/assets/english-textbook/audio/friends-letters-sounds.mp3",
+    "title": "Unit 1 A Listen, repeat and chant.",
+    "lessonIds": [
+      "friends-letters"
+    ],
+    "slot": "chant",
+    "pages": [
+      6,
+      80
+    ],
+    "seconds": 143.203,
+    "sourceId": "7634415c-3c83-16f6-aa43-5236786212e3",
+    "sourceMd5": "2b4fe43786555bf03fd0ff475d0900e1",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 6,
+        "label": "字母与例词",
+        "region": [
+          0.045,
+          0.118,
+          0.96,
+          0.405
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-letters-sounds-1.webp"
+      },
+      {
+        "page": 80,
+        "label": "歌谣文字",
+        "region": [
+          0.08143322475570032,
+          0.18846153846153846,
+          0.44516829533116176,
+          0.9046153846153846
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-letters-sounds-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-letters-first-sound",
+    "src": "/assets/english-textbook/audio/friends-letters-first-sound.mp3",
+    "title": "Unit 1 A Listen and circle the first sound.",
+    "lessonIds": [
+      "friends-letters"
+    ],
+    "slot": "first-sound",
+    "pages": [
+      6
+    ],
+    "seconds": 44.538,
+    "sourceId": "894110fd-b54a-f5b8-0c1e-ca54a23f7bd1",
+    "sourceMd5": "10e05635e7aeb1a02cf193678a099d0e",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 6,
+        "label": "听音圈出首音",
+        "region": [
+          0.075,
+          0.461,
+          0.615,
+          0.754
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-letters-first-sound-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-b-talk",
+    "src": "/assets/english-textbook/audio/friends-b-talk.mp3",
+    "title": "Unit 1 B Let's talk",
+    "lessonIds": [
+      "friends-b"
+    ],
+    "slot": "talk",
+    "pages": [
+      7
+    ],
+    "seconds": 23.875,
+    "sourceId": "2d74110b-7871-2d25-d23a-3ca7ba5d9654",
+    "sourceMd5": "a1cb3a2d8288f2f642b45d62d60f1e7c",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 7,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.595
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-b-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-b-chant",
+    "src": "/assets/english-textbook/audio/friends-b-chant.mp3",
+    "title": "Unit 1 B Listen and chant",
+    "lessonIds": [
+      "friends-b"
+    ],
+    "slot": "activity",
+    "pages": [
+      8
+    ],
+    "seconds": 28.604,
+    "sourceId": "9fe7e9c7-6515-a31e-4cee-68deaaf29e09",
+    "sourceMd5": "e00f33a1dc1f2cbb0cc4e9a30e97be5f",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 8,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.6,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-b-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-read",
+    "src": "/assets/english-textbook/audio/friends-read.mp3",
+    "title": "Unit 1 B Start to read",
+    "lessonIds": [
+      "friends-read"
+    ],
+    "slot": "read",
+    "pages": [
+      9
+    ],
+    "seconds": 21.786,
+    "sourceId": "973c8e17-163d-2896-9667-2169e5bcd013",
+    "sourceMd5": "09da3d03fff22b8dadf2aee5293aaf39",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 9,
+        "label": "Start to read",
+        "region": [
+          0.05,
+          0.07,
+          0.96,
+          0.565
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-read-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-project-listening",
+    "src": "/assets/english-textbook/audio/friends-project-listening.mp3",
+    "title": "Unit 1 C Project",
+    "lessonIds": [
+      "friends-project"
+    ],
+    "slot": "project",
+    "pages": [
+      10
+    ],
+    "seconds": 28.421,
+    "sourceId": "8901457a-fd91-1259-76e1-f43cc65fdfa8",
+    "sourceMd5": "a747b2c17de105576177e3ed67f7ec54",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 10,
+        "label": "项目听力题",
+        "region": [
+          0.055,
+          0.13,
+          0.955,
+          0.31
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-project-listening-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-opening-chant",
+    "src": "/assets/english-textbook/audio/families-opening-chant.mp3",
+    "title": "Unit 2 Listen and chant",
+    "lessonIds": [
+      "families-opening"
+    ],
+    "slot": "chant",
+    "pages": [
+      15
+    ],
+    "seconds": 41.168,
+    "sourceId": "a9406fdf-84e3-e54b-be6e-a1c05935ec59",
+    "sourceMd5": "3f65382dc18c2efc3e30168765107cc8",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 15,
+        "label": "Listen and chant",
+        "region": [
+          0.4723127035830619,
+          0.46153846153846156,
+          0.9446254071661238,
+          0.6446153846153846
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-opening-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-opening-song",
+    "src": "/assets/english-textbook/audio/families-opening-song.mp3",
+    "title": "Unit 2 Listen and sing",
+    "lessonIds": [
+      "families-opening"
+    ],
+    "slot": "song",
+    "pages": [
+      15,
+      78
+    ],
+    "seconds": 96.156,
+    "sourceId": "6b8035bd-93df-ded8-69aa-80a8f654bbc0",
+    "sourceMd5": "ec60612f885e4f1047b1412e6cbc5044",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 78,
+        "label": "歌曲歌词",
+        "region": [
+          0.07600434310532031,
+          0.48846153846153845,
+          0.4723127035830619,
+          0.8730769230769231
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-opening-song-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-a-talk",
+    "src": "/assets/english-textbook/audio/families-a-talk.mp3",
+    "title": "Unit 2 A Let’s talk",
+    "lessonIds": [
+      "families-a"
+    ],
+    "slot": "talk",
+    "pages": [
+      16
+    ],
+    "seconds": 21.028,
+    "sourceId": "fc7032c6-a884-8524-0dc0-6774010e20a0",
+    "sourceMd5": "d4d7871f464de5ebabf0ca78ed7cbe3c",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 16,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.6
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-a-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-a-finger-song",
+    "src": "/assets/english-textbook/audio/families-a-finger-song.mp3",
+    "title": "Unit 2 A Listen, sing and play",
+    "lessonIds": [
+      "families-a"
+    ],
+    "slot": "practice",
+    "pages": [
+      16,
+      78
+    ],
+    "seconds": 50.311,
+    "sourceId": "137d7205-816f-2234-fda8-77753ebcaa17",
+    "sourceMd5": "97d4d56b8ceb17d4b8f3d83f20c1482f",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 16,
+        "label": "Listen, sing and play",
+        "region": [
+          0.05971769815418024,
+          0.6076923076923076,
+          0.9554831704668838,
+          0.9076923076923077
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-a-finger-song-1.webp"
+      },
+      {
+        "page": 78,
+        "label": "Finger family song 完整歌词",
+        "region": [
+          0.494028230184582,
+          0.18615384615384614,
+          0.9066232356134636,
+          0.6838461538461539
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-a-finger-song-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-a-activity",
+    "src": "/assets/english-textbook/audio/families-a-activity.mp3",
+    "title": "Unit 2 A Listen and chant",
+    "lessonIds": [
+      "families-a"
+    ],
+    "slot": "activity",
+    "pages": [
+      17
+    ],
+    "seconds": 37.433,
+    "sourceId": "ab030b73-c8be-3477-d206-9a0dd2a9f1ef",
+    "sourceMd5": "d99ada394cb4e2512500acda9bbe8360",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 17,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.595,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-a-activity-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-letters-sounds",
+    "src": "/assets/english-textbook/audio/families-letters-sounds.mp3",
+    "title": "Unit 2 A Listen, repeat and chant.",
+    "lessonIds": [
+      "families-letters"
+    ],
+    "slot": "chant",
+    "pages": [
+      18,
+      80
+    ],
+    "seconds": 136.437,
+    "sourceId": "bdcbad97-0482-3efa-f978-d0f6b859deb9",
+    "sourceMd5": "3d6b23a1441829faf352c4cd21721d8c",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 18,
+        "label": "字母与例词",
+        "region": [
+          0.045,
+          0.118,
+          0.96,
+          0.405
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-letters-sounds-1.webp"
+      },
+      {
+        "page": 80,
+        "label": "歌谣文字",
+        "region": [
+          0.494028230184582,
+          0.18846153846153846,
+          0.8686210640608035,
+          0.9046153846153846
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-letters-sounds-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-letters-first-sound",
+    "src": "/assets/english-textbook/audio/families-letters-first-sound.mp3",
+    "title": "Unit 2 A Listen and circle the first sound.",
+    "lessonIds": [
+      "families-letters"
+    ],
+    "slot": "first-sound",
+    "pages": [
+      18
+    ],
+    "seconds": 58.122,
+    "sourceId": "40c877c9-ae82-b648-9c86-025771e6c8b5",
+    "sourceMd5": "4d95f68a3b8fbc0d0575f74b18e18e1b",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 18,
+        "label": "听音圈出首音",
+        "region": [
+          0.075,
+          0.461,
+          0.615,
+          0.754
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-letters-first-sound-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-b-talk",
+    "src": "/assets/english-textbook/audio/families-b-talk.mp3",
+    "title": "Unit 2 B Let's talk",
+    "lessonIds": [
+      "families-b"
+    ],
+    "slot": "talk",
+    "pages": [
+      19
+    ],
+    "seconds": 22.386,
+    "sourceId": "f4c40060-6a79-9a1e-1d92-d2069b04a869",
+    "sourceMd5": "0f3ebc6e27fef210371ed873662df3c5",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 19,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.65
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-b-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-b-chant",
+    "src": "/assets/english-textbook/audio/families-b-chant.mp3",
+    "title": "Unit 2 B Listen and chant",
+    "lessonIds": [
+      "families-b"
+    ],
+    "slot": "activity",
+    "pages": [
+      20
+    ],
+    "seconds": 32.888,
+    "sourceId": "709f9393-4b66-868a-215c-cdac3999a6bf",
+    "sourceMd5": "203fe528eebbd7ca8a4958036c4a10e3",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 20,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.6,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-b-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-read",
+    "src": "/assets/english-textbook/audio/families-read.mp3",
+    "title": "Unit 2 B Start to read",
+    "lessonIds": [
+      "families-read"
+    ],
+    "slot": "read",
+    "pages": [
+      21
+    ],
+    "seconds": 23.17,
+    "sourceId": "669a0058-4901-3abd-e565-ad772c4a9881",
+    "sourceMd5": "2eff05580160a557511a2b9ff150d2dd",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 21,
+        "label": "Start to read",
+        "region": [
+          0.05,
+          0.07,
+          0.96,
+          0.643
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-read-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-project-listening",
+    "src": "/assets/english-textbook/audio/families-project-listening.mp3",
+    "title": "Unit 2 C Project",
+    "lessonIds": [
+      "families-project"
+    ],
+    "slot": "project",
+    "pages": [
+      22
+    ],
+    "seconds": 26.462,
+    "sourceId": "966bf654-ff57-8f30-e016-392f9f48b26b",
+    "sourceMd5": "5e62954186b748ae27e3a6a37240e14c",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 22,
+        "label": "项目听力题",
+        "region": [
+          0.055,
+          0.13,
+          0.955,
+          0.389
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-project-listening-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-opening-chant",
+    "src": "/assets/english-textbook/audio/animals-opening-chant.mp3",
+    "title": "Unit 3 Listen and chant",
+    "lessonIds": [
+      "animals-opening"
+    ],
+    "slot": "chant",
+    "pages": [
+      27
+    ],
+    "seconds": 32.626,
+    "sourceId": "d6705426-e6e4-d322-3fd6-239678d48334",
+    "sourceMd5": "81138912ed7852e86c6e0658ab85324c",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 27,
+        "label": "Listen and chant",
+        "region": [
+          0.4723127035830619,
+          0.4576923076923077,
+          0.9446254071661238,
+          0.6369230769230769
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-opening-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-opening-song",
+    "src": "/assets/english-textbook/audio/animals-opening-song.mp3",
+    "title": "Unit 3 Listen and sing",
+    "lessonIds": [
+      "animals-opening"
+    ],
+    "slot": "song",
+    "pages": [
+      27,
+      78,
+      79
+    ],
+    "seconds": 41.691,
+    "sourceId": "39fdefe2-a201-4590-ded6-673b2e542c43",
+    "sourceMd5": "27375c5cbf72a0793a75a65c39f3531e",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 78,
+        "label": "歌曲歌词",
+        "region": [
+          0.494028230184582,
+          0.7,
+          0.9066232356134636,
+          0.8846153846153846
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-opening-song-1.webp"
+      },
+      {
+        "page": 79,
+        "label": "歌曲歌词（续）",
+        "region": [
+          0.1248642779587405,
+          0.07076923076923076,
+          0.5157437567861021,
+          0.19615384615384615
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-opening-song-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-a-talk",
+    "src": "/assets/english-textbook/audio/animals-a-talk.mp3",
+    "title": "Unit 3 A Let’s talk",
+    "lessonIds": [
+      "animals-a"
+    ],
+    "slot": "talk",
+    "pages": [
+      28
+    ],
+    "seconds": 23.353,
+    "sourceId": "b6b5cd94-d9aa-9608-6a04-98b840b347e0",
+    "sourceMd5": "1553bcc3dd859364ba8a8e05dfaf05d7",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 28,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.7
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-a-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-a-activity",
+    "src": "/assets/english-textbook/audio/animals-a-activity.mp3",
+    "title": "Unit 3 A Listen and do",
+    "lessonIds": [
+      "animals-a"
+    ],
+    "slot": "activity",
+    "pages": [
+      29
+    ],
+    "seconds": 41.926,
+    "sourceId": "769c32df-74d1-8d61-a44c-b04b93cefd4f",
+    "sourceMd5": "f6d6c96512037b794002796fc761a631",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 29,
+        "label": "Listen and do",
+        "region": [
+          0.05,
+          0.605,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-a-activity-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-letters-sounds",
+    "src": "/assets/english-textbook/audio/animals-letters-sounds.mp3",
+    "title": "Unit 3 A Listen, repeat and chant.",
+    "lessonIds": [
+      "animals-letters"
+    ],
+    "slot": "chant",
+    "pages": [
+      30,
+      81
+    ],
+    "seconds": 129.776,
+    "sourceId": "5f7f5074-8646-32c2-5a70-5d81c77d4e2c",
+    "sourceMd5": "6f754ac22b72d22fb9d4941ce810c654",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 30,
+        "label": "字母与例词",
+        "region": [
+          0.045,
+          0.118,
+          0.96,
+          0.405
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-letters-sounds-1.webp"
+      },
+      {
+        "page": 81,
+        "label": "歌谣文字",
+        "region": [
+          0.1248642779587405,
+          0.07384615384615385,
+          0.4831704668838219,
+          0.7961538461538461
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-letters-sounds-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-letters-first-sound",
+    "src": "/assets/english-textbook/audio/animals-letters-first-sound.mp3",
+    "title": "Unit 3 A Listen and circle the first sound.",
+    "lessonIds": [
+      "animals-letters"
+    ],
+    "slot": "first-sound",
+    "pages": [
+      30
+    ],
+    "seconds": 43.258,
+    "sourceId": "71d52555-66ba-937c-449c-66877bfe6ca3",
+    "sourceMd5": "5dfd8358d611abe46d22870a98fa76a8",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 30,
+        "label": "听音圈出首音",
+        "region": [
+          0.075,
+          0.461,
+          0.615,
+          0.754
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-letters-first-sound-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-b-talk",
+    "src": "/assets/english-textbook/audio/animals-b-talk.mp3",
+    "title": "Unit 3 B Let's talk",
+    "lessonIds": [
+      "animals-b"
+    ],
+    "slot": "talk",
+    "pages": [
+      31
+    ],
+    "seconds": 28.76,
+    "sourceId": "020dc382-2303-539c-086d-45956ca69e24",
+    "sourceMd5": "a16d0ce8dc58663a5b3b5d862c531b84",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 31,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.64
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-b-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-b-chant",
+    "src": "/assets/english-textbook/audio/animals-b-chant.mp3",
+    "title": "Unit 3 B Listen and chant",
+    "lessonIds": [
+      "animals-b"
+    ],
+    "slot": "activity",
+    "pages": [
+      32
+    ],
+    "seconds": 43.755,
+    "sourceId": "aab37c33-afbd-7c58-205c-440e76db8a41",
+    "sourceMd5": "1cbcbb6c07b70b5c4659b899af2f92ad",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 32,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.53,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-b-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-read",
+    "src": "/assets/english-textbook/audio/animals-read.mp3",
+    "title": "Unit 3 B Start to read",
+    "lessonIds": [
+      "animals-read"
+    ],
+    "slot": "read",
+    "pages": [
+      33
+    ],
+    "seconds": 24.267,
+    "sourceId": "42a39455-8bf2-c903-4244-7951ab8a7b60",
+    "sourceMd5": "9d7d2d9e92c8eb48f4407d5d6ac2ea99",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 33,
+        "label": "Start to read",
+        "region": [
+          0.05,
+          0.07,
+          0.96,
+          0.613
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-read-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-project-listening",
+    "src": "/assets/english-textbook/audio/animals-project-listening.mp3",
+    "title": "Unit 3 C Project",
+    "lessonIds": [
+      "animals-project"
+    ],
+    "slot": "project",
+    "pages": [
+      34
+    ],
+    "seconds": 30.902,
+    "sourceId": "a7973330-cbb9-5b8b-5e15-6a0ed667dcc2",
+    "sourceMd5": "6f7eb8ba7f5675f3f9e34bd1491bef08",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 34,
+        "label": "项目听力题",
+        "region": [
+          0.055,
+          0.13,
+          0.955,
+          0.363
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-project-listening-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-opening-chant",
+    "src": "/assets/english-textbook/audio/plants-opening-chant.mp3",
+    "title": "Unit 4 Listen and chant",
+    "lessonIds": [
+      "plants-opening"
+    ],
+    "slot": "chant",
+    "pages": [
+      39
+    ],
+    "seconds": 28.447,
+    "sourceId": "f826c874-ee99-70ff-d6d8-8d25c2d7af38",
+    "sourceMd5": "0056fb58cb8e45aece02b7da4ff928ef",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 39,
+        "label": "Listen and chant",
+        "region": [
+          0.46688382193268185,
+          0.41,
+          0.9609120521172638,
+          0.7169230769230769
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-opening-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-opening-song",
+    "src": "/assets/english-textbook/audio/plants-opening-song.mp3",
+    "title": "Unit 4 Listen and sing",
+    "lessonIds": [
+      "plants-opening"
+    ],
+    "slot": "song",
+    "pages": [
+      39,
+      79
+    ],
+    "seconds": 49.972,
+    "sourceId": "d3fb5ad3-d08d-3197-ff35-172753052d86",
+    "sourceMd5": "f09650bc63ca888f2a127f222016c155",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 79,
+        "label": "歌曲歌词",
+        "region": [
+          0.1248642779587405,
+          0.2169230769230769,
+          0.5157437567861021,
+          0.6446153846153846
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-opening-song-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-a-talk",
+    "src": "/assets/english-textbook/audio/plants-a-talk.mp3",
+    "title": "Unit 4 A Let’s talk",
+    "lessonIds": [
+      "plants-a"
+    ],
+    "slot": "talk",
+    "pages": [
+      40
+    ],
+    "seconds": 26.671,
+    "sourceId": "ae04a0ea-daf4-46af-ef5b-3e03ec1c154e",
+    "sourceMd5": "82b5dd85734d45fcb0b30b4c5a974a5e",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 40,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.64
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-a-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-a-activity",
+    "src": "/assets/english-textbook/audio/plants-a-activity.mp3",
+    "title": "Unit 4 A Listen and chant",
+    "lessonIds": [
+      "plants-a"
+    ],
+    "slot": "activity",
+    "pages": [
+      41
+    ],
+    "seconds": 44.695,
+    "sourceId": "ae9909b5-d90a-a9d8-681b-a82fc0e18596",
+    "sourceMd5": "f9ac8333bec331a746865171186d53e2",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 41,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.6,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-a-activity-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-letters-sounds",
+    "src": "/assets/english-textbook/audio/plants-letters-sounds.mp3",
+    "title": "Unit 4 A Listen, repeat and chant.",
+    "lessonIds": [
+      "plants-letters"
+    ],
+    "slot": "chant",
+    "pages": [
+      42,
+      81
+    ],
+    "seconds": 136.176,
+    "sourceId": "555baf81-b1fe-1437-471f-42d9576a1da7",
+    "sourceMd5": "9e193c08e2332435359b98a55e2e90a7",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 42,
+        "label": "字母与例词",
+        "region": [
+          0.045,
+          0.118,
+          0.96,
+          0.405
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-letters-sounds-1.webp"
+      },
+      {
+        "page": 81,
+        "label": "歌谣文字",
+        "region": [
+          0.1248642779587405,
+          0.813076923076923,
+          0.4831704668838219,
+          0.8961538461538462
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-letters-sounds-2.webp"
+      },
+      {
+        "page": 81,
+        "label": "歌谣文字（续）",
+        "region": [
+          0.5374592833876222,
+          0.07153846153846154,
+          0.9229098805646037,
+          0.7076923076923077
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-letters-sounds-3.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-letters-first-sound",
+    "src": "/assets/english-textbook/audio/plants-letters-first-sound.mp3",
+    "title": "Unit 4 A Listen and circle the first sound.",
+    "lessonIds": [
+      "plants-letters"
+    ],
+    "slot": "first-sound",
+    "pages": [
+      42
+    ],
+    "seconds": 42.553,
+    "sourceId": "841cb3fe-dfe4-d0f9-56d0-c38daffa5841",
+    "sourceMd5": "52106ffef8b1f6db416a0c79d02d0157",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 42,
+        "label": "听音圈出首音",
+        "region": [
+          0.075,
+          0.461,
+          0.615,
+          0.754
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-letters-first-sound-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-b-talk",
+    "src": "/assets/english-textbook/audio/plants-b-talk.mp3",
+    "title": "Unit 4 B Let's talk",
+    "lessonIds": [
+      "plants-b"
+    ],
+    "slot": "talk",
+    "pages": [
+      43
+    ],
+    "seconds": 23.013,
+    "sourceId": "9bf5c14e-0bc2-900c-03d5-29a6735af3a1",
+    "sourceMd5": "04761789cb3a42db1ce479cc7d5fb3a8",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 43,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.64
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-b-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-b-chant",
+    "src": "/assets/english-textbook/audio/plants-b-chant.mp3",
+    "title": "Unit 4 B Listen and chant",
+    "lessonIds": [
+      "plants-b"
+    ],
+    "slot": "activity",
+    "pages": [
+      44
+    ],
+    "seconds": 44.12,
+    "sourceId": "8cac18ee-5805-675b-516f-314b011b2bd8",
+    "sourceMd5": "6dc9bfcd3340eeef762de8529ef05c6b",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 44,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.645,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-b-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-read",
+    "src": "/assets/english-textbook/audio/plants-read.mp3",
+    "title": "Unit 4 B Start to read",
+    "lessonIds": [
+      "plants-read"
+    ],
+    "slot": "read",
+    "pages": [
+      45
+    ],
+    "seconds": 27.794,
+    "sourceId": "6d23f197-a4e6-d07a-f2f1-78ab0273d3d3",
+    "sourceMd5": "76edd77685b433169a70402db10f7501",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 45,
+        "label": "Start to read",
+        "region": [
+          0.05,
+          0.07,
+          0.96,
+          0.578
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-read-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-project-listening",
+    "src": "/assets/english-textbook/audio/plants-project-listening.mp3",
+    "title": "Unit 4 C Project",
+    "lessonIds": [
+      "plants-project"
+    ],
+    "slot": "project",
+    "pages": [
+      46
+    ],
+    "seconds": 35.683,
+    "sourceId": "241054c7-9b42-710c-303f-3370c7e56d93",
+    "sourceMd5": "b3e1f2fd8933338b73b868b74479e471",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 46,
+        "label": "项目听力题",
+        "region": [
+          0.055,
+          0.13,
+          0.955,
+          0.435
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-project-listening-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-opening-chant",
+    "src": "/assets/english-textbook/audio/colours-opening-chant.mp3",
+    "title": "Unit 5 Listen and chant",
+    "lessonIds": [
+      "colours-opening"
+    ],
+    "slot": "chant",
+    "pages": [
+      51
+    ],
+    "seconds": 59.715,
+    "sourceId": "b4dc7e4f-889f-bf20-a825-87a5b3a6ae10",
+    "sourceMd5": "422c911efeb63453c7a48afb8752ece5",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 51,
+        "label": "Listen and chant",
+        "region": [
+          0.46688382193268185,
+          0.42923076923076925,
+          0.9609120521172638,
+          0.7023076923076923
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-opening-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-opening-song",
+    "src": "/assets/english-textbook/audio/colours-opening-song.mp3",
+    "title": "Unit 5 Listen and sing",
+    "lessonIds": [
+      "colours-opening"
+    ],
+    "slot": "song",
+    "pages": [
+      51,
+      79
+    ],
+    "seconds": 59.846,
+    "sourceId": "0b3950c1-b1ee-2197-3995-a5fcd98cdb69",
+    "sourceMd5": "943c6407efcadd1ddd668725a74dd7d6",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 79,
+        "label": "歌曲歌词",
+        "region": [
+          0.1248642779587405,
+          0.6661538461538462,
+          0.5157437567861021,
+          0.85
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-opening-song-1.webp"
+      },
+      {
+        "page": 79,
+        "label": "歌曲歌词（续）",
+        "region": [
+          0.5374592833876222,
+          0.07076923076923076,
+          0.9229098805646037,
+          0.2169230769230769
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-opening-song-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-a-talk",
+    "src": "/assets/english-textbook/audio/colours-a-talk.mp3",
+    "title": "Unit 5 A Let’s talk",
+    "lessonIds": [
+      "colours-a"
+    ],
+    "slot": "talk",
+    "pages": [
+      52
+    ],
+    "seconds": 22.256,
+    "sourceId": "861ecfa7-4a26-d612-4748-3c37af32bd85",
+    "sourceMd5": "775b90453d990704c8ef937f5a00b5b6",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 52,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.64
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-a-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-a-activity",
+    "src": "/assets/english-textbook/audio/colours-a-activity.mp3",
+    "title": "Unit 5 A Listen and chant",
+    "lessonIds": [
+      "colours-a"
+    ],
+    "slot": "activity",
+    "pages": [
+      53
+    ],
+    "seconds": 34.063,
+    "sourceId": "a387fd75-e0dc-50c3-9902-12316f6141ba",
+    "sourceMd5": "3d9c8b2d10d4fdb2d6d97e5827b8fa55",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 53,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.6,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-a-activity-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-letters-sounds",
+    "src": "/assets/english-textbook/audio/colours-letters-sounds.mp3",
+    "title": "Unit 5 A Listen, repeat and chant.",
+    "lessonIds": [
+      "colours-letters"
+    ],
+    "slot": "chant",
+    "pages": [
+      54,
+      81,
+      82
+    ],
+    "seconds": 148.427,
+    "sourceId": "51a8b40d-20ca-14ad-77ff-cf828018cfa3",
+    "sourceMd5": "fd47cf2d138074e9e1cf9532af61eae5",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 54,
+        "label": "字母与例词",
+        "region": [
+          0.045,
+          0.118,
+          0.96,
+          0.405
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-letters-sounds-1.webp"
+      },
+      {
+        "page": 81,
+        "label": "歌谣文字",
+        "region": [
+          0.5374592833876222,
+          0.7269230769230769,
+          0.9229098805646037,
+          0.8961538461538462
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-letters-sounds-2.webp"
+      },
+      {
+        "page": 82,
+        "label": "歌谣文字（续）",
+        "region": [
+          0.08143322475570032,
+          0.07153846153846154,
+          0.4777415852334419,
+          0.7830769230769231
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-letters-sounds-3.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-letters-first-sound",
+    "src": "/assets/english-textbook/audio/colours-letters-first-sound.mp3",
+    "title": "Unit 5 A Listen and circle the first sound.",
+    "lessonIds": [
+      "colours-letters"
+    ],
+    "slot": "first-sound",
+    "pages": [
+      54
+    ],
+    "seconds": 58.096,
+    "sourceId": "982c1810-9f55-3559-02b4-91620a6b2ec3",
+    "sourceMd5": "44b0d36b1e2afd7b564bfd37446550e7",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 54,
+        "label": "原题 1–2",
+        "region": [
+          0.11,
+          0.462,
+          0.65,
+          0.59
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-letters-first-sound-1.webp"
+      },
+      {
+        "page": 54,
+        "label": "原题 3–5",
+        "region": [
+          0.06,
+          0.63,
+          0.67,
+          0.76
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-letters-first-sound-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-b-talk",
+    "src": "/assets/english-textbook/audio/colours-b-talk.mp3",
+    "title": "Unit 5 B Let's talk",
+    "lessonIds": [
+      "colours-b"
+    ],
+    "slot": "talk",
+    "pages": [
+      55
+    ],
+    "seconds": 23.353,
+    "sourceId": "fab9ead4-2e89-d0cc-ddf1-2935a620f9c4",
+    "sourceMd5": "977e26121bc3b95e9bb296d7afc31ed7",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 55,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.64
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-b-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-b-chant",
+    "src": "/assets/english-textbook/audio/colours-b-chant.mp3",
+    "title": "Unit 5 B Listen and do",
+    "lessonIds": [
+      "colours-b"
+    ],
+    "slot": "activity",
+    "pages": [
+      56
+    ],
+    "seconds": 48.039,
+    "sourceId": "ed794c10-b525-d0ec-4305-5e5ae8cca5d5",
+    "sourceMd5": "113c0a7bef36fdabc5473cbf97652c0e",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 56,
+        "label": "Listen and do",
+        "region": [
+          0.05,
+          0.51,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-b-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-read",
+    "src": "/assets/english-textbook/audio/colours-read.mp3",
+    "title": "Unit 5 B Start to read",
+    "lessonIds": [
+      "colours-read"
+    ],
+    "slot": "read",
+    "pages": [
+      57
+    ],
+    "seconds": 29.727,
+    "sourceId": "02d35a9e-9643-f8d1-376e-d3584a01447b",
+    "sourceMd5": "7b9f078013dd3bd8db7732be8ec53e8e",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 57,
+        "label": "Start to read",
+        "region": [
+          0.05,
+          0.07,
+          0.96,
+          0.588
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-read-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-project-listening",
+    "src": "/assets/english-textbook/audio/colours-project-listening.mp3",
+    "title": "Unit 5 C Project",
+    "lessonIds": [
+      "colours-project"
+    ],
+    "slot": "project",
+    "pages": [
+      58
+    ],
+    "seconds": 43.598,
+    "sourceId": "fda6e1ed-b7c2-db01-839b-80f0d5b5db68",
+    "sourceMd5": "4480aec80fb0815909724e82aa4f7ead",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 58,
+        "label": "项目听力题",
+        "region": [
+          0.055,
+          0.13,
+          0.955,
+          0.295
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-project-listening-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-opening-chant",
+    "src": "/assets/english-textbook/audio/numbers-opening-chant.mp3",
+    "title": "Unit 6 Listen and chant",
+    "lessonIds": [
+      "numbers-opening"
+    ],
+    "slot": "chant",
+    "pages": [
+      63
+    ],
+    "seconds": 33.175,
+    "sourceId": "3d8d9e32-e558-9a2b-8483-8f8becb30fdc",
+    "sourceMd5": "52c99ec7f4328ea3ea834754d03f4793",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 63,
+        "label": "Listen and chant",
+        "region": [
+          0.46688382193268185,
+          0.4707692307692308,
+          0.9609120521172638,
+          0.6446153846153846
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-opening-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-opening-song",
+    "src": "/assets/english-textbook/audio/numbers-opening-song.mp3",
+    "title": "Unit 6 Listen and sing",
+    "lessonIds": [
+      "numbers-opening"
+    ],
+    "slot": "song",
+    "pages": [
+      63,
+      79
+    ],
+    "seconds": 62.458,
+    "sourceId": "198860fd-e40c-c367-e28b-7473afb9b9e3",
+    "sourceMd5": "cd346b34733a8d4bc8c603ed5bbd2b71",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 79,
+        "label": "歌曲歌词",
+        "region": [
+          0.5374592833876222,
+          0.24307692307692308,
+          0.9229098805646037,
+          0.5238461538461539
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-opening-song-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-a-talk",
+    "src": "/assets/english-textbook/audio/numbers-a-talk.mp3",
+    "title": "Unit 6 A Let’s talk",
+    "lessonIds": [
+      "numbers-a"
+    ],
+    "slot": "talk",
+    "pages": [
+      64
+    ],
+    "seconds": 23.902,
+    "sourceId": "748b2030-7899-dedc-809f-b1a0259367ef",
+    "sourceMd5": "381db21ae9199113fa8e3c804adfa3d9",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 64,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.64
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-a-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-a-activity",
+    "src": "/assets/english-textbook/audio/numbers-a-activity.mp3",
+    "title": "Unit 6 A Listen and chant",
+    "lessonIds": [
+      "numbers-a"
+    ],
+    "slot": "activity",
+    "pages": [
+      65
+    ],
+    "seconds": 33.776,
+    "sourceId": "69e9ae6f-5d2b-71e1-9056-904bc2d0be14",
+    "sourceMd5": "c25a6787ba3c656051ba2491fc05a8b9",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 65,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.455,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-a-activity-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-letters-sounds",
+    "src": "/assets/english-textbook/audio/numbers-letters-sounds.mp3",
+    "title": "Unit 6 A Listen, repeat and chant.",
+    "lessonIds": [
+      "numbers-letters"
+    ],
+    "slot": "chant",
+    "pages": [
+      66,
+      82
+    ],
+    "seconds": 153.6,
+    "sourceId": "5be408a8-703b-3029-6bad-f36559fb4108",
+    "sourceMd5": "458b25e4e7f5b2efefd8e624e6834be1",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 66,
+        "label": "字母与例词",
+        "region": [
+          0.045,
+          0.105,
+          0.96,
+          0.353
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-letters-sounds-1.webp"
+      },
+      {
+        "page": 82,
+        "label": "歌谣文字",
+        "region": [
+          0.08143322475570032,
+          0.8046153846153846,
+          0.4777415852334419,
+          0.8884615384615384
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-letters-sounds-2.webp"
+      },
+      {
+        "page": 82,
+        "label": "歌谣文字（续）",
+        "region": [
+          0.494028230184582,
+          0.07153846153846154,
+          0.9229098805646037,
+          0.8576923076923076
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-letters-sounds-3.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-letters-first-sound",
+    "src": "/assets/english-textbook/audio/numbers-letters-first-sound.mp3",
+    "title": "Unit 6 A Listen and circle the first sound.",
+    "lessonIds": [
+      "numbers-letters"
+    ],
+    "slot": "first-sound",
+    "pages": [
+      66
+    ],
+    "seconds": 55.301,
+    "sourceId": "1bd0ee87-10de-4105-83ae-7c74ff057fba",
+    "sourceMd5": "9c4d179ba7b733f212577d469d4e1166",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 66,
+        "label": "听音圈出首音",
+        "region": [
+          0.075,
+          0.4,
+          0.615,
+          0.649
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-letters-first-sound-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-letters-last-sound",
+    "src": "/assets/english-textbook/audio/numbers-letters-last-sound.mp3",
+    "title": "Unit 6 A Listen and circle the last sound.",
+    "lessonIds": [
+      "numbers-letters"
+    ],
+    "slot": "last-sound",
+    "pages": [
+      66
+    ],
+    "seconds": 26.853,
+    "sourceId": "297b5457-0018-e894-de11-b27a25bc8da6",
+    "sourceMd5": "0b1a485408df63f18f09f0035cda5f27",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 66,
+        "label": "听音圈出尾音",
+        "region": [
+          0.075,
+          0.688,
+          0.725,
+          0.8
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-letters-last-sound-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-b-talk",
+    "src": "/assets/english-textbook/audio/numbers-b-talk.mp3",
+    "title": "Unit 6 B Let's talk",
+    "lessonIds": [
+      "numbers-b"
+    ],
+    "slot": "talk",
+    "pages": [
+      67
+    ],
+    "seconds": 29.648,
+    "sourceId": "67b579b4-4dd8-5b3e-4b24-2070e821ea54",
+    "sourceMd5": "451ffff4ce0e925bdc43060d63b0e2ea",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 67,
+        "label": "Let’s talk",
+        "region": [
+          0.05,
+          0.105,
+          0.96,
+          0.64
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-b-talk-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-b-chant",
+    "src": "/assets/english-textbook/audio/numbers-b-chant.mp3",
+    "title": "Unit 6 B Listen and chant",
+    "lessonIds": [
+      "numbers-b"
+    ],
+    "slot": "activity",
+    "pages": [
+      68
+    ],
+    "seconds": 40.202,
+    "sourceId": "5d2bf97e-cc00-79a0-4836-21a4b3e4da9d",
+    "sourceMd5": "b8a3975f195faf1ebc0784ea67ef3c2d",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 68,
+        "label": "Listen and chant",
+        "region": [
+          0.05,
+          0.6,
+          0.96,
+          0.94
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-b-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-read",
+    "src": "/assets/english-textbook/audio/numbers-read.mp3",
+    "title": "Unit 6 B Start to read",
+    "lessonIds": [
+      "numbers-read"
+    ],
+    "slot": "read",
+    "pages": [
+      69
+    ],
+    "seconds": 27.35,
+    "sourceId": "538113e9-1424-d3d9-e6e4-13450aced5e9",
+    "sourceMd5": "c682a82d25d3b6ee49f21e097d4dc59f",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 69,
+        "label": "Start to read",
+        "region": [
+          0.05,
+          0.07,
+          0.96,
+          0.694
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-read-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-project-listening",
+    "src": "/assets/english-textbook/audio/numbers-project-listening.mp3",
+    "title": "Unit 6 C Project",
+    "lessonIds": [
+      "numbers-project"
+    ],
+    "slot": "project",
+    "pages": [
+      70
+    ],
+    "seconds": 33.75,
+    "sourceId": "5ea6383e-67a2-5537-0843-34d483286c62",
+    "sourceMd5": "e94534b4743572135c88a56a2d42d64b",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 70,
+        "label": "项目听力题",
+        "region": [
+          0.055,
+          0.13,
+          0.955,
+          0.275
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-project-listening-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "revision-guest-observe-listening",
+    "src": "/assets/english-textbook/audio/revision-guest-observe-listening.mp3",
+    "title": "Revision Listen and tick.",
+    "lessonIds": [
+      "guest-observe"
+    ],
+    "slot": "revision",
+    "pages": [
+      74
+    ],
+    "seconds": 42.657,
+    "sourceId": "43f85fb5-e2f0-ea7d-7ccb-dda0fe610769",
+    "sourceMd5": "cfa14b209ec758771ef3acfbd513d9b9",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 74,
+        "label": "Listen and tick",
+        "region": [
+          0.06,
+          0.085,
+          0.96,
+          0.335
+        ],
+        "src": "/assets/english-textbook/recorded-materials/revision-guest-observe-listening-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "revision-guest-observe-read-aloud",
+    "src": "/assets/english-textbook/audio/revision-guest-observe-read-aloud.mp3",
+    "title": "Revision Read aloud.",
+    "lessonIds": [
+      "guest-observe"
+    ],
+    "slot": "revision",
+    "pages": [
+      74
+    ],
+    "seconds": 20.48,
+    "sourceId": "894be5ec-e723-52ec-0422-7d11e95cfdb9",
+    "sourceMd5": "ac0b13f5bbc5e4ccbccf37434c81523f",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 74,
+        "label": "Read aloud",
+        "region": [
+          0.06,
+          0.34,
+          0.96,
+          0.72
+        ],
+        "src": "/assets/english-textbook/recorded-materials/revision-guest-observe-read-aloud-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "revision-guest-act-dialogue",
+    "src": "/assets/english-textbook/audio/revision-guest-act-dialogue.mp3",
+    "title": "Revision Read and talk.",
+    "lessonIds": [
+      "guest-act"
+    ],
+    "slot": "revision",
+    "pages": [
+      76
+    ],
+    "seconds": 27.924,
+    "sourceId": "d9ff7245-81f5-21a8-6b67-f55966afe1c0",
+    "sourceMd5": "3931a4178d9022b3837490267dbab14b",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 76,
+        "label": "Read and talk",
+        "region": [
+          0.065,
+          0.06,
+          0.95,
+          0.675
+        ],
+        "src": "/assets/english-textbook/recorded-materials/revision-guest-act-dialogue-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "revision-guest-act-chant",
+    "src": "/assets/english-textbook/audio/revision-guest-act-chant.mp3",
+    "title": "Revision Listen and chant.",
+    "lessonIds": [
+      "guest-act"
+    ],
+    "slot": "revision",
+    "pages": [
+      76
+    ],
+    "seconds": 38.347,
+    "sourceId": "20f15ea6-a827-be26-51f0-c08be3362923",
+    "sourceMd5": "894742e22bf7089a0931456289bebe3b",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 76,
+        "label": "Being a good guest 完整歌谣",
+        "region": [
+          0.065,
+          0.675,
+          0.95,
+          0.955
+        ],
+        "src": "/assets/english-textbook/recorded-materials/revision-guest-act-chant-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "revision-guest-act-listening",
+    "src": "/assets/english-textbook/audio/revision-guest-act-listening.mp3",
+    "title": "Revision Fill in the blanks and sing a song.",
+    "lessonIds": [
+      "guest-act"
+    ],
+    "slot": "revision",
+    "pages": [
+      77
+    ],
+    "seconds": 76.408,
+    "sourceId": "00915a8b-1f81-8586-1666-f3e8842a3d39",
+    "sourceMd5": "475b3c7daf17f9cdde08b986ba21bdc2",
+    "taskReady": true,
+    "material": [
+      {
+        "page": 77,
+        "label": "字母填空与歌曲",
+        "region": [
+          0.09,
+          0.058,
+          0.95,
+          0.355
+        ],
+        "src": "/assets/english-textbook/recorded-materials/revision-guest-act-listening-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "friends-words",
+    "src": "/assets/english-textbook/audio/friends-words.mp3",
+    "title": "Words in each unit Unit 1",
+    "lessonIds": [
+      "appendix-friends"
+    ],
+    "slot": "wordlist",
+    "pages": [
+      83
+    ],
+    "seconds": 76.303,
+    "sourceId": "545b4d41-1fb4-2e5f-c516-a2845db5db10",
+    "sourceMd5": "64d5c4ab5a39936b6aca6b562e1fdee0",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 83,
+        "label": "单元词汇表",
+        "region": [
+          0.12269272529858849,
+          0.2123076923076923,
+          0.5157437567861021,
+          0.6153846153846154
+        ],
+        "src": "/assets/english-textbook/recorded-materials/friends-words-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "families-words",
+    "src": "/assets/english-textbook/audio/families-words.mp3",
+    "title": "Words in each unit Unit 2",
+    "lessonIds": [
+      "appendix-families"
+    ],
+    "slot": "wordlist",
+    "pages": [
+      83
+    ],
+    "seconds": 87.092,
+    "sourceId": "6de2dac4-b048-8aa6-facb-a8346bd88312",
+    "sourceMd5": "4c8aa2460d4175f6c50743574b46d9ee",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 83,
+        "label": "单元词汇表",
+        "region": [
+          0.12269272529858849,
+          0.6423076923076924,
+          0.5157437567861021,
+          0.8769230769230769
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-words-1.webp"
+      },
+      {
+        "page": 83,
+        "label": "单元词汇表（续）",
+        "region": [
+          0.5374592833876222,
+          0.21153846153846154,
+          0.9261672095548317,
+          0.6553846153846153
+        ],
+        "src": "/assets/english-textbook/recorded-materials/families-words-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "animals-words",
+    "src": "/assets/english-textbook/audio/animals-words.mp3",
+    "title": "Words in each unit Unit 3",
+    "lessonIds": [
+      "appendix-animals"
+    ],
+    "slot": "wordlist",
+    "pages": [
+      83,
+      84
+    ],
+    "seconds": 99.761,
+    "sourceId": "fc7662d3-9761-3955-2475-19a94158b37c",
+    "sourceMd5": "6ecdae366424b604176d69649808af50",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 83,
+        "label": "单元词汇表",
+        "region": [
+          0.5374592833876222,
+          0.676923076923077,
+          0.9261672095548317,
+          0.8823076923076923
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-words-1.webp"
+      },
+      {
+        "page": 84,
+        "label": "单元词汇表（续）",
+        "region": [
+          0.08143322475570032,
+          0.07307692307692308,
+          0.4723127035830619,
+          0.4676923076923077
+        ],
+        "src": "/assets/english-textbook/recorded-materials/animals-words-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "plants-words",
+    "src": "/assets/english-textbook/audio/plants-words.mp3",
+    "title": "Words in each unit Unit 4",
+    "lessonIds": [
+      "appendix-plants"
+    ],
+    "slot": "wordlist",
+    "pages": [
+      84
+    ],
+    "seconds": 90.2,
+    "sourceId": "e38a4ece-69dc-77a3-778e-d152e0bf8c99",
+    "sourceMd5": "8c04c11018694c1ce6f2d391211b2d40",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 84,
+        "label": "单元词汇表",
+        "region": [
+          0.08143322475570032,
+          0.48846153846153845,
+          0.4723127035830619,
+          0.8884615384615384
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-words-1.webp"
+      },
+      {
+        "page": 84,
+        "label": "单元词汇表（续）",
+        "region": [
+          0.494028230184582,
+          0.07307692307692308,
+          0.9011943539630836,
+          0.21923076923076923
+        ],
+        "src": "/assets/english-textbook/recorded-materials/plants-words-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "colours-words",
+    "src": "/assets/english-textbook/audio/colours-words.mp3",
+    "title": "Words in each unit Unit 5",
+    "lessonIds": [
+      "appendix-colours"
+    ],
+    "slot": "wordlist",
+    "pages": [
+      84
+    ],
+    "seconds": 76.826,
+    "sourceId": "d03b1265-8028-8975-d4d0-a6bb28f07f61",
+    "sourceMd5": "d446e6145cf9aecbc5d89d5ac0faf244",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 84,
+        "label": "单元词汇表",
+        "region": [
+          0.494028230184582,
+          0.24384615384615385,
+          0.9011943539630836,
+          0.7215384615384616
+        ],
+        "src": "/assets/english-textbook/recorded-materials/colours-words-1.webp"
+      }
+    ]
+  },
+  {
+    "key": "numbers-words",
+    "src": "/assets/english-textbook/audio/numbers-words.mp3",
+    "title": "Words in each unit Unit 6",
+    "lessonIds": [
+      "appendix-numbers"
+    ],
+    "slot": "wordlist",
+    "pages": [
+      84,
+      85
+    ],
+    "seconds": 69.929,
+    "sourceId": "87ec57d7-186f-d2bd-0198-48d37ea427a8",
+    "sourceMd5": "57bc32bd2f72e659bf71e05193e2f603",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 84,
+        "label": "单元词汇表",
+        "region": [
+          0.494028230184582,
+          0.7392307692307692,
+          0.9011943539630836,
+          0.8938461538461538
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-words-1.webp"
+      },
+      {
+        "page": 85,
+        "label": "单元词汇表（续）",
+        "region": [
+          0.13572204125950055,
+          0.07153846153846154,
+          0.9283387622149837,
+          0.24846153846153846
+        ],
+        "src": "/assets/english-textbook/recorded-materials/numbers-words-2.webp"
+      }
+    ]
+  },
+  {
+    "key": "alphabet",
+    "src": "/assets/english-textbook/audio/alphabet.mp3",
+    "title": "The alphabet",
+    "lessonIds": [
+      "appendix-alphabet"
+    ],
+    "slot": "alphabet",
+    "pages": [
+      91
+    ],
+    "seconds": 117.263,
+    "sourceId": "94539a84-627b-b1d6-24c5-565d86ed1a4c",
+    "sourceMd5": "f1700284375d6786667a33aca1053cce",
+    "taskReady": false,
+    "material": [
+      {
+        "page": 91,
+        "label": "完整字母表 Aa–Zz",
+        "region": [
+          0.07,
+          0.09,
+          0.95,
+          0.92
+        ],
+        "src": "/assets/english-textbook/recorded-materials/alphabet-1.webp"
+      }
+    ]
+  }
+]

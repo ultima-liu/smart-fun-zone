@@ -8,10 +8,11 @@
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
     "build": "tsc -p tsconfig.json",
-    "test": "tsx --test src/access.test.ts src/auth.test.ts",
+    "test": "tsx --test src/access.test.ts src/auth.test.ts src/course-assessment.test.ts src/reading-asr.test.ts",
     "db:init": "tsx src/db-init.ts",
     "seed": "tsx src/seed-content.ts",
-    "smoke": "tsx scripts/smoke.mts"
+    "smoke": "tsx scripts/smoke.mts",
+    "setup:reading-asr": "python3 scripts/setup-reading-asr.py"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.1",

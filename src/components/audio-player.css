@@ -1,0 +1,20 @@
+.audio-player { --audio-accent:#287eb3; display:flex; align-items:center; gap:14px; width:296px; max-width:100%; box-sizing:border-box; padding:12px 16px; border:1px solid color-mix(in srgb,var(--audio-accent) 22%,var(--ct-line,#dce3ed)); border-radius:22px; color:var(--ct-ink,var(--ink,#27334a)); background:var(--ct-paper,var(--paper,#fff)); box-shadow:0 6px 20px rgba(34,83,123,.07); text-align:left; }
+.app .audio-player button.audio-player-control { display:grid; place-items:center; flex:none; width:44px; height:44px; min-height:44px; margin:0; padding:0; border:0; border-radius:50%; background:var(--audio-accent); color:#fff; box-shadow:0 3px 8px rgba(40,126,179,.18); cursor:pointer; }
+.app .audio-player button.audio-player-control:hover:not(:disabled) { background:#206c9c; transform:translateY(-1px); }
+.app .audio-player button.audio-player-control:disabled { opacity:1; cursor:default; }
+.audio-player-control:focus-visible { outline:3px solid var(--audio-accent); outline-offset:4px; }
+.audio-player-copy { display:flex; flex:1; min-width:0; flex-direction:column; gap:3px; font-family:system-ui; line-height:1.4; }
+.audio-player-copy strong { font-size:15px; font-weight:750; }
+.audio-player-copy span { color:var(--ct-soft,var(--muted,#647087)); font-size:12px; }
+.audio-player-wave { display:flex; align-items:center; gap:3px; height:28px; color:var(--audio-accent); }
+.audio-player-wave i { width:3px; height:10px; border-radius:3px; background:currentColor; opacity:.4; }
+.audio-player-wave i:nth-child(2),.audio-player-wave i:nth-child(4) { height:18px; }
+.audio-player-wave i:nth-child(3) { height:26px; }
+.audio-player.is-playing .audio-player-wave i { opacity:.8; animation:audio-player-pulse .75s ease-in-out infinite alternate; }
+.audio-player.is-playing .audio-player-wave i:nth-child(2) { animation-delay:-.3s; }
+.audio-player.is-playing .audio-player-wave i:nth-child(3) { animation-delay:-.5s; }
+.audio-player.is-playing .audio-player-wave i:nth-child(4) { animation-delay:-.15s; }
+.audio-player.is-playing .audio-player-wave i:nth-child(5) { animation-delay:-.4s; }
+.audio-player.is-disabled { opacity:.65; }
+@keyframes audio-player-pulse { from { transform:scaleY(.4); } to { transform:scaleY(1); } }
+@media (prefers-reduced-motion:reduce) { .audio-player.is-playing .audio-player-wave i { animation:none; } .audio-player-control { transform:none!important; } }

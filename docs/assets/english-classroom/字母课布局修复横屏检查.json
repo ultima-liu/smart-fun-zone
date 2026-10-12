@@ -1,0 +1,5702 @@
+[
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 363.5,
+          "width": 198.5,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "label": "认字母 A"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 574,
+          "width": 198.5,
+          "x": 375.5,
+          "y": 385.3984375
+        },
+        "label": "认字母 B"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 784.5,
+          "width": 198.5,
+          "x": 586,
+          "y": 385.3984375
+        },
+        "label": "认字母 C"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 995,
+          "width": 198.5,
+          "x": 796.5,
+          "y": 385.3984375
+        },
+        "label": "认字母 D"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 295.3984375,
+          "height": 54.3984375,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "",
+        "scroll": [
+          54,
+          54
+        ]
+      },
+      {
+        "box": {
+          "bottom": 375.3984375,
+          "height": 70,
+          "right": 885,
+          "width": 720,
+          "x": 165,
+          "y": 305.3984375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 717,
+          "height": 331.6015625,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          332,
+          332
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 18,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 727
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/friends-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/friends-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/friends-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 940,
+          "width": 720,
+          "x": 220,
+          "y": 375
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/friends-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 363.5,
+          "width": 198.5,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "label": "认字母 E"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 574,
+          "width": 198.5,
+          "x": 375.5,
+          "y": 385.3984375
+        },
+        "label": "认字母 F"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 784.5,
+          "width": 198.5,
+          "x": 586,
+          "y": 385.3984375
+        },
+        "label": "认字母 G"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 995,
+          "width": 198.5,
+          "x": 796.5,
+          "y": 385.3984375
+        },
+        "label": "认字母 H"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 295.3984375,
+          "height": 54.3984375,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "",
+        "scroll": [
+          54,
+          54
+        ]
+      },
+      {
+        "box": {
+          "bottom": 375.3984375,
+          "height": 70,
+          "right": 885,
+          "width": 720,
+          "x": 165,
+          "y": 305.3984375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 717,
+          "height": 331.6015625,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          332,
+          332
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 18,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 727
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/families-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/families-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/families-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 940,
+          "width": 720,
+          "x": 220,
+          "y": 375
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/families-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 363.5,
+          "width": 198.5,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "label": "认字母 I"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 574,
+          "width": 198.5,
+          "x": 375.5,
+          "y": 385.3984375
+        },
+        "label": "认字母 J"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 784.5,
+          "width": 198.5,
+          "x": 586,
+          "y": 385.3984375
+        },
+        "label": "认字母 K"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 995,
+          "width": 198.5,
+          "x": 796.5,
+          "y": 385.3984375
+        },
+        "label": "认字母 L"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 295.3984375,
+          "height": 54.3984375,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "",
+        "scroll": [
+          54,
+          54
+        ]
+      },
+      {
+        "box": {
+          "bottom": 375.3984375,
+          "height": 70,
+          "right": 885,
+          "width": 720,
+          "x": 165,
+          "y": 305.3984375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 717,
+          "height": 331.6015625,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          332,
+          332
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 18,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 727
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/animals-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/animals-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/animals-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 940,
+          "width": 720,
+          "x": 220,
+          "y": 375
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/animals-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 353.5,
+            "width": 178.5,
+            "x": 175,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 363.5,
+          "width": 198.5,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "label": "认字母 M"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 564,
+            "width": 178.5,
+            "x": 385.5,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 574,
+          "width": 198.5,
+          "x": 375.5,
+          "y": 385.3984375
+        },
+        "label": "认字母 N"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 774.5,
+            "width": 178.5,
+            "x": 596,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 784.5,
+          "width": 198.5,
+          "x": 586,
+          "y": 385.3984375
+        },
+        "label": "认字母 O"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 985,
+            "width": 178.5,
+            "x": 806.5,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 995,
+          "width": 198.5,
+          "x": 796.5,
+          "y": 385.3984375
+        },
+        "label": "认字母 P"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 295.3984375,
+          "height": 54.3984375,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "",
+        "scroll": [
+          54,
+          54
+        ]
+      },
+      {
+        "box": {
+          "bottom": 375.3984375,
+          "height": 70,
+          "right": 885,
+          "width": 720,
+          "x": 165,
+          "y": 305.3984375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 717,
+          "height": 331.6015625,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          332,
+          332
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 18,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 727
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/plants-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/plants-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/plants-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 940,
+          "width": 720,
+          "x": 220,
+          "y": 375
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/plants-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 311.3984375,
+            "width": 136.3984375,
+            "x": 175,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 311.3984375,
+            "width": 136.3984375,
+            "x": 175,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 311.3984375,
+            "width": 136.3984375,
+            "x": 175,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 311.3984375,
+            "width": 136.3984375,
+            "x": 175,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 321.3984375,
+          "width": 156.3984375,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "label": "认字母 Q"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 479.796875,
+            "width": 136.3984375,
+            "x": 343.3984375,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 479.796875,
+            "width": 136.3984375,
+            "x": 343.3984375,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 479.796875,
+            "width": 136.3984375,
+            "x": 343.3984375,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 479.796875,
+            "width": 136.3984375,
+            "x": 343.3984375,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 489.796875,
+          "width": 156.3984375,
+          "x": 333.3984375,
+          "y": 385.3984375
+        },
+        "label": "认字母 R"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 648.1953125,
+            "width": 136.3984375,
+            "x": 511.796875,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 648.1953125,
+            "width": 136.3984375,
+            "x": 511.796875,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 648.1953125,
+            "width": 136.3984375,
+            "x": 511.796875,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 648.1953125,
+            "width": 136.3984375,
+            "x": 511.796875,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 658.1953125,
+          "width": 156.3984375,
+          "x": 501.796875,
+          "y": 385.3984375
+        },
+        "label": "认字母 S"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 816.59375,
+            "width": 136.3984375,
+            "x": 680.1953125,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 816.59375,
+            "width": 136.3984375,
+            "x": 680.1953125,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 816.59375,
+            "width": 136.3984375,
+            "x": 680.1953125,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 816.59375,
+            "width": 136.3984375,
+            "x": 680.1953125,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 826.59375,
+          "width": 156.3984375,
+          "x": 670.1953125,
+          "y": 385.3984375
+        },
+        "label": "认字母 T"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 984.9921875,
+            "width": 136.3984375,
+            "x": 848.59375,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 984.9921875,
+            "width": 136.3984375,
+            "x": 848.59375,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 984.9921875,
+            "width": 136.3984375,
+            "x": 848.59375,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 984.9921875,
+            "width": 136.3984375,
+            "x": 848.59375,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 994.9921875,
+          "width": 156.3984375,
+          "x": 838.59375,
+          "y": 385.3984375
+        },
+        "label": "认字母 U"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 295.3984375,
+          "height": 54.3984375,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "",
+        "scroll": [
+          54,
+          54
+        ]
+      },
+      {
+        "box": {
+          "bottom": 375.3984375,
+          "height": 70,
+          "right": 885,
+          "width": 720,
+          "x": 165,
+          "y": 305.3984375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 717,
+          "height": 331.6015625,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          332,
+          332
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 18,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 727
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/colours-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/colours-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/colours-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 940,
+          "width": 720,
+          "x": 220,
+          "y": 375
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/colours-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 311.3984375,
+            "width": 136.3984375,
+            "x": 175,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 311.3984375,
+            "width": 136.3984375,
+            "x": 175,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 311.3984375,
+            "width": 136.3984375,
+            "x": 175,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 311.3984375,
+            "width": 136.3984375,
+            "x": 175,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 321.3984375,
+          "width": 156.3984375,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "label": "认字母 V"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 479.796875,
+            "width": 136.3984375,
+            "x": 343.3984375,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 479.796875,
+            "width": 136.3984375,
+            "x": 343.3984375,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 479.796875,
+            "width": 136.3984375,
+            "x": 343.3984375,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 479.796875,
+            "width": 136.3984375,
+            "x": 343.3984375,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 489.796875,
+          "width": 156.3984375,
+          "x": 333.3984375,
+          "y": 385.3984375
+        },
+        "label": "认字母 W"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 648.1953125,
+            "width": 136.3984375,
+            "x": 511.796875,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 648.1953125,
+            "width": 136.3984375,
+            "x": 511.796875,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 648.1953125,
+            "width": 136.3984375,
+            "x": 511.796875,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 648.1953125,
+            "width": 136.3984375,
+            "x": 511.796875,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 658.1953125,
+          "width": 156.3984375,
+          "x": 501.796875,
+          "y": 385.3984375
+        },
+        "label": "认字母 X"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 816.59375,
+            "width": 136.3984375,
+            "x": 680.1953125,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 816.59375,
+            "width": 136.3984375,
+            "x": 680.1953125,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 816.59375,
+            "width": 136.3984375,
+            "x": 680.1953125,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 816.59375,
+            "width": 136.3984375,
+            "x": 680.1953125,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 826.59375,
+          "width": 156.3984375,
+          "x": 670.1953125,
+          "y": 385.3984375
+        },
+        "label": "认字母 Y"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 492.9921875,
+            "height": 97.59375,
+            "right": 984.9921875,
+            "width": 136.3984375,
+            "x": 848.59375,
+            "y": 395.3984375
+          },
+          {
+            "bottom": 566.9921875,
+            "height": 64,
+            "right": 984.9921875,
+            "width": 136.3984375,
+            "x": 848.59375,
+            "y": 502.9921875
+          },
+          {
+            "bottom": 638.9921875,
+            "height": 64,
+            "right": 984.9921875,
+            "width": 136.3984375,
+            "x": 848.59375,
+            "y": 574.9921875
+          },
+          {
+            "bottom": 692.9921875,
+            "height": 44,
+            "right": 984.9921875,
+            "width": 136.3984375,
+            "x": 848.59375,
+            "y": 648.9921875
+          }
+        ],
+        "box": {
+          "bottom": 702.9921875,
+          "height": 317.59375,
+          "right": 994.9921875,
+          "width": 156.3984375,
+          "x": 838.59375,
+          "y": 385.3984375
+        },
+        "label": "认字母 Z"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 295.3984375,
+          "height": 54.3984375,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "",
+        "scroll": [
+          54,
+          54
+        ]
+      },
+      {
+        "box": {
+          "bottom": 375.3984375,
+          "height": 70,
+          "right": 885,
+          "width": 720,
+          "x": 165,
+          "y": 305.3984375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 717,
+          "height": 331.6015625,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 385.3984375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          332,
+          332
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 18,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 727
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/numbers-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/numbers-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 980,
+          "width": 800,
+          "x": 180,
+          "y": 375
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/numbers-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 758,
+      "height": 530,
+      "right": 1010,
+      "width": 860,
+      "x": 150,
+      "y": 228
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 311,
+          "height": 70,
+          "right": 995,
+          "width": 830,
+          "x": 165,
+          "y": 241
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 365,
+          "height": 44,
+          "right": 910,
+          "width": 660,
+          "x": 250,
+          "y": 321
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 745,
+          "height": 370,
+          "right": 940,
+          "width": 720,
+          "x": 220,
+          "y": 375
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          370,
+          370
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/numbers-letters",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 454,
+          "width": 279,
+          "x": 175,
+          "y": 413.59375
+        },
+        "label": "认字母 A"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 745,
+          "width": 279,
+          "x": 466,
+          "y": 413.59375
+        },
+        "label": "认字母 B"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1036,
+          "width": 279,
+          "x": 757,
+          "y": 413.59375
+        },
+        "label": "认字母 C"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1327,
+          "width": 279,
+          "x": 1048,
+          "y": 413.59375
+        },
+        "label": "认字母 D"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 319.59375,
+          "height": 58.59375,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "",
+        "scroll": [
+          59,
+          59
+        ]
+      },
+      {
+        "box": {
+          "bottom": 401.59375,
+          "height": 70,
+          "right": 895,
+          "width": 720,
+          "x": 175,
+          "y": 331.59375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 967,
+          "height": 553.40625,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 413.59375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          553,
+          553
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 18,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 979
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/friends-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/friends-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/friends-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1111,
+          "width": 720,
+          "x": 391,
+          "y": 399
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/friends-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 454,
+          "width": 279,
+          "x": 175,
+          "y": 413.59375
+        },
+        "label": "认字母 E"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 745,
+          "width": 279,
+          "x": 466,
+          "y": 413.59375
+        },
+        "label": "认字母 F"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1036,
+          "width": 279,
+          "x": 757,
+          "y": 413.59375
+        },
+        "label": "认字母 G"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1327,
+          "width": 279,
+          "x": 1048,
+          "y": 413.59375
+        },
+        "label": "认字母 H"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 319.59375,
+          "height": 58.59375,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "",
+        "scroll": [
+          59,
+          59
+        ]
+      },
+      {
+        "box": {
+          "bottom": 401.59375,
+          "height": 70,
+          "right": 895,
+          "width": 720,
+          "x": 175,
+          "y": 331.59375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 967,
+          "height": 553.40625,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 413.59375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          553,
+          553
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 18,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 979
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/families-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/families-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/families-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1111,
+          "width": 720,
+          "x": 391,
+          "y": 399
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/families-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 454,
+          "width": 279,
+          "x": 175,
+          "y": 413.59375
+        },
+        "label": "认字母 I"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 745,
+          "width": 279,
+          "x": 466,
+          "y": 413.59375
+        },
+        "label": "认字母 J"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1036,
+          "width": 279,
+          "x": 757,
+          "y": 413.59375
+        },
+        "label": "认字母 K"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1327,
+          "width": 279,
+          "x": 1048,
+          "y": 413.59375
+        },
+        "label": "认字母 L"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 319.59375,
+          "height": 58.59375,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "",
+        "scroll": [
+          59,
+          59
+        ]
+      },
+      {
+        "box": {
+          "bottom": 401.59375,
+          "height": 70,
+          "right": 895,
+          "width": 720,
+          "x": 175,
+          "y": 331.59375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 967,
+          "height": 553.40625,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 413.59375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          553,
+          553
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 18,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 979
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/animals-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/animals-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/animals-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1111,
+          "width": 720,
+          "x": 391,
+          "y": 399
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/animals-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 441,
+            "width": 253,
+            "x": 188,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 454,
+          "width": 279,
+          "x": 175,
+          "y": 413.59375
+        },
+        "label": "认字母 M"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 732,
+            "width": 253,
+            "x": 479,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 745,
+          "width": 279,
+          "x": 466,
+          "y": 413.59375
+        },
+        "label": "认字母 N"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1023,
+            "width": 253,
+            "x": 770,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1036,
+          "width": 279,
+          "x": 757,
+          "y": 413.59375
+        },
+        "label": "认字母 O"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1314,
+            "width": 253,
+            "x": 1061,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1327,
+          "width": 279,
+          "x": 1048,
+          "y": 413.59375
+        },
+        "label": "认字母 P"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 319.59375,
+          "height": 58.59375,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "",
+        "scroll": [
+          59,
+          59
+        ]
+      },
+      {
+        "box": {
+          "bottom": 401.59375,
+          "height": 70,
+          "right": 895,
+          "width": 720,
+          "x": 175,
+          "y": 331.59375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 967,
+          "height": 553.40625,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 413.59375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          553,
+          553
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 18,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 979
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/plants-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/plants-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/plants-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1111,
+          "width": 720,
+          "x": 391,
+          "y": 399
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/plants-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 382.796875,
+            "width": 194.796875,
+            "x": 188,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 382.796875,
+            "width": 194.796875,
+            "x": 188,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 382.796875,
+            "width": 194.796875,
+            "x": 188,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 382.796875,
+            "width": 194.796875,
+            "x": 188,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 395.796875,
+          "width": 220.796875,
+          "x": 175,
+          "y": 413.59375
+        },
+        "label": "认字母 Q"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 615.59375,
+            "width": 194.796875,
+            "x": 420.796875,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 615.59375,
+            "width": 194.796875,
+            "x": 420.796875,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 615.59375,
+            "width": 194.796875,
+            "x": 420.796875,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 615.59375,
+            "width": 194.796875,
+            "x": 420.796875,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 628.59375,
+          "width": 220.796875,
+          "x": 407.796875,
+          "y": 413.59375
+        },
+        "label": "认字母 R"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 848.3984375,
+            "width": 194.8046875,
+            "x": 653.59375,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 848.3984375,
+            "width": 194.8046875,
+            "x": 653.59375,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 848.3984375,
+            "width": 194.8046875,
+            "x": 653.59375,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 848.3984375,
+            "width": 194.8046875,
+            "x": 653.59375,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 861.3984375,
+          "width": 220.8046875,
+          "x": 640.59375,
+          "y": 413.59375
+        },
+        "label": "认字母 S"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1081.1953125,
+            "width": 194.796875,
+            "x": 886.3984375,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1081.1953125,
+            "width": 194.796875,
+            "x": 886.3984375,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1081.1953125,
+            "width": 194.796875,
+            "x": 886.3984375,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1081.1953125,
+            "width": 194.796875,
+            "x": 886.3984375,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1094.1953125,
+          "width": 220.796875,
+          "x": 873.3984375,
+          "y": 413.59375
+        },
+        "label": "认字母 T"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1314,
+            "width": 194.8046875,
+            "x": 1119.1953125,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 194.8046875,
+            "x": 1119.1953125,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 194.8046875,
+            "x": 1119.1953125,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1314,
+            "width": 194.8046875,
+            "x": 1119.1953125,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1327,
+          "width": 220.8046875,
+          "x": 1106.1953125,
+          "y": 413.59375
+        },
+        "label": "认字母 U"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 319.59375,
+          "height": 58.59375,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "",
+        "scroll": [
+          59,
+          59
+        ]
+      },
+      {
+        "box": {
+          "bottom": 401.59375,
+          "height": 70,
+          "right": 895,
+          "width": 720,
+          "x": 175,
+          "y": 331.59375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 967,
+          "height": 553.40625,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 413.59375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          553,
+          553
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 18,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 979
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/colours-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/colours-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/colours-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1111,
+          "width": 720,
+          "x": 391,
+          "y": 399
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/colours-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 382.796875,
+            "width": 194.796875,
+            "x": 188,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 382.796875,
+            "width": 194.796875,
+            "x": 188,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 382.796875,
+            "width": 194.796875,
+            "x": 188,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 382.796875,
+            "width": 194.796875,
+            "x": 188,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 395.796875,
+          "width": 220.796875,
+          "x": 175,
+          "y": 413.59375
+        },
+        "label": "认字母 V"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 615.59375,
+            "width": 194.796875,
+            "x": 420.796875,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 615.59375,
+            "width": 194.796875,
+            "x": 420.796875,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 615.59375,
+            "width": 194.796875,
+            "x": 420.796875,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 615.59375,
+            "width": 194.796875,
+            "x": 420.796875,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 628.59375,
+          "width": 220.796875,
+          "x": 407.796875,
+          "y": 413.59375
+        },
+        "label": "认字母 W"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 848.3984375,
+            "width": 194.8046875,
+            "x": 653.59375,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 848.3984375,
+            "width": 194.8046875,
+            "x": 653.59375,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 848.3984375,
+            "width": 194.8046875,
+            "x": 653.59375,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 848.3984375,
+            "width": 194.8046875,
+            "x": 653.59375,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 861.3984375,
+          "width": 220.8046875,
+          "x": 640.59375,
+          "y": 413.59375
+        },
+        "label": "认字母 X"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1081.1953125,
+            "width": 194.796875,
+            "x": 886.3984375,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1081.1953125,
+            "width": 194.796875,
+            "x": 886.3984375,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1081.1953125,
+            "width": 194.796875,
+            "x": 886.3984375,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1081.1953125,
+            "width": 194.796875,
+            "x": 886.3984375,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1094.1953125,
+          "width": 220.796875,
+          "x": 873.3984375,
+          "y": 413.59375
+        },
+        "label": "认字母 Y"
+      },
+      {
+        "blocks": [
+          {
+            "bottom": 524.1875,
+            "height": 97.59375,
+            "right": 1314,
+            "width": 194.8046875,
+            "x": 1119.1953125,
+            "y": 426.59375
+          },
+          {
+            "bottom": 603.28125,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 194.8046875,
+            "x": 1119.1953125,
+            "y": 536.1875
+          },
+          {
+            "bottom": 678.375,
+            "height": 67.09375,
+            "right": 1314,
+            "width": 194.8046875,
+            "x": 1119.1953125,
+            "y": 611.28125
+          },
+          {
+            "bottom": 734.375,
+            "height": 44,
+            "right": 1314,
+            "width": 194.8046875,
+            "x": 1119.1953125,
+            "y": 690.375
+          }
+        ],
+        "box": {
+          "bottom": 747.375,
+          "height": 333.78125,
+          "right": 1327,
+          "width": 220.8046875,
+          "x": 1106.1953125,
+          "y": 413.59375
+        },
+        "label": "认字母 Z"
+      }
+    ],
+    "heading": "大写、小写和例词一起认",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 319.59375,
+          "height": 58.59375,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "",
+        "scroll": [
+          59,
+          59
+        ]
+      },
+      {
+        "box": {
+          "bottom": 401.59375,
+          "height": 70,
+          "right": 895,
+          "width": 720,
+          "x": 175,
+          "y": 331.59375
+        },
+        "class": "en-audio-player",
+        "scroll": [
+          68,
+          68
+        ]
+      },
+      {
+        "box": {
+          "bottom": 967,
+          "height": 553.40625,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 413.59375
+        },
+        "class": "en-letter-study-grid",
+        "scroll": [
+          553,
+          553
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 18,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 979
+        },
+        "class": "en-letter-study-note",
+        "scroll": [
+          18,
+          18
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/numbers-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "先听声音",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/numbers-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "声音对应字母",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1151,
+          "width": 800,
+          "x": 351,
+          "y": 399
+        },
+        "class": "en-phonics-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/numbers-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  },
+  {
+    "cards": [],
+    "heading": "合音读新词",
+    "issues": [],
+    "panel": {
+      "bottom": 1012,
+      "height": 766,
+      "right": 1346,
+      "width": 1190,
+      "x": 156,
+      "y": 246
+    },
+    "regions": [
+      {
+        "box": {
+          "bottom": 331,
+          "height": 70,
+          "right": 1327,
+          "width": 1152,
+          "x": 175,
+          "y": 261
+        },
+        "class": "en-phonics-heading",
+        "scroll": [
+          70,
+          70
+        ]
+      },
+      {
+        "box": {
+          "bottom": 387,
+          "height": 44,
+          "right": 1081,
+          "width": 660,
+          "x": 421,
+          "y": 343
+        },
+        "class": "en-phonics-tabs",
+        "scroll": [
+          44,
+          44
+        ]
+      },
+      {
+        "box": {
+          "bottom": 997,
+          "height": 598,
+          "right": 1111,
+          "width": 720,
+          "x": 391,
+          "y": 399
+        },
+        "class": "en-phonics-reading-task",
+        "scroll": [
+          598,
+          598
+        ]
+      }
+    ],
+    "theme": "dark",
+    "url": "#/english-course/numbers-letters",
+    "viewport": [
+      1366,
+      1024
+    ]
+  }
+]

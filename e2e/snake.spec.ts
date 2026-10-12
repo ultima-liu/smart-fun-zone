@@ -38,6 +38,73 @@ const headPos = async (page: import('@playwright/test').Page) => {
   };
 };
 
+for (const delay of [0, 200]) {
+  test(`转向按下立即响应并平滑过渡，直行等待 ${delay}ms，连按逐格执行且禁止掉头`, async ({ page }) => {
+    await page.clock.install();
+    const overlay = await openSnake(page);
+    await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now() + 500)));
+    await overlay.getByRole('button', { name: '开始游戏' }).click();
+    await page.clock.runFor(delay);
+    const before = await headPos(page);
+    const head = page.locator('.sn-seg.head');
+    await page.keyboard.press('ArrowLeft'); // 当前向右，禁止反向。
+    expect(await headPos(page)).toEqual(before);
+    await page.keyboard.down('ArrowDown');
+    // 不推进游戏时钟，也不松键：逻辑立即响应，短动画随后到达目标格。
+    expect(await headPos(page)).toEqual({ x: before.x, y: before.y + 1 });
+    await expect(head).toHaveClass(/d-down/);
+    await expect.poll(() => head.evaluate((el) => {
+      const body = el.getBoundingClientRect(), field = el.parentElement!.getBoundingClientRect();
+      return {
+        x: Math.round(((body.x + body.width / 2 - field.x) / field.width * 15 - 0.5) * 100) / 100,
+        y: Math.round(((body.y + body.height / 2 - field.y) / field.height * 15 - 0.5) * 100) / 100,
+      };
+    })).toEqual({ x: before.x, y: before.y + 1 });
+    await page.keyboard.up('ArrowDown');
+    await page.keyboard.press('ArrowLeft');
+    expect(await headPos(page)).toEqual({ x: before.x, y: before.y + 1 });
+    await page.clock.runFor(16);
+    expect(await headPos(page)).toEqual({ x: before.x - 1, y: before.y + 1 });
+    await expect(head).toHaveClass(/d-left/);
+    await page.clock.runFor(80);
+    expect(await headPos(page)).toEqual({ x: before.x - 1, y: before.y + 1 }); // 直行恢复等级速度。
+  });
+}
+
+test('Pad 方向盘按下和棋盘滑动都在松手前转向', async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 768 });
+  await page.clock.install();
+  const overlay = await openSnake(page);
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now() + 500)));
+  await overlay.getByRole('button', { name: '开始游戏' }).click();
+  const down = page.getByRole('button', { name: '向下转' });
+  await down.scrollIntoViewIfNeeded();
+  const button = (await down.boundingBox())!;
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent', {
+    type: 'touchStart', touchPoints: [{ x: button.x + button.width / 2, y: button.y + button.height / 2, id: 1 }],
+  });
+  expect(await headPos(page)).toEqual({ x: 7, y: 8 });
+  await page.clock.runFor(16);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  const board = page.locator('.sn-board');
+  await board.scrollIntoViewIfNeeded();
+  const field = (await board.boundingBox())!;
+  const x = field.x + field.width / 2, y = field.y + field.height / 2;
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y, id: 2 }] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - 40, y, id: 2 }] });
+  expect(await headPos(page)).toEqual({ x: 6, y: 8 });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await cdp.detach();
+  await page.keyboard.press('p');
+  await page.keyboard.press('ArrowUp');
+  await page.clock.runFor(300);
+  expect(await headPos(page)).toEqual({ x: 6, y: 8 });
+  await page.keyboard.press('p');
+  await page.clock.runFor(200);
+  await expect(page.locator('.sn-seg.head')).toHaveClass(/d-left/);
+});
+
 test('小蛇游戏支持开始、键盘转向与冲刺', async ({ page }) => {
   const overlay = await openSnake(page);
 

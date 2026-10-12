@@ -22,8 +22,8 @@ export default function TaskActivityPage() {
     if (childId && task && !completed) pauseMission(childId, task.id);
   }, [childId, completed, task]);
 
-  if (!childId) return <main className="page mission-activity"><h1>请先选择孩子档案</h1><button onClick={() => nav('/')}>返回首页</button></main>;
-  if (!task || !task.questions?.length) return <main className="page mission-activity"><h1>这个任务还没有开放</h1><button onClick={() => nav('/')}>返回首页</button></main>;
+  if (!childId) return <main className="page mission-activity"><h1>请先选择孩子档案</h1><BackButton onClick={() => nav('/')} label="返回首页" /></main>;
+  if (!task || !task.questions?.length) return <main className="page mission-activity"><h1>这个任务还没有开放</h1><BackButton onClick={() => nav('/')} label="返回首页" /></main>;
 
   const question = task.questions[index];
   const choose = (choice: number) => {
@@ -76,7 +76,7 @@ export default function TaskActivityPage() {
       <div aria-hidden="true">{passed ? '🎉' : '💪'}</div>
       <h2>{passed ? '任务完成！' : '再试一次就能过关'}</h2>
       <p>{passed ? `卷星币 +${task.reward}，已经放进你的收获里。` : `第一次答对 ${firstCorrect} 题，需要答对 ${task.passCount} 题。`}</p>
-      <div>{passed ? <button onClick={() => nav('/')}>回到小广场</button> : <button onClick={retry}>重新挑战</button>}</div>
+      <div>{passed ? <BackButton onClick={() => nav('/')} label="回到小广场" /> : <button onClick={retry}>重新挑战</button>}</div>
     </section>}
   </main>;
 }

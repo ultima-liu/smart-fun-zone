@@ -1,0 +1,394 @@
+{
+  "lessons": 47,
+  "variants": 72,
+  "questions": 16920,
+  "mismatches": [],
+  "representatives": [
+    {
+      "id": "campus",
+      "variant": 2,
+      "index": 0,
+      "visual": {
+        "kind": "dots",
+        "a": 5,
+        "objects": [
+          {
+            "kind": "flowerpot",
+            "label": "花盆"
+          }
+        ]
+      }
+    },
+    {
+      "id": "playground",
+      "variant": 0,
+      "index": 2,
+      "visual": {
+        "kind": "parts",
+        "a": 4,
+        "b": 3,
+        "objects": [
+          {
+            "kind": "fish",
+            "label": "鱼"
+          },
+          {
+            "kind": "flower",
+            "label": "花"
+          }
+        ]
+      }
+    },
+    {
+      "id": "compare-order-nine",
+      "variant": 6,
+      "index": 4,
+      "visual": {
+        "kind": "queue",
+        "a": 9
+      }
+    },
+    {
+      "id": "six-to-nine",
+      "variant": 20,
+      "index": 0,
+      "visual": {
+        "kind": "dots",
+        "a": 9,
+        "objects": [
+          {
+            "kind": "cup",
+            "label": "杯子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "six-to-nine",
+      "variant": 6,
+      "index": 1,
+      "visual": {
+        "kind": "dots",
+        "a": 8
+      }
+    },
+    {
+      "id": "six-to-nine",
+      "variant": 13,
+      "index": 0,
+      "visual": {
+        "kind": "dots",
+        "a": 9,
+        "objects": [
+          {
+            "kind": "block",
+            "label": "积木"
+          }
+        ]
+      }
+    },
+    {
+      "id": "six-to-nine",
+      "variant": 6,
+      "index": 0,
+      "visual": {
+        "kind": "dots",
+        "a": 9,
+        "objects": [
+          {
+            "kind": "flower",
+            "label": "小花"
+          }
+        ]
+      }
+    },
+    {
+      "id": "six-to-nine",
+      "variant": 6,
+      "index": 4,
+      "visual": {
+        "kind": "parts",
+        "a": 5,
+        "b": 4
+      }
+    },
+    {
+      "id": "six-to-nine",
+      "variant": 27,
+      "index": 0,
+      "visual": {
+        "kind": "dots",
+        "a": 9,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ]
+      }
+    },
+    {
+      "id": "compare-order-nine",
+      "variant": 6,
+      "index": 0,
+      "visual": {
+        "kind": "parts",
+        "a": 9,
+        "b": 8,
+        "objects": [
+          {
+            "kind": "cup",
+            "label": "杯子"
+          },
+          {
+            "kind": "lid",
+            "label": "盖子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "compare",
+      "variant": 0,
+      "index": 3,
+      "visual": {
+        "kind": "parts",
+        "a": 4,
+        "b": 4,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "大圆片",
+            "size": "large"
+          },
+          {
+            "kind": "disc",
+            "label": "小圆片",
+            "size": "small"
+          }
+        ]
+      }
+    },
+    {
+      "id": "find-original",
+      "variant": 16,
+      "index": 4,
+      "visual": {
+        "kind": "parts",
+        "a": 18,
+        "b": 1,
+        "objects": [
+          {
+            "kind": "cup",
+            "label": "杯子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "find-original",
+      "variant": 17,
+      "index": 4,
+      "visual": {
+        "kind": "parts",
+        "a": 19,
+        "b": 1,
+        "objects": [
+          {
+            "kind": "block",
+            "label": "积木"
+          }
+        ]
+      }
+    },
+    {
+      "id": "find-original",
+      "variant": 34,
+      "index": 4,
+      "visual": {
+        "kind": "parts",
+        "a": 18,
+        "b": 1,
+        "objects": [
+          {
+            "kind": "flower",
+            "label": "小花"
+          }
+        ]
+      }
+    },
+    {
+      "id": "find-original",
+      "variant": 35,
+      "index": 4,
+      "visual": {
+        "kind": "parts",
+        "a": 18,
+        "b": 2,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subtract-within-5",
+      "variant": 4,
+      "index": 0,
+      "visual": {
+        "kind": "take",
+        "a": 4,
+        "b": 3,
+        "objects": [
+          {
+            "kind": "cup",
+            "label": "杯子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subtract-within-5",
+      "variant": 5,
+      "index": 0,
+      "visual": {
+        "kind": "take",
+        "a": 5,
+        "b": 3,
+        "objects": [
+          {
+            "kind": "block",
+            "label": "积木"
+          }
+        ]
+      }
+    },
+    {
+      "id": "subtract-within-5",
+      "variant": 2,
+      "index": 0,
+      "visual": {
+        "kind": "take",
+        "a": 5,
+        "b": 4,
+        "objects": [
+          {
+            "kind": "flower",
+            "label": "小花"
+          }
+        ]
+      }
+    },
+    {
+      "id": "plus-five-four-three-two",
+      "variant": 0,
+      "index": 2,
+      "visual": {
+        "kind": "take",
+        "a": 9,
+        "b": 8,
+        "objects": [
+          {
+            "kind": "disc",
+            "label": "圆片"
+          }
+        ],
+        "label": "从第二组移出圆片"
+      }
+    },
+    {
+      "id": "zero",
+      "variant": 2,
+      "index": 0,
+      "visual": {
+        "kind": "take",
+        "a": 5,
+        "b": 5
+      }
+    },
+    {
+      "id": "ten",
+      "variant": 8,
+      "index": 0,
+      "visual": {
+        "kind": "ten",
+        "a": 9
+      }
+    },
+    {
+      "id": "solid-compose",
+      "variant": 2,
+      "index": 2,
+      "visual": {
+        "kind": "shape",
+        "a": 4,
+        "label": "转动前后的同一组合"
+      }
+    },
+    {
+      "id": "ten-again",
+      "variant": 0,
+      "index": 0,
+      "visual": {
+        "kind": "bundle",
+        "a": 10,
+        "objects": [
+          {
+            "kind": "stick",
+            "label": "小棒"
+          }
+        ],
+        "label": "10根小棒捆在一起"
+      }
+    },
+    {
+      "id": "eleven-twenty",
+      "variant": 8,
+      "index": 1,
+      "visual": {
+        "kind": "place",
+        "a": 1,
+        "b": 9
+      }
+    },
+    {
+      "id": "review-application",
+      "variant": 17,
+      "index": 0,
+      "visual": {
+        "kind": "parts",
+        "a": 19,
+        "b": 1,
+        "objects": [
+          {
+            "kind": "cup",
+            "label": "杯子"
+          },
+          {
+            "kind": "plate",
+            "label": "盘子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "review-application",
+      "variant": 0,
+      "index": 2,
+      "visual": {
+        "kind": "positions",
+        "a": 4,
+        "b": 3,
+        "objects": [
+          {
+            "kind": "pencil-case",
+            "label": "笔袋"
+          }
+        ],
+        "label": "笔袋所在位置，从左编号 →"
+      }
+    }
+  ]
+}

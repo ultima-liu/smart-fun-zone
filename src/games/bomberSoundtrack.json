@@ -1,0 +1,82 @@
+{
+  "title": {
+    "file": "title-fc-v1.mp3",
+    "loop": null
+  },
+  "start": {
+    "file": "start-fc-v1.mp3",
+    "loop": null
+  },
+  "main": {
+    "file": "main-fc-v1.wav",
+    "loop": {
+      "start": 6,
+      "end": 13.453968253968254
+    }
+  },
+  "upgrade": {
+    "file": "upgrade-fc-v1.wav",
+    "loop": {
+      "start": 6,
+      "end": 13.453287981859411
+    }
+  },
+  "clear": {
+    "file": "clear-fc-v1.mp3",
+    "loop": null
+  },
+  "bonus": {
+    "file": "bonus-fc-v1.wav",
+    "loop": {
+      "start": 6,
+      "end": 11.325215419501134
+    }
+  },
+  "invincible": {
+    "file": "invincible-fc-v1.wav",
+    "loop": {
+      "start": 6,
+      "end": 14.520317460317461
+    }
+  },
+  "ending": {
+    "file": "ending-fc-v1.mp3",
+    "loop": null
+  },
+  "miss": {
+    "file": "miss-fc-v1.mp3",
+    "loop": null
+  },
+  "over": {
+    "file": "over-fc-v1.mp3",
+    "loop": null
+  },
+  "step-horizontal": {
+    "file": "step-horizontal-fc-v1.mp3",
+    "loop": null
+  },
+  "step-vertical": {
+    "file": "step-vertical-fc-v1.mp3",
+    "loop": null
+  },
+  "plant": {
+    "file": "plant-fc-v1.mp3",
+    "loop": null
+  },
+  "blast": {
+    "file": "blast-fc-v2.wav",
+    "loop": null
+  },
+  "power": {
+    "file": "power-fc-v1.mp3",
+    "loop": null
+  },
+  "hurt": {
+    "file": "hurt-fc-v1.mp3",
+    "loop": null
+  },
+  "pause": {
+    "file": "pause-fc-v1.mp3",
+    "loop": null
+  }
+}

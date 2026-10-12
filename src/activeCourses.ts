@@ -70,13 +70,13 @@ export function activeLessons(
   ].map((lesson) => ({ ...lesson, gold: lesson.stars >= 3 }));
 }
 
-/** 继续学习推荐：第一门未满星课时；全部满星则回到第一课 */
+/** 数学按活动完成推荐下一课，提示后完成不要求重复刷满星；其他学科沿用原口径。 */
 export function nextLessonToLearn(
   childId: string | undefined,
   mastery: Record<string, Record<string, MasteryState>> | undefined,
 ): ActiveLesson | undefined {
   const lessons = activeLessons(childId, mastery);
-  return lessons.find((lesson) => !lesson.gold) ?? lessons[0];
+  return lessons.find((lesson) => lesson.subject === 'math' ? lesson.stars === 0 : !lesson.gold) ?? lessons[0];
 }
 
 /** 全局星星口径 = 课程星（数学 + 语文 + 英语课本课时星 + 数学情境实践·水果店；乐园小游戏不发光星，2026-09-28 起） */

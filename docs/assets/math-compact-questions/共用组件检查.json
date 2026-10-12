@@ -1,0 +1,41 @@
+{
+  "records": [
+    {
+      "width": 520,
+      "mode": "short",
+      "layout": "plain",
+      "choiceSize": "symbols",
+      "overflow": false,
+      "buttonOverflow": false,
+      "height": 272.4375
+    },
+    {
+      "width": 520,
+      "mode": "long",
+      "layout": "plain",
+      "choiceSize": "text",
+      "overflow": false,
+      "buttonOverflow": false,
+      "height": 365.4375
+    },
+    {
+      "width": 900,
+      "mode": "short",
+      "layout": "plain",
+      "choiceSize": "symbols",
+      "overflow": false,
+      "buttonOverflow": false,
+      "height": 284.4375
+    },
+    {
+      "width": 900,
+      "mode": "long",
+      "layout": "plain",
+      "choiceSize": "text",
+      "overflow": false,
+      "buttonOverflow": false,
+      "height": 352.4375
+    }
+  ],
+  "errors": []
+}

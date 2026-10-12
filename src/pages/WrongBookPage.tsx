@@ -1,7 +1,11 @@
+import { ContentPages } from '../components/ScreenPages';
 import BackButton from '../components/BackButton';
 import { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useStore } from '../store';
+import { useStore, type WrongItem } from '../store';
+import MathAssessmentPractice from '../components/MathAssessmentPractice';
+import { mathQuestions } from '../content/mathTeaching';
+import { mathArenaQuestions } from '../content/mathArenaQuestions';
 import { useI18n } from '../i18n';
 import { gradeLabel, SUBJECTS, type SubjectId } from '../types';
 import { CHINESE_TEXTBOOK_LESSONS } from '../content/chineseTextbookCurriculum';
@@ -44,9 +48,11 @@ function mathAbilityOf(wrong: { objective?: string; kind: string; question?: str
 }
 
 /** 新版数学闯关错题可在错题本内立即重做，避免每次都重新走完整节课。 */
-function MathWrongRetry({ question, onResolved }: { question: { question?: string; options?: string[]; correctAnswer?: string; diagnosis?: string; remedy?: string }; onResolved: () => void }) {
+function MathWrongRetry({ question, onResolved }: { question: WrongItem; onResolved: () => void }) {
   const [pick, setPick] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const modern = question.mathLessonId && Number.isInteger(question.mathVariant) && Number.isInteger(question.mathQuestionIndex) ? (question.mathQuestionBank === 'arena-v1' ? mathArenaQuestions : mathQuestions)(question.mathLessonId, question.mathVariant! + 11)[question.mathQuestionIndex!] : undefined;
+  if (modern) return <div className="wrong-math-retry"><p>保留同一目标，换材料独立验证。原错因作为回看线索。</p><MathAssessmentPractice lessonId={question.lessonId.replace('math-lab-', '')} context="review" sessionId={question.uid} questions={[modern]} variant={question.mathVariant! + 11} onDone={onResolved} /></div>;
   if (!question.question || !question.options?.length || !question.correctAnswer) return null;
   const choose = (option: string) => {
     if (done) return;
@@ -98,7 +104,7 @@ export default function WrongBookPage() {
   return (
     <main className="page review-hub">
       <header className="review-hub-head">
-        <BackButton onClick={() => nav(backTarget)} aria-label="返回" label={subject ? '返回课程目录' : '返回首页'} />
+        <BackButton onClick={() => nav(backTarget)} label={subject ? '返回课程目录' : '返回首页'} />
         <div>
           <span>WRONG BOOK</span>
           <h1>{title}</h1>
@@ -124,7 +130,7 @@ export default function WrongBookPage() {
           <div className="wrong-profile-tags">{mathProfile.map(([ability, count], index) => <span key={ability} className={index === 0 ? 'priority' : ''}><b>{ability}</b><small>{count} 道待复习</small></span>)}</div>
         </section>}
         <section className="review-hub-list" aria-label="错题列表">
-          {list.map((w) => {
+          <ContentPages kind="activities">{list.map((w) => {
             const sid = wrongSubject(w.lessonId);
             const meta = sid ? META[sid] : undefined;
             const practiceTarget = wrongPracticeTarget(w.lessonId);
@@ -148,7 +154,7 @@ export default function WrongBookPage() {
                 </div>
               </article>
             );
-          })}
+          })}</ContentPages>
         </section>
         </>
       )}

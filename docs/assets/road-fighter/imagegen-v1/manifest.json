@@ -1,0 +1,223 @@
+[
+  {
+    "name": "broadleaf",
+    "width": 316,
+    "height": 320,
+    "sourceRect": [
+      35,
+      22,
+      360,
+      364
+    ],
+    "file": "broadleaf-v1.webp",
+    "bytes": 62360
+  },
+  {
+    "name": "flowers",
+    "width": 320,
+    "height": 295,
+    "sourceRect": [
+      460,
+      48,
+      343,
+      316
+    ],
+    "file": "flowers-v1.webp",
+    "bytes": 65728
+  },
+  {
+    "name": "cottage",
+    "width": 320,
+    "height": 312,
+    "sourceRect": [
+      875,
+      39,
+      354,
+      345
+    ],
+    "file": "cottage-v1.webp",
+    "bytes": 60782
+  },
+  {
+    "name": "palm",
+    "width": 300,
+    "height": 320,
+    "sourceRect": [
+      35,
+      433,
+      354,
+      378
+    ],
+    "file": "palm-v1.webp",
+    "bytes": 67962
+  },
+  {
+    "name": "sailboat",
+    "width": 173,
+    "height": 320,
+    "sourceRect": [
+      541,
+      430,
+      217,
+      401
+    ],
+    "file": "sailboat-v1.webp",
+    "bytes": 29314
+  },
+  {
+    "name": "parasol",
+    "width": 295,
+    "height": 320,
+    "sourceRect": [
+      908,
+      447,
+      317,
+      344
+    ],
+    "file": "parasol-v1.webp",
+    "bytes": 44406
+  },
+  {
+    "name": "pines",
+    "width": 318,
+    "height": 320,
+    "sourceRect": [
+      31,
+      844,
+      365,
+      367
+    ],
+    "file": "pines-v1.webp",
+    "bytes": 54236
+  },
+  {
+    "name": "rocks",
+    "width": 320,
+    "height": 307,
+    "sourceRect": [
+      454,
+      877,
+      358,
+      343
+    ],
+    "file": "rocks-v1.webp",
+    "bytes": 62418
+  },
+  {
+    "name": "cabin",
+    "width": 302,
+    "height": 320,
+    "sourceRect": [
+      872,
+      846,
+      355,
+      376
+    ],
+    "file": "cabin-v1.webp",
+    "bytes": 57108
+  },
+  {
+    "name": "fuel-car",
+    "width": 176,
+    "height": 320,
+    "sourceRect": [
+      164,
+      52,
+      300,
+      544
+    ],
+    "file": "fuel-car-v1.webp",
+    "bytes": 30748
+  },
+  {
+    "name": "oil",
+    "width": 320,
+    "height": 230,
+    "sourceRect": [
+      655,
+      132,
+      568,
+      408
+    ],
+    "file": "oil-v1.webp",
+    "bytes": 34154
+  },
+  {
+    "name": "fuel-can",
+    "width": 266,
+    "height": 320,
+    "sourceRect": [
+      134,
+      718,
+      362,
+      435
+    ],
+    "file": "fuel-can-v1.webp",
+    "bytes": 35796
+  },
+  {
+    "name": "warning",
+    "width": 320,
+    "height": 289,
+    "sourceRect": [
+      693,
+      716,
+      492,
+      444
+    ],
+    "file": "warning-v1.webp",
+    "bytes": 27060
+  },
+  {
+    "name": "grass",
+    "width": 384,
+    "height": 384,
+    "sourceRect": [
+      0,
+      0,
+      627,
+      627
+    ],
+    "file": "grass-v1.webp",
+    "bytes": 82424
+  },
+  {
+    "name": "water",
+    "width": 384,
+    "height": 384,
+    "sourceRect": [
+      627,
+      0,
+      627,
+      627
+    ],
+    "file": "water-v1.webp",
+    "bytes": 47670
+  },
+  {
+    "name": "sand",
+    "width": 384,
+    "height": 384,
+    "sourceRect": [
+      0,
+      627,
+      627,
+      627
+    ],
+    "file": "sand-v1.webp",
+    "bytes": 69898
+  },
+  {
+    "name": "forest-floor",
+    "width": 384,
+    "height": 384,
+    "sourceRect": [
+      627,
+      627,
+      627,
+      627
+    ],
+    "file": "forest-floor-v1.webp",
+    "bytes": 79470
+  }
+]

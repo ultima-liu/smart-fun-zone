@@ -1,3 +1,4 @@
+import { ActivityDeck } from '../components/ScreenPages';
 import BackButton from '../components/BackButton';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -73,6 +74,7 @@ export default function HqSettingsPage() {
           <h1>{t('settings')}</h1>
         </header>
 
+        <ActivityDeck labels={['孩子档案', '声音与显示', '账号与登录']}>
         {/* 档案管理 */}
         <section className="hq-profiles">
           <h3 className="hq-section-title">{t('profileManage')}</h3>
@@ -189,6 +191,7 @@ export default function HqSettingsPage() {
             </button>
           </div>
         </section>
+        </ActivityDeck>
       </div>
     </div>
   );

@@ -1,0 +1,17 @@
+{
+  "engine": {
+    "file": "engine-fc-v2.wav",
+    "peak": 0.317626953125,
+    "rms": 0.11959555441361289,
+    "zeroCrossHz": 205.0,
+    "sha256": "a620945d89b31cf79dcecb0df4d66e4fce07d2dd6c65e1a676dbc0648ff8055e",
+    "sourceCommand": "0x89"
+  },
+  "lowFuel": {
+    "file": "low-fuel-fc-v2.wav",
+    "peak": 0.2626953125,
+    "rms": 0.11948778500251807,
+    "zeroCrossHz": 1369.0,
+    "sourceCommand": "0x01"
+  }
+}

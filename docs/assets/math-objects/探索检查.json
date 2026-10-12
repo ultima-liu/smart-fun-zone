@@ -1,0 +1,1061 @@
+{
+  "records": [
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱",
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱",
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 2,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 14,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 2,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "第一捆已有10根，这是第二捆的位置"
+      ],
+      "sticks": 4,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 4,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 18,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 14,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "││││"
+      ],
+      "sticks": 14,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 0,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 10,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 0,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "十位：1个位：？"
+      ],
+      "sticks": 0,
+      "bundles": 2,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱",
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱",
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 2,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 14,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 2,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "",
+        "第一捆已有10根，这是第二捆的位置"
+      ],
+      "sticks": 4,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 4,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 18,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 14,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "",
+        "││││"
+      ],
+      "sticks": 14,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 0,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 10,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 0,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 0,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 1,
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "fit": 1,
+      "materialText": [
+        "",
+        "十位：1个位：？"
+      ],
+      "sticks": 0,
+      "bundles": 2,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 0,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 1,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱",
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 0,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 1,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱",
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 0,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 2,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 1,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 14,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 0,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 2,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 1,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "第一捆已有10根，这是第二捆的位置"
+      ],
+      "sticks": 4,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 0,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 4,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 1,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 18,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 0,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 14,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 1,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "││││"
+      ],
+      "sticks": 14,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 0,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 0,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 1,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 10,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 0,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 0,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 1,
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "十位：1个位：？"
+      ],
+      "sticks": 0,
+      "bundles": 2,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 0,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 0,
+      "actions": 1,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "🧱🧱🧱",
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 0,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 0.996,
+      "materialText": [
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "add-within-5",
+      "stage": 1,
+      "actions": 1,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 0.996,
+      "materialText": [
+        "🧱🧱🧱",
+        "🧱🧱🧱"
+      ],
+      "sticks": 0,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 0,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 2,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 0,
+      "actions": 1,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 14,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 0,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 2,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "eleven-twenty",
+      "stage": 1,
+      "actions": 1,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "第一捆已有10根，这是第二捆的位置"
+      ],
+      "sticks": 4,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 0,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 4,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 0,
+      "actions": 1,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 18,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 0,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 14,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "review-numbers",
+      "stage": 1,
+      "actions": 1,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "││││"
+      ],
+      "sticks": 14,
+      "bundles": 0,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 0,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 0,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 0,
+      "actions": 1,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        ""
+      ],
+      "sticks": 10,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 0,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        ""
+      ],
+      "sticks": 0,
+      "bundles": 1,
+      "overflow": false,
+      "clipped": []
+    },
+    {
+      "id": "ten-again",
+      "stage": 1,
+      "actions": 1,
+      "width": 768,
+      "height": 1024,
+      "theme": "light",
+      "fit": 1,
+      "materialText": [
+        "",
+        "十位：1个位：？"
+      ],
+      "sticks": 0,
+      "bundles": 2,
+      "overflow": false,
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

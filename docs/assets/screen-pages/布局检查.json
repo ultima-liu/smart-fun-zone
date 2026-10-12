@@ -1,0 +1,2649 @@
+{
+  "date": "2026-10-07",
+  "method": "隔离 Chromium 浏览器，真实 API 屏蔽；只检查布局、切换与预览，不执行业务提交。",
+  "functionalE2E": "按 AGENTS.md 的 UI-only 约定未运行。",
+  "deviceLimit": "实体 iPad Safari、系统软键盘与浏览器工具栏未验证。",
+  "build": "TypeScript、Vite 与包体预算检查通过。",
+  "layouts": [
+    {
+      "route": "/",
+      "url": "#/",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/map",
+      "url": "#/map",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 662,
+      "content": 662,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/math",
+      "url": "#/subject/math",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/chinese",
+      "url": "#/subject/chinese",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/english",
+      "url": "#/subject/english",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-course/numbers",
+      "url": "#/math-course/numbers",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/chinese-course/heaven-earth-human",
+      "url": "#/chinese-course/heaven-earth-human",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/english-course/friends-story",
+      "url": "#/english-course/friends-story",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/lobby",
+      "url": "#/lobby",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile",
+      "url": "#/profile",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 662,
+      "content": 662,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile/settings",
+      "url": "#/profile/settings",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/archive",
+      "url": "#/archive",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 662,
+      "content": 662,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/dock",
+      "url": "#/dock",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 662,
+      "content": 662,
+      "fit": "1.000",
+      "panels": [
+        "0.697"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/store",
+      "url": "#/store",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/review",
+      "url": "#/review",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/wrongs",
+      "url": "#/wrongs",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/parent",
+      "url": "#/parent",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/manage",
+      "url": "#/child-login",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 463,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/admin",
+      "url": "#/admin",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 497,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/child-login",
+      "url": "#/child-login",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 463,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/fruit-shop",
+      "url": "#/math-practice/fruit-shop",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/life-scene?lesson=campus",
+      "url": "#/math-practice/life-scene?lesson=campus",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 768,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/task/challenge:math:within-five",
+      "url": "#/task/challenge:math:within-five",
+      "viewport": [
+        1024,
+        768
+      ],
+      "doc": [
+        1024,
+        768
+      ],
+      "available": 768,
+      "content": 681,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/",
+      "url": "#/",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/map",
+      "url": "#/map",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 918,
+      "content": 918,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/math",
+      "url": "#/subject/math",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/chinese",
+      "url": "#/subject/chinese",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/english",
+      "url": "#/subject/english",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-course/numbers",
+      "url": "#/math-course/numbers",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/chinese-course/heaven-earth-human",
+      "url": "#/chinese-course/heaven-earth-human",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/english-course/friends-story",
+      "url": "#/english-course/friends-story",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/lobby",
+      "url": "#/lobby",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile",
+      "url": "#/profile",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 918,
+      "content": 918,
+      "fit": "1.000",
+      "panels": [
+        "0.789"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile/settings",
+      "url": "#/profile/settings",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/archive",
+      "url": "#/archive",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 918,
+      "content": 918,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/dock",
+      "url": "#/dock",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 918,
+      "content": 918,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/store",
+      "url": "#/store",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/review",
+      "url": "#/review",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/wrongs",
+      "url": "#/wrongs",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/parent",
+      "url": "#/parent",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/manage",
+      "url": "#/child-login",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 465,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/admin",
+      "url": "#/admin",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 499,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/child-login",
+      "url": "#/child-login",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 465,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/fruit-shop",
+      "url": "#/math-practice/fruit-shop",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/life-scene?lesson=campus",
+      "url": "#/math-practice/life-scene?lesson=campus",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 1024,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/task/challenge:math:within-five",
+      "url": "#/task/challenge:math:within-five",
+      "viewport": [
+        768,
+        1024
+      ],
+      "doc": [
+        768,
+        1024
+      ],
+      "available": 1024,
+      "content": 681,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/",
+      "url": "#/",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/map",
+      "url": "#/map",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 794,
+      "content": 794,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/math",
+      "url": "#/subject/math",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/chinese",
+      "url": "#/subject/chinese",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/english",
+      "url": "#/subject/english",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-course/numbers",
+      "url": "#/math-course/numbers",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/chinese-course/heaven-earth-human",
+      "url": "#/chinese-course/heaven-earth-human",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/english-course/friends-story",
+      "url": "#/english-course/friends-story",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/lobby",
+      "url": "#/lobby",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile",
+      "url": "#/profile",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 794,
+      "content": 794,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile/settings",
+      "url": "#/profile/settings",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/archive",
+      "url": "#/archive",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 794,
+      "content": 794,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/dock",
+      "url": "#/dock",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 794,
+      "content": 794,
+      "fit": "1.000",
+      "panels": [
+        "0.878"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/store",
+      "url": "#/store",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/review",
+      "url": "#/review",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/wrongs",
+      "url": "#/wrongs",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/parent",
+      "url": "#/parent",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/manage",
+      "url": "#/child-login",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 463,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/admin",
+      "url": "#/admin",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 497,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/child-login",
+      "url": "#/child-login",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 463,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/fruit-shop",
+      "url": "#/math-practice/fruit-shop",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/life-scene?lesson=campus",
+      "url": "#/math-practice/life-scene?lesson=campus",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 900,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/task/challenge:math:within-five",
+      "url": "#/task/challenge:math:within-five",
+      "viewport": [
+        1440,
+        900
+      ],
+      "doc": [
+        1440,
+        900
+      ],
+      "available": 900,
+      "content": 681,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/",
+      "url": "#/",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "0.922",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/map",
+      "url": "#/map",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 614,
+      "content": 614,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/math",
+      "url": "#/subject/math",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/chinese",
+      "url": "#/subject/chinese",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/english",
+      "url": "#/subject/english",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-course/numbers",
+      "url": "#/math-course/numbers",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [
+        "0.225"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/chinese-course/heaven-earth-human",
+      "url": "#/chinese-course/heaven-earth-human",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/english-course/friends-story",
+      "url": "#/english-course/friends-story",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/lobby",
+      "url": "#/lobby",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile",
+      "url": "#/profile",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 614,
+      "content": 614,
+      "fit": "1.000",
+      "panels": [
+        "0.500"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile/settings",
+      "url": "#/profile/settings",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/archive",
+      "url": "#/archive",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 614,
+      "content": 614,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/dock",
+      "url": "#/dock",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 614,
+      "content": 614,
+      "fit": "1.000",
+      "panels": [
+        "0.306"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/store",
+      "url": "#/store",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/review",
+      "url": "#/review",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/wrongs",
+      "url": "#/wrongs",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/parent",
+      "url": "#/parent",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/manage",
+      "url": "#/child-login",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 465,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/admin",
+      "url": "#/admin",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 499,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/child-login",
+      "url": "#/child-login",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 465,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/fruit-shop",
+      "url": "#/math-practice/fruit-shop",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/life-scene?lesson=campus",
+      "url": "#/math-practice/life-scene?lesson=campus",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 720,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/task/challenge:math:within-five",
+      "url": "#/task/challenge:math:within-five",
+      "viewport": [
+        540,
+        720
+      ],
+      "doc": [
+        540,
+        720
+      ],
+      "available": 720,
+      "content": 681,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/",
+      "url": "#/",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "0.749",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/map",
+      "url": "#/map",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 394,
+      "content": 394,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/math",
+      "url": "#/subject/math",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/chinese",
+      "url": "#/subject/chinese",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/subject/english",
+      "url": "#/subject/english",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-course/numbers",
+      "url": "#/math-course/numbers",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [
+        "0.281"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/chinese-course/heaven-earth-human",
+      "url": "#/chinese-course/heaven-earth-human",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/english-course/friends-story",
+      "url": "#/english-course/friends-story",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/lobby",
+      "url": "#/lobby",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile",
+      "url": "#/profile",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 394,
+      "content": 394,
+      "fit": "1.000",
+      "panels": [
+        "0.604"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/profile/settings",
+      "url": "#/profile/settings",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [
+        "1.000"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/archive",
+      "url": "#/archive",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 394,
+      "content": 394,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/dock",
+      "url": "#/dock",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 394,
+      "content": 394,
+      "fit": "1.000",
+      "panels": [
+        "0.319"
+      ],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/store",
+      "url": "#/store",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/review",
+      "url": "#/review",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/wrongs",
+      "url": "#/wrongs",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/parent",
+      "url": "#/parent",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/manage",
+      "url": "#/child-login",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 463,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/admin",
+      "url": "#/admin",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 497,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/child-login",
+      "url": "#/child-login",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 463,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/fruit-shop",
+      "url": "#/math-practice/fruit-shop",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/math-practice/life-scene?lesson=campus",
+      "url": "#/math-practice/life-scene?lesson=campus",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "1.000",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    },
+    {
+      "route": "/task/challenge:math:within-five",
+      "url": "#/task/challenge:math:within-five",
+      "viewport": [
+        1024,
+        500
+      ],
+      "doc": [
+        1024,
+        500
+      ],
+      "available": 500,
+      "content": 500,
+      "fit": "0.734",
+      "panels": [],
+      "tall": [],
+      "inner": []
+    }
+  ],
+  "contentPreviews": {
+    "errors": [],
+    "report": [
+      {
+        "size": {
+          "width": 1024,
+          "height": 768
+        },
+        "route": "/math-course/numbers",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 768
+          },
+          {
+            "scale": "1.000",
+            "height": 183
+          },
+          {
+            "scale": "0.012",
+            "height": 4
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 1024,
+          "height": 768
+        },
+        "route": "/chinese-course/heaven-earth-human",
+        "shots": [
+          "放大教材整页"
+        ],
+        "root": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 768
+          },
+          {
+            "scale": "0.959",
+            "height": 234
+          },
+          {
+            "scale": "1.000",
+            "height": 720
+          }
+        ],
+        "slicingControls": 0,
+        "images": [
+          {
+            "height": 148,
+            "top": 460,
+            "bottom": 607
+          },
+          {
+            "height": 608,
+            "top": 46,
+            "bottom": 654
+          }
+        ]
+      },
+      {
+        "size": {
+          "width": 1024,
+          "height": 768
+        },
+        "route": "/english-course/friends-story",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 768
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 1024,
+          "height": 768
+        },
+        "route": "/english-course/friends-letters",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 768
+          },
+          {
+            "scale": "0.070",
+            "height": 44
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 1024,
+          "height": 768
+        },
+        "route": "/archive",
+        "shots": [
+          "卡牌预览"
+        ],
+        "root": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 662
+          },
+          {
+            "scale": "1.000",
+            "height": 720
+          }
+        ],
+        "slicingControls": 0,
+        "images": [
+          {
+            "height": 400,
+            "top": 224,
+            "bottom": 624
+          }
+        ]
+      },
+      {
+        "size": {
+          "width": 1024,
+          "height": 768
+        },
+        "route": "/store",
+        "shots": [
+          "商品预览"
+        ],
+        "root": [
+          1024,
+          768
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 768
+          },
+          {
+            "scale": "1.000",
+            "height": 720
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 768,
+          "height": 1024
+        },
+        "route": "/math-course/numbers",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 1024
+          },
+          {
+            "scale": "1.000",
+            "height": 439
+          },
+          {
+            "scale": "0.809",
+            "height": 262
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 768,
+          "height": 1024
+        },
+        "route": "/chinese-course/heaven-earth-human",
+        "shots": [
+          "放大教材整页"
+        ],
+        "root": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 1024
+          },
+          {
+            "scale": "0.980",
+            "height": 490
+          },
+          {
+            "scale": "1.000",
+            "height": 976
+          }
+        ],
+        "slicingControls": 0,
+        "images": [
+          {
+            "height": 402,
+            "top": 461,
+            "bottom": 863
+          },
+          {
+            "height": 864,
+            "top": 46,
+            "bottom": 910
+          }
+        ]
+      },
+      {
+        "size": {
+          "width": 768,
+          "height": 1024
+        },
+        "route": "/english-course/friends-story",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 1024
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 768,
+          "height": 1024
+        },
+        "route": "/english-course/friends-letters",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 1024
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 768,
+          "height": 1024
+        },
+        "route": "/archive",
+        "shots": [
+          "卡牌预览"
+        ],
+        "root": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 918
+          },
+          {
+            "scale": "1.000",
+            "height": 976
+          }
+        ],
+        "slicingControls": 0,
+        "images": [
+          {
+            "height": 400,
+            "top": 353,
+            "bottom": 753
+          }
+        ]
+      },
+      {
+        "size": {
+          "width": 768,
+          "height": 1024
+        },
+        "route": "/store",
+        "shots": [
+          "商品预览"
+        ],
+        "root": [
+          768,
+          1024
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 1024
+          },
+          {
+            "scale": "1.000",
+            "height": 976
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 540,
+          "height": 720
+        },
+        "route": "/math-course/numbers",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 720
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 540,
+          "height": 720
+        },
+        "route": "/chinese-course/heaven-earth-human",
+        "shots": [
+          "放大教材整页"
+        ],
+        "root": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 720
+          },
+          {
+            "scale": "0.727",
+            "height": 176
+          },
+          {
+            "scale": "1.000",
+            "height": 672
+          }
+        ],
+        "slicingControls": 0,
+        "images": [
+          {
+            "height": 70,
+            "top": 454,
+            "bottom": 524
+          },
+          {
+            "height": 560,
+            "top": 46,
+            "bottom": 606
+          }
+        ]
+      },
+      {
+        "size": {
+          "width": 540,
+          "height": 720
+        },
+        "route": "/english-course/friends-story",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 720
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 540,
+          "height": 720
+        },
+        "route": "/english-course/friends-letters",
+        "shots": [
+          "活动"
+        ],
+        "root": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 720
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      },
+      {
+        "size": {
+          "width": 540,
+          "height": 720
+        },
+        "route": "/archive",
+        "shots": [
+          "卡牌预览"
+        ],
+        "root": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 614
+          },
+          {
+            "scale": "1.000",
+            "height": 672
+          }
+        ],
+        "slicingControls": 0,
+        "images": [
+          {
+            "height": 260,
+            "top": 271,
+            "bottom": 531
+          }
+        ]
+      },
+      {
+        "size": {
+          "width": 540,
+          "height": 720
+        },
+        "route": "/store",
+        "shots": [
+          "商品预览"
+        ],
+        "root": [
+          540,
+          720
+        ],
+        "frames": [
+          {
+            "scale": "1.000",
+            "height": 720
+          },
+          {
+            "scale": "1.000",
+            "height": 672
+          }
+        ],
+        "slicingControls": 0,
+        "images": []
+      }
+    ]
+  }
+}

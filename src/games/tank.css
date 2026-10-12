@@ -1,0 +1,925 @@
+.tank-game {
+  --tank-paper: #f5f2e8;
+  --tank-panel: #fffcf5;
+  --tank-ink: #294c44;
+  --tank-muted: #71817a;
+  --tank-line: #cad4c7;
+  --tank-accent: #357766;
+  --tank-field: #283f38;
+  padding: clamp(14px, 2.4vw, 28px);
+  color: var(--tank-ink);
+  background: radial-gradient(ellipse at top right, #cfded055, transparent 60%), var(--tank-paper);
+  border: 1px solid var(--tank-line);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px #243a3214;
+  outline: none;
+  font-family: inherit;
+}
+:root[data-theme='dark'] .tank-game {
+  --tank-paper: #172b2b;
+  --tank-panel: #223a36;
+  --tank-ink: #f0efdc;
+  --tank-muted: #adbfac;
+  --tank-line: #50695b;
+  --tank-accent: #aac9a1;
+  --tank-field: #0e2023;
+}
+.tank-game button,
+.tank-game select {
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.tank-game button {
+  border: 0;
+}
+.tank-game button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+.tank-game button:focus-visible,
+.tank-game select:focus-visible,
+.tank-game summary:focus-visible {
+  outline: 3px solid #d49c39;
+  outline-offset: 3px;
+}
+.tank-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 22px;
+}
+.tank-header > div {
+  flex: 1;
+  min-width: 0;
+}
+.tank-header > div > span {
+  font: 10px monospace;
+  letter-spacing: 2.4px;
+  color: var(--tank-accent);
+}
+.tank-header h2 {
+  font-size: clamp(24px, 3vw, 35px);
+  letter-spacing: 3px;
+  margin: 5px 0 6px;
+  color: var(--tank-ink);
+}
+.tank-header p {
+  margin: 0;
+  color: var(--tank-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.tank-small-button {
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid var(--tank-line) !important;
+  color: var(--tank-ink);
+  background: var(--tank-panel);
+  border-radius: 10px;
+  white-space: nowrap;
+  font-size: 12px !important;
+}
+.tank-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid var(--tank-line);
+  border-bottom: 1px solid var(--tank-line);
+  padding: 12px 0;
+  margin-bottom: 20px;
+}
+.tank-mission-label {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font: 10px monospace;
+  letter-spacing: 1px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.tank-mission-label b {
+  font: bold 18px monospace;
+  letter-spacing: 0;
+}
+.tank-mission-label em {
+  font-size: 11px;
+  font-style: normal;
+}
+.tank-best {
+  font: 10px monospace;
+  color: var(--tank-muted);
+  letter-spacing: 1px;
+}
+.tank-best b {
+  display: block;
+  font: bold 19px monospace;
+  color: var(--tank-ink);
+  margin-top: 4px;
+}
+.tank-command-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 218px;
+  gap: 22px;
+  align-items: start;
+}
+.tank-field-column {
+  min-width: 0;
+}
+.tank-field-shell {
+  padding: clamp(8px, 1.4vw, 13px);
+  border-radius: 14px;
+  background: var(--tank-field);
+  box-shadow:
+    inset 0 2px 8px #0004,
+    0 8px 14px #183a3320;
+}
+.tank-field {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #b6b19f;
+  border-radius: 5px;
+}
+.tank-field canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.tank-field-caption {
+  color: #d4d9c4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 1px 0;
+  font: 10px monospace;
+  letter-spacing: 1px;
+}
+.tank-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #142c3980;
+  backdrop-filter: blur(2px);
+  padding: 18px;
+}
+.tank-overlay-panel {
+  width: min(100%, 358px);
+  padding: clamp(16px, 3vw, 27px);
+  border-radius: 17px;
+  background: var(--tank-panel);
+  color: var(--tank-ink);
+  box-shadow: 0 14px 44px #122e4566;
+  text-align: center;
+}
+.tank-overlay-kicker {
+  display: block;
+  color: var(--tank-muted);
+  font: 10px monospace;
+  letter-spacing: 2px;
+}
+.tank-overlay-panel > img {
+  height: 74px;
+  width: 70px;
+  object-fit: contain;
+  margin: 14px 0 0;
+}
+.tank-overlay-panel h3 {
+  font-size: 23px;
+  color: var(--tank-ink);
+  margin: 8px 0;
+}
+.tank-overlay-panel > p {
+  font-size: 11px;
+  color: var(--tank-muted);
+  line-height: 1.8;
+  margin: 8px 0 16px;
+}
+.tank-primary {
+  min-height: 46px;
+  padding: 10px 20px;
+  color: #fff9dd;
+  border-radius: 11px;
+  background: #347764;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 0 #205340;
+}
+.tank-primary:hover {
+  background: #418771;
+}
+.tank-overlay-panel > .tank-primary {
+  width: 100%;
+}
+.tank-mode-pills {
+  display: flex;
+  border: 1px solid var(--tank-line);
+  border-radius: 9px;
+  padding: 3px;
+  margin: 13px 0;
+}
+.tank-mode-pills button {
+  min-height: 40px;
+  flex: 1;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--tank-muted);
+  font-size: 12px;
+}
+.tank-mode-pills button[aria-pressed='true'] {
+  color: var(--tank-ink);
+  background: #92b99b30;
+  font-weight: 700;
+}
+.tank-stage-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-align: left;
+  color: var(--tank-muted);
+  font-size: 11px;
+  margin-bottom: 16px;
+}
+.tank-stage-select select {
+  max-width: 68%;
+  min-height: 44px;
+  font-size: 12px;
+  border: 1px solid var(--tank-line);
+  color: var(--tank-ink);
+  background: var(--tank-paper);
+  padding: 6px;
+  border-radius: 6px;
+}
+.tank-stage-banner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #fff9d1;
+  background: #1d3b3680;
+  pointer-events: none;
+}
+.tank-stage-banner span {
+  font: 10px monospace;
+  letter-spacing: 4px;
+}
+.tank-stage-banner strong {
+  font: bold clamp(28px, 5vw, 50px) monospace;
+  letter-spacing: 3px;
+}
+.tank-stage-banner p {
+  font-size: 12px;
+}
+.tank-freeze-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font: bold 14px monospace;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: #d9f8f4ee;
+  color: #356b73;
+}
+.tank-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.tank-enemy-panel {
+  padding: 18px;
+  border: 1px solid var(--tank-line);
+  border-radius: 14px;
+  background: var(--tank-panel);
+}
+.tank-section-label {
+  color: var(--tank-muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.tank-enemy-panel h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin: 8px 0 12px;
+  color: var(--tank-ink);
+}
+.tank-enemy-panel h3 b {
+  font: bold 39px monospace;
+}
+.tank-enemy-panel h3 small {
+  font-size: 11px;
+  font-weight: 400;
+}
+.tank-enemy-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px 8px;
+}
+.tank-enemy-grid img {
+  height: 28px;
+  width: 100%;
+  object-fit: contain;
+  filter: saturate(0.5);
+  opacity: 0.7;
+}
+.tank-enemy-grid img.deployed {
+  filter: none;
+  opacity: 1;
+}
+.tank-enemy-grid img.defeated {
+  filter: grayscale(1);
+  opacity: 0.12;
+}
+.tank-enemy-panel > p {
+  color: var(--tank-muted);
+  font-size: 10px;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+.tank-player-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tank-player-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  background: var(--tank-panel);
+  border-left: 3px solid #cfaa4e;
+  border-radius: 0 12px 12px 0;
+}
+.tank-player-panel.player-1 {
+  border-color: #5daea1;
+}
+.tank-player-panel > img {
+  width: 32px;
+  height: 50px;
+  object-fit: contain;
+}
+.tank-player-panel > div {
+  min-width: 0;
+  flex: 1;
+}
+.tank-player-panel span {
+  display: block;
+  font-size: 10px;
+  color: var(--tank-muted);
+  overflow-wrap: anywhere;
+}
+.tank-player-panel b {
+  display: block;
+  font: bold 23px monospace;
+  margin: 5px 0;
+}
+.tank-player-panel small {
+  font-size: 10px;
+}
+.tank-player-panel em {
+  color: #b38d33;
+  margin-left: 8px;
+  font-size: 13px;
+  font-style: normal;
+}
+.tank-base-panel {
+  border: 1px solid var(--tank-line);
+  border-radius: 12px;
+  padding: 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.tank-base-panel img {
+  width: 38px;
+  height: 38px;
+  border-radius: 5px;
+}
+.tank-base-panel span {
+  font-size: 11px;
+  flex: 1;
+}
+.tank-base-panel b {
+  display: block;
+  font-size: 10px;
+  color: var(--tank-muted);
+  margin-top: 4px;
+}
+.tank-base-panel i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #83ad6e;
+}
+.tank-base-panel.destroyed i {
+  background: #db6661;
+}
+.tank-manual {
+  padding: 13px 3px;
+  color: var(--tank-muted);
+  font-size: 11px;
+}
+.tank-manual summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--tank-ink);
+  min-height: 30px;
+}
+.tank-manual p {
+  line-height: 1.9;
+  margin: 9px 0 14px;
+}
+.tank-power-guide {
+  display: grid;
+  gap: 12px;
+}
+.tank-power-guide > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.tank-power-guide img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+.tank-power-guide b {
+  display: block;
+  font-size: 11px;
+  color: var(--tank-ink);
+}
+.tank-power-guide small {
+  font-size: 10px;
+  line-height: 1.6;
+}
+.tank-controls-row {
+  margin-top: 17px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.tank-controller {
+  flex: 1;
+  min-width: 230px;
+  padding: 12px 15px;
+  border: 1px solid var(--tank-line);
+  background: var(--tank-panel);
+  border-radius: 15px;
+}
+.tank-controller > span {
+  display: block;
+  font-size: 10px;
+  color: var(--tank-muted);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.tank-controller-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.tank-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 46px);
+  grid-template-rows: repeat(3, 44px);
+  gap: 2px;
+}
+.tank-dpad .up {
+  grid-area: 1 / 2;
+}
+.tank-dpad .left {
+  grid-area: 2 / 1;
+}
+.tank-dpad .right {
+  grid-area: 2 / 3;
+}
+.tank-dpad .down {
+  grid-area: 3 / 2;
+}
+.tank-dpad i {
+  grid-area: 2 / 2;
+  background: #647c6b16;
+  border-radius: 5px;
+}
+.tank-control {
+  touch-action: none;
+  user-select: none;
+  border-radius: 9px;
+  color: var(--tank-ink);
+  background: #95aa9826;
+  font-size: 23px !important;
+  box-shadow: 0 3px 0 #526b5530;
+}
+.tank-control:active {
+  background: #87b29b80;
+  transform: translateY(2px);
+  box-shadow: none;
+}
+.tank-fire-controls {
+  display: grid;
+  grid-template-columns: repeat(2, 54px);
+  gap: 8px;
+  text-align: center;
+}
+.tank-fire-controls .fire {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #d8b55e;
+  color: #4b431f;
+  font: bold 22px monospace !important;
+  box-shadow: 0 4px 0 #ad8f4b;
+}
+.tank-fire-controls .secondary {
+  background: #b0c7b0;
+  box-shadow: 0 4px 0 #809980;
+  color: #2f5347;
+}
+.tank-fire-controls small {
+  grid-column: 1 / -1;
+  color: var(--tank-muted);
+  font-size: 9px;
+  margin-top: 8px;
+}
+.tank-kill-tally {
+  display: grid;
+  gap: 10px;
+  margin: 15px 0;
+  font: 12px monospace;
+}
+.tank-kill-tally > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+}
+.tank-kill-tally b {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.tank-kill-tally img {
+  width: 16px;
+  height: 25px;
+  object-fit: contain;
+}
+.tank-editor {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-template-rows: repeat(13, 1fr);
+  touch-action: none;
+}
+.tank-editor button {
+  min-width: 0;
+  padding: 0;
+  font: bold 10px monospace;
+  color: #fffacb;
+  text-shadow: 0 1px 3px #000;
+  background-size: cover;
+  outline: 1px solid #f9f5dd35;
+}
+.tank-editor-tools {
+  margin-top: 17px;
+  padding: 16px;
+  border: 1px solid var(--tank-line);
+  border-radius: 12px;
+}
+.tank-brushes {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+.tank-brushes button {
+  min-height: 60px;
+  padding: 5px;
+  background: var(--tank-panel);
+  color: var(--tank-ink);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 11px;
+}
+.tank-brushes button[aria-pressed='true'] {
+  border-color: var(--tank-accent);
+  background: #8aab8c30;
+}
+.tank-brushes img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 6px;
+  border-radius: 5px;
+}
+.tank-editor-tools p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--tank-muted);
+}
+.tank-editor-tools > div:last-child {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+@media (min-width: 1200px) {
+  .tank-field-column {
+    max-width: 710px;
+  }
+}
+@media (max-width: 1000px) {
+  .tank-command-layout {
+    grid-template-columns: minmax(0, 1fr) 180px;
+    gap: 16px;
+  }
+  .tank-enemy-panel {
+    padding: 14px;
+  }
+  .tank-enemy-grid {
+    gap: 6px;
+  }
+  .tank-header {
+    gap: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .tank-command-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tank-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tank-manual {
+    grid-column: 1 / -1;
+  }
+  .tank-base-panel {
+    grid-column: 1 / -1;
+  }
+  .tank-power-guide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tank-header {
+    flex-wrap: wrap;
+  }
+  .tank-header > .back-btn {
+    order: -1;
+  }
+  .tank-header p {
+    font-size: 11px;
+  }
+  .tank-toolbar {
+    gap: 12px;
+  }
+  .tank-mission-label {
+    gap: 7px;
+  }
+  .tank-enemy-grid img {
+    height: 22px;
+  }
+}
+@media (max-width: 440px) {
+  .tank-game {
+    padding: 10px;
+    border-radius: 17px;
+  }
+  .tank-header {
+    gap: 10px;
+    padding: 8px 0 15px;
+  }
+  .tank-header > div {
+    flex-basis: 180px;
+  }
+  .tank-header p {
+    display: none;
+  }
+  .tank-header > .tank-small-button {
+    min-height: 36px;
+    font-size: 10px !important;
+  }
+  .tank-toolbar {
+    margin-bottom: 13px;
+    gap: 9px;
+  }
+  .tank-mission-label {
+    font-size: 8px;
+  }
+  .tank-mission-label b {
+    font-size: 16px;
+  }
+  .tank-best {
+    font-size: 8px;
+  }
+  .tank-best b {
+    font-size: 16px;
+  }
+  .tank-toolbar .tank-small-button {
+    padding: 8px;
+  }
+  .tank-field-shell {
+    padding: 7px;
+  }
+  .tank-field-caption {
+    font-size: 8px;
+    letter-spacing: 0;
+    padding-top: 10px;
+  }
+  .tank-overlay {
+    padding: 8px;
+  }
+  .tank-overlay-panel {
+    padding: 13px;
+    border-radius: 11px;
+  }
+  .tank-overlay-panel > img {
+    height: 43px;
+    width: 42px;
+    margin-top: 8px;
+  }
+  .tank-overlay-panel h3 {
+    font-size: 18px;
+    margin: 4px 0;
+  }
+  .tank-overlay-panel > p {
+    font-size: 9px;
+    margin: 5px 0 8px;
+  }
+  .tank-overlay-kicker {
+    font-size: 8px;
+  }
+  .tank-mode-pills {
+    margin: 7px 0;
+  }
+  .tank-mode-pills button {
+    min-height: 38px;
+    font-size: 11px;
+  }
+  .tank-stage-select {
+    margin-bottom: 10px;
+    font-size: 10px;
+  }
+  .tank-stage-select select {
+    min-height: 38px;
+    font-size: 10px;
+  }
+  .tank-controller {
+    padding: 10px;
+    min-width: 0;
+    flex-basis: 100%;
+  }
+  .tank-dpad {
+    grid-template-columns: repeat(3, 44px);
+  }
+  .tank-fire-controls {
+    grid-template-columns: repeat(2, 48px);
+    gap: 6px;
+  }
+  .tank-fire-controls .fire {
+    width: 48px;
+    height: 48px;
+  }
+  .tank-sidebar {
+    gap: 11px;
+  }
+  .tank-enemy-panel {
+    padding: 11px;
+  }
+  .tank-enemy-panel h3 b {
+    font-size: 30px;
+  }
+  .tank-player-panel {
+    padding: 13px 8px;
+    gap: 8px;
+  }
+  .tank-player-panel > img {
+    width: 23px;
+    height: 35px;
+  }
+  .tank-player-panel b {
+    font-size: 20px;
+  }
+  .tank-player-panel em {
+    margin-left: 4px;
+  }
+  .tank-brushes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .tank-editor-tools {
+    padding: 10px;
+  }
+  .tank-editor-tools > div:last-child {
+    flex-wrap: wrap;
+  }
+  .park-tank-preview {
+    width: 100%;
+    height: 135px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tank-control:active {
+    transform: none;
+  }
+}
+/* Pad landscape: keep the battlefield and both action buttons in the same view. */
+@media (min-width: 761px) and (max-width: 1180px) and (max-height: 850px) {
+  .tank-game {
+    padding: 16px 20px;
+  }
+  .tank-header {
+    padding-bottom: 12px;
+  }
+  .tank-header h2 {
+    font-size: 25px;
+    margin: 3px 0;
+  }
+  .tank-header p {
+    display: none;
+  }
+  .tank-toolbar {
+    padding: 8px 0;
+    margin-bottom: 12px;
+  }
+  .tank-command-layout {
+    grid-template-columns: minmax(310px, calc(100dvh - 420px)) minmax(0, 1fr);
+    gap: 20px;
+  }
+  .tank-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .tank-base-panel,
+  .tank-manual {
+    grid-column: 1 / -1;
+  }
+  .tank-player-panel {
+    gap: 8px;
+  }
+  .tank-manual {
+    padding: 6px 3px;
+  }
+  .tank-power-guide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tank-overlay {
+    padding: 8px;
+  }
+  .tank-overlay-panel {
+    padding: 15px;
+  }
+  .tank-overlay-panel > img {
+    height: 45px;
+    width: 45px;
+    margin-top: 8px;
+  }
+  .tank-overlay-panel h3 {
+    font-size: 20px;
+  }
+  .tank-overlay-panel > p {
+    margin: 5px 0 9px;
+    font-size: 10px;
+  }
+  .tank-mode-pills {
+    margin: 8px 0;
+  }
+  .tank-mode-pills button {
+    min-height: 38px;
+  }
+  .tank-stage-select {
+    margin-bottom: 10px;
+  }
+  .tank-controller {
+    padding: 10px 12px;
+  }
+  .tank-controls-row {
+    margin-top: 12px;
+  }
+  .tank-two-controls .tank-controller {
+    flex-basis: 100%;
+  }
+}
+.tank-construction-link {
+  min-height: 44px;
+  padding: 0 3px;
+  color: #efe7ac;
+  background: none;
+  font: 10px monospace !important;
+}
+@media (max-width: 440px), (min-width: 761px) and (max-width: 1180px) and (max-height: 850px) {
+  .tank-overlay-panel > img {
+    display: none;
+  }
+  .tank-overlay-panel h3 {
+    margin-top: 12px;
+  }
+  .tank-mode-pills button,
+  .tank-stage-select select {
+    min-height: 44px;
+  }
+}

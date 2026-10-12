@@ -18,6 +18,7 @@ export type PinyinStudyPack = {
   tones: string[];
   blends: { parts: string[]; result: string; distractors: string[] }[];
   words: { pinyin: string; word: string }[];
+  mouthForms?: ('a' | 'o' | 'e')[];
   recognize?: string[];
   readingTitle?: string;
   readingLines: string[];
@@ -34,7 +35,7 @@ export const CHINESE_PINYIN_STUDY: Record<string, PinyinStudyPack> = {
   'pinyin-a-o-e': {
     page: 'P20-P21', letters: [L('a', '张大嘴巴，发 a。', '圆肚子加小尾巴'), L('o', '嘴巴圆圆，发 o。', '一个圆圈'), L('e', '嘴巴扁扁，发 e。', '横开的小圆圈')],
     tones: ['ā á ǎ à', 'ō ó ǒ ò', 'ē é ě è'], blends: [],
-    words: [W('ā', '发 a 的口形'), W('ō', '发 o 的口形'), W('ē', '发 e 的口形')],
+    words: [], mouthForms: ['a', 'o', 'e'],
     readingLines: ['张大嘴巴 a a a。', '圆圆嘴巴 o o o。', '扁扁嘴巴 e e e。'],
     rule: { title: '四声初体验', detail: '同一个单韵母加上不同声调，声音的高低和走向会改变。', examples: ['一声平 ā', '二声扬 á', '三声拐弯 ǎ', '四声降 à'] },
     check: C('a 的口形是什么样？', ['张大嘴巴', '嘴巴圆圆', '嘴巴扁扁'], '张大嘴巴', '看发音口形，不只靠字形猜声音。'),
@@ -71,7 +72,7 @@ export const CHINESE_PINYIN_STUDY: Record<string, PinyinStudyPack> = {
     check: C('g + u + ā 连读成什么？', ['guā', 'gā', 'huā'], 'guā', '三个声音连成一个完整音节。'),
   },
   'pinyin-j-q-x': {
-    page: 'P34-P35', letters: [L('j', '舌面靠近上腭，气流较弱。', '竖向下加点', 'lower'), L('q', '舌面靠近上腭，送气明显。', '半圆在左，竖向下', 'lower'), L('x', '舌面靠近上腭，气流从缝中出。', '两斜交叉')],
+    page: 'P34-P35', letters: [L('j', '舌面靠近上腭，气流较弱。', '竖向下加点', 'full'), L('q', '舌面靠近上腭，送气明显。', '半圆在左，竖向下', 'lower'), L('x', '舌面靠近上腭，气流从缝中出。', '两斜交叉')],
     tones: ['jī jí jǐ jì', 'qī qí qǐ qì'], blends: [B(['j', 'ü'], 'ju', ['jü', 'ji']), B(['q', 'ü'], 'qu', ['qü', 'qi'])],
     words: [W('dǎ gǔ', '打鼓'), W('xià qí', '下棋'), W('dā jī mù', '搭积木')], recognize: ['打', '棋', '积', '木'],
     readingTitle: '在一起', readingLines: ['小黄鸡，小黑鸡，', '欢欢喜喜在一起。', '刨刨土，捉捉虫，', '青草地上做游戏。'],
@@ -79,7 +80,7 @@ export const CHINESE_PINYIN_STUDY: Record<string, PinyinStudyPack> = {
     check: C('j 和 ü 拼写成哪个音节？', ['ju', 'jü', 'ji'], 'ju', '两点省去，但读的还是 ü。'),
   },
   'pinyin-z-c-s': {
-    page: 'P36-P37', letters: [L('z', '舌尖靠近上齿背，发音轻短。', '折线形'), L('c', '舌尖靠近上齿背，有明显气流。', '左开口半圆'), L('s', '气流从齿间出来。', '弯曲线')],
+    page: 'P36-P37', letters: [L('z', '舌尖靠近上齿背，发音轻短。', '折线形'), L('c', '舌尖靠近上齿背，有明显气流。', '向右开口的半圆'), L('s', '气流从齿间出来。', '弯曲线')],
     tones: ['zā zá zǎ zà', 'cā cá cǎ cà'], blends: [B(['z', 'ī'], 'zi', ['zī', 'ci']), B(['c', 'ī'], 'ci', ['cī', 'si'])],
     words: [W('zì', '字'), W('cí', '词'), W('jù zi', '句子')], recognize: ['字', '词', '句', '子'],
     readingTitle: '过桥', readingLines: ['数学题，一道道，', '等号就像一座桥。', '做对了，走过桥，', '做错了，过不了。', '想一想，算一算，', '快快乐乐过了桥。'],
@@ -95,7 +96,7 @@ export const CHINESE_PINYIN_STUDY: Record<string, PinyinStudyPack> = {
     check: C('课文中哪一个是翘舌声母？', ['zh', 'z', 's'], 'zh', 'zh 发音时舌尖需要翘起来。'),
   },
   'pinyin-y-w': {
-    page: 'P40-P41', letters: [L('y', '读得轻短，帮助音节开头。', '像枝丫', 'upper'), L('w', '读得轻短，帮助音节开头。', '两个山谷')],
+    page: 'P40-P41', letters: [L('y', '读得轻短，帮助音节开头。', '像枝丫', 'lower'), L('w', '读得轻短，帮助音节开头。', '两个山谷')],
     tones: ['yī yí yǐ yì', 'wū wú wǔ wù', 'yū yú yǔ yù'], blends: [B(['y', 'i'], 'yi', ['yu', 'wu']), B(['w', 'u'], 'wu', ['yi', 'yu'])],
     words: [W('yú', '鱼'), W('yā zi', '鸭子'), W('wū yā', '乌鸦'), W('mǎ yǐ', '蚂蚁')], recognize: ['鱼', '鸭', '乌', '鸦'],
     readingTitle: '哪座房子最漂亮', readingLines: ['一座房，两座房，', '青青的瓦，白白的墙。', '三座房，四座房，', '房前花果香，屋后树成行。', '哪座房子最漂亮？', '要数我们的小学堂。'],

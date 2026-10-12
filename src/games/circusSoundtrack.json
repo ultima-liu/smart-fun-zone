@@ -1,0 +1,29 @@
+{
+  "sampleRate": 44100,
+  "ntscFramesPerSecond": 60.098823055355005,
+  "source": "Circus Charlie (1986-03-04)(Konami)(Soft Pro).nsf",
+  "renderer": "Game Music Emu (2A03 NTSC, tempo 1.0)",
+  "tracks": [
+    {
+      "file": "lion-horse.mp3",
+      "nsfTrack": 1,
+      "loopStart": 22.366205274365527,
+      "loopEnd": 44.72937199997822,
+      "loopFrames": 1344
+    },
+    {
+      "file": "wire-balls.mp3",
+      "nsfTrack": 2,
+      "loopStart": 29.82059418290309,
+      "loopEnd": 59.638149817053346,
+      "loopFrames": 1792
+    },
+    {
+      "file": "trapeze.mp3",
+      "nsfTrack": 3,
+      "loopStart": 25.560943378024483,
+      "loopEnd": 51.11884820729613,
+      "loopFrames": 1536
+    }
+  ]
+}

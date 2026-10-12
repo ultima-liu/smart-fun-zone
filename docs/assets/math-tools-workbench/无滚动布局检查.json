@@ -1,0 +1,751 @@
+{
+  "date": "2026-10-11",
+  "checks": [
+    {
+      "width": 1024,
+      "height": 768,
+      "theme": "dark",
+      "report": [
+        {
+          "name": "pair-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "pair-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "pair-zero",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "partition-all-one-basket",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "hidden-reveal-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "original-complete-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "changes-four",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "changes-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "ten-overfill",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "value-198",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "value-198-ones",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "value-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "group-six",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "group-all-one",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "group-twelve",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "array-six",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "array-all-one",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "array-preview",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "line-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "line-按顺序走",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "line-跳着做加减",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        },
+        {
+          "name": "line-数两端之间",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 111
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "theme": "light",
+      "report": [
+        {
+          "name": "pair-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "pair-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "pair-zero",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "partition-all-one-basket",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "hidden-reveal-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "original-complete-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "changes-four",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "changes-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "ten-overfill",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "value-198",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "value-198-ones",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "value-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "group-six",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "group-all-one",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "group-twelve",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "array-six",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "array-all-one",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "array-preview",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "line-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "line-按顺序走",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "line-跳着做加减",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "line-数两端之间",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 1194,
+      "height": 834,
+      "theme": "light",
+      "report": [
+        {
+          "name": "pair-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "pair-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "pair-zero",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "partition-all-one-basket",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "hidden-reveal-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "original-complete-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "changes-four",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "changes-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "ten-overfill",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "value-198",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "value-198-ones",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "value-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "group-six",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "group-all-one",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "group-twelve",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "array-six",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "array-all-one",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "array-preview",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "line-max",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "line-按顺序走",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "line-跳着做加减",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        },
+        {
+          "name": "line-数两端之间",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 115
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "supplementalChecks": [
+    {
+      "width": 1024,
+      "height": 700,
+      "theme": "light",
+      "reason": "底部结果与操作同一行、29/30 个圆片布局复核",
+      "report": [
+        {
+          "name": "group-six",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "group-all-one",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "group-twelve",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "array-six",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "array-all-one",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "array-preview",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "theme": "light",
+      "reason": "底部结果与操作同一行、29/30 个圆片布局复核",
+      "report": [
+        {
+          "name": "changes-29-active",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "changes-30-complete",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        }
+      ],
+      "errors": []
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "theme": "light",
+      "reason": "2 个车厢、间隔 5、21 个车厢布局复核",
+      "report": [
+        {
+          "name": "line-two",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "line-five",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        },
+        {
+          "name": "line-long",
+          "overflows": [],
+          "scrollbars": [],
+          "offscreen": [],
+          "overlaps": [],
+          "fit": "1.000",
+          "headerY": 83
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -17,6 +17,15 @@ const ART: Record<string, WordPictureArt> = {
 
 const slugOf = (word: string) => word.toLowerCase().replace(/\(.*?\)/g, '').trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
+/** 单独补绘的词图不按 4×4 图集裁切。 */
+const STANDALONE: Record<string, string> = {
+  bed: '/assets/english-textbook/word-art/bed-v1.png',
+};
+
+export function wordPictureStandalone(word: string): string | null {
+  return STANDALONE[slugOf(word)] ?? null;
+}
+
 export function wordPictureArt(word: string): WordPictureArt | null {
   return ART[slugOf(word)] ?? null;
 }
@@ -24,5 +33,5 @@ export function wordPictureArt(word: string): WordPictureArt | null {
 /** 正式图集未覆盖的意外词才回落旧素材，保证词卡永远可读。 */
 export function wordPictureSrc(word: string): string | null {
   const slug = slugOf(word);
-  return slug ? `/assets/english-textbook/words/${slug}.svg` : null;
+  return wordPictureStandalone(word) ?? (slug ? `/assets/english-textbook/words/${slug}.svg` : null);
 }

@@ -1,0 +1,279 @@
+{
+  "records": [
+    {
+      "unit": "friends",
+      "state": "plain",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 476,
+        "scrollHeight": 476,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-four-line-focus",
+            "rect": {
+              "x": 165,
+              "y": 293,
+              "width": 830,
+              "height": 452,
+              "top": 293,
+              "right": 995,
+              "bottom": 745,
+              "left": 165
+            },
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 452,
+            "scrollHeight": 452
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 165,
+              "y": 293,
+              "width": 830,
+              "height": 74.5,
+              "top": 293,
+              "right": 995,
+              "bottom": 367.5,
+              "left": 165
+            },
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 75,
+            "scrollHeight": 75
+          },
+          {
+            "class": "en-four-line-map",
+            "rect": {
+              "x": 165,
+              "y": 377.5,
+              "width": 830,
+              "height": 182,
+              "top": 377.5,
+              "right": 995,
+              "bottom": 559.5,
+              "left": 165
+            },
+            "width": 828,
+            "scrollWidth": 828,
+            "height": 180,
+            "scrollHeight": 180
+          },
+          {
+            "class": "en-four-line-grid-svg",
+            "rect": {
+              "x": 320,
+              "y": 390.5,
+              "width": 662,
+              "height": 159.265625,
+              "top": 390.5,
+              "right": 982,
+              "bottom": 549.765625,
+              "left": 320
+            },
+            "width": 662,
+            "scrollWidth": 662,
+            "height": 159,
+            "scrollHeight": 159
+          },
+          {
+            "class": "en-four-line-rules",
+            "rect": {
+              "x": 165,
+              "y": 569.5,
+              "width": 830,
+              "height": 130,
+              "top": 569.5,
+              "right": 995,
+              "bottom": 699.5,
+              "left": 165
+            },
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 130,
+            "scrollHeight": 130
+          },
+          {
+            "class": "en-four-line-mnemonic",
+            "rect": {
+              "x": 165,
+              "y": 709.5,
+              "width": 830,
+              "height": 35.5,
+              "top": 709.5,
+              "right": 995,
+              "bottom": 745,
+              "left": 165
+            },
+            "width": 830,
+            "scrollWidth": 830,
+            "height": 36,
+            "scrollHeight": 36
+          }
+        ],
+        "text": "FIRST KEY · 首次重点\n英语四线格：认识上格、中格、下格\n\n把书写区看成三层小房子。先看字母住哪一格，再观察它会不会向上伸、向下垂。\n\n上格\n高个字母会伸进来\n中格\n所有小写字母的家\n下格\n有尾巴的字母会垂下来\n大写字母\nA B C\n主要住在上格和中格，大小要整齐。\n短小写\na c e m n o r s u v w x z\n安安稳稳住在中格，不跑到上下两格。\n高个\nb d f h k l t\n从中格向上伸，顶到上格。\n有尾巴\ng j p q y\n从中格向下垂，尾巴进下格。\n\n口诀：大写住上中；短小写住中；高个向上伸，尾巴向下垂。"
+      }
+    },
+    {
+      "unit": "friends",
+      "state": "plain",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 712,
+        "scrollHeight": 712,
+        "fit": "1.000",
+        "parts": [
+          {
+            "class": "en-four-line-focus",
+            "rect": {
+              "x": 251,
+              "y": 355,
+              "width": 1000,
+              "height": 600,
+              "top": 355,
+              "right": 1251,
+              "bottom": 955,
+              "left": 251
+            },
+            "width": 1000,
+            "scrollWidth": 1000,
+            "height": 600,
+            "scrollHeight": 600
+          },
+          {
+            "class": "",
+            "rect": {
+              "x": 291,
+              "y": 355,
+              "width": 920,
+              "height": 74.5,
+              "top": 355,
+              "right": 1211,
+              "bottom": 429.5,
+              "left": 291
+            },
+            "width": 920,
+            "scrollWidth": 920,
+            "height": 75,
+            "scrollHeight": 75
+          },
+          {
+            "class": "en-four-line-map",
+            "rect": {
+              "x": 291,
+              "y": 439.5,
+              "width": 920,
+              "height": 370.5,
+              "top": 439.5,
+              "right": 1211,
+              "bottom": 810,
+              "left": 291
+            },
+            "width": 918,
+            "scrollWidth": 918,
+            "height": 369,
+            "scrollHeight": 369
+          },
+          {
+            "class": "en-four-line-grid-svg",
+            "rect": {
+              "x": 446,
+              "y": 452.5,
+              "width": 752,
+              "height": 344.5,
+              "top": 452.5,
+              "right": 1198,
+              "bottom": 797,
+              "left": 446
+            },
+            "width": 752,
+            "scrollWidth": 752,
+            "height": 345,
+            "scrollHeight": 345
+          },
+          {
+            "class": "en-four-line-rules",
+            "rect": {
+              "x": 291,
+              "y": 820,
+              "width": 920,
+              "height": 89.5,
+              "top": 820,
+              "right": 1211,
+              "bottom": 909.5,
+              "left": 291
+            },
+            "width": 920,
+            "scrollWidth": 920,
+            "height": 90,
+            "scrollHeight": 90
+          },
+          {
+            "class": "en-four-line-mnemonic",
+            "rect": {
+              "x": 291,
+              "y": 919.5,
+              "width": 920,
+              "height": 35.5,
+              "top": 919.5,
+              "right": 1211,
+              "bottom": 955,
+              "left": 291
+            },
+            "width": 920,
+            "scrollWidth": 920,
+            "height": 36,
+            "scrollHeight": 36
+          }
+        ],
+        "text": "FIRST KEY · 首次重点\n英语四线格：认识上格、中格、下格\n\n把书写区看成三层小房子。先看字母住哪一格，再观察它会不会向上伸、向下垂。\n\n上格\n高个字母会伸进来\n中格\n所有小写字母的家\n下格\n有尾巴的字母会垂下来\n大写字母\nA B C\n主要住在上格和中格，大小要整齐。\n短小写\na c e m n o r s u v w x z\n安安稳稳住在中格，不跑到上下两格。\n高个\nb d f h k l t\n从中格向上伸，顶到上格。\n有尾巴\ng j p q y\n从中格向下垂，尾巴进下格。\n\n口诀：大写住上中；短小写住中；高个向上伸，尾巴向下垂。"
+      }
+    },
+    {
+      "unit": "numbers",
+      "state": "plain",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "layout": {
+        "width": 858,
+        "scrollWidth": 858,
+        "height": 476,
+        "scrollHeight": 476,
+        "fit": "1.000",
+        "parts": [],
+        "text": "占格复习\n上格 · 中格 · 下格\n\n大写住上、中两格；短小写住中格；高个向上伸，尾巴向下垂。"
+      }
+    },
+    {
+      "unit": "numbers",
+      "state": "plain",
+      "viewport": {
+        "width": 1366,
+        "height": 1024
+      },
+      "layout": {
+        "width": 1188,
+        "scrollWidth": 1188,
+        "height": 712,
+        "scrollHeight": 712,
+        "fit": "1.000",
+        "parts": [],
+        "text": "占格复习\n上格 · 中格 · 下格\n\n大写住上、中两格；短小写住中格；高个向上伸，尾巴向下垂。"
+      }
+    }
+  ],
+  "errors": []
+}

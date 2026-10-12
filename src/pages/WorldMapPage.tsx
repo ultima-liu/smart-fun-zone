@@ -12,7 +12,7 @@ import { npcMeta } from '../content/npc';
 
 const EMPTY_WRONGS: { lessonId: string; lessonName: string; kind: string; answer: string; time: number }[] = [];
 
-/** 星卷学校入口页：学段 → 年级书架 → 学科课本（上/下册）全层次一屏展开 */
+/** 星卷学校入口页：切换年级，每屏展示六本课本。 */
 export default function WorldMapPage() {
   const nav = useNavigate();
   const { t, lang } = useI18n();
@@ -27,6 +27,7 @@ export default function WorldMapPage() {
 
   const [stage, setStage] = useState<SchoolStage>('primary');
   const grade = (child?.ageBand ?? 'g1') as Grade;
+  const [selectedGrade, setSelectedGrade] = useState<Grade>(grade);
   const [openingBook, setOpeningBook] = useState<{ key: string; route: string } | null>(null);
 
   useEffect(() => {
@@ -149,7 +150,9 @@ export default function WorldMapPage() {
                 />
               </div>
               <span className="continue-meta">
-                {continueLesson.gold
+                {continueLesson.subject === 'math' && continueLesson.stars > 0
+                  ? (lang === 'zh' ? '学习已完成 · 再回看' : 'Completed · revisit')
+                  : continueLesson.gold
                   ? (lang === 'zh' ? '已掌握 · 挑战下一课' : 'Mastered · next lesson')
                   : `${lang === 'zh' ? '当前进度' : 'Progress'} ${continueLesson.stars ?? 0}/3`}
               </span>
@@ -174,9 +177,12 @@ export default function WorldMapPage() {
                 <span className="bookcase-kicker" aria-hidden="true">{lang === 'zh' ? '课堂星图' : 'CLASSROOM CONSTELLATION'}</span>
                 <b>{lang === 'zh' ? '选择一束知识星光' : 'Choose a beam of knowledge'}</b>
               </div>
-              <span>{lang === 'zh' ? '每层代表一个年级 · 已点亮的课程可以立刻启程' : 'Each level is a grade · lit courses are ready to launch'}</span>
+              <span>{lang === 'zh' ? '切换年级 · 选择学科与上下册' : 'Choose a grade, subject and volume'}</span>
             </div>
-            {GRADES.map((g) => {
+            <nav className="academy-grade-tabs" aria-label={lang === 'zh' ? '选择年级' : 'Choose a grade'}>
+              {GRADES.map((g) => <button key={g.id} aria-pressed={selectedGrade === g.id} className={selectedGrade === g.id ? 'active' : ''} onClick={() => setSelectedGrade(g.id)}>{g.name[lang]}{g.id === grade && <small>{lang === 'zh' ? '我的' : 'Mine'}</small>}</button>)}
+            </nav>
+            {GRADES.filter((g) => g.id === selectedGrade).map((g) => {
               const mine = g.id === grade;
               return (
                 <div className={`shelf ${mine ? 'mine' : ''}`} key={g.id}>

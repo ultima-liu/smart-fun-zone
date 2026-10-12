@@ -1,0 +1,2255 @@
+{
+  "records": [
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 276.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 333.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "wrong",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 356.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "correct",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 332.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 270.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 270.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 308.125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 365.21875,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 458.03125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 458.03125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "worked",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 458.03125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 268.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 325.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 276.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 333.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "wrong",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 356.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "correct",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 332.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 270.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 270.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 308.125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 365.21875,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 458.03125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 458.03125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "worked",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 458.03125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 268.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 1024,
+        "height": 768,
+        "name": "Pad横屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 325.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 277.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 334.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "wrong",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 357.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "correct",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 333.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 316.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 316.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 309.125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 366.21875,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 474.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 474.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "worked",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 474.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 314.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 371.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 277.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 334.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "wrong",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 357.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "correct",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 333.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 316.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 316.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 309.125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 366.21875,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 474.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 474.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "worked",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 474.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 314.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 1440,
+        "height": 900,
+        "name": "Web"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 371.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 276.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 333.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "wrong",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 356.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "correct",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 332.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 295.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 323.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 308.125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 365.21875,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 453.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 453.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "worked",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 496.71875,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "initial",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 268.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "light",
+      "state": "hint",
+      "actualTheme": "light",
+      "fit": 1,
+      "height": 325.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 276.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 333.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "wrong",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 356.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 1,
+      "name": "短符号题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "correct",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 332.625,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "＝",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＞",
+          "width": 76,
+          "height": 60
+        },
+        {
+          "text": "＜",
+          "width": 76,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 295.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "phase": 3,
+      "index": 0,
+      "name": "图示短选项",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 323.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "同样多",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "杯子",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "盖子",
+          "width": 88,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 308.125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "numbers",
+      "phase": 4,
+      "index": 3,
+      "name": "短数字题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 365.21875,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 453.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 453.3125,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "add-within-5",
+      "phase": 4,
+      "index": 1,
+      "name": "算式题",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "worked",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 496.71875,
+      "overflow": false,
+      "clipped": [],
+      "choices": []
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "initial",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 268.4375,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "id": "solid-shapes",
+      "phase": 4,
+      "index": 0,
+      "name": "图形判断",
+      "view": {
+        "width": 768,
+        "height": 1024,
+        "name": "Pad竖屏"
+      },
+      "theme": "dark",
+      "state": "hint",
+      "actualTheme": "dark",
+      "fit": 1,
+      "height": 325.53125,
+      "overflow": false,
+      "clipped": [],
+      "choices": [
+        {
+          "text": "正方体",
+          "width": 91,
+          "height": 52
+        },
+        {
+          "text": "圆柱",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "text": "长方体",
+          "width": 91,
+          "height": 52
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

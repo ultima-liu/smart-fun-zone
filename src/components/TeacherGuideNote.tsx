@@ -1,3 +1,4 @@
+import CourseReplayButton from './CourseReplayButton';
 import { useEffect, useState } from 'react';
 import { isSpeaking, speakAfterCurrent, speakOnce } from '../speech';
 import { volcDegraded } from '../volcTts';
@@ -27,7 +28,7 @@ export const narrateAfterCurrent = (text: string) => {
 };
 
 /** 聪聪老师导览条：进入页面/阶段自动讲一次引导，可随时再听一遍；TTS 降级时提示 */
-export default function TeacherGuideNote({ text }: { text: string }) {
+export default function TeacherGuideNote({ text, displayText }: { text: string; displayText?: string }) {
   const [voiceDown, setVoiceDown] = useState(volcDegraded());
   useEffect(() => {
     const onDown = () => setVoiceDown(true);
@@ -49,7 +50,7 @@ export default function TeacherGuideNote({ text }: { text: string }) {
   }, []);
   return <section className="ct-teacher-note">
     <span aria-hidden="true">🤖</span>
-    <div><b>聪聪老师</b><p>{text}</p>{voiceDown && <i className="ct-teacher-down">🔇 语音服务暂时不可用，课程其他功能不受影响。</i>}</div>
-    <button className="ct-note-replay" onClick={() => speakOnce(text, 'zh', .86)}>🔊 再听一遍</button>
+    <div className="teacher-guide-copy"><b>聪聪老师</b><p>{displayText ?? text}</p>{voiceDown && <i className="ct-teacher-down">🔇 语音服务暂时不可用，课程其他功能不受影响。</i>}</div>
+    <CourseReplayButton onClick={() => speakOnce(text, 'zh', .86)} />
   </section>;
 }

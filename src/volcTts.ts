@@ -1,4 +1,7 @@
+import type { SpeechSynthesisOptions } from './courseSpeech';
+import { beginCourseAudioPlayback, currentCourseAudioOwner, withCourseAudioOwner } from './courseAudioPlayback';
 import { refreshServerHealth } from './api';
+import { speechCaptureActive } from './speechCapture';
 
 /* =====================================================================
    火山引擎 豆包语音合成大模型 2.0（seed-tts-2.0）——唯一语音通道，无兜底
@@ -70,31 +73,47 @@ function uuid(): string {
 }
 
 let current: HTMLAudioElement | null = null;
+let currentCleanup: (() => void) | null = null;
+let finishPlayback: (() => void) | null = null;
 let reqSeq = 0; // 最新朗读请求令牌：只有最新一次才允许实际播放（防止并发合成后叠加）
 
 /** 停止当前朗读（开始新朗读前调用；停掉的朗读不会再回调） */
 export function stopVolc() {
   reqSeq++; // 使所有在途合成结果失效，杜绝"两人同时读"
+  finishPlayback?.(); finishPlayback = null;
+  stopCurrentAudio();
+}
+
+/** 合成就绪后换成真实音频，不取消本次等待状态或请求令牌。 */
+function stopCurrentAudio() {
   try {
     current?.pause();
   } catch {
     /* ignore */
   }
   current = null;
+  currentCleanup?.();
+  currentCleanup = null;
 }
 
-function playAudioBlob(blob: Blob, onEnd?: () => void) {
+function playAudioBlob(blob: Blob, onEnd?: (played: boolean) => void) {
   const url = URL.createObjectURL(blob);
   const audio = new Audio(url);
   current = audio;
-  const finish = () => {
+  let finished = false;
+  const finish = (played: boolean) => {
+    if (finished) return;
+    finished = true;
     URL.revokeObjectURL(url);
-    if (current === audio) current = null;
-    onEnd?.();
+    if (current !== audio) return;
+    current = null;
+    currentCleanup = null;
+    onEnd?.(played);
   };
-  audio.onended = finish;
-  audio.onerror = finish;
-  audio.play().catch(finish);
+  audio.onended = () => finish(true);
+  audio.onerror = () => finish(false);
+  currentCleanup = () => finish(false);
+  audio.play().catch(() => finish(false));
 }
 
 /** 读 SSE 响应，拼接 base64 音频分片 */
@@ -162,11 +181,11 @@ function markDegraded() {
   degraded = true;
   try { window.dispatchEvent(new CustomEvent('volc-tts-degraded')); } catch { /* 非 browser 环境 */ }
 }
-function cacheKey(lang: string, rate: number, text: string, speaker?: string, pitch = 0): string {
-  return `${lang}|${rate}|${speaker ?? ''}|${pitch}|${text}`;
+function cacheKey(lang: string, rate: number, text: string, speaker?: string, pitch = 0, options?: SpeechSynthesisOptions): string {
+  return `${lang}|${rate}|${speaker ?? ''}|${pitch}|${JSON.stringify(options ?? {})}|${text}`;
 }
 
-function makeBody(clean: string, lang: 'zh' | 'en', rate: number, speaker?: string, pitch = 0) {
+function makeBody(clean: string, lang: 'zh' | 'en', rate: number, speaker?: string, pitch = 0, options?: SpeechSynthesisOptions) {
   const speechRate = Math.max(-50, Math.min(100, Math.round((rate - 1) * 100)));
   return {
     user: { uid: 'smart-fun-zone' },
@@ -175,18 +194,18 @@ function makeBody(clean: string, lang: 'zh' | 'en', rate: number, speaker?: stri
       speaker: speaker ?? VOICES[lang],
       sample_rate: 24000,
       audio_params: { format: 'mp3', speech_rate: speechRate, loudness_rate: 0, bit_rate: 64000 },
-      additions: JSON.stringify({ post_process: { pitch }, disable_markdown_filter: true, enable_latex_tn: false }),
+      additions: JSON.stringify({ post_process: { pitch }, disable_markdown_filter: true, enable_latex_tn: false, ...(options?.pronunciation?.length ? { pronunciation_dict: { tone: options.pronunciation } } : {}), ...(options?.context?.length ? { context_texts: options.context } : {}) }),
     },
   };
 }
 
 /** 用非流式方式合成整段（用于预热缓存，不播放） */
-async function synthesizeBlob(clean: string, lang: 'zh' | 'en', rate: number, speaker?: string, pitch = 0): Promise<Blob | null> {
+async function synthesizeBlob(clean: string, lang: 'zh' | 'en', rate: number, speaker?: string, pitch = 0, options?: SpeechSynthesisOptions): Promise<Blob | null> {
   try {
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Api-Resource-Id': RESOURCE_ID, 'X-Api-Request-Id': uuid() },
-      body: JSON.stringify(makeBody(clean, lang, rate, speaker, pitch)),
+      body: JSON.stringify(makeBody(clean, lang, rate, speaker, pitch, options)),
     });
     return await readSseAudio(res);
   } catch {
@@ -195,13 +214,13 @@ async function synthesizeBlob(clean: string, lang: 'zh' | 'en', rate: number, sp
 }
 
 /** 预热：预先合成并缓存一段音频（不播放）。之后 speak 命中缓存即秒播。 */
-export async function warmTts(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92, speaker?: string, pitch = 0): Promise<void> {
+export async function warmTts(text: string, lang: 'zh' | 'en' = 'zh', rate = 0.92, speaker?: string, pitch = 0, options?: SpeechSynthesisOptions): Promise<void> {
   if (!await ensureConfigured()) return;
   const clean = stripEmoji(text);
   if (!clean) return;
-  const key = cacheKey(lang, rate, clean, speaker, pitch);
+  const key = cacheKey(lang, rate, clean, speaker, pitch, options);
   if (audioCache.has(key)) return;
-  const blob = await synthesizeBlob(clean, lang, rate, speaker, pitch);
+  const blob = await synthesizeBlob(clean, lang, rate, speaker, pitch, options);
   if (blob) {
     audioCache.set(key, blob);
     if (audioCache.size > MAX_CACHE) {
@@ -215,34 +234,45 @@ export async function speakVolc(
   text: string,
   lang: 'zh' | 'en',
   rate = 0.92,
-  onEnd?: () => void,
+  onEnd?: (played: boolean) => void,
   speaker?: string,
   pitch = 0,
+  options?: SpeechSynthesisOptions,
 ): Promise<void> {
+  if (speechCaptureActive()) { onEnd?.(false); return; }
   // 在等待健康检查前登记请求，翻页或新朗读仍能取消这次延迟播报。
   const myReq = ++reqSeq;
-  const configured = await ensureConfigured();
-  if (myReq !== reqSeq) return;
-  if (!configured) {
-    window.setTimeout(() => onEnd?.(), 0);
-    return;
-  }
-  const clean = stripEmoji(text);
-  if (!clean) {
-    window.setTimeout(() => onEnd?.(), 0);
-    return;
-  }
+  finishPlayback?.();
+  const owner = currentCourseAudioOwner();
+  const finish = beginCourseAudioPlayback();
+  finishPlayback = finish;
+  const done = (played: boolean) => {
+    finish();
+    if (finishPlayback === finish) finishPlayback = null;
+    withCourseAudioOwner(owner, () => onEnd?.(played));
+  };
   try {
+    const configured = await ensureConfigured();
+    if (myReq !== reqSeq || speechCaptureActive()) { finish(); return; }
+    if (!configured) {
+      window.setTimeout(() => { if (myReq === reqSeq) done(false); }, 0);
+      return;
+    }
+    const clean = stripEmoji(text);
+    if (!clean) {
+      window.setTimeout(() => { if (myReq === reqSeq) done(false); }, 0);
+      return;
+    }
     // 语速映射：0.92x → -8；1.0x → 0；上限 100（2.0x）、下限 -50（0.5x）
-    const key = cacheKey(lang, rate, clean, speaker, pitch);
+    const key = cacheKey(lang, rate, clean, speaker, pitch, options);
     const cached = audioCache.get(key);
     if (cached) {
       // 命中缓存：直接播放，几乎零延迟
-      stopVolc();
-      playAudioBlob(cached, onEnd);
+      stopCurrentAudio();
+      playAudioBlob(cached, done);
       return;
     }
-    const body = makeBody(clean, lang, rate, speaker, pitch);
+    const body = makeBody(clean, lang, rate, speaker, pitch, options);
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: {
@@ -255,8 +285,9 @@ export async function speakVolc(
     // 整段合成后播放（稳定可靠）；预热命中缓存时走上方 cached 分支秒播
     const blob = await readSseAudio(res);
     if (!blob) {
+      if (myReq !== reqSeq) { finish(); return; }
       markDegraded();
-      window.setTimeout(() => onEnd?.(), 0);
+      window.setTimeout(() => { if (myReq === reqSeq) done(false); }, 0);
       return;
     }
     audioCache.set(key, blob);
@@ -265,15 +296,15 @@ export async function speakVolc(
       if (k !== undefined) audioCache.delete(k);
     }
     // 已被更新的 speak 越位（stopVolc/新请求触发的 reqSeq 变化）→ 放弃本次播放
-    if (myReq !== reqSeq) {
-      window.setTimeout(() => onEnd?.(), 0);
-      return;
+    if (myReq !== reqSeq || speechCaptureActive()) {
+      finish(); return;
     }
-    stopVolc();
-    playAudioBlob(blob, onEnd);
+    stopCurrentAudio();
+    playAudioBlob(blob, done);
   } catch (e) {
+    finish();
     console.warn('volc tts exception:', e);
     markDegraded();
-    window.setTimeout(() => onEnd?.(), 0);
+    if (myReq === reqSeq) window.setTimeout(() => { if (myReq === reqSeq) done(false); }, 0);
   }
 }

@@ -1,4 +1,7 @@
 /** 课程复习清单：D0 跟随新课，后续回顾由可编辑的周课程表决定。 */
+import { chineseEvidenceReviewPriority } from './chineseLearning';
+import { mathEvidenceReviewPriority } from './mathLearning';
+import { englishReviewPriority } from './englishLearning';
 import { localDayKey } from './dailyCheckin';
 import type { CourseScheduleEntry } from './taskTypes';
 import type { Grade } from './types';
@@ -85,7 +88,7 @@ export function reviewCandidates(childId: string, grade: Grade, schedule: Course
     if (entries.some((item) => item.subject === subject && (item.reviewedOn ?? []).includes(day))) return [];
     const entry = entries.filter((item) => item.subject === subject
       && localDayKey(new Date(item.learnedAt)) < day && !(item.reviewedOn ?? []).includes(day))
-      .sort((a, b) => lastReviewed(a).localeCompare(lastReviewed(b)) || a.learnedAt - b.learnedAt || a.id.localeCompare(b.id))[0];
+      .sort((a, b) => (subject === 'chinese' ? chineseEvidenceReviewPriority(childId, b.lessonId, now.getTime()) - chineseEvidenceReviewPriority(childId, a.lessonId, now.getTime()) : subject === 'math' ? mathEvidenceReviewPriority(childId, b.lessonId, now.getTime()) - mathEvidenceReviewPriority(childId, a.lessonId, now.getTime()) : subject === 'english' ? englishReviewPriority(childId, b.lessonId, now.getTime()) - englishReviewPriority(childId, a.lessonId, now.getTime()) : 0) || lastReviewed(a).localeCompare(lastReviewed(b)) || a.learnedAt - b.learnedAt || a.id.localeCompare(b.id))[0];
     return entry ? [{ entry, reviewDay: -1 as const }] : [];
   });
   return [...scheduled, ...sameDay];

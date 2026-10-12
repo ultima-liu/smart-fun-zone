@@ -1,0 +1,20 @@
+{
+  "old": {
+    "file": "public/assets/games/bomber/audio/blast-fc-v1.mp3",
+    "duration": 0.19564625850340137,
+    "peak": 1.4142603874206543,
+    "bodyRms_50_150ms": 1.0992709662278541e-05,
+    "tailRms_900_1100ms": 0,
+    "audibleSamplesOver001": 1104,
+    "playbackGain": 0.32
+  },
+  "new": {
+    "file": "public/assets/games/bomber/audio/blast-fc-v2.wav",
+    "duration": 1.3933786848072562,
+    "peak": 0.8499755859375,
+    "bodyRms_50_150ms": 0.36707419465936214,
+    "tailRms_900_1100ms": 0.11623227522327287,
+    "audibleSamplesOver001": 55663,
+    "playbackGain": 0.32
+  }
+}
